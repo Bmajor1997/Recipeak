@@ -30,7 +30,7 @@ updates:
     commit-message:
       prefix: "deps"
 
-  # Mobile app. Expo SDK upgrades are done together on purpose, so Dependabot skips Expo and React Native majors.
+  # Mobile app. Expo fixes which major versions work together, so majors move only with an Expo SDK upgrade.
   - package-ecosystem: npm
     directory: /apps/mobile
     schedule:
@@ -40,14 +40,12 @@ updates:
       default-days: 7
     open-pull-requests-limit: 10
     ignore:
-      - dependency-name: "expo*"
+      - dependency-name: "*"
         update-types: ["version-update:semver-major"]
-      - dependency-name: "react-native*"
-        update-types: ["version-update:semver-major"]
+      # React Native requires React's exact version, so these move only together, with Expo.
       - dependency-name: "react"
-        update-types: ["version-update:semver-major", "version-update:semver-minor"]
       - dependency-name: "react-dom"
-        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      - dependency-name: "react-native"
     groups:
       minor-and-patch:
         update-types: [minor, patch]
