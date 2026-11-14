@@ -1,0 +1,86 @@
+name: Meals and Mixers App and Server Checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  server:
+    name: Backend lint and tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Monitor runner network activity
+        if: ${{ !github.event.repository.private }}
+        uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
+        with:
+          egress-policy: audit
+      - name: Get the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 24
+      - name: Install backend dependencies
+        run: npm ci --ignore-scripts
+      - name: Lint backend
+        run: npm run lint
+      - name: Run backend and security tooling tests
+        run: npm test
+
+  mobile:
+    name: Mobile app checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: apps/mobile
+    steps:
+      - name: Monitor runner network activity
+        if: ${{ !github.event.repository.private }}
+        uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
+        with:
+          egress-policy: audit
+      - name: Get the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 24
+      - name: Install app dependencies
+        run: npm ci --ignore-scripts
+      - name: Type-check
+        run: npm run typecheck
+      - name: Lint
+        run: npm run lint
+      - name: Check formatting
+        run: npm run format:check
+      - name: Run logic tests
+        run: npm test
+      - name: Build the Android JavaScript bundle
+        env:
+          CI: "1"
+          EXPO_OFFLINE: "1"
+        run: npx expo export --platform android --output-dir "$RUNNER_TEMP/android-export"
+      - name: Audit production dependencies
+        if: always()
+        run: |
+          npm audit --omit=dev --json > "$RUNNER_TEMP/mobile-audit.json" || true
+          node ../../security/check-npm-audit.cjs "$RUNNER_TEMP/mobile-audit.json"
+      - name: Check dependency licenses
+        if: always()
+        run: >-
+          npx --yes license-checker-rseidelsohn@5.0.1 --production --summary
+          --failOn "AGPL-1.0;AGPL-3.0;AGPL-3.0-only;AGPL-3.0-or-later;GPL-2.0;GPL-2.0-only;GPL-2.0-or-later;GPL-3.0;GPL-3.0-only;GPL-3.0-or-later;SSPL-1.0"

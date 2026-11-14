@@ -15,7 +15,7 @@ updates:
     commit-message:
       prefix: "ci"
 
-  # App dependencies; takes effect once package.json exists.
+  # Backend dependencies.
   - package-ecosystem: npm
     directory: /
     schedule:
@@ -29,3 +29,27 @@ updates:
         update-types: [minor, patch]
     commit-message:
       prefix: "deps"
+
+  # Mobile app. Expo SDK upgrades are done together on purpose, so Dependabot skips Expo and React Native majors.
+  - package-ecosystem: npm
+    directory: /apps/mobile
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "expo*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-native*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+    commit-message:
+      prefix: "deps(mobile)"

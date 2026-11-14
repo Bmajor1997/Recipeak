@@ -105,7 +105,8 @@ jobs:
         with:
           node-version: 24
       - name: Test the security tooling itself
-        run: node --test code_checks/*.test.js
+        # The backend tests run in the App and Server Checks workflow, after its dependencies are installed.
+        run: node --test code_checks/security_tools.test.js
 
       - name: Install app dependencies
         if: hashFiles('package-lock.json') != ''
