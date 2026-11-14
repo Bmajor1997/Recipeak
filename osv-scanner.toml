@@ -1,0 +1,9 @@
+# Temporary exceptions for upstream vulnerabilities that have no patched release.
+# Every exception needs a reason and a short expiry so it is automatically reconsidered.
+# security/check-npm-audit.cjs reads this same file, so one list governs both gates.
+#
+# Example:
+# [[IgnoredVulns]]
+# id = "GHSA-xxxx-xxxx-xxxx"
+# ignoreUntil = 2027-01-31
+# reason = "Transitive via <package>; no patched release yet. Recheck upstream before expiry."

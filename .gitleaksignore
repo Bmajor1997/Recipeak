@@ -1,0 +1,2 @@
+# Pin individual verified false positives here as <commit>:<file>:<rule>:<line>.
+# Keep every other finding scanned. Nothing is ignored yet.

@@ -1,0 +1,22 @@
+node_modules/
+.npm-cache/
+test-results/
+playwright-report/
+.expo/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Local databases
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+
+# Reproducible verification outputs
+coverage/
+quality-evidence/
+npm-audit.json
+gitleaks-scan.log

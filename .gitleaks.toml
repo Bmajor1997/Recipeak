@@ -1,0 +1,6 @@
+# Secret scanning rules for Gitleaks (ported from Votic).
+# Uses the full default rule set. When a reviewed false positive appears, add a
+# narrowly scoped [[allowlists]] entry here (exact value AND path, as Votic does)
+# rather than turning a rule off.
+[extend]
+useDefault = true
