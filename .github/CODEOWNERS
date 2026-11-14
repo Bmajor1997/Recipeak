@@ -1,0 +1,8 @@
+# Every change is reviewed by the owner. Security tooling is listed separately
+# so it keeps an explicit owner if more reviewers are added later.
+*                    @Bmajor1997
+/.github/            @Bmajor1997
+/security/           @Bmajor1997
+/.gitleaks.toml      @Bmajor1997
+/.gitleaksignore     @Bmajor1997
+/osv-scanner.toml    @Bmajor1997

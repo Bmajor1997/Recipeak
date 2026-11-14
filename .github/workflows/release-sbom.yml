@@ -1,0 +1,36 @@
+name: Meals and Mixers Release SBOM
+
+# Attaches a software bill of materials (every package in the release) to each published GitHub release.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sbom:
+    name: Generate and attach SBOM
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write # upload the SBOM to the release
+    steps:
+      - name: Monitor runner network activity
+        if: ${{ !github.event.repository.private }}
+        uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
+        with:
+          egress-policy: audit
+      - name: Get the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Generate SPDX SBOM
+        uses: anchore/sbom-action@fffec3d851af758d56fee099cf3fbf8aa8779843 # v0.24.3
+        with:
+          path: .
+          format: spdx-json
+          output-file: meals-and-mixers.spdx.json
+          artifact-name: meals-and-mixers.spdx.json

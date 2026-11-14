@@ -9,7 +9,10 @@ Meals and Mixers is in the idea phase.
 ## What's here so far
 
 - `assets/app-icon.png` — the front-facing app image.
-- `.github/workflows/security-checks.yml` — code quality and security CI, ported from Votic.
+- `.github/workflows/security-checks.yml` — code quality and security CI, ported from Votic. Runs on every push and pull request, and weekly.
+- `.github/workflows/release-sbom.yml` — attaches a software bill of materials to each published release.
+- `.github/dependabot.yml` — weekly updates for npm packages and the pinned GitHub Actions.
+- `.github/CODEOWNERS` — review ownership.
 - `security/` — scan verifiers, the dependency-exception gate and the vulnerability report.
 - `docs/security/SECURITY-BASELINE.md` — the security standards this app targets.
 - `.gitleaks.toml`, `.gitleaksignore`, `osv-scanner.toml` — scanner configuration and exception lists.

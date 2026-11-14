@@ -1,37 +1,59 @@
 name: Meals and Mixers Code Quality & Security Checks
 
-# Ported from Votic's security-checks.yml. Language-specific steps (npm) switch on
-# automatically once the app has a package-lock.json.
+# Ported from Votic's security-checks.yml. Language-specific steps (npm, licenses,
+# Trivy) switch on automatically once the files they scan exist.
+# CodeQL, dependency review and Harden-Runner need paid plans on private repositories,
+# so they skip while the repository is private and run automatically once it is public.
 
 on:
   push:
   pull_request:
   workflow_dispatch:
+  schedule:
+    # Weekly, so newly published advisories and secret rules are caught even when the code has not changed.
+    - cron: "41 14 * * 1"
 
 permissions:
   contents: read
 
+concurrency:
+  # A newer push to the same branch or pull request cancels the older, now-irrelevant run.
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
+
 jobs:
   dependency-review:
     name: Dependency Review
-    # Needs GitHub Advanced Security on private repositories; runs automatically once the repo is public.
     if: github.event_name == 'pull_request' && !github.event.repository.private
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - name: Review dependency changes for vulnerabilities
+      - name: Monitor runner network activity
+        uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
+        with:
+          egress-policy: audit
+      - name: Review dependency changes for vulnerabilities and licenses
         uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+        with:
+          deny-licenses: AGPL-1.0-only, AGPL-3.0-only, AGPL-3.0-or-later, GPL-2.0-only, GPL-2.0-or-later, GPL-3.0-only, GPL-3.0-or-later, SSPL-1.0
 
   codeql:
     name: CodeQL Security Analysis
-    # Needs GitHub Advanced Security on private repositories; runs automatically once the repo is public.
     if: ${{ !github.event.repository.private }}
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       contents: read
       security-events: write
     steps:
+      - name: Monitor runner network activity
+        uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
+        with:
+          egress-policy: audit
       - name: Get the code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
       - name: Initialize CodeQL
         uses: github/codeql-action/init@24c54180a607b1449ed407dd24f251e4e9147c8d # v4
         with:
@@ -39,14 +61,42 @@ jobs:
       - name: Analyze with CodeQL
         uses: github/codeql-action/analyze@24c54180a607b1449ed407dd24f251e4e9147c8d # v4
 
+  workflow-lint:
+    name: Workflow Security Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Monitor runner network activity
+        if: ${{ !github.event.repository.private }}
+        uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
+        with:
+          egress-policy: audit
+      - name: Get the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Check workflow syntax and shell scripts with actionlint
+        run: pipx run --spec actionlint-py==1.7.12.25 actionlint -color
+      - name: Audit workflows for security problems with zizmor
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: pipx run zizmor==1.32.0 --format plain .github/workflows
+
   security:
     name: Security Scans and Tests
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
+      - name: Monitor runner network activity
+        if: ${{ !github.event.repository.private }}
+        uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
+        with:
+          egress-policy: audit
       - name: Get the code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Set up Node.js
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
@@ -63,6 +113,11 @@ jobs:
           npm audit --json > npm-audit.json || true
           node security/update-vulnerability-report.cjs npm-audit.json
           node security/check-npm-audit.cjs npm-audit.json
+      - name: Check dependency licenses
+        if: always() && hashFiles('package-lock.json') != ''
+        run: >-
+          npx --yes license-checker-rseidelsohn@5.0.1 --production --summary
+          --failOn "AGPL-1.0;AGPL-3.0;AGPL-3.0-only;AGPL-3.0-or-later;GPL-2.0;GPL-2.0-only;GPL-2.0-or-later;GPL-3.0;GPL-3.0-only;GPL-3.0-or-later;SSPL-1.0"
       - name: Preserve dependency audit report
         if: always() && hashFiles('package-lock.json') != ''
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -76,6 +131,17 @@ jobs:
       - name: Scan dependencies with OSV-Scanner
         if: always() && hashFiles('**/package-lock.json', '**/requirements*.txt', '**/poetry.lock', '**/pubspec.lock', '**/Podfile.lock', '**/build.gradle*') != ''
         run: docker run --rm -v "$PWD:/src" ghcr.io/google/osv-scanner:v2.6.0 scan --config=/src/osv-scanner.toml -r /src
+
+      - name: Scan Dockerfiles and infrastructure config with Trivy
+        # trivy-action is pinned by commit: its version tags were hijacked in March 2026 (CVE-2026-33634).
+        if: always() && hashFiles('**/Dockerfile', '**/*.dockerfile', '**/docker-compose*.yml', '**/*.tf') != ''
+        uses: aquasecurity/trivy-action@a9c7b0f06e461e9d4b4d1711f154ee024b8d7ab8 # v0.36.0
+        with:
+          version: v0.76.2
+          scan-type: config
+          scan-ref: .
+          exit-code: "1"
+          severity: HIGH,CRITICAL
 
       - name: Scan source code with Semgrep
         if: always()
