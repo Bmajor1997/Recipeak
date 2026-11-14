@@ -55,11 +55,11 @@ jobs:
         with:
           persist-credentials: false
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@24c54180a607b1449ed407dd24f251e4e9147c8d # v4
+        uses: github/codeql-action/init@24c54180a607b1449ed407dd24f251e4e9147c8d # v4.38.3
         with:
           languages: javascript-typescript, actions
       - name: Analyze with CodeQL
-        uses: github/codeql-action/analyze@24c54180a607b1449ed407dd24f251e4e9147c8d # v4
+        uses: github/codeql-action/analyze@24c54180a607b1449ed407dd24f251e4e9147c8d # v4.38.3
 
   workflow-lint:
     name: Workflow Security Lint
@@ -135,7 +135,7 @@ jobs:
       - name: Scan Dockerfiles and infrastructure config with Trivy
         # trivy-action is pinned by commit: its version tags were hijacked in March 2026 (CVE-2026-33634).
         if: always() && hashFiles('**/Dockerfile', '**/*.dockerfile', '**/docker-compose*.yml', '**/*.tf') != ''
-        uses: aquasecurity/trivy-action@a9c7b0f06e461e9d4b4d1711f154ee024b8d7ab8 # v0.36.0
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           version: v0.76.2
           scan-type: config
