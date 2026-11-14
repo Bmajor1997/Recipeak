@@ -1,18 +1,18 @@
-import { CameraView, useCameraPermissions } from "expo-camera";
-import * as ImagePicker from "expo-image-picker";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { router, useFocusEffect } from "expo-router";
-import { useCallback, useRef, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { useCallback, useState } from "react";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { useApp } from "../../AppContext";
 import { ApiError } from "../../api/client";
+import { CameraSheet, type Photo } from "../../camera/CameraSheet";
 import { preparePhoto } from "../../photos/prepare";
-import { Button, colors, Notice, type } from "../../ui/theme";
+import { colors, type } from "../../ui/theme";
 
-export default function CameraScreen() {
+const appImage = require("../../../assets/icon.png");
+
+export default function HomeScreen() {
   const { api, setCurrent, user } = useApp();
-  const camera = useRef<CameraView>(null);
-  const [permission, requestPermission] = useCameraPermissions();
-  const [busy, setBusy] = useState(false);
+  const [cameraOpen, setCameraOpen] = useState(false);
   const [problem, setProblem] = useState<string | null>(null);
   const [photosLeft, setPhotosLeft] = useState<number | null | undefined>(undefined);
 
@@ -26,78 +26,72 @@ export default function CameraScreen() {
     }, [api, user]),
   );
 
-  async function findRecipe(uri: string, width: number, height: number) {
-    setBusy(true);
+  async function findRecipe(photo: Photo) {
     setProblem(null);
     try {
-      const result = await api.identify(await preparePhoto(uri, width, height));
+      const result = await api.identify(await preparePhoto(photo.uri, photo.width, photo.height));
       setPhotosLeft(result.premium ? null : result.free_photos_left);
       if (result.kind === "not_food") {
-        setProblem("That doesn't look like a meal or a drink. Try another photo, closer up and in good light.");
+        // Keep the camera open so they can try again right away.
+        setProblem("That doesn't look like a meal or a drink. Try again, closer up and in good light.");
         return;
       }
       setCurrent({ kind: result.kind, recipe: result.recipe, guesses: result.guesses });
+      setCameraOpen(false);
       router.push("/recipe");
     } catch (error) {
-      if (error instanceof ApiError && error.needsUpgrade) router.push("/upgrade");
-      else setProblem(error instanceof ApiError ? error.message : "That photo couldn't be read. Please try another one.");
-    } finally {
-      setBusy(false);
+      if (error instanceof ApiError && error.needsUpgrade) {
+        setCameraOpen(false);
+        router.push("/upgrade");
+      } else setProblem(error instanceof ApiError ? error.message : "That photo couldn't be read. Please try another one.");
     }
   }
 
-  async function takePhoto() {
-    const photo = await camera.current?.takePictureAsync({ quality: 0.9, shutterSound: false });
-    if (photo) await findRecipe(photo.uri, photo.width, photo.height);
-  }
-
-  async function choosePhoto() {
-    const picked = await ImagePicker.launchImageLibraryAsync({ mediaTypes: "images", quality: 0.9 });
-    const asset = picked.canceled ? null : picked.assets[0];
-    if (asset) await findRecipe(asset.uri, asset.width, asset.height);
-  }
-
-  const allowanceText =
-    photosLeft === null
-      ? null
-      : photosLeft === undefined
-        ? null
-        : photosLeft === 1
-          ? "1 free photo left"
-          : `${photosLeft} free photos left`;
+  const allowance = photosLeft == null ? null : photosLeft === 1 ? "1 free photo left" : `${photosLeft} free photos left`;
 
   return (
     <View style={styles.screen}>
-      <View style={styles.preview}>
-        {permission?.granted ? (
-          <CameraView ref={camera} style={StyleSheet.absoluteFill} facing="back" accessibilityLabel="Camera preview" />
-        ) : (
-          <View style={styles.placeholder}>
-            <Text style={[type.body, { textAlign: "center" }]}>Allow camera access to photograph a meal or a cocktail.</Text>
-            <Button label="Allow camera" onPress={requestPermission} />
-          </View>
-        )}
+      <View style={styles.hero}>
+        <Image source={appImage} style={styles.art} accessible={false} />
+        <Text style={[type.title, { textAlign: "center", marginTop: 20 }]} accessibilityRole="header">
+          What are you having?
+        </Text>
+        <Text style={[type.muted, { textAlign: "center", marginTop: 8 }]}>
+          Take a photo of a meal or a cocktail and get a recipe to make it.
+        </Text>
       </View>
-      <View style={styles.controls}>
-        {allowanceText && <Text style={type.muted}>{allowanceText}</Text>}
-        {problem && <Notice tone="error">{problem}</Notice>}
-        {busy && <Notice>Finding your recipe… this can take a few seconds.</Notice>}
-        <Button
-          label="Take photo"
-          onPress={takePhoto}
-          busy={busy}
-          disabled={!permission?.granted}
-          hint="Takes a photo and finds a recipe for it"
-        />
-        <Button label="Choose from gallery" variant="secondary" onPress={choosePhoto} disabled={busy} />
-      </View>
+
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel="Camera"
+        accessibilityHint="Opens the camera"
+        onPress={() => {
+          setProblem(null);
+          setCameraOpen(true);
+        }}
+        style={({ pressed }) => [styles.cameraButton, pressed && { transform: [{ scale: 0.97 }] }]}
+      >
+        <Ionicons name="camera" size={30} color={colors.accentText} />
+        <Text style={styles.cameraLabel}>Camera</Text>
+      </Pressable>
+      {allowance && <Text style={[type.muted, { textAlign: "center", marginTop: 12 }]}>{allowance}</Text>}
+
+      <CameraSheet visible={cameraOpen} onClose={() => setCameraOpen(false)} onPhoto={findRecipe} message={problem} footnote={allowance} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background },
-  preview: { flex: 1, margin: 16, borderRadius: 20, overflow: "hidden", backgroundColor: colors.surface },
-  placeholder: { flex: 1, padding: 24, justifyContent: "center" },
-  controls: { paddingHorizontal: 16, paddingBottom: 16 },
+  screen: { flex: 1, backgroundColor: colors.background, padding: 24, justifyContent: "center" },
+  hero: { alignItems: "center", marginBottom: 36 },
+  art: { width: 180, height: 180, borderRadius: 40 },
+  cameraButton: {
+    minHeight: 72,
+    borderRadius: 36,
+    backgroundColor: colors.accent,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  cameraLabel: { color: colors.accentText, fontSize: 22, fontWeight: "700", marginLeft: 12 },
 });

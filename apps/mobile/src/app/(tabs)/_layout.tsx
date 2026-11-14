@@ -1,3 +1,4 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { Tabs } from "expo-router";
 import { colors } from "../../ui/theme";
 
@@ -14,8 +15,14 @@ export default function TabsLayout() {
         sceneStyle: { backgroundColor: colors.background },
       }}
     >
-      <Tabs.Screen name="index" options={{ title: "Camera", tabBarIcon: () => null }} />
-      <Tabs.Screen name="saved" options={{ title: "Saved", tabBarIcon: () => null }} />
+      <Tabs.Screen
+        name="index"
+        options={{ title: "Home", tabBarIcon: ({ color }) => <Ionicons name="camera-outline" size={26} color={color as string} /> }}
+      />
+      <Tabs.Screen
+        name="saved"
+        options={{ title: "Saved", tabBarIcon: ({ color }) => <Ionicons name="bookmark-outline" size={26} color={color as string} /> }}
+      />
     </Tabs>
   );
 }
