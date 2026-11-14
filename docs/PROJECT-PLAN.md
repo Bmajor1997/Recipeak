@@ -54,6 +54,16 @@ All amounts use US measurements.
 
 Each account gets 3 free photos, counted on the server against the verified account (never a number sent by the phone). A photo counts when the app returns a meal or cocktail. A failed request, or a photo that turns out not to be food or drink, does not use one up; daily and per-minute limits stop abuse of that rule.
 
+### The camera
+
+Modelled on the ChatGPT app's camera. The Home screen has a **Camera** button; the camera slides up from the bottom as a rounded sheet with:
+
+- a large white **shutter** button in the middle,
+- a **back** arrow on the left (dragging the sheet down, or Android's back button, also closes it),
+- a **three-dot menu** on the right: *Choose from photos*, *Flash: Off / Auto / On*, and *Use front/back camera*.
+
+When a photo is taken, people get three signals: the **shutter sound**, a **soft white flash** on screen (about a quarter of a second, never a strobe), and a **light vibration**. Screen readers announce "Photo taken. Finding your recipe." The photo then stays on screen with "Finding your recipe…" until the recipe opens. If it isn't food or drink, the message appears inside the camera so they can retake straight away. With the phone's Reduce Motion setting on, the sheet fades instead of sliding and the flash is dimmer.
+
 ## 4. Privacy and safety
 
 - **Photos are not kept.** The backend sends the photo to OpenAI with `store:false`, returns the recipe, and discards the image. The usage ledger records counts and costs only, never photos, as in Votic.
