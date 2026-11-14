@@ -1,6 +1,6 @@
 # Meals and Mixers — project plan
 
-Status: **draft for review**, 2026-11-14.
+Status: **approved; phase 1 in progress**, updated 2026-11-14.
 
 ## 1. What the app does
 
@@ -17,8 +17,13 @@ If the app is unsure, it shows its top two or three guesses and the user picks o
 | Decision | Choice |
 | --- | --- |
 | Platforms | Android first, iPhone later, from one codebase |
-| App framework | Expo / React Native, the same as Votic |
+| App framework | Expo / React Native, the same as Votic (on the newer Expo SDK 58) |
 | AI service | Same as Votic: our backend calls OpenAI; the key stays on the server |
+| Sign-in | Required before the first photo (Firebase, like Votic) |
+| Free use | 3 free photos per account, then the paid plan (RevenueCat, like Votic) |
+| Saved recipes | A **Saved** screen in the app; stored on the phone first, synced to the account later |
+| Diet versions | Users can ask for vegetarian, vegan, gluten-free, dairy-free and other versions of a recipe |
+| Units | US measurements (cups, tablespoons, ounces, °F) |
 
 ## 3. How it is built (reusing Votic's setup)
 
@@ -41,7 +46,13 @@ The backend asks the model for a fixed JSON shape, and rejects anything that doe
 - `recipe` for the chosen guess: title, short description, servings, prep and cook time, ingredients (amount, unit, item), steps, and allergens it contains
 - for cocktails: glass, garnish, and whether it is alcoholic, with a non-alcoholic version where one makes sense
 
-Choosing a different guess asks for that recipe by name (a text-only call), so the photo is only sent once.
+Choosing a different guess, or asking for a diet version, asks for that recipe by name (a text-only call), so the photo is only sent once. These follow-up calls do not use up a free photo.
+
+All amounts use US measurements.
+
+### Free photos
+
+Each account gets 3 free photos, counted on the server against the verified account (never a number sent by the phone). A photo counts when the app returns a meal or cocktail. A failed request, or a photo that turns out not to be food or drink, does not use one up; daily and per-minute limits stop abuse of that rule.
 
 ## 4. Privacy and safety
 
@@ -53,17 +64,14 @@ Choosing a different guess asks for that recipe by name (a text-only call), so t
 
 ## 5. Build phases
 
-1. **Foundation:** set up the Expo app and the Node backend from Votic's patterns, and run them locally with the security checks passing.
-2. **Core loop:** camera or gallery photo → `/api/identify-recipe` → recipe screen, with guesses, a "not food" answer and error states. Includes tests with sample photos.
-3. **Accounts and limits:** Firebase sign-in, the usage ledger and per-account caps, before any public testing.
-4. **Saving and sharing:** save recipes on the device, scale servings, share a recipe as text.
+1. **Foundation (done):** the Expo app and the Node backend, built from Votic's patterns: server-side sign-in check, the 3-free-photo allowance, the OpenAI recipe call with a strict reply shape, and app screens for camera, recipe and Saved. Tests and CI for both.
+2. **Core loop on a real phone:** connect Firebase sign-in and the live OpenAI key, test with real photos, tune the prompt, and polish guesses, "not food" and error states.
+3. **Paid plan:** RevenueCat paywall after the 3 free photos, checked on the server.
+4. **Saving and sharing polish:** scale servings, share a recipe as text, account sync for Saved.
 5. **Android release:** test APK, Play internal testing, privacy policy, Play data-safety form, content rating.
 6. **iPhone:** iOS build workflow, camera permission text, App Store review.
 
 ## 6. Open questions
 
-- **Free and paid:** how many free photos a day or month, and is there a paid plan through RevenueCat like Votic?
-- **Sign-in:** is sign-in needed before the first photo, or only after a few free tries?
-- **Saved recipes:** kept on the phone only, or synced to the account?
-- **Diet options:** should users be able to ask for vegetarian, gluten-free or other versions of a recipe?
-- **Units:** US cups and ounces, metric, or a switch?
+- **Paid plan:** price, monthly or yearly, and whether paid use has a monthly photo limit.
+- **Free photos:** do the 3 free photos ever refresh (for example monthly), or are they 3 in total? Planned as 3 in total for now.
