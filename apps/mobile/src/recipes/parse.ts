@@ -81,7 +81,18 @@ export function parseSavedList(v: unknown): SavedRecipe[] {
   return v.flatMap((item) => {
     try {
       if (!isObject(item) || (item.kind !== "meal" && item.kind !== "cocktail")) return [];
-      return [{ id: str(item.id, 64), saved_at: str(item.saved_at, 40), kind: item.kind as Kind, recipe: parseRecipe(item.recipe) }];
+      // Only a file on this phone counts as a photo; anything else (or nothing, from older saves) means no photo.
+      const photo =
+        typeof item.photo_uri === "string" && /^file:\/\//.test(item.photo_uri) && item.photo_uri.length < 600 ? item.photo_uri : null;
+      return [
+        {
+          id: str(item.id, 64),
+          saved_at: str(item.saved_at, 40),
+          kind: item.kind as Kind,
+          recipe: parseRecipe(item.recipe),
+          photo_uri: photo,
+        },
+      ];
     } catch {
       return [];
     }

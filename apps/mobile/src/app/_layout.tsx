@@ -1,12 +1,19 @@
+// Import only the two weights used, so the other 16 font files stay out of the app.
+import { Fraunces_500Medium } from "@expo-google-fonts/fraunces/500Medium";
+import { Fraunces_600SemiBold } from "@expo-google-fonts/fraunces/600SemiBold";
+import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { ActivityIndicator, View } from "react-native";
 import { AppProvider, useApp } from "../AppContext";
+import { CameraProvider } from "../camera/CameraProvider";
 import { colors } from "../ui/theme";
 
 function Screens() {
   const { user, ready } = useApp();
-  if (!ready) {
+  // If the fonts fail to load, the app still works with the phone's own font.
+  const [fontsLoaded, fontError] = useFonts({ Fraunces_500Medium, Fraunces_600SemiBold });
+  if (!ready || (!fontsLoaded && !fontError)) {
     return (
       <View style={{ flex: 1, backgroundColor: colors.background, justifyContent: "center" }}>
         <ActivityIndicator size="large" color={colors.accent} accessibilityLabel="Loading" />
@@ -19,17 +26,19 @@ function Screens() {
     contentStyle: { backgroundColor: colors.background },
   };
   return (
-    <Stack screenOptions={header}>
-      {/* People must be signed in before their first photo. */}
-      <Stack.Protected guard={Boolean(user)}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="recipe" options={{ title: "Recipe" }} />
-        <Stack.Screen name="upgrade" options={{ title: "Keep cooking", presentation: "modal" }} />
-      </Stack.Protected>
-      <Stack.Protected guard={!user}>
-        <Stack.Screen name="sign-in" options={{ headerShown: false }} />
-      </Stack.Protected>
-    </Stack>
+    <CameraProvider>
+      <Stack screenOptions={header}>
+        {/* People must be signed in before their first photo. */}
+        <Stack.Protected guard={Boolean(user)}>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="recipe" options={{ headerShown: false }} />
+          <Stack.Screen name="upgrade" options={{ title: "Keep cooking", presentation: "modal" }} />
+        </Stack.Protected>
+        <Stack.Protected guard={!user}>
+          <Stack.Screen name="sign-in" options={{ headerShown: false }} />
+        </Stack.Protected>
+      </Stack>
+    </CameraProvider>
   );
 }
 

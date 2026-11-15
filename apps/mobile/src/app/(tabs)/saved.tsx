@@ -1,13 +1,29 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { router, useFocusEffect } from "expo-router";
-import { useCallback, useState } from "react";
-import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import { useCallback, useMemo, useState } from "react";
+import { FlatList, StyleSheet, Text, TextInput, useWindowDimensions, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../../AppContext";
+import { useCamera } from "../../camera/CameraProvider";
+import { filterSaved, type SavedFilter, totalMinutes } from "../../recipes/search";
 import type { SavedRecipe } from "../../recipes/types";
-import { colors, type } from "../../ui/theme";
+import { PhotoCard } from "../../ui/PhotoCard";
+import { Button, Chip, colors, type } from "../../ui/theme";
+
+const FILTERS: { value: SavedFilter; label: string }[] = [
+  { value: "all", label: "All" },
+  { value: "meal", label: "Meals" },
+  { value: "cocktail", label: "Drinks" },
+];
 
 export default function SavedScreen() {
   const { saved, setCurrent } = useApp();
+  const { openCamera } = useCamera();
+  const insets = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
   const [items, setItems] = useState<SavedRecipe[] | null>(null);
+  const [query, setQuery] = useState("");
+  const [filter, setFilter] = useState<SavedFilter>("all");
 
   useFocusEffect(
     useCallback(() => {
@@ -15,39 +31,91 @@ export default function SavedScreen() {
     }, [saved]),
   );
 
+  const shown = useMemo(() => filterSaved(items ?? [], query, filter), [items, query, filter]);
+  const cardWidth = (width - 20 * 2 - 12) / 2;
+
+  const header = (
+    <View style={{ paddingTop: insets.top + 16 }}>
+      <Text style={type.display} accessibilityRole="header">
+        Saved
+      </Text>
+      {!!items?.length && (
+        <>
+          <View style={styles.search}>
+            <Ionicons name="search" size={20} color={colors.muted} />
+            <TextInput
+              value={query}
+              onChangeText={setQuery}
+              placeholder="Search your recipes"
+              placeholderTextColor={colors.muted}
+              style={styles.searchInput}
+              accessibilityLabel="Search your recipes"
+              returnKeyType="search"
+              autoCorrect={false}
+            />
+          </View>
+          <View style={styles.filters} accessibilityRole="tablist">
+            {FILTERS.map((f) => (
+              <Chip key={f.value} label={f.label} selected={filter === f.value} onPress={() => setFilter(f.value)} />
+            ))}
+          </View>
+        </>
+      )}
+    </View>
+  );
+
   if (items && !items.length) {
     return (
-      <View style={styles.empty}>
-        <Text style={type.heading}>No saved recipes yet</Text>
-        <Text style={type.muted}>When you find a recipe you like, tap Save and it will appear here.</Text>
+      <View style={[styles.screen, { paddingHorizontal: 20 }]}>
+        {header}
+        <Text style={type.heading}>Start your collection</Text>
+        <Text style={type.muted}>Snap a meal or a cocktail, then tap Save on the recipe. It will show up here with your photo.</Text>
+        <Button label="Open camera" onPress={openCamera} />
       </View>
     );
   }
 
   return (
     <FlatList
-      data={items ?? []}
+      style={styles.screen}
+      data={shown}
       keyExtractor={(item) => item.id}
-      contentContainerStyle={{ padding: 16 }}
+      numColumns={2}
+      ListHeaderComponent={header}
+      ListEmptyComponent={items ? <Text style={[type.muted, { marginTop: 12 }]}>No saved recipes match that search.</Text> : undefined}
+      columnWrapperStyle={{ gap: 12 }}
+      contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 32, gap: 12 }}
+      keyboardShouldPersistTaps="handled"
       renderItem={({ item }) => (
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={`${item.recipe.title}, ${item.kind === "cocktail" ? "drink" : "meal"}`}
+        <PhotoCard
+          title={item.recipe.title}
+          kind={item.kind}
+          minutes={totalMinutes(item)}
+          photoUri={item.photo_uri}
+          width={cardWidth}
+          height={cardWidth * 1.25}
           onPress={() => {
-            setCurrent({ kind: item.kind, recipe: item.recipe, guesses: [] });
-            router.push({ pathname: "/recipe", params: { savedId: item.id } });
+            setCurrent({ kind: item.kind, recipe: item.recipe, guesses: [], photoUri: item.photo_uri, savedId: item.id });
+            router.push("/recipe");
           }}
-          style={styles.row}
-        >
-          <Text style={type.body}>{item.recipe.title}</Text>
-          <Text style={type.muted}>{item.kind === "cocktail" ? "Drink" : "Meal"}</Text>
-        </Pressable>
+        />
       )}
     />
   );
 }
 
 const styles = StyleSheet.create({
-  empty: { flex: 1, padding: 24, backgroundColor: colors.background },
-  row: { minHeight: 64, padding: 16, borderRadius: 14, backgroundColor: colors.surface, marginBottom: 10 },
+  screen: { flex: 1, backgroundColor: colors.background },
+  search: {
+    marginTop: 16,
+    minHeight: 50,
+    borderRadius: 14,
+    backgroundColor: colors.surface,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 14,
+    gap: 10,
+  },
+  searchInput: { flex: 1, color: colors.text, fontSize: 17, paddingVertical: 10 },
+  filters: { flexDirection: "row", marginTop: 14, marginBottom: 4 },
 });

@@ -2,9 +2,14 @@
 import type { ReactNode } from "react";
 import { ActivityIndicator, Pressable, StyleSheet, Text, type TextStyle, View } from "react-native";
 
+/** Serif display font for titles (Fraunces, loaded in the root layout). Body text stays in the phone's own font. */
+export const fonts = { display: "Fraunces_600SemiBold", displayMedium: "Fraunces_500Medium" };
+
 export const colors = {
-  background: "#0E2A30", // deep teal, from the app icon
-  surface: "#163A42",
+  background: "#0B2328", // deep teal, from the app icon
+  surface: "#12323A",
+  raised: "#1A4049",
+  scrim: "rgba(5, 18, 21, 0.92)",
   text: "#FFFFFF",
   muted: "#C9DADD",
   accent: "#FF7A45", // grapefruit orange
@@ -14,8 +19,10 @@ export const colors = {
 };
 
 export const type = StyleSheet.create({
-  title: { color: colors.text, fontSize: 28, fontWeight: "700" },
-  heading: { color: colors.text, fontSize: 21, fontWeight: "700", marginTop: 20, marginBottom: 8 },
+  display: { color: colors.text, fontSize: 34, lineHeight: 40, fontFamily: fonts.display },
+  title: { color: colors.text, fontSize: 28, lineHeight: 34, fontFamily: fonts.display },
+  heading: { color: colors.text, fontSize: 22, lineHeight: 28, fontFamily: fonts.display, marginTop: 24, marginBottom: 10 },
+  label: { color: colors.muted, fontSize: 14, fontWeight: "600", letterSpacing: 0.4 },
   body: { color: colors.text, fontSize: 18, lineHeight: 26 },
   muted: { color: colors.muted, fontSize: 16, lineHeight: 23 },
   error: { color: colors.danger, fontSize: 17, lineHeight: 24 },

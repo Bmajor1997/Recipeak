@@ -32,4 +32,5 @@ export type Allowance = { premium: boolean; free_photos_left: number | null; fre
 export const DIETS = ["vegetarian", "vegan", "gluten-free", "dairy-free", "nut-free", "low-carb", "non-alcoholic"] as const;
 export type Diet = (typeof DIETS)[number];
 
-export type SavedRecipe = { id: string; saved_at: string; kind: Kind; recipe: Recipe };
+/** photo_uri points at a photo kept privately on this phone, or null when the recipe has no photo. */
+export type SavedRecipe = { id: string; saved_at: string; kind: Kind; recipe: Recipe; photo_uri: string | null };
