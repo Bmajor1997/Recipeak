@@ -172,5 +172,8 @@ export function parse_recipe_request(body) {
   if (!name || name.length > 120) return null;
   if (!["meal", "cocktail"].includes(body.kind)) return null;
   if (body.diet != null && !DIETS.includes(body.diet)) return null;
-  return { name, kind: body.kind, diet: body.diet ?? null };
+  if (body.correction != null && typeof body.correction !== "boolean") return null;
+  // A correction is a name typed in place of a photo that couldn't be read; it isn't a diet version.
+  if (body.correction === true && body.diet != null) return null;
+  return { name, kind: body.kind, diet: body.diet ?? null, correction: body.correction === true };
 }

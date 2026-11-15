@@ -71,8 +71,18 @@ export function create_api({ baseUrl, id_token, fetch_impl = fetch, timeoutMs = 
     async identify(imageDataUrl: string): Promise<Identification> {
       return parse_identification(await request("/api/identify", { method: "POST", body: { image: imageDataUrl } }));
     },
-    async recipe(name: string, kind: Kind, diet?: Diet): Promise<{ recipe: Recipe; image: DishImage }> {
-      const json = (await request("/api/recipe", { method: "POST", body: { name, kind, ...(diet ? { diet } : {}) } })) as {
+    /**
+     * A recipe by name: another guess, a diet version, or (`correction`) a name typed in place of a photo that
+     * couldn't be read, which uses one of the free photos instead of a follow-up.
+     */
+    async recipe(
+      name: string,
+      kind: Kind,
+      diet?: Diet,
+      { correction = false }: { correction?: boolean } = {},
+    ): Promise<{ recipe: Recipe; image: DishImage }> {
+      const body = { name, kind, ...(diet ? { diet } : {}), ...(correction ? { correction: true } : {}) };
+      const json = (await request("/api/recipe", { method: "POST", body })) as {
         recipe?: unknown;
         image?: unknown;
       };

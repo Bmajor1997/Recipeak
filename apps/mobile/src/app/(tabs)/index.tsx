@@ -48,8 +48,15 @@ export default function HomeScreen() {
 
       <PhotoWall />
       <View style={[styles.pad, styles.sectionHeader]}>
-        <Text style={[type.heading, { marginTop: 0, marginBottom: 0 }]}>Explore the collection</Text>
-        <Pressable accessibilityRole="link" onPress={() => router.push("/explore")}>
+        <Text style={[type.heading, { marginTop: 0, marginBottom: 0 }]} accessibilityRole="header">
+          Explore the collection
+        </Text>
+        <Pressable
+          accessibilityRole="link"
+          accessibilityLabel="See all meals and cocktails"
+          hitSlop={10}
+          onPress={() => router.push("/explore")}
+        >
           <Text style={styles.seeAll}>See all</Text>
         </Pressable>
       </View>

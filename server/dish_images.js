@@ -79,8 +79,16 @@ export function curated_keys(curated_dir = CURATED_DIR) {
   return keys;
 }
 
-/** One searchable entry per curated image, including alternative names. */
+/** One searchable entry per curated image, including alternative names. Read once: the photos only change with a deploy. */
+const catalogs = new Map();
 export function curated_catalog(curated_dir = CURATED_DIR) {
+  if (catalogs.has(curated_dir)) return catalogs.get(curated_dir);
+  const catalog = read_catalog(curated_dir);
+  if (catalog.length) catalogs.set(curated_dir, catalog); // an unreadable list is tried again next time
+  return catalog;
+}
+
+function read_catalog(curated_dir) {
   try {
     const manifest = JSON.parse(readFileSync(join(curated_dir, "manifest.json"), "utf8"));
     return (manifest.photos || []).flatMap((photo) => {
@@ -212,4 +220,3 @@ export function create_image_library({ env = {}, store, fetch_impl = fetch, dir 
     },
   };
 }
-
