@@ -3,19 +3,19 @@ import { useEffect, useState } from "react";
 import type { Api } from "../api/client";
 import type { DishImage, Kind } from "./types";
 
-export const POLL_MS = 3000;
-export const MAX_POLLS = 40; // about two minutes, then the app's own art stays
+const POLL_MS = 3000;
+const MAX_POLLS = 40; // about two minutes, then the app's own art stays
 
 /**
  * Returns the photo's full address once it's ready, or null meanwhile.
  * `lookUp` asks the server once even when nothing is known yet (for saved recipes kept without a photo).
  */
 export function useDishImage(api: Api, kind: Kind, name: string, initial: DishImage, { lookUp = false } = {}) {
-  const [image, setImage] = useState<DishImage>(initial);
-  const [shownFor, setShownFor] = useState({ name, initial });
+  const [image, set_image] = useState<DishImage>(initial);
+  const [shownFor, set_shown_for] = useState({ name, initial });
   if (shownFor.name !== name || shownFor.initial !== initial) {
-    setShownFor({ name, initial });
-    setImage(initial);
+    set_shown_for({ name, initial });
+    set_image(initial);
   }
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export function useDishImage(api: Api, kind: Kind, name: string, initial: DishIm
       polls += 1;
       let next: DishImage | null = null;
       try {
-        next = await api.dishImage(kind, name);
+        next = await api.dish_image(kind, name);
       } catch {
         next = null;
       }
@@ -36,7 +36,7 @@ export function useDishImage(api: Api, kind: Kind, name: string, initial: DishIm
       const settled = next !== null && next.status !== "pending";
       if (settled || polls >= MAX_POLLS) {
         clearInterval(timer);
-        setImage(settled && next ? next : { status: "unavailable", url: null });
+        set_image(settled && next ? next : { status: "unavailable", url: null });
       }
     }, POLL_MS);
     return () => {
@@ -45,5 +45,5 @@ export function useDishImage(api: Api, kind: Kind, name: string, initial: DishIm
     };
   }, [api, kind, name, image.status, lookUp]);
 
-  return { uri: api.imageUri(image.status === "ready" ? image.url : null), pending: image.status === "pending" };
+  return { uri: api.image_uri(image.status === "ready" ? image.url : null), pending: image.status === "pending" };
 }

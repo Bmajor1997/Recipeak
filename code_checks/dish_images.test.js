@@ -105,9 +105,9 @@ test("a missing photo is created once in the background, then served to everyone
 
 test("failures don't publish a photo and aren't retried immediately", async (t) => {
   const bad = library(t, { bytes: Buffer.from("not an image at all, just text that is long enough".repeat(30)) });
-  bad.images.status({ kind: "meal", name: "Pad thai", user_id: "alice" });
+  bad.images.status({ kind: "meal", name: "Moqueca", user_id: "alice" });
   await bad.images.settled();
-  assert.equal(bad.images.status({ kind: "meal", name: "Pad thai", user_id: "alice" }).status, "unavailable");
+  assert.equal(bad.images.status({ kind: "meal", name: "Moqueca", user_id: "alice" }).status, "unavailable");
   assert.equal(bad.calls.length, 1);
   const rejected = library(t, { status: 400 });
   rejected.images.status({ kind: "meal", name: "Tonkatsu", user_id: "alice" });

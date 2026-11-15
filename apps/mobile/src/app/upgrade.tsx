@@ -10,10 +10,10 @@ import {
   FREE_TRIAL_DAYS,
   PLANS,
   type PlanId,
-  paywallEyebrow,
-  planDetail,
-  trialTerms,
-  yearlySavingPercent,
+  paywall_eyebrow,
+  plan_detail,
+  trial_terms,
+  yearly_saving_percent,
 } from "../paywall/plans";
 import { Button, colors, Notice, type } from "../ui/theme";
 
@@ -24,8 +24,8 @@ const NOT_YET = "Subscriptions aren't open yet. Your saved recipes are still her
 export default function Upgrade() {
   const insets = useSafeAreaInsets();
   const { reason } = useLocalSearchParams<{ reason?: string }>();
-  const [selected, setSelected] = useState<PlanId>(DEFAULT_PLAN);
-  const [notice, setNotice] = useState<string | null>(null);
+  const [selected, set_selected] = useState<PlanId>(DEFAULT_PLAN);
+  const [notice, set_notice] = useState<string | null>(null);
 
   const close = () => (router.canGoBack() ? router.back() : router.replace("/saved"));
 
@@ -44,7 +44,7 @@ export default function Upgrade() {
         <Image source={heroArt} style={styles.art} resizeMode="contain" accessibilityIgnoresInvertColors />
       </View>
 
-      <Text style={styles.eyebrow}>{paywallEyebrow(reason === "saved" ? "saved" : "photos")}</Text>
+      <Text style={styles.eyebrow}>{paywall_eyebrow(reason === "saved" ? "saved" : "photos")}</Text>
       <Text style={[type.title, { marginTop: 8 }]} accessibilityRole="header">
         Keep snapping. Keep cooking.
       </Text>
@@ -60,8 +60,8 @@ export default function Upgrade() {
               key={id}
               accessibilityRole="radio"
               accessibilityState={{ checked: isSelected }}
-              accessibilityLabel={`${PLANS[id].title}, ${planDetail(id)}${id === "yearly" ? `, save ${yearlySavingPercent()} percent` : ""}`}
-              onPress={() => setSelected(id)}
+              accessibilityLabel={`${PLANS[id].title}, ${plan_detail(id)}${id === "yearly" ? `, save ${yearly_saving_percent()} percent` : ""}`}
+              onPress={() => set_selected(id)}
               style={[styles.plan, isSelected && styles.planSelected]}
             >
               <View style={[styles.radio, isSelected && styles.radioOn]}>
@@ -69,11 +69,11 @@ export default function Upgrade() {
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={styles.planTitle}>{PLANS[id].title}</Text>
-                <Text style={styles.planDetail}>{planDetail(id)}</Text>
+                <Text style={styles.planDetail}>{plan_detail(id)}</Text>
               </View>
               {id === "yearly" && (
                 <View style={styles.badge}>
-                  <Text style={styles.badgeText}>{`SAVE ${yearlySavingPercent()}%`}</Text>
+                  <Text style={styles.badgeText}>{`SAVE ${yearly_saving_percent()}%`}</Text>
                 </View>
               )}
             </Pressable>
@@ -83,9 +83,9 @@ export default function Upgrade() {
 
       <View style={{ flexGrow: 1 }} />
 
-      <Button label={`Start ${FREE_TRIAL_DAYS}-day free trial`} onPress={() => setNotice(NOT_YET)} />
-      <Text style={styles.terms}>{trialTerms(selected)}</Text>
-      <Pressable accessibilityRole="button" hitSlop={8} onPress={() => setNotice(NOT_YET)} style={styles.restore}>
+      <Button label={`Start ${FREE_TRIAL_DAYS}-day free trial`} onPress={() => set_notice(NOT_YET)} />
+      <Text style={styles.terms}>{trial_terms(selected)}</Text>
+      <Pressable accessibilityRole="button" hitSlop={8} onPress={() => set_notice(NOT_YET)} style={styles.restore}>
         <Text style={styles.restoreText}>Restore purchase</Text>
       </Pressable>
       {notice && <Notice>{notice}</Notice>}

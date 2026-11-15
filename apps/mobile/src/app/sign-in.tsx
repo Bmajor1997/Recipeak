@@ -1,38 +1,38 @@
 import { useState } from "react";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { firebase, firebaseConfigured, signInProblem } from "../auth/firebase";
+import { firebase, firebaseConfigured, sign_in_problem } from "../auth/firebase";
 import { Button, colors, Notice, type } from "../ui/theme";
 
 export default function SignIn() {
-  const [mode, setMode] = useState<"sign-in" | "create">("sign-in");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [message, setMessage] = useState<{ text: string; tone: "muted" | "error" } | null>(null);
+  const [mode, set_mode] = useState<"sign-in" | "create">("sign-in");
+  const [email, set_email] = useState("");
+  const [password, set_password] = useState("");
+  const [busy, set_busy] = useState(false);
+  const [message, set_message] = useState<{ text: string; tone: "muted" | "error" } | null>(null);
 
   async function submit() {
-    if (mode === "create" && password.length < 8) return setMessage({ text: "Use a password with at least 8 characters.", tone: "error" });
-    setBusy(true);
-    setMessage(null);
+    if (mode === "create" && password.length < 8) return set_message({ text: "Use a password with at least 8 characters.", tone: "error" });
+    set_busy(true);
+    set_message(null);
     try {
-      if (mode === "create") await firebase.createAccount(email, password);
-      else await firebase.signIn(email, password);
+      if (mode === "create") await firebase.create_account(email, password);
+      else await firebase.sign_in(email, password);
     } catch (error) {
-      setMessage({ text: signInProblem(error), tone: "error" });
+      set_message({ text: sign_in_problem(error), tone: "error" });
     } finally {
-      setBusy(false);
+      set_busy(false);
     }
   }
 
   async function reset() {
-    if (!email.trim()) return setMessage({ text: "Enter your email first, then tap Forgot password.", tone: "error" });
+    if (!email.trim()) return set_message({ text: "Enter your email first, then tap Forgot password.", tone: "error" });
     try {
-      await firebase.resetPassword(email);
+      await firebase.reset_password(email);
     } catch {
       // Same message either way, so this screen can't be used to find out who has an account.
     }
-    setMessage({ text: "If there's an account for that email, a reset link is on its way.", tone: "muted" });
+    set_message({ text: "If there's an account for that email, a reset link is on its way.", tone: "muted" });
   }
 
   return (
@@ -52,7 +52,7 @@ export default function SignIn() {
           <TextInput
             style={styles.input}
             value={email}
-            onChangeText={setEmail}
+            onChangeText={set_email}
             autoCapitalize="none"
             autoComplete="email"
             keyboardType="email-address"
@@ -63,7 +63,7 @@ export default function SignIn() {
           <TextInput
             style={styles.input}
             value={password}
-            onChangeText={setPassword}
+            onChangeText={set_password}
             secureTextEntry
             autoComplete={mode === "create" ? "new-password" : "current-password"}
             textContentType={mode === "create" ? "newPassword" : "password"}
@@ -76,8 +76,8 @@ export default function SignIn() {
             variant="secondary"
             label={mode === "create" ? "I already have an account" : "Create a new account"}
             onPress={() => {
-              setMode(mode === "create" ? "sign-in" : "create");
-              setMessage(null);
+              set_mode(mode === "create" ? "sign-in" : "create");
+              set_message(null);
             }}
           />
           {mode === "sign-in" && <Button variant="secondary" label="Forgot password" onPress={reset} />}

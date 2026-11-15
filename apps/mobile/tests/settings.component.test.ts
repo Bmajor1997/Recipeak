@@ -24,22 +24,22 @@ const mocks = vi.hoisted(() => ({
   set: vi.fn(),
   allowance: vi.fn(),
   list: vi.fn(),
-  resetPassword: vi.fn(),
-  signOut: vi.fn(),
-  setCurrent: vi.fn(),
+  reset_password: vi.fn(),
+  sign_out: vi.fn(),
+  set_current: vi.fn(),
   push: vi.fn(),
   back: vi.fn(),
   replace: vi.fn(),
   canGoBack: vi.fn(),
   category: "preferences",
 }));
-vi.mock("@react-native-async-storage/async-storage", () => ({ default: { getItem: mocks.get, setItem: mocks.set } }));
+vi.mock("@react-native-async-storage/async-storage", () => ({ default: { getItem: mocks.get, setItem: mocks.set, removeItem: vi.fn() } }));
 vi.mock("../src/AppContext", () => {
   const api = { allowance: mocks.allowance };
   const saved = { list: mocks.list };
-  return { useApp: () => ({ user: mocks.user, api, saved, setCurrent: mocks.setCurrent }) };
+  return { useApp: () => ({ user: mocks.user, api, saved, set_current: mocks.set_current }) };
 });
-vi.mock("../src/auth/firebase", () => ({ firebase: { resetPassword: mocks.resetPassword, signOut: mocks.signOut } }));
+vi.mock("../src/auth/firebase", () => ({ firebase: { reset_password: mocks.reset_password, sign_out: mocks.sign_out } }));
 vi.mock("react-native", () => ({
   View: "View",
   Text: "Text",
@@ -81,8 +81,8 @@ beforeEach(() => {
   mocks.set.mockResolvedValue(undefined);
   mocks.list.mockResolvedValue([]);
   mocks.allowance.mockResolvedValue({ premium: false, free_photos_left: 2, free_photos_total: 3 });
-  mocks.resetPassword.mockResolvedValue(undefined);
-  mocks.signOut.mockResolvedValue(undefined);
+  mocks.reset_password.mockResolvedValue(undefined);
+  mocks.sign_out.mockResolvedValue(undefined);
   mocks.canGoBack.mockReturnValue(true);
   mocks.category = "preferences";
 });
@@ -178,17 +178,17 @@ describe("Settings interactions", () => {
   it("confirms sign-out, lets the user cancel, and keeps failed requests retryable", async () => {
     const tree = await render(createElement(SettingsDetails, { category: "account" }));
     await press(tree, "Sign out");
-    expect(mocks.signOut).not.toHaveBeenCalled();
+    expect(mocks.sign_out).not.toHaveBeenCalled();
     await press(tree, "Cancel");
-    expect(mocks.signOut).not.toHaveBeenCalled();
+    expect(mocks.sign_out).not.toHaveBeenCalled();
     await press(tree, "Reset password");
-    expect(mocks.resetPassword).toHaveBeenCalledWith("first@example.test");
+    expect(mocks.reset_password).toHaveBeenCalledWith("first@example.test");
     await press(tree, "Sign out");
-    mocks.signOut.mockRejectedValueOnce(new Error("offline"));
+    mocks.sign_out.mockRejectedValueOnce(new Error("offline"));
     await press(tree, "Confirm sign out");
     expect(text(tree)).toContain("Couldn’t sign out");
     await press(tree, "Confirm sign out");
-    expect(mocks.signOut).toHaveBeenCalledTimes(2);
-    expect(mocks.setCurrent).toHaveBeenCalledWith(null);
+    expect(mocks.sign_out).toHaveBeenCalledTimes(2);
+    expect(mocks.set_current).toHaveBeenCalledWith(null);
   });
 });

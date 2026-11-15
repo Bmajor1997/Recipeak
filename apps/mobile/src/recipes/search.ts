@@ -3,7 +3,7 @@ import type { Kind, SavedRecipe } from "./types";
 export type SavedFilter = "all" | Kind;
 
 /** Search by recipe name or ingredient, and filter to meals or drinks. */
-export function filterSaved(list: SavedRecipe[], query: string, filter: SavedFilter): SavedRecipe[] {
+export function filter_saved(list: SavedRecipe[], query: string, filter: SavedFilter): SavedRecipe[] {
   const words = query.toLowerCase().split(/\s+/).filter(Boolean);
   return list.filter((s) => {
     if (filter !== "all" && s.kind !== filter) return false;
@@ -13,4 +13,4 @@ export function filterSaved(list: SavedRecipe[], query: string, filter: SavedFil
   });
 }
 
-export const totalMinutes = (s: SavedRecipe) => s.recipe.prep_minutes + s.recipe.cook_minutes;
+export const total_minutes = (s: SavedRecipe) => s.recipe.prep_minutes + s.recipe.cook_minutes;

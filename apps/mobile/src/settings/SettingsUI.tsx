@@ -13,7 +13,7 @@ export const CATEGORIES = {
   help: "Help & privacy",
 } as const;
 export type Category = keyof typeof CATEGORIES;
-export const isCategory = (value: unknown): value is Category => typeof value === "string" && Object.hasOwn(CATEGORIES, value);
+export const is_category = (value: unknown): value is Category => typeof value === "string" && Object.hasOwn(CATEGORIES, value);
 
 export function SettingsScreen({ title, back = false, children }: { title: string; back?: boolean; children: ReactNode }) {
   const insets = useSafeAreaInsets();

@@ -9,7 +9,7 @@ const folder = () => {
 };
 
 /** Downloads (or copies) a cover photo into private storage and returns its address on the phone. */
-export async function keepPhoto(sourceUri: string, id: string): Promise<string> {
+export async function keep_photo(sourceUri: string, id: string): Promise<string> {
   const destination = new File(folder(), `${id.replace(/[^a-zA-Z0-9-]/g, "")}.jpg`);
   if (destination.exists) destination.delete();
   if (/^https?:\/\//.test(sourceUri)) await File.downloadFileAsync(sourceUri, destination, { idempotent: true });
@@ -18,7 +18,7 @@ export async function keepPhoto(sourceUri: string, id: string): Promise<string> 
 }
 
 /** Deletes a kept photo. Only touches files inside the app's own photo folder. */
-export function removePhoto(uri: string): void {
+export function remove_photo(uri: string): void {
   try {
     const file = new File(uri);
     if (file.uri.startsWith(folder().uri) && file.exists) file.delete();
