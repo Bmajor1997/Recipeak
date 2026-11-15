@@ -1,9 +1,10 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useState } from "react";
-import { AccessibilityInfo, Animated, Easing, Image, StyleSheet, Text, View } from "react-native";
+import { AccessibilityInfo, Animated, Easing, Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { useOpenWallDish } from "../recipes/useOpenWallDish";
 import { colors, fonts, type } from "./theme";
 import { rowMotion, WALL_GAP, WALL_TILE } from "./wallMotion";
-import { CURATED_COUNT, WALL_ROWS } from "./wallPhotos";
+import { CURATED_COUNT, WALL_ROWS, type WallPhoto } from "./wallPhotos";
 
 /** Turns on the wall's motion unless the phone's "reduce motion" setting is on. */
 function useReduceMotion() {
@@ -23,7 +24,17 @@ function useReduceMotion() {
   return reduce;
 }
 
-function Row({ photos, reverse, still }: { photos: number[]; reverse: boolean; still: boolean }) {
+function Row({
+  photos,
+  reverse,
+  still,
+  onOpen,
+}: {
+  photos: WallPhoto[];
+  reverse: boolean;
+  still: boolean;
+  onOpen: (dish: WallPhoto) => void;
+}) {
   const motion = rowMotion(photos.length, reverse);
   const [progress] = useState(() => new Animated.Value(0));
 
@@ -42,28 +53,43 @@ function Row({ photos, reverse, still }: { photos: number[]; reverse: boolean; s
   const translateX = progress.interpolate({ inputRange: [0, 1], outputRange: [motion.from, motion.to] });
   return (
     <Animated.View style={[styles.row, { transform: [{ translateX }] }]}>
-      {[...photos, ...photos].map((source, i) => (
-        <Image key={i} source={source} style={styles.tile} />
-      ))}
+      {[...photos, ...photos].map((dish, i) => {
+        // The second copy only exists to make the loop seamless, so screen readers skip it.
+        const copy = i >= photos.length;
+        return (
+          <Pressable
+            key={i}
+            onPress={() => onOpen(dish)}
+            accessible={!copy}
+            importantForAccessibility={copy ? "no-hide-descendants" : "auto"}
+            accessibilityRole="button"
+            accessibilityLabel={`${dish.name}. Open the recipe.`}
+            style={({ pressed }) => pressed && { transform: [{ scale: 0.95 }], opacity: 0.85 }}
+          >
+            <Image source={dish.source} style={styles.tile} />
+          </Pressable>
+        );
+      })}
     </Animated.View>
   );
 }
 
-/** Two rows of dishes and drinks drifting past in opposite directions, like a menu going by. */
+/** Two rows of dishes and drinks drifting past in opposite directions, like a menu going by. Tap one to open its recipe. */
 export function PhotoWall() {
   const still = useReduceMotion();
+  const open = useOpenWallDish();
   return (
-    <View style={styles.wall} accessible accessibilityLabel={`Photos of ${CURATED_COUNT} meals and drinks.`}>
+    <View style={styles.wall}>
       <View style={{ marginLeft: -40 }}>
-        <Row photos={WALL_ROWS[0]} reverse={false} still={still} />
+        <Row photos={WALL_ROWS[0]} reverse={false} still={still} onOpen={open} />
       </View>
       <View style={{ marginLeft: -100 }}>
-        <Row photos={WALL_ROWS[1]} reverse still={still} />
+        <Row photos={WALL_ROWS[1]} reverse still={still} onOpen={open} />
       </View>
       <LinearGradient colors={["rgba(15,15,16,0)", colors.background]} locations={[0, 0.75]} style={styles.fade} pointerEvents="none" />
-      <View style={styles.caption}>
+      <View style={styles.caption} pointerEvents="none">
         <Text style={styles.captionTitle}>{CURATED_COUNT} meals and drinks, and counting</Text>
-        <Text style={type.muted}>Snap one to get the recipe</Text>
+        <Text style={type.muted}>Tap one for the recipe, or snap your own</Text>
       </View>
     </View>
   );

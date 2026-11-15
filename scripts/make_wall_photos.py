@@ -36,14 +36,22 @@ for name in (n for row in ROWS for n in row):
         OUT / f"{name}.jpg", "JPEG", quality=78, optimize=True, progressive=True
     )
 
-rows_ts = ",\n".join(
-    "  [\n" + "".join(f'    require("../../assets/wall/{n}.jpg"),\n' for n in row) + "  ]" for row in ROWS
-)
+by_file = {p["file"][: -len(".jpg")]: p for p in manifest["photos"]}
+
+
+def entry(n):
+    photo = by_file[n]
+    return f'    {{ name: {json.dumps(photo["names"][0])}, kind: "{photo["kind"]}", source: require("../../assets/wall/{n}.jpg") }},\n'
+
+
+rows_ts = ",\n".join("  [\n" + "".join(entry(n) for n in row) + "  ]" for row in ROWS)
 LIST.write_text(
     "// Made by scripts/make_wall_photos.py from data/curated-photos. Do not edit by hand; run the script.\n\n"
     "/** How many hand-picked cover photos the app has. */\n"
     f"export const CURATED_COUNT = {len(manifest['photos'])};\n\n"
+    "/** One photo on the wall: the dish it shows, and the bundled picture. */\n"
+    'export type WallPhoto = { name: string; kind: "meal" | "cocktail"; source: number };\n\n'
     "/** The two rows of photos on the Home screen's moving photo wall. */\n"
-    f"export const WALL_ROWS: number[][] = [\n{rows_ts},\n];\n"
+    f"export const WALL_ROWS: WallPhoto[][] = [\n{rows_ts},\n];\n"
 )
 print(f"{sum(len(r) for r in ROWS)} wall photos, {len(manifest['photos'])} curated in total")
