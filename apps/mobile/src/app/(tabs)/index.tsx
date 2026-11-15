@@ -1,4 +1,3 @@
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import { FlatList, Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
@@ -15,7 +14,7 @@ const heroArt = require("../../../assets/hero.png");
 
 export default function HomeScreen() {
   const { saved, setCurrent } = useApp();
-  const { openCamera, photosLeft, refreshAllowance } = useCamera();
+  const { photosLeft, refreshAllowance } = useCamera();
   const insets = useSafeAreaInsets();
   const [recent, setRecent] = useState<SavedRecipe[]>([]);
 
@@ -39,26 +38,14 @@ export default function HomeScreen() {
         <Text style={[type.display, { marginTop: 4 }]} accessibilityRole="header">
           {evening ? "What are you having tonight?" : "What are you having?"}
         </Text>
+        {allowance && (
+          <View style={styles.badge}>
+            <Text style={styles.badgeText}>{allowance}</Text>
+          </View>
+        )}
       </View>
 
       <Image source={heroArt} style={styles.art} resizeMode="contain" accessible={false} />
-
-      <Pressable
-        accessibilityRole="button"
-        accessibilityLabel={`Snap a meal or a cocktail.${allowance ? ` ${allowance}.` : ""}`}
-        accessibilityHint="Opens the camera"
-        onPress={openCamera}
-        style={({ pressed }) => [styles.prompt, pressed && { transform: [{ scale: 0.98 }] }]}
-      >
-        <View style={styles.promptIcon}>
-          <Ionicons name="camera" size={26} color={colors.accentText} />
-        </View>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.promptTitle}>Snap a meal or a cocktail</Text>
-          <Text style={type.muted}>{allowance ?? "Get a recipe to make it yourself"}</Text>
-        </View>
-        <Ionicons name="chevron-forward" size={24} color={colors.muted} />
-      </Pressable>
 
       {recent.length > 0 && (
         <>
@@ -110,18 +97,15 @@ const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
   pad: { paddingHorizontal: 20 },
   art: { width: 300, height: 240, alignSelf: "center", marginVertical: 8 },
-  prompt: {
-    marginHorizontal: 20,
-    minHeight: 76,
-    borderRadius: 20,
+  badge: {
+    alignSelf: "flex-start",
+    marginTop: 10,
+    paddingHorizontal: 11,
+    paddingVertical: 5,
+    borderRadius: 14,
     backgroundColor: colors.surface,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 14,
-    paddingHorizontal: 16,
   },
-  promptIcon: { width: 48, height: 48, borderRadius: 24, backgroundColor: colors.accent, alignItems: "center", justifyContent: "center" },
-  promptTitle: { color: colors.text, fontSize: 16, fontWeight: "600" },
+  badgeText: { color: colors.accent, fontSize: 13, fontWeight: "600" },
   sectionHeader: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between", marginTop: 28, marginBottom: 12 },
   seeAll: { color: colors.accent, fontSize: 14, fontWeight: "600" },
 });
