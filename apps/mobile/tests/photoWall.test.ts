@@ -24,3 +24,16 @@ describe("moving photo wall", () => {
     for (const file of files) expect(existsSync(join(__dirname, "../assets/wall", file)), file).toBe(true);
   });
 });
+
+describe("tapping the photo wall", () => {
+  it("names every photo after a dish that has a hand-picked photo", () => {
+    const manifest = JSON.parse(readFileSync(join(__dirname, "../../../data/curated-photos/manifest.json"), "utf8")) as {
+      photos: { kind: string; names: string[] }[];
+    };
+    const known = new Set(manifest.photos.flatMap((p) => p.names.map((n) => `${p.kind}|${n}`)));
+    const list = readFileSync(join(__dirname, "../src/ui/wallPhotos.ts"), "utf8");
+    const dishes = [...list.matchAll(/name: "([^"]+)", kind: "(meal|cocktail)"/g)].map((m) => `${m[2]}|${m[1]}`);
+    expect(dishes.length).toBeGreaterThanOrEqual(12);
+    for (const dish of dishes) expect(known.has(dish), dish).toBe(true);
+  });
+});

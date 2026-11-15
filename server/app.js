@@ -1,6 +1,7 @@
 // HTTP handler for the Meals and Mixers backend. Plain Node http, like Votic: no framework to keep patched.
 import { AiLimitError, HttpError } from "./errors.js";
 import { ai_failure_reason, call_openai } from "./openai_gateway.js";
+import { image_key } from "./dish_images.js";
 import { PremiumVerificationError } from "./premium_access.js";
 import {
   DEFAULT_MODEL, MAX_IMAGE_BYTES, identify_payload, parse_image, parse_recipe_request, recipe_payload,
@@ -22,7 +23,7 @@ const BODY_TIMEOUT_MS = 20_000;
  * authorize(request, path) → { uid } | false   (Firebase ID token check)
  * premium(uid) → boolean                       (RevenueCat, server-side; throws PremiumVerificationError if unsure)
  */
-export function create_app({ env = {}, store, authorize, premium, images = null, fetch_impl = fetch, log = console }) {
+export function create_app({ env = {}, store, authorize, premium, images = null, featured = new Set(), fetch_impl = fetch, log = console }) {
   const model = env.OPENAI_MODEL || DEFAULT_MODEL;
   // Shared cover photos. Without a library (tests, or images turned off) every photo is "unavailable" and the app shows its own art.
   const photo = (kind, name, user, recipe) =>
@@ -54,6 +55,32 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     return { recipe: recipe_reply, image: photo(request.kind, request.name, user, request.diet ? null : recipe_reply) };
   }
 
+  // Recipes for the dishes on the Home photo wall. Each one is made once, saved, and shared by everyone,
+  // so opening one costs a user nothing: it uses no free photo and no free recipe.
+  const making = new Map();
+  async function featured_recipe(user, body) {
+    const request = parse_recipe_request(body);
+    if (!request || request.diet) throw new HttpError(400, "Choose a dish or drink from the photo wall.");
+    const key = image_key(request.kind, request.name);
+    if (!key || !featured.has(key)) throw new HttpError(404, "That dish isn't on the photo wall.");
+    let found = store.get_recipe(key);
+    if (!found) {
+      if (!making.has(key)) {
+        const job = (async () => {
+          const is_premium = await premium(user.uid);
+          const { text } = await call_openai({ fetch_impl, store, env, user_id: user.uid, feature: "featured", premium: is_premium,
+            payload: recipe_payload(request, model) });
+          const made = validate_recipe(JSON.parse(text));
+          store.set_recipe({ key, kind: request.kind, name: request.name, recipe: made });
+          return made;
+        })().finally(() => making.delete(key));
+        making.set(key, job);
+      }
+      found = await making.get(key);
+    }
+    return { recipe: found, image: photo(request.kind, request.name, user, found) };
+  }
+
   async function dish_image(user, _body, _signal, query) {
     const kind = query.get("kind");
     const name = query.get("name");
@@ -69,6 +96,7 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
   const routes = {
     "POST /api/identify": { handler: identify, max_body: MAX_IDENTIFY_BODY },
     "POST /api/recipe": { handler: recipe, max_body: 2048 },
+    "POST /api/featured-recipe": { handler: featured_recipe, max_body: 2048 },
     "GET /api/allowance": { handler: allowance, max_body: 0 },
     "GET /api/dish-image": { handler: dish_image, max_body: 0 },
   };

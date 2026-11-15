@@ -59,6 +59,14 @@ export function createApi({ baseUrl, idToken, fetchImpl = fetch, timeoutMs = 75_
       };
       return { recipe: parseRecipe(json?.recipe), image: parseDishImage(json?.image) };
     },
+    /** The shared recipe for a dish on the Home photo wall. Free: it uses no photo or recipe allowance. */
+    async featuredRecipe(name: string, kind: Kind): Promise<{ recipe: Recipe; image: DishImage }> {
+      const json = (await request("/api/featured-recipe", { method: "POST", body: { name, kind } })) as {
+        recipe?: unknown;
+        image?: unknown;
+      };
+      return { recipe: parseRecipe(json?.recipe), image: parseDishImage(json?.image) };
+    },
     /** Checks on a cover photo that is still being created. */
     async dishImage(kind: Kind, name: string): Promise<DishImage> {
       const query = `kind=${encodeURIComponent(kind)}&name=${encodeURIComponent(name)}`;

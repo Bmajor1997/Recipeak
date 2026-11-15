@@ -63,6 +63,22 @@ export function image_prompt(kind, name, details = {}) {
   ].join(" ");
 }
 
+/** Every dish and drink that has a hand-picked photo, as library keys. Only these can be opened from the Home photo wall. */
+export function curated_keys(curated_dir = CURATED_DIR) {
+  let manifest;
+  try {
+    manifest = JSON.parse(readFileSync(join(curated_dir, "manifest.json"), "utf8"));
+  } catch {
+    return new Set();
+  }
+  const keys = new Set();
+  for (const photo of manifest.photos || []) for (const name of photo.names || []) {
+    const key = image_key(photo.kind, name);
+    if (key) keys.add(key);
+  }
+  return keys;
+}
+
 /** Copies the hand-picked photos (data/curated-photos) into the library, under every name each one covers. */
 export function install_curated(dir, curated_dir = CURATED_DIR) {
   let manifest;

@@ -62,6 +62,9 @@ export function create_usage_store(env = {}, { now = () => new Date(), path = en
     CREATE TABLE IF NOT EXISTS dish_images (
       key TEXT PRIMARY KEY, kind TEXT NOT NULL, name TEXT NOT NULL, status TEXT NOT NULL,
       created_at TEXT NOT NULL, updated_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS dish_recipes (
+      key TEXT PRIMARY KEY, kind TEXT NOT NULL, name TEXT NOT NULL, recipe_json TEXT NOT NULL, created_at TEXT NOT NULL
     );`);
 
   const limits = {
@@ -180,6 +183,16 @@ export function create_usage_store(env = {}, { now = () => new Date(), path = en
       const at = now().toISOString();
       db.prepare(`INSERT INTO dish_images (key,kind,name,status,created_at,updated_at) VALUES (?,?,?,?,?,?)
         ON CONFLICT(key) DO UPDATE SET status=excluded.status, updated_at=excluded.updated_at`).run(key, kind, name, status, at, at);
+    },
+
+    /** The shared standard recipe for a photo-wall dish, made once and reused for everyone. */
+    get_recipe(key) {
+      const row = db.prepare("SELECT recipe_json FROM dish_recipes WHERE key=?").get(key);
+      return row ? JSON.parse(row.recipe_json) : null;
+    },
+    set_recipe({ key, kind, name, recipe }) {
+      db.prepare("INSERT OR IGNORE INTO dish_recipes (key,kind,name,recipe_json,created_at) VALUES (?,?,?,?,?)")
+        .run(key, kind, name, JSON.stringify(recipe), now().toISOString());
     },
 
     records() { return db.prepare("SELECT * FROM ai_usage ORDER BY started_at, request_id").all(); },

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { createServer } from "node:http";
 import { test } from "node:test";
 import { create_app } from "../server/app.js";
+import { curated_keys, image_key } from "../server/dish_images.js";
 import { configure } from "../server/main.js";
 import { PremiumVerificationError } from "../server/premium_access.js";
 import { validate_recipe, parse_image, parse_recipe_request } from "../server/recipe_ai.js";
@@ -33,7 +34,7 @@ function provider(reply, { status = 200, delay = 0 } = {}) {
   return { fetch_impl, calls };
 }
 
-async function start({ reply = IDENTIFIED, status, delay, premium = async () => false, env = {} } = {}) {
+async function start({ reply = IDENTIFIED, status, delay, premium = async () => false, env = {}, featured } = {}) {
   const store = create_usage_store(env);
   const { fetch_impl, calls } = provider(reply, { status, delay });
   const warnings = [];
@@ -41,7 +42,7 @@ async function start({ reply = IDENTIFIED, status, delay, premium = async () => 
     const m = /^Bearer (\S+)$/.exec(request.headers.authorization || "");
     return m ? { uid: m[1] } : false;
   };
-  const handle = create_app({ env: { OPENAI_API_KEY: "sk-test-key", ...env }, store, authorize, premium, fetch_impl, log: { warn: (...a) => warnings.push(a) } });
+  const handle = create_app({ env: { OPENAI_API_KEY: "sk-test-key", ...env }, store, authorize, premium, featured, fetch_impl, log: { warn: (...a) => warnings.push(a) } });
   const server = createServer(handle);
   await new Promise((r) => server.listen(0, "127.0.0.1", r));
   const base = `http://127.0.0.1:${server.address().port}`;
@@ -172,4 +173,32 @@ test("production refuses to start without its secrets or with the development si
     REVENUECAT_SECRET_API_KEY: "k", MM_IMAGE_DIR: "/tmp/mm-images", MM_DEV_ALLOW_UNAUTHENTICATED: "1" }), /must not be set in production/);
   assert.throws(() => configure({ OPENAI_API_KEY: "x" }), /FIREBASE_PROJECT_ID, or MM_DEV_ALLOW_UNAUTHENTICATED/);
   assert.ok(configure({ OPENAI_API_KEY: "x", MM_DEV_ALLOW_UNAUTHENTICATED: "1" }).store);
+});
+
+test("photo-wall recipes are made once, shared by everyone, and use no free photo or recipe", async (t) => {
+  const featured = curated_keys();
+  assert.ok(featured.has(image_key("cocktail", "Margarita")), "the repo's hand-picked photos are on the wall list");
+  const s = await start({ reply: RECIPE, featured, delay: 30 }); t.after(s.close);
+  // A brand-new free user, with no photos taken, can open a wall recipe.
+  const [a, b] = await Promise.all([
+    s.call("/api/featured-recipe", { user: "alice", body: { name: "Margarita", kind: "cocktail" } }),
+    s.call("/api/featured-recipe", { user: "bob", body: { name: "margarita", kind: "cocktail" } }),
+  ]);
+  assert.equal(a.status, 200);
+  assert.equal(a.json.recipe.title, "Classic Margarita");
+  assert.equal(b.json.recipe.title, "Classic Margarita");
+  assert.equal(s.calls.length, 1, "two people opening the same dish at once make one recipe");
+  const again = await s.call("/api/featured-recipe", { user: "carol", body: { name: "Margarita", kind: "cocktail" } });
+  assert.equal(again.json.recipe.title, "Classic Margarita");
+  assert.equal(s.calls.length, 1, "later visitors get the saved recipe");
+  assert.equal((await s.call("/api/allowance", { user: "alice" })).json.free_photos_left, 3);
+});
+
+test("only photo-wall dishes, with no diet, can be opened for free", async (t) => {
+  const s = await start({ reply: RECIPE, featured: curated_keys() }); t.after(s.close);
+  assert.equal((await s.call("/api/featured-recipe", { body: { name: "Beef Wellington", kind: "meal" } })).status, 404);
+  assert.equal((await s.call("/api/featured-recipe", { body: { name: "Margarita", kind: "meal" } })).status, 404);
+  assert.equal((await s.call("/api/featured-recipe", { body: { name: "Margarita", kind: "cocktail", diet: "vegan" } })).status, 400);
+  assert.equal((await s.call("/api/featured-recipe", { user: null, body: { name: "Margarita", kind: "cocktail" } })).status, 401);
+  assert.equal(s.calls.length, 0);
 });
