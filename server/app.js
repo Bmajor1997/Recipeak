@@ -22,8 +22,10 @@ const BODY_TIMEOUT_MS = 20_000;
  * authorize(request, path) → { uid } | false   (Firebase ID token check)
  * premium(uid) → boolean                       (RevenueCat, server-side; throws PremiumVerificationError if unsure)
  */
-export function create_app({ env = {}, store, authorize, premium, fetch_impl = fetch, log = console }) {
+export function create_app({ env = {}, store, authorize, premium, images = null, fetch_impl = fetch, log = console }) {
   const model = env.OPENAI_MODEL || DEFAULT_MODEL;
+  // Shared cover photos. Without a library (tests, or images turned off) every photo is "unavailable" and the app shows its own art.
+  const photo = (kind, name, user) => (images ? images.status({ kind, name, user_id: user.uid }) : { status: "unavailable", url: null });
 
   async function identify(user, body, signal) {
     const image = parse_image(body?.image);
@@ -34,7 +36,9 @@ export function create_app({ env = {}, store, authorize, premium, fetch_impl = f
     let found;
     try { found = validate_identification(JSON.parse(text)); } catch (error) { store.release_photo(request_id); throw error; }
     if (found.kind === "not_food") store.release_photo(request_id);
-    return { ...found, free_photos_left: is_premium ? null : store.free_photos_left(user.uid), premium: is_premium };
+    // Every guess gets a cover photo: ready from the library, or started now in the background.
+    const guesses = found.guesses.map((g) => ({ ...g, image: photo(found.kind, g.name, user) }));
+    return { ...found, guesses, free_photos_left: is_premium ? null : store.free_photos_left(user.uid), premium: is_premium };
   }
 
   async function recipe(user, body, signal) {
@@ -43,7 +47,14 @@ export function create_app({ env = {}, store, authorize, premium, fetch_impl = f
     const is_premium = await premium(user.uid);
     const { text } = await call_openai({ fetch_impl, store, env, user_id: user.uid, feature: "recipe", premium: is_premium,
       payload: recipe_payload(request, model), signal });
-    return { recipe: validate_recipe(JSON.parse(text)) };
+    return { recipe: validate_recipe(JSON.parse(text)), image: photo(request.kind, request.name, user) };
+  }
+
+  async function dish_image(user, _body, _signal, query) {
+    const kind = query.get("kind");
+    const name = query.get("name");
+    if (!["meal", "cocktail"].includes(kind) || !name || name.length > 120) throw new HttpError(400, "Choose a dish or drink.");
+    return { image: photo(kind, name, user) };
   }
 
   async function allowance(user) {
@@ -55,12 +66,21 @@ export function create_app({ env = {}, store, authorize, premium, fetch_impl = f
     "POST /api/identify": { handler: identify, max_body: MAX_IDENTIFY_BODY },
     "POST /api/recipe": { handler: recipe, max_body: 2048 },
     "GET /api/allowance": { handler: allowance, max_body: 0 },
+    "GET /api/dish-image": { handler: dish_image, max_body: 0 },
   };
 
   return async function handle(request, response) {
-    const path = new URL(request.url, "http://localhost").pathname;
+    const url = new URL(request.url, "http://localhost");
+    const path = url.pathname;
     try {
       if (path === "/healthz" && request.method === "GET") return send_json(response, 200, { ok: true });
+      // Cover photos are generic pictures of dishes, shared by everyone, so they are public and cached for a long time.
+      if (path.startsWith("/images/") && request.method === "GET") {
+        const bytes = images?.read(path.slice("/images/".length));
+        if (!bytes) throw new HttpError(404, "Not found.");
+        for (const [k, v] of Object.entries({ ...SECURITY_HEADERS, "Cache-Control": "public, max-age=31536000, immutable", "Content-Type": "image/jpeg" })) response.setHeader(k, v);
+        return response.writeHead(200).end(bytes);
+      }
       const route = routes[`${request.method} ${path}`];
       if (!route) throw new HttpError(404, "Not found.");
       const user = await authorize(request, path);
@@ -76,7 +96,7 @@ export function create_app({ env = {}, store, authorize, premium, fetch_impl = f
       // Stop paying for an answer nobody is waiting for.
       const controller = new AbortController();
       response.on("close", () => { if (!response.writableFinished) controller.abort(); });
-      return send_json(response, 200, await route.handler(user, body, controller.signal));
+      return send_json(response, 200, await route.handler(user, body, controller.signal, url.searchParams));
     } catch (error) {
       if (error instanceof HttpError) return send_json(response, error.status, { error: error.message, ...(error.code ? { code: error.code } : {}) }, error.headers);
       if (error instanceof PremiumVerificationError) return send_json(response, 503, { error: error.message });

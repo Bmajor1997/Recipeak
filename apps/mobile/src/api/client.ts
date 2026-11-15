@@ -1,6 +1,6 @@
 // Talks to the Meals and Mixers backend. The OpenAI key never reaches the phone: only the user's Firebase ID token is sent.
-import { parseAllowance, parseIdentification, parseRecipe } from "../recipes/parse";
-import type { Allowance, Diet, Identification, Kind, Recipe } from "../recipes/types";
+import { parseAllowance, parseDishImage, parseIdentification, parseRecipe } from "../recipes/parse";
+import type { Allowance, Diet, DishImage, Identification, Kind, Recipe } from "../recipes/types";
 
 export class ApiError extends Error {
   constructor(
@@ -52,11 +52,22 @@ export function createApi({ baseUrl, idToken, fetchImpl = fetch, timeoutMs = 75_
     async identify(imageDataUrl: string): Promise<Identification> {
       return parseIdentification(await request("/api/identify", { method: "POST", body: { image: imageDataUrl } }));
     },
-    async recipe(name: string, kind: Kind, diet?: Diet): Promise<Recipe> {
+    async recipe(name: string, kind: Kind, diet?: Diet): Promise<{ recipe: Recipe; image: DishImage }> {
       const json = (await request("/api/recipe", { method: "POST", body: { name, kind, ...(diet ? { diet } : {}) } })) as {
         recipe?: unknown;
+        image?: unknown;
       };
-      return parseRecipe(json?.recipe);
+      return { recipe: parseRecipe(json?.recipe), image: parseDishImage(json?.image) };
+    },
+    /** Checks on a cover photo that is still being created. */
+    async dishImage(kind: Kind, name: string): Promise<DishImage> {
+      const query = `kind=${encodeURIComponent(kind)}&name=${encodeURIComponent(name)}`;
+      const json = (await request(`/api/dish-image?${query}`, { method: "GET" })) as { image?: unknown };
+      return parseDishImage(json?.image);
+    },
+    /** Full address of a library photo, for showing or downloading it. */
+    imageUri(path: string | null): string | null {
+      return path && baseUrl ? baseUrl.replace(/\/$/, "") + path : null;
     },
     async allowance(): Promise<Allowance> {
       return parseAllowance(await request("/api/allowance", { method: "GET" }));

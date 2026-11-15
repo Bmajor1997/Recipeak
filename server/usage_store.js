@@ -58,7 +58,11 @@ export function create_usage_store(env = {}, { now = () => new Date(), path = en
       free_photo INTEGER NOT NULL DEFAULT 0, photo_counted INTEGER NOT NULL DEFAULT 0
     );
     CREATE INDEX IF NOT EXISTS ai_usage_user_time ON ai_usage(user_id, started_at);
-    CREATE INDEX IF NOT EXISTS ai_usage_time ON ai_usage(started_at);`);
+    CREATE INDEX IF NOT EXISTS ai_usage_time ON ai_usage(started_at);
+    CREATE TABLE IF NOT EXISTS dish_images (
+      key TEXT PRIMARY KEY, kind TEXT NOT NULL, name TEXT NOT NULL, status TEXT NOT NULL,
+      created_at TEXT NOT NULL, updated_at TEXT NOT NULL
+    );`);
 
   const limits = {
     free_photos: number_setting(env, "MM_FREE_PHOTOS", 3),
@@ -69,6 +73,8 @@ export function create_usage_store(env = {}, { now = () => new Date(), path = en
     global_daily: number_setting(env, "MM_AI_DAILY_LIMIT", 2000),
     user_rate: number_setting(env, "MM_AI_USER_RATE_LIMIT", 10),
     concurrency: number_setting(env, "MM_AI_USER_CONCURRENCY", 2),
+    image_user_daily: number_setting(env, "MM_IMAGE_USER_DAILY_LIMIT", 30),
+    image_global_daily: number_setting(env, "MM_IMAGE_DAILY_LIMIT", 300),
   };
 
   // A free photo is held from the moment it is reserved, so two parallel uploads can't both use the last one.
@@ -106,8 +112,8 @@ export function create_usage_store(env = {}, { now = () => new Date(), path = en
         }
         const sums = db.prepare("SELECT COALESCE(SUM(estimated_cost_usd),0) AS cost FROM ai_usage WHERE user_id=? AND started_at>=?").get(user_id, month);
         const global = db.prepare("SELECT COALESCE(SUM(estimated_cost_usd),0) AS cost FROM ai_usage WHERE started_at>=?").get(month);
-        const counts = db.prepare("SELECT COALESCE(SUM(started_at>=?),0) AS daily, COALESCE(SUM(started_at>=?),0) AS minute, COALESCE(SUM(status='pending'),0) AS active FROM ai_usage WHERE user_id=?").get(day, minute, user_id);
-        const global_daily = db.prepare("SELECT COUNT(*) AS n FROM ai_usage WHERE started_at>=?").get(day).n;
+        const counts = db.prepare("SELECT COALESCE(SUM(started_at>=?),0) AS daily, COALESCE(SUM(started_at>=?),0) AS minute, COALESCE(SUM(status='pending'),0) AS active FROM ai_usage WHERE user_id=? AND feature<>'image'").get(day, minute, user_id);
+        const global_daily = db.prepare("SELECT COUNT(*) AS n FROM ai_usage WHERE started_at>=? AND feature<>'image'").get(day).n;
         if (global.cost + reserved_cost > limits.global_cost) throw new AiLimitError("Recipe finding is paused for the rest of the month. Please try again later.");
         if (counts.daily >= limits.user_daily || global_daily >= limits.global_daily) throw new AiLimitError("Today's limit has been reached. Try again tomorrow.");
         if (counts.minute >= limits.user_rate || counts.active >= limits.concurrency) throw new AiLimitError("Too many requests. Please wait a moment and try again.");
@@ -137,6 +143,43 @@ export function create_usage_store(env = {}, { now = () => new Date(), path = en
     /** Give the free photo back: the photo was not food or drink, or the reply could not be used. */
     release_photo(request_id) {
       db.prepare("UPDATE ai_usage SET photo_counted=0 WHERE request_id=?").run(request_id);
+    },
+
+    /**
+     * Cover photos are shared by everyone, so they have their own limits: they never use a free photo
+     * and don't count towards a person's per-minute or daily recipe limits. They still count towards
+     * the monthly budgets, at a fixed estimated price per image.
+     */
+    reserve_image({ user_id, model, cost }) {
+      const started_at = now().toISOString();
+      const month = started_at.slice(0, 7) + "-01T00:00:00.000Z", day = started_at.slice(0, 10) + "T00:00:00.000Z";
+      db.exec("BEGIN IMMEDIATE");
+      try {
+        const global = db.prepare("SELECT COALESCE(SUM(estimated_cost_usd),0) AS cost FROM ai_usage WHERE started_at>=?").get(month);
+        const user_month = db.prepare("SELECT COALESCE(SUM(estimated_cost_usd),0) AS cost FROM ai_usage WHERE user_id=? AND started_at>=?").get(user_id, month);
+        const images = db.prepare("SELECT COUNT(*) AS n, COALESCE(SUM(user_id=?),0) AS mine FROM ai_usage WHERE feature='image' AND started_at>=?").get(user_id, day);
+        if (global.cost + cost > limits.global_cost) throw new AiLimitError("Cover photos are paused for the rest of the month.");
+        if (images.n >= limits.image_global_daily || images.mine >= limits.image_user_daily) throw new AiLimitError("Cover photos are paused for today.");
+        if (user_month.cost + cost > limits.user_cost) throw new AiLimitError("This account's monthly limit has been reached.");
+        const request_id = randomUUID();
+        db.prepare(`INSERT INTO ai_usage (request_id,user_id,feature,model,started_at,status,reserved_tokens,reserved_cost,estimated_cost_usd,pricing_json)
+          VALUES (?,?,'image',?,?,'pending',0,?,?,?)`).run(request_id, user_id, model, started_at, cost, cost, JSON.stringify({ per_image: cost }));
+        db.exec("COMMIT");
+        return request_id;
+      } catch (error) { db.exec("ROLLBACK"); throw error; }
+    },
+
+    /** Settles an image reservation. A provider rejection (4xx) costs nothing; anything else keeps the estimate. */
+    finish_image(request_id, { status, provider_request_id = null }) {
+      db.prepare(`UPDATE ai_usage SET completed_at=?,status=?,provider_request_id=?,estimated_cost_usd=CASE WHEN ?='rejected' THEN 0 ELSE estimated_cost_usd END
+        WHERE request_id=? AND feature='image' AND status='pending'`).run(now().toISOString(), status, provider_request_id, status, request_id);
+    },
+
+    get_image(key) { return db.prepare("SELECT * FROM dish_images WHERE key=?").get(key) || null; },
+    set_image({ key, kind, name, status }) {
+      const at = now().toISOString();
+      db.prepare(`INSERT INTO dish_images (key,kind,name,status,created_at,updated_at) VALUES (?,?,?,?,?,?)
+        ON CONFLICT(key) DO UPDATE SET status=excluded.status, updated_at=excluded.updated_at`).run(key, kind, name, status, at, at);
     },
 
     records() { return db.prepare("SELECT * FROM ai_usage ORDER BY started_at, request_id").all(); },

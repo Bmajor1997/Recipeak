@@ -5,7 +5,7 @@ import { FlatList, Image, Pressable, ScrollView, StyleSheet, Text, View } from "
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../../AppContext";
 import { photosLeftText, useCamera } from "../../camera/CameraProvider";
-import type { SavedRecipe } from "../../recipes/types";
+import { NO_IMAGE, type SavedRecipe } from "../../recipes/types";
 import { totalMinutes } from "../../recipes/search";
 import { greeting } from "../../ui/greeting";
 import { PhotoCard } from "../../ui/PhotoCard";
@@ -85,7 +85,16 @@ export default function HomeScreen() {
                 width={160}
                 height={200}
                 onPress={() => {
-                  setCurrent({ kind: item.kind, recipe: item.recipe, guesses: [], photoUri: item.photo_uri, savedId: item.id });
+                  setCurrent({
+                    status: "ready",
+                    kind: item.kind,
+                    recipe: item.recipe,
+                    guesses: [],
+                    selected: 0,
+                    image: NO_IMAGE,
+                    localPhoto: item.photo_uri,
+                    savedId: item.id,
+                  });
                   router.push("/recipe");
                 }}
               />

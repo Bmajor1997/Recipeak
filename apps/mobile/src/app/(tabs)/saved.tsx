@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../../AppContext";
 import { useCamera } from "../../camera/CameraProvider";
 import { filterSaved, type SavedFilter, totalMinutes } from "../../recipes/search";
-import type { SavedRecipe } from "../../recipes/types";
+import { NO_IMAGE, type SavedRecipe } from "../../recipes/types";
 import { PhotoCard } from "../../ui/PhotoCard";
 import { Button, Chip, colors, type } from "../../ui/theme";
 
@@ -95,7 +95,16 @@ export default function SavedScreen() {
           width={cardWidth}
           height={cardWidth * 1.25}
           onPress={() => {
-            setCurrent({ kind: item.kind, recipe: item.recipe, guesses: [], photoUri: item.photo_uri, savedId: item.id });
+            setCurrent({
+              status: "ready",
+              kind: item.kind,
+              recipe: item.recipe,
+              guesses: [],
+              selected: 0,
+              image: NO_IMAGE,
+              localPhoto: item.photo_uri,
+              savedId: item.id,
+            });
             router.push("/recipe");
           }}
         />

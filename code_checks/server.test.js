@@ -169,7 +169,7 @@ test("reply and request validation", () => {
 test("production refuses to start without its secrets or with the development sign-in bypass", () => {
   assert.throws(() => configure({ NODE_ENV: "production", OPENAI_API_KEY: "x" }), /FIREBASE_PROJECT_ID, MM_AI_USAGE_DB, REVENUECAT_SECRET_API_KEY/);
   assert.throws(() => configure({ NODE_ENV: "production", OPENAI_API_KEY: "x", FIREBASE_PROJECT_ID: "p", MM_AI_USAGE_DB: "/tmp/x.db",
-    REVENUECAT_SECRET_API_KEY: "k", MM_DEV_ALLOW_UNAUTHENTICATED: "1" }), /must not be set in production/);
+    REVENUECAT_SECRET_API_KEY: "k", MM_IMAGE_DIR: "/tmp/mm-images", MM_DEV_ALLOW_UNAUTHENTICATED: "1" }), /must not be set in production/);
   assert.throws(() => configure({ OPENAI_API_KEY: "x" }), /FIREBASE_PROJECT_ID, or MM_DEV_ALLOW_UNAUTHENTICATED/);
   assert.ok(configure({ OPENAI_API_KEY: "x", MM_DEV_ALLOW_UNAUTHENTICATED: "1" }).store);
 });
