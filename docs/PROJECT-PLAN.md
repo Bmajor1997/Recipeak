@@ -1,6 +1,6 @@
 # Meals and Mixers — project plan
 
-Status: **approved; phase 1 in progress**, updated 2026-11-14.
+Status: **approved; phase 1 in progress**, updated 2026-11-15.
 
 ## 1. What the app does
 
@@ -21,6 +21,7 @@ If the app is unsure, it shows its top two or three guesses and the user picks o
 | AI service | Same as Votic: our backend calls OpenAI; the key stays on the server |
 | Sign-in | Required before the first photo (Firebase, like Votic) |
 | Free use | 3 free photos per account, then the paid plan (RevenueCat, like Votic) |
+| Paid plan (decided 2026-11-15) | **$3.99 a month** or **$24.99 a year** (about $2.08 a month, "Save 48%"), both with a **7-day free trial**; Yearly is selected by default |
 | Saved recipes | A **Saved** screen in the app; stored on the phone first, synced to the account later |
 | Diet versions | Users can ask for vegetarian, vegan, gluten-free, dairy-free and other versions of a recipe |
 | Units | US measurements (cups, tablespoons, ounces, °F) |
@@ -88,6 +89,17 @@ The person's photo is used only to recognise the dish, then discarded. Every rec
 - **Starter library:** `data/seed-dishes.json` lists 120 common meals and 80 drinks to create before launch (`server/seed_dish_images.js --dry-run` shows the cost, about $8–12). Review and edit the list first.
 - **Cost controls:** about 4–5 cents per new photo; cover photos have their own daily limits (per account and overall) and count towards the monthly budgets. They never use up a free photo.
 
+### The paywall
+
+Approved on 2026-11-15 from three options (plan picker, Free vs Pro table, photo packs); the plan picker won. It opens after the 3 free photos (`apps/mobile/src/app/upgrade.tsx`), in the black-and-grapefruit look:
+
+- a close button at the top right, and the drink-and-plate art on a dark card,
+- "You've used your 3 free photos", the title **Keep snapping. Keep cooking.** and one line on what Pro gives: unlimited photos, every saved recipe, and diet versions,
+- two plan choices, **Yearly** ($24.99 / year · just $2.08 / month, with a "Save 48%" badge, selected first) and **Monthly** ($3.99 / month),
+- a **Start 7-day free trial** button, the trial terms for the selected plan ("Free for 7 days, then $24.99 / year. Cancel anytime in Google Play.") and **Restore purchase**.
+
+The prices live in one place, `apps/mobile/src/paywall/plans.ts`. Until RevenueCat is connected, the buttons explain that subscriptions aren't open yet. Once it is, the store's own prices are shown, so the Play Console products must use these same prices.
+
 ## 4. Privacy and safety
 
 - **People's photos are not kept anywhere.** The backend sends the photo to OpenAI with `store:false`, returns the recipe, and discards it; the app doesn't keep it either. Only the dish's name reaches the image model for cover photos. The usage ledger records counts and costs only, never photos, as in Votic.
@@ -100,12 +112,12 @@ The person's photo is used only to recognise the dish, then discarded. Every rec
 
 1. **Foundation (done):** the Expo app and the Node backend, built from Votic's patterns: server-side sign-in check, the 3-free-photo allowance, the OpenAI recipe call with a strict reply shape, and app screens for camera, recipe and Saved. Tests and CI for both.
 2. **Core loop on a real phone:** connect Firebase sign-in and the live OpenAI key, test with real photos, tune the prompt, and polish guesses, "not food" and error states.
-3. **Paid plan:** RevenueCat paywall after the 3 free photos, checked on the server.
+3. **Paid plan:** RevenueCat paywall after the 3 free photos, checked on the server. The paywall screen and prices are in the app (see "The paywall" above); still to do: the Google Play subscription products and trial, RevenueCat offerings, and connecting the buttons.
 4. **Saving and sharing polish:** scale servings, share a recipe as text, account sync for Saved.
 5. **Android release:** test APK, Play internal testing, privacy policy, Play data-safety form, content rating.
 6. **iPhone:** iOS build workflow, camera permission text, App Store review.
 
 ## 6. Open questions
 
-- **Paid plan:** price, monthly or yearly, and whether paid use has a monthly photo limit.
+- **Paid plan:** whether paid use has a monthly photo limit. (Price, monthly and yearly were decided on 2026-11-15.)
 - **Free photos:** do the 3 free photos ever refresh (for example monthly), or are they 3 in total? Planned as 3 in total for now.
