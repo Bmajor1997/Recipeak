@@ -33,7 +33,7 @@ test("dish names are normalized so the same dish shares one photo", () => {
   assert.equal(normalize_dish_name("  Chicken   PARMESAN! "), "chicken parmesan");
   assert.equal(normalize_dish_name("Crème brûlée"), "creme brulee");
   assert.equal(image_key("meal", "Chicken Parmesan"), image_key("meal", "chicken parmesan"));
-  assert.notEqual(image_key("meal", "Aviation"), image_key("cocktail", "Aviation"));
+  assert.notEqual(image_key("meal", "Kamikaze"), image_key("cocktail", "Kamikaze"));
   assert.equal(image_key("dessert", "Cake"), null);
   assert.equal(normalize_dish_name("x".repeat(81)), null);
 });
@@ -75,26 +75,26 @@ test("installing hand-picked photos is safe to repeat and ignores bad entries", 
   t.after(() => [dir, curated].forEach((d) => rmSync(d, { recursive: true, force: true })));
   writeFileSync(join(curated, "good.jpg"), JPEG);
   writeFileSync(join(curated, "manifest.json"), JSON.stringify({ photos: [
-    { file: "good.jpg", kind: "cocktail", names: ["Aviation"] },
+    { file: "good.jpg", kind: "cocktail", names: ["Kamikaze"] },
     { file: "../secret.jpg", kind: "cocktail", names: ["Negroni"] },
     { file: "good.jpg", kind: "dessert", names: ["Cake"] },
   ] }));
   assert.equal(install_curated(dir, curated), 1);
   assert.equal(install_curated(dir, curated), 0, "already installed");
-  assert.deepEqual(readdirSync(dir), [`${image_key("cocktail", "Aviation")}.jpg`]);
+  assert.deepEqual(readdirSync(dir), [`${image_key("cocktail", "Kamikaze")}.jpg`]);
 });
 
 test("a missing photo is created once in the background, then served to everyone", async (t) => {
   const { images, store, calls, dir } = library(t, { delay: 30 });
-  assert.deepEqual(images.status({ kind: "cocktail", name: "Aviation", user_id: "alice" }), { status: "pending", url: null });
-  assert.deepEqual(images.status({ kind: "cocktail", name: "aviation", user_id: "bob" }), { status: "pending", url: null });
+  assert.deepEqual(images.status({ kind: "cocktail", name: "Kamikaze", user_id: "alice" }), { status: "pending", url: null });
+  assert.deepEqual(images.status({ kind: "cocktail", name: "kamikaze", user_id: "bob" }), { status: "pending", url: null });
   await images.settled();
   assert.equal(calls.length, 1, "two requests for the same dish make one image");
   assert.equal(calls[0].body.size, "1024x1536");
   assert.equal(calls[0].body.output_format, "jpeg");
-  const ready = images.status({ kind: "cocktail", name: "Aviation", user_id: "carol" });
+  const ready = images.status({ kind: "cocktail", name: "Kamikaze", user_id: "carol" });
   assert.equal(ready.status, "ready");
-  assert.equal(ready.url, `/images/${image_key("cocktail", "Aviation")}.jpg`);
+  assert.equal(ready.url, `/images/${image_key("cocktail", "Kamikaze")}.jpg`);
   assert.equal(calls.length, 1);
   assert.deepEqual(readdirSync(dir).filter((f) => f.endsWith(".tmp")), [], "no half-written files left behind");
   const [row] = store.records();
@@ -144,7 +144,7 @@ test("the server returns photos for every guess and serves the files publicly", 
     ingredients: [{ amount: "2", unit: "oz", item: "tequila" }], steps: ["Shake."], allergens: [],
     cocktail: { glass: "Rocks", garnish: "Lime", alcoholic: true, non_alcoholic_version: null }, note: "",
   };
-  const reply = { kind: "cocktail", guesses: [{ name: "Margarita", confidence: "high" }, { name: "Aviation", confidence: "low" }], recipe };
+  const reply = { kind: "cocktail", guesses: [{ name: "Margarita", confidence: "high" }, { name: "Kamikaze", confidence: "low" }], recipe };
   const fetch_impl = async () => ({
     ok: true, status: 200, headers: { get: () => null },
     json: async () => ({ status: "completed", usage: { input_tokens: 10, output_tokens: 10, total_tokens: 20 },
@@ -166,9 +166,9 @@ test("the server returns photos for every guess and serves the files publicly", 
   assert.equal(file.headers.get("content-type"), "image/jpeg");
   assert.match(file.headers.get("cache-control"), /immutable/);
   assert.equal((await fetch(`${base}/images/../package.json`)).status, 404);
-  const polled = await (await fetch(`${base}/api/dish-image?kind=cocktail&name=Aviation`, { headers: { Authorization: "Bearer x" } })).json();
+  const polled = await (await fetch(`${base}/api/dish-image?kind=cocktail&name=Kamikaze`, { headers: { Authorization: "Bearer x" } })).json();
   assert.equal(polled.image.status, "ready");
-  assert.equal((await fetch(`${base}/api/dish-image?kind=cocktail&name=Aviation`)).status, 401, "asking for a photo needs sign-in");
+  assert.equal((await fetch(`${base}/api/dish-image?kind=cocktail&name=Kamikaze`)).status, 401, "asking for a photo needs sign-in");
 });
 
 test("every hand-picked photo in the repo exists, is a JPEG, and no drink name is claimed twice", () => {
