@@ -25,7 +25,8 @@ const BODY_TIMEOUT_MS = 20_000;
 export function create_app({ env = {}, store, authorize, premium, images = null, fetch_impl = fetch, log = console }) {
   const model = env.OPENAI_MODEL || DEFAULT_MODEL;
   // Shared cover photos. Without a library (tests, or images turned off) every photo is "unavailable" and the app shows its own art.
-  const photo = (kind, name, user) => (images ? images.status({ kind, name, user_id: user.uid }) : { status: "unavailable", url: null });
+  const photo = (kind, name, user, recipe) =>
+    images ? images.status({ kind, name, user_id: user.uid, details: recipe_details(recipe) }) : { status: "unavailable", url: null };
 
   async function identify(user, body, signal) {
     const image = parse_image(body?.image);
@@ -37,7 +38,8 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     try { found = validate_identification(JSON.parse(text)); } catch (error) { store.release_photo(request_id); throw error; }
     if (found.kind === "not_food") store.release_photo(request_id);
     // Every guess gets a cover photo: ready from the library, or started now in the background.
-    const guesses = found.guesses.map((g) => ({ ...g, image: photo(found.kind, g.name, user) }));
+    // The top match's recipe is known, so its glass, garnish and ingredients shape its photo if it's new.
+    const guesses = found.guesses.map((g, i) => ({ ...g, image: photo(found.kind, g.name, user, i === 0 ? found.recipe : null) }));
     return { ...found, guesses, free_photos_left: is_premium ? null : store.free_photos_left(user.uid), premium: is_premium };
   }
 
@@ -47,7 +49,9 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     const is_premium = await premium(user.uid);
     const { text } = await call_openai({ fetch_impl, store, env, user_id: user.uid, feature: "recipe", premium: is_premium,
       payload: recipe_payload(request, model), signal });
-    return { recipe: validate_recipe(JSON.parse(text)), image: photo(request.kind, request.name, user) };
+    const recipe_reply = validate_recipe(JSON.parse(text));
+    // A diet version shares the original dish's photo, so only the standard recipe may describe it.
+    return { recipe: recipe_reply, image: photo(request.kind, request.name, user, request.diet ? null : recipe_reply) };
   }
 
   async function dish_image(user, _body, _signal, query) {
@@ -131,3 +135,13 @@ function send_json(response, status, body, headers = {}) {
 }
 
 export { AiLimitError };
+
+/** The parts of a recipe that describe how the dish looks. */
+function recipe_details(recipe) {
+  if (!recipe) return {};
+  return {
+    glass: recipe.cocktail?.glass,
+    garnish: recipe.cocktail?.garnish,
+    ingredients: recipe.ingredients?.map((i) => i.item),
+  };
+}
