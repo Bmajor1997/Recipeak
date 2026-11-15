@@ -1,7 +1,13 @@
 import type { KeyValueStorage } from "../saved/savedRecipes";
 
-export type Preferences = { pausePhotoWall: boolean; saveCoverPhotos: boolean };
-export const DEFAULT_PREFERENCES: Preferences = { pausePhotoWall: false, saveCoverPhotos: true };
+/** Light or dark look: "system" follows the phone's own setting. */
+export type Appearance = "system" | "light" | "dark";
+export const APPEARANCES: Appearance[] = ["system", "light", "dark"];
+
+export type Preferences = { pausePhotoWall: boolean; saveCoverPhotos: boolean; appearance: Appearance };
+export const DEFAULT_PREFERENCES: Preferences = { pausePhotoWall: false, saveCoverPhotos: true, appearance: "system" };
+
+const is_appearance = (value: unknown): value is Appearance => APPEARANCES.includes(value as Appearance);
 
 /** Preferences belong to this sign-in on this device, like saved recipes. */
 export function create_preferences(storage: KeyValueStorage, uid: string) {
@@ -16,6 +22,7 @@ export function create_preferences(storage: KeyValueStorage, uid: string) {
       return {
         pausePhotoWall: typeof value.pausePhotoWall === "boolean" ? value.pausePhotoWall : false,
         saveCoverPhotos: typeof value.saveCoverPhotos === "boolean" ? value.saveCoverPhotos : true,
+        appearance: is_appearance(value.appearance) ? value.appearance : "system",
       };
     },
     async save(value: Preferences): Promise<void> {

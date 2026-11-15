@@ -1,33 +1,53 @@
-// Large, high-contrast defaults, so the app is easy to read and every control is easy to hit.
-import type { ReactNode } from "react";
+// Light and dark themes. Large, high-contrast defaults, so the app is easy to read and every control is easy to hit.
+// Screens read the current colours with useTheme(), and build their styles with useThemedStyles(create_styles).
+import { createContext, type ReactNode, useContext, useMemo } from "react";
 import { ActivityIndicator, Pressable, StyleSheet, Text, type TextStyle, View } from "react-native";
+import { DARK_COLORS, LIGHT_COLORS, type Palette, type Scheme } from "./palette";
 
 /** Serif display font for titles (Fraunces, loaded in the root layout). Body text stays in the phone's own font. */
 export const fonts = { display: "Fraunces_600SemiBold", displayMedium: "Fraunces_500Medium" };
 
-export const colors = {
-  // "Black and grapefruit": near-black so food photos carry the colour; the accent is the grapefruit in the app icon.
-  background: "#0F0F10",
-  surface: "#1A1A1C",
-  raised: "#26262A",
-  scrim: "rgba(15, 15, 16, 0.92)",
-  text: "#FFFFFF",
-  muted: "#A9A9AD",
-  accent: "#FF6F61", // grapefruit coral
-  accentText: "#2B0A06",
-  danger: "#FFB3AB",
-  border: "#2E2E33",
-};
+export { DARK_COLORS, LIGHT_COLORS, type Palette, type Scheme };
 
-export const type = StyleSheet.create({
-  display: { color: colors.text, fontSize: 28, lineHeight: 34, fontFamily: fonts.display },
-  title: { color: colors.text, fontSize: 24, lineHeight: 30, fontFamily: fonts.display },
-  heading: { color: colors.text, fontSize: 20, lineHeight: 26, fontFamily: fonts.display, marginTop: 22, marginBottom: 8 },
-  label: { color: colors.muted, fontSize: 12, fontWeight: "600", letterSpacing: 0.6 },
-  body: { color: colors.text, fontSize: 16, lineHeight: 24 },
-  muted: { color: colors.muted, fontSize: 14, lineHeight: 20 },
-  error: { color: colors.danger, fontSize: 15, lineHeight: 22 },
-});
+export function create_type(colors: Palette) {
+  return StyleSheet.create({
+    display: { color: colors.text, fontSize: 28, lineHeight: 34, fontFamily: fonts.display },
+    title: { color: colors.text, fontSize: 24, lineHeight: 30, fontFamily: fonts.display },
+    heading: { color: colors.text, fontSize: 20, lineHeight: 26, fontFamily: fonts.display, marginTop: 22, marginBottom: 8 },
+    label: { color: colors.muted, fontSize: 12, fontWeight: "600", letterSpacing: 0.6 },
+    body: { color: colors.text, fontSize: 16, lineHeight: 24 },
+    muted: { color: colors.muted, fontSize: 14, lineHeight: 20 },
+    error: { color: colors.danger, fontSize: 15, lineHeight: 22 },
+  });
+}
+
+export type Theme = { scheme: Scheme; colors: Palette; type: ReturnType<typeof create_type> };
+
+const DARK_THEME: Theme = { scheme: "dark", colors: DARK_COLORS, type: create_type(DARK_COLORS) };
+const LIGHT_THEME: Theme = { scheme: "light", colors: LIGHT_COLORS, type: create_type(LIGHT_COLORS) };
+
+/** The camera is always dark, like every phone camera, whatever the app's theme is. */
+export const CAMERA_THEME = DARK_THEME;
+
+export function theme_for(scheme: Scheme): Theme {
+  return scheme === "light" ? LIGHT_THEME : DARK_THEME;
+}
+
+const ThemeContext = createContext<Theme>(DARK_THEME);
+
+export function ThemeProvider({ scheme, children }: { scheme: Scheme; children: ReactNode }) {
+  return <ThemeContext.Provider value={theme_for(scheme)}>{children}</ThemeContext.Provider>;
+}
+
+export function useTheme(): Theme {
+  return useContext(ThemeContext);
+}
+
+/** Builds a screen's styles for the current theme, once per theme. Pass a function defined outside the component. */
+export function useThemedStyles<T>(create_styles: (colors: Palette) => T): T {
+  const { colors } = useTheme();
+  return useMemo(() => create_styles(colors), [create_styles, colors]);
+}
 
 export function Button({
   label,
@@ -44,6 +64,8 @@ export function Button({
   disabled?: boolean;
   hint?: string;
 }) {
+  const { colors } = useTheme();
+  const styles = useThemedStyles(create_styles);
   const primary = variant === "primary";
   return (
     <Pressable
@@ -65,6 +87,8 @@ export function Button({
 }
 
 export function Chip({ label, selected, onPress }: { label: string; selected?: boolean; onPress: () => void }) {
+  const { colors } = useTheme();
+  const styles = useThemedStyles(create_styles);
   return (
     <Pressable
       accessibilityRole="button"
@@ -78,6 +102,8 @@ export function Chip({ label, selected, onPress }: { label: string; selected?: b
 }
 
 export function Notice({ children, tone = "muted" }: { children: ReactNode; tone?: "muted" | "error" }) {
+  const { type } = useTheme();
+  const styles = useThemedStyles(create_styles);
   const style: TextStyle = tone === "error" ? type.error : type.muted;
   return (
     <View accessibilityLiveRegion="polite" style={styles.notice}>
@@ -86,21 +112,22 @@ export function Notice({ children, tone = "muted" }: { children: ReactNode; tone
   );
 }
 
-const styles = StyleSheet.create({
-  button: { minHeight: 52, borderRadius: 26, paddingHorizontal: 20, alignItems: "center", justifyContent: "center", marginTop: 12 },
-  primary: { backgroundColor: colors.accent },
-  secondary: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border },
-  label: { fontSize: 16, fontWeight: "700" },
-  chip: {
-    minHeight: 48,
-    paddingHorizontal: 16,
-    borderRadius: 24,
-    borderWidth: 1,
-    borderColor: colors.border,
-    justifyContent: "center",
-    marginRight: 8,
-    marginBottom: 8,
-  },
-  chipLabel: { color: colors.text, fontSize: 14, fontWeight: "600" },
-  notice: { marginTop: 12 },
-});
+const create_styles = (colors: Palette) =>
+  StyleSheet.create({
+    button: { minHeight: 52, borderRadius: 26, paddingHorizontal: 20, alignItems: "center", justifyContent: "center", marginTop: 12 },
+    primary: { backgroundColor: colors.accent },
+    secondary: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border },
+    label: { fontSize: 16, fontWeight: "700" },
+    chip: {
+      minHeight: 48,
+      paddingHorizontal: 16,
+      borderRadius: 24,
+      borderWidth: 1,
+      borderColor: colors.border,
+      justifyContent: "center",
+      marginRight: 8,
+      marginBottom: 8,
+    },
+    chipLabel: { color: colors.text, fontSize: 14, fontWeight: "600" },
+    notice: { marginTop: 12 },
+  });

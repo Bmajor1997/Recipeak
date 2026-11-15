@@ -10,7 +10,7 @@ type State = {
   error: string | null;
   notice: string | null;
   reload: () => void;
-  update: (key: keyof Preferences, value: boolean) => Promise<void>;
+  update: <K extends keyof Preferences>(key: K, value: Preferences[K]) => Promise<void>;
 };
 const Context = createContext<State | null>(null);
 
@@ -54,7 +54,7 @@ function AccountPreferences({ uid, children }: { uid: string | null; children: R
     set_attempt((n) => n + 1);
   }, []);
   const update = useCallback(
-    async (key: keyof Preferences, value: boolean) => {
+    async <K extends keyof Preferences>(key: K, value: Preferences[K]) => {
       if (!store || !ready || locked.current) return;
       locked.current = true;
       set_busy(true);

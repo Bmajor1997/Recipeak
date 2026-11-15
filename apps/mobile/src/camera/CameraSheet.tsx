@@ -18,8 +18,11 @@ import {
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { colors, type } from "../ui/theme";
+import { CAMERA_THEME } from "../ui/theme";
 import { type FlashSetting, flash_label, next_flash, SHEET_CLOSE_MS, SHEET_SPRING, should_dismiss, shutter_flash } from "./cameraOptions";
+
+// The camera keeps its dark look in light mode too, like every phone camera.
+const { colors, type } = CAMERA_THEME;
 
 export type Photo = { uri: string; width: number; height: number };
 

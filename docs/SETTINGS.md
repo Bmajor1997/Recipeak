@@ -7,6 +7,7 @@ The Settings tab adapts Votic's grouped settings navigation to Meals & Mixers. I
 | Votic area | Meals & Mixers behavior |
 | --- | --- |
 | Account & Membership | Signed-in email, password-reset request, confirmed sign-out. Sign-out keeps the account's recipes on the device for its next sign-in and clears the current recipe. |
+| Appearance | Match phone (default), Light or Dark. Every screen follows it except the camera, which always stays dark. |
 | Accessibility | Pause the Home photo wall. The phone's Reduce Motion preference always takes precedence. Text continues to follow the phone's font-size setting. |
 | Storage management | Choose whether newly saved recipes keep an offline cover photo. Existing saved photos remain until the corresponding recipe is removed. |
 | Library tools | Count saved recipes and offline photos, open Saved, share all saved recipe text through the system share sheet. Text sharing is not an importable backup. |
@@ -19,7 +20,7 @@ Saved recipes belong to the signed-in account (since 2026-11-15): each Firebase 
 
 ## Source areas intentionally omitted
 
-- Appearance/accent choices: Meals & Mixers currently uses a static brand palette. Adding a selector without migrating every screen would create a setting that does not work consistently.
+- Accent-colour choices: Meals & Mixers keeps its grapefruit accent. (Light and dark mode are included, see Preferences.)
 - Reading/listening, narration voices, pronunciations, document scans, drafts, Recently Deleted, document import/backup, onboarding walkthroughs, and reading activity: these are Votic document-reader features without corresponding Meals & Mixers models/services.
 - Votic personalization: the target app supports explicit recipe diet versions and US units; it does not have Votic's answer-style/purpose service.
 - Credit packs, restore purchases, store subscription management, and retention offers: no client purchase service is wired in Meals & Mixers yet. Settings only displays the allowance/paid-access state returned by the existing API.

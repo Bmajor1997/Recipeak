@@ -8,10 +8,12 @@ import { NO_IMAGE, type SavedRecipe } from "../../recipes/types";
 import { total_minutes } from "../../recipes/search";
 import { greeting } from "../../ui/greeting";
 import { PhotoCard } from "../../ui/PhotoCard";
-import { colors, type } from "../../ui/theme";
+import { useTheme, useThemedStyles, type Palette } from "../../ui/theme";
 import { PhotoWall } from "../../ui/PhotoWall";
 
 export default function HomeScreen() {
+  const { type } = useTheme();
+  const styles = useThemedStyles(create_styles);
   const { saved, set_current } = useApp();
   const { photosLeft, refresh_allowance } = useCamera();
   const insets = useSafeAreaInsets();
@@ -92,18 +94,19 @@ export default function HomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background },
-  pad: { paddingHorizontal: 20 },
-  badge: {
-    alignSelf: "flex-start",
-    marginTop: 10,
-    paddingHorizontal: 11,
-    paddingVertical: 5,
-    borderRadius: 14,
-    backgroundColor: colors.surface,
-  },
-  badgeText: { color: colors.accent, fontSize: 13, fontWeight: "600" },
-  sectionHeader: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between", marginTop: 28, marginBottom: 12 },
-  seeAll: { color: colors.accent, fontSize: 14, fontWeight: "600" },
-});
+const create_styles = (colors: Palette) =>
+  StyleSheet.create({
+    screen: { flex: 1, backgroundColor: colors.background },
+    pad: { paddingHorizontal: 20 },
+    badge: {
+      alignSelf: "flex-start",
+      marginTop: 10,
+      paddingHorizontal: 11,
+      paddingVertical: 5,
+      borderRadius: 14,
+      backgroundColor: colors.surface,
+    },
+    badgeText: { color: colors.accentInk, fontSize: 13, fontWeight: "600" },
+    sectionHeader: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between", marginTop: 28, marginBottom: 12 },
+    seeAll: { color: colors.accentInk, fontSize: 14, fontWeight: "600" },
+  });

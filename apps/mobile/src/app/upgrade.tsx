@@ -15,13 +15,15 @@ import {
   trial_terms,
   yearly_saving_percent,
 } from "../paywall/plans";
-import { Button, colors, Notice, type } from "../ui/theme";
+import { Button, Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
 
 const heroArt = require("../../assets/hero.png");
 const PLAN_ORDER: PlanId[] = ["yearly", "monthly"];
 const NOT_YET = "Subscriptions aren't open yet. Your saved recipes are still here, and we'll let you know when you can subscribe.";
 
 export default function Upgrade() {
+  const { colors, type } = useTheme();
+  const styles = useThemedStyles(create_styles);
   const insets = useSafeAreaInsets();
   const { reason } = useLocalSearchParams<{ reason?: string }>();
   const [selected, set_selected] = useState<PlanId>(DEFAULT_PLAN);
@@ -93,60 +95,61 @@ export default function Upgrade() {
   );
 }
 
-const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background },
-  content: { flexGrow: 1, paddingHorizontal: 24 },
-  topBar: { flexDirection: "row", justifyContent: "flex-end" },
-  close: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: colors.surface,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  artCard: {
-    height: 196,
-    marginTop: 8,
-    borderRadius: 24,
-    backgroundColor: colors.surface,
-    borderWidth: 1,
-    borderColor: colors.border,
-    alignItems: "center",
-    justifyContent: "center",
-    overflow: "hidden",
-  },
-  art: { width: "80%", height: "80%" },
-  eyebrow: { marginTop: 24, color: colors.accent, fontSize: 12, fontWeight: "700", letterSpacing: 1.4 },
-  plans: { marginTop: 20, gap: 10 },
-  plan: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 14,
-    minHeight: 64,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
-  },
-  planSelected: { borderWidth: 2, borderColor: colors.accent, backgroundColor: "#1F1513" },
-  radio: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    borderWidth: 2,
-    borderColor: "#5A5A60",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  radioOn: { backgroundColor: colors.accent, borderColor: colors.accent },
-  planTitle: { color: colors.text, fontSize: 16, fontWeight: "700" },
-  planDetail: { color: colors.muted, fontSize: 13, marginTop: 2 },
-  badge: { backgroundColor: colors.accent, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 5 },
-  badgeText: { color: colors.accentText, fontSize: 11, fontWeight: "800", letterSpacing: 0.6 },
-  terms: { marginTop: 10, textAlign: "center", color: colors.muted, fontSize: 12, lineHeight: 17 },
-  restore: { alignSelf: "center", marginTop: 8, minHeight: 44, justifyContent: "center", paddingHorizontal: 12 },
-  restoreText: { color: colors.muted, fontSize: 13, textDecorationLine: "underline" },
-});
+const create_styles = (colors: Palette) =>
+  StyleSheet.create({
+    screen: { flex: 1, backgroundColor: colors.background },
+    content: { flexGrow: 1, paddingHorizontal: 24 },
+    topBar: { flexDirection: "row", justifyContent: "flex-end" },
+    close: {
+      width: 44,
+      height: 44,
+      borderRadius: 22,
+      backgroundColor: colors.surface,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    artCard: {
+      height: 196,
+      marginTop: 8,
+      borderRadius: 24,
+      backgroundColor: colors.surface,
+      borderWidth: 1,
+      borderColor: colors.border,
+      alignItems: "center",
+      justifyContent: "center",
+      overflow: "hidden",
+    },
+    art: { width: "80%", height: "80%" },
+    eyebrow: { marginTop: 24, color: colors.accentInk, fontSize: 12, fontWeight: "700", letterSpacing: 1.4 },
+    plans: { marginTop: 20, gap: 10 },
+    plan: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 14,
+      minHeight: 64,
+      paddingHorizontal: 16,
+      paddingVertical: 14,
+      borderRadius: 16,
+      borderWidth: 1,
+      borderColor: colors.border,
+      backgroundColor: colors.surface,
+    },
+    planSelected: { borderWidth: 2, borderColor: colors.accentInk, backgroundColor: colors.accentTint },
+    radio: {
+      width: 22,
+      height: 22,
+      borderRadius: 11,
+      borderWidth: 2,
+      borderColor: colors.control,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    radioOn: { backgroundColor: colors.accent, borderColor: colors.accent },
+    planTitle: { color: colors.text, fontSize: 16, fontWeight: "700" },
+    planDetail: { color: colors.muted, fontSize: 13, marginTop: 2 },
+    badge: { backgroundColor: colors.accent, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 5 },
+    badgeText: { color: colors.accentText, fontSize: 11, fontWeight: "800", letterSpacing: 0.6 },
+    terms: { marginTop: 10, textAlign: "center", color: colors.muted, fontSize: 12, lineHeight: 17 },
+    restore: { alignSelf: "center", marginTop: 8, minHeight: 44, justifyContent: "center", paddingHorizontal: 12 },
+    restoreText: { color: colors.muted, fontSize: 13, textDecorationLine: "underline" },
+  });

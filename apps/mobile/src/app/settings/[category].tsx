@@ -2,9 +2,10 @@ import { useLocalSearchParams } from "expo-router";
 import { Text } from "react-native";
 import { SettingsDetails } from "../../settings/SettingsDetails";
 import { is_category, SettingsScreen } from "../../settings/SettingsUI";
-import { type } from "../../ui/theme";
+import { useTheme } from "../../ui/theme";
 
 export default function SettingsCategoryScreen() {
+  const { type } = useTheme();
   const { category } = useLocalSearchParams<{ category: string }>();
   return is_category(category) ? (
     <SettingsDetails category={category} />

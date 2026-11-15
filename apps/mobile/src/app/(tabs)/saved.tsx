@@ -8,7 +8,7 @@ import { useCamera } from "../../camera/CameraProvider";
 import { filter_saved, type SavedFilter, total_minutes } from "../../recipes/search";
 import { NO_IMAGE, type SavedRecipe } from "../../recipes/types";
 import { PhotoCard } from "../../ui/PhotoCard";
-import { Button, Chip, colors, type } from "../../ui/theme";
+import { Button, Chip, useTheme, useThemedStyles, type Palette } from "../../ui/theme";
 
 const FILTERS: { value: SavedFilter; label: string }[] = [
   { value: "all", label: "All" },
@@ -17,6 +17,8 @@ const FILTERS: { value: SavedFilter; label: string }[] = [
 ];
 
 export default function SavedScreen() {
+  const { colors, type } = useTheme();
+  const styles = useThemedStyles(create_styles);
   const { saved, set_current } = useApp();
   const { open_camera } = useCamera();
   const insets = useSafeAreaInsets();
@@ -113,18 +115,19 @@ export default function SavedScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background },
-  search: {
-    marginTop: 16,
-    minHeight: 50,
-    borderRadius: 14,
-    backgroundColor: colors.surface,
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 14,
-    gap: 10,
-  },
-  searchInput: { flex: 1, color: colors.text, fontSize: 16, paddingVertical: 10 },
-  filters: { flexDirection: "row", marginTop: 14, marginBottom: 4 },
-});
+const create_styles = (colors: Palette) =>
+  StyleSheet.create({
+    screen: { flex: 1, backgroundColor: colors.background },
+    search: {
+      marginTop: 16,
+      minHeight: 50,
+      borderRadius: 14,
+      backgroundColor: colors.surface,
+      flexDirection: "row",
+      alignItems: "center",
+      paddingHorizontal: 14,
+      gap: 10,
+    },
+    searchInput: { flex: 1, color: colors.text, fontSize: 16, paddingVertical: 10 },
+    filters: { flexDirection: "row", marginTop: 14, marginBottom: 4 },
+  });

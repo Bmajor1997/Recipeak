@@ -4,20 +4,41 @@ import { Fraunces_600SemiBold } from "@expo-google-fonts/fraunces/600SemiBold";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { ActivityIndicator, View } from "react-native";
+import * as SystemUI from "expo-system-ui";
+import { type ReactNode, useEffect } from "react";
+import { ActivityIndicator, useColorScheme, View } from "react-native";
 import { AppProvider, useApp } from "../AppContext";
 import { CameraProvider } from "../camera/CameraProvider";
-import { colors } from "../ui/theme";
-import { PreferencesProvider } from "../settings/PreferencesProvider";
+import { PreferencesProvider, usePreferences } from "../settings/PreferencesProvider";
+import { theme_for, ThemeProvider, useTheme } from "../ui/theme";
+
+/** Light or dark: the person's choice in Settings, or the phone's own setting ("Match phone", the default). */
+function Themed({ children }: { children: ReactNode }) {
+  const phone = useColorScheme();
+  const { values } = usePreferences();
+  const scheme = values.appearance === "system" ? (phone === "light" ? "light" : "dark") : values.appearance;
+  const background = theme_for(scheme).colors.background;
+  // The window behind the app matches, so there's no flash of the wrong colour when screens change.
+  useEffect(() => {
+    SystemUI.setBackgroundColorAsync(background).catch(() => {});
+  }, [background]);
+  return (
+    <ThemeProvider scheme={scheme}>
+      <StatusBar style={scheme === "light" ? "dark" : "light"} />
+      {children}
+    </ThemeProvider>
+  );
+}
 
 function Screens() {
   const { user, ready } = useApp();
+  const { colors } = useTheme();
   // If the fonts fail to load, the app still works with the phone's own font.
   const [fontsLoaded, fontError] = useFonts({ Fraunces_500Medium, Fraunces_600SemiBold });
   if (!ready || (!fontsLoaded && !fontError)) {
     return (
       <View style={{ flex: 1, backgroundColor: colors.background, justifyContent: "center" }}>
-        <ActivityIndicator size="large" color={colors.accent} accessibilityLabel="Loading" />
+        <ActivityIndicator size="large" color={colors.accentInk} accessibilityLabel="Loading" />
       </View>
     );
   }
@@ -53,8 +74,9 @@ export default function RootLayout() {
   return (
     <AppProvider>
       <PreferencesProvider>
-        <StatusBar style="light" />
-        <Screens />
+        <Themed>
+          <Screens />
+        </Themed>
       </PreferencesProvider>
     </AppProvider>
   );

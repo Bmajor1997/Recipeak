@@ -3,9 +3,11 @@ import { Text } from "react-native";
 import { useApp } from "../../AppContext";
 import { CATEGORIES, type Category, Group, Row, SettingsScreen } from "../../settings/SettingsUI";
 import { usePreferences } from "../../settings/PreferencesProvider";
-import { type } from "../../ui/theme";
+import { APPEARANCE_LABELS } from "../../settings/SettingsDetails";
+import { useTheme } from "../../ui/theme";
 
 export default function Settings() {
+  const { type } = useTheme();
   const { user } = useApp();
   const { values, ready } = usePreferences();
   const open = (category: Category) => router.push({ pathname: "/settings/[category]", params: { category } });
@@ -27,7 +29,7 @@ export default function Settings() {
           detail={
             !ready
               ? "Loading preferences…"
-              : `${values.pausePhotoWall ? "Photo wall paused" : "Photo wall motion"} · ${values.saveCoverPhotos ? "Offline covers on" : "Text-only saves"}`
+              : `${APPEARANCE_LABELS[values.appearance].label} · ${values.pausePhotoWall ? "Photo wall paused" : "Photo wall motion"} · ${values.saveCoverPhotos ? "Offline covers on" : "Text-only saves"}`
           }
           icon="options-outline"
           onPress={() => open("preferences")}

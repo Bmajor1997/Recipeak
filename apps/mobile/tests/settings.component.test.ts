@@ -131,7 +131,7 @@ describe("Settings interactions", () => {
     });
     expect(mocks.set).toHaveBeenCalledWith(
       "mealsandmixers.preferences.v1.first",
-      JSON.stringify({ pausePhotoWall: true, saveCoverPhotos: true }),
+      JSON.stringify({ pausePhotoWall: true, saveCoverPhotos: true, appearance: "system" }),
     );
     expect(tree.root.findByProps({ accessibilityLabel: "Pause photo wall" }).props.value).toBe(true);
     expect(text(tree)).toContain("Saved on this device.");
@@ -158,12 +158,20 @@ describe("Settings interactions", () => {
       return createElement("Probe", { values: usePreferences().values });
     }
     const tree = await render(createElement(Probe));
-    expect(tree.root.findAllByType("Probe")[0].props.values).toEqual({ pausePhotoWall: true, saveCoverPhotos: false });
+    expect(tree.root.findAllByType("Probe")[0].props.values).toEqual({
+      pausePhotoWall: true,
+      saveCoverPhotos: false,
+      appearance: "system",
+    });
     mocks.user = { uid: "second", email: "second@example.test" };
     await act(async () => {
       tree.update(createElement(PreferencesProvider, null, createElement(Probe)));
     });
-    expect(tree.root.findAllByType("Probe")[0].props.values).toEqual({ pausePhotoWall: false, saveCoverPhotos: true });
+    expect(tree.root.findAllByType("Probe")[0].props.values).toEqual({
+      pausePhotoWall: false,
+      saveCoverPhotos: true,
+      appearance: "system",
+    });
   });
   it("shows allowance errors and retries without showing a false zero", async () => {
     mocks.allowance
