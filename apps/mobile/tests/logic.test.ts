@@ -3,7 +3,7 @@ import { ApiError, createApi } from "../src/api/client";
 import { formatIngredient, formatMinutes, recipeAsText } from "../src/recipes/format";
 import { parseIdentification, parseRecipe, parseSavedList } from "../src/recipes/parse";
 import type { Recipe } from "../src/recipes/types";
-import { createSavedRecipes, type KeyValueStorage } from "../src/saved/savedRecipes";
+import { createSavedRecipes, type KeyValueStorage, SavedLimitError } from "../src/saved/savedRecipes";
 
 const recipe: Recipe = {
   title: "Chicken Parmesan",
@@ -70,6 +70,20 @@ describe("formatting", () => {
 });
 
 describe("saved recipes", () => {
+  it("keeps free accounts to 3 saved recipes, from any source, but always allows re-saving one", async () => {
+    let n = 0;
+    const saved = createSavedRecipes(memoryStorage(), { newId: () => `id${++n}` });
+    const free = { limit: 3 };
+    for (const title of ["Pho", "Margarita", "Ramen"]) await saved.save("meal", { ...recipe, title }, null, free);
+    await expect(saved.save("meal", { ...recipe, title: "Paella" }, null, free)).rejects.toBeInstanceOf(SavedLimitError);
+    await saved.save("meal", { ...recipe, title: "Pho" }, null, free);
+    expect((await saved.list()).map((s) => s.recipe.title)).toEqual(["Pho", "Ramen", "Margarita"]);
+    await saved.remove((await saved.list())[0].id);
+    await saved.save("meal", { ...recipe, title: "Paella" }, null, free);
+    await saved.save("meal", { ...recipe, title: "Lasagna" });
+    expect(await saved.list()).toHaveLength(4);
+  });
+
   it("saves newest first, de-duplicates by title, removes, and survives damaged storage", async () => {
     const storage = memoryStorage();
     let n = 0;

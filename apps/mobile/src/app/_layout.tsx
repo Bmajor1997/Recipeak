@@ -36,7 +36,8 @@ function Screens() {
             name="recipe"
             options={{ headerShown: false, presentation: "modal", animation: "slide_from_bottom", gestureEnabled: true }}
           />
-          <Stack.Screen name="upgrade" options={{ title: "Keep cooking", presentation: "modal" }} />
+          {/* The paywall draws its own close button. */}
+          <Stack.Screen name="upgrade" options={{ headerShown: false, presentation: "modal" }} />
         </Stack.Protected>
         <Stack.Protected guard={!user}>
           <Stack.Screen name="sign-in" options={{ headerShown: false }} />
