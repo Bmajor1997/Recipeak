@@ -1,5 +1,5 @@
 // Talks to the Meals and Mixers backend. The OpenAI key never reaches the phone: only the user's Firebase ID token is sent.
-import { parseAllowance, parseDishImage, parseIdentification, parseRecipe } from "../recipes/parse";
+import { parse_allowance, parse_dish_image, parse_identification, parse_recipe } from "../recipes/parse";
 import type { Allowance, Diet, DishImage, Identification, Kind, Recipe } from "../recipes/types";
 
 export class ApiError extends Error {
@@ -16,17 +16,17 @@ export class ApiError extends Error {
   }
 }
 
-type Deps = { baseUrl: string | undefined; idToken: () => Promise<string | null>; fetchImpl?: typeof fetch; timeoutMs?: number };
+type Deps = { baseUrl: string | undefined; id_token: () => Promise<string | null>; fetch_impl?: typeof fetch; timeoutMs?: number };
 
-export function createApi({ baseUrl, idToken, fetchImpl = fetch, timeoutMs = 75_000 }: Deps) {
+export function create_api({ baseUrl, id_token, fetch_impl = fetch, timeoutMs = 75_000 }: Deps) {
   async function request(path: string, init: { method: "GET" | "POST"; body?: unknown }): Promise<unknown> {
     if (!baseUrl) throw new ApiError("This build isn't connected to the recipe server yet.", 0);
-    const token = await idToken();
+    const token = await id_token();
     if (!token) throw new ApiError("Please sign in again.", 401);
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {
-      const response = await fetchImpl(baseUrl.replace(/\/$/, "") + path, {
+      const response = await fetch_impl(baseUrl.replace(/\/$/, "") + path, {
         method: init.method,
         signal: controller.signal,
         headers: { Authorization: `Bearer ${token}`, ...(init.body === undefined ? {} : { "Content-Type": "application/json" }) },
@@ -50,37 +50,37 @@ export function createApi({ baseUrl, idToken, fetchImpl = fetch, timeoutMs = 75_
 
   return {
     async identify(imageDataUrl: string): Promise<Identification> {
-      return parseIdentification(await request("/api/identify", { method: "POST", body: { image: imageDataUrl } }));
+      return parse_identification(await request("/api/identify", { method: "POST", body: { image: imageDataUrl } }));
     },
     async recipe(name: string, kind: Kind, diet?: Diet): Promise<{ recipe: Recipe; image: DishImage }> {
       const json = (await request("/api/recipe", { method: "POST", body: { name, kind, ...(diet ? { diet } : {}) } })) as {
         recipe?: unknown;
         image?: unknown;
       };
-      return { recipe: parseRecipe(json?.recipe), image: parseDishImage(json?.image) };
+      return { recipe: parse_recipe(json?.recipe), image: parse_dish_image(json?.image) };
     },
     /** The shared recipe for a dish on the Home photo wall. Free: it uses no photo or recipe allowance. */
-    async featuredRecipe(name: string, kind: Kind): Promise<{ recipe: Recipe; image: DishImage }> {
+    async featured_recipe(name: string, kind: Kind): Promise<{ recipe: Recipe; image: DishImage }> {
       const json = (await request("/api/featured-recipe", { method: "POST", body: { name, kind } })) as {
         recipe?: unknown;
         image?: unknown;
       };
-      return { recipe: parseRecipe(json?.recipe), image: parseDishImage(json?.image) };
+      return { recipe: parse_recipe(json?.recipe), image: parse_dish_image(json?.image) };
     },
     /** Checks on a cover photo that is still being created. */
-    async dishImage(kind: Kind, name: string): Promise<DishImage> {
+    async dish_image(kind: Kind, name: string): Promise<DishImage> {
       const query = `kind=${encodeURIComponent(kind)}&name=${encodeURIComponent(name)}`;
       const json = (await request(`/api/dish-image?${query}`, { method: "GET" })) as { image?: unknown };
-      return parseDishImage(json?.image);
+      return parse_dish_image(json?.image);
     },
     /** Full address of a library photo, for showing or downloading it. */
-    imageUri(path: string | null): string | null {
+    image_uri(path: string | null): string | null {
       return path && baseUrl ? baseUrl.replace(/\/$/, "") + path : null;
     },
     async allowance(): Promise<Allowance> {
-      return parseAllowance(await request("/api/allowance", { method: "GET" }));
+      return parse_allowance(await request("/api/allowance", { method: "GET" }));
     },
   };
 }
 
-export type Api = ReturnType<typeof createApi>;
+export type Api = ReturnType<typeof create_api>;

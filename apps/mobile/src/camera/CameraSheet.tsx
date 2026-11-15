@@ -19,7 +19,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { colors, type } from "../ui/theme";
-import { type FlashSetting, flashLabel, nextFlash, SHEET_CLOSE_MS, SHEET_SPRING, shouldDismiss, shutterFlash } from "./cameraOptions";
+import { type FlashSetting, flash_label, next_flash, SHEET_CLOSE_MS, SHEET_SPRING, should_dismiss, shutter_flash } from "./cameraOptions";
 
 export type Photo = { uri: string; width: number; height: number };
 
@@ -37,41 +37,41 @@ type Props = {
 export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Props) {
   const { height } = useWindowDimensions();
   const insets = useSafeAreaInsets();
-  const [permission, requestPermission] = useCameraPermissions();
+  const [permission, request_permission] = useCameraPermissions();
   const camera = useRef<CameraView>(null);
-  const [mounted, setMounted] = useState(visible);
-  const [reduceMotion, setReduceMotion] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [flash, setFlash] = useState<FlashSetting>("off");
-  const [facing, setFacing] = useState<CameraType>("back");
-  const [ready, setReady] = useState(false);
-  const [taken, setTaken] = useState<Photo | null>(null);
+  const [mounted, set_mounted] = useState(visible);
+  const [reduceMotion, set_reduce_motion] = useState(false);
+  const [menuOpen, set_menu_open] = useState(false);
+  const [flash, set_flash] = useState<FlashSetting>("off");
+  const [facing, set_facing] = useState<CameraType>("back");
+  const [ready, set_ready] = useState(false);
+  const [taken, set_taken] = useState<Photo | null>(null);
 
   // Animated values and the drag gesture are created once and kept for the sheet's lifetime.
   const [slide] = useState(() => new Animated.Value(height));
   const [backdrop] = useState(() => new Animated.Value(0));
   const [glow] = useState(() => new Animated.Value(0));
   // A drag-to-close is recorded as state, then handed to onClose after render.
-  const [dragClosed, setDragClosed] = useState(0);
+  const [dragClosed, set_drag_closed] = useState(0);
   useEffect(() => {
     if (dragClosed) onClose();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dragClosed]);
 
   // When the sheet is asked to open, show it straight away with a fresh state (React's "adjust state on prop change" pattern).
-  const [wasVisible, setWasVisible] = useState(visible);
+  const [wasVisible, set_was_visible] = useState(visible);
   if (visible !== wasVisible) {
-    setWasVisible(visible);
+    set_was_visible(visible);
     if (visible) {
-      setMounted(true);
-      setTaken(null);
-      setMenuOpen(false);
+      set_mounted(true);
+      set_taken(null);
+      set_menu_open(false);
     }
   }
 
   useEffect(() => {
-    AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion, () => {});
-    const sub = AccessibilityInfo.addEventListener("reduceMotionChanged", setReduceMotion);
+    AccessibilityInfo.isReduceMotionEnabled().then(set_reduce_motion, () => {});
+    const sub = AccessibilityInfo.addEventListener("reduceMotionChanged", set_reduce_motion);
     return () => sub.remove();
   }, []);
 
@@ -95,8 +95,8 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
       Animated.timing(backdrop, { toValue: 0, duration: SHEET_CLOSE_MS, useNativeDriver: true }),
     ]).start(({ finished }) => {
       if (!finished) return;
-      setMounted(false);
-      setReady(false);
+      set_mounted(false);
+      set_ready(false);
     });
     // Only react to opening and closing, not to every size or setting change while open.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -108,14 +108,14 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
       onMoveShouldSetPanResponder: (_e, g) => g.dy > 8 && Math.abs(g.dy) > Math.abs(g.dx),
       onPanResponderMove: (_e, g) => slide.setValue(Math.max(0, g.dy)),
       onPanResponderRelease: (_e, g) => {
-        if (shouldDismiss(g.dy, g.vy)) setDragClosed((n) => n + 1);
+        if (should_dismiss(g.dy, g.vy)) set_drag_closed((n) => n + 1);
         else Animated.spring(slide, { toValue: 0, useNativeDriver: true, ...SHEET_SPRING }).start();
       },
     }),
   );
 
-  function playFlash() {
-    const f = shutterFlash(reduceMotion);
+  function play_flash() {
+    const f = shutter_flash(reduceMotion);
     glow.setValue(0);
     Animated.sequence([
       Animated.timing(glow, { toValue: f.peak, duration: f.riseMs, useNativeDriver: true }),
@@ -125,7 +125,7 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
 
   // After taking or choosing a photo, it stays on screen to check: Retake, or Send.
   function finish(photo: Photo) {
-    setTaken(photo);
+    set_taken(photo);
     AccessibilityInfo.announceForAccessibility("Photo taken. Retake it, or send it to find the recipe.");
   }
 
@@ -134,21 +134,21 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
   }
 
   function retake() {
-    setTaken(null);
-    setReady(false);
+    set_taken(null);
+    set_ready(false);
   }
 
-  async function takePhoto() {
+  async function take_photo() {
     if (!camera.current || !ready || taken) return;
-    setMenuOpen(false);
+    set_menu_open(false);
     // Two signals that the photo was taken: the shutter sound and a soft white flash.
-    playFlash();
+    play_flash();
     const photo = await camera.current.takePictureAsync({ quality: 0.9, shutterSound: true }).catch(() => null);
     if (photo) await finish({ uri: photo.uri, width: photo.width, height: photo.height });
   }
 
-  async function chooseFromPhotos() {
-    setMenuOpen(false);
+  async function choose_from_photos() {
+    set_menu_open(false);
     const picked = await ImagePicker.launchImageLibraryAsync({ mediaTypes: "images", quality: 0.9 });
     const asset = picked.canceled ? null : picked.assets[0];
     if (asset) await finish({ uri: asset.uri, width: asset.width, height: asset.height });
@@ -189,17 +189,17 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
                 facing={facing}
                 flash={flash}
                 animateShutter={false}
-                onCameraReady={() => setReady(true)}
+                onCameraReady={() => set_ready(true)}
                 accessibilityLabel="Camera preview. Point it at a meal or a drink."
               />
             )
           ) : (
             <View style={styles.permission}>
               <Text style={[type.body, { textAlign: "center" }]}>Allow camera access to photograph a meal or a cocktail.</Text>
-              <Pressable accessibilityRole="button" onPress={requestPermission} style={styles.allow}>
+              <Pressable accessibilityRole="button" onPress={request_permission} style={styles.allow}>
                 <Text style={styles.allowText}>Allow camera</Text>
               </Pressable>
-              <Pressable accessibilityRole="button" onPress={chooseFromPhotos} style={{ marginTop: 16, padding: 8 }}>
+              <Pressable accessibilityRole="button" onPress={choose_from_photos} style={{ marginTop: 16, padding: 8 }}>
                 <Text style={[type.body, { textDecorationLine: "underline" }]}>Or choose from your photos</Text>
               </Pressable>
             </View>
@@ -211,12 +211,12 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
 
         {menuOpen && (
           <View style={styles.menu} accessibilityRole="menu">
-            <MenuItem icon="images-outline" label="Choose from photos" onPress={chooseFromPhotos} />
-            <MenuItem icon="flash-outline" label={flashLabel(flash)} onPress={() => setFlash(nextFlash(flash))} />
+            <MenuItem icon="images-outline" label="Choose from photos" onPress={choose_from_photos} />
+            <MenuItem icon="flash-outline" label={flash_label(flash)} onPress={() => set_flash(next_flash(flash))} />
             <MenuItem
               icon="camera-reverse-outline"
               label={facing === "back" ? "Use front camera" : "Use back camera"}
-              onPress={() => setFacing(facing === "back" ? "front" : "back")}
+              onPress={() => set_facing(facing === "back" ? "front" : "back")}
             />
           </View>
         )}
@@ -258,7 +258,7 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
               accessibilityHint="Takes a photo and finds a recipe for it"
               accessibilityState={{ disabled: !ready || Boolean(taken) }}
               disabled={!permission?.granted || !ready || Boolean(taken)}
-              onPress={takePhoto}
+              onPress={take_photo}
               style={({ pressed }) => [styles.shutterRing, pressed && { transform: [{ scale: 0.92 }] }]}
             >
               <View style={[styles.shutter, (!ready || taken) && { opacity: 0.5 }]} />
@@ -268,7 +268,7 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
               label="More options"
               hint="Choose from photos, flash, and switch camera"
               expanded={menuOpen}
-              onPress={() => setMenuOpen(!menuOpen)}
+              onPress={() => set_menu_open(!menuOpen)}
             />
           </View>
         )}

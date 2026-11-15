@@ -14,7 +14,7 @@ const UNICODE_FRACTIONS: Record<string, number> = {
 };
 
 /** "1 1/2" → 1.5, "½" → 0.5, "2" → 2, "0.25" → 0.25; null when it isn't a single number. */
-export function parseQuantity(text: string): number | null {
+export function parse_quantity(text: string): number | null {
   const t = text.trim();
   let m = /^(\d+)\s*([¼½¾⅓⅔⅛⅜⅝⅞])$/.exec(t);
   if (m) return Number(m[1]) + UNICODE_FRACTIONS[m[2]];
@@ -42,7 +42,7 @@ const NICE: [number, string][] = [
   [1, ""],
 ];
 
-export function formatQuantity(value: number): string {
+export function format_quantity(value: number): string {
   if (value >= 10) return String(Math.round(value));
   let whole = Math.floor(value);
   const rest = value - whole;
@@ -54,13 +54,13 @@ export function formatQuantity(value: number): string {
 }
 
 /** Scales "2", "1 1/2" or a range like "2-3"; returns the original text when it can't be scaled. */
-export function scaleAmount(amount: string, factor: number): string {
+export function scale_amount(amount: string, factor: number): string {
   if (factor === 1 || !amount.trim()) return amount;
   const range = /^(.+?)\s*[-–]\s*(.+)$/.exec(amount.trim());
   if (range) {
-    const [a, b] = [parseQuantity(range[1]), parseQuantity(range[2])];
-    if (a !== null && b !== null) return `${formatQuantity(a * factor)}-${formatQuantity(b * factor)}`;
+    const [a, b] = [parse_quantity(range[1]), parse_quantity(range[2])];
+    if (a !== null && b !== null) return `${format_quantity(a * factor)}-${format_quantity(b * factor)}`;
   }
-  const n = parseQuantity(amount);
-  return n === null ? amount : formatQuantity(n * factor);
+  const n = parse_quantity(amount);
+  return n === null ? amount : format_quantity(n * factor);
 }

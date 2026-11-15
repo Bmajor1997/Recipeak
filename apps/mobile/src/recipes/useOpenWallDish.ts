@@ -9,14 +9,14 @@ import type { WallPhoto } from "../ui/wallPhotos";
  * the recipe screen slides up, shows that it's finding the recipe, then shows it. It uses no free photo.
  */
 export function useOpenWallDish() {
-  const { api, setCurrent } = useApp();
+  const { api, set_current } = useApp();
   return useCallback(
     async (dish: Pick<WallPhoto, "name" | "kind">) => {
-      setCurrent({ status: "loading" });
+      set_current({ status: "loading" });
       router.push("/recipe");
       try {
-        const { recipe, image } = await api.featuredRecipe(dish.name, dish.kind);
-        setCurrent({
+        const { recipe, image } = await api.featured_recipe(dish.name, dish.kind);
+        set_current({
           status: "ready",
           kind: dish.kind,
           recipe,
@@ -27,12 +27,12 @@ export function useOpenWallDish() {
           savedId: null,
         });
       } catch (error) {
-        setCurrent({
+        set_current({
           status: "problem",
           message: error instanceof ApiError ? error.message : "That recipe couldn't be loaded. Please try again.",
         });
       }
     },
-    [api, setCurrent],
+    [api, set_current],
   );
 }

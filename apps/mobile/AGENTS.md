@@ -36,6 +36,8 @@ Docs: https://docs.expo.dev/eas/index.md
 
 ## Rules
 
+- **Function names are snake_case** (`create_api`, `toggle_save`, `set_busy`), including methods, arrow functions and `useState` setters. The only exceptions are names React or a library decides: React components are PascalCase, hooks are `useSomething`, React event props are `onSomething`, and library interfaces keep their own names (`getItem`, `tabBarIcon`…). ESLint enforces this (`@typescript-eslint/naming-convention` in `eslint.config.js`).
+
 - If `ios/` and `android/` directories do not exist, they are generated (Continuous Native Generation). Never create or edit them by hand — configure native behavior in `app.json` and config plugins.
 - Expo Go only includes its bundled native modules. After adding a library with native code, the app needs a development build: `npx expo run:ios|android` locally, or `eas build --profile development`.
 - Prefer recommended Expo modules over third-party libraries, and check your available skills before adding dependencies. Docs: https://docs.expo.dev/versions/latest/index.md

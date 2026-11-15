@@ -3,31 +3,31 @@ import { useCallback, useState } from "react";
 import { FlatList, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../../AppContext";
-import { photosLeftText, useCamera } from "../../camera/CameraProvider";
+import { photos_left_text, useCamera } from "../../camera/CameraProvider";
 import { NO_IMAGE, type SavedRecipe } from "../../recipes/types";
-import { totalMinutes } from "../../recipes/search";
+import { total_minutes } from "../../recipes/search";
 import { greeting } from "../../ui/greeting";
 import { PhotoCard } from "../../ui/PhotoCard";
 import { colors, type } from "../../ui/theme";
 import { PhotoWall } from "../../ui/PhotoWall";
 
 export default function HomeScreen() {
-  const { saved, setCurrent } = useApp();
-  const { photosLeft, refreshAllowance } = useCamera();
+  const { saved, set_current } = useApp();
+  const { photosLeft, refresh_allowance } = useCamera();
   const insets = useSafeAreaInsets();
-  const [recent, setRecent] = useState<SavedRecipe[]>([]);
+  const [recent, set_recent] = useState<SavedRecipe[]>([]);
 
   useFocusEffect(
     useCallback(() => {
-      refreshAllowance();
+      refresh_allowance();
       saved.list().then(
-        (list) => setRecent(list.slice(0, 8)),
-        () => setRecent([]),
+        (list) => set_recent(list.slice(0, 8)),
+        () => set_recent([]),
       );
-    }, [saved, refreshAllowance]),
+    }, [saved, refresh_allowance]),
   );
 
-  const allowance = photosLeftText(photosLeft);
+  const allowance = photos_left_text(photosLeft);
   const evening = new Date().getHours() >= 17;
 
   return (
@@ -66,12 +66,12 @@ export default function HomeScreen() {
               <PhotoCard
                 title={item.recipe.title}
                 kind={item.kind}
-                minutes={totalMinutes(item)}
+                minutes={total_minutes(item)}
                 photoUri={item.photo_uri}
                 width={160}
                 height={200}
                 onPress={() => {
-                  setCurrent({
+                  set_current({
                     status: "ready",
                     kind: item.kind,
                     recipe: item.recipe,

@@ -5,7 +5,7 @@ import { FlatList, StyleSheet, Text, TextInput, useWindowDimensions, View } from
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../../AppContext";
 import { useCamera } from "../../camera/CameraProvider";
-import { filterSaved, type SavedFilter, totalMinutes } from "../../recipes/search";
+import { filter_saved, type SavedFilter, total_minutes } from "../../recipes/search";
 import { NO_IMAGE, type SavedRecipe } from "../../recipes/types";
 import { PhotoCard } from "../../ui/PhotoCard";
 import { Button, Chip, colors, type } from "../../ui/theme";
@@ -17,21 +17,21 @@ const FILTERS: { value: SavedFilter; label: string }[] = [
 ];
 
 export default function SavedScreen() {
-  const { saved, setCurrent } = useApp();
-  const { openCamera } = useCamera();
+  const { saved, set_current } = useApp();
+  const { open_camera } = useCamera();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
-  const [items, setItems] = useState<SavedRecipe[] | null>(null);
-  const [query, setQuery] = useState("");
-  const [filter, setFilter] = useState<SavedFilter>("all");
+  const [items, set_items] = useState<SavedRecipe[] | null>(null);
+  const [query, set_query] = useState("");
+  const [filter, set_filter] = useState<SavedFilter>("all");
 
   useFocusEffect(
     useCallback(() => {
-      saved.list().then(setItems, () => setItems([]));
+      saved.list().then(set_items, () => set_items([]));
     }, [saved]),
   );
 
-  const shown = useMemo(() => filterSaved(items ?? [], query, filter), [items, query, filter]);
+  const shown = useMemo(() => filter_saved(items ?? [], query, filter), [items, query, filter]);
   const cardWidth = (width - 20 * 2 - 12) / 2;
 
   const header = (
@@ -45,7 +45,7 @@ export default function SavedScreen() {
             <Ionicons name="search" size={20} color={colors.muted} />
             <TextInput
               value={query}
-              onChangeText={setQuery}
+              onChangeText={set_query}
               placeholder="Search your recipes"
               placeholderTextColor={colors.muted}
               style={styles.searchInput}
@@ -56,7 +56,7 @@ export default function SavedScreen() {
           </View>
           <View style={styles.filters} accessibilityRole="tablist">
             {FILTERS.map((f) => (
-              <Chip key={f.value} label={f.label} selected={filter === f.value} onPress={() => setFilter(f.value)} />
+              <Chip key={f.value} label={f.label} selected={filter === f.value} onPress={() => set_filter(f.value)} />
             ))}
           </View>
         </>
@@ -70,7 +70,7 @@ export default function SavedScreen() {
         {header}
         <Text style={type.heading}>Start your collection</Text>
         <Text style={type.muted}>Snap a meal or a cocktail, then tap Save on the recipe. It will show up here with your photo.</Text>
-        <Button label="Open camera" onPress={openCamera} />
+        <Button label="Open camera" onPress={open_camera} />
       </View>
     );
   }
@@ -90,12 +90,12 @@ export default function SavedScreen() {
         <PhotoCard
           title={item.recipe.title}
           kind={item.kind}
-          minutes={totalMinutes(item)}
+          minutes={total_minutes(item)}
           photoUri={item.photo_uri}
           width={cardWidth}
           height={cardWidth * 1.25}
           onPress={() => {
-            setCurrent({
+            set_current({
               status: "ready",
               kind: item.kind,
               recipe: item.recipe,

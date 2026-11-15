@@ -9,7 +9,7 @@ const SECONDS_PER_PHOTO = 4;
  * How one row of the wall moves. The row is drawn twice, end to end, and slides by exactly
  * one copy's width before starting over, so the loop has no visible jump.
  */
-export function rowMotion(photoCount: number, reverse: boolean) {
+export function row_motion(photoCount: number, reverse: boolean) {
   const distance = photoCount * (WALL_TILE + WALL_GAP);
   return {
     durationMs: photoCount * SECONDS_PER_PHOTO * 1000,

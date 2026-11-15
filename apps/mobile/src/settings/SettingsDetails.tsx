@@ -4,7 +4,8 @@ import { Modal, ScrollView, Share, StyleSheet, Switch, Text, View } from "react-
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../AppContext";
 import { firebase } from "../auth/firebase";
-import { recipeAsText } from "../recipes/format";
+import { FREE_SAVED_RECIPES } from "../paywall/plans";
+import { recipe_as_text } from "../recipes/format";
 import type { Allowance, SavedRecipe } from "../recipes/types";
 import { Button, colors, Notice, type } from "../ui/theme";
 import { usePreferences } from "./PreferencesProvider";
@@ -29,38 +30,38 @@ export function SettingsDetails({ category }: { category: Category }) {
 }
 
 function Account() {
-  const { user, setCurrent } = useApp();
-  const [confirm, setConfirm] = useState(false);
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [notice, setNotice] = useState<string | null>(null);
+  const { user, set_current } = useApp();
+  const [confirm, set_confirm] = useState(false);
+  const [busy, set_busy] = useState(false);
+  const [error, set_error] = useState<string | null>(null);
+  const [notice, set_notice] = useState<string | null>(null);
   const pending = useRef(false);
   const insets = useSafeAreaInsets();
   async function run(action: "reset" | "sign-out") {
     if (pending.current) return;
     pending.current = true;
-    setBusy(true);
-    setError(null);
-    setNotice(null);
+    set_busy(true);
+    set_error(null);
+    set_notice(null);
     try {
       if (action === "reset") {
         if (!user?.email) throw new Error("No email");
-        await firebase.resetPassword(user.email);
-        setNotice("Password reset requested. Check your email for the next steps.");
+        await firebase.reset_password(user.email);
+        set_notice("Password reset requested. Check your email for the next steps.");
       } else {
-        await firebase.signOut();
-        setCurrent(null);
-        setConfirm(false);
+        await firebase.sign_out();
+        set_current(null);
+        set_confirm(false);
       }
     } catch {
-      setError(
+      set_error(
         action === "reset"
           ? "Couldn’t request a password reset. Check your connection and try again."
           : "Couldn’t sign out. Check your connection and try again.",
       );
     } finally {
       pending.current = false;
-      setBusy(false);
+      set_busy(false);
     }
   }
   return (
@@ -75,8 +76,8 @@ function Account() {
         variant="secondary"
         disabled={busy}
         onPress={() => {
-          setError(null);
-          setConfirm(true);
+          set_error(null);
+          set_confirm(true);
         }}
       />
       <Modal
@@ -84,7 +85,7 @@ function Account() {
         transparent
         animationType="none"
         onRequestClose={() => {
-          if (!busy) setConfirm(false);
+          if (!busy) set_confirm(false);
         }}
       >
         <View style={[styles.overlay, { paddingTop: insets.top + 20, paddingBottom: insets.bottom + 20 }]}>
@@ -97,7 +98,7 @@ function Account() {
               in. Signing out does not delete your account.
             </Text>
             {error && <Notice tone="error">{error}</Notice>}
-            <Button label="Cancel" variant="secondary" disabled={busy} onPress={() => setConfirm(false)} />
+            <Button label="Cancel" variant="secondary" disabled={busy} onPress={() => set_confirm(false)} />
             <Button label="Confirm sign out" busy={busy} onPress={() => void run("sign-out")} />
           </ScrollView>
         </View>
@@ -173,24 +174,24 @@ function Toggle({
 
 function Library() {
   const { saved } = useApp();
-  const [items, setItems] = useState<SavedRecipe[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [busy, setBusy] = useState(false);
+  const [items, set_items] = useState<SavedRecipe[] | null>(null);
+  const [error, set_error] = useState<string | null>(null);
+  const [busy, set_busy] = useState(false);
   const sharing = useRef(false);
-  const [attempt, setAttempt] = useState(0);
+  const [attempt, set_attempt] = useState(0);
   useFocusEffect(
     useCallback(() => {
       // Reading the retry token starts a fresh request when Refresh is pressed.
       void attempt;
       let live = true;
-      setItems(null);
-      setError(null);
+      set_items(null);
+      set_error(null);
       saved.list().then(
         (list) => {
-          if (live) setItems(list);
+          if (live) set_items(list);
         },
         () => {
-          if (live) setError("Couldn’t read saved recipes. Try again.");
+          if (live) set_error("Couldn’t read saved recipes. Try again.");
         },
       );
       return () => {
@@ -201,15 +202,18 @@ function Library() {
   async function share() {
     if (!items?.length || sharing.current) return;
     sharing.current = true;
-    setBusy(true);
-    setError(null);
+    set_busy(true);
+    set_error(null);
     try {
-      await Share.share({ title: "My Meals & Mixers recipes", message: items.map((item) => recipeAsText(item.recipe)).join("\n\n—\n\n") });
+      await Share.share({
+        title: "My Meals & Mixers recipes",
+        message: items.map((item) => recipe_as_text(item.recipe)).join("\n\n—\n\n"),
+      });
     } catch {
-      setError("Couldn’t open sharing. Please try again.");
+      set_error("Couldn’t open sharing. Please try again.");
     } finally {
       sharing.current = false;
-      setBusy(false);
+      set_busy(false);
     }
   }
   return (
@@ -223,7 +227,7 @@ function Library() {
         account. Remove a recipe from its recipe screen to remove its saved photo too.
       </Text>
       {error && <Notice tone="error">{error}</Notice>}
-      <Button label="Refresh saved recipes" variant="secondary" disabled={busy} onPress={() => setAttempt((n) => n + 1)} />
+      <Button label="Refresh saved recipes" variant="secondary" disabled={busy} onPress={() => set_attempt((n) => n + 1)} />
       <Button label="Share saved recipe text" disabled={!items?.length} busy={busy} onPress={() => void share()} />
       <Text style={type.muted}>Sharing includes recipe text only, without photos. It is not a restorable app backup.</Text>
       <Group title="YOUR LIBRARY">
@@ -240,30 +244,30 @@ function Library() {
 
 function Usage() {
   const { api } = useApp();
-  const [value, setValue] = useState<Allowance | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [attempt, setAttempt] = useState(0);
-  const [busy, setBusy] = useState(false);
+  const [value, set_value] = useState<Allowance | null>(null);
+  const [error, set_error] = useState<string | null>(null);
+  const [attempt, set_attempt] = useState(0);
+  const [busy, set_busy] = useState(false);
   useFocusEffect(
     useCallback(() => {
       // Reading the retry token starts a fresh request when Refresh is pressed.
       void attempt;
       let live = true;
-      setBusy(true);
-      setError(null);
-      setValue(null);
+      set_busy(true);
+      set_error(null);
+      set_value(null);
       api
         .allowance()
         .then(
           (next) => {
-            if (live) setValue(next);
+            if (live) set_value(next);
           },
           () => {
-            if (live) setError("Couldn’t load your photo allowance. Check your connection and try again.");
+            if (live) set_error("Couldn’t load your photo allowance. Check your connection and try again.");
           },
         )
         .finally(() => {
-          if (live) setBusy(false);
+          if (live) set_busy(false);
         });
       return () => {
         live = false;
@@ -287,7 +291,10 @@ function Usage() {
         A photo counts when it returns a meal or drink. Failed requests and photos that aren’t food or drink don’t use a free photo. Opening
         a Home photo-wall recipe is free.
       </Text>
-      <Button label="Refresh photo allowance" variant="secondary" disabled={busy} onPress={() => setAttempt((n) => n + 1)} />
+      <Text style={type.muted}>
+        {`The free plan also keeps up to ${FREE_SAVED_RECIPES} recipes in Saved, from photos or the Home photo wall. Saving another opens the paid plan.`}
+      </Text>
+      <Button label="Refresh photo allowance" variant="secondary" disabled={busy} onPress={() => set_attempt((n) => n + 1)} />
       <Text style={type.muted}>Purchasing and managing a paid plan in the app are not available yet.</Text>
     </>
   );

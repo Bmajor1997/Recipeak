@@ -1,20 +1,20 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { rowMotion, WALL_GAP, WALL_TILE } from "../src/ui/wallMotion";
+import { row_motion, WALL_GAP, WALL_TILE } from "../src/ui/wallMotion";
 
 describe("moving photo wall", () => {
   it("slides each row by exactly one copy, so the loop has no jump", () => {
-    const right = rowMotion(8, false);
+    const right = row_motion(8, false);
     expect(right.from).toBe(0);
     expect(right.to).toBe(-8 * (WALL_TILE + WALL_GAP));
-    const left = rowMotion(8, true);
+    const left = row_motion(8, true);
     expect(left.from).toBe(-8 * (WALL_TILE + WALL_GAP));
     expect(left.to).toBe(0);
   });
 
   it("drifts slowly", () => {
-    expect(rowMotion(8, false).durationMs).toBeGreaterThanOrEqual(20_000);
+    expect(row_motion(8, false).durationMs).toBeGreaterThanOrEqual(20_000);
   });
 
   it("bundles every photo the wall lists", () => {

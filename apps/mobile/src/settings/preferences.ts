@@ -4,7 +4,7 @@ export type Preferences = { pausePhotoWall: boolean; saveCoverPhotos: boolean };
 export const DEFAULT_PREFERENCES: Preferences = { pausePhotoWall: false, saveCoverPhotos: true };
 
 /** Preferences belong to this sign-in on this device; saved recipes remain device-wide. */
-export function createPreferences(storage: KeyValueStorage, uid: string) {
+export function create_preferences(storage: KeyValueStorage, uid: string) {
   const key = `mealsandmixers.preferences.v1.${encodeURIComponent(uid)}`;
   return {
     async load(): Promise<Preferences> {

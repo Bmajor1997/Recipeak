@@ -2,7 +2,7 @@
 // Without a photo, it shows the app's drink-and-plate art on a warm colour instead.
 import { LinearGradient } from "expo-linear-gradient";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { formatMinutes } from "../recipes/format";
+import { format_minutes } from "../recipes/format";
 import type { Kind } from "../recipes/types";
 import { fonts } from "./theme";
 
@@ -30,7 +30,7 @@ export function PhotoCard({
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={`${title}. ${label}. ${formatMinutes(minutes)}.`}
+      accessibilityLabel={`${title}. ${label}. ${format_minutes(minutes)}.`}
       onPress={onPress}
       style={({ pressed }) => [
         styles.card,
@@ -53,7 +53,7 @@ export function PhotoCard({
         <Text style={styles.title} numberOfLines={2}>
           {title}
         </Text>
-        <Text style={styles.meta}>{formatMinutes(minutes)}</Text>
+        <Text style={styles.meta}>{format_minutes(minutes)}</Text>
       </View>
     </Pressable>
   );

@@ -2,13 +2,13 @@ import { describe, expect, it } from "vitest";
 import {
   DEFAULT_PLAN,
   FREE_SAVED_RECIPES,
-  paywallEyebrow,
+  paywall_eyebrow,
   FREE_TRIAL_DAYS,
   PLANS,
-  planDetail,
-  trialTerms,
-  yearlyPerMonth,
-  yearlySavingPercent,
+  plan_detail,
+  trial_terms,
+  yearly_per_month,
+  yearly_saving_percent,
 } from "../src/paywall/plans";
 
 describe("paywall plans", () => {
@@ -21,18 +21,18 @@ describe("paywall plans", () => {
 
   it("explains why the paywall opened", () => {
     expect(FREE_SAVED_RECIPES).toBe(3);
-    expect(paywallEyebrow("photos")).toBe("YOU'VE USED YOUR 3 FREE PHOTOS");
-    expect(paywallEyebrow("saved")).toBe("YOU'VE SAVED YOUR 3 FREE RECIPES");
+    expect(paywall_eyebrow("photos")).toBe("YOU'VE USED YOUR 3 FREE PHOTOS");
+    expect(paywall_eyebrow("saved")).toBe("YOU'VE SAVED YOUR 3 FREE RECIPES");
   });
 
   it("works out the yearly deal without overstating it", () => {
-    expect(yearlyPerMonth()).toBe(2.08);
-    expect(yearlySavingPercent()).toBe(48);
+    expect(yearly_per_month()).toBe(2.08);
+    expect(yearly_saving_percent()).toBe(48);
   });
 
   it("writes the plan and trial lines shown on the paywall", () => {
-    expect(planDetail("yearly")).toBe("$24.99 / year · just $2.08 / month");
-    expect(planDetail("monthly")).toBe("$3.99 / month");
-    expect(trialTerms("yearly")).toBe("Free for 7 days, then $24.99 / year. Cancel anytime in Google Play.");
+    expect(plan_detail("yearly")).toBe("$24.99 / year · just $2.08 / month");
+    expect(plan_detail("monthly")).toBe("$3.99 / month");
+    expect(trial_terms("yearly")).toBe("Free for 7 days, then $24.99 / year. Cancel anytime in Google Play.");
   });
 });

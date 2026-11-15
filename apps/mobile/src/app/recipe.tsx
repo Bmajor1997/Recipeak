@@ -3,15 +3,15 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ActivityIndicator, Image, Pressable, ScrollView, Share, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { type CurrentRecipe, useApp } from "../AppContext";
 import { ApiError } from "../api/client";
 import { useCamera } from "../camera/CameraProvider";
 import { FREE_SAVED_RECIPES } from "../paywall/plans";
-import { formatIngredient, formatMinutes, recipeAsText } from "../recipes/format";
-import { scaleAmount } from "../recipes/scale";
+import { format_ingredient, format_minutes, recipe_as_text } from "../recipes/format";
+import { scale_amount } from "../recipes/scale";
 import { DIETS, type Diet, type Guess, type Kind } from "../recipes/types";
 import { useDishImage } from "../recipes/useDishImage";
 import { usePreferences } from "../settings/PreferencesProvider";
@@ -65,7 +65,7 @@ function Finding() {
 }
 
 function Problem({ message }: { message: string }) {
-  const { openCamera } = useCamera();
+  const { open_camera } = useCamera();
   return (
     <Sheet>
       <View style={[styles.body, { paddingTop: 90 }]}>
@@ -77,7 +77,7 @@ function Problem({ message }: { message: string }) {
           label="Retake photo"
           onPress={() => {
             router.back();
-            openCamera();
+            open_camera();
           }}
         />
         <Button label="Close" variant="secondary" onPress={() => router.back()} />
@@ -87,23 +87,24 @@ function Problem({ message }: { message: string }) {
 }
 
 function RecipeView({ current }: { current: Ready }) {
-  const { setCurrent, api, saved } = useApp();
+  const { set_current, api, saved } = useApp();
   const preferences = usePreferences();
+  const saving = useRef(false);
   const { photosLeft } = useCamera();
   const insets = useSafeAreaInsets();
   const { width, height } = useWindowDimensions();
   const { recipe, kind, guesses, selected } = current;
   const dishName = guesses[selected]?.name ?? recipe.title;
-  const [diet, setDiet] = useState<Diet | null>(null);
-  const [busy, setBusy] = useState(false);
-  const [problem, setProblem] = useState<string | null>(null);
-  const [servings, setServings] = useState(recipe.servings || 1);
-  const [shownRecipe, setShownRecipe] = useState(recipe);
+  const [diet, set_diet] = useState<Diet | null>(null);
+  const [busy, set_busy] = useState(false);
+  const [problem, set_problem] = useState<string | null>(null);
+  const [servings, set_servings] = useState(recipe.servings || 1);
+  const [shownRecipe, set_shown_recipe] = useState(recipe);
 
   // A new version (another match or a diet) starts at its own serving size.
   if (recipe !== shownRecipe) {
-    setShownRecipe(recipe);
-    setServings(recipe.servings || 1);
+    set_shown_recipe(recipe);
+    set_servings(recipe.servings || 1);
   }
 
   const cover = useDishImage(api, kind, dishName, current.image, { lookUp: !current.localPhoto && current.image.status === "unavailable" });
@@ -111,48 +112,53 @@ function RecipeView({ current }: { current: Ready }) {
   const factor = servings / (recipe.servings || 1);
   const coverHeight = Math.min(Math.round(height * 0.42), 400);
 
-  async function loadVersion(index: number, nextDiet: Diet | null) {
+  async function load_version(index: number, nextDiet: Diet | null) {
     const guess = guesses[index];
-    setBusy(true);
-    setProblem(null);
+    set_busy(true);
+    set_problem(null);
     try {
       const next = await api.recipe(guess?.name ?? recipe.title, kind, nextDiet ?? undefined);
-      setDiet(nextDiet);
-      setCurrent({ ...current, recipe: next.recipe, selected: index, image: next.image, localPhoto: null, savedId: null });
+      set_diet(nextDiet);
+      set_current({ ...current, recipe: next.recipe, selected: index, image: next.image, localPhoto: null, savedId: null });
     } catch (error) {
       if (error instanceof ApiError && error.needsUpgrade) router.push("/upgrade");
-      else setProblem(error instanceof ApiError ? error.message : "Couldn't load that version. Please try again.");
+      else set_problem(error instanceof ApiError ? error.message : "Couldn't load that version. Please try again.");
     } finally {
-      setBusy(false);
+      set_busy(false);
     }
   }
 
-  async function toggleSave() {
-    if (preferences.busy) return;
+  async function toggle_save() {
+    // One save or removal at a time: a double tap must not save twice or leave an extra photo behind.
+    if (preferences.busy || saving.current) return;
+    saving.current = true;
     try {
       if (current.savedId) {
         await saved.remove(current.savedId);
-        setCurrent({ ...current, savedId: null });
+        set_current({ ...current, savedId: null });
       } else {
         // Saved with its cover photo, downloaded to the phone so Saved works offline. Free accounts keep up to 3
         // recipes, however they found them (a photo or the Home wall); photosLeft is null only for subscribers.
-        const limit = (await isSubscriber()) ? undefined : FREE_SAVED_RECIPES;
+        const limit = (await is_subscriber()) ? undefined : FREE_SAVED_RECIPES;
         const entry = await saved.save(kind, recipe, preferences.ready && preferences.values.saveCoverPhotos ? coverUri : null, { limit });
-        setCurrent({ ...current, savedId: entry.id });
+        set_current({ ...current, savedId: entry.id });
       }
     } catch (error) {
       if (error instanceof SavedLimitError) router.push({ pathname: "/upgrade", params: { reason: "saved" } });
-      else setProblem((error as Error).message);
+      else
+        set_problem(
+          error instanceof ApiError ? "Couldn't check your plan to save this recipe. Please try again." : (error as Error).message,
+        );
+    } finally {
+      saving.current = false;
     }
   }
 
-  async function isSubscriber(): Promise<boolean> {
+  async function is_subscriber(): Promise<boolean> {
     if (photosLeft !== undefined) return photosLeft === null;
-    // Not known yet: ask the server. If it can't be reached, let the save through rather than block a subscriber.
-    return api.allowance().then(
-      (a) => a.premium,
-      () => true,
-    );
+    // Not known yet: ask the server. If it can't be reached, the save stops with a "try again" message, so it
+    // neither lets a free account past its limit nor wrongly shows a subscriber the paywall.
+    return (await api.allowance()).premium;
   }
 
   const diets = DIETS.filter((d) => kind === "cocktail" || d !== "non-alcoholic");
@@ -160,18 +166,18 @@ function RecipeView({ current }: { current: Ready }) {
   const footer = (
     <View style={[styles.bottomBar, { paddingBottom: insets.bottom + 12 }]}>
       <View style={styles.stepper}>
-        <RoundButton icon="remove" label="Fewer servings" small onPress={() => setServings(Math.max(1, servings - 1))} />
+        <RoundButton icon="remove" label="Fewer servings" small onPress={() => set_servings(Math.max(1, servings - 1))} />
         <Text style={styles.servings} accessibilityLiveRegion="polite">
           Serves {servings}
         </Text>
-        <RoundButton icon="add" label="More servings" small onPress={() => setServings(Math.min(50, servings + 1))} />
+        <RoundButton icon="add" label="More servings" small onPress={() => set_servings(Math.min(50, servings + 1))} />
       </View>
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={current.savedId ? "Saved. Tap to remove from Saved" : "Save recipe"}
         accessibilityState={{ disabled: preferences.busy }}
         disabled={preferences.busy}
-        onPress={toggleSave}
+        onPress={toggle_save}
         style={({ pressed }) => [styles.save, current.savedId && styles.saved, pressed && { opacity: 0.8 }]}
       >
         <Ionicons
@@ -227,7 +233,7 @@ function RecipeView({ current }: { current: Ready }) {
                     kind={kind}
                     guess={g}
                     selected={i === selected}
-                    onPress={() => i !== selected && loadVersion(i, diet)}
+                    onPress={() => i !== selected && load_version(i, diet)}
                   />
                 ))}
               </View>
@@ -235,8 +241,8 @@ function RecipeView({ current }: { current: Ready }) {
           )}
 
           <View style={styles.stats}>
-            <Stat label="Prep" value={formatMinutes(recipe.prep_minutes)} />
-            <Stat label="Cook" value={formatMinutes(recipe.cook_minutes)} />
+            <Stat label="Prep" value={format_minutes(recipe.prep_minutes)} />
+            <Stat label="Cook" value={format_minutes(recipe.cook_minutes)} />
             <Stat label="Serves" value={String(servings)} />
           </View>
 
@@ -251,7 +257,7 @@ function RecipeView({ current }: { current: Ready }) {
           <Text style={type.heading}>Make it…</Text>
           <View style={styles.wrap}>
             {diets.map((d) => (
-              <Chip key={d} label={d} selected={d === diet} onPress={() => loadVersion(selected, d === diet ? null : d)} />
+              <Chip key={d} label={d} selected={d === diet} onPress={() => load_version(selected, d === diet ? null : d)} />
             ))}
           </View>
 
@@ -269,10 +275,10 @@ function RecipeView({ current }: { current: Ready }) {
             Ingredients
           </Text>
           {recipe.ingredients.map((ingredient, i) => {
-            const scaled = scaleAmount(ingredient.amount, factor);
+            const scaled = scale_amount(ingredient.amount, factor);
             const amount = [scaled, ingredient.unit].filter((p) => p.trim()).join(" ");
             return (
-              <View key={i} style={styles.ingredient} accessible accessibilityLabel={formatIngredient({ ...ingredient, amount: scaled })}>
+              <View key={i} style={styles.ingredient} accessible accessibilityLabel={format_ingredient({ ...ingredient, amount: scaled })}>
                 <Text style={styles.amount}>{amount || "•"}</Text>
                 <Text style={[type.body, { flex: 1 }]}>{ingredient.item}</Text>
               </View>
@@ -309,7 +315,7 @@ function RecipeView({ current }: { current: Ready }) {
           <Text style={[type.muted, { marginTop: 4 }]}>{"A photo can't show every ingredient. Check labels if allergies matter."}</Text>
 
           <View style={styles.shareRow}>
-            <Button label="Share recipe" variant="secondary" onPress={() => Share.share({ message: recipeAsText(recipe) })} />
+            <Button label="Share recipe" variant="secondary" onPress={() => Share.share({ message: recipe_as_text(recipe) })} />
           </View>
 
           <Text style={[type.muted, { marginTop: 16 }]}>

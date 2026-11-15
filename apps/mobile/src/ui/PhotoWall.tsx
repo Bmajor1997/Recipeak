@@ -4,19 +4,19 @@ import { AccessibilityInfo, Animated, Easing, Image, Pressable, StyleSheet, Text
 import { usePreferences } from "../settings/PreferencesProvider";
 import { useOpenWallDish } from "../recipes/useOpenWallDish";
 import { colors, fonts, type } from "./theme";
-import { rowMotion, WALL_GAP, WALL_TILE } from "./wallMotion";
+import { row_motion, WALL_GAP, WALL_TILE } from "./wallMotion";
 import { CURATED_COUNT, WALL_ROWS, type WallPhoto } from "./wallPhotos";
 
 /** Turns on the wall's motion unless the phone's "reduce motion" setting is on. */
 function useReduceMotion() {
-  const [reduce, setReduce] = useState(false);
+  const [reduce, set_reduce] = useState(false);
   useEffect(() => {
     let live = true;
     AccessibilityInfo.isReduceMotionEnabled().then(
-      (on) => live && setReduce(on),
+      (on) => live && set_reduce(on),
       () => undefined,
     );
-    const sub = AccessibilityInfo.addEventListener("reduceMotionChanged", setReduce);
+    const sub = AccessibilityInfo.addEventListener("reduceMotionChanged", set_reduce);
     return () => {
       live = false;
       sub.remove();
@@ -36,7 +36,7 @@ function Row({
   still: boolean;
   onOpen: (dish: WallPhoto) => void;
 }) {
-  const motion = rowMotion(photos.length, reverse);
+  const motion = row_motion(photos.length, reverse);
   const [progress] = useState(() => new Animated.Value(0));
 
   useEffect(() => {

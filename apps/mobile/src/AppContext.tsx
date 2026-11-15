@@ -1,11 +1,11 @@
 // App-wide state: who is signed in, the API client, saved recipes, and the latest photo result.
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, type ReactNode, useContext, useEffect, useMemo, useState } from "react";
-import { type Api, createApi } from "./api/client";
+import { type Api, create_api } from "./api/client";
 import { type AppUser, firebase } from "./auth/firebase";
 import type { DishImage, Guess, Kind, Recipe } from "./recipes/types";
-import { keepPhoto, removePhoto } from "./saved/photoStore";
-import { createSavedRecipes } from "./saved/savedRecipes";
+import { keep_photo, remove_photo } from "./saved/photoStore";
+import { create_saved_recipes } from "./saved/savedRecipes";
 
 /**
  * What the recipe sheet shows. While a photo is being read it is "loading"; if the photo couldn't be used it is a
@@ -30,30 +30,30 @@ type AppState = {
   user: AppUser | null;
   ready: boolean;
   api: Api;
-  saved: ReturnType<typeof createSavedRecipes>;
+  saved: ReturnType<typeof create_saved_recipes>;
   current: CurrentRecipe | null;
-  setCurrent: (value: CurrentRecipe | null) => void;
+  set_current: (value: CurrentRecipe | null) => void;
 };
 
 const Context = createContext<AppState | null>(null);
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<AppUser | null>(null);
-  const [ready, setReady] = useState(false);
-  const [current, setCurrent] = useState<CurrentRecipe | null>(null);
+  const [user, set_user] = useState<AppUser | null>(null);
+  const [ready, set_ready] = useState(false);
+  const [current, set_current] = useState<CurrentRecipe | null>(null);
 
   useEffect(
     () =>
       firebase.subscribe((next) => {
-        setUser(next);
-        setReady(true);
+        set_user(next);
+        set_ready(true);
       }),
     [],
   );
 
-  const api = useMemo(() => createApi({ baseUrl: process.env.EXPO_PUBLIC_API_BASE_URL, idToken: firebase.idToken }), []);
-  const saved = useMemo(() => createSavedRecipes(AsyncStorage, { photos: { keepPhoto, removePhoto } }), []);
-  const value = useMemo(() => ({ user, ready, api, saved, current, setCurrent }), [user, ready, api, saved, current]);
+  const api = useMemo(() => create_api({ baseUrl: process.env.EXPO_PUBLIC_API_BASE_URL, id_token: firebase.id_token }), []);
+  const saved = useMemo(() => create_saved_recipes(AsyncStorage, { photos: { keep_photo, remove_photo } }), []);
+  const value = useMemo(() => ({ user, ready, api, saved, current, set_current }), [user, ready, api, saved, current]);
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }
 

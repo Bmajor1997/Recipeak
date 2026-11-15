@@ -52,26 +52,26 @@ export const firebase = {
     }
     return onIdTokenChanged(auth(), (user) => listener(user ? { uid: user.uid, email: user.email } : null));
   },
-  async signIn(email: string, password: string) {
+  async sign_in(email: string, password: string) {
     await signInWithEmailAndPassword(auth(), email.trim(), password);
   },
-  async createAccount(email: string, password: string) {
+  async create_account(email: string, password: string) {
     await createUserWithEmailAndPassword(auth(), email.trim(), password);
   },
-  async resetPassword(email: string) {
+  async reset_password(email: string) {
     await sendPasswordResetEmail(auth(), email.trim());
   },
-  async signOut() {
+  async sign_out() {
     await firebaseSignOut(auth());
   },
-  async idToken(): Promise<string | null> {
+  async id_token(): Promise<string | null> {
     if (!firebaseConfigured) return null;
     return (await auth().currentUser?.getIdToken()) ?? null;
   },
 };
 
 /** Turns Firebase error codes into plain sentences. */
-export function signInProblem(error: unknown): string {
+export function sign_in_problem(error: unknown): string {
   const code = (error as { code?: string })?.code ?? "";
   if (code.includes("invalid-credential") || code.includes("wrong-password") || code.includes("user-not-found"))
     return "That email and password don't match. Try again, or reset your password.";

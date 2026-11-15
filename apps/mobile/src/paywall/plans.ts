@@ -14,13 +14,13 @@ export type Plan = {
 export const FREE_TRIAL_DAYS = 7;
 
 /** What the free plan includes: 3 photos (counted on the server) and up to 3 recipes in Saved (counted on the phone). */
-export const FREE_PHOTOS = 3;
+const FREE_PHOTOS = 3;
 export const FREE_SAVED_RECIPES = 3;
 
 /** Why the paywall opened: the free photos ran out, or Saved is full. */
 export type PaywallReason = "photos" | "saved";
 
-export function paywallEyebrow(reason: PaywallReason): string {
+export function paywall_eyebrow(reason: PaywallReason): string {
   return reason === "saved" ? `YOU'VE SAVED YOUR ${FREE_SAVED_RECIPES} FREE RECIPES` : `YOU'VE USED YOUR ${FREE_PHOTOS} FREE PHOTOS`;
 }
 
@@ -32,30 +32,30 @@ export const PLANS: Record<PlanId, Plan> = {
 /** The plan that starts selected on the paywall. */
 export const DEFAULT_PLAN: PlanId = "yearly";
 
-export function formatUsd(amount: number): string {
+export function format_usd(amount: number): string {
   return `$${amount.toFixed(2)}`;
 }
 
 /** What the yearly plan costs per month, rounded down to the cent so we never overstate the deal. */
-export function yearlyPerMonth(): number {
+export function yearly_per_month(): number {
   return Math.floor((PLANS.yearly.priceUsd / 12) * 100) / 100;
 }
 
 /** Saving of the yearly plan against paying monthly for 12 months, to the nearest whole percent (47.8% → 48). */
-export function yearlySavingPercent(): number {
+export function yearly_saving_percent(): number {
   const twelveMonths = PLANS.monthly.priceUsd * 12;
   return Math.round((1 - PLANS.yearly.priceUsd / twelveMonths) * 100);
 }
 
 /** The small line under a plan's name, e.g. "$24.99 / year · just $2.08 / month". */
-export function planDetail(id: PlanId): string {
+export function plan_detail(id: PlanId): string {
   const plan = PLANS[id];
-  const base = `${formatUsd(plan.priceUsd)} / ${plan.period}`;
-  return id === "yearly" ? `${base} · just ${formatUsd(yearlyPerMonth())} / month` : base;
+  const base = `${format_usd(plan.priceUsd)} / ${plan.period}`;
+  return id === "yearly" ? `${base} · just ${format_usd(yearly_per_month())} / month` : base;
 }
 
 /** The fine print under the main button for the selected plan. */
-export function trialTerms(id: PlanId): string {
+export function trial_terms(id: PlanId): string {
   const plan = PLANS[id];
-  return `Free for ${FREE_TRIAL_DAYS} days, then ${formatUsd(plan.priceUsd)} / ${plan.period}. Cancel anytime in Google Play.`;
+  return `Free for ${FREE_TRIAL_DAYS} days, then ${format_usd(plan.priceUsd)} / ${plan.period}. Cancel anytime in Google Play.`;
 }

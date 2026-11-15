@@ -7,14 +7,14 @@ import { colors } from "../../ui/theme";
 
 /** The raised camera button in the middle of the tab bar: a dark button inside a citrus-colored ring. It opens the camera instead of a page. */
 function CameraTabButton() {
-  const { openCamera } = useCamera();
+  const { open_camera } = useCamera();
   return (
     <View style={styles.slot}>
       <Pressable
         accessibilityRole="button"
         accessibilityLabel="Camera"
         accessibilityHint="Opens the camera to photograph a meal or a cocktail"
-        onPress={openCamera}
+        onPress={open_camera}
         style={({ pressed }) => [styles.camera, pressed && { transform: [{ scale: 0.94 }] }]}
       >
         <LinearGradient colors={["#FF6F61", "#FFB347", "#FF3D6E"]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.ring}>
