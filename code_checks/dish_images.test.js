@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { createServer } from "node:http";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -33,7 +33,7 @@ test("dish names are normalized so the same dish shares one photo", () => {
   assert.equal(normalize_dish_name("  Chicken   PARMESAN! "), "chicken parmesan");
   assert.equal(normalize_dish_name("Crème brûlée"), "creme brulee");
   assert.equal(image_key("meal", "Chicken Parmesan"), image_key("meal", "chicken parmesan"));
-  assert.notEqual(image_key("meal", "Paloma"), image_key("cocktail", "Paloma"));
+  assert.notEqual(image_key("meal", "Sidecar"), image_key("cocktail", "Sidecar"));
   assert.equal(image_key("dessert", "Cake"), null);
   assert.equal(normalize_dish_name("x".repeat(81)), null);
 });
@@ -75,26 +75,26 @@ test("installing hand-picked photos is safe to repeat and ignores bad entries", 
   t.after(() => [dir, curated].forEach((d) => rmSync(d, { recursive: true, force: true })));
   writeFileSync(join(curated, "good.jpg"), JPEG);
   writeFileSync(join(curated, "manifest.json"), JSON.stringify({ photos: [
-    { file: "good.jpg", kind: "cocktail", names: ["Paloma"] },
+    { file: "good.jpg", kind: "cocktail", names: ["Sidecar"] },
     { file: "../secret.jpg", kind: "cocktail", names: ["Negroni"] },
     { file: "good.jpg", kind: "dessert", names: ["Cake"] },
   ] }));
   assert.equal(install_curated(dir, curated), 1);
   assert.equal(install_curated(dir, curated), 0, "already installed");
-  assert.deepEqual(readdirSync(dir), [`${image_key("cocktail", "Paloma")}.jpg`]);
+  assert.deepEqual(readdirSync(dir), [`${image_key("cocktail", "Sidecar")}.jpg`]);
 });
 
 test("a missing photo is created once in the background, then served to everyone", async (t) => {
   const { images, store, calls, dir } = library(t, { delay: 30 });
-  assert.deepEqual(images.status({ kind: "cocktail", name: "Paloma", user_id: "alice" }), { status: "pending", url: null });
-  assert.deepEqual(images.status({ kind: "cocktail", name: "paloma", user_id: "bob" }), { status: "pending", url: null });
+  assert.deepEqual(images.status({ kind: "cocktail", name: "Sidecar", user_id: "alice" }), { status: "pending", url: null });
+  assert.deepEqual(images.status({ kind: "cocktail", name: "sidecar", user_id: "bob" }), { status: "pending", url: null });
   await images.settled();
   assert.equal(calls.length, 1, "two requests for the same dish make one image");
   assert.equal(calls[0].body.size, "1024x1536");
   assert.equal(calls[0].body.output_format, "jpeg");
-  const ready = images.status({ kind: "cocktail", name: "Paloma", user_id: "carol" });
+  const ready = images.status({ kind: "cocktail", name: "Sidecar", user_id: "carol" });
   assert.equal(ready.status, "ready");
-  assert.equal(ready.url, `/images/${image_key("cocktail", "Paloma")}.jpg`);
+  assert.equal(ready.url, `/images/${image_key("cocktail", "Sidecar")}.jpg`);
   assert.equal(calls.length, 1);
   assert.deepEqual(readdirSync(dir).filter((f) => f.endsWith(".tmp")), [], "no half-written files left behind");
   const [row] = store.records();
@@ -144,7 +144,7 @@ test("the server returns photos for every guess and serves the files publicly", 
     ingredients: [{ amount: "2", unit: "oz", item: "tequila" }], steps: ["Shake."], allergens: [],
     cocktail: { glass: "Rocks", garnish: "Lime", alcoholic: true, non_alcoholic_version: null }, note: "",
   };
-  const reply = { kind: "cocktail", guesses: [{ name: "Margarita", confidence: "high" }, { name: "Paloma", confidence: "low" }], recipe };
+  const reply = { kind: "cocktail", guesses: [{ name: "Margarita", confidence: "high" }, { name: "Sidecar", confidence: "low" }], recipe };
   const fetch_impl = async () => ({
     ok: true, status: 200, headers: { get: () => null },
     json: async () => ({ status: "completed", usage: { input_tokens: 10, output_tokens: 10, total_tokens: 20 },
@@ -166,7 +166,25 @@ test("the server returns photos for every guess and serves the files publicly", 
   assert.equal(file.headers.get("content-type"), "image/jpeg");
   assert.match(file.headers.get("cache-control"), /immutable/);
   assert.equal((await fetch(`${base}/images/../package.json`)).status, 404);
-  const polled = await (await fetch(`${base}/api/dish-image?kind=cocktail&name=Paloma`, { headers: { Authorization: "Bearer x" } })).json();
+  const polled = await (await fetch(`${base}/api/dish-image?kind=cocktail&name=Sidecar`, { headers: { Authorization: "Bearer x" } })).json();
   assert.equal(polled.image.status, "ready");
-  assert.equal((await fetch(`${base}/api/dish-image?kind=cocktail&name=Paloma`)).status, 401, "asking for a photo needs sign-in");
+  assert.equal((await fetch(`${base}/api/dish-image?kind=cocktail&name=Sidecar`)).status, 401, "asking for a photo needs sign-in");
+});
+
+test("every hand-picked photo in the repo exists, is a JPEG, and no drink name is claimed twice", () => {
+  const curated = new URL("../data/curated-photos/", import.meta.url);
+  const manifest = JSON.parse(readFileSync(new URL("manifest.json", curated), "utf8"));
+  const seen = new Map();
+  for (const photo of manifest.photos) {
+    assert.match(photo.file, /^[a-z0-9-]+\.jpg$/, photo.file);
+    const bytes = readFileSync(new URL(photo.file, curated));
+    assert.deepEqual([...bytes.subarray(0, 3)], [0xff, 0xd8, 0xff], `${photo.file} is a JPEG`);
+    assert.ok(photo.names.length > 0, `${photo.file} covers at least one name`);
+    for (const name of photo.names) {
+      const key = image_key(photo.kind, name);
+      assert.ok(key, `${name} normalises to a usable name`);
+      assert.ok(!seen.has(key), `"${name}" is listed for both ${seen.get(key)} and ${photo.file}`);
+      seen.set(key, photo.file);
+    }
+  }
 });
