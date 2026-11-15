@@ -12,6 +12,7 @@ The Settings tab adapts Votic's grouped settings navigation to Meals & Mixers. I
 | Storage management | Choose whether newly saved recipes keep an offline cover photo. Existing saved photos remain until the corresponding recipe is removed. |
 | Library tools | Count saved recipes and offline photos, open Saved, share all saved recipe text through the system share sheet. Text sharing is not an importable backup. |
 | AI Credits & Usage | Read the existing server photo allowance, show paid access when reported, retry a failed request. Unavailable data is never shown as zero. Also explains the free plan's limit of 3 saved recipes. |
+| Feedback (added 2026-11-15) | Ported from Votic: Settings > Feedback opens Suggest a Feature and Report a Bug. Each form has a title (120 characters) and a description (5,000), sends privately to the server, and keeps the text if sending fails. See "Feedback" in docs/PROJECT-PLAN.md. |
 | Help / Privacy | Getting-started guidance, photo-processing explanation, device-storage disclosure, recipe and allergen limitations. |
 
 Preferences are stored in AsyncStorage under a versioned key scoped to the Firebase user ID. They are local to the device. Changing sign-in remounts preference state so a late read/save from a prior account cannot populate the next account. Controls remain disabled during preference reads/writes. A failed write leaves the previous choice in place and allows retry. Failed/corrupt reads show a retry action rather than overwriting the stored value.
@@ -26,7 +27,7 @@ Saved recipes belong to the signed-in account (since 2026-11-15): each Firebase 
 - Credit packs, restore purchases, store subscription management, and retention offers: no client purchase service is wired in Meals & Mixers yet. Settings only displays the allowance/paid-access state returned by the existing API.
 - Account deletion: no end-to-end deletion endpoint exists for Firebase identity plus backend usage/billing records. A Firebase-only deletion button would leave account data behind.
 - Temporary-file cleanup/storage-byte estimates: no equivalent safe cleanup/measurement service exists. Settings reports actual saved recipe/photo counts instead.
-- Support email, privacy-policy/terms links, feedback submission: the target repository has no configured product contact or published policy destinations. Votic's addresses and policies must not be reused for a different product. The Help page identifies those remaining gaps.
+- Support email and privacy-policy/terms links: the target repository has no configured product contact or published policy destinations. Votic's addresses and policies must not be reused for a different product. The Help page identifies those remaining gaps.
 
 ## Validation
 

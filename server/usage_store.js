@@ -5,6 +5,7 @@ import { chmodSync, mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 import { randomUUID } from "node:crypto";
 import { AiLimitError } from "./errors.js";
+import { create_feedback_store } from "./feedback.js";
 
 export const AI_EXECUTION_TIMEOUT_MS = 60_000;
 const AI_EXECUTION_LEASE_MS = 90_000;
@@ -89,8 +90,13 @@ export function create_usage_store(env = {}, { now = () => new Date(), path = en
   const followups_used = (user_id) => db.prepare(
     "SELECT COUNT(*) AS n FROM ai_usage WHERE user_id=? AND feature='recipe' AND status<>'rejected'").get(user_id).n;
 
+  // Feature requests and bug reports share this private ledger. Anything older than a year is removed.
+  const feedback = create_feedback_store(db, { now });
+  feedback.prune();
+
   return {
     limits,
+    feedback,
     free_photos_left(user_id) { return Math.max(0, limits.free_photos - photos_used(user_id)); },
 
     /** Atomically check every limit and reserve the worst-case cost before calling the provider. */

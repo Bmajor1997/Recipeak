@@ -9,6 +9,7 @@ import { FREE_SAVED_RECIPES } from "../paywall/plans";
 import { recipe_as_text } from "../recipes/format";
 import type { Allowance, SavedRecipe } from "../recipes/types";
 import { Button, Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
+import { FEEDBACK_KINDS, FEEDBACK_TEXT, type FeedbackKind } from "../feedback/feedback";
 import { usePreferences } from "./PreferencesProvider";
 import { APPEARANCES, type Appearance } from "./preferences";
 import { CATEGORIES, type Category, Group, Row, SettingsScreen } from "./SettingsUI";
@@ -24,10 +25,37 @@ export function SettingsDetails({ category }: { category: Category }) {
         <Library />
       ) : category === "usage" ? (
         <Usage />
+      ) : category === "feedback" ? (
+        <Feedback />
       ) : (
         <Help />
       )}
     </SettingsScreen>
+  );
+}
+
+const FEEDBACK_ICONS: Record<FeedbackKind, "bulb-outline" | "bug-outline"> = { feature: "bulb-outline", bug: "bug-outline" };
+
+/** Ported from Votic: two private forms, one for ideas and one for problems. */
+function Feedback() {
+  const { type } = useTheme();
+  return (
+    <>
+      <Text style={type.muted}>
+        Tell us what would make Meals &amp; Mixers better, or what went wrong. Only the Meals &amp; Mixers team sees it.
+      </Text>
+      <Group title="SEND US FEEDBACK">
+        {FEEDBACK_KINDS.map((kind) => (
+          <Row
+            key={kind}
+            label={FEEDBACK_TEXT[kind].title}
+            detail={FEEDBACK_TEXT[kind].detail}
+            icon={FEEDBACK_ICONS[kind]}
+            onPress={() => router.push({ pathname: "/feedback/[kind]", params: { kind } })}
+          />
+        ))}
+      </Group>
+    </>
   );
 }
 
@@ -391,7 +419,8 @@ function Help() {
       </Text>
       <Text style={type.body}>
         Firebase handles email sign-in. The recipe server tracks usage and costs to enforce limits. Each account’s saved recipes and offline
-        cover photos are kept separately on this device. Signing out keeps them for when you sign in again.
+        cover photos are kept separately on this device. Signing out keeps them for when you sign in again. Feedback you send is stored
+        privately on our server for up to a year.
       </Text>
       <Text accessibilityRole="header" style={type.heading}>
         Recipe guidance

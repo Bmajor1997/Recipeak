@@ -20,6 +20,16 @@ export default [
     },
   },
   {
+    // The private feedback dashboard runs in a browser.
+    files: ["admin/**/*.js"],
+    languageOptions: {
+      globals: {
+        document: "readonly", window: "readonly", fetch: "readonly", AbortSignal: "readonly", setTimeout: "readonly",
+        clearTimeout: "readonly", encodeURIComponent: "readonly", console: "readonly",
+      },
+    },
+  },
+  {
     files: ["**/*.cjs"],
     languageOptions: { ecmaVersion: "latest", sourceType: "commonjs", globals: { ...nodeGlobals, require: "readonly", module: "writable", __dirname: "readonly" } },
   },

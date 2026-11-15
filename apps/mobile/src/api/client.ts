@@ -1,5 +1,6 @@
 // Talks to the Meals and Mixers backend. The OpenAI key never reaches the phone: only the user's Firebase ID token is sent.
 import { parse_allowance, parse_dish_image, parse_identification, parse_recipe } from "../recipes/parse";
+import type { FeedbackKind } from "../feedback/feedback";
 import type { Allowance, Diet, DishImage, Identification, Kind, Recipe } from "../recipes/types";
 
 export class ApiError extends Error {
@@ -79,6 +80,15 @@ export function create_api({ baseUrl, id_token, fetch_impl = fetch, timeoutMs = 
     },
     async allowance(): Promise<Allowance> {
       return parse_allowance(await request("/api/allowance", { method: "GET" }));
+    },
+    /** Sends a feature request or bug report. Sending again with the same request_id never saves it twice. */
+    async send_feedback(input: { kind: FeedbackKind; title: string; description: string; request_id: string }): Promise<string> {
+      const json = (await request("/api/feedback", {
+        method: "POST",
+        body: { category: input.kind, title: input.title, description: input.description, requestId: input.request_id },
+      })) as { id?: unknown };
+      if (typeof json?.id !== "string") throw new ApiError("Couldn't confirm your feedback was received. Please try again.", 0);
+      return json.id;
     },
   };
 }

@@ -101,6 +101,14 @@ Approved on 2026-11-15 from three options (plan picker, Free vs Pro table, photo
 
 The prices live in one place, `apps/mobile/src/paywall/plans.ts`. Until RevenueCat is connected, the buttons explain that subscriptions aren't open yet. Once it is, the store's own prices are shown, so the Play Console products must use these same prices.
 
+### Feedback
+
+Ported from Votic on 2026-11-15. **Settings > Feedback** offers **Suggest a Feature** and **Report a Bug**. Each is a short form (a title and a description) that goes privately to the team:
+
+- **Server** (`server/feedback.js`, Votic's `app_parts/feedback.js`): `POST /api/feedback` for signed-in accounts. Strict validation, a submission reference so a retry is never saved twice, 10 reports per account per day, identical reports grouped together, and everything removed after a year. Reports live in the private usage ledger.
+- **Dashboard** at `/admin/feedback` (Votic's `admin/`): sign in with a Firebase account whose user ID is listed in `MM_FEEDBACK_ADMIN_UIDS` (it also needs `FIREBASE_WEB_API_KEY`). It shows totals, the most requested features and most reported bugs, unresolved serious bugs first, search, and status and severity, merge and separate. Every request is checked by the server; the page keeps the sign-in in memory only.
+- Not ported (Votic-only for now): the Google Play rating link (there's no store listing yet) and automatic diagnostic reports.
+
 ## 4. Privacy and safety
 
 - **People's photos are not kept anywhere.** The backend sends the photo to OpenAI with `store:false`, returns the recipe, and discards it; the app doesn't keep it either. Only the dish's name reaches the image model for cover photos. The usage ledger records counts and costs only, never photos, as in Votic.

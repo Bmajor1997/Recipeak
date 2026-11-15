@@ -59,6 +59,7 @@ function Screens() {
             options={{ headerShown: false, presentation: "modal", animation: "slide_from_bottom", gestureEnabled: true }}
           />
           <Stack.Screen name="settings/[category]" options={{ headerShown: false }} />
+          <Stack.Screen name="feedback/[kind]" options={{ headerShown: false }} />
           {/* The paywall draws its own close button. */}
           <Stack.Screen name="upgrade" options={{ headerShown: false, presentation: "modal" }} />
         </Stack.Protected>

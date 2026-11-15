@@ -11,28 +11,43 @@ export const CATEGORIES = {
   library: "Saved recipes & storage",
   usage: "Photo allowance",
   help: "Help & privacy",
+  feedback: "Feedback",
 } as const;
 export type Category = keyof typeof CATEGORIES;
 export const is_category = (value: unknown): value is Category => typeof value === "string" && Object.hasOwn(CATEGORIES, value);
 
-export function SettingsScreen({ title, back = false, children }: { title: string; back?: boolean; children: ReactNode }) {
+export function SettingsScreen({
+  title,
+  back = false,
+  back_label = "Settings",
+  on_back,
+  children,
+}: {
+  title: string;
+  back?: boolean;
+  /** Where the back button returns to, as its label says (Settings unless given). */
+  back_label?: string;
+  on_back?: () => void;
+  children: ReactNode;
+}) {
   const { colors, type } = useTheme();
   const styles = useThemedStyles(create_styles);
   const insets = useSafeAreaInsets();
   return (
     <ScrollView
+      keyboardShouldPersistTaps="handled"
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: insets.top + 24, paddingBottom: insets.bottom + 32 }]}
     >
       {back && (
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel="Back to Settings"
-          onPress={() => (router.canGoBack() ? router.back() : router.replace("/(tabs)/settings"))}
+          accessibilityLabel={`Back to ${back_label}`}
+          onPress={on_back ?? (() => (router.canGoBack() ? router.back() : router.replace("/(tabs)/settings")))}
           style={styles.back}
         >
           <Ionicons name="chevron-back" size={22} color={colors.accentInk} />
-          <Text style={type.body}>Settings</Text>
+          <Text style={type.body}>{back_label}</Text>
         </Pressable>
       )}
       <Text accessibilityRole="header" style={type.display}>

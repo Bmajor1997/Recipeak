@@ -37,6 +37,12 @@ export default function Settings() {
       </Group>
       <Group title="LIBRARY & SUPPORT">
         <Row label={CATEGORIES.library} detail="Your account's saved recipes" icon="bookmark-outline" onPress={() => open("library")} />
+        <Row
+          label={CATEGORIES.feedback}
+          detail="Suggest a feature or report a bug"
+          icon="chatbubble-ellipses-outline"
+          onPress={() => open("feedback")}
+        />
         <Row label={CATEGORIES.help} detail="Getting started, photos, and data" icon="help-circle-outline" onPress={() => open("help")} />
       </Group>
     </SettingsScreen>
