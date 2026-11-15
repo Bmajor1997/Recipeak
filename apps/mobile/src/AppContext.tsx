@@ -3,18 +3,28 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, type ReactNode, useContext, useEffect, useMemo, useState } from "react";
 import { type Api, createApi } from "./api/client";
 import { type AppUser, firebase } from "./auth/firebase";
-import type { Identification, Kind, Recipe } from "./recipes/types";
+import type { DishImage, Guess, Kind, Recipe } from "./recipes/types";
 import { keepPhoto, removePhoto } from "./saved/photoStore";
 import { createSavedRecipes } from "./saved/savedRecipes";
 
-/** What the recipe screen shows: a fresh photo result, or a saved recipe. photoUri is the photo on this phone, if any. */
-export type CurrentRecipe = {
-  kind: Kind;
-  recipe: Recipe;
-  guesses: Identification["guesses"];
-  photoUri: string | null;
-  savedId?: string | null;
-};
+/**
+ * What the recipe sheet shows. While a photo is being read it is "loading"; if the photo couldn't be used it is a
+ * "problem"; otherwise a recipe with its matches. `image` is the shared cover photo for the selected dish;
+ * `localPhoto` is a cover already kept on this phone (for saved recipes).
+ */
+export type CurrentRecipe =
+  | { status: "loading" }
+  | { status: "problem"; message: string }
+  | {
+      status: "ready";
+      kind: Kind;
+      recipe: Recipe;
+      guesses: Guess[];
+      selected: number;
+      image: DishImage;
+      localPhoto: string | null;
+      savedId: string | null;
+    };
 
 type AppState = {
   user: AppUser | null;

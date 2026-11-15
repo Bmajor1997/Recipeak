@@ -31,7 +31,11 @@ function Screens() {
         {/* People must be signed in before their first photo. */}
         <Stack.Protected guard={Boolean(user)}>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="recipe" options={{ headerShown: false }} />
+          {/* The recipe slides up from the bottom, like the camera. */}
+          <Stack.Screen
+            name="recipe"
+            options={{ headerShown: false, presentation: "modal", animation: "slide_from_bottom", gestureEnabled: true }}
+          />
           <Stack.Screen name="upgrade" options={{ title: "Keep cooking", presentation: "modal" }} />
         </Stack.Protected>
         <Stack.Protected guard={!user}>

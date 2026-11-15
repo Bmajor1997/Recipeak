@@ -1,5 +1,16 @@
 // The app re-checks everything the server sends before showing or saving it.
-import type { Allowance, CocktailDetails, Guess, Identification, Ingredient, Kind, Recipe, SavedRecipe } from "./types";
+import {
+  type Allowance,
+  type CocktailDetails,
+  type DishImage,
+  type Guess,
+  type Identification,
+  type Ingredient,
+  type Kind,
+  NO_IMAGE,
+  type Recipe,
+  type SavedRecipe,
+} from "./types";
 
 const isObject = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
 const str = (v: unknown, max = 600): string => {
@@ -49,9 +60,18 @@ export function parseRecipe(v: unknown): Recipe {
   return recipe;
 }
 
+/** Only library addresses from our own server are accepted; anything else is treated as "no photo". */
+export function parseDishImage(v: unknown): DishImage {
+  if (!isObject(v)) return NO_IMAGE;
+  if (v.status === "ready" && typeof v.url === "string" && /^\/images\/[a-f0-9]{32}\.jpg$/.test(v.url))
+    return { status: "ready", url: v.url };
+  if (v.status === "pending") return { status: "pending", url: null };
+  return NO_IMAGE;
+}
+
 function guess(v: unknown): Guess {
   if (!isObject(v) || !["high", "medium", "low"].includes(v.confidence as string)) throw new Error("Invalid guess");
-  return { name: str(v.name, 120), confidence: v.confidence as Guess["confidence"] };
+  return { name: str(v.name, 120), confidence: v.confidence as Guess["confidence"], image: parseDishImage(v.image) };
 }
 
 const photosLeft = (v: unknown): number | null => (v === null ? null : whole(v, 1000));

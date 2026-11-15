@@ -1,5 +1,5 @@
-// Photos of saved recipes stay on this phone only, in the app's private storage.
-// They are never uploaded again; the server already discarded its copy.
+// Cover photos of saved recipes are kept on this phone, in the app's private storage, so Saved works offline.
+// They are the shared library photos from the server, never the person's own photo.
 import { Directory, File, Paths } from "expo-file-system";
 
 const folder = () => {
@@ -8,11 +8,12 @@ const folder = () => {
   return dir;
 };
 
-/** Copies a temporary photo into private storage and returns its new address. */
+/** Downloads (or copies) a cover photo into private storage and returns its address on the phone. */
 export async function keepPhoto(sourceUri: string, id: string): Promise<string> {
   const destination = new File(folder(), `${id.replace(/[^a-zA-Z0-9-]/g, "")}.jpg`);
   if (destination.exists) destination.delete();
-  await new File(sourceUri).copy(destination);
+  if (/^https?:\/\//.test(sourceUri)) await File.downloadFileAsync(sourceUri, destination, { idempotent: true });
+  else await new File(sourceUri).copy(destination);
   return destination.uri;
 }
 

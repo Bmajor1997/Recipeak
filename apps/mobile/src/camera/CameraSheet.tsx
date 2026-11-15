@@ -6,7 +6,6 @@ import * as ImagePicker from "expo-image-picker";
 import { useEffect, useRef, useState } from "react";
 import {
   AccessibilityInfo,
-  ActivityIndicator,
   Animated,
   Easing,
   Image,
@@ -27,8 +26,8 @@ export type Photo = { uri: string; width: number; height: number };
 type Props = {
   visible: boolean;
   onClose: () => void;
-  /** Called with the photo; the sheet shows it with "Finding your recipe…" until this finishes. */
-  onPhoto: (photo: Photo) => Promise<void>;
+  /** Called when the person taps Send on the photo they took or chose. */
+  onPhoto: (photo: Photo) => void;
   /** A problem to show inside the sheet, such as "That doesn't look like food", so people can retake straight away. */
   message?: string | null;
   /** Shown under the shutter, for example "2 free photos left". */
@@ -124,14 +123,19 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
     ]).start();
   }
 
-  async function finish(photo: Photo) {
+  // After taking or choosing a photo, it stays on screen to check: Retake, or Send.
+  function finish(photo: Photo) {
     setTaken(photo);
-    AccessibilityInfo.announceForAccessibility("Photo taken. Finding your recipe.");
-    try {
-      await onPhoto(photo);
-    } finally {
-      setTaken(null);
-    }
+    AccessibilityInfo.announceForAccessibility("Photo taken. Retake it, or send it to find the recipe.");
+  }
+
+  function send() {
+    if (taken) onPhoto(taken);
+  }
+
+  function retake() {
+    setTaken(null);
+    setReady(false);
   }
 
   async function takePhoto() {
@@ -201,13 +205,6 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
             </View>
           )}
 
-          {taken && (
-            <View style={styles.working} accessibilityLiveRegion="polite">
-              <ActivityIndicator color="#FFFFFF" size="large" />
-              <Text style={[type.body, { marginTop: 12 }]}>Finding your recipe…</Text>
-            </View>
-          )}
-
           {/* The soft "photo taken" flash. Not focusable, and it never blocks touches. */}
           <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.glow, { opacity: glow }]} />
         </View>
@@ -230,27 +227,51 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
           </View>
         )}
 
-        <View style={styles.controls}>
-          <RoundButton icon="chevron-back" label="Close camera" onPress={onClose} />
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel="Take photo"
-            accessibilityHint="Takes a photo and finds a recipe for it"
-            accessibilityState={{ disabled: !ready || Boolean(taken) }}
-            disabled={!permission?.granted || !ready || Boolean(taken)}
-            onPress={takePhoto}
-            style={({ pressed }) => [styles.shutterRing, pressed && { transform: [{ scale: 0.92 }] }]}
-          >
-            <View style={[styles.shutter, (!ready || taken) && { opacity: 0.5 }]} />
-          </Pressable>
-          <RoundButton
-            icon="ellipsis-vertical"
-            label="More options"
-            hint="Choose from photos, flash, and switch camera"
-            expanded={menuOpen}
-            onPress={() => setMenuOpen(!menuOpen)}
-          />
-        </View>
+        {taken ? (
+          <View style={styles.controls}>
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel="Retake"
+              onPress={retake}
+              style={({ pressed }) => [styles.reviewButton, styles.retake, pressed && { opacity: 0.7 }]}
+            >
+              <Ionicons name="refresh" size={22} color="#FFFFFF" />
+              <Text style={styles.reviewText}>Retake</Text>
+            </Pressable>
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel="Send"
+              accessibilityHint="Finds the recipe for this photo"
+              onPress={send}
+              style={({ pressed }) => [styles.reviewButton, styles.send, pressed && { opacity: 0.85 }]}
+            >
+              <Text style={[styles.reviewText, { color: colors.accentText }]}>Send</Text>
+              <Ionicons name="arrow-up" size={22} color={colors.accentText} />
+            </Pressable>
+          </View>
+        ) : (
+          <View style={styles.controls}>
+            <RoundButton icon="chevron-back" label="Close camera" onPress={onClose} />
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel="Take photo"
+              accessibilityHint="Takes a photo and finds a recipe for it"
+              accessibilityState={{ disabled: !ready || Boolean(taken) }}
+              disabled={!permission?.granted || !ready || Boolean(taken)}
+              onPress={takePhoto}
+              style={({ pressed }) => [styles.shutterRing, pressed && { transform: [{ scale: 0.92 }] }]}
+            >
+              <View style={[styles.shutter, (!ready || taken) && { opacity: 0.5 }]} />
+            </Pressable>
+            <RoundButton
+              icon="ellipsis-vertical"
+              label="More options"
+              hint="Choose from photos, flash, and switch camera"
+              expanded={menuOpen}
+              onPress={() => setMenuOpen(!menuOpen)}
+            />
+          </View>
+        )}
         {!!footnote && <Text style={styles.footnote}>{footnote}</Text>}
       </Animated.View>
     </Modal>
@@ -313,16 +334,6 @@ const styles = StyleSheet.create({
   },
   preview: { flex: 1, marginHorizontal: 10, borderRadius: 24, overflow: "hidden", backgroundColor: "#111111" },
   glow: { backgroundColor: "#FFFFFF" },
-  working: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "rgba(0,0,0,0.55)",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   permission: { flex: 1, padding: 24, alignItems: "center", justifyContent: "center" },
   allow: {
     marginTop: 20,
@@ -342,6 +353,10 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
   footnote: { color: "#D9D9D9", fontSize: 14, textAlign: "center", paddingBottom: 14 },
+  reviewButton: { flex: 1, minHeight: 56, borderRadius: 28, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8 },
+  retake: { backgroundColor: "rgba(255,255,255,0.14)", marginRight: 12 },
+  send: { backgroundColor: colors.accent },
+  reviewText: { color: "#FFFFFF", fontSize: 17, fontWeight: "700" },
   message: { marginHorizontal: 16, marginTop: 12, padding: 12, borderRadius: 14, backgroundColor: "#3A1A17" },
   messageText: { color: colors.danger, fontSize: 15, lineHeight: 22 },
   round: {

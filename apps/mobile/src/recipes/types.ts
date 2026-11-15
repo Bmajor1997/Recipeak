@@ -21,7 +21,11 @@ export type Recipe = {
 };
 
 export type Kind = "meal" | "cocktail";
-export type Guess = { name: string; confidence: "high" | "medium" | "low" };
+/** A shared cover photo from the server library: ready (with its address), still being created, or not available. */
+export type DishImage = { status: "ready" | "pending" | "unavailable"; url: string | null };
+export const NO_IMAGE: DishImage = { status: "unavailable", url: null };
+
+export type Guess = { name: string; confidence: "high" | "medium" | "low"; image: DishImage };
 
 export type Identification =
   | { kind: "not_food"; guesses: []; recipe: null; free_photos_left: number | null; premium: boolean }
