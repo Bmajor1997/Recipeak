@@ -17,7 +17,7 @@ import { useDishImage } from "../recipes/useDishImage";
 import { usePreferences } from "../settings/PreferencesProvider";
 import { SavedLimitError } from "../saved/savedRecipes";
 import { FocusedCover } from "../ui/FocusedCover";
-import { Button, Chip, colors, fonts, Notice, type } from "../ui/theme";
+import { Button, Chip, fonts, Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
 
 const heroArt = require("../../assets/hero.png");
 type Ready = Extract<CurrentRecipe, { status: "ready" }>;
@@ -30,6 +30,7 @@ export default function RecipeScreen() {
 }
 
 function Sheet({ children, footer }: { children: React.ReactNode; footer?: React.ReactNode }) {
+  const styles = useThemedStyles(create_styles);
   const insets = useSafeAreaInsets();
   return (
     <View style={styles.screen}>
@@ -45,6 +46,8 @@ function Sheet({ children, footer }: { children: React.ReactNode; footer?: React
 }
 
 function Finding() {
+  const { colors, type } = useTheme();
+  const styles = useThemedStyles(create_styles);
   const { height } = useWindowDimensions();
   return (
     <Sheet>
@@ -53,7 +56,7 @@ function Finding() {
       </View>
       <View style={styles.body} accessibilityLiveRegion="polite">
         <View style={styles.findingRow}>
-          <ActivityIndicator color={colors.accent} />
+          <ActivityIndicator color={colors.accentInk} />
           <Text style={type.body}>Finding your recipe…</Text>
         </View>
         <View style={[styles.skeleton, { width: "70%", height: 28 }]} />
@@ -65,6 +68,8 @@ function Finding() {
 }
 
 function Problem({ message }: { message: string }) {
+  const { type } = useTheme();
+  const styles = useThemedStyles(create_styles);
   const { open_camera } = useCamera();
   return (
     <Sheet>
@@ -87,6 +92,8 @@ function Problem({ message }: { message: string }) {
 }
 
 function RecipeView({ current }: { current: Ready }) {
+  const { colors, type } = useTheme();
+  const styles = useThemedStyles(create_styles);
   const { set_current, api, saved } = useApp();
   const preferences = usePreferences();
   const saving = useRef(false);
@@ -263,7 +270,7 @@ function RecipeView({ current }: { current: Ready }) {
 
           {recipe.cocktail && (
             <View style={styles.serve}>
-              <Ionicons name="wine-outline" size={22} color={colors.accent} />
+              <Ionicons name="wine-outline" size={22} color={colors.accentInk} />
               <Text style={[type.body, { flex: 1 }]}>
                 Serve in a {recipe.cocktail.glass.toLowerCase()}
                 {recipe.cocktail.garnish ? `, garnished with ${recipe.cocktail.garnish.toLowerCase()}` : ""}.
@@ -330,6 +337,8 @@ function RecipeView({ current }: { current: Ready }) {
 
 /** One of the closest matches, with its own cover photo. */
 function MatchCard({ kind, guess, selected, onPress }: { kind: Kind; guess: Guess; selected: boolean; onPress: () => void }) {
+  const { colors } = useTheme();
+  const styles = useThemedStyles(create_styles);
   const { api } = useApp();
   const { uri } = useDishImage(api, kind, guess.name, guess.image);
   return (
@@ -347,7 +356,7 @@ function MatchCard({ kind, guess, selected, onPress }: { kind: Kind; guess: Gues
           <Image source={heroArt} style={{ width: "80%", height: "80%" }} resizeMode="contain" />
         )}
       </View>
-      <Text style={[styles.matchName, selected && { color: colors.accent }]} numberOfLines={2}>
+      <Text style={[styles.matchName, selected && { color: colors.accentInk }]} numberOfLines={2}>
         {guess.name}
       </Text>
     </Pressable>
@@ -355,6 +364,8 @@ function MatchCard({ kind, guess, selected, onPress }: { kind: Kind; guess: Gues
 }
 
 function Stat({ label, value }: { label: string; value: string }) {
+  const { type } = useTheme();
+  const styles = useThemedStyles(create_styles);
   return (
     <View style={styles.stat} accessible accessibilityLabel={`${label}: ${value}`}>
       <Text style={type.label}>{label.toUpperCase()}</Text>
@@ -374,6 +385,7 @@ function RoundButton({
   onPress: () => void;
   small?: boolean;
 }) {
+  const styles = useThemedStyles(create_styles);
   const size = small ? 44 : 46;
   return (
     <Pressable
@@ -383,105 +395,106 @@ function RoundButton({
       hitSlop={6}
       style={({ pressed }) => [styles.round, { width: size, height: size, borderRadius: size / 2 }, pressed && { opacity: 0.7 }]}
     >
-      <Ionicons name={icon} size={small ? 22 : 26} color={colors.text} />
+      <Ionicons name={icon} size={small ? 22 : 26} color="#FFFFFF" />
     </Pressable>
   );
 }
 
-const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background },
-  handle: {
-    position: "absolute",
-    top: 8,
-    alignSelf: "center",
-    width: 44,
-    height: 5,
-    borderRadius: 3,
-    backgroundColor: "rgba(255,255,255,0.4)",
-    zIndex: 2,
-  },
-  cover: { backgroundColor: colors.surface, overflow: "hidden" },
-  placeholder: { backgroundColor: colors.surface, alignItems: "center", justifyContent: "center" },
-  placeholderArt: { width: "70%", height: "60%", opacity: 0.85 },
-  creating: { position: "absolute", bottom: 14, flexDirection: "row", alignItems: "center", gap: 8 },
-  aiLabel: {
-    position: "absolute",
-    right: 10,
-    bottom: 10,
-    backgroundColor: "rgba(0,0,0,0.55)",
-    borderRadius: 10,
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-  },
-  aiLabelText: { color: "#E4E4E7", fontSize: 11 },
-  body: { paddingHorizontal: 20 },
-  findingRow: { flexDirection: "row", alignItems: "center", gap: 12, marginTop: 20, marginBottom: 18 },
-  skeleton: { height: 16, borderRadius: 8, backgroundColor: colors.surface, marginBottom: 12 },
-  kicker: { color: colors.accent, fontSize: 12, fontWeight: "700", letterSpacing: 1.2, textTransform: "uppercase", marginTop: 18 },
-  title: { color: colors.text, fontSize: 28, lineHeight: 34, fontFamily: fonts.display, marginTop: 4 },
-  matches: { flexDirection: "row", gap: 10, marginTop: 10 },
-  match: { flex: 1, borderRadius: 14, padding: 6, backgroundColor: colors.surface, borderWidth: 1.5, borderColor: "transparent" },
-  matchSelected: { borderColor: colors.accent },
-  matchImage: {
-    aspectRatio: 1,
-    borderRadius: 10,
-    overflow: "hidden",
-    backgroundColor: colors.raised,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  matchName: { color: colors.text, fontSize: 13, fontWeight: "600", marginTop: 6, minHeight: 34 },
-  stats: { flexDirection: "row", marginTop: 20, backgroundColor: colors.surface, borderRadius: 18, paddingVertical: 14 },
-  stat: { flex: 1, alignItems: "center" },
-  statValue: { color: colors.text, fontSize: 16, fontWeight: "600", marginTop: 4 },
-  wrap: { flexDirection: "row", flexWrap: "wrap" },
-  serve: {
-    flexDirection: "row",
-    gap: 12,
-    alignItems: "center",
-    marginTop: 20,
-    backgroundColor: colors.surface,
-    borderRadius: 16,
-    padding: 14,
-  },
-  ingredient: {
-    flexDirection: "row",
-    gap: 14,
-    paddingVertical: 12,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.border,
-  },
-  amount: { color: colors.accent, fontSize: 16, fontWeight: "700", minWidth: 76 },
-  step: { flexDirection: "row", gap: 16, marginBottom: 20 },
-  stepNumber: { color: colors.accent, fontSize: 24, lineHeight: 28, fontFamily: fonts.displayMedium, minWidth: 36 },
-  shareRow: { marginTop: 16 },
-  topBar: { position: "absolute", left: 16, right: 16, flexDirection: "row", justifyContent: "space-between" },
-  round: { backgroundColor: "rgba(0,0,0,0.5)", alignItems: "center", justifyContent: "center" },
-  bottomBar: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 16,
-    paddingTop: 12,
-    backgroundColor: colors.surface,
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.border,
-  },
-  stepper: { flexDirection: "row", alignItems: "center", gap: 10 },
-  servings: { color: colors.text, fontSize: 15, fontWeight: "600", minWidth: 74, textAlign: "center" },
-  save: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    backgroundColor: colors.accent,
-    borderRadius: 24,
-    minHeight: 48,
-    paddingHorizontal: 20,
-  },
-  saved: { backgroundColor: colors.raised },
-  saveText: { color: colors.accentText, fontSize: 16, fontWeight: "700" },
-});
+const create_styles = (colors: Palette) =>
+  StyleSheet.create({
+    screen: { flex: 1, backgroundColor: colors.background },
+    handle: {
+      position: "absolute",
+      top: 8,
+      alignSelf: "center",
+      width: 44,
+      height: 5,
+      borderRadius: 3,
+      backgroundColor: "rgba(255,255,255,0.4)",
+      zIndex: 2,
+    },
+    cover: { backgroundColor: colors.surface, overflow: "hidden" },
+    placeholder: { backgroundColor: colors.surface, alignItems: "center", justifyContent: "center" },
+    placeholderArt: { width: "70%", height: "60%", opacity: 0.85 },
+    creating: { position: "absolute", bottom: 14, flexDirection: "row", alignItems: "center", gap: 8 },
+    aiLabel: {
+      position: "absolute",
+      right: 10,
+      bottom: 10,
+      backgroundColor: "rgba(0,0,0,0.55)",
+      borderRadius: 10,
+      paddingHorizontal: 8,
+      paddingVertical: 3,
+    },
+    aiLabelText: { color: "#E4E4E7", fontSize: 11 },
+    body: { paddingHorizontal: 20 },
+    findingRow: { flexDirection: "row", alignItems: "center", gap: 12, marginTop: 20, marginBottom: 18 },
+    skeleton: { height: 16, borderRadius: 8, backgroundColor: colors.surface, marginBottom: 12 },
+    kicker: { color: colors.accentInk, fontSize: 12, fontWeight: "700", letterSpacing: 1.2, textTransform: "uppercase", marginTop: 18 },
+    title: { color: colors.text, fontSize: 28, lineHeight: 34, fontFamily: fonts.display, marginTop: 4 },
+    matches: { flexDirection: "row", gap: 10, marginTop: 10 },
+    match: { flex: 1, borderRadius: 14, padding: 6, backgroundColor: colors.surface, borderWidth: 1.5, borderColor: "transparent" },
+    matchSelected: { borderColor: colors.accentInk },
+    matchImage: {
+      aspectRatio: 1,
+      borderRadius: 10,
+      overflow: "hidden",
+      backgroundColor: colors.raised,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    matchName: { color: colors.text, fontSize: 13, fontWeight: "600", marginTop: 6, minHeight: 34 },
+    stats: { flexDirection: "row", marginTop: 20, backgroundColor: colors.surface, borderRadius: 18, paddingVertical: 14 },
+    stat: { flex: 1, alignItems: "center" },
+    statValue: { color: colors.text, fontSize: 16, fontWeight: "600", marginTop: 4 },
+    wrap: { flexDirection: "row", flexWrap: "wrap" },
+    serve: {
+      flexDirection: "row",
+      gap: 12,
+      alignItems: "center",
+      marginTop: 20,
+      backgroundColor: colors.surface,
+      borderRadius: 16,
+      padding: 14,
+    },
+    ingredient: {
+      flexDirection: "row",
+      gap: 14,
+      paddingVertical: 12,
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      borderBottomColor: colors.border,
+    },
+    amount: { color: colors.accentInk, fontSize: 16, fontWeight: "700", minWidth: 76 },
+    step: { flexDirection: "row", gap: 16, marginBottom: 20 },
+    stepNumber: { color: colors.accentInk, fontSize: 24, lineHeight: 28, fontFamily: fonts.displayMedium, minWidth: 36 },
+    shareRow: { marginTop: 16 },
+    topBar: { position: "absolute", left: 16, right: 16, flexDirection: "row", justifyContent: "space-between" },
+    round: { backgroundColor: "rgba(0,0,0,0.5)", alignItems: "center", justifyContent: "center" },
+    bottomBar: {
+      position: "absolute",
+      left: 0,
+      right: 0,
+      bottom: 0,
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      paddingHorizontal: 16,
+      paddingTop: 12,
+      backgroundColor: colors.surface,
+      borderTopWidth: StyleSheet.hairlineWidth,
+      borderTopColor: colors.border,
+    },
+    stepper: { flexDirection: "row", alignItems: "center", gap: 10 },
+    servings: { color: colors.text, fontSize: 15, fontWeight: "600", minWidth: 74, textAlign: "center" },
+    save: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 8,
+      backgroundColor: colors.accent,
+      borderRadius: 24,
+      minHeight: 48,
+      paddingHorizontal: 20,
+    },
+    saved: { backgroundColor: colors.raised },
+    saveText: { color: colors.accentText, fontSize: 16, fontWeight: "700" },
+  });

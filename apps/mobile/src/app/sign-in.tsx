@@ -2,9 +2,11 @@ import { useState } from "react";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { firebase, firebaseConfigured, sign_in_problem } from "../auth/firebase";
-import { Button, colors, Notice, type } from "../ui/theme";
+import { Button, Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
 
 export default function SignIn() {
+  const { type } = useTheme();
+  const styles = useThemedStyles(create_styles);
   const [mode, set_mode] = useState<"sign-in" | "create">("sign-in");
   const [email, set_email] = useState("");
   const [password, set_password] = useState("");
@@ -87,18 +89,19 @@ export default function SignIn() {
   );
 }
 
-const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background },
-  content: { padding: 24, paddingTop: 48 },
-  label: { color: colors.text, fontSize: 15, fontWeight: "600", marginTop: 16, marginBottom: 6 },
-  input: {
-    minHeight: 54,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
-    color: colors.text,
-    fontSize: 16,
-    paddingHorizontal: 14,
-  },
-});
+const create_styles = (colors: Palette) =>
+  StyleSheet.create({
+    screen: { flex: 1, backgroundColor: colors.background },
+    content: { padding: 24, paddingTop: 48 },
+    label: { color: colors.text, fontSize: 15, fontWeight: "600", marginTop: 16, marginBottom: 6 },
+    input: {
+      minHeight: 54,
+      borderRadius: 12,
+      borderWidth: 1,
+      borderColor: colors.border,
+      backgroundColor: colors.surface,
+      color: colors.text,
+      fontSize: 16,
+      paddingHorizontal: 14,
+    },
+  });

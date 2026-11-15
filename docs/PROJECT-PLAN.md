@@ -69,6 +69,7 @@ When a photo is taken, people get two signals: the **shutter sound** and a **sof
 
 Researched on Mobbin (CREME, Julienne, NYT Cooking, Kitchen Stories) and approved on 2026-11-14:
 
+- **Light and dark mode** (added 2026-11-15): Settings > Preferences > Appearance offers Match phone (the default), Light and Dark. Light mode uses a warm off-white page (#FAF7F5) with white cards and the same grapefruit; text and icons drawn in grapefruit use a darker shade (#B93A2E) so they stay readable. The camera always stays dark. Colours live in `apps/mobile/src/ui/palette.ts`; screens read them with `useTheme()` and `useThemedStyles()`.
 - **Black and grapefruit** (chosen 2026-11-14): near-black background (#0F0F10) so food photos carry the colour, with the grapefruit coral from the icon (#FF6F61) as the one accent. **Fraunces**, a serif font, for titles; body text stays in the phone's own font. Standard text sizes (body 16, page titles 28); the phone's own text-size setting still enlarges everything for people who need it.
 - A raised orange **camera button in the middle of the tab bar** opens the camera from any screen.
 - **Home:** a greeting, the drink-and-plate art (cut out, no square), a camera prompt with free photos left, and a "Recently saved" row of photo cards.
@@ -99,6 +100,14 @@ Approved on 2026-11-15 from three options (plan picker, Free vs Pro table, photo
 - a **Start 7-day free trial** button, the trial terms for the selected plan ("Free for 7 days, then $24.99 / year. Cancel anytime in Google Play.") and **Restore purchase**.
 
 The prices live in one place, `apps/mobile/src/paywall/plans.ts`. Until RevenueCat is connected, the buttons explain that subscriptions aren't open yet. Once it is, the store's own prices are shown, so the Play Console products must use these same prices.
+
+### Feedback
+
+Ported from Votic on 2026-11-15. **Settings > Feedback** offers **Suggest a Feature** and **Report a Bug**. Each is a short form (a title and a description) that goes privately to the team:
+
+- **Server** (`server/feedback.js`, Votic's `app_parts/feedback.js`): `POST /api/feedback` for signed-in accounts. Strict validation, a submission reference so a retry is never saved twice, 10 reports per account per day, identical reports grouped together, and everything removed after a year. Reports live in the private usage ledger.
+- **Dashboard** at `/admin/feedback` (Votic's `admin/`): sign in with a Firebase account whose user ID is listed in `MM_FEEDBACK_ADMIN_UIDS` (it also needs `FIREBASE_WEB_API_KEY`). It shows totals, the most requested features and most reported bugs, unresolved serious bugs first, search, and status and severity, merge and separate. Every request is checked by the server; the page keeps the sign-in in memory only.
+- Not ported (Votic-only for now): the Google Play rating link (there's no store listing yet) and automatic diagnostic reports.
 
 ## 4. Privacy and safety
 

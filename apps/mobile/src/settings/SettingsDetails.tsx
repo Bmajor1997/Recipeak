@@ -1,14 +1,17 @@
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useRef, useState } from "react";
-import { Modal, ScrollView, Share, StyleSheet, Switch, Text, View } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Modal, Pressable, ScrollView, Share, StyleSheet, Switch, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../AppContext";
 import { firebase } from "../auth/firebase";
 import { FREE_SAVED_RECIPES } from "../paywall/plans";
 import { recipe_as_text } from "../recipes/format";
 import type { Allowance, SavedRecipe } from "../recipes/types";
-import { Button, colors, Notice, type } from "../ui/theme";
+import { Button, Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
+import { FEEDBACK_KINDS, FEEDBACK_TEXT, type FeedbackKind } from "../feedback/feedback";
 import { usePreferences } from "./PreferencesProvider";
+import { APPEARANCES, type Appearance } from "./preferences";
 import { CATEGORIES, type Category, Group, Row, SettingsScreen } from "./SettingsUI";
 
 export function SettingsDetails({ category }: { category: Category }) {
@@ -22,6 +25,8 @@ export function SettingsDetails({ category }: { category: Category }) {
         <Library />
       ) : category === "usage" ? (
         <Usage />
+      ) : category === "feedback" ? (
+        <Feedback />
       ) : (
         <Help />
       )}
@@ -29,7 +34,34 @@ export function SettingsDetails({ category }: { category: Category }) {
   );
 }
 
+const FEEDBACK_ICONS: Record<FeedbackKind, "bulb-outline" | "bug-outline"> = { feature: "bulb-outline", bug: "bug-outline" };
+
+/** Ported from Votic: two private forms, one for ideas and one for problems. */
+function Feedback() {
+  const { type } = useTheme();
+  return (
+    <>
+      <Text style={type.muted}>
+        Tell us what would make Meals &amp; Mixers better, or what went wrong. Only the Meals &amp; Mixers team sees it.
+      </Text>
+      <Group title="SEND US FEEDBACK">
+        {FEEDBACK_KINDS.map((kind) => (
+          <Row
+            key={kind}
+            label={FEEDBACK_TEXT[kind].title}
+            detail={FEEDBACK_TEXT[kind].detail}
+            icon={FEEDBACK_ICONS[kind]}
+            onPress={() => router.push({ pathname: "/feedback/[kind]", params: { kind } })}
+          />
+        ))}
+      </Group>
+    </>
+  );
+}
+
 function Account() {
+  const { type } = useTheme();
+  const styles = useThemedStyles(create_styles);
   const { user, set_current } = useApp();
   const [confirm, set_confirm] = useState(false);
   const [busy, set_busy] = useState(false);
@@ -110,6 +142,8 @@ function Account() {
 }
 
 function Preferences() {
+  const { type } = useTheme();
+  const styles = useThemedStyles(create_styles);
   const state = usePreferences();
   return (
     <>
@@ -119,6 +153,20 @@ function Preferences() {
       {!state.ready && !state.error && <Notice>Loading preferences…</Notice>}
       {state.error && <Notice tone="error">{state.error}</Notice>}
       {!state.ready && state.error && <Button label="Retry loading preferences" onPress={state.reload} />}
+      <Text accessibilityRole="header" style={type.label}>
+        APPEARANCE
+      </Text>
+      <View accessibilityRole="radiogroup" accessibilityLabel="Appearance" style={styles.card}>
+        {APPEARANCES.map((choice) => (
+          <AppearanceOption
+            key={choice}
+            choice={choice}
+            selected={state.values.appearance === choice}
+            disabled={!state.ready || state.busy}
+            onPress={() => void state.update("appearance", choice)}
+          />
+        ))}
+      </View>
       <View style={styles.card}>
         <Toggle
           label="Pause photo wall"
@@ -137,11 +185,52 @@ function Preferences() {
       </View>
       {state.busy ? <Notice>Saving preference…</Notice> : state.notice ? <Notice>{state.notice}</Notice> : null}
       <Text style={type.muted}>
-        Appearance uses Meals &amp; Mixers’ dark background and grapefruit accent. Recipe measurements use US units.
+        Both looks use Meals &amp; Mixers’ grapefruit accent. The camera always stays dark. Recipe measurements use US units.
       </Text>
     </>
   );
 }
+export const APPEARANCE_LABELS: Record<Appearance, { label: string; detail: string }> = {
+  system: { label: "Match phone", detail: "Light or dark, following your phone’s setting" },
+  light: { label: "Light", detail: "A light background, always" },
+  dark: { label: "Dark", detail: "A dark background, always" },
+};
+
+function AppearanceOption({
+  choice,
+  selected,
+  disabled,
+  onPress,
+}: {
+  choice: Appearance;
+  selected: boolean;
+  disabled: boolean;
+  onPress: () => void;
+}) {
+  const { colors, type } = useTheme();
+  const styles = useThemedStyles(create_styles);
+  const { label, detail } = APPEARANCE_LABELS[choice];
+  return (
+    <Pressable
+      accessibilityRole="radio"
+      accessibilityLabel={label}
+      accessibilityHint={detail}
+      accessibilityState={{ checked: selected, disabled }}
+      disabled={disabled}
+      onPress={onPress}
+      style={({ pressed }) => [styles.toggle, pressed && { backgroundColor: colors.raised }, disabled && { opacity: 0.6 }]}
+    >
+      <View style={styles.copy}>
+        <Text style={type.body}>{label}</Text>
+        <Text style={type.muted}>{detail}</Text>
+      </View>
+      <View style={[styles.radio, selected && { backgroundColor: colors.accent, borderColor: colors.accent }]}>
+        {selected && <Ionicons name="checkmark" size={14} color={colors.accentText} />}
+      </View>
+    </Pressable>
+  );
+}
+
 function Toggle({
   label,
   detail,
@@ -155,6 +244,8 @@ function Toggle({
   disabled: boolean;
   onChange: (value: boolean) => void;
 }) {
+  const { colors, type } = useTheme();
+  const styles = useThemedStyles(create_styles);
   return (
     <View style={styles.toggle}>
       <View style={styles.copy}>
@@ -175,6 +266,7 @@ function Toggle({
 }
 
 function Library() {
+  const { type } = useTheme();
   const { saved } = useApp();
   const [items, set_items] = useState<SavedRecipe[] | null>(null);
   const [error, set_error] = useState<string | null>(null);
@@ -246,6 +338,7 @@ function Library() {
 }
 
 function Usage() {
+  const { type } = useTheme();
   const { api } = useApp();
   const [value, set_value] = useState<Allowance | null>(null);
   const [error, set_error] = useState<string | null>(null);
@@ -304,6 +397,7 @@ function Usage() {
 }
 
 function Help() {
+  const { type } = useTheme();
   return (
     <>
       <Text accessibilityRole="header" style={type.heading}>
@@ -325,7 +419,8 @@ function Help() {
       </Text>
       <Text style={type.body}>
         Firebase handles email sign-in. The recipe server tracks usage and costs to enforce limits. Each account’s saved recipes and offline
-        cover photos are kept separately on this device. Signing out keeps them for when you sign in again.
+        cover photos are kept separately on this device. Signing out keeps them for when you sign in again. Feedback you send is stored
+        privately on our server for up to a year.
       </Text>
       <Text accessibilityRole="header" style={type.heading}>
         Recipe guidance
@@ -344,17 +439,27 @@ function Help() {
     </>
   );
 }
-const styles = StyleSheet.create({
-  card: { borderWidth: 1, borderColor: colors.border, borderRadius: 18, backgroundColor: colors.surface, overflow: "hidden" },
-  toggle: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    padding: 16,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.border,
-  },
-  copy: { flex: 1, gap: 8 },
-  overlay: { flex: 1, backgroundColor: colors.scrim, justifyContent: "center", paddingHorizontal: 20 },
-  dialog: { padding: 24, gap: 12, backgroundColor: colors.surface, borderRadius: 18, maxWidth: 600, width: "100%", alignSelf: "center" },
-});
+const create_styles = (colors: Palette) =>
+  StyleSheet.create({
+    card: { borderWidth: 1, borderColor: colors.border, borderRadius: 18, backgroundColor: colors.surface, overflow: "hidden" },
+    toggle: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 12,
+      padding: 16,
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      borderBottomColor: colors.border,
+    },
+    copy: { flex: 1, gap: 8 },
+    radio: {
+      width: 24,
+      height: 24,
+      borderRadius: 12,
+      borderWidth: 2,
+      borderColor: colors.control,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    overlay: { flex: 1, backgroundColor: colors.scrim, justifyContent: "center", paddingHorizontal: 20 },
+    dialog: { padding: 24, gap: 12, backgroundColor: colors.surface, borderRadius: 18, maxWidth: 600, width: "100%", alignSelf: "center" },
+  });

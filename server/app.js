@@ -2,6 +2,8 @@
 import { AiLimitError, HttpError } from "./errors.js";
 import { ai_failure_reason, call_openai } from "./openai_gateway.js";
 import { image_key } from "./dish_images.js";
+import { FeedbackError } from "./feedback.js";
+import { readFileSync } from "node:fs";
 import { PremiumVerificationError } from "./premium_access.js";
 import {
   DEFAULT_MODEL, MAX_IMAGE_BYTES, identify_payload, parse_image, parse_recipe_request, recipe_payload,
@@ -15,6 +17,21 @@ const SECURITY_HEADERS = {
   "Cache-Control": "no-store",
   "Cross-Origin-Resource-Policy": "same-origin",
 };
+// The private feedback dashboard (admin/feedback.html) loads its own script and styles, and signs in through
+// Firebase's password sign-in. Nothing else may run, load or connect.
+const ADMIN_PAGE_HEADERS = {
+  ...SECURITY_HEADERS,
+  "Content-Security-Policy": "default-src 'none'; base-uri 'none'; connect-src 'self' https://identitytoolkit.googleapis.com; form-action 'self'; frame-ancestors 'none'; img-src 'self'; script-src 'self'; style-src 'self'",
+  "X-Frame-Options": "DENY",
+};
+const ADMIN_FILES = {
+  "/admin/feedback": ["feedback.html", "text/html; charset=utf-8"],
+  "/admin/feedback.js": ["feedback.js", "text/javascript; charset=utf-8"],
+  "/admin/feedback.css": ["feedback.css", "text/css; charset=utf-8"],
+};
+const admin_file = (name) => readFileSync(new URL(`../admin/${name}`, import.meta.url));
+const FEEDBACK_BODY = 16_384;
+
 // Base64 grows a file by a third; leave room for the JSON wrapper.
 const MAX_IDENTIFY_BODY = Math.ceil(MAX_IMAGE_BYTES * 4 / 3) + 4096;
 const BODY_TIMEOUT_MS = 20_000;
@@ -93,12 +110,31 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     return { premium: is_premium, free_photos_left: is_premium ? null : store.free_photos_left(user.uid), free_photos_total: store.limits.free_photos };
   }
 
+  // Feature requests and bug reports. Anyone signed in can send one; only the accounts listed in
+  // MM_FEEDBACK_ADMIN_UIDS can read and organise them on the dashboard.
+  const feedback_admins = new Set(String(env.MM_FEEDBACK_ADMIN_UIDS || "").split(",").map((uid) => uid.trim()).filter(Boolean));
+  const send_feedback = async (user, body) => store.feedback.create(user.uid, body);
+  const admin_only = (work) => async (user, body) => {
+    if (!feedback_admins.has(user.uid)) throw new HttpError(403, "Administrator access is required.");
+    return work(body);
+  };
+
   const routes = {
     "POST /api/identify": { handler: identify, max_body: MAX_IDENTIFY_BODY },
     "POST /api/recipe": { handler: recipe, max_body: 2048 },
     "POST /api/featured-recipe": { handler: featured_recipe, max_body: 2048 },
     "GET /api/allowance": { handler: allowance, max_body: 0 },
     "GET /api/dish-image": { handler: dish_image, max_body: 0 },
+    "POST /api/feedback": { handler: send_feedback, max_body: FEEDBACK_BODY },
+    "POST /api/admin/feedback/list": { handler: admin_only((body) => store.feedback.dashboard(body?.query ?? "", body?.page ?? 0)), max_body: FEEDBACK_BODY },
+    "POST /api/admin/feedback/details": {
+      handler: admin_only((body) => {
+        if (typeof body?.id !== "string") throw new HttpError(400, "Choose a feedback group.");
+        return store.feedback.details(body.id, body.page ?? 0);
+      }),
+      max_body: FEEDBACK_BODY,
+    },
+    "POST /api/admin/feedback/mutate": { handler: admin_only((body) => store.feedback.mutate(body)), max_body: FEEDBACK_BODY },
   };
 
   return async function handle(request, response) {
@@ -111,6 +147,16 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
         const bytes = images?.read(path.slice("/images/".length));
         if (!bytes) throw new HttpError(404, "Not found.");
         for (const [k, v] of Object.entries({ ...SECURITY_HEADERS, "Cache-Control": "public, max-age=31536000, immutable", "Content-Type": "image/jpeg" })) response.setHeader(k, v);
+        return response.writeHead(200).end(bytes);
+      }
+      if (request.method === "GET" && path === "/admin/feedback-config") {
+        // The Firebase web API key is a public project identifier, not a secret; the server still checks every request.
+        return send_json(response, 200, { apiKey: env.FIREBASE_WEB_API_KEY || "" });
+      }
+      if (request.method === "GET" && ADMIN_FILES[path]) {
+        const [name, type] = ADMIN_FILES[path];
+        const bytes = admin_file(name);
+        for (const [k, v] of Object.entries({ ...ADMIN_PAGE_HEADERS, "Content-Type": type })) response.setHeader(k, v);
         return response.writeHead(200).end(bytes);
       }
       const route = routes[`${request.method} ${path}`];
@@ -131,6 +177,7 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
       return send_json(response, 200, await route.handler(user, body, controller.signal, url.searchParams));
     } catch (error) {
       if (error instanceof HttpError) return send_json(response, error.status, { error: error.message, ...(error.code ? { code: error.code } : {}) }, error.headers);
+      if (error instanceof FeedbackError) return send_json(response, error.status, { error: error.message });
       if (error instanceof PremiumVerificationError) return send_json(response, 503, { error: error.message });
       log.warn?.("AI request failed", path, ai_failure_reason(error));
       return send_json(response, 502, { error: "Couldn't get a recipe right now. Please try again." });

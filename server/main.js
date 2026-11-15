@@ -30,6 +30,10 @@ if (import.meta.main) {
   const { authorize, premium, store, images, featured } = configure(process.env);
   const handle = create_app({ env: process.env, store, authorize, premium, images, featured });
   const port = Number(process.env.PORT || 8787);
+  // Old feedback is removed hourly as well as at start, so nothing outlives its one-year retention.
+  setInterval(() => {
+    try { store.feedback.prune(); } catch { console.warn("Feedback retention is waiting for storage; it will retry."); }
+  }, 3_600_000).unref();
   const server = createServer({ requestTimeout: 90_000, headersTimeout: 15_000 }, handle);
   server.listen(port, process.env.HOST || "127.0.0.1", () => console.log(`Meals and Mixers backend on port ${port}`));
 }
