@@ -194,6 +194,17 @@
     {"file":"m-m.jpg","kind":"cocktail","names":["M & M"]},
     {"file":"100-year-old-cigar.jpg","kind":"cocktail","names":["100 Year Old Cigar"]},
     {"file":"poet-s-dream.jpg","kind":"cocktail","names":["Poet's Dream"]},
-    {"file":"bobby-burns.jpg","kind":"cocktail","names":["Bobby Burns"]}
+    {"file":"bobby-burns.jpg","kind":"cocktail","names":["Bobby Burns"]},
+    {"file":"chicken-marsala.jpg","kind":"meal","names":["Chicken Marsala"]},
+    {"file":"beef-stroganoff.jpg","kind":"meal","names":["Beef Stroganoff"]},
+    {"file":"shakshuka.jpg","kind":"meal","names":["Shakshuka"]},
+    {"file":"falafel-plate.jpg","kind":"meal","names":["Falafel","Falafel Plate"]},
+    {"file":"eggplant-parmesan.jpg","kind":"meal","names":["Eggplant Parmesan","Eggplant Parmigiana"]},
+    {"file":"kir-royale.jpg","kind":"cocktail","names":["Kir Royale"]},
+    {"file":"pina-verde.jpg","kind":"cocktail","names":["Piña Verde"]},
+    {"file":"michelada.jpg","kind":"cocktail","names":["Michelada"]},
+    {"file":"bellini.jpg","kind":"cocktail","names":["Bellini","Peach Bellini"]},
+    {"file":"hot-buttered-rum.jpg","kind":"cocktail","names":["Hot Buttered Rum"]},
+    {"file":"black-velvet.jpg","kind":"cocktail","names":["Black Velvet"]}
   ]
 }
