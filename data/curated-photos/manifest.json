@@ -1,0 +1,8 @@
+{
+  "_note": "Hand-picked cover photos, installed into the library automatically when the server starts. Each photo is used for every name listed. Add a photo by placing a portrait or square JPEG here and listing it below.",
+  "photos": [
+    { "file": "margarita.jpg", "kind": "cocktail", "names": ["Margarita", "Classic Margarita", "Margarita on the Rocks"] },
+    { "file": "moscow-mule.jpg", "kind": "cocktail", "names": ["Moscow Mule", "Classic Moscow Mule"] },
+    { "file": "cosmopolitan.jpg", "kind": "cocktail", "names": ["Cosmopolitan", "Cosmo", "Classic Cosmopolitan"] }
+  ]
+}

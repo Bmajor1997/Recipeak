@@ -1,13 +1,16 @@
 // Creates cover photos for the starter list in data/seed-dishes.json, skipping any that already exist.
 //   node --env-file=.env.backend.local server/seed_dish_images.js --dry-run   (shows what it would create and the cost)
 //   node --env-file=.env.backend.local server/seed_dish_images.js             (creates them, one at a time)
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { create_image_library, image_key } from "./dish_images.js";
+import { create_image_library, image_key, install_curated } from "./dish_images.js";
 import { create_usage_store } from "./usage_store.js";
 
 const env = process.env;
 if (!env.MM_IMAGE_DIR) throw new Error("Set MM_IMAGE_DIR to the folder the server serves cover photos from.");
+// Hand-picked photos count as done.
+mkdirSync(env.MM_IMAGE_DIR, { recursive: true });
+install_curated(env.MM_IMAGE_DIR);
 const list = JSON.parse(readFileSync(new URL("../data/seed-dishes.json", import.meta.url), "utf8"));
 const wanted = ["meal", "cocktail"].flatMap((kind) => list[kind].map((name) => ({ kind, name })));
 const missing = wanted.filter(({ kind, name }) => !existsSync(join(env.MM_IMAGE_DIR, `${image_key(kind, name)}.jpg`)));

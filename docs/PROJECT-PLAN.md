@@ -80,6 +80,8 @@ Researched on Mobbin (CREME, Julienne, NYT Cooking, Kitchen Stories) and approve
 The person's photo is used only to recognise the dish, then discarded. Every recipe's cover is a polished, CREME-style photo from a **shared library on the server**:
 
 - **One photo per dish, shared by everyone.** The first time anyone finds, say, a margarita, the server creates its photo with OpenAI's image model in one house style (dark and moody, side-lit, no people or text) and keeps it. Everyone after that gets the same photo instantly, at no extra cost.
+- **House style** (refined with Ben's ChatGPT tests on 2026-11-14): eye level, slightly angled; dark slate surface with a few fresh key ingredients beside the dish; near-black background; moody light from one side; fills the frame, no borders; no people, text or logos. When the recipe is known, its glass, garnish and main ingredients go into the wording so the photo matches it.
+- **Hand-picked photos** in `data/curated-photos/` (listed in its `manifest.json`) are installed into the library when the server starts and are never re-created. First three, from Ben: Margarita, Moscow Mule and Cosmopolitan.
 - Each of the **closest matches (up to 3)** gets its own photo. Photos are created in the background; the app shows its drink-and-plate art with "Creating photo…" until one is ready, then fades it in.
 - A small **"AI-generated image"** label sits on every cover.
 - **Starter library:** `data/seed-dishes.json` lists 120 common meals and 80 drinks to create before launch (`server/seed_dish_images.js --dry-run` shows the cost, about $8–12). Review and edit the list first.

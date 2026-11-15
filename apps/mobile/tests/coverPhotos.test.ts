@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { createApi } from "../src/api/client";
+import { coverPlacement } from "../src/ui/coverPlacement";
 import { parseDishImage, parseIdentification } from "../src/recipes/parse";
 import type { Recipe } from "../src/recipes/types";
 
@@ -77,5 +78,14 @@ describe("server connection for cover photos", () => {
     const result = await api.recipe("Margarita", "cocktail", "non-alcoholic");
     expect(result.recipe.title).toBe("Margarita");
     expect(result.image.status).toBe("pending");
+  });
+});
+
+describe("recipe cover placement", () => {
+  it("shows the upper part of tall photos and leaves other shapes to the normal crop", () => {
+    // A 2:3 photo in a 390 × 350 cover: 585 tall, shifted up by 30% of the 235 that doesn't fit.
+    expect(coverPlacement(390, 350, 1.5)).toEqual({ width: 390, height: 585, top: -71 });
+    expect(coverPlacement(390, 350, 0.66)).toBeNull();
+    expect(coverPlacement(390, 350, null)).toBeNull();
   });
 });

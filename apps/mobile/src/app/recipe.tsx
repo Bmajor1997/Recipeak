@@ -13,6 +13,7 @@ import { formatIngredient, formatMinutes, recipeAsText } from "../recipes/format
 import { scaleAmount } from "../recipes/scale";
 import { DIETS, type Diet, type Guess, type Kind } from "../recipes/types";
 import { useDishImage } from "../recipes/useDishImage";
+import { FocusedCover } from "../ui/FocusedCover";
 import { Button, Chip, colors, fonts, Notice, type } from "../ui/theme";
 
 const heroArt = require("../../assets/hero.png");
@@ -169,12 +170,7 @@ function RecipeView({ current }: { current: Ready }) {
         {/* Cover photo from the shared library; the app's art shows while it's being created. */}
         <View style={[styles.cover, { width, height: coverHeight }]}>
           {coverUri ? (
-            <Image
-              source={{ uri: coverUri }}
-              style={StyleSheet.absoluteFill}
-              resizeMode="cover"
-              accessibilityLabel={`Photo of ${recipe.title}`}
-            />
+            <FocusedCover uri={coverUri} width={width} height={coverHeight} label={`Photo of ${recipe.title}`} />
           ) : (
             <View style={[StyleSheet.absoluteFill, styles.placeholder]}>
               <Image source={heroArt} style={styles.placeholderArt} resizeMode="contain" accessible={false} />

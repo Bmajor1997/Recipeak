@@ -1,8 +1,9 @@
 // The shared cover-photo library: one polished, CREME-style photo per dish or drink, created once and reused
 // by everyone. The person's own photo is never used here; only the dish's name and kind reach the image model.
 import { createHash, randomUUID } from "node:crypto";
-import { mkdirSync, readFileSync, renameSync, writeFileSync, existsSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { AiLimitError } from "./errors.js";
 
 export const IMAGE_STYLE_VERSION = "v1";
@@ -30,32 +31,73 @@ export function image_key(kind, name) {
   return createHash("sha256").update(`${IMAGE_STYLE_VERSION}|${kind}|${normal}`).digest("hex").slice(0, 32);
 }
 
-/** The house style: dark and moody, one side light, no people, no text. */
-export function image_prompt(kind, name) {
+const CURATED_DIR = fileURLToPath(new URL("../data/curated-photos/", import.meta.url));
+
+// Short, plain wording for recipe details placed into the prompt (glass, garnish, ingredients).
+const detail = (text, max = 40) => {
+  const clean = normalize_dish_name(String(text ?? "").split(/[,(;]/)[0]);
+  return clean && clean.length <= max ? clean : null;
+};
+
+/**
+ * The house style, refined with Ben on 2026-11-14 from his ChatGPT tests (moscow mule, cosmopolitan, margarita):
+ * eye level, dark slate, a few fresh key ingredients beside the dish, one side light, full frame, no text.
+ * When the recipe is known, its glass, garnish and main ingredients make the photo match it.
+ */
+export function image_prompt(kind, name, details = {}) {
   const dish = normalize_dish_name(name);
+  const glass = detail(details.glass);
+  const garnish = detail(details.garnish);
+  const ingredients = (Array.isArray(details.ingredients) ? details.ingredients : []).map((i) => detail(i, 30)).filter(Boolean).slice(0, 3);
   const subject =
     kind === "cocktail"
-      ? `a ${dish} cocktail, in its classic glass with its classic garnish, backlit so the drink glows`
-      : `${dish}, plated the classic way it is usually served`;
+      ? `a classic ${dish} ${glass ? `in a ${glass}` : "in its classic glass"} ${garnish ? `with ${garnish}` : "with its classic garnish"}, backlit so the drink glows clear and appetising`
+      : `${dish}, plated the classic way it is usually served, looking fresh and appetising`;
+  const props = ingredients.length ? `a few fresh key ingredients beside it (${ingredients.join(", ")})` : "a few fresh key ingredients beside it";
   return [
     `Editorial food photograph of ${subject}.`,
-    "Dark, moody, low-key lighting from one side; near-black background and surface; rich, true-to-life colour;",
-    "close-up, shallow depth of field, portrait framing with the subject in the centre.",
+    `Eye-level, slightly angled view; dark slate surface with ${props}; near-black background;`,
+    "dark, moody lighting from one side; rich, true-to-life colour; shallow depth of field;",
+    "the photo fills the whole frame with no borders.",
     "No people, no hands, no text, no labels, no logos, no brand names.",
   ].join(" ");
 }
 
-export function create_image_library({ env = {}, store, fetch_impl = fetch, dir = env.MM_IMAGE_DIR, log = console }) {
+/** Copies the hand-picked photos (data/curated-photos) into the library, under every name each one covers. */
+export function install_curated(dir, curated_dir = CURATED_DIR) {
+  let manifest;
+  try {
+    manifest = JSON.parse(readFileSync(join(curated_dir, "manifest.json"), "utf8"));
+  } catch {
+    return 0;
+  }
+  let installed = 0;
+  for (const photo of manifest.photos || []) {
+    if (!/^[a-z0-9-]+\.jpg$/.test(photo.file)) continue;
+    for (const name of photo.names || []) {
+      const key = image_key(photo.kind, name);
+      if (!key || existsSync(join(dir, `${key}.jpg`))) continue;
+      copyFileSync(join(curated_dir, photo.file), join(dir, `${key}.jpg`));
+      installed += 1;
+    }
+  }
+  return installed;
+}
+
+export function create_image_library({ env = {}, store, fetch_impl = fetch, dir = env.MM_IMAGE_DIR, curated_dir = CURATED_DIR, log = console }) {
   const enabled = env.MM_IMAGES_ENABLED !== "0" && Boolean(dir);
   const model = env.MM_IMAGE_MODEL || "gpt-image-2";
   const cost = Number(env.MM_IMAGE_PRICE_USD || 0.06);
   if (!Number.isFinite(cost) || cost <= 0) throw new Error("MM_IMAGE_PRICE_USD must be a positive number.");
-  if (enabled) mkdirSync(dir, { recursive: true, mode: 0o755 });
+  if (enabled) {
+    mkdirSync(dir, { recursive: true, mode: 0o755 });
+    install_curated(dir, curated_dir);
+  }
   const in_flight = new Map();
 
   const url_for = (key) => `/images/${key}.jpg`;
 
-  async function generate({ key, kind, name, user_id }) {
+  async function generate({ key, kind, name, user_id, details }) {
     let request_id;
     try {
       request_id = store.reserve_image({ user_id, model, cost });
@@ -74,7 +116,7 @@ export function create_image_library({ env = {}, store, fetch_impl = fetch, dir 
         headers: { Authorization: `Bearer ${env.OPENAI_API_KEY}`, "Content-Type": "application/json", "X-Client-Request-Id": request_id },
         body: JSON.stringify({
           model,
-          prompt: image_prompt(kind, name),
+          prompt: image_prompt(kind, name, details),
           size: "1024x1536",
           quality: env.MM_IMAGE_QUALITY || "medium",
           output_format: "jpeg",
@@ -113,14 +155,14 @@ export function create_image_library({ env = {}, store, fetch_impl = fetch, dir 
      * Where this dish's photo stands. Starts creating it in the background if nobody has yet.
      * Returns { status: "ready", url } | { status: "pending", url: null } | { status: "unavailable", url: null }.
      */
-    status({ kind, name, user_id }) {
+    status({ kind, name, user_id, details }) {
       const key = image_key(kind, name);
       if (!enabled || !key) return { status: "unavailable", url: null };
       if (existsSync(join(dir, `${key}.jpg`))) return { status: "ready", url: url_for(key) };
       if (in_flight.has(key)) return { status: "pending", url: null };
       const row = store.get_image(key);
       if (row?.status === "failed" && Date.now() - Date.parse(row.updated_at) < RETRY_FAILED_AFTER_MS) return { status: "unavailable", url: null };
-      const job = generate({ key, kind, name: normalize_dish_name(name), user_id }).finally(() => in_flight.delete(key));
+      const job = generate({ key, kind, name: normalize_dish_name(name), user_id, details }).finally(() => in_flight.delete(key));
       in_flight.set(key, job);
       job.catch(() => {});
       return { status: "pending", url: null };
