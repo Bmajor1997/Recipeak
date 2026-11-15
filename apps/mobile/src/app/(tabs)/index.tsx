@@ -1,6 +1,6 @@
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
-import { FlatList, Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { FlatList, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../../AppContext";
 import { photosLeftText, useCamera } from "../../camera/CameraProvider";
@@ -9,8 +9,7 @@ import { totalMinutes } from "../../recipes/search";
 import { greeting } from "../../ui/greeting";
 import { PhotoCard } from "../../ui/PhotoCard";
 import { colors, type } from "../../ui/theme";
-
-const heroArt = require("../../../assets/hero.png");
+import { PhotoWall } from "../../ui/PhotoWall";
 
 export default function HomeScreen() {
   const { saved, setCurrent } = useApp();
@@ -45,7 +44,7 @@ export default function HomeScreen() {
         )}
       </View>
 
-      <Image source={heroArt} style={styles.art} resizeMode="contain" accessible={false} />
+      <PhotoWall />
 
       {recent.length > 0 && (
         <>
@@ -96,7 +95,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
   pad: { paddingHorizontal: 20 },
-  art: { width: 300, height: 240, alignSelf: "center", marginVertical: 8 },
   badge: {
     alignSelf: "flex-start",
     marginTop: 10,
