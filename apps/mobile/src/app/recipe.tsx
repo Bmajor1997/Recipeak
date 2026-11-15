@@ -4,7 +4,18 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import { useRef, useState } from "react";
-import { ActivityIndicator, Image, Pressable, ScrollView, Share, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import {
+  ActivityIndicator,
+  Image,
+  Pressable,
+  ScrollView,
+  Share,
+  StyleSheet,
+  Text,
+  TextInput,
+  useWindowDimensions,
+  View,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { type CurrentRecipe, useApp } from "../AppContext";
 import { ApiError } from "../api/client";
@@ -85,6 +96,7 @@ function Problem({ message }: { message: string }) {
             open_camera();
           }}
         />
+        <ManualCorrection initialKind="meal" />
         <Button label="Close" variant="secondary" onPress={() => router.back()} />
       </View>
     </Sheet>
@@ -247,6 +259,8 @@ function RecipeView({ current }: { current: Ready }) {
             </>
           )}
 
+          {!!guesses.length && <ManualCorrection initialKind={kind} />}
+
           <View style={styles.stats}>
             <Stat label="Prep" value={format_minutes(recipe.prep_minutes)} />
             <Stat label="Cook" value={format_minutes(recipe.cook_minutes)} />
@@ -278,6 +292,12 @@ function RecipeView({ current }: { current: Ready }) {
             </View>
           )}
 
+          <View style={{ marginTop: 20 }}>
+            <Button
+              label={kind === "cocktail" ? "Start mixing" : "Start cooking"}
+              onPress={() => router.push({ pathname: "/cook", params: { servings: String(servings) } })}
+            />
+          </View>
           <Text style={type.heading} accessibilityRole="header">
             Ingredients
           </Text>
@@ -332,6 +352,68 @@ function RecipeView({ current }: { current: Ready }) {
         </View>
       </ScrollView>
     </Sheet>
+  );
+}
+
+function ManualCorrection({ initialKind }: { initialKind: Kind }) {
+  const { api, set_current } = useApp();
+  const { colors, type } = useTheme();
+  const [expanded, set_expanded] = useState(false);
+  const [name, set_name] = useState("");
+  const [kind, set_kind] = useState<Kind>(initialKind);
+  const [busy, set_busy] = useState(false);
+  const [error, set_error] = useState<string | null>(null);
+  async function find_recipe() {
+    const clean = name.trim();
+    if (!clean || busy) return;
+    set_busy(true);
+    set_error(null);
+    try {
+      const result = await api.recipe(clean, kind);
+      set_current({
+        status: "ready",
+        kind,
+        recipe: result.recipe,
+        guesses: [{ name: clean, confidence: "high", image: result.image }],
+        selected: 0,
+        image: result.image,
+        localPhoto: null,
+        savedId: null,
+      });
+      set_expanded(false);
+    } catch (problem) {
+      if (problem instanceof ApiError && problem.needsUpgrade) router.push("/upgrade");
+      else set_error(problem instanceof ApiError ? problem.message : "Couldn't find that recipe. Please try again.");
+    } finally {
+      set_busy(false);
+    }
+  }
+  return (
+    <View style={{ marginTop: 18 }}>
+      {!expanded ? (
+        <Button label="Not the right dish? Enter its name" variant="secondary" onPress={() => set_expanded(true)} />
+      ) : (
+        <>
+          <Text style={type.body}>Enter the name of your meal or cocktail</Text>
+          <TextInput
+            accessibilityLabel="Dish or cocktail name"
+            value={name}
+            onChangeText={set_name}
+            maxLength={120}
+            placeholder="e.g. chicken parmesan"
+            placeholderTextColor={colors.muted}
+            style={{ color: colors.text, backgroundColor: colors.surface, borderRadius: 12, padding: 14, marginVertical: 8 }}
+          />
+          <View style={{ flexDirection: "row" }}>
+            <Chip label="Meal" selected={kind === "meal"} onPress={() => set_kind("meal")} />
+            <Chip label="Cocktail" selected={kind === "cocktail"} onPress={() => set_kind("cocktail")} />
+          </View>
+          {error && <Notice tone="error">{error}</Notice>}
+          <Button label="Find recipe" disabled={!name.trim()} busy={busy} onPress={find_recipe} />
+          <Button label="Cancel" variant="secondary" disabled={busy} onPress={() => set_expanded(false)} />
+        </>
+      )}
+    </View>
   );
 }
 

@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
 import { create_app } from "../server/app.js";
-import { create_image_library, image_key, image_prompt, install_curated, normalize_dish_name } from "../server/dish_images.js";
+import { create_image_library, curated_catalog, image_key, image_prompt, install_curated, normalize_dish_name } from "../server/dish_images.js";
 import { create_usage_store } from "../server/usage_store.js";
 
 const JPEG = Buffer.concat([Buffer.from([0xff, 0xd8, 0xff, 0xe0]), Buffer.alloc(4000, 9)]);
@@ -187,4 +187,28 @@ test("every hand-picked photo in the repo exists, is a JPEG, and no drink name i
       seen.set(key, photo.file);
     }
   }
+});
+
+
+test("explore catalog exposes one entry per curated image with searchable aliases and matching image URLs", () => {
+  const catalog = curated_catalog();
+  const manifest = JSON.parse(readFileSync(new URL("../data/curated-photos/manifest.json", import.meta.url), "utf8"));
+  assert.equal(catalog.length, manifest.photos.length);
+  const margarita = catalog.find((item) => item.kind === "cocktail" && item.name === "Margarita");
+  assert.ok(margarita);
+  assert.ok(margarita.aliases.includes("Classic Margarita"));
+  assert.equal(margarita.image, `/images/${image_key("cocktail", "Margarita")}.jpg`);
+});
+
+test("explore requires sign-in and returns the curated catalog", async (t) => {
+  const handle = create_app({ authorize: async (request) => request.headers.authorization ? { uid: "alice" } : false });
+  const server = createServer(handle);
+  await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
+  t.after(() => new Promise((resolve) => server.close(resolve)));
+  const url = `http://127.0.0.1:${server.address().port}/api/explore`;
+  assert.equal((await fetch(url)).status, 401);
+  const response = await fetch(url, { headers: { Authorization: "Bearer test" } });
+  assert.equal(response.status, 200);
+  const body = await response.json();
+  assert.ok(body.dishes.some((dish) => dish.name === "Margarita" && dish.kind === "cocktail"));
 });

@@ -1,7 +1,7 @@
 // HTTP handler for the Meals and Mixers backend. Plain Node http, like Votic: no framework to keep patched.
 import { AiLimitError, HttpError } from "./errors.js";
 import { ai_failure_reason, call_openai } from "./openai_gateway.js";
-import { image_key } from "./dish_images.js";
+import { curated_catalog, image_key } from "./dish_images.js";
 import { FeedbackError } from "./feedback.js";
 import { readFileSync } from "node:fs";
 import { PremiumVerificationError } from "./premium_access.js";
@@ -123,6 +123,7 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     "POST /api/identify": { handler: identify, max_body: MAX_IDENTIFY_BODY },
     "POST /api/recipe": { handler: recipe, max_body: 2048 },
     "POST /api/featured-recipe": { handler: featured_recipe, max_body: 2048 },
+    "GET /api/explore": { handler: async () => ({ dishes: curated_catalog() }), max_body: 0 },
     "GET /api/allowance": { handler: allowance, max_body: 0 },
     "GET /api/dish-image": { handler: dish_image, max_body: 0 },
     "POST /api/feedback": { handler: send_feedback, max_body: FEEDBACK_BODY },
@@ -220,3 +221,4 @@ function recipe_details(recipe) {
     ingredients: recipe.ingredients?.map((i) => i.item),
   };
 }
+

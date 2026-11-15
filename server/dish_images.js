@@ -79,6 +79,20 @@ export function curated_keys(curated_dir = CURATED_DIR) {
   return keys;
 }
 
+/** One searchable entry per curated image, including alternative names. */
+export function curated_catalog(curated_dir = CURATED_DIR) {
+  try {
+    const manifest = JSON.parse(readFileSync(join(curated_dir, "manifest.json"), "utf8"));
+    return (manifest.photos || []).flatMap((photo) => {
+      const names = Array.isArray(photo.names) ? photo.names.filter((name) => typeof name === "string" && image_key(photo.kind, name)) : [];
+      if (!names.length || !/^[a-z0-9-]+\.jpg$/.test(photo.file)) return [];
+      return [{ name: names[0], kind: photo.kind, aliases: names.slice(1), image: `/images/${image_key(photo.kind, names[0])}.jpg` }];
+    });
+  } catch {
+    return [];
+  }
+}
+
 /** Copies the hand-picked photos (data/curated-photos) into the library, under every name each one covers. */
 export function install_curated(dir, curated_dir = CURATED_DIR) {
   let manifest;
@@ -198,3 +212,4 @@ export function create_image_library({ env = {}, store, fetch_impl = fetch, dir 
     },
   };
 }
+
