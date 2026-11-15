@@ -43,6 +43,21 @@
     {"file":"fish-tacos.jpg","kind":"meal","names":["Fish tacos","Baja fish tacos"]},
     {"file":"crab-cakes.jpg","kind":"meal","names":["Crab cakes","Crab cake","Maryland crab cakes"]},
     {"file":"shrimp-and-grits.jpg","kind":"meal","names":["Shrimp and grits"]},
-    {"file":"lo-mein.jpg","kind":"meal","names":["Lo mein","Chicken lo mein"]}
+    {"file":"lo-mein.jpg","kind":"meal","names":["Lo mein","Chicken lo mein"]},
+    {"file":"chocolate-cake.jpg","kind":"meal","names":["Chocolate cake","Chocolate layer cake","Chocolate fudge cake"]},
+    {"file":"chicken-tikka-masala.jpg","kind":"meal","names":["Chicken tikka masala","Tikka masala"]},
+    {"file":"chicken-quesadilla.jpg","kind":"meal","names":["Chicken quesadilla","Quesadilla","Quesadillas"]},
+    {"file":"chicken-enchiladas.jpg","kind":"meal","names":["Chicken enchiladas","Enchiladas","Red enchiladas"]},
+    {"file":"chocolate-chip-cookies.jpg","kind":"meal","names":["Chocolate chip cookies","Chocolate chip cookie"]},
+    {"file":"beef-burrito.jpg","kind":"meal","names":["Beef burrito","Burrito","Ground beef burrito"]},
+    {"file":"loaded-baked-potato.jpg","kind":"meal","names":["Loaded baked potato","Baked potato","Stuffed baked potato"]},
+    {"file":"nachos.jpg","kind":"meal","names":["Nachos","Loaded nachos","Beef nachos"]},
+    {"file":"shrimp-scampi.jpg","kind":"meal","names":["Shrimp scampi","Garlic butter shrimp","Garlic shrimp"]},
+    {"file":"chicken-tortilla-soup.jpg","kind":"meal","names":["Chicken tortilla soup","Tortilla soup"]},
+    {"file":"jambalaya.jpg","kind":"meal","names":["Jambalaya","Cajun jambalaya"]},
+    {"file":"guacamole.jpg","kind":"meal","names":["Guacamole and chips","Guacamole","Chips and guacamole"]},
+    {"file":"paella.jpg","kind":"meal","names":["Paella","Seafood paella","Paella de marisco"]},
+    {"file":"chilaquiles.jpg","kind":"meal","names":["Chilaquiles","Chilaquiles rojos"]},
+    {"file":"gumbo.jpg","kind":"meal","names":["Gumbo","Seafood gumbo","Chicken and sausage gumbo"]}
   ]
 }
