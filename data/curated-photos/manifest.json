@@ -1,8 +1,28 @@
 {
   "_note": "Hand-picked cover photos, installed into the library automatically when the server starts. Each photo is used for every name listed. Add a photo by placing a portrait or square JPEG here and listing it below.",
   "photos": [
-    { "file": "margarita.jpg", "kind": "cocktail", "names": ["Margarita", "Classic Margarita", "Margarita on the Rocks"] },
-    { "file": "moscow-mule.jpg", "kind": "cocktail", "names": ["Moscow Mule", "Classic Moscow Mule"] },
-    { "file": "cosmopolitan.jpg", "kind": "cocktail", "names": ["Cosmopolitan", "Cosmo", "Classic Cosmopolitan"] }
+    {"file":"margarita.jpg","kind":"cocktail","names":["Margarita","Classic Margarita","Margarita on the Rocks"]},
+    {"file":"moscow-mule.jpg","kind":"cocktail","names":["Moscow Mule","Classic Moscow Mule"]},
+    {"file":"cosmopolitan.jpg","kind":"cocktail","names":["Cosmopolitan","Cosmo","Classic Cosmopolitan"]},
+    {"file":"manhattan.jpg","kind":"cocktail","names":["Manhattan","Classic Manhattan","Bourbon Manhattan","Rye Manhattan"]},
+    {"file":"gin-and-tonic.jpg","kind":"cocktail","names":["Gin and Tonic","Gin & Tonic","G&T","Gin Tonic"]},
+    {"file":"paloma.jpg","kind":"cocktail","names":["Paloma","Classic Paloma"]},
+    {"file":"negroni.jpg","kind":"cocktail","names":["Negroni","Classic Negroni"]},
+    {"file":"french-75.jpg","kind":"cocktail","names":["French 75","French Seventy-Five"]},
+    {"file":"long-island-iced-tea.jpg","kind":"cocktail","names":["Long Island Iced Tea","Long Island"]},
+    {"file":"tequila-sunrise.jpg","kind":"cocktail","names":["Tequila Sunrise"]},
+    {"file":"bloody-mary.jpg","kind":"cocktail","names":["Bloody Mary","Classic Bloody Mary"]},
+    {"file":"tom-collins.jpg","kind":"cocktail","names":["Tom Collins","Gin Collins"]},
+    {"file":"dark-n-stormy.jpg","kind":"cocktail","names":["Dark 'n' Stormy","Dark and Stormy","Dark n Stormy"]},
+    {"file":"mimosa.jpg","kind":"cocktail","names":["Mimosa","Classic Mimosa"]},
+    {"file":"aperol-spritz.jpg","kind":"cocktail","names":["Aperol Spritz","Spritz"]},
+    {"file":"whiskey-sour.jpg","kind":"cocktail","names":["Whiskey Sour","Whisky Sour","Bourbon Sour"]},
+    {"file":"espresso-martini.jpg","kind":"cocktail","names":["Espresso Martini"]},
+    {"file":"mai-tai.jpg","kind":"cocktail","names":["Mai Tai","Classic Mai Tai"]},
+    {"file":"daiquiri.jpg","kind":"cocktail","names":["Daiquiri","Classic Daiquiri","Daiquiri (Classic)"]},
+    {"file":"martini.jpg","kind":"cocktail","names":["Martini","Dry Martini","Gin Martini","Classic Martini"]},
+    {"file":"mojito.jpg","kind":"cocktail","names":["Mojito","Classic Mojito"]},
+    {"file":"old-fashioned.jpg","kind":"cocktail","names":["Old Fashioned","Old-Fashioned","Bourbon Old Fashioned","Classic Old Fashioned"]},
+    {"file":"pina-colada.jpg","kind":"cocktail","names":["Pina Colada"]}
   ]
 }
