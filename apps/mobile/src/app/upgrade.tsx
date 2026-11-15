@@ -1,11 +1,20 @@
-// The paywall, shown after the 3 free photos (design "A · Plan picker", approved 2026-11-15).
+// The paywall, shown after the 3 free photos or when a free account tries to save a 4th recipe (design "A · Plan picker", approved 2026-11-15).
 // Buying is not connected yet: RevenueCat and the Google Play products come in phase 3 (docs/PROJECT-PLAN.md).
 import { Ionicons } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { DEFAULT_PLAN, FREE_TRIAL_DAYS, PLANS, type PlanId, planDetail, trialTerms, yearlySavingPercent } from "../paywall/plans";
+import {
+  DEFAULT_PLAN,
+  FREE_TRIAL_DAYS,
+  PLANS,
+  type PlanId,
+  paywallEyebrow,
+  planDetail,
+  trialTerms,
+  yearlySavingPercent,
+} from "../paywall/plans";
 import { Button, colors, Notice, type } from "../ui/theme";
 
 const heroArt = require("../../assets/hero.png");
@@ -14,6 +23,7 @@ const NOT_YET = "Subscriptions aren't open yet. Your saved recipes are still her
 
 export default function Upgrade() {
   const insets = useSafeAreaInsets();
+  const { reason } = useLocalSearchParams<{ reason?: string }>();
   const [selected, setSelected] = useState<PlanId>(DEFAULT_PLAN);
   const [notice, setNotice] = useState<string | null>(null);
 
@@ -34,7 +44,7 @@ export default function Upgrade() {
         <Image source={heroArt} style={styles.art} resizeMode="contain" accessibilityIgnoresInvertColors />
       </View>
 
-      <Text style={styles.eyebrow}>{"YOU'VE USED YOUR 3 FREE PHOTOS"}</Text>
+      <Text style={styles.eyebrow}>{paywallEyebrow(reason === "saved" ? "saved" : "photos")}</Text>
       <Text style={[type.title, { marginTop: 8 }]} accessibilityRole="header">
         Keep snapping. Keep cooking.
       </Text>

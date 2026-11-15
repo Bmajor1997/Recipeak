@@ -1,5 +1,15 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_PLAN, FREE_TRIAL_DAYS, PLANS, planDetail, trialTerms, yearlyPerMonth, yearlySavingPercent } from "../src/paywall/plans";
+import {
+  DEFAULT_PLAN,
+  FREE_SAVED_RECIPES,
+  paywallEyebrow,
+  FREE_TRIAL_DAYS,
+  PLANS,
+  planDetail,
+  trialTerms,
+  yearlyPerMonth,
+  yearlySavingPercent,
+} from "../src/paywall/plans";
 
 describe("paywall plans", () => {
   it("uses the prices decided on 2026-11-15", () => {
@@ -7,6 +17,12 @@ describe("paywall plans", () => {
     expect(PLANS.yearly.priceUsd).toBe(24.99);
     expect(FREE_TRIAL_DAYS).toBe(7);
     expect(DEFAULT_PLAN).toBe("yearly");
+  });
+
+  it("explains why the paywall opened", () => {
+    expect(FREE_SAVED_RECIPES).toBe(3);
+    expect(paywallEyebrow("photos")).toBe("YOU'VE USED YOUR 3 FREE PHOTOS");
+    expect(paywallEyebrow("saved")).toBe("YOU'VE SAVED YOUR 3 FREE RECIPES");
   });
 
   it("works out the yearly deal without overstating it", () => {

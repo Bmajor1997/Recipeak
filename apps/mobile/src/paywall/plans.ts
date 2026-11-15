@@ -13,6 +13,17 @@ export type Plan = {
 
 export const FREE_TRIAL_DAYS = 7;
 
+/** What the free plan includes: 3 photos (counted on the server) and up to 3 recipes in Saved (counted on the phone). */
+export const FREE_PHOTOS = 3;
+export const FREE_SAVED_RECIPES = 3;
+
+/** Why the paywall opened: the free photos ran out, or Saved is full. */
+export type PaywallReason = "photos" | "saved";
+
+export function paywallEyebrow(reason: PaywallReason): string {
+  return reason === "saved" ? `YOU'VE SAVED YOUR ${FREE_SAVED_RECIPES} FREE RECIPES` : `YOU'VE USED YOUR ${FREE_PHOTOS} FREE PHOTOS`;
+}
+
 export const PLANS: Record<PlanId, Plan> = {
   yearly: { id: "yearly", title: "Yearly", priceUsd: 24.99, period: "year" },
   monthly: { id: "monthly", title: "Monthly", priceUsd: 3.99, period: "month" },

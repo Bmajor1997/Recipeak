@@ -20,7 +20,7 @@ If the app is unsure, it shows its top two or three guesses and the user picks o
 | App framework | Expo / React Native, the same as Votic (on the newer Expo SDK 58) |
 | AI service | Same as Votic: our backend calls OpenAI; the key stays on the server |
 | Sign-in | Required before the first photo (Firebase, like Votic) |
-| Free use | 3 free photos per account, then the paid plan (RevenueCat, like Votic) |
+| Free use | 3 free photos per account, and up to **3 recipes in Saved** (from photos or the Home wall, decided 2026-11-15); then the paid plan (RevenueCat, like Votic) |
 | Paid plan (decided 2026-11-15) | **$3.99 a month** or **$24.99 a year** (about $2.08 a month, "Save 48%"), both with a **7-day free trial**; Yearly is selected by default |
 | Saved recipes | A **Saved** screen in the app; stored on the phone first, synced to the account later |
 | Diet versions | Users can ask for vegetarian, vegan, gluten-free, dairy-free and other versions of a recipe |
@@ -53,7 +53,7 @@ All amounts use US measurements.
 
 ### Free photos
 
-Each account gets 3 free photos, counted on the server against the verified account (never a number sent by the phone). A photo counts when the app returns a meal or cocktail. A failed request, or a photo that turns out not to be food or drink, does not use one up; daily and per-minute limits stop abuse of that rule.
+Each account gets 3 free photos and up to 3 saved recipes. Saving a 4th recipe, whether it came from a photo or a tap on the Home wall, opens the paywall (re-saving one already in Saved is fine, and removing one frees a space). Saved recipes are counted on the phone, since Saved lives there for now; when Saved syncs to the account, the server should count them too. The photos are counted on the server against the verified account (never a number sent by the phone). A photo counts when the app returns a meal or cocktail. A failed request, or a photo that turns out not to be food or drink, does not use one up; daily and per-minute limits stop abuse of that rule.
 
 ### The camera
 
@@ -91,10 +91,10 @@ The person's photo is used only to recognise the dish, then discarded. Every rec
 
 ### The paywall
 
-Approved on 2026-11-15 from three options (plan picker, Free vs Pro table, photo packs); the plan picker won. It opens after the 3 free photos (`apps/mobile/src/app/upgrade.tsx`), in the black-and-grapefruit look:
+Approved on 2026-11-15 from three options (plan picker, Free vs Pro table, photo packs); the plan picker won. It opens after the 3 free photos, or when a free account tries to save a 4th recipe (`apps/mobile/src/app/upgrade.tsx`), in the black-and-grapefruit look:
 
 - a close button at the top right, and the drink-and-plate art on a dark card,
-- "You've used your 3 free photos", the title **Keep snapping. Keep cooking.** and one line on what Pro gives: unlimited photos, every saved recipe, and diet versions,
+- "You've used your 3 free photos" (or "You've saved your 3 free recipes"), the title **Keep snapping. Keep cooking.** and one line on what Pro gives: unlimited photos, every saved recipe, and diet versions,
 - two plan choices, **Yearly** ($24.99 / year · just $2.08 / month, with a "Save 48%" badge, selected first) and **Monthly** ($3.99 / month),
 - a **Start 7-day free trial** button, the trial terms for the selected plan ("Free for 7 days, then $24.99 / year. Cancel anytime in Google Play.") and **Restore purchase**.
 

@@ -15,6 +15,13 @@ export type PhotoStore = {
 
 const STORAGE_NAME = "mealsandmixers.saved.v1";
 export const MAX_SAVED = 500;
+
+/** Thrown when a free account already has its free saved recipes and tries to save another. */
+export class SavedLimitError extends Error {
+  constructor(readonly limit: number) {
+    super(`The free plan keeps up to ${limit} saved recipes.`);
+  }
+}
 const noPhotos: PhotoStore = { keepPhoto: async (uri) => uri, removePhoto: () => {} };
 
 export function createSavedRecipes(
@@ -34,11 +41,13 @@ export function createSavedRecipes(
 
   return {
     list: read,
-    async save(kind: Kind, recipe: Recipe, photoUri?: string | null): Promise<SavedRecipe> {
+    /** `limit` is the free plan's cap (leave it out for subscribers). Re-saving a recipe already in Saved is always allowed. */
+    async save(kind: Kind, recipe: Recipe, photoUri?: string | null, { limit }: { limit?: number } = {}): Promise<SavedRecipe> {
       const list = await read();
       // Saving the same recipe twice moves it to the top instead of making a copy.
       const replaced = list.filter((s) => s.recipe.title === recipe.title);
       const others = list.filter((s) => s.recipe.title !== recipe.title);
+      if (limit !== undefined && replaced.length === 0 && others.length >= limit) throw new SavedLimitError(limit);
       if (others.length >= MAX_SAVED) throw new Error(`You can save up to ${MAX_SAVED} recipes. Remove some to save more.`);
       const id = newId();
       // A photo that isn't kept still lets the recipe save, just without its picture.

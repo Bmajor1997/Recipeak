@@ -9,10 +9,12 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { type CurrentRecipe, useApp } from "../AppContext";
 import { ApiError } from "../api/client";
 import { useCamera } from "../camera/CameraProvider";
+import { FREE_SAVED_RECIPES } from "../paywall/plans";
 import { formatIngredient, formatMinutes, recipeAsText } from "../recipes/format";
 import { scaleAmount } from "../recipes/scale";
 import { DIETS, type Diet, type Guess, type Kind } from "../recipes/types";
 import { useDishImage } from "../recipes/useDishImage";
+import { SavedLimitError } from "../saved/savedRecipes";
 import { FocusedCover } from "../ui/FocusedCover";
 import { Button, Chip, colors, fonts, Notice, type } from "../ui/theme";
 
@@ -85,6 +87,7 @@ function Problem({ message }: { message: string }) {
 
 function RecipeView({ current }: { current: Ready }) {
   const { setCurrent, api, saved } = useApp();
+  const { photosLeft } = useCamera();
   const insets = useSafeAreaInsets();
   const { width, height } = useWindowDimensions();
   const { recipe, kind, guesses, selected } = current;
@@ -128,13 +131,25 @@ function RecipeView({ current }: { current: Ready }) {
         await saved.remove(current.savedId);
         setCurrent({ ...current, savedId: null });
       } else {
-        // Saved with its cover photo, downloaded to the phone so Saved works offline.
-        const entry = await saved.save(kind, recipe, coverUri);
+        // Saved with its cover photo, downloaded to the phone so Saved works offline. Free accounts keep up to 3
+        // recipes, however they found them (a photo or the Home wall); photosLeft is null only for subscribers.
+        const limit = (await isSubscriber()) ? undefined : FREE_SAVED_RECIPES;
+        const entry = await saved.save(kind, recipe, coverUri, { limit });
         setCurrent({ ...current, savedId: entry.id });
       }
     } catch (error) {
-      setProblem((error as Error).message);
+      if (error instanceof SavedLimitError) router.push({ pathname: "/upgrade", params: { reason: "saved" } });
+      else setProblem((error as Error).message);
     }
+  }
+
+  async function isSubscriber(): Promise<boolean> {
+    if (photosLeft !== undefined) return photosLeft === null;
+    // Not known yet: ask the server. If it can't be reached, let the save through rather than block a subscriber.
+    return api.allowance().then(
+      (a) => a.premium,
+      () => true,
+    );
   }
 
   const diets = DIETS.filter((d) => kind === "cocktail" || d !== "non-alcoholic");
