@@ -110,7 +110,7 @@ test("failures don't publish a photo and aren't retried immediately", async (t) 
   assert.equal(bad.images.status({ kind: "meal", name: "Pad thai", user_id: "alice" }).status, "unavailable");
   assert.equal(bad.calls.length, 1);
   const rejected = library(t, { status: 400 });
-  rejected.images.status({ kind: "meal", name: "Ramen", user_id: "alice" });
+  rejected.images.status({ kind: "meal", name: "Tonkatsu", user_id: "alice" });
   await rejected.images.settled();
   assert.equal(rejected.store.records()[0].estimated_cost_usd, 0, "a rejected request costs nothing");
 });
@@ -119,10 +119,10 @@ test("cover photos have their own daily limits", async (t) => {
   const { images, calls } = library(t, {}, { MM_IMAGE_USER_DAILY_LIMIT: "1" });
   images.status({ kind: "meal", name: "Lasagna", user_id: "alice" });
   await images.settled();
-  assert.equal(images.status({ kind: "meal", name: "Pho", user_id: "alice" }).status, "pending");
+  assert.equal(images.status({ kind: "meal", name: "Bulgogi", user_id: "alice" }).status, "pending");
   await images.settled();
   assert.equal(calls.length, 1, "alice's second new photo waits until tomorrow");
-  assert.equal(images.status({ kind: "meal", name: "Pho", user_id: "alice" }).status, "unavailable");
+  assert.equal(images.status({ kind: "meal", name: "Bulgogi", user_id: "alice" }).status, "unavailable");
 });
 
 test("only exact library file names can be read", (t) => {
