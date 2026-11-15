@@ -1,10 +1,11 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { LinearGradient } from "expo-linear-gradient";
 import { Tabs } from "expo-router";
 import { Pressable, StyleSheet, View } from "react-native";
 import { useCamera } from "../../camera/CameraProvider";
 import { colors } from "../../ui/theme";
 
-/** The raised orange camera button in the middle of the tab bar. It opens the camera instead of a page. */
+/** The raised camera button in the middle of the tab bar: a dark button inside a citrus-colored ring. It opens the camera instead of a page. */
 function CameraTabButton() {
   const { openCamera } = useCamera();
   return (
@@ -16,7 +17,11 @@ function CameraTabButton() {
         onPress={openCamera}
         style={({ pressed }) => [styles.camera, pressed && { transform: [{ scale: 0.94 }] }]}
       >
-        <Ionicons name="camera" size={30} color={colors.accentText} />
+        <LinearGradient colors={["#FF6F61", "#FFB347", "#FF3D6E"]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.ring}>
+          <View style={styles.inner}>
+            <Ionicons name="camera" size={28} color={colors.accent} />
+          </View>
+        </LinearGradient>
       </Pressable>
     </View>
   );
@@ -50,14 +55,13 @@ export default function TabsLayout() {
 const styles = StyleSheet.create({
   slot: { flex: 1, alignItems: "center" },
   camera: {
-    width: 68,
-    height: 68,
-    borderRadius: 34,
-    marginTop: -26,
-    backgroundColor: colors.accent,
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 5,
-    borderColor: colors.background,
+    width: 76,
+    height: 76,
+    borderRadius: 38,
+    marginTop: -28,
+    padding: 5,
+    backgroundColor: colors.background,
   },
+  ring: { flex: 1, borderRadius: 33, padding: 3 },
+  inner: { flex: 1, borderRadius: 30, backgroundColor: colors.surface, alignItems: "center", justifyContent: "center" },
 });
