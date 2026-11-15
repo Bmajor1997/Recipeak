@@ -1,11 +1,13 @@
-// Saved recipes live on the phone for now (see docs/PROJECT-PLAN.md: account sync comes later).
-// Each can keep its own photo, stored privately on the phone (see photoStore.ts).
+// Saved recipes belong to the signed-in account: each account has its own list, so people who share a phone never
+// see each other's recipes or share one free limit. The lists live on the phone for now (see docs/PROJECT-PLAN.md:
+// account sync comes later). Each recipe can keep its own photo, stored privately on the phone (see photoStore.ts).
 import { parse_saved_list } from "../recipes/parse";
 import type { Kind, Recipe, SavedRecipe } from "../recipes/types";
 
 export type KeyValueStorage = {
   getItem(key: string): Promise<string | null>;
   setItem(key: string, value: string): Promise<void>;
+  removeItem(key: string): Promise<void>;
 };
 
 export type PhotoStore = {
@@ -13,7 +15,9 @@ export type PhotoStore = {
   remove_photo(uri: string): void;
 };
 
-const STORAGE_NAME = "mealsandmixers.saved.v1";
+/** Before 2026-11-15 there was one list for the whole phone. The first account to open Saved after the update takes it over. */
+const DEVICE_WIDE_NAME = "mealsandmixers.saved.v1";
+const account_storage_name = (uid: string) => `mealsandmixers.saved.v2.${encodeURIComponent(uid)}`;
 const MAX_SAVED = 500;
 
 /** Thrown when a free account already has its free saved recipes and tries to save another. */
@@ -22,14 +26,36 @@ export class SavedLimitError extends Error {
     super(`The free plan keeps up to ${limit} saved recipes.`);
   }
 }
-const noPhotos: PhotoStore = { keep_photo: async (uri) => uri, remove_photo: () => {} };
+const no_photos: PhotoStore = { keep_photo: async (uri) => uri, remove_photo: () => {} };
 
+/** The saved recipes of one account (`uid`, the signed-in user's id). */
 export function create_saved_recipes(
   storage: KeyValueStorage,
-  { now = () => new Date(), new_id = random_id, photos = noPhotos }: { now?: () => Date; new_id?: () => string; photos?: PhotoStore } = {},
+  uid: string,
+  { now = () => new Date(), new_id = random_id, photos = no_photos }: { now?: () => Date; new_id?: () => string; photos?: PhotoStore } = {},
 ) {
+  if (!uid) throw new Error("Saved recipes need a signed-in account.");
+  const storage_name = account_storage_name(uid);
+  let moved_over: Promise<void> | null = null;
+
+  /** Moves the old phone-wide list (if any) into this account, once, and removes it so no other account gets it. */
+  function take_over_device_list(): Promise<void> {
+    moved_over ??= (async () => {
+      if ((await storage.getItem(storage_name)) !== null) return;
+      const old = await storage.getItem(DEVICE_WIDE_NAME);
+      if (old === null) return;
+      await storage.setItem(storage_name, old);
+      await storage.removeItem(DEVICE_WIDE_NAME);
+    })().catch((error) => {
+      moved_over = null;
+      throw error;
+    });
+    return moved_over;
+  }
+
   async function read(): Promise<SavedRecipe[]> {
-    const raw = await storage.getItem(STORAGE_NAME);
+    await take_over_device_list();
+    const raw = await storage.getItem(storage_name);
     if (!raw) return [];
     try {
       return parse_saved_list(JSON.parse(raw));
@@ -37,7 +63,7 @@ export function create_saved_recipes(
       return [];
     }
   }
-  const write = (list: SavedRecipe[]) => storage.setItem(STORAGE_NAME, JSON.stringify(list));
+  const write = (list: SavedRecipe[]) => storage.setItem(storage_name, JSON.stringify(list));
 
   return {
     list: read,
@@ -67,6 +93,18 @@ export function create_saved_recipes(
     },
   };
 }
+
+export type SavedRecipes = ReturnType<typeof create_saved_recipes>;
+
+/** What Saved is while nobody is signed in: empty, and nothing can be saved. */
+export const SIGNED_OUT_SAVED: SavedRecipes = {
+  list: async () => [],
+  save: async () => {
+    throw new Error("Sign in to save recipes.");
+  },
+  remove: async () => {},
+  find: async () => undefined,
+};
 
 function random_id(): string {
   return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;

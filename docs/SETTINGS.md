@@ -6,7 +6,7 @@ The Settings tab adapts Votic's grouped settings navigation to Meals & Mixers. I
 
 | Votic area | Meals & Mixers behavior |
 | --- | --- |
-| Account & Membership | Signed-in email, password-reset request, confirmed sign-out. Sign-out retains device recipes and clears the current recipe. |
+| Account & Membership | Signed-in email, password-reset request, confirmed sign-out. Sign-out keeps the account's recipes on the device for its next sign-in and clears the current recipe. |
 | Accessibility | Pause the Home photo wall. The phone's Reduce Motion preference always takes precedence. Text continues to follow the phone's font-size setting. |
 | Storage management | Choose whether newly saved recipes keep an offline cover photo. Existing saved photos remain until the corresponding recipe is removed. |
 | Library tools | Count saved recipes and offline photos, open Saved, share all saved recipe text through the system share sheet. Text sharing is not an importable backup. |
@@ -15,7 +15,7 @@ The Settings tab adapts Votic's grouped settings navigation to Meals & Mixers. I
 
 Preferences are stored in AsyncStorage under a versioned key scoped to the Firebase user ID. They are local to the device. Changing sign-in remounts preference state so a late read/save from a prior account cannot populate the next account. Controls remain disabled during preference reads/writes. A failed write leaves the previous choice in place and allows retry. Failed/corrupt reads show a retry action rather than overwriting the stored value.
 
-Saved recipes use the repository's existing device-wide store. They are visible across sign-ins on this device. Settings and the sign-out confirmation disclose this; this change does not migrate or erase existing recipes. If cover preferences cannot be read, recipe text can still be saved without downloading a new offline photo.
+Saved recipes belong to the signed-in account (since 2026-11-15): each Firebase user ID has its own list on the device, so people who share a phone never see each other's recipes or share one free limit. The old phone-wide list moves to the first account that opens Saved after the update, and is then removed so no other account gets it. If cover preferences cannot be read, recipe text can still be saved without downloading a new offline photo.
 
 ## Source areas intentionally omitted
 

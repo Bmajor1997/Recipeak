@@ -23,7 +23,12 @@ const recipe: Recipe = {
 
 function memory_storage(): KeyValueStorage & { data: Map<string, string> } {
   const data = new Map<string, string>();
-  return { data, getItem: async (k) => data.get(k) ?? null, setItem: async (k, v) => void data.set(k, v) };
+  return {
+    data,
+    getItem: async (k) => data.get(k) ?? null,
+    setItem: async (k, v) => void data.set(k, v),
+    removeItem: async (k) => void data.delete(k),
+  };
 }
 
 describe("reading server replies", () => {
@@ -70,9 +75,29 @@ describe("formatting", () => {
 });
 
 describe("saved recipes", () => {
+  it("keeps each account's saved recipes separate, and gives the old phone-wide list to one account only", async () => {
+    const storage = memory_storage();
+    let n = 0;
+    const new_id = () => `id${++n}`;
+    storage.data.set("mealsandmixers.saved.v1", JSON.stringify([{ id: "old", saved_at: "2026-11-14T00:00:00Z", kind: "meal", recipe }]));
+    const alice = create_saved_recipes(storage, "alice", { new_id });
+    const bob = create_saved_recipes(storage, "bob", { new_id });
+    expect((await alice.list()).map((s) => s.id)).toEqual(["old"]);
+    expect(storage.data.has("mealsandmixers.saved.v1")).toBe(false);
+    expect(await bob.list()).toEqual([]);
+    await bob.save("cocktail", { ...recipe, title: "Margarita" });
+    expect((await alice.list()).map((s) => s.recipe.title)).toEqual(["Chicken Parmesan"]);
+    expect((await bob.list()).map((s) => s.recipe.title)).toEqual(["Margarita"]);
+    // Each account has its own free limit.
+    for (const title of ["Pho", "Ramen"]) await alice.save("meal", { ...recipe, title }, null, { limit: 3 });
+    await expect(alice.save("meal", { ...recipe, title: "Paella" }, null, { limit: 3 })).rejects.toBeInstanceOf(SavedLimitError);
+    await bob.save("meal", { ...recipe, title: "Paella" }, null, { limit: 3 });
+    expect(() => create_saved_recipes(storage, "")).toThrow();
+  });
+
   it("keeps free accounts to 3 saved recipes, from any source, but always allows re-saving one", async () => {
     let n = 0;
-    const saved = create_saved_recipes(memory_storage(), { new_id: () => `id${++n}` });
+    const saved = create_saved_recipes(memory_storage(), "alice", { new_id: () => `id${++n}` });
     const free = { limit: 3 };
     for (const title of ["Pho", "Margarita", "Ramen"]) await saved.save("meal", { ...recipe, title }, null, free);
     await expect(saved.save("meal", { ...recipe, title: "Paella" }, null, free)).rejects.toBeInstanceOf(SavedLimitError);
@@ -87,14 +112,14 @@ describe("saved recipes", () => {
   it("saves newest first, de-duplicates by title, removes, and survives damaged storage", async () => {
     const storage = memory_storage();
     let n = 0;
-    const saved = create_saved_recipes(storage, { new_id: () => `id${++n}` });
+    const saved = create_saved_recipes(storage, "alice", { new_id: () => `id${++n}` });
     await saved.save("meal", recipe);
     await saved.save("cocktail", { ...recipe, title: "Margarita" });
     await saved.save("meal", recipe);
     expect((await saved.list()).map((s) => s.recipe.title)).toEqual(["Chicken Parmesan", "Margarita"]);
     await saved.remove("id3");
     expect((await saved.list()).map((s) => s.id)).toEqual(["id2"]);
-    storage.data.set("mealsandmixers.saved.v1", "{not json");
+    storage.data.set("mealsandmixers.saved.v2.alice", "{not json");
     expect(await saved.list()).toEqual([]);
   });
 });

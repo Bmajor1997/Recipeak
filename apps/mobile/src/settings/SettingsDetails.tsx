@@ -67,7 +67,9 @@ function Account() {
   return (
     <>
       <Text style={type.body}>{user?.email ?? "Signed-in account"}</Text>
-      <Text style={type.muted}>Your sign-in lets the recipe service check your photo allowance. Saved recipes stay on this device.</Text>
+      <Text style={type.muted}>
+        Your sign-in lets the recipe service check your photo allowance. Your saved recipes belong to this account.
+      </Text>
       {!confirm && error && <Notice tone="error">{error}</Notice>}
       {notice && <Notice>{notice}</Notice>}
       <Button label="Reset password" variant="secondary" disabled={busy || !user?.email} onPress={() => void run("reset")} />
@@ -94,8 +96,8 @@ function Account() {
               Sign out?
             </Text>
             <Text style={type.body}>
-              Your saved recipes and their photos will stay on this device. Anyone using this app on this device can view them after signing
-              in. Signing out does not delete your account.
+              Your saved recipes stay with your account on this device. Nobody else who signs in here can see them, and they’re back when
+              you sign in again. Signing out does not delete your account.
             </Text>
             {error && <Notice tone="error">{error}</Notice>}
             <Button label="Cancel" variant="secondary" disabled={busy} onPress={() => set_confirm(false)} />
@@ -223,8 +225,9 @@ function Library() {
       </Text>
       {items && <Text style={type.muted}>{items.filter((item) => item.photo_uri).length} with an offline cover photo.</Text>}
       <Text style={type.muted}>
-        Recipes and their offline cover photos live on this device and are shared across sign-ins. They aren’t synced or backed up to your
-        account. Remove a recipe from its recipe screen to remove its saved photo too.
+        Your recipes and their offline cover photos belong to your account and are kept on this device. Other accounts on this phone can’t
+        see them. They aren’t synced or backed up yet, so they don’t follow you to another phone. Remove a recipe from its recipe screen to
+        remove its saved photo too.
       </Text>
       {error && <Notice tone="error">{error}</Notice>}
       <Button label="Refresh saved recipes" variant="secondary" disabled={busy} onPress={() => set_attempt((n) => n + 1)} />
@@ -321,8 +324,8 @@ function Help() {
         Your data
       </Text>
       <Text style={type.body}>
-        Firebase handles email sign-in. The recipe server tracks usage and costs to enforce limits. Saved recipe text and offline cover
-        photos stay on this device. Signing out keeps them.
+        Firebase handles email sign-in. The recipe server tracks usage and costs to enforce limits. Each account’s saved recipes and offline
+        cover photos are kept separately on this device. Signing out keeps them for when you sign in again.
       </Text>
       <Text accessibilityRole="header" style={type.heading}>
         Recipe guidance

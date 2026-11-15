@@ -34,7 +34,7 @@ export default function Settings() {
         />
       </Group>
       <Group title="LIBRARY & SUPPORT">
-        <Row label={CATEGORIES.library} detail="Recipes kept on this device" icon="bookmark-outline" onPress={() => open("library")} />
+        <Row label={CATEGORIES.library} detail="Your account's saved recipes" icon="bookmark-outline" onPress={() => open("library")} />
         <Row label={CATEGORIES.help} detail="Getting started, photos, and data" icon="help-circle-outline" onPress={() => open("help")} />
       </Group>
     </SettingsScreen>

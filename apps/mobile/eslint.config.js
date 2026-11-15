@@ -7,7 +7,7 @@ const REQUIRED_NAMES = [
   "^use[A-Z]", // React hooks: React's hook checks only recognise names that start with "use" and a capital
   "^on[A-Z]", // React and React Native event props (onPress, onChange, onPanResponderMove…)
   "^tabBar[A-Z]", // Expo Router tab options
-  "^(getItem|setItem)$", // AsyncStorage's storage interface
+  "^(getItem|setItem|removeItem)$", // AsyncStorage's storage interface
   "^(getReactNativePersistence|toJSON|findAllByType|findByProps)$", // Firebase and react-test-renderer APIs
 ].join("|");
 

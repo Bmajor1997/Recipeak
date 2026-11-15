@@ -7,6 +7,7 @@ function memory() {
   const storage: KeyValueStorage = {
     getItem: async (key) => data.get(key) ?? null,
     setItem: async (key, value) => void data.set(key, value),
+    removeItem: async (key) => void data.delete(key),
   };
   return { data, storage };
 }

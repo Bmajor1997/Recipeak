@@ -75,7 +75,11 @@ describe("Saved search and filters", () => {
 describe("photos kept with saved recipes", () => {
   function setup() {
     const data = new Map<string, string>();
-    const storage: KeyValueStorage = { getItem: async (k) => data.get(k) ?? null, setItem: async (k, v) => void data.set(k, v) };
+    const storage: KeyValueStorage = {
+      getItem: async (k) => data.get(k) ?? null,
+      setItem: async (k, v) => void data.set(k, v),
+      removeItem: async (k) => void data.delete(k),
+    };
     const kept: string[] = [];
     const removed: string[] = [];
     const photos: PhotoStore = {
@@ -86,7 +90,7 @@ describe("photos kept with saved recipes", () => {
       remove_photo: (uri) => void removed.push(uri),
     };
     let n = 0;
-    return { saved: create_saved_recipes(storage, { photos, new_id: () => `id${++n}` }), kept, removed };
+    return { saved: create_saved_recipes(storage, "alice", { photos, new_id: () => `id${++n}` }), kept, removed };
   }
 
   it("keeps the photo when saving, and deletes it when the recipe is removed", async () => {
@@ -108,8 +112,12 @@ describe("photos kept with saved recipes", () => {
 
   it("still saves the recipe if the photo can't be kept, and saves without a photo", async () => {
     const data = new Map<string, string>();
-    const storage: KeyValueStorage = { getItem: async (k) => data.get(k) ?? null, setItem: async (k, v) => void data.set(k, v) };
-    const failing = create_saved_recipes(storage, {
+    const storage: KeyValueStorage = {
+      getItem: async (k) => data.get(k) ?? null,
+      setItem: async (k, v) => void data.set(k, v),
+      removeItem: async (k) => void data.delete(k),
+    };
+    const failing = create_saved_recipes(storage, "alice", {
       photos: { keep_photo: async () => Promise.reject(new Error("disk full")), remove_photo: () => {} },
     });
     expect((await failing.save("cocktail", base, "file:///cache/x.jpg")).photo_uri).toBeNull();

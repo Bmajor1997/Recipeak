@@ -33,7 +33,7 @@ const mocks = vi.hoisted(() => ({
   canGoBack: vi.fn(),
   category: "preferences",
 }));
-vi.mock("@react-native-async-storage/async-storage", () => ({ default: { getItem: mocks.get, setItem: mocks.set } }));
+vi.mock("@react-native-async-storage/async-storage", () => ({ default: { getItem: mocks.get, setItem: mocks.set, removeItem: vi.fn() } }));
 vi.mock("../src/AppContext", () => {
   const api = { allowance: mocks.allowance };
   const saved = { list: mocks.list };

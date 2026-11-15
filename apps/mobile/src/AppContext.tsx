@@ -5,7 +5,7 @@ import { type Api, create_api } from "./api/client";
 import { type AppUser, firebase } from "./auth/firebase";
 import type { DishImage, Guess, Kind, Recipe } from "./recipes/types";
 import { keep_photo, remove_photo } from "./saved/photoStore";
-import { create_saved_recipes } from "./saved/savedRecipes";
+import { create_saved_recipes, SIGNED_OUT_SAVED, type SavedRecipes } from "./saved/savedRecipes";
 
 /**
  * What the recipe sheet shows. While a photo is being read it is "loading"; if the photo couldn't be used it is a
@@ -30,7 +30,8 @@ type AppState = {
   user: AppUser | null;
   ready: boolean;
   api: Api;
-  saved: ReturnType<typeof create_saved_recipes>;
+  /** The signed-in account's own saved recipes. */
+  saved: SavedRecipes;
   current: CurrentRecipe | null;
   set_current: (value: CurrentRecipe | null) => void;
 };
@@ -52,7 +53,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
   );
 
   const api = useMemo(() => create_api({ baseUrl: process.env.EXPO_PUBLIC_API_BASE_URL, id_token: firebase.id_token }), []);
-  const saved = useMemo(() => create_saved_recipes(AsyncStorage, { photos: { keep_photo, remove_photo } }), []);
+  // Each account has its own Saved list, so a new list is opened whenever a different account signs in, and the
+  // recipe the last account had open (with its Saved state) is closed.
+  const uid = user?.uid ?? null;
+  const [current_owner, set_current_owner] = useState(uid);
+  if (current_owner !== uid) {
+    set_current_owner(uid);
+    set_current(null);
+  }
+  const saved = useMemo(
+    () => (uid ? create_saved_recipes(AsyncStorage, uid, { photos: { keep_photo, remove_photo } }) : SIGNED_OUT_SAVED),
+    [uid],
+  );
   const value = useMemo(() => ({ user, ready, api, saved, current, set_current }), [user, ready, api, saved, current]);
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }
