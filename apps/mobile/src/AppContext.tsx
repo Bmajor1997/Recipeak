@@ -4,10 +4,17 @@ import { createContext, type ReactNode, useContext, useEffect, useMemo, useState
 import { type Api, createApi } from "./api/client";
 import { type AppUser, firebase } from "./auth/firebase";
 import type { Identification, Kind, Recipe } from "./recipes/types";
+import { keepPhoto, removePhoto } from "./saved/photoStore";
 import { createSavedRecipes } from "./saved/savedRecipes";
 
-/** What the recipe screen shows: a fresh photo result, or a saved recipe. */
-export type CurrentRecipe = { kind: Kind; recipe: Recipe; guesses: Identification["guesses"] };
+/** What the recipe screen shows: a fresh photo result, or a saved recipe. photoUri is the photo on this phone, if any. */
+export type CurrentRecipe = {
+  kind: Kind;
+  recipe: Recipe;
+  guesses: Identification["guesses"];
+  photoUri: string | null;
+  savedId?: string | null;
+};
 
 type AppState = {
   user: AppUser | null;
@@ -35,7 +42,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   );
 
   const api = useMemo(() => createApi({ baseUrl: process.env.EXPO_PUBLIC_API_BASE_URL, idToken: firebase.idToken }), []);
-  const saved = useMemo(() => createSavedRecipes(AsyncStorage), []);
+  const saved = useMemo(() => createSavedRecipes(AsyncStorage, { photos: { keepPhoto, removePhoto } }), []);
   const value = useMemo(() => ({ user, ready, api, saved, current, setCurrent }), [user, ready, api, saved, current]);
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }

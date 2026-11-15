@@ -64,9 +64,20 @@ Modelled on the ChatGPT app's camera. The Home screen has a **Camera** button; t
 
 When a photo is taken, people get two signals: the **shutter sound** and a **soft white flash** on screen (about a quarter of a second, never a strobe). Screen readers announce "Photo taken. Finding your recipe." The photo then stays on screen with "Finding your recipe…" until the recipe opens. If it isn't food or drink, the message appears inside the camera so they can retake straight away. With the phone's Reduce Motion setting on, the sheet fades instead of sliding and the flash is dimmer.
 
+### Look and feel
+
+Researched on Mobbin (CREME, Julienne, NYT Cooking, Kitchen Stories) and approved on 2026-11-14:
+
+- **Dark teal** throughout, with **Fraunces**, a serif font, for titles; body text stays in the phone's own font for readability.
+- A raised orange **camera button in the middle of the tab bar** opens the camera from any screen.
+- **Home:** a greeting, the drink-and-plate art (cut out, no square), a camera prompt with free photos left, and a "Recently saved" row of photo cards.
+- **Saved:** a two-column grid of photo cards (title over the photo, Meal/Drink tag, total time), with search and All / Meals / Drinks filters.
+- **Recipe:** modelled on CREME's cocktail page: the photo fills the top with the title over it, then a Prep / Cook / Serves row, ingredients with the amounts highlighted, big "01, 02…" step numbers, and a bar at the bottom with a servings counter (amounts rescale) and Save.
+- **Photos stay on the phone:** when a recipe is saved, its photo is copied into the app's private storage on the phone and deleted when the recipe is removed. It is never uploaded again, and the server keeps no copy.
+
 ## 4. Privacy and safety
 
-- **Photos are not kept.** The backend sends the photo to OpenAI with `store:false`, returns the recipe, and discards the image. The usage ledger records counts and costs only, never photos, as in Votic.
+- **Photos are not kept on the server.** The backend sends the photo to OpenAI with `store:false`, returns the recipe, and discards the image. Only the user's own phone keeps a copy, with recipes they save. The usage ledger records counts and costs only, never photos, as in Votic.
 - **No secrets in the app.** The OpenAI, RevenueCat and Firebase admin credentials stay in the backend's secret settings, the same as Votic.
 - **Allergens.** Every recipe lists common allergens it contains, with a note that the photo cannot show hidden ingredients.
 - **Alcohol.** Cocktail recipes affect the app's content rating in the app stores. Plan an age confirmation before alcoholic recipes are shown, and always offer non-alcoholic versions.

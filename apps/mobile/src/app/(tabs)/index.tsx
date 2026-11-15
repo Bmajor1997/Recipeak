@@ -1,97 +1,118 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../../AppContext";
-import { ApiError } from "../../api/client";
-import { CameraSheet, type Photo } from "../../camera/CameraSheet";
-import { preparePhoto } from "../../photos/prepare";
+import { photosLeftText, useCamera } from "../../camera/CameraProvider";
+import type { SavedRecipe } from "../../recipes/types";
+import { totalMinutes } from "../../recipes/search";
+import { greeting } from "../../ui/greeting";
+import { PhotoCard } from "../../ui/PhotoCard";
 import { colors, type } from "../../ui/theme";
 
 const heroArt = require("../../../assets/hero.png");
 
 export default function HomeScreen() {
-  const { api, setCurrent, user } = useApp();
-  const [cameraOpen, setCameraOpen] = useState(false);
-  const [problem, setProblem] = useState<string | null>(null);
-  const [photosLeft, setPhotosLeft] = useState<number | null | undefined>(undefined);
+  const { saved, setCurrent } = useApp();
+  const { openCamera, photosLeft, refreshAllowance } = useCamera();
+  const insets = useSafeAreaInsets();
+  const [recent, setRecent] = useState<SavedRecipe[]>([]);
 
   useFocusEffect(
     useCallback(() => {
-      if (!user) return;
-      api.allowance().then(
-        (a) => setPhotosLeft(a.premium ? null : a.free_photos_left),
-        () => setPhotosLeft(undefined),
+      refreshAllowance();
+      saved.list().then(
+        (list) => setRecent(list.slice(0, 8)),
+        () => setRecent([]),
       );
-    }, [api, user]),
+    }, [saved, refreshAllowance]),
   );
 
-  async function findRecipe(photo: Photo) {
-    setProblem(null);
-    try {
-      const result = await api.identify(await preparePhoto(photo.uri, photo.width, photo.height));
-      setPhotosLeft(result.premium ? null : result.free_photos_left);
-      if (result.kind === "not_food") {
-        // Keep the camera open so they can try again right away.
-        setProblem("That doesn't look like a meal or a drink. Try again, closer up and in good light.");
-        return;
-      }
-      setCurrent({ kind: result.kind, recipe: result.recipe, guesses: result.guesses });
-      setCameraOpen(false);
-      router.push("/recipe");
-    } catch (error) {
-      if (error instanceof ApiError && error.needsUpgrade) {
-        setCameraOpen(false);
-        router.push("/upgrade");
-      } else setProblem(error instanceof ApiError ? error.message : "That photo couldn't be read. Please try another one.");
-    }
-  }
-
-  const allowance = photosLeft == null ? null : photosLeft === 1 ? "1 free photo left" : `${photosLeft} free photos left`;
+  const allowance = photosLeftText(photosLeft);
+  const evening = new Date().getHours() >= 17;
 
   return (
-    <View style={styles.screen}>
-      <View style={styles.hero}>
-        <Image source={heroArt} style={styles.art} resizeMode="contain" accessible={false} />
-        <Text style={[type.title, { textAlign: "center", marginTop: 20 }]} accessibilityRole="header">
-          What are you having?
-        </Text>
-        <Text style={[type.muted, { textAlign: "center", marginTop: 8 }]}>
-          Take a photo of a meal or a cocktail and get a recipe to make it.
+    <ScrollView style={styles.screen} contentContainerStyle={{ paddingTop: insets.top + 16, paddingBottom: 32 }}>
+      <View style={styles.pad}>
+        <Text style={type.muted}>{greeting(new Date().getHours())}</Text>
+        <Text style={[type.display, { marginTop: 4 }]} accessibilityRole="header">
+          {evening ? "What are you having tonight?" : "What are you having?"}
         </Text>
       </View>
 
+      <Image source={heroArt} style={styles.art} resizeMode="contain" accessible={false} />
+
       <Pressable
         accessibilityRole="button"
-        accessibilityLabel="Camera"
+        accessibilityLabel={`Snap a meal or a cocktail.${allowance ? ` ${allowance}.` : ""}`}
         accessibilityHint="Opens the camera"
-        onPress={() => {
-          setProblem(null);
-          setCameraOpen(true);
-        }}
-        style={({ pressed }) => [styles.cameraButton, pressed && { transform: [{ scale: 0.97 }] }]}
+        onPress={openCamera}
+        style={({ pressed }) => [styles.prompt, pressed && { transform: [{ scale: 0.98 }] }]}
       >
-        <Ionicons name="camera" size={30} color={colors.accentText} />
-        <Text style={styles.cameraLabel}>Camera</Text>
+        <View style={styles.promptIcon}>
+          <Ionicons name="camera" size={26} color={colors.accentText} />
+        </View>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.promptTitle}>Snap a meal or a cocktail</Text>
+          <Text style={type.muted}>{allowance ?? "Get a recipe to make it yourself"}</Text>
+        </View>
+        <Ionicons name="chevron-forward" size={24} color={colors.muted} />
       </Pressable>
-      {allowance && <Text style={[type.muted, { textAlign: "center", marginTop: 12 }]}>{allowance}</Text>}
 
-      <CameraSheet visible={cameraOpen} onClose={() => setCameraOpen(false)} onPhoto={findRecipe} message={problem} footnote={allowance} />
-    </View>
+      {recent.length > 0 && (
+        <>
+          <View style={[styles.pad, styles.sectionHeader]}>
+            <Text style={[type.heading, { marginTop: 0, marginBottom: 0 }]} accessibilityRole="header">
+              Recently saved
+            </Text>
+            <Pressable accessibilityRole="link" hitSlop={10} onPress={() => router.navigate("/saved")}>
+              <Text style={styles.seeAll}>See all</Text>
+            </Pressable>
+          </View>
+          <FlatList
+            horizontal
+            data={recent}
+            keyExtractor={(item) => item.id}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingHorizontal: 20, gap: 12 }}
+            renderItem={({ item }) => (
+              <PhotoCard
+                title={item.recipe.title}
+                kind={item.kind}
+                minutes={totalMinutes(item)}
+                photoUri={item.photo_uri}
+                width={160}
+                height={200}
+                onPress={() => {
+                  setCurrent({ kind: item.kind, recipe: item.recipe, guesses: [], photoUri: item.photo_uri, savedId: item.id });
+                  router.push("/recipe");
+                }}
+              />
+            )}
+          />
+        </>
+      )}
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background, padding: 24, justifyContent: "center" },
-  hero: { alignItems: "center", marginBottom: 36 },
-  art: { width: 260, height: 208 },
-  cameraButton: {
-    minHeight: 72,
-    borderRadius: 36,
-    backgroundColor: colors.accent,
+  screen: { flex: 1, backgroundColor: colors.background },
+  pad: { paddingHorizontal: 20 },
+  art: { width: 300, height: 240, alignSelf: "center", marginVertical: 8 },
+  prompt: {
+    marginHorizontal: 20,
+    minHeight: 76,
+    borderRadius: 20,
+    backgroundColor: colors.surface,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    gap: 14,
+    paddingHorizontal: 16,
   },
-  cameraLabel: { color: colors.accentText, fontSize: 22, fontWeight: "700", marginLeft: 12 },
+  promptIcon: { width: 48, height: 48, borderRadius: 24, backgroundColor: colors.accent, alignItems: "center", justifyContent: "center" },
+  promptTitle: { color: colors.text, fontSize: 18, fontWeight: "600" },
+  sectionHeader: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between", marginTop: 28, marginBottom: 12 },
+  seeAll: { color: colors.accent, fontSize: 16, fontWeight: "600" },
 });
