@@ -65,9 +65,13 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     const request = parse_recipe_request(body);
     if (!request) throw new HttpError(400, "Choose a dish or drink name, and a supported diet if any.");
     const is_premium = await premium(user.uid);
-    const { text } = await call_openai({ fetch_impl, store, env, user_id: user.uid, feature: "recipe", premium: is_premium,
+    // A name typed after a photo couldn't be read stands in for that photo, so it uses a free photo (the unread
+    // photo didn't). Other recipe requests are follow-ups to a photo that worked.
+    const feature = request.correction ? "correction" : "recipe";
+    const { text, request_id } = await call_openai({ fetch_impl, store, env, user_id: user.uid, feature, premium: is_premium,
       payload: recipe_payload(request, model), signal });
-    const recipe_reply = validate_recipe(JSON.parse(text));
+    let recipe_reply;
+    try { recipe_reply = validate_recipe(JSON.parse(text)); } catch (error) { store.release_photo(request_id); throw error; }
     // A diet version shares the original dish's photo, so only the standard recipe may describe it.
     return { recipe: recipe_reply, image: photo(request.kind, request.name, user, request.diet ? null : recipe_reply) };
   }
@@ -221,4 +225,3 @@ function recipe_details(recipe) {
     ingredients: recipe.ingredients?.map((i) => i.item),
   };
 }
-

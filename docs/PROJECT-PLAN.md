@@ -53,7 +53,7 @@ All amounts use US measurements.
 
 ### Free photos
 
-Each account gets 3 free photos and up to 3 saved recipes. Saving a 4th recipe, whether it came from a photo or a tap on the Home wall, opens the paywall (re-saving one already in Saved is fine, and removing one frees a space). Each account has its own Saved list and its own limit, counted on the phone, since Saved lives there for now; when Saved syncs to the account, the server should count them too. The photos are counted on the server against the verified account (never a number sent by the phone). A photo counts when the app returns a meal or cocktail. A failed request, or a photo that turns out not to be food or drink, does not use one up; daily and per-minute limits stop abuse of that rule.
+Each account gets 3 free photos and up to 3 saved recipes. Saving a 4th recipe, whether it came from a photo or a tap on the Home wall, opens the paywall (re-saving one already in Saved is fine, and removing one frees a space). Each account has its own Saved list and its own limit, counted on the phone, since Saved lives there for now; when Saved syncs to the account, the server should count them too. The photos are counted on the server against the verified account (never a number sent by the phone). A photo counts when the app returns a meal or cocktail. A failed request, or a photo that turns out not to be food or drink, does not use one up; daily and per-minute limits stop abuse of that rule. If a photo can't be read and the person types the dish's name instead ("Not the right dish?"), that name stands in for the photo and uses a free photo; on a recipe that worked, typing a different name is one of that photo's 5 free follow-ups (other guesses, diet versions).
 
 ### The camera
 

@@ -96,7 +96,7 @@ function Problem({ message }: { message: string }) {
             open_camera();
           }}
         />
-        <ManualCorrection initialKind="meal" />
+        <ManualCorrection initialKind="meal" correction />
         <Button label="Close" variant="secondary" onPress={() => router.back()} />
       </View>
     </Sheet>
@@ -355,8 +355,13 @@ function RecipeView({ current }: { current: Ready }) {
   );
 }
 
-function ManualCorrection({ initialKind }: { initialKind: Kind }) {
+/**
+ * "Not the right dish?": type its name instead. After a photo that couldn't be read (`correction`), the typed name
+ * stands in for that photo and uses a free photo; on a recipe, it's a follow-up to the photo that worked.
+ */
+function ManualCorrection({ initialKind, correction = false }: { initialKind: Kind; correction?: boolean }) {
   const { api, set_current } = useApp();
+  const { refresh_allowance } = useCamera();
   const { colors, type } = useTheme();
   const [expanded, set_expanded] = useState(false);
   const [name, set_name] = useState("");
@@ -369,7 +374,8 @@ function ManualCorrection({ initialKind }: { initialKind: Kind }) {
     set_busy(true);
     set_error(null);
     try {
-      const result = await api.recipe(clean, kind);
+      const result = await api.recipe(clean, kind, undefined, { correction });
+      if (correction) refresh_allowance();
       set_current({
         status: "ready",
         kind,
@@ -402,7 +408,17 @@ function ManualCorrection({ initialKind }: { initialKind: Kind }) {
             maxLength={120}
             placeholder="e.g. chicken parmesan"
             placeholderTextColor={colors.muted}
-            style={{ color: colors.text, backgroundColor: colors.surface, borderRadius: 12, padding: 14, marginVertical: 8 }}
+            style={{
+              minHeight: 48,
+              fontSize: 16,
+              color: colors.text,
+              backgroundColor: colors.surface,
+              borderWidth: 1,
+              borderColor: colors.border,
+              borderRadius: 12,
+              padding: 14,
+              marginVertical: 8,
+            }}
           />
           <View style={{ flexDirection: "row" }}>
             <Chip label="Meal" selected={kind === "meal"} onPress={() => set_kind("meal")} />

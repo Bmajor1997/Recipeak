@@ -157,6 +157,26 @@ test("follow-up recipes (other guesses, diet versions) need a counted photo and 
   assert.equal((await s.call("/api/recipe", { body: { ...ask, diet: "carnivore" } })).status, 400);
 });
 
+test("a name typed after an unreadable photo uses a free photo, so it works for new accounts and stops at the limit", async (t) => {
+  const s = await start({ reply: RECIPE }); t.after(s.close);
+  const fix = { name: "Chicken parmesan", kind: "meal", correction: true };
+  // carol has taken no photo that counted (hers wasn't food), but still has her 3 free photos.
+  for (let i = 0; i < 3; i++) assert.equal((await s.call("/api/recipe", { user: "carol", body: fix })).status, 200);
+  assert.equal(s.store.free_photos_left("carol"), 0);
+  assert.equal((await s.call("/api/recipe", { user: "carol", body: fix })).json.code, "FREE_PHOTOS_USED");
+  // A correction gets the usual follow-ups, like a photo that worked.
+  assert.equal((await s.call("/api/recipe", { user: "carol", body: { name: "Chicken parmesan", kind: "meal", diet: "vegetarian" } })).status, 200);
+  // Corrections can't be combined with a diet or sent as anything but true/false.
+  assert.equal((await s.call("/api/recipe", { user: "dan", body: { ...fix, diet: "vegan" } })).status, 400);
+  assert.equal((await s.call("/api/recipe", { user: "dan", body: { ...fix, correction: "yes" } })).status, 400);
+});
+
+test("a correction whose reply can't be used doesn't use up a free photo", async (t) => {
+  const s = await start({ reply: "{not a recipe" }); t.after(s.close);
+  assert.notEqual((await s.call("/api/recipe", { user: "erin", body: { name: "Pho", kind: "meal", correction: true } })).status, 200);
+  assert.equal(s.store.free_photos_left("erin"), 3);
+});
+
 test("reply and request validation", () => {
   assert.throws(() => validate_recipe({ ...RECIPE, ingredients: [] }));
   assert.throws(() => validate_recipe({ ...RECIPE, servings: -1 }));
@@ -164,7 +184,7 @@ test("reply and request validation", () => {
   assert.equal(parse_image(JPEG.replace("image/jpeg", "image/png")), null, "the label must match the real file type");
   assert.equal(parse_recipe_request({ name: "  ", kind: "meal" }), null);
   assert.equal(parse_recipe_request({ name: "Pad thai", kind: "drink" }), null);
-  assert.deepEqual(parse_recipe_request({ name: "Pad thai", kind: "meal" }), { name: "Pad thai", kind: "meal", diet: null });
+  assert.deepEqual(parse_recipe_request({ name: "Pad thai", kind: "meal" }), { name: "Pad thai", kind: "meal", diet: null, correction: false });
 });
 
 test("production refuses to start without its secrets or with the development sign-in bypass", () => {

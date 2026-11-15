@@ -31,7 +31,7 @@ export default function CookScreen() {
   }, [ends]);
   if (!current || current.status !== "ready")
     return (
-      <View style={{ padding: 20 }}>
+      <View style={{ flex: 1, padding: 20, backgroundColor: colors.background }}>
         <Text style={type.body}>Open a recipe to start cooking.</Text>
         <Button label="Go back" onPress={() => router.back()} />
       </View>
@@ -39,6 +39,10 @@ export default function CookScreen() {
   const { recipe } = current;
   const servings = Math.max(1, Math.min(50, Number(selectedServings) || recipe.servings || 1));
   const factor = servings / (recipe.servings || 1);
+  // Whole minutes only: "0" or "0.5" would finish the moment it starts.
+  const timer_minutes = Math.floor(Number(minutes));
+  const timer_ready = timer_minutes >= 1 && timer_minutes <= 999;
+  const has_steps = recipe.steps.length > 0;
   const seconds = ends === null ? 0 : Math.max(0, Math.ceil((ends - now) / 1000));
   const time = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
   return (
@@ -49,11 +53,18 @@ export default function CookScreen() {
       </Text>
       <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
         <Text style={type.body}>Keep screen awake</Text>
-        <Switch accessibilityLabel="Keep screen awake" value={awake} onValueChange={set_awake} />
+        <Switch
+          accessibilityLabel="Keep screen awake"
+          value={awake}
+          onValueChange={set_awake}
+          trackColor={{ true: colors.accent, false: colors.raised }}
+        />
       </View>
-      <Text style={type.label}>
-        STEP {Math.min(step + 1, recipe.steps.length)} OF {recipe.steps.length}
-      </Text>
+      {has_steps && (
+        <Text style={type.label}>
+          STEP {step + 1} OF {recipe.steps.length}
+        </Text>
+      )}
       <Text style={{ color: colors.text, fontSize: 24, lineHeight: 36 }} accessibilityLiveRegion="polite">
         {recipe.steps[step] ?? "No steps available."}
       </Text>
@@ -86,13 +97,13 @@ export default function CookScreen() {
       </View>
       <Button
         label={ends !== null ? "Reset timer" : "Start timer"}
-        disabled={ends === null && (!(Number(minutes) > 0) || Number(minutes) > 999)}
+        disabled={ends === null && !timer_ready}
         onPress={() => {
           if (ends !== null) set_ends(null);
           else {
             const currentTime = Date.now();
             set_now(currentTime);
-            set_ends(currentTime + Math.floor(Number(minutes)) * 60000);
+            set_ends(currentTime + timer_minutes * 60000);
           }
         }}
       />

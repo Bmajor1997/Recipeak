@@ -50,7 +50,17 @@ export default function ExploreScreen() {
         placeholderTextColor={colors.muted}
         value={query}
         onChangeText={set_query}
-        style={{ color: colors.text, backgroundColor: colors.surface, borderRadius: 14, padding: 14, marginTop: 12 }}
+        style={{
+          minHeight: 48,
+          fontSize: 16,
+          color: colors.text,
+          backgroundColor: colors.surface,
+          borderWidth: 1,
+          borderColor: colors.border,
+          borderRadius: 14,
+          padding: 14,
+          marginTop: 12,
+        }}
       />
       <View style={{ flexDirection: "row", marginVertical: 8 }}>
         {(

@@ -107,7 +107,8 @@ export function create_usage_store(env = {}, { now = () => new Date(), path = en
       const reserved_tokens = input_bound + output_bound;
       const reserved_cost = estimate_cost({ input_tokens: input_bound, output_tokens: output_bound, cached_tokens: 0, cache_write_tokens: 0 },
         { ...rates, input: Math.max(rates.input, rates.cached, rates.cache_write) });
-      const free_photo = feature === "identify" && !premium ? 1 : 0;
+      // A photo, or a name typed in place of a photo that couldn't be read, uses one of the free photos.
+      const free_photo = (feature === "identify" || feature === "correction") && !premium ? 1 : 0;
       db.exec("BEGIN IMMEDIATE");
       try {
         // A crashed call stops holding capacity (and a free photo) but keeps its cost reservation.
