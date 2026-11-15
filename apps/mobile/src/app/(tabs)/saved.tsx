@@ -116,6 +116,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     gap: 10,
   },
-  searchInput: { flex: 1, color: colors.text, fontSize: 17, paddingVertical: 10 },
+  searchInput: { flex: 1, color: colors.text, fontSize: 16, paddingVertical: 10 },
   filters: { flexDirection: "row", marginTop: 14, marginBottom: 4 },
 });

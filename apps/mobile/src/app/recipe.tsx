@@ -38,7 +38,7 @@ export default function RecipeScreen() {
   if (!current) return null;
   const { recipe, kind, guesses, photoUri } = current;
   const factor = servings / (recipe.servings || 1);
-  const headerHeight = Math.min(Math.round(height * 0.48), 460);
+  const headerHeight = Math.min(Math.round(height * 0.42), 400);
 
   async function loadVersion(index: number, nextDiet: Diet | null) {
     setBusy(true);
@@ -75,7 +75,7 @@ export default function RecipeScreen() {
   return (
     <View style={styles.screen}>
       <ScrollView contentContainerStyle={{ paddingBottom: 120 + insets.bottom }}>
-        {/* Photo header with the title over it */}
+        {/* Full-width photo, kept clean: the title sits just below it */}
         <View style={{ width, height: headerHeight }}>
           {photoUri ? (
             <Image source={{ uri: photoUri }} style={StyleSheet.absoluteFill} resizeMode="cover" accessibilityLabel="Your photo" />
@@ -84,21 +84,16 @@ export default function RecipeScreen() {
               <Image source={heroArt} style={{ width: width * 0.75, height: width * 0.6 }} resizeMode="contain" accessible={false} />
             </View>
           )}
-          <LinearGradient
-            colors={["rgba(0,0,0,0.45)", "rgba(0,0,0,0)", "rgba(11,35,40,0.6)", colors.background]}
-            locations={[0, 0.25, 0.7, 1]}
-            style={StyleSheet.absoluteFill}
-          />
-          <View style={styles.headerText}>
-            <Text style={styles.kicker}>{kind === "cocktail" ? "Drink" : "Meal"}</Text>
-            <Text style={styles.title} accessibilityRole="header">
-              {recipe.title}
-            </Text>
-          </View>
+          {/* A light shade at the top keeps the round buttons visible on bright photos. */}
+          <LinearGradient colors={["rgba(0,0,0,0.4)", "rgba(0,0,0,0)"]} locations={[0, 0.3]} style={StyleSheet.absoluteFill} />
         </View>
 
         <View style={styles.body}>
-          <Text style={type.body}>{recipe.description}</Text>
+          <Text style={styles.kicker}>{kind === "cocktail" ? "Drink" : "Meal"}</Text>
+          <Text style={styles.title} accessibilityRole="header">
+            {recipe.title}
+          </Text>
+          <Text style={[type.body, { marginTop: 8 }]}>{recipe.description}</Text>
 
           <View style={styles.stats}>
             <Stat label="Prep" value={formatMinutes(recipe.prep_minutes)} />
@@ -256,14 +251,13 @@ function RoundButton({
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
-  artBackdrop: { backgroundColor: "#00232C", alignItems: "center", justifyContent: "center" },
-  headerText: { position: "absolute", left: 20, right: 20, bottom: 12 },
-  kicker: { color: colors.accent, fontSize: 15, fontWeight: "700", letterSpacing: 1.2, textTransform: "uppercase" },
-  title: { color: colors.text, fontSize: 40, lineHeight: 46, fontFamily: fonts.display, marginTop: 4 },
+  artBackdrop: { backgroundColor: colors.surface, alignItems: "center", justifyContent: "center" },
+  kicker: { color: colors.accent, fontSize: 12, fontWeight: "700", letterSpacing: 1.2, textTransform: "uppercase", marginTop: 18 },
+  title: { color: colors.text, fontSize: 28, lineHeight: 34, fontFamily: fonts.display, marginTop: 4 },
   body: { paddingHorizontal: 20 },
   stats: { flexDirection: "row", marginTop: 20, backgroundColor: colors.surface, borderRadius: 18, paddingVertical: 14 },
   stat: { flex: 1, alignItems: "center" },
-  statValue: { color: colors.text, fontSize: 18, fontWeight: "600", marginTop: 4 },
+  statValue: { color: colors.text, fontSize: 16, fontWeight: "600", marginTop: 4 },
   wrap: { flexDirection: "row", flexWrap: "wrap", marginTop: 10 },
   serve: {
     flexDirection: "row",
@@ -281,9 +275,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.border,
   },
-  amount: { color: colors.accent, fontSize: 18, fontWeight: "700", minWidth: 84 },
+  amount: { color: colors.accent, fontSize: 16, fontWeight: "700", minWidth: 76 },
   step: { flexDirection: "row", gap: 16, marginBottom: 20 },
-  stepNumber: { color: colors.accent, fontSize: 30, lineHeight: 34, fontFamily: fonts.displayMedium, minWidth: 44 },
+  stepNumber: { color: colors.accent, fontSize: 24, lineHeight: 28, fontFamily: fonts.displayMedium, minWidth: 36 },
   topBar: { position: "absolute", left: 16, right: 16, flexDirection: "row", justifyContent: "space-between" },
   round: { backgroundColor: "rgba(0,0,0,0.5)", alignItems: "center", justifyContent: "center" },
   bottomBar: {
@@ -301,16 +295,16 @@ const styles = StyleSheet.create({
     borderTopColor: colors.border,
   },
   stepper: { flexDirection: "row", alignItems: "center", gap: 10 },
-  servings: { color: colors.text, fontSize: 17, fontWeight: "600", minWidth: 82, textAlign: "center" },
+  servings: { color: colors.text, fontSize: 15, fontWeight: "600", minWidth: 74, textAlign: "center" },
   save: {
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
     backgroundColor: colors.accent,
-    borderRadius: 26,
-    minHeight: 52,
-    paddingHorizontal: 22,
+    borderRadius: 24,
+    minHeight: 48,
+    paddingHorizontal: 20,
   },
   saved: { backgroundColor: colors.raised },
-  saveText: { color: colors.accentText, fontSize: 18, fontWeight: "700" },
+  saveText: { color: colors.accentText, fontSize: 16, fontWeight: "700" },
 });

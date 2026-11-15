@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   promptIcon: { width: 48, height: 48, borderRadius: 24, backgroundColor: colors.accent, alignItems: "center", justifyContent: "center" },
-  promptTitle: { color: colors.text, fontSize: 18, fontWeight: "600" },
+  promptTitle: { color: colors.text, fontSize: 16, fontWeight: "600" },
   sectionHeader: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between", marginTop: 28, marginBottom: 12 },
-  seeAll: { color: colors.accent, fontSize: 16, fontWeight: "600" },
+  seeAll: { color: colors.accent, fontSize: 14, fontWeight: "600" },
 });
