@@ -48,6 +48,10 @@ export default function TabsLayout() {
         name="saved"
         options={{ title: "Saved", tabBarIcon: ({ color }) => <Ionicons name="bookmark-outline" size={26} color={color as string} /> }}
       />
+      <Tabs.Screen
+        name="settings"
+        options={{ title: "Settings", tabBarIcon: ({ color }) => <Ionicons name="settings-outline" size={26} color={color as string} /> }}
+      />
     </Tabs>
   );
 }

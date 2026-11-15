@@ -1,6 +1,7 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useState } from "react";
 import { AccessibilityInfo, Animated, Easing, Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { usePreferences } from "../settings/PreferencesProvider";
 import { useOpenWallDish } from "../recipes/useOpenWallDish";
 import { colors, fonts, type } from "./theme";
 import { rowMotion, WALL_GAP, WALL_TILE } from "./wallMotion";
@@ -76,7 +77,9 @@ function Row({
 
 /** Two rows of dishes and drinks drifting past in opposite directions, like a menu going by. Tap one to open its recipe. */
 export function PhotoWall() {
-  const still = useReduceMotion();
+  const systemReduceMotion = useReduceMotion();
+  const preferences = usePreferences();
+  const still = systemReduceMotion || !preferences.ready || preferences.values.pausePhotoWall;
   const open = useOpenWallDish();
   return (
     <View style={styles.wall}>

@@ -8,6 +8,7 @@ import { ActivityIndicator, View } from "react-native";
 import { AppProvider, useApp } from "../AppContext";
 import { CameraProvider } from "../camera/CameraProvider";
 import { colors } from "../ui/theme";
+import { PreferencesProvider } from "../settings/PreferencesProvider";
 
 function Screens() {
   const { user, ready } = useApp();
@@ -36,6 +37,7 @@ function Screens() {
             name="recipe"
             options={{ headerShown: false, presentation: "modal", animation: "slide_from_bottom", gestureEnabled: true }}
           />
+          <Stack.Screen name="settings/[category]" options={{ headerShown: false }} />
           {/* The paywall draws its own close button. */}
           <Stack.Screen name="upgrade" options={{ headerShown: false, presentation: "modal" }} />
         </Stack.Protected>
@@ -50,8 +52,10 @@ function Screens() {
 export default function RootLayout() {
   return (
     <AppProvider>
-      <StatusBar style="light" />
-      <Screens />
+      <PreferencesProvider>
+        <StatusBar style="light" />
+        <Screens />
+      </PreferencesProvider>
     </AppProvider>
   );
 }

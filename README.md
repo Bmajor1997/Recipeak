@@ -46,7 +46,7 @@ npm test && npm run typecheck && npm run lint
 ## What's in the repository
 
 - `assets/app-icon.png` — the front-facing app image (also used for the app icons).
-- `apps/mobile/` — the Expo / React Native app: sign-in, camera, recipe and Saved screens.
+- `apps/mobile/` — the Expo / React Native app: sign-in, camera, recipe, Saved, and Settings screens. See [Settings behavior and validation](docs/SETTINGS.md).
 - `server/` — the Node backend: sign-in check, free-photo allowance, usage and cost limits, and the OpenAI recipe calls.
 - `docs/PROJECT-PLAN.md` — architecture, build phases and open questions.
 - `.github/workflows/app-checks.yml` — tests, type-check, lint and an Android build of the app, plus backend tests.

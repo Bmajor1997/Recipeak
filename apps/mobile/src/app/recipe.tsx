@@ -14,6 +14,7 @@ import { formatIngredient, formatMinutes, recipeAsText } from "../recipes/format
 import { scaleAmount } from "../recipes/scale";
 import { DIETS, type Diet, type Guess, type Kind } from "../recipes/types";
 import { useDishImage } from "../recipes/useDishImage";
+import { usePreferences } from "../settings/PreferencesProvider";
 import { SavedLimitError } from "../saved/savedRecipes";
 import { FocusedCover } from "../ui/FocusedCover";
 import { Button, Chip, colors, fonts, Notice, type } from "../ui/theme";
@@ -87,6 +88,7 @@ function Problem({ message }: { message: string }) {
 
 function RecipeView({ current }: { current: Ready }) {
   const { setCurrent, api, saved } = useApp();
+  const preferences = usePreferences();
   const { photosLeft } = useCamera();
   const insets = useSafeAreaInsets();
   const { width, height } = useWindowDimensions();
@@ -126,6 +128,7 @@ function RecipeView({ current }: { current: Ready }) {
   }
 
   async function toggleSave() {
+    if (preferences.busy) return;
     try {
       if (current.savedId) {
         await saved.remove(current.savedId);
@@ -134,7 +137,7 @@ function RecipeView({ current }: { current: Ready }) {
         // Saved with its cover photo, downloaded to the phone so Saved works offline. Free accounts keep up to 3
         // recipes, however they found them (a photo or the Home wall); photosLeft is null only for subscribers.
         const limit = (await isSubscriber()) ? undefined : FREE_SAVED_RECIPES;
-        const entry = await saved.save(kind, recipe, coverUri, { limit });
+        const entry = await saved.save(kind, recipe, preferences.ready && preferences.values.saveCoverPhotos ? coverUri : null, { limit });
         setCurrent({ ...current, savedId: entry.id });
       }
     } catch (error) {
@@ -166,6 +169,8 @@ function RecipeView({ current }: { current: Ready }) {
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={current.savedId ? "Saved. Tap to remove from Saved" : "Save recipe"}
+        accessibilityState={{ disabled: preferences.busy }}
+        disabled={preferences.busy}
         onPress={toggleSave}
         style={({ pressed }) => [styles.save, current.savedId && styles.saved, pressed && { opacity: 0.8 }]}
       >
@@ -237,6 +242,11 @@ function RecipeView({ current }: { current: Ready }) {
 
           {busy && <Notice>Getting that version…</Notice>}
           {problem && <Notice tone="error">{problem}</Notice>}
+          {preferences.error && (
+            <Notice>
+              Offline cover preferences could not load. You can still save recipe text. Retry loading preferences in Settings.
+            </Notice>
+          )}
 
           <Text style={type.heading}>Make it…</Text>
           <View style={styles.wrap}>
