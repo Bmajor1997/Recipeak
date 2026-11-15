@@ -62,7 +62,7 @@ Modelled on the ChatGPT app's camera. The Home screen has a **Camera** button; t
 - a **back** arrow on the left (dragging the sheet down, or Android's back button, also closes it),
 - a **three-dot menu** on the right: *Choose from photos*, *Flash: Off / Auto / On*, and *Use front/back camera*.
 
-When a photo is taken, people get three signals: the **shutter sound**, a **soft white flash** on screen (about a quarter of a second, never a strobe), and a **light vibration**. Screen readers announce "Photo taken. Finding your recipe." The photo then stays on screen with "Finding your recipe…" until the recipe opens. If it isn't food or drink, the message appears inside the camera so they can retake straight away. With the phone's Reduce Motion setting on, the sheet fades instead of sliding and the flash is dimmer.
+When a photo is taken, people get two signals: the **shutter sound** and a **soft white flash** on screen (about a quarter of a second, never a strobe). Screen readers announce "Photo taken. Finding your recipe." The photo then stays on screen with "Finding your recipe…" until the recipe opens. If it isn't food or drink, the message appears inside the camera so they can retake straight away. With the phone's Reduce Motion setting on, the sheet fades instead of sliding and the flash is dimmer.
 
 ## 4. Privacy and safety
 

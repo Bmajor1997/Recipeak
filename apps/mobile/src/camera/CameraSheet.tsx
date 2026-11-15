@@ -2,7 +2,6 @@
 // big white shutter in the middle, back on the left, a three-dot menu on the right.
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { type CameraType, CameraView, useCameraPermissions } from "expo-camera";
-import * as Haptics from "expo-haptics";
 import * as ImagePicker from "expo-image-picker";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -138,8 +137,7 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
   async function takePhoto() {
     if (!camera.current || !ready || taken) return;
     setMenuOpen(false);
-    // Three signals that the photo was taken: a light tap, the shutter sound, and a soft white flash.
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
+    // Two signals that the photo was taken: the shutter sound and a soft white flash.
     playFlash();
     const photo = await camera.current.takePictureAsync({ quality: 0.9, shutterSound: true }).catch(() => null);
     if (photo) await finish({ uri: photo.uri, width: photo.width, height: photo.height });
