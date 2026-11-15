@@ -90,7 +90,7 @@ export default function SignIn() {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
   content: { padding: 24, paddingTop: 48 },
-  label: { color: colors.text, fontSize: 17, fontWeight: "600", marginTop: 16, marginBottom: 6 },
+  label: { color: colors.text, fontSize: 15, fontWeight: "600", marginTop: 16, marginBottom: 6 },
   input: {
     minHeight: 54,
     borderRadius: 12,
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     backgroundColor: colors.surface,
     color: colors.text,
-    fontSize: 18,
+    fontSize: 16,
     paddingHorizontal: 14,
   },
 });

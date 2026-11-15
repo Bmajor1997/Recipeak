@@ -68,11 +68,11 @@ When a photo is taken, people get two signals: the **shutter sound** and a **sof
 
 Researched on Mobbin (CREME, Julienne, NYT Cooking, Kitchen Stories) and approved on 2026-11-14:
 
-- **Dark teal** throughout, with **Fraunces**, a serif font, for titles; body text stays in the phone's own font for readability.
+- **Black and grapefruit** (chosen 2026-11-14): near-black background (#0F0F10) so food photos carry the colour, with the grapefruit coral from the icon (#FF6F61) as the one accent. **Fraunces**, a serif font, for titles; body text stays in the phone's own font. Standard text sizes (body 16, page titles 28); the phone's own text-size setting still enlarges everything for people who need it.
 - A raised orange **camera button in the middle of the tab bar** opens the camera from any screen.
 - **Home:** a greeting, the drink-and-plate art (cut out, no square), a camera prompt with free photos left, and a "Recently saved" row of photo cards.
 - **Saved:** a two-column grid of photo cards (title over the photo, Meal/Drink tag, total time), with search and All / Meals / Drinks filters.
-- **Recipe:** modelled on CREME's cocktail page: the photo fills the top with the title over it, then a Prep / Cook / Serves row, ingredients with the amounts highlighted, big "01, 02…" step numbers, and a bar at the bottom with a servings counter (amounts rescale) and Save.
+- **Recipe:** modelled on CREME's cocktail page: the photo fills the top, with the title just below it, then a Prep / Cook / Serves row, ingredients with the amounts highlighted, big "01, 02…" step numbers, and a bar at the bottom with a servings counter (amounts rescale) and Save.
 - **Photos stay on the phone:** when a recipe is saved, its photo is copied into the app's private storage on the phone and deleted when the recipe is removed. It is never uploaded again, and the server keeps no copy.
 
 ## 4. Privacy and safety

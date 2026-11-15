@@ -332,7 +332,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.accent,
     justifyContent: "center",
   },
-  allowText: { color: colors.accentText, fontSize: 18, fontWeight: "700" },
+  allowText: { color: colors.accentText, fontSize: 16, fontWeight: "700" },
   controls: {
     flexDirection: "row",
     alignItems: "center",
@@ -341,9 +341,9 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 12,
   },
-  footnote: { color: "#D9D9D9", fontSize: 15, textAlign: "center", paddingBottom: 14 },
-  message: { marginHorizontal: 16, marginTop: 12, padding: 12, borderRadius: 14, backgroundColor: "#3A1F1A" },
-  messageText: { color: colors.danger, fontSize: 17, lineHeight: 24 },
+  footnote: { color: "#D9D9D9", fontSize: 14, textAlign: "center", paddingBottom: 14 },
+  message: { marginHorizontal: 16, marginTop: 12, padding: 12, borderRadius: 14, backgroundColor: "#3A1A17" },
+  messageText: { color: colors.danger, fontSize: 15, lineHeight: 22 },
   round: {
     width: 60,
     height: 60,
@@ -364,5 +364,5 @@ const styles = StyleSheet.create({
   shutter: { width: 74, height: 74, borderRadius: 37, backgroundColor: "#FFFFFF" },
   menu: { position: "absolute", right: 22, bottom: 118, minWidth: 230, borderRadius: 18, backgroundColor: "#262626", paddingVertical: 6 },
   menuItem: { flexDirection: "row", alignItems: "center", minHeight: 52, paddingHorizontal: 16 },
-  menuText: { color: "#FFFFFF", fontSize: 17, marginLeft: 14 },
+  menuText: { color: "#FFFFFF", fontSize: 16, marginLeft: 14 },
 });

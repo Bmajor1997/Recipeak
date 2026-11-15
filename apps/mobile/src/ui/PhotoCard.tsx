@@ -4,7 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { formatMinutes } from "../recipes/format";
 import type { Kind } from "../recipes/types";
-import { colors, fonts } from "./theme";
+import { fonts } from "./theme";
 
 const heroArt = require("../../assets/hero.png");
 const FALLBACK = { meal: "#6E3B22", cocktail: "#6B2531" } as const;
@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 4,
   },
-  pillText: { color: "#FFFFFF", fontSize: 13, fontWeight: "600" },
+  pillText: { color: "#FFFFFF", fontSize: 11, fontWeight: "600" },
   footer: { position: "absolute", left: 12, right: 12, bottom: 12 },
-  title: { color: "#FFFFFF", fontSize: 18, lineHeight: 22, fontFamily: fonts.display },
-  meta: { color: colors.muted, fontSize: 14, marginTop: 2 },
+  title: { color: "#FFFFFF", fontSize: 15, lineHeight: 19, fontFamily: fonts.display },
+  meta: { color: "#D4D4D8", fontSize: 12, marginTop: 2 },
 });

@@ -6,26 +6,27 @@ import { ActivityIndicator, Pressable, StyleSheet, Text, type TextStyle, View } 
 export const fonts = { display: "Fraunces_600SemiBold", displayMedium: "Fraunces_500Medium" };
 
 export const colors = {
-  background: "#0B2328", // deep teal, from the app icon
-  surface: "#12323A",
-  raised: "#1A4049",
-  scrim: "rgba(5, 18, 21, 0.92)",
+  // "Black and grapefruit": near-black so food photos carry the colour; the accent is the grapefruit in the app icon.
+  background: "#0F0F10",
+  surface: "#1A1A1C",
+  raised: "#26262A",
+  scrim: "rgba(15, 15, 16, 0.92)",
   text: "#FFFFFF",
-  muted: "#C9DADD",
-  accent: "#FF7A45", // grapefruit orange
-  accentText: "#1A0E08",
-  danger: "#FFB4A6",
-  border: "#2E5560",
+  muted: "#A9A9AD",
+  accent: "#FF6F61", // grapefruit coral
+  accentText: "#2B0A06",
+  danger: "#FFB3AB",
+  border: "#2E2E33",
 };
 
 export const type = StyleSheet.create({
-  display: { color: colors.text, fontSize: 34, lineHeight: 40, fontFamily: fonts.display },
-  title: { color: colors.text, fontSize: 28, lineHeight: 34, fontFamily: fonts.display },
-  heading: { color: colors.text, fontSize: 22, lineHeight: 28, fontFamily: fonts.display, marginTop: 24, marginBottom: 10 },
-  label: { color: colors.muted, fontSize: 14, fontWeight: "600", letterSpacing: 0.4 },
-  body: { color: colors.text, fontSize: 18, lineHeight: 26 },
-  muted: { color: colors.muted, fontSize: 16, lineHeight: 23 },
-  error: { color: colors.danger, fontSize: 17, lineHeight: 24 },
+  display: { color: colors.text, fontSize: 28, lineHeight: 34, fontFamily: fonts.display },
+  title: { color: colors.text, fontSize: 24, lineHeight: 30, fontFamily: fonts.display },
+  heading: { color: colors.text, fontSize: 20, lineHeight: 26, fontFamily: fonts.display, marginTop: 22, marginBottom: 8 },
+  label: { color: colors.muted, fontSize: 12, fontWeight: "600", letterSpacing: 0.6 },
+  body: { color: colors.text, fontSize: 16, lineHeight: 24 },
+  muted: { color: colors.muted, fontSize: 14, lineHeight: 20 },
+  error: { color: colors.danger, fontSize: 15, lineHeight: 22 },
 });
 
 export function Button({
@@ -86,10 +87,10 @@ export function Notice({ children, tone = "muted" }: { children: ReactNode; tone
 }
 
 const styles = StyleSheet.create({
-  button: { minHeight: 56, borderRadius: 14, paddingHorizontal: 20, alignItems: "center", justifyContent: "center", marginTop: 12 },
+  button: { minHeight: 52, borderRadius: 26, paddingHorizontal: 20, alignItems: "center", justifyContent: "center", marginTop: 12 },
   primary: { backgroundColor: colors.accent },
   secondary: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border },
-  label: { fontSize: 18, fontWeight: "700" },
+  label: { fontSize: 16, fontWeight: "700" },
   chip: {
     minHeight: 48,
     paddingHorizontal: 16,
@@ -100,6 +101,6 @@ const styles = StyleSheet.create({
     marginRight: 8,
     marginBottom: 8,
   },
-  chipLabel: { color: colors.text, fontSize: 16, fontWeight: "600" },
+  chipLabel: { color: colors.text, fontSize: 14, fontWeight: "600" },
   notice: { marginTop: 12 },
 });
