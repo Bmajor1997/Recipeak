@@ -50,6 +50,24 @@ export function create_api({ baseUrl, id_token, fetch_impl = fetch, timeoutMs = 
   }
 
   return {
+    async explore(): Promise<{ name: string; kind: Kind; aliases: string[]; image: string | null }[]> {
+      const json = (await request("/api/explore", { method: "GET" })) as { dishes?: unknown };
+      if (!Array.isArray(json?.dishes)) throw new ApiError("Couldn't load the collection. Please try again.", 0);
+      return json.dishes.flatMap((item: unknown) => {
+        if (!item || typeof item !== "object") return [];
+        const dish = item as Record<string, unknown>;
+        if (typeof dish.name !== "string" || (dish.kind !== "meal" && dish.kind !== "cocktail")) return [];
+        const image = typeof dish.image === "string" && /^\/images\/[a-z0-9-]+\.jpg$/.test(dish.image) ? dish.image : null;
+        return [
+          {
+            name: dish.name,
+            kind: dish.kind,
+            aliases: Array.isArray(dish.aliases) ? dish.aliases.filter((a): a is string => typeof a === "string") : [],
+            image,
+          },
+        ];
+      });
+    },
     async identify(imageDataUrl: string): Promise<Identification> {
       return parse_identification(await request("/api/identify", { method: "POST", body: { image: imageDataUrl } }));
     },
