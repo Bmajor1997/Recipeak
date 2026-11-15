@@ -10,7 +10,7 @@ The Settings tab adapts Votic's grouped settings navigation to Meals & Mixers. I
 | Accessibility | Pause the Home photo wall. The phone's Reduce Motion preference always takes precedence. Text continues to follow the phone's font-size setting. |
 | Storage management | Choose whether newly saved recipes keep an offline cover photo. Existing saved photos remain until the corresponding recipe is removed. |
 | Library tools | Count saved recipes and offline photos, open Saved, share all saved recipe text through the system share sheet. Text sharing is not an importable backup. |
-| AI Credits & Usage | Read the existing server photo allowance, show paid access when reported, retry a failed request. Unavailable data is never shown as zero. |
+| AI Credits & Usage | Read the existing server photo allowance, show paid access when reported, retry a failed request. Unavailable data is never shown as zero. Also explains the free plan's limit of 3 saved recipes. |
 | Help / Privacy | Getting-started guidance, photo-processing explanation, device-storage disclosure, recipe and allergen limitations. |
 
 Preferences are stored in AsyncStorage under a versioned key scoped to the Firebase user ID. They are local to the device. Changing sign-in remounts preference state so a late read/save from a prior account cannot populate the next account. Controls remain disabled during preference reads/writes. A failed write leaves the previous choice in place and allows retry. Failed/corrupt reads show a retry action rather than overwriting the stored value.
@@ -29,9 +29,7 @@ Saved recipes use the repository's existing device-wide store. They are visible 
 
 ## Validation
 
-- Mobile unit and component tests: **44 passed** across eight files.
-- TypeScript type checking: passed.
-- ESLint with zero warnings: passed.
+- Mobile unit and component tests, TypeScript type checking and ESLint (zero warnings) run in CI on every pull request.
 - Preference checks cover defaults, restart persistence, account separation, invalid/corrupt data, read/write failures, loading controls, retry, and retaining the old value after a failed save.
 - Component checks cover all category links, unknown-category fallback/back navigation, allowance failure/retry, password-reset dispatch, sign-out cancellation, failed sign-out and retry.
 - Components use a vertically scrollable layout with wrapping text, flexible copy columns, safe-area padding, a 720-point content maximum, and controls at least 48 points high. Visual layout is **not device-verified**: no Android device was connected, and the browser tool could not reach the local preview.
