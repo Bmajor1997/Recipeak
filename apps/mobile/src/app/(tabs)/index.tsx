@@ -8,7 +8,7 @@ import { CameraSheet, type Photo } from "../../camera/CameraSheet";
 import { preparePhoto } from "../../photos/prepare";
 import { colors, type } from "../../ui/theme";
 
-const appImage = require("../../../assets/icon.png");
+const heroArt = require("../../../assets/hero.png");
 
 export default function HomeScreen() {
   const { api, setCurrent, user } = useApp();
@@ -52,7 +52,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.screen}>
       <View style={styles.hero}>
-        <Image source={appImage} style={styles.art} accessible={false} />
+        <Image source={heroArt} style={styles.art} resizeMode="contain" accessible={false} />
         <Text style={[type.title, { textAlign: "center", marginTop: 20 }]} accessibilityRole="header">
           What are you having?
         </Text>
@@ -84,7 +84,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background, padding: 24, justifyContent: "center" },
   hero: { alignItems: "center", marginBottom: 36 },
-  art: { width: 180, height: 180, borderRadius: 40 },
+  art: { width: 260, height: 208 },
   cameraButton: {
     minHeight: 72,
     borderRadius: 36,
