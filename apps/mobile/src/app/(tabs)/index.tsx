@@ -1,7 +1,7 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useMemo, useState } from "react";
-import { FlatList, Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../../AppContext";
 import { photos_left_text, useCamera } from "../../camera/CameraProvider";
@@ -32,6 +32,7 @@ export default function HomeScreen() {
   const pick = useMemo(() => tonights_pick(day), [day]);
   const shelves = useMemo(() => home_shelves(day), [day]);
   const collage = useMemo(() => explore_collage(day), [day]);
+  const cell = Math.floor((useWindowDimensions().width - 20 * 2 - 12 * 2 - 8 * 3) / 4);
   const [viewed, set_viewed] = useState<CollectionDish[]>([]);
   const { photosLeft, refresh_allowance } = useCamera();
   const insets = useSafeAreaInsets();
@@ -133,9 +134,9 @@ export default function HomeScreen() {
                 accessibilityRole="button"
                 accessibilityLabel={`Open ${dish.name} recipe`}
                 onPress={() => void open(dish)}
-                style={styles.collageCell}
+                style={[styles.collageCell, { width: cell, height: cell }]}
               >
-                <Image source={dish.source} style={StyleSheet.absoluteFill} resizeMode="cover" accessible={false} />
+                <Image source={dish.source} style={{ width: cell, height: cell }} resizeMode="cover" accessible={false} />
               </Pressable>
             ))}
           </View>
@@ -219,6 +220,8 @@ function SectionHeader({ title, see_all, on_see_all }: { title: string; see_all?
 /** Tonight's pick: a meal and a drink that go together, changing every day. Each half opens its own recipe. */
 function TonightsPick({ pairing, on_open }: { pairing: Pairing; on_open: (dish: CollectionDish) => void }) {
   const { type } = useTheme();
+  // Exact sizes: Android otherwise sizes bundled photos from the picture itself, and they spill over the text.
+  const half = Math.floor((useWindowDimensions().width - 20 * 2 - 2) / 2);
   const styles = useThemedStyles(create_styles);
   const { meal, drink, line } = pairing;
   return (
@@ -233,9 +236,9 @@ function TonightsPick({ pairing, on_open }: { pairing: Pairing; on_open: (dish: 
                 accessibilityRole="button"
                 accessibilityLabel={`Open ${dish.name} recipe`}
                 onPress={() => on_open(dish)}
-                style={({ pressed }) => [{ flex: 1 }, pressed && { opacity: 0.8 }]}
+                style={({ pressed }) => [{ width: half, height: PICK_HEIGHT, overflow: "hidden" }, pressed && { opacity: 0.8 }]}
               >
-                <Image source={dish.source} style={StyleSheet.absoluteFill} resizeMode="cover" accessible={false} />
+                <Image source={dish.source} style={{ width: half, height: PICK_HEIGHT }} resizeMode="cover" accessible={false} />
                 <View style={styles.pickLabel}>
                   <Text style={styles.pickLabelText}>{dish.kind === "meal" ? "Meal" : "Drink"}</Text>
                 </View>
@@ -254,6 +257,8 @@ function TonightsPick({ pairing, on_open }: { pairing: Pairing; on_open: (dish: 
   );
 }
 
+const PICK_HEIGHT = 190;
+
 const create_styles = (colors: Palette) =>
   StyleSheet.create({
     screen: { flex: 1, backgroundColor: colors.background },
@@ -270,7 +275,7 @@ const create_styles = (colors: Palette) =>
     sectionHeader: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between", marginTop: 28, marginBottom: 12 },
     exploreCard: { backgroundColor: colors.surface, borderRadius: 16, padding: 12, gap: 12 },
     collage: { flexDirection: "row", gap: 8 },
-    collageCell: { flex: 1, aspectRatio: 1, borderRadius: 10, overflow: "hidden" },
+    collageCell: { borderRadius: 10, overflow: "hidden" },
     searchBar: {
       flexDirection: "row",
       alignItems: "center",
@@ -283,7 +288,7 @@ const create_styles = (colors: Palette) =>
       backgroundColor: colors.background,
     },
     pickCard: { backgroundColor: colors.surface, borderRadius: 18, overflow: "hidden" },
-    pickPhotos: { flexDirection: "row", height: 190, gap: 2 },
+    pickPhotos: { flexDirection: "row", height: PICK_HEIGHT, gap: 2 },
     pickLabel: {
       position: "absolute",
       left: 10,
