@@ -58,7 +58,6 @@ function Screens() {
             name="recipe"
             options={{ headerShown: false, presentation: "modal", animation: "slide_from_bottom", gestureEnabled: true }}
           />
-          <Stack.Screen name="explore" options={{ title: "Explore" }} />
           <Stack.Screen name="cook" options={{ title: "Cooking mode" }} />
           <Stack.Screen name="settings/[category]" options={{ headerShown: false }} />
           <Stack.Screen name="feedback/[kind]" options={{ headerShown: false }} />

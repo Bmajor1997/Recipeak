@@ -11,12 +11,13 @@ import { NO_IMAGE, type Kind } from "./types";
  * anything else is fetched from the server. It never uses a free photo.
  */
 export function useOpenWallDish() {
-  const { api, set_current } = useApp();
+  const { api, set_current, recent } = useApp();
   return useCallback(
     async (dish: { name: string; kind: Kind }) => {
       const bundled = find_bundled_dish(dish.kind, dish.name);
       set_current({ status: "loading", photo: bundled?.source });
       router.push("/recipe");
+      if (bundled) void recent?.add(bundled.id).catch(() => {});
       const recipe = bundled && bundled_recipe(bundled);
       if (bundled && recipe) {
         const photo = await bundled_photo_uri(bundled);
@@ -52,6 +53,6 @@ export function useOpenWallDish() {
         });
       }
     },
-    [api, set_current],
+    [api, set_current, recent],
   );
 }

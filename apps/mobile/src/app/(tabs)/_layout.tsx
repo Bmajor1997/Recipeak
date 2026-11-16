@@ -5,7 +5,7 @@ import { Pressable, StyleSheet, View } from "react-native";
 import { useCamera } from "../../camera/CameraProvider";
 import { useTheme, useThemedStyles, type Palette } from "../../ui/theme";
 
-/** The raised camera button in the middle of the tab bar: a dark button inside a citrus-colored ring. It opens the camera instead of a page. */
+/** The raised camera button in the exact middle of the tab bar (two tabs on each side): a dark button inside a citrus-colored ring. It opens the camera instead of a page. */
 function CameraTabButton() {
   const { colors } = useTheme();
   const styles = useThemedStyles(create_styles);
@@ -45,6 +45,10 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="index"
         options={{ title: "Home", tabBarIcon: ({ color }) => <Ionicons name="home-outline" size={26} color={color as string} /> }}
+      />
+      <Tabs.Screen
+        name="explore"
+        options={{ title: "Explore", tabBarIcon: ({ color }) => <Ionicons name="compass-outline" size={26} color={color as string} /> }}
       />
       <Tabs.Screen name="camera" options={{ title: "Camera", tabBarButton: () => <CameraTabButton /> }} />
       <Tabs.Screen

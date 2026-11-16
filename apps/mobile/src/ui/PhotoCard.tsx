@@ -14,6 +14,7 @@ export function PhotoCard({
   kind,
   minutes,
   photoUri,
+  photoSource,
   width,
   height,
   onPress,
@@ -22,6 +23,8 @@ export function PhotoCard({
   kind: Kind;
   minutes: number;
   photoUri: string | null;
+  /** A photo bundled with the app, used instead of photoUri. */
+  photoSource?: number;
   width: number;
   height: number;
   onPress: () => void;
@@ -38,7 +41,9 @@ export function PhotoCard({
         pressed && { transform: [{ scale: 0.97 }] },
       ]}
     >
-      {photoUri ? (
+      {photoSource ? (
+        <Image source={photoSource} style={StyleSheet.absoluteFill} resizeMode="cover" />
+      ) : photoUri ? (
         <Image source={{ uri: photoUri }} style={StyleSheet.absoluteFill} resizeMode="cover" />
       ) : (
         <View style={styles.fallback}>
