@@ -3,7 +3,7 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { router, useLocalSearchParams } from "expo-router";
 import { type ComponentRef, useEffect, useRef, useState } from "react";
-import { FlatList, Image, Pressable, Text, TextInput, View } from "react-native";
+import { FlatList, Image, Pressable, Text, TextInput, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { COLLECTION } from "../../recipes/collectionPhotos";
 import { is_shelf_id, SHELVES, type ShelfId } from "../../recipes/shelves";
@@ -17,6 +17,8 @@ const SORTED = by_name(COLLECTION);
 export default function ExploreScreen() {
   const { colors, type } = useTheme();
   const insets = useSafeAreaInsets();
+  // Photos get an exact size: Android otherwise sizes them from the picture itself and crops them tall.
+  const tile = Math.floor((useWindowDimensions().width - 20 * 2 - 12) / 2);
   const open = useOpenWallDish();
   const params = useLocalSearchParams<{ shelf?: string; search?: string }>();
   const [query, set_query] = useState("");
@@ -115,11 +117,11 @@ export default function ExploreScreen() {
             accessibilityLabel={`Open ${item.name} recipe`}
             onPress={() => void open(item)}
             style={({ pressed }) => [
-              { flex: 1, maxWidth: "50%", backgroundColor: colors.surface, borderRadius: 16, overflow: "hidden" },
+              { width: tile, backgroundColor: colors.surface, borderRadius: 16, overflow: "hidden" },
               pressed && { opacity: 0.8 },
             ]}
           >
-            <Image source={item.source} style={{ width: "100%", aspectRatio: 1 }} accessible={false} />
+            <Image source={item.source} style={{ width: tile, height: tile }} resizeMode="cover" accessible={false} />
             <View style={{ padding: 12 }}>
               <Text style={type.body}>{item.name}</Text>
               <Text style={type.muted}>{item.kind === "meal" ? "Meal" : "Cocktail"}</Text>

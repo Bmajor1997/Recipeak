@@ -42,7 +42,7 @@ export function PhotoCard({
       ]}
     >
       {photoSource ? (
-        <Image source={photoSource} style={StyleSheet.absoluteFill} resizeMode="cover" />
+        <Image source={photoSource} style={[StyleSheet.absoluteFill, { width, height }]} resizeMode="cover" />
       ) : photoUri ? (
         <Image source={{ uri: photoUri }} style={StyleSheet.absoluteFill} resizeMode="cover" />
       ) : (
