@@ -1,4 +1,3 @@
-import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useState } from "react";
 import { AccessibilityInfo, Animated, Easing, Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { usePreferences } from "../settings/PreferencesProvider";
@@ -78,27 +77,23 @@ function Row({
 
 /** Two rows of dishes and drinks drifting past in opposite directions, like a menu going by. Tap one to open its recipe. */
 export function PhotoWall() {
-  const { colors, type } = useTheme();
+  const { type } = useTheme();
   const styles = useThemedStyles(create_styles);
   const systemReduceMotion = useReduceMotion();
   const preferences = usePreferences();
   const still = systemReduceMotion || !preferences.ready || preferences.values.pausePhotoWall;
   const open = useOpenWallDish();
   return (
-    <View style={styles.wall}>
-      <View style={{ marginLeft: -40 }}>
-        <Row photos={WALL_ROWS[0]} reverse={false} still={still} onOpen={open} />
+    <View style={styles.wrap}>
+      <View style={styles.wall}>
+        <View style={{ marginLeft: -40 }}>
+          <Row photos={WALL_ROWS[0]} reverse={false} still={still} onOpen={open} />
+        </View>
+        <View style={{ marginLeft: -100 }}>
+          <Row photos={WALL_ROWS[1]} reverse still={still} onOpen={open} />
+        </View>
       </View>
-      <View style={{ marginLeft: -100 }}>
-        <Row photos={WALL_ROWS[1]} reverse still={still} onOpen={open} />
-      </View>
-      <LinearGradient
-        colors={[`${colors.background}00`, colors.background]}
-        locations={[0, 0.75]}
-        style={styles.fade}
-        pointerEvents="none"
-      />
-      <View style={styles.caption} pointerEvents="none">
+      <View style={styles.caption}>
         <Text style={styles.captionTitle}>{CURATED_COUNT} meals and drinks, and counting</Text>
         <Text style={type.muted}>Tap one for the recipe, or snap your own</Text>
       </View>
@@ -108,10 +103,10 @@ export function PhotoWall() {
 
 const create_styles = (colors: Palette) =>
   StyleSheet.create({
-    wall: { height: 300, marginTop: 18, overflow: "hidden" },
+    wrap: { marginTop: 18 },
+    wall: { height: 2 * WALL_TILE + WALL_GAP, overflow: "hidden" },
     row: { flexDirection: "row", gap: WALL_GAP, marginBottom: WALL_GAP },
     tile: { width: WALL_TILE, height: WALL_TILE, borderRadius: 16, backgroundColor: colors.surface },
-    fade: { position: "absolute", left: 0, right: 0, bottom: 0, height: 120 },
-    caption: { position: "absolute", left: 20, right: 20, bottom: 14 },
+    caption: { paddingHorizontal: 20, marginTop: 12 },
     captionTitle: { color: colors.text, fontSize: 18, fontFamily: fonts.display },
   });

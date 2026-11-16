@@ -260,6 +260,7 @@ function Toggle({
         disabled={disabled}
         onValueChange={onChange}
         trackColor={{ true: colors.accent, false: colors.raised }}
+        thumbColor="#FFFFFF"
       />
     </View>
   );

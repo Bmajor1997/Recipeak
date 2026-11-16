@@ -71,7 +71,7 @@ export default function SavedScreen() {
       <View style={[styles.screen, { paddingHorizontal: 20 }]}>
         {header}
         <Text style={type.heading}>Start your collection</Text>
-        <Text style={type.muted}>Snap a meal or a cocktail, then tap Save on the recipe. It will show up here with your photo.</Text>
+        <Text style={type.muted}>Snap a meal or a cocktail, then tap Save on the recipe. It will show up here with its photo.</Text>
         <Button label="Open camera" onPress={open_camera} />
       </View>
     );
