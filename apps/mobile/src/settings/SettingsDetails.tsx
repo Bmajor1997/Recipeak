@@ -41,9 +41,7 @@ function Feedback() {
   const { type } = useTheme();
   return (
     <>
-      <Text style={type.muted}>
-        Tell us what would make Meals &amp; Mixers better, or what went wrong. Only the Meals &amp; Mixers team sees it.
-      </Text>
+      <Text style={type.muted}>Tell us what would make Recipeek better, or what went wrong. Only the Recipeek team sees it.</Text>
       <Group title="SEND US FEEDBACK">
         {FEEDBACK_KINDS.map((kind) => (
           <Row
@@ -185,7 +183,7 @@ function Preferences() {
       </View>
       {state.busy ? <Notice>Saving preference…</Notice> : state.notice ? <Notice>{state.notice}</Notice> : null}
       <Text style={type.muted}>
-        Both looks use Meals &amp; Mixers’ grapefruit accent. The camera always stays dark. Recipe measurements use US units.
+        Both looks use Recipeek’s grapefruit accent. The camera always stays dark. Recipe measurements use US units.
       </Text>
     </>
   );
@@ -301,7 +299,7 @@ function Library() {
     set_error(null);
     try {
       await Share.share({
-        title: "My Meals & Mixers recipes",
+        title: "My Recipeek recipes",
         message: items.map((item) => recipe_as_text(item.recipe)).join("\n\n—\n\n"),
       });
     } catch {
@@ -434,8 +432,8 @@ function Help() {
         About
       </Text>
       <Text style={type.muted}>
-        Meals &amp; Mixers · Early release. Published privacy and terms pages, a support contact, and account deletion are not configured in
-        this app yet.
+        Recipeek · Early release. Published privacy and terms pages, a support contact, and account deletion are not configured in this app
+        yet.
       </Text>
     </>
   );

@@ -1,7 +1,9 @@
-# Meals and Mixers
+# Recipeek
+
+The app is called **Recipeek** (it started as Meals and Mixers; the repository, package ID and storage keys keep the old name so nothing breaks).
 
 <p align="center">
-  <img src="assets/app-icon.png" alt="Meals and Mixers app icon: a plated dish with tomato and asparagus beside a pink cocktail garnished with a grapefruit slice" width="256">
+  <img src="assets/app-icon.png" alt="Recipeek app icon: a white serif R inside the citrus camera ring, on near-black" width="256">
 </p>
 
 **Take a photo of a meal or a cocktail, and get a recipe for it.**
