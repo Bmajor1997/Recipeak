@@ -117,12 +117,12 @@ test("failures don't publish a photo and aren't retried immediately", async (t) 
 
 test("cover photos have their own daily limits", async (t) => {
   const { images, calls } = library(t, {}, { MM_IMAGE_USER_DAILY_LIMIT: "1" });
-  images.status({ kind: "meal", name: "Moussaka", user_id: "alice" });
+  images.status({ kind: "meal", name: "Imaginary Test Dish Alpha", user_id: "alice" });
   await images.settled();
-  assert.equal(images.status({ kind: "meal", name: "Bulgogi", user_id: "alice" }).status, "pending");
+  assert.equal(images.status({ kind: "meal", name: "Imaginary Test Dish Beta", user_id: "alice" }).status, "pending");
   await images.settled();
   assert.equal(calls.length, 1, "alice's second new photo waits until tomorrow");
-  assert.equal(images.status({ kind: "meal", name: "Bulgogi", user_id: "alice" }).status, "unavailable");
+  assert.equal(images.status({ kind: "meal", name: "Imaginary Test Dish Beta", user_id: "alice" }).status, "unavailable");
 });
 
 test("only exact library file names can be read", (t) => {
