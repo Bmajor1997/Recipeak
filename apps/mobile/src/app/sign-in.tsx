@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { firebase, firebaseConfigured, sign_in_problem } from "../auth/firebase";
+import { firebase, firebaseConfigured, sign_in_problem, test_mode_available } from "../auth/firebase";
 import { Button, Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
 
 export default function SignIn() {
@@ -50,6 +50,7 @@ export default function SignIn() {
           {!firebaseConfigured && (
             <Notice tone="error">{"Sign-in isn't set up in this build yet. Add the Firebase settings to apps/mobile/.env."}</Notice>
           )}
+          {test_mode_available && <Button label="Continue in test mode" onPress={() => firebase.start_test_mode()} />}
           <Text style={styles.label}>Email</Text>
           <TextInput
             style={styles.input}

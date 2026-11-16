@@ -44,11 +44,26 @@ function auth(): Auth {
   return cachedAuth;
 }
 
+/**
+ * Test mode, for trying the app on an emulator before Firebase is set up. It only exists in development builds
+ * that have no Firebase settings, so it can never appear in the real app. The test user is local to the phone:
+ * screens, the camera and Saved all work, but anything that needs the recipe server says it isn't connected.
+ */
+export const test_mode_available = __DEV__ && !firebaseConfigured;
+const TEST_USER: AppUser = { uid: "test-mode", email: null };
+let test_user: AppUser | null = null;
+const test_listeners = new Set<(user: AppUser | null) => void>();
+function set_test_user(next: AppUser | null) {
+  test_user = next;
+  for (const listener of test_listeners) listener(next);
+}
+
 export const firebase = {
   subscribe(listener: (user: AppUser | null) => void): () => void {
     if (!firebaseConfigured) {
-      listener(null);
-      return () => {};
+      test_listeners.add(listener);
+      listener(test_user);
+      return () => test_listeners.delete(listener);
     }
     return onIdTokenChanged(auth(), (user) => listener(user ? { uid: user.uid, email: user.email } : null));
   },
@@ -61,7 +76,12 @@ export const firebase = {
   async reset_password(email: string) {
     await sendPasswordResetEmail(auth(), email.trim());
   },
+  /** Enters test mode (development builds without Firebase only). */
+  start_test_mode() {
+    if (test_mode_available) set_test_user(TEST_USER);
+  },
   async sign_out() {
+    if (!firebaseConfigured) return set_test_user(null);
     await firebaseSignOut(auth());
   },
   async id_token(): Promise<string | null> {
