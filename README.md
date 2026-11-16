@@ -1,6 +1,6 @@
 # Recipeek
 
-The app is called **Recipeek** (it started as Meals and Mixers; the repository, package ID and storage keys keep the old name so nothing breaks).
+The app is called **Recipeek** (it started as Meals and Mixers). The repository is `Bmajor1997/Recipeek`; GitHub forwards the old `Meals-and-Mixers` address. The package ID, URL scheme and storage keys keep the old name so saved recipes and sign-ins keep working.
 
 <p align="center">
   <img src="assets/app-icon.png" alt="Recipeek app icon: a white serif R inside the citrus camera ring, on near-black" width="256">
