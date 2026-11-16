@@ -28,7 +28,18 @@ export function configure(env) {
 
 if (import.meta.main) {
   const { authorize, premium, store, images, featured } = configure(process.env);
-  const handle = create_app({ env: process.env, store, authorize, premium, images, featured });
+  const app = create_app({ env: process.env, store, authorize, premium, images, featured });
+  // Outside production, print one line per request (method, path, status, time) to help with local testing.
+  // Never the body, headers or sign-in token.
+  const handle = process.env.NODE_ENV === "production"
+    ? app
+    : (request, response) => {
+        const started = Date.now();
+        const path = String(request.url || "").split("?")[0];
+        console.log(`-> ${request.method} ${path}`);
+        response.on("close", () => console.log(`<- ${request.method} ${path} ${response.statusCode}${response.writableFinished ? "" : " (closed early)"} ${Date.now() - started} ms`));
+        return app(request, response);
+      };
   const port = Number(process.env.PORT || 8787);
   // Old feedback is removed hourly as well as at start, so nothing outlives its one-year retention.
   setInterval(() => {

@@ -42,7 +42,9 @@ export function create_api({ baseUrl, id_token, fetch_impl = fetch, timeoutMs = 
       return json;
     } catch (error) {
       if (error instanceof ApiError) throw error;
-      if ((error as Error)?.name === "AbortError") throw new ApiError("That took too long. Check your connection and try again.", 0);
+      // React Native doesn't always name an aborted request "AbortError", so check the timer's signal too.
+      if (controller.signal.aborted || (error as Error)?.name === "AbortError")
+        throw new ApiError("That took too long. Check your connection and try again.", 0);
       throw new ApiError("Couldn't reach the recipe server. Check your connection and try again.", 0);
     } finally {
       clearTimeout(timer);
