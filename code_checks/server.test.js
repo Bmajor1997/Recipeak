@@ -216,7 +216,7 @@ test("photo-wall recipes are made once, shared by everyone, and use no free phot
 
 test("only photo-wall dishes, with no diet, can be opened for free", async (t) => {
   const s = await start({ reply: RECIPE, featured: curated_keys() }); t.after(s.close);
-  assert.equal((await s.call("/api/featured-recipe", { body: { name: "Beef Wellington", kind: "meal" } })).status, 404);
+  assert.equal((await s.call("/api/featured-recipe", { body: { name: "Imaginary Test Dish Gamma", kind: "meal" } })).status, 404);
   assert.equal((await s.call("/api/featured-recipe", { body: { name: "Margarita", kind: "meal" } })).status, 404);
   assert.equal((await s.call("/api/featured-recipe", { body: { name: "Margarita", kind: "cocktail", diet: "vegan" } })).status, 400);
   assert.equal((await s.call("/api/featured-recipe", { user: null, body: { name: "Margarita", kind: "cocktail" } })).status, 401);
