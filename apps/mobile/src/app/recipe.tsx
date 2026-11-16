@@ -35,7 +35,7 @@ type Ready = Extract<CurrentRecipe, { status: "ready" }>;
 
 export default function RecipeScreen() {
   const { current } = useApp();
-  if (!current || current.status === "loading") return <Finding />;
+  if (!current || current.status === "loading") return <Finding photo={current?.status === "loading" ? current.photo : undefined} />;
   if (current.status === "problem") return <Problem message={current.message} source={current.source ?? "photo"} />;
   return <RecipeView current={current} />;
 }
@@ -56,14 +56,19 @@ function Sheet({ children, footer }: { children: React.ReactNode; footer?: React
   );
 }
 
-function Finding() {
+/** Shown while a recipe loads: the tapped dish's photo when there is one, otherwise the app's art. */
+function Finding({ photo }: { photo?: number }) {
   const { colors, type } = useTheme();
   const styles = useThemedStyles(create_styles);
   const { height } = useWindowDimensions();
   return (
     <Sheet>
       <View style={[styles.cover, styles.placeholder, { height: Math.min(Math.round(height * 0.42), 400) }]}>
-        <Image source={heroArt} style={styles.placeholderArt} resizeMode="contain" accessible={false} />
+        {photo ? (
+          <Image source={photo} style={StyleSheet.absoluteFill} resizeMode="cover" accessible={false} />
+        ) : (
+          <Image source={heroArt} style={styles.placeholderArt} resizeMode="contain" accessible={false} />
+        )}
       </View>
       <View style={styles.body} accessibilityLiveRegion="polite">
         <View style={styles.findingRow}>

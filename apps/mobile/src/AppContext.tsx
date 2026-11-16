@@ -13,7 +13,7 @@ import { create_saved_recipes, SIGNED_OUT_SAVED, type SavedRecipes } from "./sav
  * `localPhoto` is a cover already kept on this phone (for saved recipes).
  */
 export type CurrentRecipe =
-  | { status: "loading" }
+  | { status: "loading"; photo?: number }
   | { status: "problem"; message: string; source?: "photo" | "wall" }
   | {
       status: "ready";
