@@ -48,11 +48,11 @@ export function RateRecipe({ kind, dish }: { kind: Kind; dish: string }) {
     if (!ratings || !stars || busy) return;
     set_busy(true);
     try {
-      const sent = await ratings.rate(kind, dish, { stars, made, tags, note });
+      await ratings.save(kind, dish, { stars, made, tags, note });
       set_rated_before(true);
-      set_message(
-        sent ? "Thanks! Your rating helps us improve this recipe." : "Saved on your phone. We'll send it the next time you're online.",
-      );
+      set_message("Thanks! Your rating helps us improve this recipe.");
+      // Sent in the background; if the server can't be reached, it's sent the next time the app opens.
+      void ratings.send_pending();
     } catch {
       set_message("Couldn't save your rating. Please try again.");
     } finally {
