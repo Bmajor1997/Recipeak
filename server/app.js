@@ -139,6 +139,11 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
       }),
       max_body: FEEDBACK_BODY,
     },
+    "POST /api/recipe-rating": { handler: async (user, body) => store.ratings.rate(user.uid, body), max_body: 4096 },
+    "POST /api/admin/recipe-ratings": {
+      handler: admin_only((body) => store.ratings.summary({ min_ratings: body?.min_ratings, limit: body?.limit })),
+      max_body: 1024,
+    },
     "POST /api/admin/feedback/mutate": { handler: admin_only((body) => store.feedback.mutate(body)), max_body: FEEDBACK_BODY },
   };
 

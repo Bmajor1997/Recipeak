@@ -23,6 +23,7 @@ import { useCamera } from "../camera/CameraProvider";
 import { FREE_SAVED_RECIPES } from "../paywall/plans";
 import { format_ingredient, format_minutes, recipe_as_text } from "../recipes/format";
 import { scale_amount } from "../recipes/scale";
+import { RateRecipe } from "../recipes/RateRecipe";
 import { DIETS, type Diet, type Guess, type Kind } from "../recipes/types";
 import { useDishImage } from "../recipes/useDishImage";
 import { usePreferences } from "../settings/PreferencesProvider";
@@ -332,6 +333,41 @@ function RecipeView({ current }: { current: Ready }) {
             </View>
           ))}
 
+          {!!recipe.tips?.length && (
+            <>
+              <Text style={type.heading} accessibilityRole="header">
+                Tips for success
+              </Text>
+              {recipe.tips.map((tip, i) => (
+                <View key={i} style={styles.tip}>
+                  <Ionicons name="bulb-outline" size={20} color={colors.accentInk} accessible={false} />
+                  <Text style={[type.body, { flex: 1 }]}>{tip}</Text>
+                </View>
+              ))}
+            </>
+          )}
+          {!!recipe.make_ahead && (
+            <>
+              <Text style={type.heading} accessibilityRole="header">
+                Make ahead and storage
+              </Text>
+              <Text style={type.body}>{recipe.make_ahead}</Text>
+            </>
+          )}
+          {!!recipe.variations?.length && (
+            <>
+              <Text style={type.heading} accessibilityRole="header">
+                Variations
+              </Text>
+              {recipe.variations.map((variation, i) => (
+                <View key={i} style={styles.tip}>
+                  <Ionicons name="swap-horizontal-outline" size={20} color={colors.accentInk} accessible={false} />
+                  <Text style={[type.body, { flex: 1 }]}>{variation}</Text>
+                </View>
+              ))}
+            </>
+          )}
+
           {recipe.cocktail?.non_alcoholic_version && (
             <>
               <Text style={type.heading}>Non-alcoholic version</Text>
@@ -340,7 +376,7 @@ function RecipeView({ current }: { current: Ready }) {
           )}
           {!!recipe.note && (
             <>
-              <Text style={type.heading}>Tip</Text>
+              <Text style={type.heading}>Note</Text>
               <Text style={type.body}>{recipe.note}</Text>
             </>
           )}
@@ -350,6 +386,8 @@ function RecipeView({ current }: { current: Ready }) {
             {recipe.allergens.length ? `Contains ${recipe.allergens.join(", ")}.` : "None of the major allergens are listed."}
           </Text>
           <Text style={[type.muted, { marginTop: 4 }]}>{"A photo can't show every ingredient. Check labels if allergies matter."}</Text>
+
+          <RateRecipe key={`${kind}|${dishName}`} kind={kind} dish={dishName} />
 
           <View style={styles.shareRow}>
             <Button label="Share recipe" variant="secondary" onPress={() => Share.share({ message: recipe_as_text(recipe) })} />
@@ -574,6 +612,7 @@ const create_styles = (colors: Palette) =>
     },
     amount: { color: colors.accentInk, fontSize: 16, fontWeight: "700", minWidth: 76 },
     step: { flexDirection: "row", gap: 16, marginBottom: 20 },
+    tip: { flexDirection: "row", gap: 12, marginBottom: 12 },
     stepNumber: { color: colors.accentInk, fontSize: 24, lineHeight: 28, fontFamily: fonts.displayMedium, minWidth: 36 },
     shareRow: { marginTop: 16 },
     topBar: { position: "absolute", left: 16, right: 16, flexDirection: "row", justifyContent: "space-between" },

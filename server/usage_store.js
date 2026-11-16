@@ -6,6 +6,7 @@ import { dirname } from "node:path";
 import { randomUUID } from "node:crypto";
 import { AiLimitError } from "./errors.js";
 import { create_feedback_store } from "./feedback.js";
+import { create_rating_store } from "./recipe_ratings.js";
 
 export const AI_EXECUTION_TIMEOUT_MS = 60_000;
 const AI_EXECUTION_LEASE_MS = 90_000;
@@ -93,10 +94,14 @@ export function create_usage_store(env = {}, { now = () => new Date(), path = en
   // Feature requests and bug reports share this private ledger. Anything older than a year is removed.
   const feedback = create_feedback_store(db, { now });
   feedback.prune();
+  // Recipe ratings and "I made this" notes, kept for two years.
+  const ratings = create_rating_store(db, { now });
+  ratings.prune();
 
   return {
     limits,
     feedback,
+    ratings,
     free_photos_left(user_id) { return Math.max(0, limits.free_photos - photos_used(user_id)); },
 
     /** Atomically check every limit and reserve the worst-case cost before calling the provider. */

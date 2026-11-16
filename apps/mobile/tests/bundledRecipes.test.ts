@@ -23,6 +23,13 @@ describe("bundled collection", () => {
     expect(Object.keys(bundled).length).toBe(manifest.photos.length);
   });
 
+  it("keeps tips, make-ahead notes and variations on the upgraded recipes", () => {
+    const pho = parse_recipe(bundled["pho"]);
+    expect(pho.tips?.length).toBeGreaterThan(0);
+    expect(pho.make_ahead).not.toBe("");
+    expect(pho.variations?.length).toBeGreaterThan(0);
+  });
+
   it("only lists the nine major US allergens", () => {
     const allowed = new Set(["milk", "eggs", "fish", "shellfish", "tree nuts", "peanuts", "wheat", "soy", "sesame"]);
     for (const [id, value] of Object.entries(bundled)) {

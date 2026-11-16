@@ -1,27 +1,3 @@
-@ pho | Beef Pho | 4 | 30 | 180 | fish | Vietnamese rice noodle soup in a clear, spiced beef broth, topped with thin slices of beef and fresh herbs.
-- 3 | lb | beef soup bones (marrow and knuckle)
-- 1 | lb | beef brisket
-- 1 | | large onion, halved
-- 3 | inch | piece fresh ginger, halved lengthwise
-- 3 | | star anise
-- 1 | | cinnamon stick
-- 4 | | whole cloves
-- 1 | tbsp | coriander seeds
-- 3 | tbsp | fish sauce
-- 1 | tbsp | sugar
-- 14 | oz | dried flat rice noodles
-- 8 | oz | beef sirloin, sliced paper thin
-- 1 | cup | bean sprouts
-- 1 | bunch | Thai basil, cilantro and sliced green onion
-- 2 | | limes, cut into wedges
-# Cover the bones with water, boil for 5 minutes, then drain and rinse to keep the broth clear.
-# Char the onion and ginger in a dry pan or under the broiler until blackened in spots.
-# Toast the star anise, cinnamon, cloves and coriander in a dry pan for 2 minutes.
-# Put the bones, brisket, onion, ginger and spices in a large pot with 4 quarts of water and simmer gently for 3 hours, skimming as needed. Lift out the brisket after 1 1/2 hours and slice it.
-# Strain the broth and season with fish sauce and sugar.
-# Cook the noodles as the package directs and divide among bowls. Top with brisket and raw sirloin, then ladle the boiling broth over to cook the sirloin.
-# Serve with bean sprouts, herbs and lime wedges.
-
 @ fish-and-chips | Fish and Chips | 4 | 25 | 30 | fish, wheat | Crisp beer-battered white fish with thick-cut fries, British style.
 - 2 | lb | russet potatoes, cut into thick fries
 - 1 1/2 | lb | cod or haddock fillets, cut into 4 pieces
@@ -101,25 +77,6 @@
 # Stir in the tomatoes and the ground spices and cook until the oil starts to separate, about 8 minutes.
 # Add the chickpeas and 1 cup water, then simmer 15 minutes, mashing a few chickpeas to thicken.
 # Stir in the garam masala and lemon juice, season with salt and top with cilantro. Serve with rice or naan.
-
-@ ramen | Chicken Ramen | 4 | 20 | 30 | wheat, soy, eggs, sesame | Quick home ramen in a savory soy chicken broth with noodles, a soft egg and toppings.
-- 8 | cups | chicken broth
-- 3 | cloves | garlic, smashed
-- 1 | inch | piece ginger, sliced
-- 3 | tbsp | soy sauce
-- 2 | tbsp | mirin
-- 1 | tsp | toasted sesame oil
-- 2 | | boneless chicken thighs
-- 4 | | large eggs
-- 4 | portions | fresh ramen noodles
-- 4 | | green onions, sliced
-- 1 | cup | baby spinach
-- 1 | sheet | nori, cut into strips
-# Simmer the broth with the garlic and ginger for 15 minutes. Remove the aromatics and stir in the soy sauce, mirin and sesame oil.
-# Poach the chicken in the broth for 12 to 15 minutes until cooked, then slice.
-# Boil the eggs for 6 1/2 minutes, cool in ice water, peel and halve.
-# Cook the noodles as the package directs and drain.
-# Divide the noodles and spinach among bowls and pour the hot broth over. Top with chicken, egg, green onion and nori.
 
 @ orange-chicken | Orange Chicken | 4 | 20 | 20 | wheat, eggs, soy | Crispy chicken pieces tossed in a sticky, sweet and tangy orange sauce.
 - 1 1/2 | lb | boneless chicken thighs, cut into bite-size pieces
@@ -301,25 +258,6 @@
 # Pour off the fat, add the sauce and simmer, turning the chicken, until the sauce is thick and glossy.
 # Slice and serve over rice, topped with sesame seeds and green onions.
 
-@ fish-tacos | Baja Fish Tacos | 4 | 20 | 15 | fish, wheat, eggs, milk | Crispy battered fish in corn tortillas with cabbage slaw and creamy lime sauce.
-- 1 1/2 | lb | cod or other white fish, cut into strips
-- 1 | cup | all-purpose flour
-- 1 | tsp | baking powder
-- 1 | tsp | salt
-- 1 | cup | cold beer or sparkling water
-- | | vegetable oil, for frying
-- 1/2 | cup | mayonnaise
-- 1/4 | cup | sour cream
-- 1 | | lime, juiced
-- 2 | cups | shredded cabbage
-- 8 | | corn tortillas, warmed
-- | | pico de gallo and cilantro
-# Mix the mayonnaise, sour cream and half the lime juice for the sauce.
-# Whisk the flour, baking powder, salt and beer into a smooth batter.
-# Dip the fish in the batter and fry at 375°F for 3 to 4 minutes until golden. Drain.
-# Toss the cabbage with the remaining lime juice and a pinch of salt.
-# Fill the tortillas with fish, cabbage, sauce, pico de gallo and cilantro.
-
 @ crab-cakes | Maryland Crab Cakes | 4 | 20 | 10 | eggs, fish, milk, shellfish, wheat | Golden, lightly bound lump crab cakes seasoned with Old Bay.
 - 1 | lb | lump crab meat, picked over
 - 1 | | large egg
@@ -394,26 +332,6 @@
 # Beat in the eggs, buttermilk and oil, then stir in the hot coffee. The batter will be thin.
 # Bake for 30 to 35 minutes and cool completely.
 # Beat the butter, powdered sugar, cocoa, milk and vanilla until fluffy. Fill and frost the cake.
-
-@ chicken-tikka-masala | Chicken Tikka Masala | 4 | 25 | 35 | milk | Charred, yogurt-marinated chicken in a creamy, spiced tomato masala.
-- 1 1/2 | lb | boneless chicken thighs, cubed
-- 3/4 | cup | plain yogurt
-- 1 | tbsp | lemon juice
-- 2 | tsp | garam masala
-- 2 | tsp | ground cumin
-- 1 | tsp | smoked paprika
-- 2 | tbsp | oil
-- 1 | | onion, chopped
-- 4 | cloves | garlic, minced
-- 1 | tbsp | grated ginger
-- 1 | can (14 oz) | crushed tomatoes
-- 3/4 | cup | heavy cream
-- | | salt and cilantro
-# Marinate the chicken in the yogurt, lemon juice and half the spices for at least 1 hour.
-# Broil or grill the chicken until charred at the edges, about 10 minutes.
-# Cook the onion in oil until golden, add the garlic, ginger and remaining spices for 1 minute.
-# Add the tomatoes and simmer 15 minutes, then stir in the cream.
-# Add the chicken, simmer 5 minutes, season with salt and top with cilantro.
 
 @ chicken-quesadilla | Chicken Quesadilla | 2 | 10 | 10 | wheat, milk | Crisp flour tortillas filled with melted cheese, shredded chicken and peppers.
 - 4 | | large flour tortillas
@@ -572,28 +490,6 @@
 # Mash with a fork, leaving some chunks, and stir in the lime juice and salt.
 # Fold in the onion, jalapeño, tomato and cilantro. Taste and adjust.
 # Serve right away with tortilla chips.
-
-@ paella | Seafood Paella | 6 | 25 | 40 | shellfish, fish | Spanish saffron rice with shrimp, mussels and squid, with a crisp golden crust on the bottom.
-- 1/4 | cup | olive oil
-- 1 | | onion, finely chopped
-- 1 | | red bell pepper, diced
-- 3 | cloves | garlic, minced
-- 1 | cup | grated tomato
-- 1 | tsp | smoked paprika
-- 1 | pinch | saffron
-- 2 | cups | Spanish short-grain rice (bomba)
-- 5 | cups | hot fish or chicken stock
-- 1 | lb | large shrimp
-- 1 | lb | mussels, scrubbed
-- 8 | oz | squid rings
-- 1/2 | cup | peas
-- | | lemon wedges and parsley
-# Heat the oil in a paella pan and sear the shrimp and squid briefly. Remove.
-# Cook the onion and pepper until soft, add the garlic, tomato and paprika and cook 5 minutes.
-# Stir in the rice to coat, then add the hot stock with the saffron and a good pinch of salt. Do not stir again.
-# Simmer 15 minutes, then nestle in the shrimp, squid, mussels and peas.
-# Cook 5 to 8 minutes more until the mussels open and the rice is tender. Raise the heat for the last minute to crisp the bottom.
-# Rest 5 minutes and serve with lemon and parsley.
 
 @ chilaquiles | Chilaquiles Rojos | 4 | 15 | 15 | milk, eggs | Tortilla chips simmered in red chile salsa, topped with eggs, crema and fresh cheese.
 - 6 | cups | thick tortilla chips

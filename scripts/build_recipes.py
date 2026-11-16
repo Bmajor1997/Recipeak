@@ -7,6 +7,9 @@ Each source file holds recipes in a compact text form:
     # step
     G glass | garnish | y or n (alcoholic) | non-alcoholic version, or -     (cocktails only)
     ! note                                                                    (optional)
+    T tip: why a step works or what to look for                               (optional, up to 8)
+    S make-ahead and storage                                                  (optional)
+    V variation                                                               (optional, up to 6)
 
 Run from the repo root:  python3 scripts/build_recipes.py
 It checks every recipe against the app's rules and the photo manifest, and refuses to write if anything is wrong.
@@ -50,7 +53,7 @@ for path in sorted(SRC.glob("*.txt")):
             current = {"stem": stem, "title": title, "description": desc, "servings": int(serv), "prep_minutes": int(prep),
                        "cook_minutes": int(cook), "ingredients": [], "steps": [],
                        "allergens": [a.strip() for a in allergens.split(",") if a.strip() and a.strip() != "-"],
-                       "cocktail": None, "note": None}
+                       "cocktail": None, "note": None, "tips": [], "make_ahead": "", "variations": []}
             if stem in recipes:
                 fail(stem, "written twice")
             recipes[stem] = current
@@ -73,6 +76,12 @@ for path in sorted(SRC.glob("*.txt")):
                                    "non_alcoholic_version": None if parts[3] == "-" else parts[3]}
         elif tag == "!":
             current["note"] = rest
+        elif tag == "T":
+            current["tips"].append(rest)
+        elif tag == "S":
+            current["make_ahead"] = rest
+        elif tag == "V":
+            current["variations"].append(rest)
         else:
             problems.append(f"{path.name}: unknown line {line[:60]}")
 
@@ -98,10 +107,16 @@ for stem, r in recipes.items():
     for i in r["ingredients"]:
         if len(i["amount"]) > 40 or len(i["unit"]) > 40 or len(i["item"]) > 200 or not i["item"]:
             fail(stem, f"bad ingredient {i}")
+    if len(r["tips"]) > 8 or len(r["variations"]) > 6 or len(r["make_ahead"]) > 600:
+        fail(stem, "up to 8 tips, 6 variations and 600 characters of make-ahead")
+    if any(len(t) > 300 for t in r["tips"] + r["variations"]):
+        fail(stem, "tips and variations must be 300 characters or less")
     note = r["note"] or NOTES[kind]
     out[stem] = {"kind": kind, "recipe": {k: r[k] for k in ("title", "description", "servings", "prep_minutes", "cook_minutes",
                                                             "ingredients", "steps")} | {"allergens": sorted(set(r["allergens"])),
-                                                                                         "cocktail": r["cocktail"], "note": note}}
+                                                                                         "cocktail": r["cocktail"], "note": note,
+                                                                                         "tips": r["tips"], "make_ahead": r["make_ahead"],
+                                                                                         "variations": r["variations"]}}
 
 missing = sorted(set(kinds) - set(out))
 if problems:

@@ -55,6 +55,9 @@ export function parse_recipe(v: unknown): Recipe {
     allergens: list(v.allergens, 9, (s) => str(s, 20)),
     cocktail: cocktail(v.cocktail),
     note: str(v.note),
+    tips: v.tips === undefined ? [] : list(v.tips, 8, (s) => str(s, 300)),
+    make_ahead: v.make_ahead === undefined ? "" : str(v.make_ahead),
+    variations: v.variations === undefined ? [] : list(v.variations, 6, (s) => str(s, 300)),
   };
   if (!recipe.title || !recipe.ingredients.length || !recipe.steps.length) throw new Error("Invalid recipe");
   return recipe;

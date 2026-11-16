@@ -90,40 +90,6 @@
 # Add the hot drained pasta to the skillet, then off the heat stir in the egg mixture with splashes of pasta water until creamy, not scrambled.
 # Serve at once with more Pecorino and pepper.
 
-@ lasagna | Beef Lasagna | 10 | 30 | 75 | wheat, milk, eggs | Layers of pasta, meat sauce, ricotta and melted mozzarella.
-- 1 | lb | ground beef
-- 1/2 | lb | Italian sausage
-- 1 | | onion, chopped
-- 3 | cloves | garlic, minced
-- 1 | jar (24 oz) | marinara sauce
-- 1 | can (15 oz) | tomato sauce
-- 12 | | lasagna noodles
-- 15 | oz | ricotta
-- 1 | | large egg
-- 3 | cups | shredded mozzarella
-- 3/4 | cup | grated Parmesan
-- 2 | tbsp | chopped parsley
-# Heat the oven to 375°F. Brown the beef, sausage and onion, add the garlic, marinara and tomato sauce and simmer 15 minutes.
-# Cook the noodles. Mix the ricotta, egg, half the Parmesan and the parsley.
-# In a 9 x 13 dish, layer sauce, noodles, ricotta, mozzarella and sauce. Repeat twice, ending with sauce, mozzarella and Parmesan.
-# Cover with foil and bake 25 minutes, uncover and bake 25 minutes more.
-# Rest 15 minutes before cutting.
-
-@ shrimp-scampi-pasta | Shrimp Scampi | 4 | 10 | 15 | shellfish, wheat, milk | Linguine with shrimp in a garlicky white wine, lemon and butter sauce.
-- 12 | oz | linguine
-- 1 | lb | large shrimp, peeled
-- 4 | tbsp | butter
-- 2 | tbsp | olive oil
-- 5 | cloves | garlic, minced
-- 1/4 | tsp | red pepper flakes
-- 1/2 | cup | dry white wine
-- 1 | | lemon, zested and juiced
-- 1/4 | cup | chopped parsley
-# Cook the linguine and save 1/2 cup of pasta water.
-# Heat the oil and 2 tbsp butter, cook the shrimp 1 minute per side and remove.
-# Add the garlic and pepper flakes for 30 seconds, then the wine and simmer 2 minutes.
-# Add the remaining butter, lemon, pasta, shrimp and parsley, tossing with pasta water until glossy.
-
 @ pesto-pasta | Pesto Pasta | 4 | 15 | 12 | wheat, milk, tree nuts | Pasta tossed in fresh basil pesto with pine nuts and Parmesan.
 - 1 | lb | spaghetti or trofie
 - 3 | cups | fresh basil leaves
@@ -177,18 +143,6 @@
 # Season the tomatoes with salt.
 # Stretch half the dough into a 12-inch round, spread with tomato and top with mozzarella.
 # Bake 6 to 8 minutes until blistered. Drizzle with oil and top with basil. Repeat with the rest.
-
-@ pepperoni-pizza | Pepperoni Pizza | 2 | 20 | 12 | wheat, milk | Crisp pizza with tomato sauce, mozzarella and cupped, crispy pepperoni.
-- 1 | lb | pizza dough
-- 1/2 | cup | pizza sauce
-- 2 | cups | shredded low-moisture mozzarella
-- 3 | oz | pepperoni slices
-- 1 | tsp | dried oregano
-- | | grated Parmesan
-# Heat the oven with a pizza stone or steel to 500°F.
-# Stretch the dough into two 12-inch rounds and spread with sauce.
-# Top with mozzarella and pepperoni and sprinkle with oregano.
-# Bake 10 to 12 minutes until the crust is golden and the pepperoni crisps. Finish with Parmesan.
 
 @ grilled-cheese | Grilled Cheese and Tomato Soup | 2 | 5 | 10 | wheat, milk | Golden, buttery grilled cheese sandwiches, perfect with a bowl of tomato soup.
 - 4 | slices | sandwich bread
