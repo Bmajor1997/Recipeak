@@ -29,6 +29,7 @@ export function useOpenWallDish() {
       } catch (error) {
         set_current({
           status: "problem",
+          source: "wall",
           message: error instanceof ApiError ? error.message : "That recipe couldn't be loaded. Please try again.",
         });
       }

@@ -58,6 +58,7 @@ export default function CookScreen() {
           value={awake}
           onValueChange={set_awake}
           trackColor={{ true: colors.accent, false: colors.raised }}
+          thumbColor="#FFFFFF"
         />
       </View>
       {has_steps && (

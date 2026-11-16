@@ -60,6 +60,17 @@ export default function HomeScreen() {
           <Text style={styles.seeAll}>See all</Text>
         </Pressable>
       </View>
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel="Browse every meal and cocktail"
+        onPress={() => router.push("/explore")}
+        style={({ pressed }) => [styles.pad, pressed && { opacity: 0.7 }]}
+      >
+        <View style={styles.exploreCard}>
+          <Text style={type.body}>Browse every meal and cocktail</Text>
+          <Text style={type.muted}>Search the collection, filter by meals or drinks, and open any recipe.</Text>
+        </View>
+      </Pressable>
 
       {recent.length > 0 && (
         <>
@@ -121,5 +132,6 @@ const create_styles = (colors: Palette) =>
     },
     badgeText: { color: colors.accentInk, fontSize: 13, fontWeight: "600" },
     sectionHeader: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between", marginTop: 28, marginBottom: 12 },
+    exploreCard: { backgroundColor: colors.surface, borderRadius: 16, padding: 16, gap: 4 },
     seeAll: { color: colors.accentInk, fontSize: 14, fontWeight: "600" },
   });

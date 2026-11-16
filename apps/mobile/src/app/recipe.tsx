@@ -36,7 +36,7 @@ type Ready = Extract<CurrentRecipe, { status: "ready" }>;
 export default function RecipeScreen() {
   const { current } = useApp();
   if (!current || current.status === "loading") return <Finding />;
-  if (current.status === "problem") return <Problem message={current.message} />;
+  if (current.status === "problem") return <Problem message={current.message} source={current.source ?? "photo"} />;
   return <RecipeView current={current} />;
 }
 
@@ -78,7 +78,8 @@ function Finding() {
   );
 }
 
-function Problem({ message }: { message: string }) {
+/** A recipe that couldn't be shown. After a photo it offers a retake or a typed name; after a Home wall tap, just Close. */
+function Problem({ message, source }: { message: string; source: "photo" | "wall" }) {
   const { type } = useTheme();
   const styles = useThemedStyles(create_styles);
   const { open_camera } = useCamera();
@@ -86,17 +87,21 @@ function Problem({ message }: { message: string }) {
     <Sheet>
       <View style={[styles.body, { paddingTop: 90 }]}>
         <Text style={type.title} accessibilityRole="header">
-          {"Let's try that again"}
+          {source === "wall" ? "Couldn't open that recipe" : "Let's try that again"}
         </Text>
         <Notice tone="error">{message}</Notice>
-        <Button
-          label="Retake photo"
-          onPress={() => {
-            router.back();
-            open_camera();
-          }}
-        />
-        <ManualCorrection initialKind="meal" correction />
+        {source === "photo" && (
+          <>
+            <Button
+              label="Retake photo"
+              onPress={() => {
+                router.back();
+                open_camera();
+              }}
+            />
+            <ManualCorrection initialKind="meal" correction />
+          </>
+        )}
         <Button label="Close" variant="secondary" onPress={() => router.back()} />
       </View>
     </Sheet>
