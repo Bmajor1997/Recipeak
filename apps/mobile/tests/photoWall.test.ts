@@ -19,9 +19,9 @@ describe("moving photo wall", () => {
 
   it("bundles every photo the wall lists", () => {
     const list = readFileSync(join(__dirname, "../src/ui/wallPhotos.ts"), "utf8");
-    const files = [...list.matchAll(/require\("\.\.\/\.\.\/assets\/wall\/([a-z0-9-]+\.jpg)"\)/g)].map((m) => m[1]);
+    const files = [...list.matchAll(/require\("\.\.\/\.\.\/assets\/collection\/([a-z0-9-]+\.jpg)"\)/g)].map((m) => m[1]);
     expect(files.length).toBeGreaterThanOrEqual(12);
-    for (const file of files) expect(existsSync(join(__dirname, "../assets/wall", file)), file).toBe(true);
+    for (const file of files) expect(existsSync(join(__dirname, "../assets/collection", file)), file).toBe(true);
   });
 });
 
