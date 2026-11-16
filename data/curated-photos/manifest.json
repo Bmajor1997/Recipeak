@@ -405,6 +405,8 @@
     {"file":"division-bell-cocktail.jpg","kind":"cocktail","names":["Division Bell cocktail"]},
     {"file":"improved-whiskey-cocktail.jpg","kind":"cocktail","names":["Improved Whiskey Cocktail"]},
     {"file":"doro-wat.jpg","kind":"meal","names":["Doro wat"]},
-    {"file":"bijou.jpg","kind":"cocktail","names":["Bijou"]}
+    {"file":"bijou.jpg","kind":"cocktail","names":["Bijou"]},
+    {"file":"haemul-pajeon.jpg","kind":"meal","names":["Haemul Pajeon","Seafood Pajeon","Korean Seafood Scallion Pancake"]},
+    {"file":"jungle-juice.jpg","kind":"cocktail","names":["Jungle Juice"]}
   ]
 }
