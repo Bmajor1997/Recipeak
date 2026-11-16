@@ -30,6 +30,7 @@ export function useOpenWallDish() {
           image: NO_IMAGE,
           localPhoto: photo,
           savedId: null,
+          picked: true,
         });
         return;
       }
@@ -44,6 +45,7 @@ export function useOpenWallDish() {
           image,
           localPhoto: null,
           savedId: null,
+          picked: true,
         });
       } catch (error) {
         set_current({

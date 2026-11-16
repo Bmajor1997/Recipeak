@@ -54,6 +54,7 @@ export type SendRating = (input: {
 }) => Promise<void>;
 
 export function create_ratings(storage: KeyValueStorage, uid: string, send: SendRating, now = () => new Date()) {
+  let sending: Promise<void> | null = null;
   async function read_all(): Promise<Record<string, Rating>> {
     try {
       const raw = JSON.parse((await storage.getItem(storage_name(uid))) ?? "{}") as Record<string, unknown>;
@@ -73,37 +74,36 @@ export function create_ratings(storage: KeyValueStorage, uid: string, send: Send
     async get(kind: Kind, dish: string): Promise<Rating | null> {
       return (await read_all())[rating_key(kind, dish)] ?? null;
     },
-    /** Keeps the rating on the phone first, then sends it. Returns false when it couldn't be sent yet. */
-    async rate(kind: Kind, dish: string, input: { stars: number; made: boolean; tags: RatingTag[]; note: string }): Promise<boolean> {
+    /** Keeps the rating on the phone. Send it with send_pending; the screen doesn't wait for the server. */
+    async save(kind: Kind, dish: string, input: { stars: number; made: boolean; tags: RatingTag[]; note: string }): Promise<void> {
       const all = await read_all();
-      const key = rating_key(kind, dish);
       const note = input.note.trim().slice(0, MAX_NOTE);
-      all[key] = { ...input, note, sent: false, updated_at: now().toISOString() };
+      all[rating_key(kind, dish)] = { ...input, note, sent: false, updated_at: now().toISOString() };
       await write_all(all);
-      try {
-        await send({ kind, dish, ...input, note });
-      } catch {
-        return false;
-      }
-      const latest = await read_all();
-      if (latest[key]) latest[key] = { ...latest[key], sent: true };
-      await write_all(latest);
-      return true;
     },
     /** Sends any ratings that were kept while offline. */
     async send_pending(): Promise<void> {
-      const all = await read_all();
-      for (const [key, r] of Object.entries(all)) {
-        if (r.sent) continue;
-        const [kind, dish] = key.split("|") as [Kind, string];
-        try {
-          await send({ kind, dish, stars: r.stars, made: r.made, tags: r.tags, note: r.note });
-          all[key] = { ...r, sent: true };
-        } catch {
-          break;
+      if (sending) return sending;
+      sending = (async () => {
+        for (const [key, r] of Object.entries(await read_all())) {
+          if (r.sent) continue;
+          const [kind, dish] = key.split("|") as [Kind, string];
+          try {
+            await send({ kind, dish, stars: r.stars, made: r.made, tags: r.tags, note: r.note });
+          } catch {
+            return;
+          }
+          // Mark it sent only if it wasn't changed again while it was being sent.
+          const latest = await read_all();
+          if (latest[key]?.updated_at === r.updated_at) {
+            latest[key] = { ...latest[key], sent: true };
+            await write_all(latest);
+          }
         }
-      }
-      await write_all(all);
+      })().finally(() => {
+        sending = null;
+      });
+      return sending;
     },
   };
 }

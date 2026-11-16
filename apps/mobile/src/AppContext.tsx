@@ -26,6 +26,8 @@ export type CurrentRecipe =
       image: DishImage;
       localPhoto: string | null;
       savedId: string | null;
+      /** True when the person chose the dish (Home wall, Explore), so "Not the right dish?" doesn't apply. */
+      picked?: boolean;
     };
 
 type AppState = {

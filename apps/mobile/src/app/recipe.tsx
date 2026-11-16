@@ -270,7 +270,7 @@ function RecipeView({ current }: { current: Ready }) {
             </>
           )}
 
-          {!!guesses.length && <ManualCorrection initialKind={kind} />}
+          {!!guesses.length && !current.picked && <ManualCorrection initialKind={kind} />}
 
           <View style={styles.stats}>
             <Stat label="Prep" value={format_minutes(recipe.prep_minutes)} />
