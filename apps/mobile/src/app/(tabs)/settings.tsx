@@ -13,7 +13,7 @@ export default function Settings() {
   const open = (category: Category) => router.push({ pathname: "/settings/[category]", params: { category } });
   return (
     <SettingsScreen title="Settings">
-      <Text style={type.muted}>Make Meals &amp; Mixers feel right for you.</Text>
+      <Text style={type.muted}>Make Recipeek feel right for you.</Text>
       <Group title="YOUR ACCOUNT">
         <Row
           label={CATEGORIES.account}

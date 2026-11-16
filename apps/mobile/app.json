@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Meals and Mixers",
+    "name": "Recipeek",
     "slug": "meals-and-mixers",
     "scheme": "mealsandmixers",
     "version": "0.1.0",
@@ -19,7 +19,7 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Allow Meals and Mixers to photograph a meal or a cocktail so it can find a recipe.",
+          "cameraPermission": "Allow Recipeek to photograph a meal or a cocktail so it can find a recipe.",
           "recordAudioAndroid": false,
           "barcodeScannerEnabled": false
         }
@@ -27,7 +27,7 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "Allow Meals and Mixers to use a photo of a meal or a cocktail you choose, to find a recipe.",
+          "photosPermission": "Allow Recipeek to use a photo of a meal or a cocktail you choose, to find a recipe.",
           "microphonePermission": false
         }
       ]
