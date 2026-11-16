@@ -26,9 +26,12 @@ export function recipe_as_text(recipe: Recipe): string {
   }
   lines.push("Ingredients", ...recipe.ingredients.map((i) => `• ${format_ingredient(i)}`), "");
   lines.push("Steps", ...recipe.steps.map((s, n) => `${n + 1}. ${s}`));
+  if (recipe.tips?.length) lines.push("", "Tips", ...recipe.tips.map((t) => `• ${t}`));
+  if (recipe.make_ahead) lines.push("", `Make ahead and storage: ${recipe.make_ahead}`);
+  if (recipe.variations?.length) lines.push("", "Variations", ...recipe.variations.map((t) => `• ${t}`));
   if (recipe.cocktail?.non_alcoholic_version) lines.push("", `Non-alcoholic version: ${recipe.cocktail.non_alcoholic_version}`);
   if (recipe.allergens.length) lines.push("", `Contains: ${recipe.allergens.join(", ")}`);
-  if (recipe.note) lines.push("", `Tip: ${recipe.note}`);
+  if (recipe.note) lines.push("", `Note: ${recipe.note}`);
   lines.push("", "From Meals and Mixers. A representative recipe, not the original restaurant or bar recipe.");
   return lines.join("\n");
 }

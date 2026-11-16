@@ -4,6 +4,7 @@ import { createContext, type ReactNode, useContext, useEffect, useMemo, useState
 import { type Api, create_api } from "./api/client";
 import { type AppUser, firebase, firebaseConfigured } from "./auth/firebase";
 import type { DishImage, Guess, Kind, Recipe } from "./recipes/types";
+import { create_ratings, type Ratings } from "./recipes/ratings";
 import { keep_photo, remove_photo } from "./saved/photoStore";
 import { create_saved_recipes, SIGNED_OUT_SAVED, type SavedRecipes } from "./saved/savedRecipes";
 
@@ -32,6 +33,8 @@ type AppState = {
   api: Api;
   /** The signed-in account's own saved recipes. */
   saved: SavedRecipes;
+  /** The signed-in account's recipe ratings, or null when signed out. */
+  ratings: Ratings | null;
   current: CurrentRecipe | null;
   set_current: (value: CurrentRecipe | null) => void;
 };
@@ -69,7 +72,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
     () => (uid ? create_saved_recipes(AsyncStorage, uid, { photos: { keep_photo, remove_photo } }) : SIGNED_OUT_SAVED),
     [uid],
   );
-  const value = useMemo(() => ({ user, ready, api, saved, current, set_current }), [user, ready, api, saved, current]);
+  const ratings = useMemo(() => (uid ? create_ratings(AsyncStorage, uid, (input) => api.rate_recipe(input)) : null), [uid, api]);
+  // Ratings made while offline are sent the next time the app opens with this account.
+  useEffect(() => {
+    void ratings?.send_pending();
+  }, [ratings]);
+  const value = useMemo(() => ({ user, ready, api, saved, ratings, current, set_current }), [user, ready, api, saved, ratings, current]);
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }
 

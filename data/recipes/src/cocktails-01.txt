@@ -1,14 +1,3 @@
-@ margarita | Classic Margarita | 1 | 5 | 0 | - | Tequila, lime and orange liqueur, shaken and served with a salted rim.
-- 2 | oz | blanco tequila
-- 1 | oz | Cointreau or triple sec
-- 1 | oz | fresh lime juice
-- 1/4 | oz | agave syrup (optional)
-- | | coarse salt and ice
-# Rub the rim of a rocks glass with lime and dip in salt.
-# Shake the tequila, orange liqueur, lime and agave with ice.
-# Strain into the glass over fresh ice.
-G rocks glass | salted rim and lime wheel | y | Shake lime juice, orange juice and agave with ice and top with sparkling water.
-
 @ moscow-mule | Moscow Mule | 1 | 3 | 0 | - | Vodka, lime and spicy ginger beer, served in a copper mug.
 - 2 | oz | vodka
 - 1/2 | oz | fresh lime juice
@@ -17,15 +6,6 @@ G rocks glass | salted rim and lime wheel | y | Shake lime juice, orange juice a
 # Add the vodka and lime juice and top with ginger beer.
 # Stir gently.
 G copper mug | lime wedge and mint sprig | y | Use extra lime and ginger beer and skip the vodka.
-
-@ cosmopolitan | Cosmopolitan | 1 | 5 | 0 | - | Citrus vodka, orange liqueur, cranberry and lime, shaken and served up.
-- 1 1/2 | oz | citrus vodka
-- 1 | oz | Cointreau
-- 1/2 | oz | fresh lime juice
-- 1/2 | oz | cranberry juice
-# Shake everything with ice until well chilled.
-# Strain into a chilled coupe or martini glass.
-G coupe or martini glass | flamed orange peel | y | Shake cranberry, lime and orange juice with a splash of soda.
 
 @ manhattan | Manhattan | 1 | 3 | 0 | - | Rye whiskey and sweet vermouth with bitters, stirred and served up.
 - 2 | oz | rye or bourbon
@@ -53,14 +33,6 @@ G highball or balloon glass | lime wedge | y | Use a non-alcoholic gin alternati
 # Add the tequila and lime and top with grapefruit soda.
 # Stir gently.
 G highball glass | grapefruit wedge | y | Grapefruit soda with lime and a pinch of salt.
-
-@ negroni | Negroni | 1 | 3 | 0 | - | Equal parts gin, Campari and sweet vermouth, stirred over ice.
-- 1 | oz | gin
-- 1 | oz | Campari
-- 1 | oz | sweet vermouth
-# Stir everything with ice.
-# Strain into a rocks glass over a large ice cube.
-G rocks glass | orange peel | y | Use non-alcoholic bitter aperitivo and alcohol-free vermouth.
 
 @ french-75 | French 75 | 1 | 4 | 0 | - | Gin, lemon and sugar shaken and topped with Champagne.
 - 1 | oz | gin
@@ -129,14 +101,6 @@ G highball glass | lime wedge | y | Ginger beer with lime.
 # Top gently with the orange juice.
 G Champagne flute | orange twist | y | Orange juice with sparkling water or alcohol-free sparkling wine.
 
-@ aperol-spritz | Aperol Spritz | 1 | 2 | 0 | - | Aperol, prosecco and soda over ice.
-- 3 | oz | prosecco
-- 2 | oz | Aperol
-- 1 | oz | soda water
-# Fill a wine glass with ice.
-# Add the prosecco, then the Aperol and a splash of soda. Stir gently.
-G wine glass | orange slice | y | Use a non-alcoholic orange aperitivo with alcohol-free sparkling wine.
-
 @ whiskey-sour | Whiskey Sour | 1 | 5 | 0 | eggs | Bourbon, lemon and sugar with a silky egg-white foam.
 - 2 | oz | bourbon
 - 3/4 | oz | fresh lemon juice
@@ -148,15 +112,6 @@ G wine glass | orange slice | y | Use a non-alcoholic orange aperitivo with alco
 # Strain into a rocks glass over ice and dot the foam with bitters.
 G rocks glass | lemon slice and cherry | y | Shake lemon, syrup, egg white and cold black tea for a sour mocktail.
 ! Uses raw egg white; leave it out or use pasteurized whites if you prefer.
-
-@ espresso-martini | Espresso Martini | 1 | 5 | 0 | - | Vodka, coffee liqueur and fresh espresso shaken to a creamy foam.
-- 2 | oz | vodka
-- 1 | oz | fresh espresso, cooled slightly
-- 1/2 | oz | coffee liqueur
-- 1/4 | oz | simple syrup
-# Shake everything hard with ice for 15 seconds.
-# Strain into a chilled coupe.
-G coupe or martini glass | three coffee beans | y | Shake espresso, syrup and a splash of cream hard with ice.
 
 @ mai-tai | Mai Tai | 1 | 5 | 0 | tree nuts | Aged rum with lime, orange curaçao and almond orgeat, the tiki classic.
 - 1 | oz | aged Jamaican rum
@@ -183,27 +138,6 @@ G coupe | lime wheel | y | Shake lime and syrup with ice and top with soda.
 # Stir with ice for 30 seconds until very cold.
 # Strain into a chilled martini glass.
 G martini glass | lemon twist or olives | y | -
-
-@ mojito | Mojito | 1 | 5 | 0 | - | White rum muddled with mint, lime and sugar and topped with soda.
-- 2 | oz | white rum
-- 1 | oz | fresh lime juice
-- 3/4 | oz | simple syrup
-- 8 | | mint leaves
-- 2 | oz | soda water
-# Gently muddle the mint with the syrup and lime in a highball.
-# Add the rum, fill with crushed ice and stir.
-# Top with soda.
-G highball glass | mint sprig and lime wheel | y | Leave out the rum and add more soda for a virgin mojito.
-
-@ old-fashioned | Old Fashioned | 1 | 3 | 0 | - | Bourbon or rye stirred with sugar and bitters.
-- 2 | oz | bourbon or rye
-- 1/4 | oz | rich simple syrup (or 1 sugar cube)
-- 2 | dashes | Angostura bitters
-- 1 | dash | orange bitters
-# Stir everything with ice until chilled.
-# Strain over a large ice cube in a rocks glass.
-# Express an orange peel over the drink.
-G rocks glass | orange peel and cherry | y | -
 
 @ pina-colada | Piña Colada | 1 | 5 | 0 | - | Rum blended with pineapple and cream of coconut.
 - 2 | oz | white rum
@@ -366,16 +300,6 @@ G coupe | freshly grated nutmeg | y | Shake cream, chocolate syrup and a little 
 # Fill a highball with ice.
 # Add the vodka and orange juice and stir.
 G highball glass | orange slice | y | Orange juice with a splash of soda.
-
-@ blue-hawaii | Blue Hawaii | 1 | 4 | 0 | - | Rum, vodka, blue curaçao, pineapple and sweet and sour.
-- 3/4 | oz | white rum
-- 3/4 | oz | vodka
-- 1/2 | oz | blue curaçao
-- 3 | oz | pineapple juice
-- 1 | oz | sweet and sour mix
-# Shake everything with ice.
-# Strain into a hurricane glass filled with ice.
-G hurricane glass | pineapple wedge and cherry | y | Pineapple juice, lemonade and blue raspberry syrup.
 
 @ between-the-sheets | Between the Sheets | 1 | 3 | 0 | - | Cognac, white rum, orange liqueur and lemon.
 - 1 | oz | Cognac

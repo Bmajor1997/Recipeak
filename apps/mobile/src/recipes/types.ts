@@ -18,6 +18,11 @@ export type Recipe = {
   allergens: string[];
   cocktail: CocktailDetails | null;
   note: string;
+  /** Why key steps work and what to look for. Older and server recipes may not have these. */
+  tips?: string[];
+  /** How far ahead it can be made and how to store it. */
+  make_ahead?: string;
+  variations?: string[];
 };
 
 export type Kind = "meal" | "cocktail";
