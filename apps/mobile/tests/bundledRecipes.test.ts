@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import recipes from "../src/recipes/collection.json";
+import variants from "../src/recipes/collectionVariants.json";
 import { normalize_dish_name } from "../src/recipes/dishName";
 import { parse_recipe } from "../src/recipes/parse";
 
@@ -40,6 +41,28 @@ describe("bundled collection", () => {
     const allowed = new Set(["milk", "eggs", "fish", "shellfish", "tree nuts", "peanuts", "wheat", "soy", "sesame"]);
     for (const [id, value] of Object.entries(bundled)) {
       for (const allergen of parse_recipe(value).allergens) expect(allowed.has(allergen), `${id}: ${allergen}`).toBe(true);
+    }
+  });
+
+  it("has a valid vegetarian and vegan version for the dishes that have them", () => {
+    const versions = variants as Record<string, Record<string, unknown>>;
+    expect(Object.keys(versions).length).toBeGreaterThanOrEqual(60);
+    const allowed = new Set(["milk", "eggs", "fish", "shellfish", "tree nuts", "peanuts", "wheat", "soy", "sesame"]);
+    for (const [id, diets] of Object.entries(versions)) {
+      expect(bundled[id], `${id} has a regular recipe`).toBeDefined();
+      expect(Object.keys(diets).sort(), id).toEqual(["vegan", "vegetarian"]);
+      for (const [diet, value] of Object.entries(diets)) {
+        if (value === "same") continue;
+        const recipe = parse_recipe(value);
+        expect(recipe.ingredients.length, `${id} ${diet}`).toBeGreaterThan(0);
+        expect(recipe.steps.length, `${id} ${diet}`).toBeGreaterThan(0);
+        for (const allergen of recipe.allergens) expect(allowed.has(allergen), `${id} ${diet}: ${allergen}`).toBe(true);
+        // Meat and fish never appear in a vegetarian or vegan ingredient list.
+        const items = recipe.ingredients.map((i) => i.item.toLowerCase()).join(" | ");
+        expect(items, `${id} ${diet}`).not.toMatch(
+          /\b(chicken|beef|pork|lamb|goat|salmon|tuna|catfish|conch|tripe|anchov|shrimp paste|fish sauce|bacon|kielbasa|salami)\b/,
+        );
+      }
     }
   });
 

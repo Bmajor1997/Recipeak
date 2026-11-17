@@ -52,6 +52,11 @@ for p, stem in zip(photos, stems):
         target, "JPEG", quality=62, optimize=True, progressive=True
     )
 
+# Vegetarian and vegan versions, for the "Make it" chips: a recipe, or "same" when the regular one already fits.
+(APP / "src" / "recipes" / "collectionVariants.json").write_text(
+    json.dumps({s: recipes[s]["variants"] for s in stems if recipes[s].get("variants")}, ensure_ascii=False, separators=(",", ":")) + "\n",
+    encoding="utf-8",
+)
 (APP / "src" / "recipes" / "collection.json").write_text(
     json.dumps({s: recipes[s]["recipe"] for s in stems}, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8"
 )

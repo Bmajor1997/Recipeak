@@ -7,3 +7,8 @@
 # id = "GHSA-xxxx-xxxx-xxxx"
 # ignoreUntil = 2027-01-31
 # reason = "Transitive via <package>; no patched release yet. Recheck upstream before expiry."
+
+[[IgnoredVulns]]
+id = "GHSA-fc5q-39xc-vjpf"
+ignoreUntil = 2026-12-17
+reason = "picomatch 2.3.2 and 4.0.7, transitive via Expo's build tooling (metro, jest-util, tinyglobby); used only at build time, not shipped in the app. No patched release yet. Recheck upstream before expiry."

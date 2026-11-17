@@ -31,6 +31,7 @@ export function useOpenWallDish() {
           localPhoto: photo,
           savedId: null,
           picked: true,
+          bundledId: bundled.id,
         });
         return;
       }

@@ -1,0 +1,252 @@
+@ queen-elizabeth | Queen Elizabeth | 1 | 3 | 0 | - | The brandy Queen Elizabeth from The Savoy Cocktail Book era: cognac and sweet vermouth with a touch of orange curaçao, stirred and served up with a cherry. Like a rich, orange-scented Manhattan.
+- 1 1/2 | oz | cognac or brandy
+- 1 | oz | sweet vermouth
+- 1/4 | oz | orange curaçao
+# Stir the cognac, vermouth and curaçao with ice for 20 to 30 seconds, until very cold.
+# Strain into a chilled coupe.
+# Garnish with a brandied or maraschino cherry on a pick.
+G coupe | brandied cherry | y | Stir cold black tea with a splash of non-alcoholic red vermouth and orange syrup, and garnish with a cherry.
+T Stir, don't shake; it keeps the drink clear and silky.
+T Use a fresh bottle of sweet vermouth, stored in the fridge once opened.
+V Add 2 dashes of Angostura bitters for a drier, spicier drink.
+! There is also a gin Queen Elizabeth (gin, dry vermouth and Bénédictine); this is the brandy version.
+@@ vegetarian = same
+@@ vegan = same
+
+@ raspberry-beret | Raspberry Beret | 1 | 5 | 0 | eggs | A ruby-red raspberry gin sour: fresh raspberries muddled with lemon and gin, shaken with raspberry liqueur and egg white into a silky pink foam.
+- 6 | | fresh raspberries, plus 2 to garnish
+- 1 1/2 | oz | gin
+- 1/2 | oz | raspberry liqueur (such as Chambord)
+- 3/4 | oz | fresh lemon juice
+- 1/2 | oz | simple syrup
+- 1/2 | oz | egg white
+# Muddle the raspberries in a shaker until completely crushed.
+# Add the gin, raspberry liqueur, lemon juice, syrup and egg white and shake without ice for 15 seconds.
+# Add ice and shake hard again.
+# Double strain into a chilled coupe and garnish with raspberries on a pick.
+G coupe | fresh raspberries on a pick | y | Muddle raspberries with lemon and syrup, shake with aquafaba and cold sparkling water, and strain into a coupe.
+T Double strain through a fine sieve to catch the raspberry seeds.
+T Ripe, in-season raspberries give the brightest color and flavor.
+V Use vodka instead of gin for a softer drink.
+! Uses raw egg white; use pasteurized egg white if you prefer.
+@@ vegetarian = same
+@@ vegan | Vegan Raspberry Beret | 5 | 0 | - | The same raspberry gin sour, with aquafaba foam instead of egg white.
+~ egg white => aquafaba (liquid from a can of chickpeas)
+~ syrup and egg white => syrup and aquafaba
+~ Uses raw egg white; use pasteurized egg white if you prefer. => Aquafaba foams like egg white; dry shake it hard.
+
+@ saturn | Saturn | 1 | 5 | 0 | tree nuts | A 1967 award-winning tiki classic: gin with lemon, passion fruit, falernum and almond orgeat. Bright, tropical and floral, served up with a lemon twist.
+- 1 1/4 | oz | gin
+- 1/2 | oz | fresh lemon juice
+- 1/2 | oz | passion fruit syrup
+- 1/4 | oz | velvet falernum
+- 1/4 | oz | orgeat (almond syrup)
+# Shake the gin, lemon juice, passion fruit syrup, falernum and orgeat hard with ice.
+# Fine strain into a chilled coupe.
+# Garnish with a lemon twist curled around the rim, like the rings of Saturn.
+G coupe | lemon twist | y | Shake passion fruit syrup, lemon, a little orgeat and cold sparkling water with ice.
+T The tiki-bar version is flash-blended with crushed ice and served in a tall glass; shaken and served up, it's crisper.
+T A juniper-forward London dry gin holds up well against the tropical syrups.
+V Flash blend with 1 cup crushed ice and serve in a pilsner glass with a lemon peel ring.
+@@ vegetarian = same
+@@ vegan = same
+
+@ sherry-sangaree | Sherry Sangaree | 1 | 3 | 0 | - | One of the oldest mixed drinks: rich oloroso sherry lightly sweetened, chilled and served with a dusting of nutmeg and a twist of lemon.
+- 3 | oz | oloroso sherry
+- 1 | tsp | rich simple syrup (2:1)
+- 1 | dash | Angostura bitters (optional)
+- | | nutmeg, freshly grated
+# Stir the sherry, syrup and bitters with ice until very cold.
+# Strain into a chilled coupe.
+# Grate nutmeg over the top and garnish with a lemon twist.
+G coupe | grated nutmeg and lemon twist | y | Stir cold black tea with a little prune or raisin syrup and top with nutmeg.
+T Oloroso is nutty and rich; amontillado gives a lighter, drier drink.
+T Fresh nutmeg is essential; its aroma is a big part of the drink.
+V Port Sangaree: use ruby port instead of sherry.
+V Serve it long over ice with a splash of soda for a lighter aperitif.
+@@ vegetarian = same
+@@ vegan = same
+
+@ spaghett | Spaghett | 1 | 1 | 0 | - | A cult bar favorite: a cold bottle of light American lager, spiked with Aperol and fresh lemon right in the bottle. Bitter, bubbly and refreshing.
+- 1 | bottle (7 oz) | light lager (such as Miller High Life), ice-cold
+- 1 | oz | Aperol
+- 1/2 | oz | fresh lemon juice
+# Drink or pour off the top inch or two of the beer to make room.
+# Add the Aperol and lemon juice straight into the bottle.
+# Tip gently once to mix and drink from the bottle.
+G beer bottle | - | y | Add a splash of non-alcoholic bitter orange aperitif and lemon to a non-alcoholic lager.
+T A small 7 oz bottle keeps the beer-to-Aperol balance right.
+T Pour slowly to avoid it foaming over.
+V Swap Campari for Aperol for a more bitter drink.
+@@ vegetarian = same
+@@ vegan = same
+
+@ b-52 | B-52 | 1 | 3 | 0 | milk | The famous layered shot: coffee liqueur, Irish cream and orange liqueur stacked in three neat stripes.
+- 1/2 | oz | coffee liqueur (such as Kahlúa)
+- 1/2 | oz | Irish cream (such as Baileys)
+- 1/2 | oz | Grand Marnier
+# Pour the coffee liqueur into a shot glass.
+# Slowly pour the Irish cream over the back of a bar spoon so it floats on top.
+# Float the Grand Marnier the same way to make the top layer.
+G shot glass | - | y | Layer cold coffee syrup, a little cream and orange syrup in a shot glass.
+T Pour very slowly over the back of a spoon held just above the last layer.
+T Chill the liqueurs first; cold layers stay separate more easily.
+V Flaming B-52: light the top layer briefly, then extinguish before drinking. Be very careful.
+@@ vegetarian = same
+@@ vegan | Vegan B-52 | 3 | 0 | tree nuts | The same layered shot made with an almond-based vegan Irish cream.
+~ Irish cream (such as Baileys) => vegan Irish cream (such as an almond-based one)
+~ Slowly pour the Irish cream => Slowly pour the vegan Irish cream
+G shot glass | - | y | Layer cold coffee syrup, a little oat cream and orange syrup in a shot glass.
+
+@ cafe-brulot | Café Brûlot | 4 | 10 | 5 | - | New Orleans' flaming coffee: brandy and orange liqueur warmed with sugar, cinnamon, cloves and citrus peel, set alight, then mixed with hot dark coffee.
+- 1 | | orange, peel cut in one long strip
+- 1 | | lemon, peel cut in strips
+- 1 | | cinnamon stick
+- 6 | | whole cloves
+- 3 | | sugar cubes
+- 3 | oz | brandy or cognac
+- 1 | oz | orange curaçao or triple sec
+- 2 | cups | hot strong coffee (New Orleans chicory coffee is traditional)
+# Put the citrus peels, cinnamon, cloves and sugar cubes in a heatproof bowl or small saucepan.
+# Add the brandy and curaçao and warm gently over low heat, stirring to dissolve the sugar. Don't let it boil.
+# Away from anything flammable, carefully light the warm brandy with a long match. Ladle it over the orange peel for a minute as it flames.
+# Slowly pour in the hot coffee to put out the flames. Stir and ladle into heatproof glasses, with a strip of peel in each.
+G Irish coffee glass | orange peel | y | Simmer coffee with orange peel, cinnamon, cloves and sugar, and serve hot.
+T Warm the brandy only gently; if it's too hot it may flare up suddenly.
+T Use heatproof glasses or mugs, and keep long hair and sleeves away from the flame.
+V Stud the orange peel with the cloves for the classic restaurant presentation.
+! Flaming alcohol is dangerous. Work slowly, keep a lid nearby to smother the flame, and never pour spirits from the bottle near a flame.
+@@ vegetarian = same
+@@ vegan = same
+
+@ lynchburg-lemonade | Lynchburg Lemonade | 1 | 3 | 0 | - | A Tennessee favorite: Tennessee whiskey, triple sec and fresh lemon, topped with lemon-lime soda over ice. Sweet, tangy and easy-drinking.
+- 1 | oz | Tennessee whiskey (such as Jack Daniel's)
+- 1 | oz | triple sec
+- 1 | oz | fresh lemon juice
+- 1/2 | oz | simple syrup
+- 4 | oz | lemon-lime soda
+# Shake the whiskey, triple sec, lemon juice and syrup with ice.
+# Strain into a tall glass filled with ice.
+# Top with the lemon-lime soda, stir gently and garnish with a lemon wheel.
+G highball | lemon wheel | y | Shake lemon juice and syrup, then top with lemon-lime soda over ice.
+T Fresh lemon juice beats bottled sour mix every time.
+T Add the soda last and stir gently to keep the bubbles.
+V Make a pitcher: multiply by 8 and top with soda just before serving.
+@@ vegetarian = same
+@@ vegan = same
+
+@ miami-vice | Miami Vice | 1 | 10 | 0 | - | Two frozen favorites in one glass: a frozen strawberry daiquiri swirled with a frozen piña colada. Fruity, creamy and very tropical.
+- 2 | oz | white rum, divided
+- 1 | cup | frozen strawberries
+- 1/2 | oz | fresh lime juice
+- 1/2 | oz | simple syrup
+- 1 | oz | cream of coconut
+- 2 | oz | pineapple juice
+- 2 | cups | ice, divided
+# Blend 1 oz rum with the strawberries, lime juice, syrup and 1 cup ice until smooth. Pour into a jug and rinse the blender.
+# Blend the other 1 oz rum with the cream of coconut, pineapple juice and 1 cup ice until smooth.
+# Pour the two mixtures into a tall glass at the same time, from opposite sides, so they swirl together.
+# Garnish with a pineapple wedge and a strawberry.
+G hurricane glass | pineapple wedge and strawberry | y | Make both blends without rum and swirl them together.
+T Cream of coconut (sweetened, like Coco López) is not the same as coconut cream or coconut milk.
+T Keep each blend thick so they stay separate in the glass.
+V Use dark rum in the piña colada half for a richer flavor.
+@@ vegetarian = same
+@@ vegan = same
+
+@ st-germain-cocktail | St-Germain Cocktail | 1 | 2 | 0 | - | The elderflower spritz: floral St-Germain liqueur topped with dry sparkling wine and soda over ice, with a twist of lemon.
+- 1 1/2 | oz | St-Germain elderflower liqueur
+- 2 | oz | dry sparkling wine, chilled
+- 2 | oz | soda water, chilled
+# Pour the St-Germain into a chilled champagne flute.
+# Top with the sparkling wine, then the soda water.
+# Stir once gently and garnish with a lemon twist.
+G champagne flute | lemon twist | y | Mix elderflower cordial with sparkling water and a squeeze of lemon over ice.
+T Pour the bubbles gently down the side of the glass so they stay lively.
+T Squeeze the lemon twist over the drink first to release its oils.
+V Hugo: add fresh mint and lime and use Prosecco.
+@@ vegetarian = same
+@@ vegan = same
+
+@ test-pilot | Test Pilot | 1 | 5 | 0 | - | A 1941 Don the Beachcomber tiki classic: dark and light rums with lime, Cointreau, falernum, a dash of bitters and a whisper of anise, flash-blended over ice.
+- 1 1/2 | oz | dark Jamaican rum
+- 3/4 | oz | light rum
+- 1/2 | oz | fresh lime juice
+- 1/2 | oz | Cointreau
+- 1/2 | oz | velvet falernum
+- 1 | dash | Angostura bitters
+- 6 | drops | Pernod or absinthe
+- 1 | cup | crushed ice
+# Put all the ingredients in a blender with the crushed ice.
+# Flash blend for 5 seconds, just to chill and froth it.
+# Pour into a double rocks glass, adding more crushed ice if needed, and garnish with a lime wheel.
+G double rocks glass | lime wheel | y | Flash blend lime juice, falernum syrup, orange juice and a dash of bitters with crushed ice.
+T Flash blending for just a few seconds chills and dilutes it without turning it into a slushie.
+T Measure the anise in drops, not dashes; a little goes a long way.
+V Jet Pilot: add 1/2 oz grapefruit juice and 1/2 oz cinnamon syrup and skip the Cointreau.
+@@ vegetarian = same
+@@ vegan = same
+
+@ three-dots-and-a-dash | Three Dots and a Dash | 1 | 5 | 0 | - | Don the Beachcomber's WWII victory drink, named for the Morse code "V": rhum agricole and dark rum with lime, orange, honey, falernum and allspice, garnished with three cherries and a pineapple dash.
+- 1 1/2 | oz | aged rhum agricole
+- 1/2 | oz | Demerara rum
+- 1/2 | oz | fresh lime juice
+- 1/2 | oz | fresh orange juice
+- 1/2 | oz | honey syrup (equal parts honey and hot water)
+- 1/4 | oz | velvet falernum
+- 1/4 | oz | allspice dram
+- 1 | dash | Angostura bitters
+- 1 | cup | crushed ice
+# Put all the ingredients in a blender with the crushed ice.
+# Flash blend for 5 seconds.
+# Pour into a tulip or tiki glass. Garnish with three cherries and a pineapple spear on a pick: the three dots and the dash.
+G tulip glass | three cherries and a pineapple spear | y | Flash blend lime, orange juice, honey syrup, a pinch of allspice and crushed ice.
+T Allspice dram is potent; measure it carefully.
+T The garnish spells "V" in Morse code: dot, dot, dot, dash.
+V No blender: shake hard with crushed ice and pour everything into the glass.
+@@ vegetarian = same
+@@ vegan | Vegan Three Dots and a Dash | 5 | 0 | - | The same rhum and allspice tiki drink, sweetened with agave syrup instead of honey.
+~ honey syrup (equal parts honey and hot water) => agave syrup
+
+@ tipperary | Tipperary | 1 | 3 | 0 | - | An Irish cousin of the Manhattan from the early 1900s: Irish whiskey and sweet vermouth with a measure of herbal green Chartreuse, stirred and served up.
+- 2 | oz | Irish whiskey
+- 1 | oz | sweet vermouth
+- 1/2 | oz | green Chartreuse
+- 2 | dashes | Angostura bitters
+# Stir the whiskey, vermouth, Chartreuse and bitters with ice for 20 to 30 seconds.
+# Strain into a chilled coupe.
+# Express an orange twist over the top and drop it in.
+G coupe | orange twist | y | Stir cold black tea with non-alcoholic red vermouth and a drop of herbal syrup.
+T Green Chartreuse is intense; start with 1/2 oz and adjust to taste.
+T Stirring keeps it silky and clear.
+V The 1916 original uses equal parts whiskey, vermouth and Chartreuse for a bolder herbal drink.
+@@ vegetarian = same
+@@ vegan = same
+
+@ woo-woo | Woo Woo | 1 | 2 | 0 | - | A fun, fruity 1980s highball: vodka and peach schnapps with cranberry juice over ice. Sweet, pink and easy.
+- 1 1/2 | oz | vodka
+- 3/4 | oz | peach schnapps
+- 3 | oz | cranberry juice
+- 1 | squeeze | fresh lime juice
+# Fill a highball glass with ice.
+# Add the vodka, peach schnapps, cranberry juice and lime and stir well.
+# Garnish with a lime wedge.
+G highball | lime wedge | y | Mix cranberry juice with a splash of peach nectar and lime over ice.
+T A squeeze of lime keeps it from being too sweet.
+V Woo Woo shots: shake with ice and strain into shot glasses.
+@@ vegetarian = same
+@@ vegan = same
+
+@ zaza | Zaza | 1 | 2 | 0 | - | A classic French café cocktail from the early 1900s: equal parts dry gin and Dubonnet Rouge, stirred cold with a twist of orange.
+- 1 1/2 | oz | dry gin
+- 1 1/2 | oz | Dubonnet Rouge
+- 1 | dash | orange bitters
+# Stir the gin, Dubonnet and bitters with ice for 20 to 30 seconds.
+# Strain into a chilled coupe or cocktail glass.
+# Express a lemon twist over the top and drop it in.
+G coupe | lemon twist | y | Stir cold red grape juice with a splash of tonic and a dash of orange syrup.
+T Keep opened Dubonnet in the fridge; like vermouth, it fades after a few weeks.
+T Also known as the Dubonnet Cocktail, a favorite of Queen Elizabeth II, who preferred it over ice.
+V Serve it on the rocks with a lemon slice, the royal way.
+@@ vegetarian = same
+@@ vegan = same

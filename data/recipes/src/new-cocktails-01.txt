@@ -1,0 +1,245 @@
+@ amaretto-sour | Amaretto Sour | 1 | 5 | 0 | tree nuts, eggs | The modern amaretto sour: almond liqueur balanced with fresh lemon and a splash of strong bourbon, shaken with egg white for a silky foam. Sweet, nutty and bright.
+- 1 1/2 | oz | amaretto
+- 3/4 | oz | cask-strength bourbon
+- 1 | oz | fresh lemon juice
+- 1 | tsp | rich simple syrup (2:1)
+- 1/2 | oz | egg white
+- | | Angostura bitters, a few drops
+# Shake the amaretto, bourbon, lemon juice, syrup and egg white without ice for 15 seconds to build the foam.
+# Add ice and shake hard for 10 seconds more.
+# Strain into a rocks glass over fresh ice. Garnish with an orange slice and cherry, and dot the foam with bitters.
+G rocks glass | orange slice and cherry | y | Shake orgeat, lemon juice, cold black tea and aquafaba for an almond sour mocktail.
+T The splash of high-proof bourbon is what keeps this drink from tasting like candy.
+T The dry shake (no ice) whips the egg white into a thick, creamy head.
+V Use regular-proof bourbon and increase it to 1 oz if you don't have cask strength.
+! Uses raw egg white; use pasteurized egg white if you prefer.
+@@ vegetarian = same
+@@ vegan | Vegan Amaretto Sour | 5 | 0 | tree nuts | The same nutty, bright amaretto sour, with aquafaba (chickpea water) whipped into the foam instead of egg white.
+~ egg white => aquafaba (liquid from a can of chickpeas)
+~ syrup and egg white => syrup and aquafaba
+~ The dry shake (no ice) whips the egg white into a thick, creamy head. => Aquafaba foams just like egg white. Dry shake it well for a thick head.
+~ Uses raw egg white; use pasteurized egg white if you prefer. => Check that your amaretto and bourbon are vegan-friendly; most are.
+
+@ barracuda | Barracuda | 1 | 3 | 0 | - | A sunny Italian classic from the 1960s: gold rum, vanilla-herbal Galliano, pineapple and lime, shaken and topped with a splash of Prosecco.
+- 1 1/2 | oz | gold rum
+- 1/2 | oz | Galliano L'Autentico
+- 2 | oz | pineapple juice
+- 1 | dash | fresh lime juice
+- 1 1/2 | oz | Prosecco, chilled
+# Shake the rum, Galliano, pineapple juice and lime with ice until very cold.
+# Strain into a chilled coupe or margarita glass.
+# Top with the Prosecco and garnish with a pineapple wedge.
+G coupe | pineapple wedge | y | Shake pineapple juice, lime and a little vanilla syrup, then top with sparkling white grape juice.
+T Galliano's vanilla and anise notes are the heart of the drink; there isn't a close substitute.
+T Shaking pineapple juice gives the drink a lovely frothy head.
+V Serve it in a hollowed-out pineapple for a party.
+@@ vegetarian = same
+@@ vegan = same
+
+@ blue-moon | Blue Moon | 1 | 3 | 0 | - | A forgotten gin classic, close cousin of the Aviation: London dry gin and fresh lemon, softened and tinted pale lavender with floral crème de violette.
+- 2 | oz | London dry gin
+- 1/2 | oz | crème de violette
+- 1/2 | oz | fresh lemon juice
+# Shake the gin, crème de violette and lemon juice with ice until very cold.
+# Fine strain into a chilled cocktail glass.
+# Express a lemon twist over the top and drop it in.
+G cocktail glass | lemon twist | y | Shake lemon juice, a dash of violet syrup and cold sparkling water with ice and strain into a cocktail glass.
+T Use a crisp London dry gin; soft gins get lost under the violet.
+T Crème de violette varies by brand. Start with 1/2 oz and add more if you want a deeper violet color and flavor.
+V For a silkier version, add 1/2 oz egg white and dry shake first.
+@@ vegetarian = same
+@@ vegan = same
+
+@ bourbon-smash | Bourbon Smash | 1 | 4 | 0 | - | A minty, citrusy cousin of the julep: lemon wedges muddled with mint and sugar, shaken hard with bourbon and served over crushed ice.
+- 1/2 | | lemon, cut into 3 wedges
+- 6 to 8 | | fresh mint leaves
+- 3/4 | oz | simple syrup
+- 2 | oz | bourbon
+# Muddle the lemon wedges in a shaker to press out the juice and the oils from the peel.
+# Add the mint, syrup and bourbon, then fill with ice and shake hard.
+# Double strain into a rocks glass filled with crushed ice.
+# Garnish with a big sprig of mint, slapped between your hands to wake up the aroma.
+G rocks glass | mint sprig and lemon wheel | y | Muddle lemon, mint and syrup, shake with cold green tea and serve over crushed ice.
+T Muddling the lemon wedges, not just squeezing juice, adds bright peel oils; that's what makes a smash.
+T Press the mint gently in the shaker; shaking alone releases plenty of flavor.
+V Peach smash: muddle two ripe peach slices with the lemon.
+V Use rye for a spicier smash.
+@@ vegetarian = same
+@@ vegan = same
+
+@ brooklynite | Brooklynite | 1 | 4 | 0 | - | A honeyed daiquiri from the 1946 Stork Club Bar Book: funky Jamaican rum, fresh lime and honey syrup with a dash of bitters, served up.
+- 2 | oz | Jamaican rum
+- 3/4 | oz | fresh lime juice
+- 3/4 | oz | honey syrup (equal parts honey and hot water)
+- 1 | dash | Angostura bitters
+# Shake the rum, lime juice, honey syrup and bitters with ice until very cold.
+# Fine strain into a chilled coupe.
+# Garnish with a lime twist.
+G coupe | lime twist | y | Shake lime juice, honey syrup, cold black tea and a dash of vanilla, and strain into a coupe.
+T Thin the honey with hot water first so it mixes in instead of sticking to the ice.
+T A molasses-rich Jamaican rum gives this its deep, funky character.
+V Swap in an aged rum for a smoother, rounder drink.
+@@ vegetarian = same
+@@ vegan | Vegan Brooklynite | 4 | 0 | - | The same rum and lime classic, sweetened with agave syrup instead of honey.
+~ honey syrup (equal parts honey and hot water) => agave syrup
+~ lime juice, honey syrup and bitters => lime juice, agave syrup and bitters
+~ Thin the honey with hot water first so it mixes in instead of sticking to the ice. => Agave mixes in easily; add a little less if your agave is very sweet.
+
+@ cantarito | Cantarito | 1 | 4 | 0 | - | A Jalisco roadside favorite: tequila and fresh orange, grapefruit and lime juices with a pinch of salt, topped with grapefruit soda and served ice-cold in a clay cup.
+- 2 | oz | blanco tequila
+- 1 | oz | fresh orange juice
+- 1 | oz | fresh grapefruit juice
+- 1/2 | oz | fresh lime juice
+- 1 | pinch | salt
+- 3 | oz | grapefruit soda, chilled
+- | | Tajín, to rim (optional)
+# Soak a clay cantarito cup in cold water for 10 minutes, then pour out the water. Rim it with Tajín if you like.
+# Fill the cup with ice. Add the tequila, citrus juices and salt and stir.
+# Top with the grapefruit soda, stir gently and garnish with citrus wedges.
+G clay cup or highball | orange, lime and grapefruit wedges | y | Mix the citrus juices and salt, top with grapefruit soda and serve in a chilled clay cup.
+T Soaking the clay cup keeps the drink extra cold as the water slowly evaporates.
+T A pinch of salt makes all the citrus taste brighter.
+V Make a pitcher: multiply by 8 and add the soda just before serving.
+@@ vegetarian = same
+@@ vegan = same
+
+@ caribou-lou | Caribou Lou | 1 | 2 | 0 | - | A sweet, tropical party drink made famous by a 2006 Tech N9ne song: overproof rum and coconut rum over ice, filled with pineapple juice. Strong, so sip slowly.
+- 1 1/2 | oz | overproof (151) rum
+- 1 | oz | coconut rum
+- 5 | oz | pineapple juice, chilled
+# Fill a hurricane glass with ice.
+# Add the overproof rum, coconut rum and pineapple juice.
+# Stir well and garnish with a pineapple wedge.
+G hurricane glass | pineapple wedge | y | Mix pineapple juice with a splash of coconut water and coconut syrup over ice.
+T Overproof rum is very strong. For a milder drink, use regular white rum instead.
+T Shake it with ice instead of building it for a frothy top.
+V Make it a punch: mix a bottle-sized batch in a jug and serve over ice.
+! Overproof rum is flammable; keep it away from open flames.
+@@ vegetarian = same
+@@ vegan = same
+
+@ chilcano | Chilcano | 1 | 2 | 0 | - | Peru's favorite highball: pisco lengthened with ginger ale and fresh lime over ice, finished with a few drops of bitters. Light, spicy and refreshing.
+- 2 | oz | pisco
+- 1/2 | oz | fresh lime juice
+- 4 | oz | ginger ale, chilled
+- 2 | dashes | Angostura bitters
+# Fill a highball glass with ice and add the pisco and lime juice.
+# Top with ginger ale and stir gently.
+# Add the bitters on top and garnish with a lime wheel.
+G highball | lime wheel | y | Pour lime juice over ice, top with ginger ale and add a few drops of bitters, or skip them for no alcohol at all.
+T Peruvian Quebranta pisco is traditional; any good pisco works.
+T Use a dry, spicy ginger ale rather than a sweet one.
+V Chilcano de maracuyá: shake in 1 oz passion fruit pulp before topping with ginger ale.
+@@ vegetarian = same
+@@ vegan = same
+
+@ cynar-julep | Cynar Julep | 1 | 4 | 0 | - | Buenos Aires' favorite modern classic: bittersweet artichoke amaro with mint, lemon and grapefruit over crushed ice. Low in alcohol and very refreshing.
+- 8 | | fresh mint leaves
+- 1/2 | oz | simple syrup
+- 1/4 | oz | fresh lemon juice
+- 2 | oz | Cynar
+- 2 | oz | grapefruit juice or grapefruit soda
+# Gently muddle the mint with the syrup and lemon juice in a julep cup or rocks glass.
+# Add the Cynar and fill with crushed ice. Swizzle with a spoon until the glass frosts.
+# Top with grapefruit juice or soda and more crushed ice. Garnish with a big mint sprig.
+G julep cup | mint sprig | y | Muddle mint with syrup and lemon, then top with grapefruit juice, soda and crushed ice.
+T Cynar is bitter but not harsh; grapefruit and mint bring out its sweet, herbal side.
+T Swizzling over crushed ice chills and dilutes the drink quickly; that's what makes a julep.
+V Add a splash of gin for a stronger version, as in the original Buenos Aires recipe.
+@@ vegetarian = same
+@@ vegan = same
+
+@ death-flip | Death Flip | 1 | 5 | 0 | eggs | A modern classic from Melbourne's Black Pearl bar: tequila, yellow Chartreuse and Jägermeister shaken with a whole egg into a rich, gingerbread-spiced flip.
+- 1 | oz | blanco tequila
+- 1/2 | oz | yellow Chartreuse
+- 1/2 | oz | Jägermeister
+- 1/4 | oz | vanilla or simple syrup
+- 1 | | whole egg
+- | | nutmeg, freshly grated
+# Shake the tequila, Chartreuse, Jägermeister, syrup and egg without ice for 15 seconds.
+# Add ice and shake hard for 10 seconds more.
+# Fine strain into a small chilled coupe or wine glass and grate nutmeg over the top.
+G coupe | grated nutmeg | y | Shake cold chai concentrate, a whole egg and a little vanilla syrup, and top with nutmeg.
+T The dry shake emulsifies the whole egg into a light, airy texture rather than a heavy one.
+T Grate the nutmeg fresh; its aroma is a big part of the drink.
+! Uses a raw egg; use a pasteurized egg if you prefer.
+@@ vegetarian = same
+@@ vegan | Vegan Death Flip | 5 | 0 | - | The same tequila, Chartreuse and Jägermeister flip, made creamy with aquafaba and oat milk instead of a whole egg.
+~ whole egg => oz aquafaba plus 1/2 oz oat milk
+~ syrup and egg without ice => syrup, aquafaba and oat milk without ice
+~ The dry shake emulsifies the whole egg into a light, airy texture rather than a heavy one. => The dry shake whips the aquafaba into a light foam, while the oat milk adds body.
+~ Uses a raw egg; use a pasteurized egg if you prefer. => Check that your spirits are vegan-friendly; most are.
+G coupe | grated nutmeg | y | Shake cold chai concentrate, aquafaba, oat milk and a little vanilla syrup, and top with nutmeg.
+
+@ french-connection | French Connection | 1 | 2 | 0 | tree nuts | A smooth 1970s after-dinner sipper: cognac and amaretto stirred over ice. Warm, nutty and simple.
+- 1 1/2 | oz | cognac
+- 3/4 | oz | amaretto
+# Fill a rocks glass with ice, ideally one large cube.
+# Add the cognac and amaretto and stir for 15 seconds.
+G rocks glass | lemon twist | y | Stir cold black tea with a splash of almond (orgeat) syrup over ice.
+T Adjust the amaretto to taste; use less for a drier drink.
+T A large ice cube melts slowly, keeping the drink strong and cold.
+V Godfather: use Scotch instead of cognac.
+@@ vegetarian = same
+@@ vegan = same
+
+@ harvey-wallbanger | Harvey Wallbanger | 1 | 2 | 0 | - | The 1970s disco-era favorite: a vodka and fresh orange juice highball with a float of golden, vanilla-anise Galliano on top.
+- 1 1/2 | oz | vodka
+- 4 | oz | fresh orange juice
+- 1/2 | oz | Galliano L'Autentico
+# Fill a highball glass with ice and add the vodka and orange juice. Stir.
+# Slowly pour the Galliano over the back of a bar spoon so it floats on top.
+# Garnish with an orange slice and cherry.
+G highball | orange slice and cherry | y | Top orange juice with a splash of vanilla syrup over ice.
+T Fresh-squeezed orange juice makes a huge difference here.
+T Float the Galliano last so the first sips are fragrant with vanilla.
+V Freddy Fudpucker: use tequila instead of vodka.
+@@ vegetarian = same
+@@ vegan = same
+
+@ hotel-georgia | Hotel Georgia | 1 | 5 | 0 | tree nuts, eggs | A 1940s classic from Vancouver's Hotel Georgia: gin, almond orgeat and lemon, shaken with egg white and perfumed with orange flower water.
+- 2 | oz | London dry gin
+- 1/2 | oz | orgeat (almond syrup)
+- 3/4 | oz | fresh lemon juice
+- 1/2 | oz | egg white
+- 3 | dashes | orange flower water
+- | | nutmeg, freshly grated
+# Shake the gin, orgeat, lemon juice, egg white and orange flower water without ice for 15 seconds.
+# Add ice and shake hard again.
+# Fine strain into a chilled coupe and grate a little nutmeg over the foam.
+G coupe | grated nutmeg | y | Shake orgeat, lemon, cold sparkling water and a drop of orange flower water with aquafaba.
+T Orange flower water is very strong; measure in dashes, not spoons.
+T Good orgeat makes the drink. Look for one made with real almonds.
+! Uses raw egg white; use pasteurized egg white if you prefer.
+@@ vegetarian = same
+@@ vegan | Vegan Hotel Georgia | 5 | 0 | tree nuts | The same gin, orgeat and orange blossom sour, with aquafaba foam instead of egg white.
+~ egg white => aquafaba (liquid from a can of chickpeas)
+~ lemon juice, egg white and orange flower water => lemon juice, aquafaba and orange flower water
+~ Uses raw egg white; use pasteurized egg white if you prefer. => Aquafaba foams like egg white; give it a long, hard dry shake.
+
+@ kir | Kir | 1 | 1 | 0 | - | The classic Burgundy aperitif: crisp, dry white wine blushed pink with a splash of blackcurrant liqueur (crème de cassis).
+- 1/3 | oz | crème de cassis
+- 4 | oz | dry white wine (traditionally Bourgogne Aligoté), well chilled
+# Pour the crème de cassis into a chilled white wine glass.
+# Top with the cold wine; it mixes as you pour.
+G white wine glass | - | y | Add a splash of blackcurrant syrup to chilled sparkling water or non-alcoholic white wine.
+T Keep the cassis light; the drink should be pale pink, not purple.
+T Both the wine and glass should be very cold.
+V Kir Royale: use Champagne instead of white wine, served in a flute.
+V Kir Pétillant: use any dry sparkling wine.
+@@ vegetarian = same
+@@ vegan = same
+
+@ madras | Madras | 1 | 2 | 0 | - | A bright, easygoing highball: vodka over ice with cranberry juice and orange juice. Sweet-tart and pretty in red and orange.
+- 1 1/2 | oz | vodka
+- 3 | oz | cranberry juice
+- 1 1/2 | oz | fresh orange juice
+# Fill a highball glass with ice and add the vodka and cranberry juice.
+# Pour the orange juice over the top for a sunset effect, or stir to blend.
+# Garnish with an orange slice.
+G highball | orange slice | y | Mix cranberry and orange juice over ice with a squeeze of lime.
+T Pour the orange juice last and gently for a layered look.
+V Bay Breeze: use pineapple juice instead of orange juice.
+V Sea Breeze: use grapefruit juice instead of orange juice.
+@@ vegetarian = same
+@@ vegan = same
