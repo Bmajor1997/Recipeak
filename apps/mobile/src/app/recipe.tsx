@@ -20,7 +20,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { type CurrentRecipe, useApp } from "../AppContext";
 import { ApiError } from "../api/client";
 import { useCamera } from "../camera/CameraProvider";
-import { diets_for_kind, or_list, tap_diets } from "../onboarding/onboarding";
+import { diets_for_kind, or_list } from "../onboarding/onboarding";
 import { useOnboarding } from "../onboarding/OnboardingProvider";
 import { FREE_SAVED_RECIPES } from "../paywall/plans";
 import { bundled_recipe, bundled_version } from "../recipes/bundled";
@@ -139,9 +139,6 @@ function RecipeView({ current }: { current: Ready }) {
   );
   const [servings, set_servings] = useState(recipe.servings || 1);
   const [shownRecipe, set_shown_recipe] = useState(recipe);
-  // The standard recipe (before any diet version), which decides the diet labels and options.
-  const [standard, set_standard] = useState(recipe);
-  if (diet === null && recipe !== standard) set_standard(recipe);
 
   // A new version (another match or a diet) starts at its own serving size.
   if (recipe !== shownRecipe) {
@@ -161,9 +158,10 @@ function RecipeView({ current }: { current: Ready }) {
   const profile = useMemo(() => {
     const dish = current.bundledId ? COLLECTION.find((d) => d.id === current.bundledId) : undefined;
     const regular = dish && bundled_recipe(dish);
-    return dish && regular ? bundled_diet_profile(dish.id, regular, kind) : diet_profile(standard, kind);
-  }, [current.bundledId, kind, standard]);
-  const tapHint = tap_diets(myDiets, kind).filter((d) => d !== diet && profile.options.includes(d));
+    return diet === null && dish && regular ? bundled_diet_profile(dish.id, regular, kind) : diet_profile(recipe, kind);
+  }, [current.bundledId, kind, diet, recipe]);
+  const tapHint = myDiets.filter((d) => d !== diet && (profile.options.includes(d) || profile.status[d]?.status === "review"));
+  const dietUnverified = diet !== null && !profile.fits.includes(diet);
 
   async function load_version(index: number, nextDiet: Diet | null) {
     const guess = guesses[index];
@@ -223,7 +221,7 @@ function RecipeView({ current }: { current: Ready }) {
     return (await api.allowance()).premium;
   }
 
-  const choices = DIETS.filter((d) => profile.options.includes(d) || d === diet);
+  const choices = DIETS.filter((d) => profile.options.includes(d) || profile.status[d]?.status === "review" || d === diet);
 
   const footer = (
     <View style={[styles.bottomBar, { paddingBottom: insets.bottom + 12 }]}>
@@ -295,7 +293,7 @@ function RecipeView({ current }: { current: Ready }) {
                     kind={kind}
                     guess={g}
                     selected={i === selected}
-                    onPress={() => i !== selected && load_version(i, diet)}
+                    onPress={() => i !== selected && load_version(i, null)}
                   />
                 ))}
               </View>
@@ -313,6 +311,7 @@ function RecipeView({ current }: { current: Ready }) {
           {busy && <Notice>Getting that version…</Notice>}
           {problem && <Notice tone="error">{problem}</Notice>}
           {notice && <Notice>{notice}</Notice>}
+          {dietUnverified && <Notice>Check the ingredients and labels: this version could not be confirmed as {diet}.</Notice>}
           {tapHint.length > 0 && <Notice>For your diet, tap {or_list(tapHint)} below.</Notice>}
           {preferences.error && (
             <Notice>

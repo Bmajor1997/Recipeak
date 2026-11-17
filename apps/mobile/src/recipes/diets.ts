@@ -27,11 +27,11 @@ type Rule = { bad: RegExp[]; unsure?: RegExp[]; core?: RegExp[]; raw?: boolean; 
 
 // A word in front of an ingredient that settles it for one diet: "vegan sweet vermouth", "gluten-free soy sauce".
 // It covers up to three following words, and stops at "and", "or", "with" and "plus" so it can't hide the next item.
-const VEGETARIAN_OK = /\b(?:vegan|plant-based|vegetarian|meatless)(?: (?!and\b|or\b|with\b|plus\b)[a-z'&-]+){1,3}/g;
-const VEGAN_OK = /\b(?:vegan|plant-based)(?: (?!and\b|or\b|with\b|plus\b)[a-z'&-]+){1,3}/g;
-const DAIRY_FREE_OK = /\b(?:vegan|plant-based|dairy-free)(?: (?!and\b|or\b|with\b|plus\b)[a-z'&-]+){1,3}/g;
-const GLUTEN_FREE_OK = /\bgluten-free(?: (?!and\b|or\b|with\b|plus\b)[a-z'&-]+){1,3}/g;
-const NUT_FREE_OK = /\bnut-free(?: (?!and\b|or\b|with\b|plus\b)[a-z'&-]+){1,3}/g;
+const VEGETARIAN_OK = /\b(?:vegan|plant-based|vegetarian|meatless)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
+const VEGAN_OK = /\b(?:vegan|plant-based)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
+const DAIRY_FREE_OK = /\b(?:vegan|plant-based|dairy-free)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
+const GLUTEN_FREE_OK = /\bgluten-free(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
+const NUT_FREE_OK = /\bnut-free(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
 // Cheeses made with animal rennet by tradition (Parmesan by law): not vegetarian, but easy to swap.
 const RENNET = /\b(?:parmesan|parmigiano|pecorino|grana padano)/i;
 
@@ -155,8 +155,6 @@ function check_line(text: string, r: Rule, gluten: boolean): LineCheck {
   const removable = REMOVABLE.test(text.toLowerCase());
   const whole = check_text(text, r, gluten);
   if (whole.verdict === "ok") return { ...whole, removable };
-  // The standard recipe already allows a choice that fits ("butter or oil").
-  if (substitutes(text).some((a) => check_text(a, r, gluten).verdict === "ok")) return { verdict: "ok", hit: "", removable };
   return { ...whole, removable };
 }
 
@@ -206,7 +204,7 @@ export function cups(amount: string, unit: string): number {
 
 // Words that look like a starch or sugar but aren't one here.
 const NOT_CARB =
-  /\b((?:sugar-free|low-carb|diet|keto)(?: (?!and\b|or\b|with\b|plus\b)[a-z'&-]+){1,3}|garam masala|nihari masala|[a-z ]*masala|rice (?:vinegar|wine)|for the dough|pasta water|noodle water|corn husks|(?:long|green|fermented black|coffee) beans|honeycomb|corn oil|cornish)\b/g;
+  /\b((?:low-carb|diet|keto)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}|sugar-free (?:simple syrup|syrup|sugar|sweetener|tonic water|tonic|ginger beer|ginger ale|cola|soda|lemonade|grenadine)|garam masala|nihari masala|[a-z ]*masala|rice (?:vinegar|wine)|for the dough|pasta water|noodle water|corn husks|(?:long|green|fermented black|coffee) beans|honeycomb|corn oil|cornish)\b/g;
 // Condiments with some sugar: they can be swapped for sugar-free ones, so they never make a dish "none".
 const CONDIMENT = /\b(ketchup|barbecue sauce|hoisin|kecap manis|sweet soy|sweet chili sauce|mirin|chutney)\b/;
 
@@ -271,6 +269,10 @@ export function diet_profile(
   if (status.vegetarian?.status === "none" && status.vegan?.status === "option" && !hand_versions.includes("vegan"))
     status.vegan = { ...status.vegetarian };
   for (const [diet, o] of Object.entries(overrides) as [Diet, DietOverride][]) if (status[diet]) status[diet] = o;
+  // A changed dish may still be useful: let people request an adaptation even if a defining ingredient changes.
+  for (const diet of ["vegetarian", "vegan", "dairy-free", "nut-free"] as Diet[]) {
+    if (status[diet]?.status === "none") status[diet] = { status: "option", why: "requires a substitution" };
+  }
   const pick = (s: DietStatus) => DIETS.filter((d) => status[d]?.status === s);
   return { fits: pick("fits"), options: pick("option"), status };
 }

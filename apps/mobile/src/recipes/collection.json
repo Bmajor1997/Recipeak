@@ -3710,7 +3710,7 @@
       { "amount": "3/4", "unit": "oz", "item": "nut-free amaretto (such as Disaronno)" }
     ],
     "steps": ["Stir with ice.", "Strain over a large cube in a rocks glass."],
-    "allergens": ["tree nuts"],
+    "allergens": [],
     "cocktail": { "glass": "rocks glass", "garnish": "orange peel", "alcoholic": true, "non_alcoholic_version": null },
     "note": "Amaretto is flavored with almonds or apricot kernels.",
     "tips": [],
@@ -4395,7 +4395,7 @@
       { "amount": "2", "unit": "oz", "item": "orange juice" }
     ],
     "steps": ["Shake everything with ice.", "Strain into a highball glass with ice."],
-    "allergens": ["tree nuts"],
+    "allergens": [],
     "cocktail": { "glass": "highball glass", "garnish": "orange slice and cherry", "alcoholic": true, "non_alcoholic_version": null },
     "note": "Amaretto is flavored with almonds or apricot kernels.",
     "tips": [],
@@ -12327,7 +12327,7 @@
       "Add ice and shake hard for 10 seconds more.",
       "Strain into a rocks glass over fresh ice. Garnish with an orange slice and cherry, and dot the foam with bitters."
     ],
-    "allergens": ["eggs", "tree nuts"],
+    "allergens": ["eggs"],
     "cocktail": {
       "glass": "rocks glass",
       "garnish": "orange slice and cherry",
@@ -12644,7 +12644,7 @@
       { "amount": "3/4", "unit": "oz", "item": "nut-free amaretto (such as Disaronno)" }
     ],
     "steps": ["Fill a rocks glass with ice, ideally one large cube.", "Add the cognac and amaretto and stir for 15 seconds."],
-    "allergens": ["tree nuts"],
+    "allergens": [],
     "cocktail": {
       "glass": "rocks glass",
       "garnish": "lemon twist",

@@ -70,7 +70,7 @@ G highball or Collins glass | mint sprig and pineapple | y | -
 # Strain into a chilled coupe.
 G coupe | cherry or lemon twist | y | -
 
-@ godfather | Godfather | 1 | 2 | 0 | tree nuts | Scotch and amaretto over ice.
+@ godfather | Godfather | 1 | 2 | 0 | - | Scotch and amaretto over ice.
 - 1 1/2 | oz | blended Scotch
 - 3/4 | oz | nut-free amaretto (such as Disaronno)
 # Stir with ice.
@@ -342,7 +342,7 @@ G hurricane glass | pineapple and cherry | y | Pineapple, orange, grenadine and 
 # Strain into a chilled coupe.
 G coupe | lemon peel | y | -
 
-@ alabama-slammer | Alabama Slammer | 1 | 3 | 0 | tree nuts | Southern Comfort, sloe gin and amaretto with orange juice.
+@ alabama-slammer | Alabama Slammer | 1 | 3 | 0 | - | Southern Comfort, sloe gin and amaretto with orange juice.
 - 1 | oz | Southern Comfort
 - 1 | oz | nut-free amaretto (such as Disaronno)
 - 1/2 | oz | sloe gin

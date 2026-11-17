@@ -2283,7 +2283,7 @@
         "Add ice and shake hard for 10 seconds more.",
         "Strain into a rocks glass over fresh ice. Garnish with an orange slice and cherry, and dot the foam with bitters."
       ],
-      "allergens": ["tree nuts"],
+      "allergens": [],
       "cocktail": {
         "glass": "rocks glass",
         "garnish": "orange slice and cherry",

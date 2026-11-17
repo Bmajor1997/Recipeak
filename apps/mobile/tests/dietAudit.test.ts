@@ -41,6 +41,16 @@ describe("diet options for the bundled recipes", () => {
     expect(wrong).toEqual([]);
   });
 
+  it("keeps amaretto allergen information consistent with the specified nut-free product", () => {
+    for (const id of ["godfather", "alabama-slammer", "french-connection", "amaretto-sour"]) {
+      const recipe = parse_recipe((recipes as Record<string, unknown>)[id]);
+      expect(recipe.ingredients.some((i) => /nut-free amaretto/i.test(i.item))).toBe(true);
+      expect(recipe.allergens).not.toContain("tree nuts");
+    }
+    const vegan = (variants as Record<string, Record<string, unknown>>)["amaretto-sour"].vegan;
+    expect(parse_recipe(vegan).allergens).not.toContain("tree nuts");
+  });
+
   it("only keeps audit decisions for dishes that exist", () => {
     for (const id of Object.keys(review)) expect(Object.keys(recipes), id).toContain(id);
   });
@@ -85,10 +95,10 @@ describe("diet rules", () => {
     expect(p.status["low-carb"]?.status).toBe("none");
   });
 
-  it("doesn't offer to remove the ingredient a dish is named after", () => {
+  it("offers meat-free versions even when meat is in the dish name", () => {
     const p = diet_profile(dish("Beef Stew", ["beef chuck, cubed", "carrots", "flour"]), "meal");
-    expect(p.status.vegetarian?.status).toBe("none");
-    expect(p.status.vegan?.status).toBe("none");
+    expect(p.status.vegetarian?.status).toBe("option");
+    expect(p.status.vegan?.status).toBe("option");
     expect(p.options).toContain("gluten-free");
   });
 
@@ -98,8 +108,8 @@ describe("diet rules", () => {
   });
 
   it("counts an 'or' choice only when it names a real substitute", () => {
-    expect(diet_profile(dish("Rice", ["butter or oil"]), "meal").fits).toContain("dairy-free");
-    expect(diet_profile(dish("Rice", ["water or chicken broth"]), "meal").fits).toContain("vegetarian");
+    expect(diet_profile(dish("Rice", ["butter or oil"]), "meal").options).toContain("dairy-free");
+    expect(diet_profile(dish("Rice", ["water or chicken broth"]), "meal").options).toContain("vegetarian");
     expect(diet_profile(dish("Stew", ["chicken breasts or thighs"]), "meal").fits).not.toContain("vegetarian");
     expect(diet_profile(dish("Pie", ["pizza or bread dough"]), "meal").fits).not.toContain("gluten-free");
   });
@@ -162,6 +172,14 @@ describe("diet rules", () => {
     expect(diet_profile(dish("Mix", ["vegan butter and eggs"]), "meal").fits).not.toContain("vegan");
     const gimlet = dish("Gimlet", ["gin", "lime juice", "sugar-free simple syrup"], drink);
     expect(diet_profile(gimlet, "cocktail").fits).toContain("low-carb");
+    expect(diet_profile(dish("Gin and tonic", ["gin", "sugar-free tonic water"], drink), "cocktail").fits).toContain("low-carb");
+    expect(diet_profile(dish("Mule", ["vodka", "sugar-free ginger beer"], drink), "cocktail").fits).toContain("low-carb");
+  });
+
+  it("does not hide incompatible ingredients after an ampersand or a sugar-free qualifier", () => {
+    expect(diet_profile(dish("Snack", ["nut-free chocolate & almonds"]), "meal").fits).not.toContain("nut-free");
+    expect(diet_profile(dish("Toast", ["sugar-free bread"]), "meal").fits).not.toContain("low-carb");
+    expect(diet_profile(dish("Mix", ["gluten-free flour & breadcrumbs"]), "meal").fits).not.toContain("gluten-free");
   });
 
   it("treats parmesan and pecorino as not vegetarian, with a vegetarian hard cheese as the swap", () => {

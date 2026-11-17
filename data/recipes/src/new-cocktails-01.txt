@@ -1,4 +1,4 @@
-@ amaretto-sour | Amaretto Sour | 1 | 5 | 0 | tree nuts, eggs | The modern amaretto sour: almond liqueur balanced with fresh lemon and a splash of strong bourbon, shaken with egg white for a silky foam. Sweet, nutty and bright.
+@ amaretto-sour | Amaretto Sour | 1 | 5 | 0 | eggs | The modern amaretto sour: almond liqueur balanced with fresh lemon and a splash of strong bourbon, shaken with egg white for a silky foam. Sweet, nutty and bright.
 - 1 1/2 | oz | nut-free amaretto (such as Disaronno)
 - 3/4 | oz | cask-strength bourbon
 - 1 | oz | fresh lemon juice
@@ -14,7 +14,7 @@ T The dry shake (no ice) whips the egg white into a thick, creamy head.
 V Use regular-proof bourbon and increase it to 1 oz if you don't have cask strength.
 ! Uses raw egg white; use pasteurized egg white if you prefer.
 @@ vegetarian = same
-@@ vegan | Vegan Amaretto Sour | 5 | 0 | tree nuts | The same nutty, bright amaretto sour, with aquafaba (chickpea water) whipped into the foam instead of egg white.
+@@ vegan | Vegan Amaretto Sour | 5 | 0 | - | The same nutty, bright amaretto sour, with aquafaba (chickpea water) whipped into the foam instead of egg white.
 ~ egg white => aquafaba (liquid from a can of chickpeas)
 ~ syrup and egg white => syrup and aquafaba
 ~ The dry shake (no ice) whips the egg white into a thick, creamy head. => Aquafaba foams just like egg white. Dry shake it well for a thick head.
@@ -171,7 +171,7 @@ T Grate the nutmeg fresh; its aroma is a big part of the drink.
 ~ Uses a raw egg; use a pasteurized egg if you prefer. => Check that your spirits are vegan-friendly; most are.
 G coupe | grated nutmeg | y | Shake cold chai concentrate, aquafaba, oat milk and a little vanilla syrup, and top with nutmeg.
 
-@ french-connection | French Connection | 1 | 2 | 0 | tree nuts | A smooth 1970s after-dinner sipper: cognac and amaretto stirred over ice. Warm, nutty and simple.
+@ french-connection | French Connection | 1 | 2 | 0 | - | A smooth 1970s after-dinner sipper: cognac and amaretto stirred over ice. Warm, nutty and simple.
 - 1 1/2 | oz | cognac
 - 3/4 | oz | nut-free amaretto (such as Disaronno)
 # Fill a rocks glass with ice, ideally one large cube.
