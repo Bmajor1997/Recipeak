@@ -23,510 +23,80 @@ export type DietProfile = {
 /** A hand decision for one bundled dish, made in the audit (see dietReview.json). */
 export type DietOverride = { status: DietStatus; why: string };
 
-type Rule = { bad: RegExp; unsure?: RegExp; core?: RegExp; raw?: boolean };
+type Rule = { bad: RegExp[]; unsure?: RegExp[]; core?: RegExp[]; raw?: boolean };
 
-const words = (list: string[]) => new RegExp(`\\b(?:${list.join("|")})`, "i");
+/** The first of the patterns found in the text. */
+function first_match(text: string, patterns: RegExp[] | undefined): string | null {
+  for (const p of patterns ?? []) {
+    const m = text.match(p);
+    if (m) return m[0];
+  }
+  return null;
+}
 
 // Animal flesh and things made from it. Generic broth, stock and some pastes may or may not contain it.
-const MEAT = [
-  "chicken",
-  "beef",
-  "pork",
-  "lamb",
-  "mutton",
-  "goat(?! cheese)",
-  "veal",
-  "duck",
-  "turkey",
-  "cornish hens?",
-  "oxtail",
-  "tripe",
-  "brisket",
-  "chuck",
-  "sirloin",
-  "ribeye",
-  "tenderloin",
-  "flank steak",
-  "steaks?",
-  "short ribs",
-  "spareribs",
-  "shank",
-  "bacon",
-  "pancetta",
-  "guanciale",
-  "prosciutto",
-  "ham\\b",
-  "pepperoni",
-  "salami",
-  "chorizo",
-  "chouri[cç]o",
-  "lingui[cç]a",
-  "sausages?",
-  "kielbasa",
-  "andouille",
-  "bratwurst",
-  "lap cheong",
-  "lard",
-  "suet",
-  "marrow",
-  "bones?\\b",
-  "doner",
-  "meat",
-  "gelatin",
-  "fish",
-  "salmon",
-  "tuna",
-  "albacore",
-  "yellowfin",
-  "cod\\b",
-  "haddock",
-  "catfish",
-  "tilapia",
-  "halibut",
-  "mahi",
-  "anchov",
-  "sardine",
-  "mackerel",
-  "eel\\b",
-  "unagi",
-  "bonito",
-  "katsuobushi",
-  "dashi",
-  "saltfish",
-  "shrimp",
-  "prawn",
-  "crab",
-  "clams?\\b",
-  "clamato",
-  "mussels?",
-  "lobster",
-  "scallops?",
-  "oyster sauce",
-  "squid",
-  "octopus",
-  "conch",
-  "crayfish",
-  "bagoong",
-  "belacan",
-  "terasi",
-  "ikan bilis",
-  "worcestershire",
-  "nuoc cham",
-  "ham hocks?",
-];
-const MEAT_UNSURE = [
-  "broth",
-  "stock\\b",
-  "stock cubes?",
-  "bouillon",
-  "kimchi",
-  "curry paste",
-  "laksa paste",
-  "nam prik pao",
-  "chili paste",
-  "sinigang",
-  "fish-free",
-];
+const MEAT =
+  /\b(?:chicken|beef|pork|lamb|mutton|goat(?! cheese)|veal|duck|turkey|cornish hens?|oxtail|tripe|brisket|chuck|sirloin|ribeye|tenderloin|flank steak|steaks?|short ribs|spareribs|shank|bacon|pancetta|guanciale|prosciutto|ham\b|pepperoni|salami|chorizo|chouri[cç]o|lingui[cç]a|sausages?|kielbasa|andouille|bratwurst|lap cheong|lard|suet|marrow|bones?\b|doner|meat|gelatin|fish|salmon|tuna|albacore|yellowfin|cod\b|haddock|catfish|tilapia|halibut|mahi|anchov|sardine|mackerel|eel\b|unagi|bonito|katsuobushi|dashi|saltfish|shrimp|prawn|crab|clams?\b|clamato|mussels?|lobster|scallops?|oyster sauce|squid|octopus|conch|crayfish|bagoong|belacan|terasi|ikan bilis|worcestershire|nuoc cham|ham hocks?)/i;
+const MEAT_CORE_EXTRA = /\b(?:seafood|carne)/i;
+const EGG_CORE = /\b(?:eggs?\b|omelet(?:te)?|frittata|huevos|quiche)/i;
+const MEAT_UNSURE = /\b(?:broth|stock\b|stock cubes?|bouillon|kimchi|curry paste|laksa paste|nam prik pao|chili paste|sinigang|fish-free)/i;
 // Kombu dashi, vegetable broth and the like are plant-based; "or" alternatives are handled separately.
 const PLANT_WORDS =
   /\b(vegetable (?:broth|stock)|kombu dashi|mushroom dashi|vegan [a-z ]+|plant-based [a-z ]+|eggplant|butter beans|butternut|cocoa butter|peanut butter|cream of coconut|coconut (?:cream|milk)|honeydew|crème de [a-zûé]+|creme de [a-z]+|cream sherry|ginger beer|root beer)\b/g;
 
-const DAIRY = [
-  "butter",
-  "buttermilk",
-  "ghee",
-  "smen",
-  "kibbeh",
-  "milk",
-  "cream",
-  "crema",
-  "cheese",
-  "cheddar",
-  "mozzarella",
-  "parmesan",
-  "pecorino",
-  "kefalotyri",
-  "ricotta",
-  "feta",
-  "paneer",
-  "queso",
-  "quesillo",
-  "oaxaca",
-  "monterey jack",
-  "gruy[eè]re",
-  "provolone",
-  "swiss",
-  "yogh?urt",
-  "irish cream",
-  "mashed potatoes",
-  "naan",
-  "brioche",
-];
-const DAIRY_UNSURE = [
-  "bread",
-  "rolls",
-  "buns",
-  "pav",
-  "english muffins",
-  "puff pastry",
-  "pie crusts?",
-  "empanada dough",
-  "paratha",
-  "roti",
-  "cornbread",
-  "gingersnap",
-  "chocolate(?! bitters)",
-];
-const CHEESE = [
-  "cheese",
-  "queso",
-  "paneer",
-  "mozzarella",
-  "ricotta",
-  "feta",
-  "halloumi",
-  "fondue",
-  "parmesan",
-  "parmigiana",
-  "cacio",
-  "provolone",
-  "burrata",
-];
+const DAIRY =
+  /\b(?:butter|buttermilk|ghee|smen|kibbeh|milk|cream|crema|cheese|cheddar|mozzarella|parmesan|pecorino|kefalotyri|ricotta|feta|paneer|queso|quesillo|oaxaca|monterey jack|gruy[eè]re|provolone|swiss|yogh?urt|irish cream|mashed potatoes|naan|brioche)/i;
+const DAIRY_UNSURE =
+  /\b(?:bread|rolls|buns|pav|english muffins|puff pastry|pie crusts?|empanada dough|paratha|roti|cornbread|gingersnap|chocolate(?! bitters))/i;
+const CHEESE = /\b(?:cheese|queso|paneer|mozzarella|ricotta|feta|halloumi|fondue|parmesan|parmigiana|cacio|provolone|burrata)/i;
 
-const EGG = ["eggs?\\b", "egg (?:white|yolk)s?", "yolks?", "mayo", "mayonnaise", "tartar sauce", "egg noodles", "brioche", "challah"];
-const EGG_UNSURE = ["lasagna noodles", "dumpling wrappers", "spring roll wrappers", "empanada dough", "tempura bits", "gingersnap"];
-const HONEY = ["honey(?!dew|comb)", "gardenia mix"];
+const EGG = /\b(?:eggs?\b|egg (?:white|yolk)s?|yolks?|mayo|mayonnaise|tartar sauce|egg noodles|brioche|challah)/i;
+const EGG_UNSURE = /\b(?:lasagna noodles|dumpling wrappers|spring roll wrappers|empanada dough|tempura bits|gingersnap)/i;
+const HONEY = /\b(?:honey(?!dew|comb)|gardenia mix)/i;
 // Wine, beer and some aperitifs may be fined with egg, milk, gelatin or fish products: it depends on the brand.
-const FINED = [
-  "wine",
-  "champagne",
-  "prosecco",
-  "vermouth",
-  "sherry",
-  "port\\b",
-  "beer",
-  "lager",
-  "stout",
-  "guinness",
-  "lillet",
-  "dubonnet",
-  "marsala",
-  "sake",
-  "shaoxing",
-];
+const FINED = /\b(?:wine|champagne|prosecco|vermouth|sherry|port\b|beer|lager|stout|guinness|lillet|dubonnet|marsala|sake|shaoxing)/i;
 
-const GLUTEN = [
-  "flour",
-  "atta",
-  "semolina",
-  "couscous",
-  "bulgur",
-  "bread",
-  "breadcrumbs",
-  "panko",
-  "croutons",
-  "pitas?",
-  "pide",
-  "naan",
-  "roti",
-  "paratha",
-  "rougag",
-  "flatbread",
-  "baguettes?",
-  "rolls",
-  "buns",
-  "pav",
-  "brioche",
-  "challah",
-  "english muffins",
-  "cornbread",
-  "injera",
-  "dough",
-  "pastry",
-  "pie crusts?",
-  "wrappers",
-  "mandarin pancakes",
-  "gingersnap",
-  "saltine",
-  "crackers",
-  "pasta",
-  "spaghetti",
-  "fettuccine",
-  "linguine",
-  "macaroni",
-  "ziti",
-  "rigatoni",
-  "penne",
-  "trofie",
-  "lasagna",
-  "noodles",
-  "ramen",
-  "udon",
-  "soba",
-  "lo mein",
-  "vermicelli",
-  "tortillas?",
-  "oats",
-  "soy sauce",
-  "maggi",
-  "hoisin",
-  "oyster sauce",
-  "kecap manis",
-  "sweet soy",
-  "sweet bean sauce",
-  "doubanjiang",
-  "gochujang",
-  "black vinegar",
-  "malt vinegar",
-  "shaoxing",
-  "tempura",
-  "tonkatsu sauce",
-  "okonomiyaki sauce",
-  "takoyaki sauce",
-  "beer",
-  "lager",
-  "stout",
-  "guinness",
-  "split pea fritters",
-];
+const GLUTEN =
+  /\b(?:flour|atta|semolina|couscous|bulgur|bread|breadcrumbs|panko|croutons|pitas?|pide|naan|roti|paratha|rougag|flatbread|baguettes?|rolls|buns|pav|brioche|challah|english muffins|cornbread|injera|dough|pastry|pie crusts?|wrappers|mandarin pancakes|gingersnap|saltine|crackers|pasta|spaghetti|fettuccine|linguine|macaroni|ziti|rigatoni|penne|trofie|lasagna|noodles|ramen|udon|soba|lo mein|vermicelli|tortillas?|oats|soy sauce|maggi|hoisin|oyster sauce|kecap manis|sweet soy|sweet bean sauce|doubanjiang|gochujang|black vinegar|malt vinegar|shaoxing|tempura|tonkatsu sauce|okonomiyaki sauce|takoyaki sauce|beer|lager|stout|guinness|split pea fritters)/i;
 // Not wheat, barley or rye, though their names look like it.
 const GLUTEN_FREE_WORDS =
   /\b(rice (?:flour|noodles|vermicelli|paper|cakes)|chickpea flour|corn (?:tortillas?|flour)|taco shells or corn tortillas|tortilla (?:chips|strips)|glass noodles|sweet potato starch noodles|flat rice noodles|fresh (?:flat|wide) rice noodles|rice vermicelli|thin rice vermicelli|dried flat rice noodles|tamari|ginger beer|root beer|bread and butter pickles|masa harina|cylindrical rice cakes|prawn crackers)\b/g;
-const GLUTEN_UNSURE = [
-  "worcestershire",
-  "bouillon",
-  "stock cubes?",
-  "barbecue sauce",
-  "taco seasoning",
-  "fried onions",
-  "fermented black beans",
-  "fish cakes",
-  "sausages?",
-  "kielbasa",
-  "andouille",
-  "bratwurst",
-  "lap cheong",
-  "chinese sausage",
-  "sambar powder",
-  "prawn crackers",
-  "chocolate syrup",
-];
+const GLUTEN_UNSURE =
+  /\b(?:worcestershire|bouillon|stock cubes?|barbecue sauce|taco seasoning|fried onions|fermented black beans|fish cakes|sausages?|kielbasa|andouille|bratwurst|lap cheong|chinese sausage|sambar powder|prawn crackers|chocolate syrup)/i;
 
-const NUTS = [
-  "peanuts?",
-  "almonds?",
-  "walnuts?",
-  "pecans?",
-  "cashews?",
-  "pistachios?",
-  "pine nuts",
-  "hazelnuts?",
-  "macadamia",
-  "brazil nuts?",
-  "orgeat",
-  "frangelico",
-  "nocino",
-  "praline",
-  "marzipan",
-  "pesto",
-  "satay",
-  "coconut",
-  "kerisik",
-  "malibu",
-];
-const NUTS_UNSURE = ["amaretto", "noyaux"];
+const NUTS =
+  /\b(?:peanuts?|almonds?|walnuts?|pecans?|cashews?|pistachios?|pine nuts|hazelnuts?|macadamia|brazil nuts?|orgeat|frangelico|nocino|praline|marzipan|pesto|satay|coconut|kerisik|malibu)/i;
+const NUTS_CORE =
+  /\b(?:peanuts?|almonds?|walnuts?|pecans?|cashews?|pistachios?|pine nuts|hazelnuts?|macadamia|brazil nuts?|orgeat|frangelico|nocino|praline|marzipan|pesto|coconut|kerisik|malibu)/i;
+const NUTS_UNSURE = /\b(?:amaretto|noyaux)/i;
 
 // Low-carb: a starch cooked into the dish is its heart; sugar, a coating or a side can be cut or swapped.
-const STARCH = [
-  ...GLUTEN.filter((w) => !/sauce|vinegar|maggi|hoisin|kecap|sweet soy|doubanjiang|gochujang|shaoxing|beer|lager|stout|guinness/.test(w)),
-  "rice",
-  "potato(?:es)?",
-  "hash browns",
-  "french fries",
-  "plantains?",
-  "yams?\\b",
-  "cassava",
-  "yuca",
-  "taro",
-  "corn\\b",
-  "cornmeal",
-  "masarepa",
-  "masa",
-  "grits",
-  "hominy",
-  "polenta",
-  "beans",
-  "black-eyed peas",
-  "chickpeas",
-  "lentils",
-  "dal\\b",
-  "split peas",
-  "quinoa",
-  "farofa",
-  "dosa batter",
-  "idli batter",
-  "tortilla chips",
-  "tortilla strips",
-  "taco shells",
-  "tteok",
-  "rice cakes",
-  "plantain chips",
-  "injera",
-];
-const SUGAR = [
-  "sugar",
-  "honey",
-  "syrup",
-  "molasses",
-  "jam\\b",
-  "marmalade",
-  "chutney",
-  "ketchup",
-  "hoisin",
-  "kecap manis",
-  "sweet soy",
-  "sweet chili sauce",
-  "barbecue sauce",
-  "mirin",
-  "raisins",
-  "dates",
-  "prunes",
-  "apricots",
-  "jujubes",
-  "grenadine",
-  "cola",
-  "soda\\b",
-  "ginger ale",
-  "ginger beer",
-  "tonic",
-  "lemonade",
-  "falernum",
-  "beer",
-  "lager",
-  "stout",
-  "guinness",
-];
+const STARCH =
+  /\b(?:flour|atta|semolina|couscous|bulgur|bread|breadcrumbs|panko|croutons|pitas?|pide|naan|roti|paratha|rougag|flatbread|baguettes?|rolls|buns|pav|brioche|challah|english muffins|cornbread|injera|dough|pastry|pie crusts?|wrappers|mandarin pancakes|gingersnap|saltine|crackers|pasta|spaghetti|fettuccine|linguine|macaroni|ziti|rigatoni|penne|trofie|lasagna|noodles|ramen|udon|soba|lo mein|vermicelli|tortillas?|oats|tempura|split pea fritters|rice|potato(?:es)?|hash browns|french fries|plantains?|yams?\b|cassava|yuca|taro|corn\b|cornmeal|masarepa|masa|grits|hominy|polenta|beans|black-eyed peas|chickpeas|lentils|dal\b|split peas|quinoa|farofa|dosa batter|idli batter|tortilla chips|tortilla strips|taco shells|tteok|rice cakes|plantain chips|injera)/i;
+const SUGAR =
+  /\b(?:sugar|honey|syrup|molasses|jam\b|marmalade|chutney|ketchup|hoisin|kecap manis|sweet soy|sweet chili sauce|barbecue sauce|mirin|raisins|dates|prunes|apricots|jujubes|grenadine|cola|soda\b|ginger ale|ginger beer|tonic|lemonade|falernum|beer|lager|stout|guinness)/i;
 // In a drink, these carry the flavor, so a low-carb version would be a different drink.
-const DRINK_CARB_CORE = [
-  "liqueur",
-  "cura[cç]ao",
-  "triple sec",
-  "cointreau",
-  "grand marnier",
-  "chambord",
-  "kahl[uú]a",
-  "drambuie",
-  "galliano",
-  "b[eé]n[eé]dictine",
-  "chartreuse",
-  "st-germain",
-  "aperol",
-  "campari",
-  "amaro",
-  "amer picon",
-  "cynar",
-  "fernet",
-  "j[aä]germeister",
-  "southern comfort",
-  "irish cream",
-  "amaretto",
-  "cr[eè]me de",
-  "schnapps",
-  "sloe gin",
-  "allspice dram",
-  "pernod",
-  "sweet vermouth",
-  "blanc vermouth",
-  "dubonnet",
-  "lillet",
-  "port\\b",
-  "cream sherry",
-  "beer",
-  "lager",
-  "stout",
-  "guinness",
-  "juice(?<!lime juice|lemon juice)",
-  "puree",
-  "cream of coconut",
-  "coconut rum",
-  "spiced rum",
-  "vanilla vodka",
-  "chocolate(?! bitters)",
-  "strawberries",
-  "blackberries",
-  "raspberries",
-  "berries",
-  "banana",
-  "pineapple",
-  "peach",
-  "grapes",
-  "sake",
-  "orgeat",
-  "sangrita",
-  "lemonade",
-  "midori",
-  "maraschino",
-  "absinthe",
-  "apricot brandy",
-  "peach brandy",
-  "cherry heering",
-];
-const STARCH_CORE_TITLE = [
-  "rice",
-  "risotto",
-  "paella",
-  "biryani",
-  "pilaf",
-  "polo",
-  "jollof",
-  "pasta",
-  "spaghetti",
-  "lasagna",
-  "macaroni",
-  "noodles?",
-  "ramen",
-  "pho",
-  "udon",
-  "lo mein",
-  "pad",
-  "bread",
-  "toast",
-  "sandwich",
-  "burger",
-  "pizza",
-  "potato(?:es)?",
-  "fries",
-  "tacos?",
-  "burrito",
-  "quesadilla",
-  "enchiladas?",
-  "tamales?",
-  "empanadas?",
-  "dumplings?",
-  "pancakes?",
-  "waffles?",
-  "beans",
-  "dal",
-  "lentils?",
-  "chickpeas?",
-];
+const DRINK_CARB_CORE =
+  /\b(?:liqueur|cura[cç]ao|triple sec|cointreau|grand marnier|chambord|kahl[uú]a|drambuie|galliano|b[eé]n[eé]dictine|chartreuse|st-germain|aperol|campari|amaro|amer picon|cynar|fernet|j[aä]germeister|southern comfort|irish cream|amaretto|cr[eè]me de|schnapps|sloe gin|allspice dram|pernod|sweet vermouth|blanc vermouth|dubonnet|lillet|port\b|cream sherry|beer|lager|stout|guinness|juice(?<!lime juice|lemon juice)|puree|cream of coconut|coconut rum|spiced rum|vanilla vodka|chocolate(?! bitters)|strawberries|blackberries|raspberries|berries|banana|pineapple|peach|grapes|sake|orgeat|sangrita|lemonade|midori|maraschino|absinthe|apricot brandy|peach brandy|cherry heering)/i;
+const STARCH_CORE_TITLE =
+  /\b(?:rice|risotto|paella|biryani|pilaf|polo|jollof|pasta|spaghetti|lasagna|macaroni|noodles?|ramen|pho|udon|lo mein|pad|bread|toast|sandwich|burger|pizza|potato(?:es)?|fries|tacos?|burrito|quesadilla|enchiladas?|tamales?|empanadas?|dumplings?|pancakes?|waffles?|beans|dal|lentils?|chickpeas?)/i;
 
 function rule(diet: Diet): Rule | null {
   switch (diet) {
     case "vegetarian":
-      return { bad: words(MEAT), unsure: words(MEAT_UNSURE), core: words([...MEAT, "seafood", "carne"]) };
+      return { bad: [MEAT], unsure: [MEAT_UNSURE], core: [MEAT, MEAT_CORE_EXTRA] };
     case "vegan":
       return {
-        bad: words([...MEAT, ...DAIRY, ...EGG, ...HONEY]),
-        unsure: words([...MEAT_UNSURE, ...DAIRY_UNSURE, ...EGG_UNSURE, ...FINED]),
-        core: words([...MEAT, "seafood", "carne", ...CHEESE, "eggs?\\b", "omelet(?:te)?", "frittata", "huevos", "quiche"]),
+        bad: [MEAT, DAIRY, EGG, HONEY],
+        unsure: [MEAT_UNSURE, DAIRY_UNSURE, EGG_UNSURE, FINED],
+        core: [MEAT, MEAT_CORE_EXTRA, CHEESE, EGG_CORE],
       };
     case "dairy-free":
-      return { bad: words(DAIRY), unsure: words(DAIRY_UNSURE), core: words(CHEESE) };
+      return { bad: [DAIRY], unsure: [DAIRY_UNSURE], core: [CHEESE] };
     case "gluten-free":
-      return { bad: words(GLUTEN), unsure: words(GLUTEN_UNSURE) };
+      return { bad: [GLUTEN], unsure: [GLUTEN_UNSURE] };
     case "nut-free":
-      return { bad: words(NUTS), unsure: words(NUTS_UNSURE), core: words(NUTS.filter((n) => n !== "satay")), raw: true };
+      return { bad: [NUTS], unsure: [NUTS_UNSURE], core: [NUTS_CORE], raw: true };
     default:
       return null;
   }
@@ -559,10 +129,10 @@ function check_text(text: string, r: Rule, gluten: boolean): Omit<LineCheck, "re
   // Nut checks read the words as written: coconut milk and peanut butter are not dairy, but they are nuts here.
   const base = r.raw ? text.toLowerCase().replace(/\b(butternut|nutmeg)\b/g, " ") : clean(text);
   const t = gluten ? base.replace(GLUTEN_FREE_WORDS, " ok ") : base;
-  const bad = t.match(r.bad);
-  if (bad) return { verdict: "bad", hit: bad[0] };
-  const unsure = r.unsure && t.match(r.unsure);
-  if (unsure) return { verdict: "unsure", hit: unsure[0] };
+  const bad = first_match(t, r.bad);
+  if (bad) return { verdict: "bad", hit: bad };
+  const unsure = first_match(t, r.unsure);
+  if (unsure) return { verdict: "unsure", hit: unsure };
   return { verdict: "ok", hit: "" };
 }
 
@@ -590,8 +160,8 @@ function check_diet(recipe: Recipe, diet: Diet, has_version: boolean): { status:
   if (!bad.length) return { status: "review", why: `check ${unsure.map((c) => `"${c.line}"`).join(", ")}` };
   if (has_version) return { status: "option", why: "hand-written version" };
   // When the title names what breaks the diet ("Beef Pho", "Cheese Fondue"), removing it makes a different dish.
-  const named = r.core && clean(recipe.title).match(r.core);
-  if (named && bad.some((c) => !c.removable)) return { status: "none", why: `the dish is defined by its ${named[0]}` };
+  const named = first_match(clean(recipe.title), r.core);
+  if (named && bad.some((c) => !c.removable)) return { status: "none", why: `the dish is defined by its ${named}` };
   return { status: "option", why: bad.map((c) => c.hit).join(", ") };
 }
 
@@ -626,9 +196,9 @@ const NOT_CARB =
 const CONDIMENT = /\b(ketchup|barbecue sauce|hoisin|kecap manis|sweet soy|sweet chili sauce|mirin|chutney)\b/;
 
 function check_low_carb(recipe: Recipe, kind: Kind): { status: DietStatus; why: string } {
-  const starch = words(STARCH);
-  const sugar = words(SUGAR);
-  const drink_core = words(DRINK_CARB_CORE);
+  const starch = STARCH;
+  const sugar = SUGAR;
+  const drink_core = DRINK_CARB_CORE;
   const servings = Math.max(1, recipe.servings);
   // Leavening means a batter or dough: cakes, cookies, pancakes, breads.
   const baked = recipe.ingredients.some((i) => /\b(baking (?:powder|soda)|yeast)\b/i.test(i.item));
@@ -656,7 +226,7 @@ function check_low_carb(recipe: Recipe, kind: Kind): { status: DietStatus; why: 
   }
   if (!found.length) return { status: "fits", why: "" };
   const title = clean(recipe.title);
-  const core = found.find((f) => f.core) ?? (title.match(words(STARCH_CORE_TITLE)) && kind === "meal" ? found[0] : undefined);
+  const core = found.find((f) => f.core) ?? (STARCH_CORE_TITLE.test(title) && kind === "meal" ? found[0] : undefined);
   if (core) return { status: "none", why: `"${core.hit}" is the heart of the dish` };
   return { status: "option", why: found.map((f) => f.hit).join(", ") };
 }
