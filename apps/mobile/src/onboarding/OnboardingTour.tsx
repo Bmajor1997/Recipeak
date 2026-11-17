@@ -1,15 +1,16 @@
 // The first-launch tour (design "Recipeek onboarding mockup", approved 2026-11-17): welcome, try a sample dish,
-// cocktails or meals, diet, camera, and what's free. Every step after the welcome can be skipped.
+// cocktails or meals, diet, camera, and what's free. Every step after the welcome can be skipped. The root layout
+// shows it in place of the app until it is finished, so nothing else (and no navigation) can open before it.
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useCameraPermissions } from "expo-camera";
 import { LinearGradient } from "expo-linear-gradient";
-import { router } from "expo-router";
 import { type ReactNode, useState } from "react";
 import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { DietPicker, InterestPicker } from "../onboarding/Choices";
-import { toggle_diet, type Entry } from "../onboarding/onboarding";
-import { useOnboarding } from "../onboarding/OnboardingProvider";
+import { DietPicker, InterestPicker } from "./Choices";
+import { toggle_diet, type Entry } from "./onboarding";
+import { useOnboarding } from "./OnboardingProvider";
+import { Paywall } from "../paywall/Paywall";
 import { FREE_PHOTOS, FREE_SAVED_RECIPES } from "../paywall/plans";
 import { bundled_recipe } from "../recipes/bundled";
 import type { CollectionDish } from "../recipes/collectionPhotos";
@@ -46,7 +47,7 @@ function with_alpha(hex: string, alpha: number): string {
   return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`;
 }
 
-export default function OnboardingScreen() {
+export function OnboardingTour() {
   const [step, set_step] = useState(0);
   const { values, update } = useOnboarding();
   const { type } = useTheme();
@@ -322,6 +323,7 @@ function Point({ bold, rest }: { bold: string; rest: string }) {
 function FreePlan({ onStart }: { onStart: () => void }) {
   const { colors } = useTheme();
   const styles = useThemedStyles(create_styles);
+  const [premium, set_premium] = useState(false);
   return (
     <>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.body}>
@@ -346,14 +348,13 @@ function FreePlan({ onStart }: { onStart: () => void }) {
       </ScrollView>
       <View style={styles.footer}>
         <Button label="Start cooking" onPress={onStart} />
-        <Pressable
-          accessibilityRole="button"
-          onPress={() => router.push({ pathname: "/upgrade", params: { reason: "intro" } })}
-          style={styles.link}
-        >
+        <Pressable accessibilityRole="button" onPress={() => set_premium(true)} style={styles.link}>
           <Text style={styles.linkText}>See Premium</Text>
         </Pressable>
       </View>
+      <Modal visible={premium} animationType="slide" onRequestClose={() => set_premium(false)}>
+        <Paywall reason="intro" onClose={() => set_premium(false)} />
+      </Modal>
     </>
   );
 }

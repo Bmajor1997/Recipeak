@@ -9,6 +9,7 @@ import { type ReactNode, useEffect } from "react";
 import { ActivityIndicator, useColorScheme, View } from "react-native";
 import { AppProvider, useApp } from "../AppContext";
 import { CameraProvider } from "../camera/CameraProvider";
+import { OnboardingTour } from "../onboarding/OnboardingTour";
 import { OnboardingProvider, useOnboarding } from "../onboarding/OnboardingProvider";
 import { PreferencesProvider, usePreferences } from "../settings/PreferencesProvider";
 import { theme_for, ThemeProvider, useTheme } from "../ui/theme";
@@ -45,6 +46,8 @@ function Screens() {
       </View>
     );
   }
+  // The first-launch tour stands in for the whole app until it's finished, so the app never opens on another screen.
+  if (!toured) return <OnboardingTour />;
   const header = {
     headerStyle: { backgroundColor: colors.background },
     headerTintColor: colors.text,
@@ -53,12 +56,8 @@ function Screens() {
   return (
     <CameraProvider>
       <Stack screenOptions={header}>
-        {/* The first-launch tour comes first, once per device. */}
-        <Stack.Protected guard={!toured}>
-          <Stack.Screen name="onboarding" options={{ headerShown: false, animation: "fade" }} />
-        </Stack.Protected>
         {/* People must be signed in before their first photo. */}
-        <Stack.Protected guard={toured && Boolean(user)}>
+        <Stack.Protected guard={Boolean(user)}>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           {/* The recipe slides up from the bottom, like the camera. */}
           <Stack.Screen
@@ -68,12 +67,10 @@ function Screens() {
           <Stack.Screen name="cook" options={{ title: "Cooking mode" }} />
           <Stack.Screen name="settings/[category]" options={{ headerShown: false }} />
           <Stack.Screen name="feedback/[kind]" options={{ headerShown: false }} />
-        </Stack.Protected>
-        {/* The paywall draws its own close button. The tour's "See Premium" opens it before sign-in. */}
-        <Stack.Protected guard={!toured || Boolean(user)}>
+          {/* The paywall draws its own close button. */}
           <Stack.Screen name="upgrade" options={{ headerShown: false, presentation: "modal" }} />
         </Stack.Protected>
-        <Stack.Protected guard={toured && !user}>
+        <Stack.Protected guard={!user}>
           <Stack.Screen name="sign-in" options={{ headerShown: false }} />
         </Stack.Protected>
       </Stack>
