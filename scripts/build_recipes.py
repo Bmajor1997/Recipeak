@@ -46,14 +46,16 @@ DIET_NAMES = ("vegetarian", "vegan")
 # Words that must not appear in a version once swapped (checked on whole words, ingredient items and steps).
 NOT_VEGETARIAN = ["chicken", "beef", "pork", "lamb", "mutton", "goat", "bacon", "ham", "sausage", "chorizo", "kielbasa", "salami",
                   "fish", "salmon", "tuna", "anchov", "shrimp", "prawn", "crab", "conch", "squid", "tripe", "oxtail", "gelatin",
-                  "veal", "turkey", "duck", "lard", "fish sauce", "oyster sauce", "dashi", "bonito", "catfish", "mackerel"]
+                  "veal", "turkey", "duck", "lard", "fish sauce", "oyster sauce", "dashi", "bonito", "catfish", "mackerel",
+                  # Made with animal rennet by tradition (Parmesan by law): use a vegetarian hard cheese instead.
+                  "parmesan", "parmigiano", "pecorino", "grana padano"]
 NOT_VEGAN = NOT_VEGETARIAN + ["egg", "milk", "butter", "cream", "cheese", "yogurt", "yoghurt", "honey", "ghee", "ricotta",
                               "parmesan", "pecorino", "feta", "paneer", "sour cream", "crème", "mayonnaise", "whey"]
 PLANT_OK = ["coconut milk", "coconut cream", "oat milk", "soy milk", "almond milk", "vegan butter", "vegan cheese", "vegan",
             "plant-based", "aquafaba", "eggplant", "butternut", "butter beans", "peanut butter", "cocoa butter", "cream of coconut",
             "egg-free", "no egg", "vegan irish cream", "cashew cream", "oat cream", "soy cream", "dairy-free yogurt", "dairy-free", "nutritional yeast", "mushroom", "creamy", "honeydew", "agave",
             "cheesecloth", "crème de", "creme de", "kombu dashi", "mushroom dashi", "butterfly pea", "buttery", "fish-free", "fishless",
-            "chicken-style", "vegetable", "jackfruit", "tofu", "seitan", "tempeh"]
+            "chicken-style", "vegetable", "jackfruit", "tofu", "seitan", "tempeh", "vegetarian parmesan-style", "vegetarian pecorino-style"]
 
 
 def fail(stem, msg):
