@@ -11,9 +11,13 @@ export class ApiError extends Error {
   ) {
     super(message);
   }
-  /** The free photos are used up: show the upgrade screen. */
+  /** A free allowance is used up: show the upgrade screen. */
   get needsUpgrade() {
-    return this.code === "FREE_PHOTOS_USED";
+    return this.code === "FREE_PHOTOS_USED" || this.code === "FREE_VERSIONS_USED";
+  }
+  /** Which allowance ran out, so the paywall says the right thing. */
+  get upgradeReason(): "photos" | "versions" {
+    return this.code === "FREE_VERSIONS_USED" ? "versions" : "photos";
   }
 }
 

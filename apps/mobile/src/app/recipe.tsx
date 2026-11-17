@@ -171,7 +171,7 @@ function RecipeView({ current }: { current: Ready }) {
       set_diet(nextDiet);
       set_current({ ...current, recipe: next.recipe, selected: index, image: next.image, localPhoto: null, savedId: null });
     } catch (error) {
-      if (error instanceof ApiError && error.needsUpgrade) router.push("/upgrade");
+      if (error instanceof ApiError && error.needsUpgrade) router.push({ pathname: "/upgrade", params: { reason: error.upgradeReason } });
       else set_problem(error instanceof ApiError ? error.message : "Couldn't load that version. Please try again.");
     } finally {
       set_busy(false);
@@ -458,7 +458,8 @@ function ManualCorrection({ initialKind, correction = false }: { initialKind: Ki
       });
       set_expanded(false);
     } catch (problem) {
-      if (problem instanceof ApiError && problem.needsUpgrade) router.push("/upgrade");
+      if (problem instanceof ApiError && problem.needsUpgrade)
+        router.push({ pathname: "/upgrade", params: { reason: problem.upgradeReason } });
       else set_error(problem instanceof ApiError ? problem.message : "Couldn't find that recipe. Please try again.");
     } finally {
       set_busy(false);

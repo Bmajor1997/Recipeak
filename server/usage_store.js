@@ -123,7 +123,7 @@ export function create_usage_store(env = {}, { now = () => new Date(), path = en
           if (free_photo && photos_used(user_id) >= limits.free_photos)
             throw new AiLimitError("You've used your free photos. Upgrade to keep finding recipes.", "FREE_PHOTOS_USED");
           if (feature === "recipe" && followups_used(user_id) >= counted_photos(user_id) * limits.followups_per_photo)
-            throw new AiLimitError("You've used your free recipes. Upgrade to keep finding recipes.", "FREE_PHOTOS_USED");
+            throw new AiLimitError("You've used your free diet versions and other matches. Upgrade for unlimited.", "FREE_VERSIONS_USED");
         }
         const sums = db.prepare("SELECT COALESCE(SUM(estimated_cost_usd),0) AS cost FROM ai_usage WHERE user_id=? AND started_at>=?").get(user_id, month);
         const global = db.prepare("SELECT COALESCE(SUM(estimated_cost_usd),0) AS cost FROM ai_usage WHERE started_at>=?").get(month);

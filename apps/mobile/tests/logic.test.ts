@@ -147,7 +147,17 @@ describe("server connection", () => {
       id_token: async () => "t",
       fetch_impl: reply(402, { error: "Used up.", code: "FREE_PHOTOS_USED" }) as typeof fetch,
     });
-    await expect(used.identify("data:image/jpeg;base64,AAAA")).rejects.toMatchObject({ needsUpgrade: true, status: 402 });
+    await expect(used.identify("data:image/jpeg;base64,AAAA")).rejects.toMatchObject({
+      needsUpgrade: true,
+      upgradeReason: "photos",
+      status: 402,
+    });
+    const versions = create_api({
+      baseUrl: "https://x.test",
+      id_token: async () => "t",
+      fetch_impl: reply(402, { error: "Used up.", code: "FREE_VERSIONS_USED" }) as typeof fetch,
+    });
+    await expect(versions.recipe("Pho", "meal", "vegan")).rejects.toMatchObject({ needsUpgrade: true, upgradeReason: "versions" });
     const odd = create_api({
       baseUrl: "https://x.test",
       id_token: async () => "t",
