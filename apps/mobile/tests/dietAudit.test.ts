@@ -194,4 +194,3 @@ describe("diet rules", () => {
     expect(p.fits).toContain("vegan");
   });
 });
-

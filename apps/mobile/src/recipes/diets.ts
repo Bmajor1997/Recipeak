@@ -276,4 +276,3 @@ export function diet_profile(
   const pick = (s: DietStatus) => DIETS.filter((d) => status[d]?.status === s);
   return { fits: pick("fits"), options: pick("option"), status };
 }
-

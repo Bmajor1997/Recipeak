@@ -650,4 +650,3 @@ G coupe | green cherry or orange peel | y | -
 # Stir everything with ice.
 # Strain into a chilled coupe.
 G coupe | lemon peel | y | -
-

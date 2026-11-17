@@ -694,4 +694,3 @@ const create_styles = (colors: Palette) =>
     saved: { backgroundColor: colors.raised },
     saveText: { color: colors.accentText, fontSize: 16, fontWeight: "700" },
   });
-
