@@ -29,7 +29,8 @@ WALL_ROWS = [
 
 manifest = json.loads((CURATED / "manifest.json").read_text())
 recipes = json.loads((ROOT / "data" / "recipes" / "recipes.json").read_text())
-photos = manifest["photos"]
+# Photos marked "hidden" (wrong or missing image) stay out of the app until they are replaced.
+photos = [p for p in manifest["photos"] if not p.get("hidden")]
 stems = [p["file"][:-4] for p in photos]
 missing = [s for s in stems if s not in recipes]
 if missing:

@@ -156,7 +156,7 @@ G hurricane glass | pineapple wedge and cherry | y | Blend without the rum for a
 - 1/2 | oz | maraschino liqueur
 # Shake everything with ice.
 # Strain into a chilled coupe.
-G coupe | lime wheel | y | Shake grapefruit, lime and a little cherry syrup with ice.
+G coupe | grapefruit twist or lime wheel | y | Shake grapefruit, lime and a little cherry syrup with ice.
 
 @ martinez | Martinez | 1 | 3 | 0 | - | Old Tom gin, sweet vermouth and maraschino, the ancestor of the Martini.
 - 1 1/2 | oz | Old Tom gin
@@ -261,7 +261,7 @@ G highball glass | salted rim and grapefruit wedge | y | Grapefruit juice with s
 - 1 | oz | Campari
 # Stir everything with ice.
 # Strain into a chilled coupe.
-G coupe | lemon twist | y | -
+G coupe or rocks glass | lemon twist | y | -
 
 @ zombie | Zombie | 1 | 5 | 0 | - | A potent tiki blend of rums, lime, grapefruit, cinnamon and falernum.
 - 1 1/2 | oz | aged Jamaican rum
