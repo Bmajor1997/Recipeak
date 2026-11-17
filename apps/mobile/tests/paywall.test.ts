@@ -23,6 +23,7 @@ describe("paywall plans", () => {
     expect(FREE_SAVED_RECIPES).toBe(3);
     expect(paywall_eyebrow("photos")).toBe("YOU'VE USED YOUR 3 FREE PHOTOS");
     expect(paywall_eyebrow("saved")).toBe("YOU'VE SAVED YOUR 3 FREE RECIPES");
+    expect(paywall_eyebrow("versions")).toBe("MORE DIET VERSIONS WITH PREMIUM");
   });
 
   it("works out the yearly deal without overstating it", () => {

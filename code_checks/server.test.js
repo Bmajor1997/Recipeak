@@ -148,10 +148,13 @@ test("follow-up recipes (other guesses, diet versions) need a counted photo and 
   const s = await start({ reply: (n) => (n === 1 ? IDENTIFIED : RECIPE) }); t.after(s.close);
   const ask = { name: "Paloma", kind: "cocktail", diet: "non-alcoholic" };
   // bob has never taken a photo, so no free follow-ups.
-  assert.equal((await s.call("/api/recipe", { user: "bob", body: ask })).status, 402);
+  const none = await s.call("/api/recipe", { user: "bob", body: ask });
+  assert.equal(none.status, 402);
+  // Not "free photos used": bob still has all 3 of those.
+  assert.equal(none.json.code, "FREE_VERSIONS_USED");
   assert.equal((await s.call("/api/identify", { body: { image: JPEG } })).status, 200);
   for (let i = 0; i < 5; i++) assert.equal((await s.call("/api/recipe", { body: ask })).status, 200);
-  assert.equal((await s.call("/api/recipe", { body: ask })).json.code, "FREE_PHOTOS_USED");
+  assert.equal((await s.call("/api/recipe", { body: ask })).json.code, "FREE_VERSIONS_USED");
   assert.match(s.calls[1].body.input[0].content[0].text, /non-alcoholic/);
   assert.equal(s.store.free_photos_left("alice"), 2, "follow-ups don't use free photos");
   assert.equal((await s.call("/api/recipe", { body: { ...ask, diet: "carnivore" } })).status, 400);
