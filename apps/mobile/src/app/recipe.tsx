@@ -3,7 +3,7 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import {
   ActivityIndicator,
   Image,
@@ -23,7 +23,10 @@ import { useCamera } from "../camera/CameraProvider";
 import { diets_for_kind, or_list, tap_diets } from "../onboarding/onboarding";
 import { useOnboarding } from "../onboarding/OnboardingProvider";
 import { FREE_SAVED_RECIPES } from "../paywall/plans";
-import { bundled_version } from "../recipes/bundled";
+import { bundled_recipe, bundled_version } from "../recipes/bundled";
+import { COLLECTION } from "../recipes/collectionPhotos";
+import { bundled_diet_profile } from "../recipes/dietProfile";
+import { diet_profile } from "../recipes/diets";
 import { format_ingredient, format_minutes, recipe_as_text } from "../recipes/format";
 import { scale_amount } from "../recipes/scale";
 import { RateRecipe } from "../recipes/RateRecipe";
@@ -136,6 +139,9 @@ function RecipeView({ current }: { current: Ready }) {
   );
   const [servings, set_servings] = useState(recipe.servings || 1);
   const [shownRecipe, set_shown_recipe] = useState(recipe);
+  // The standard recipe (before any diet version), which decides the diet labels and options.
+  const [standard, set_standard] = useState(recipe);
+  if (diet === null && recipe !== standard) set_standard(recipe);
 
   // A new version (another match or a diet) starts at its own serving size.
   if (recipe !== shownRecipe) {
@@ -151,7 +157,13 @@ function RecipeView({ current }: { current: Ready }) {
   // The diets chosen in the first-launch tour (or later in Settings). Bundled dishes open in their vegetarian or vegan
   // version on their own (see useOpenWallDish); other diets come from the server and wait for a tap.
   const myDiets = diets_for_kind(useOnboarding().values.diets, kind);
-  const tapHint = tap_diets(myDiets, kind).filter((d) => d !== diet);
+  // Only diets that need a real change are offered; diets the recipe already meets are shown as labels instead.
+  const profile = useMemo(() => {
+    const dish = current.bundledId ? COLLECTION.find((d) => d.id === current.bundledId) : undefined;
+    const regular = dish && bundled_recipe(dish);
+    return dish && regular ? bundled_diet_profile(dish.id, regular, kind) : diet_profile(standard, kind);
+  }, [current.bundledId, kind, standard]);
+  const tapHint = tap_diets(myDiets, kind).filter((d) => d !== diet && profile.options.includes(d));
 
   async function load_version(index: number, nextDiet: Diet | null) {
     const guess = guesses[index];
@@ -211,7 +223,7 @@ function RecipeView({ current }: { current: Ready }) {
     return (await api.allowance()).premium;
   }
 
-  const diets = DIETS.filter((d) => kind === "cocktail" || d !== "non-alcoholic");
+  const choices = DIETS.filter((d) => profile.options.includes(d) || d === diet);
 
   const footer = (
     <View style={[styles.bottomBar, { paddingBottom: insets.bottom + 12 }]}>
@@ -308,12 +320,27 @@ function RecipeView({ current }: { current: Ready }) {
             </Notice>
           )}
 
-          <Text style={type.heading}>Make it…</Text>
-          <View style={styles.wrap}>
-            {diets.map((d) => (
-              <Chip key={d} label={d} selected={d === diet} onPress={() => load_version(selected, d === diet ? null : d)} />
-            ))}
-          </View>
+          {profile.fits.length > 0 && (
+            <View style={{ marginTop: 16 }}>
+              <Text style={type.body}>
+                <Text style={{ fontWeight: "700" }}>Already </Text>
+                {profile.fits.join(" · ")}
+              </Text>
+              <Text style={[type.muted, { marginTop: 4 }]}>
+                {"From the ingredients. Check packaged ingredients' labels; this can't rule out cross-contact."}
+              </Text>
+            </View>
+          )}
+          {choices.length > 0 && (
+            <>
+              <Text style={type.heading}>Make it…</Text>
+              <View style={styles.wrap}>
+                {choices.map((d) => (
+                  <Chip key={d} label={d} selected={d === diet} onPress={() => load_version(selected, d === diet ? null : d)} />
+                ))}
+              </View>
+            </>
+          )}
 
           {recipe.cocktail && (
             <View style={styles.serve}>

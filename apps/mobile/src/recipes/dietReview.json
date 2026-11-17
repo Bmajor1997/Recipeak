@@ -1,0 +1,516 @@
+{
+  "amok-trey": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "armenian-dolma": {
+    "dairy-free": {
+      "status": "review",
+      "why": "the steps serve it with garlic yogurt, which isn't in the ingredient list"
+    }
+  },
+  "beef-pot-roast": {
+    "low-carb": {
+      "status": "option",
+      "why": "the starch is served on the side or swappable (rice, bread, tortillas or potatoes), so a low-carb version is the same dish without it"
+    }
+  },
+  "beef-stew": {
+    "low-carb": {
+      "status": "option",
+      "why": "the starch is served on the side or swappable (rice, bread, tortillas or potatoes), so a low-carb version is the same dish without it"
+    }
+  },
+  "benton-s-old-fashioned": {
+    "vegetarian": {
+      "status": "none",
+      "why": "bacon-washed bourbon is what makes this drink"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "bacon-washed bourbon is what makes this drink"
+    }
+  },
+  "bloody-caesar": {
+    "vegetarian": {
+      "status": "none",
+      "why": "clamato (clam juice) is what makes a Caesar"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "clamato (clam juice) is what makes a Caesar"
+    }
+  },
+  "blt-sandwich": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  },
+  "bun-cha": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  },
+  "cape-malay-bredie": {
+    "low-carb": {
+      "status": "option",
+      "why": "the starch is served on the side or swappable (rice, bread, tortillas or potatoes), so a low-carb version is the same dish without it"
+    }
+  },
+  "caribou-lou": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "chicken-satay": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "chili-con-carne": {
+    "low-carb": {
+      "status": "option",
+      "why": "the starch is served on the side or swappable (rice, bread, tortillas or potatoes), so a low-carb version is the same dish without it"
+    }
+  },
+  "chinese-char-siu": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  },
+  "choripan": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  },
+  "cochinita-pibil": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "low-carb": {
+      "status": "option",
+      "why": "the starch is served on the side or swappable (rice, bread, tortillas or potatoes), so a low-carb version is the same dish without it"
+    }
+  },
+  "coq-au-vin": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  },
+  "doro-wat": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "low-carb": {
+      "status": "option",
+      "why": "the starch is served on the side or swappable (rice, bread, tortillas or potatoes), so a low-carb version is the same dish without it"
+    }
+  },
+  "eggnog": {
+    "vegan": {
+      "status": "none",
+      "why": "the eggs are the dish itself; an egg-free version would be a different dish"
+    }
+  },
+  "ethiopian-tibs": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "low-carb": {
+      "status": "option",
+      "why": "the starch is served on the side or swappable (rice, bread, tortillas or potatoes), so a low-carb version is the same dish without it"
+    }
+  },
+  "filipino-kare-kare": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    },
+    "low-carb": {
+      "status": "option",
+      "why": "the starch is served on the side or swappable (rice, bread, tortillas or potatoes), so a low-carb version is the same dish without it"
+    }
+  },
+  "georgian-khachapuri": {
+    "vegan": {
+      "status": "none",
+      "why": "the eggs are the dish itself; an egg-free version would be a different dish"
+    }
+  },
+  "goulash": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "low-carb": {
+      "status": "option",
+      "why": "the starch is served on the side or swappable (rice, bread, tortillas or potatoes), so a low-carb version is the same dish without it"
+    }
+  },
+  "guacamole": {
+    "low-carb": {
+      "status": "option",
+      "why": "the starch is served on the side or swappable (rice, bread, tortillas or potatoes), so a low-carb version is the same dish without it"
+    }
+  },
+  "indian-idli-sambar": {
+    "nut-free": {
+      "status": "review",
+      "why": "the steps serve it with coconut chutney, which isn't in the ingredient list"
+    }
+  },
+  "indonesian-beef-rendang": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "indonesian-gado-gado": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "iskender-kebab": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  },
+  "japanese-cocktail": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "japanese-oyakodon": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  },
+  "laksa": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "larb": {
+    "low-carb": {
+      "status": "option",
+      "why": "the starch is served on the side or swappable (rice, bread, tortillas or potatoes), so a low-carb version is the same dish without it"
+    }
+  },
+  "lebanese-kibbeh": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "dairy-free": {
+      "status": "review",
+      "why": "the steps serve it with yogurt, which isn't in the ingredient list"
+    }
+  },
+  "lomo-saltado": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  },
+  "massaman-curry": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    },
+    "low-carb": {
+      "status": "option",
+      "why": "the starch is served on the side or swappable (rice, bread, tortillas or potatoes), so a low-carb version is the same dish without it"
+    }
+  },
+  "mexican-birria": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "low-carb": {
+      "status": "option",
+      "why": "the starch is served on the side or swappable (rice, bread, tortillas or potatoes), so a low-carb version is the same dish without it"
+    }
+  },
+  "mexican-chiles-en-nogada": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "miami-vice": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "nasi-lemak": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "nigerian-suya": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "osso-buco": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  },
+  "painkiller": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "pakistani-nihari": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  },
+  "persian-fesenjan": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "peruvian-ceviche": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "low-carb": {
+      "status": "option",
+      "why": "the starch is served on the side or swappable (rice, bread, tortillas or potatoes), so a low-carb version is the same dish without it"
+    }
+  },
+  "philly-cheesesteak": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  },
+  "pina-colada": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "pina-verde": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "porto-flip": {
+    "vegan": {
+      "status": "none",
+      "why": "the eggs are the dish itself; an egg-free version would be a different dish"
+    }
+  },
+  "sauerbraten": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  },
+  "senegalese-thieboudienne": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  },
+  "shakshuka": {
+    "vegan": {
+      "status": "none",
+      "why": "the eggs are the dish itself; an egg-free version would be a different dish"
+    },
+    "low-carb": {
+      "status": "option",
+      "why": "the starch is served on the side or swappable (rice, bread, tortillas or potatoes), so a low-carb version is the same dish without it"
+    }
+  },
+  "sherry-flip": {
+    "vegan": {
+      "status": "none",
+      "why": "the eggs are the dish itself; an egg-free version would be a different dish"
+    }
+  },
+  "south-african-bobotie": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  },
+  "takoyaki": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  },
+  "thai-green-curry": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "thai-khao-soi": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "trinidad-sour": {
+    "nut-free": {
+      "status": "none",
+      "why": "coconut or nuts are the base of the dish, so there's no nut-free version of it"
+    }
+  },
+  "turkish-lahmacun": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  },
+  "venezuelan-pabellon-criollo": {
+    "vegetarian": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    },
+    "vegan": {
+      "status": "none",
+      "why": "the meat or fish is the dish itself; a meat-free version would be a different dish"
+    }
+  }
+}
