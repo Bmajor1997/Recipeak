@@ -3,6 +3,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { type FirebaseApp, getApp, getApps, initializeApp } from "@firebase/app";
 import * as FirebaseAuth from "@firebase/auth";
+import { account_token } from "./accountToken";
 import {
   type Auth,
   type Persistence,
@@ -84,9 +85,10 @@ export const firebase = {
     if (!firebaseConfigured) return set_test_user(null);
     await firebaseSignOut(auth());
   },
-  async id_token(): Promise<string | null> {
+  async id_token(expected_uid?: string): Promise<string | null> {
     if (!firebaseConfigured) return null;
-    return (await auth().currentUser?.getIdToken()) ?? null;
+    const user = auth().currentUser;
+    return account_token(user ? { uid: user.uid, get_token: () => user.getIdToken() } : null, expected_uid);
   },
 };
 
