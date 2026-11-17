@@ -19610,7 +19610,7 @@
    "cook_minutes": 0,
    "ingredients": [
     {
-     "amount": "1/3",
+     "amount": "1/2",
      "unit": "oz",
      "item": "crème de cassis"
     },
@@ -21600,7 +21600,7 @@
      "item": "cranberry juice"
     },
     {
-     "amount": "1 1/2",
+     "amount": "1",
      "unit": "oz",
      "item": "fresh orange juice"
     }
@@ -32154,18 +32154,13 @@
      "item": "rich simple syrup (2:1)"
     },
     {
-     "amount": "1",
-     "unit": "dash",
-     "item": "Angostura bitters (optional)"
-    },
-    {
      "amount": "",
      "unit": "",
      "item": "nutmeg, freshly grated"
     }
    ],
    "steps": [
-    "Stir the sherry, syrup and bitters with ice until very cold.",
+    "Stir the sherry and syrup with ice until very cold.",
     "Strain into a chilled coupe.",
     "Grate nutmeg over the top and garnish with a lemon twist."
    ],
@@ -32738,11 +32733,11 @@
    "ingredients": [
     {
      "amount": "1",
-     "unit": "bottle (7 oz)",
+     "unit": "bottle (12 oz)",
      "item": "light lager (such as Miller High Life), ice-cold"
     },
     {
-     "amount": "1",
+     "amount": "1 1/2",
      "unit": "oz",
      "item": "Aperol"
     },
@@ -32753,7 +32748,7 @@
     }
    ],
    "steps": [
-    "Drink or pour off the top inch or two of the beer to make room.",
+    "Drink or pour off about 2 oz of the beer to make room.",
     "Add the Aperol and lemon juice straight into the bottle.",
     "Tip gently once to mix and drink from the bottle."
    ],
@@ -32766,7 +32761,7 @@
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [
-    "A small 7 oz bottle keeps the beer-to-Aperol balance right.",
+    "Start with 1 oz Aperol if you like it less bitter, and add more to taste.",
     "Pour slowly to avoid it foaming over."
    ],
    "make_ahead": "",

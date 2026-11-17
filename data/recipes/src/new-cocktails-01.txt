@@ -218,7 +218,7 @@ T Good orgeat makes the drink. Look for one made with real almonds.
 ~ Uses raw egg white; use pasteurized egg white if you prefer. => Aquafaba foams like egg white; give it a long, hard dry shake.
 
 @ kir | Kir | 1 | 1 | 0 | - | The classic Burgundy aperitif: crisp, dry white wine blushed pink with a splash of blackcurrant liqueur (crème de cassis).
-- 1/3 | oz | crème de cassis
+- 1/2 | oz | crème de cassis
 - 4 | oz | dry white wine (traditionally Bourgogne Aligoté), well chilled
 # Pour the crème de cassis into a chilled white wine glass.
 # Top with the cold wine; it mixes as you pour.
@@ -233,7 +233,7 @@ V Kir Pétillant: use any dry sparkling wine.
 @ madras | Madras | 1 | 2 | 0 | - | A bright, easygoing highball: vodka over ice with cranberry juice and orange juice. Sweet-tart and pretty in red and orange.
 - 1 1/2 | oz | vodka
 - 3 | oz | cranberry juice
-- 1 1/2 | oz | fresh orange juice
+- 1 | oz | fresh orange juice
 # Fill a highball glass with ice and add the vodka and cranberry juice.
 # Pour the orange juice over the top for a sunset effect, or stir to blend.
 # Garnish with an orange slice.
