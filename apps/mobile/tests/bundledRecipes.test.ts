@@ -6,13 +6,15 @@ import { normalize_dish_name } from "../src/recipes/dishName";
 import { parse_recipe } from "../src/recipes/parse";
 
 const manifest = JSON.parse(readFileSync(join(__dirname, "../../../data/curated-photos/manifest.json"), "utf8")) as {
-  photos: { file: string; kind: "meal" | "cocktail"; names: string[] }[];
+  photos: { file: string; kind: "meal" | "cocktail"; names: string[]; hidden?: boolean }[];
 };
+// Photos marked hidden (wrong image, waiting for a new one) are left out of the app.
+const shown = manifest.photos.filter((p) => !p.hidden);
 const bundled = recipes as Record<string, unknown>;
 
 describe("bundled collection", () => {
   it("has a valid recipe and a photo for every hand-picked dish", () => {
-    for (const photo of manifest.photos) {
+    for (const photo of shown) {
       const id = photo.file.replace(/\.jpg$/, "");
       const recipe = parse_recipe(bundled[id]);
       expect(recipe.ingredients.length, id).toBeGreaterThan(0);
@@ -20,7 +22,11 @@ describe("bundled collection", () => {
       expect(recipe.cocktail === null, `${id} meal/cocktail details`).toBe(photo.kind === "meal");
       expect(existsSync(join(__dirname, "../assets/collection", photo.file)), id).toBe(true);
     }
-    expect(Object.keys(bundled).length).toBe(manifest.photos.length);
+    expect(Object.keys(bundled).length).toBe(shown.length);
+    for (const photo of manifest.photos.filter((p) => p.hidden)) {
+      expect(bundled[photo.file.replace(/\.jpg$/, "")], `${photo.file} is hidden`).toBeUndefined();
+      expect(existsSync(join(__dirname, "../assets/collection", photo.file)), `${photo.file} is hidden`).toBe(false);
+    }
   });
 
   it("keeps tips, make-ahead notes and variations on the upgraded recipes", () => {

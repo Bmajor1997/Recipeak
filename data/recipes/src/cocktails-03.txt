@@ -338,7 +338,7 @@ G coupe | strawberry | y | -
 - 1 | oz | Champagne
 # Rim a coupe with sugar.
 # Stir the brandy, curaçao and bitters with ice, strain into the glass and top with Champagne.
-G sugar-rimmed coupe | lemon twist | y | -
+G coupe, rim sugared if you like | lemon twist | y | -
 
 @ boston-cocktail | Boston Cocktail | 1 | 3 | 0 | - | Gin and apricot brandy with lemon and grenadine.
 - 1 1/2 | oz | gin
@@ -374,7 +374,7 @@ G coupe | grapefruit twist | y | Grapefruit and honey syrup topped with soda.
 - 1/2 | oz | dry red wine
 # Dry-shake the whiskey, lemon, syrup and egg white, then shake with ice.
 # Strain over ice and float the red wine on top.
-G rocks glass | - | y | -
+G coupe or rocks glass | orange twist and cherry (optional) | y | -
 
 @ cable-car-cocktail | Cable Car | 1 | 3 | 0 | - | Spiced rum, orange curaçao and lemon with a cinnamon-sugar rim.
 - 1 1/2 | oz | spiced rum
@@ -472,7 +472,7 @@ G coupe | lemon twist | y | -
 - 1 | | egg white
 # Dry-shake everything, then shake again with ice.
 # Strain into a chilled coupe.
-G coupe | - | y | -
+G coupe | edible flower (optional) | y | -
 
 @ mexican-firing-squad | Mexican Firing Squad | 1 | 3 | 0 | - | Tequila, lime, grenadine and bitters, lengthened with soda.
 - 2 | oz | blanco tequila
@@ -498,7 +498,7 @@ G copper mug | mint sprig and lime | y | Ginger beer with lime.
 - 1/4 | oz | Fernet-Branca
 # Stir everything with ice.
 # Strain into a chilled coupe.
-G coupe | orange twist | y | -
+G coupe | lemon or orange twist | y | -
 
 @ knickerbocker-cocktail | Knickerbocker | 1 | 3 | 0 | - | Rum with orange curaçao, lime and raspberry over crushed ice.
 - 2 | oz | aged rum
@@ -590,7 +590,7 @@ G rocks glass | - | y | -
 - 1/2 | oz | dry vermouth
 # Stir everything with ice.
 # Strain into a chilled coupe.
-G coupe | orange twist | y | -
+G coupe | lemon or orange twist | y | -
 
 @ roffignac-cocktail | Roffignac | 1 | 3 | 0 | - | New Orleans highball of Cognac and raspberry syrup with soda.
 - 2 | oz | Cognac

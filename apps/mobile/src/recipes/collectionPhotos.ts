@@ -1031,7 +1031,6 @@ export const COLLECTION: CollectionDish[] = [
   { id: "derby", name: "Derby", kind: "cocktail", aliases: [], source: require("../../assets/collection/derby.jpg") },
   { id: "chicken-satay", name: "Chicken Satay", kind: "meal", aliases: [], source: require("../../assets/collection/chicken-satay.jpg") },
   { id: "tom-yum-soup", name: "Tom Yum Soup", kind: "meal", aliases: [], source: require("../../assets/collection/tom-yum-soup.jpg") },
-  { id: "fernandito", name: "Fernandito", kind: "cocktail", aliases: [], source: require("../../assets/collection/fernandito.jpg") },
   {
     id: "massaman-curry",
     name: "Massaman Curry",
@@ -1581,13 +1580,6 @@ export const COLLECTION: CollectionDish[] = [
     aliases: [],
     source: require("../../assets/collection/malaysian-char-kway-teow.jpg"),
   },
-  {
-    id: "bloodhound-cocktail",
-    name: "Bloodhound cocktail",
-    kind: "cocktail",
-    aliases: [],
-    source: require("../../assets/collection/bloodhound-cocktail.jpg"),
-  },
   { id: "thai-khao-soi", name: "Thai khao soi", kind: "meal", aliases: [], source: require("../../assets/collection/thai-khao-soi.jpg") },
   {
     id: "vietnamese-banh-xeo",
@@ -1658,13 +1650,6 @@ export const COLLECTION: CollectionDish[] = [
     kind: "cocktail",
     aliases: [],
     source: require("../../assets/collection/casino-cocktail.jpg"),
-  },
-  {
-    id: "corn-n-oil-cocktail",
-    name: "Corn n Oil cocktail",
-    kind: "cocktail",
-    aliases: [],
-    source: require("../../assets/collection/corn-n-oil-cocktail.jpg"),
   },
   { id: "caipiroska", name: "Caipiroska", kind: "cocktail", aliases: [], source: require("../../assets/collection/caipiroska.jpg") },
   {

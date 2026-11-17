@@ -40,8 +40,8 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "coupe",
-    "garnish": "",
+    "glass": "coupe or rocks glass",
+    "garnish": "orange peel (optional)",
     "alcoholic": true,
     "non_alcoholic_version": null
    },
@@ -305,7 +305,7 @@
    "allergens": [],
    "cocktail": {
     "glass": "coupe",
-    "garnish": "apple slice",
+    "garnish": "cherry or apple slice",
     "alcoholic": true,
     "non_alcoholic_version": null
    },
@@ -4584,7 +4584,7 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "sugar-rimmed coupe",
+    "glass": "coupe, rim sugared if you like",
     "garnish": "lemon twist",
     "alcoholic": true,
     "non_alcoholic_version": null
@@ -7208,8 +7208,8 @@
     "eggs"
    ],
    "cocktail": {
-    "glass": "rocks glass",
-    "garnish": "",
+    "glass": "coupe or rocks glass",
+    "garnish": "orange twist and cherry (optional)",
     "alcoholic": true,
     "non_alcoholic_version": null
    },
@@ -8034,7 +8034,7 @@
    "allergens": [],
    "cocktail": {
     "glass": "coupe",
-    "garnish": "lemon twist",
+    "garnish": "cherry or lemon twist",
     "alcoholic": true,
     "non_alcoholic_version": null
    },
@@ -8837,7 +8837,7 @@
    ],
    "cocktail": {
     "glass": "coupe",
-    "garnish": "",
+    "garnish": "edible flower (optional)",
     "alcoholic": true,
     "non_alcoholic_version": null
    },
@@ -8967,7 +8967,7 @@
    "allergens": [],
    "cocktail": {
     "glass": "coupe",
-    "garnish": "orange twist",
+    "garnish": "lemon or orange twist",
     "alcoholic": true,
     "non_alcoholic_version": null
    },
@@ -9013,7 +9013,7 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "rocks glass",
+    "glass": "coupe or rocks glass",
     "garnish": "orange peel",
     "alcoholic": true,
     "non_alcoholic_version": null
@@ -11304,7 +11304,7 @@
    "allergens": [],
    "cocktail": {
     "glass": "coupe",
-    "garnish": "lime wheel",
+    "garnish": "grapefruit twist or lime wheel",
     "alcoholic": true,
     "non_alcoholic_version": "Shake grapefruit, lime and a little cherry syrup with ice."
    },
@@ -14813,7 +14813,7 @@
    "allergens": [],
    "cocktail": {
     "glass": "coupe",
-    "garnish": "orange twist",
+    "garnish": "lemon or orange twist",
     "alcoholic": true,
     "non_alcoholic_version": null
    },
@@ -17874,7 +17874,7 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "coupe",
+    "glass": "coupe or rocks glass",
     "garnish": "lemon twist",
     "alcoholic": true,
     "non_alcoholic_version": null

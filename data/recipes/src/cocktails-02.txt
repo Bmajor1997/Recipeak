@@ -68,7 +68,7 @@ G highball or Collins glass | mint sprig and pineapple | y | -
 - 2 | dashes | Angostura bitters
 # Stir everything with ice.
 # Strain into a chilled coupe.
-G coupe | lemon twist | y | -
+G coupe | cherry or lemon twist | y | -
 
 @ godfather | Godfather | 1 | 2 | 0 | tree nuts | Scotch and amaretto over ice.
 - 1 1/2 | oz | blended Scotch
@@ -428,7 +428,7 @@ G rocks glass | orange peel | y | -
 - 1 | tsp | Islay Scotch, for rinsing
 # Rinse a chilled coupe with the Islay Scotch.
 # Stir the rest with ice and strain into the glass.
-G coupe | - | y | -
+G coupe or rocks glass | orange peel (optional) | y | -
 
 @ poet-s-dream | Poet's Dream | 1 | 3 | 0 | - | Gin, dry vermouth and Bénédictine, stirred.
 - 1 1/2 | oz | gin
@@ -534,7 +534,7 @@ G coupe | lemon twist | y | -
 - 1 | oz | Calvados
 # Shake everything with ice.
 # Strain into a chilled coupe.
-G coupe | apple slice | y | -
+G coupe | cherry or apple slice | y | -
 
 @ vampiro | Vampiro | 1 | 4 | 0 | - | Tequila with spicy, savory sangrita, orange, lime and grapefruit soda.
 - 2 | oz | blanco tequila
@@ -632,7 +632,7 @@ G rocks glass | lemon wheel and blackberry | y | -
 - 1 | dash | orange bitters
 # Stir everything with ice.
 # Strain over a large cube in a rocks glass.
-G rocks glass | orange peel | y | -
+G coupe or rocks glass | orange peel | y | -
 
 @ dubliner | Dubliner | 1 | 3 | 0 | - | Irish whiskey, sweet vermouth and Grand Marnier, stirred.
 - 2 | oz | Irish whiskey
