@@ -77,7 +77,7 @@ export function tonights_pick(day = local_day()): Pairing {
   return ALL_PAIRINGS[((day % ALL_PAIRINGS.length) + ALL_PAIRINGS.length) % ALL_PAIRINGS.length];
 }
 
-export type ShelfId = "quick" | "classics" | "weekend" | "alcohol-free" | "brunch";
+export type ShelfId = "quick" | "classics" | "weekend" | "alcohol-free" | "brunch" | "more-drinks" | "more-meals";
 export type Shelf = { id: ShelfId; title: string; dishes: CollectionDish[] };
 
 const CLASSICS = pick(
@@ -101,21 +101,47 @@ export const SHELVES: Record<ShelfId, { title: string; dishes: CollectionDish[] 
     dishes: COLLECTION.filter((d) => d.kind === "cocktail" && Boolean(RECIPES[d.id]?.cocktail?.non_alcoholic_version)),
   },
   brunch: { title: "Brunch", dishes: BRUNCH },
+  // Extra rows for people who chose "Mostly cocktails" or "Mostly meals" in the first-launch tour.
+  "more-drinks": { title: "More drinks for you", dishes: COLLECTION.filter((d) => d.kind === "cocktail") },
+  "more-meals": { title: "More meals for you", dishes: COLLECTION.filter((d) => d.kind === "meal") },
+};
+
+/** What the person wants more of (from the first-launch tour). Both kinds always show; this changes the mix. */
+export type HomeMix = "cocktails" | "meals" | "both";
+
+/**
+ * Home's rows for each choice. "Mostly cocktails" puts the drink rows first and adds one more, so roughly two
+ * rows in three are drinks; "Mostly meals" does the same for meals; "A bit of both" keeps the original even mix.
+ */
+const HOME_ROWS: Record<HomeMix, ShelfId[]> = {
+  both: ["quick", "classics", "weekend", "alcohol-free", "brunch"],
+  cocktails: ["classics", "alcohol-free", "more-drinks", "quick", "brunch"],
+  meals: ["quick", "weekend", "more-meals", "brunch", "classics"],
 };
 
 export const is_shelf_id = (v: unknown): v is ShelfId => typeof v === "string" && v in SHELVES;
 
-/** The rows on Home: up to 10 dishes from each shelf, in a new order every day. */
-export function home_shelves(day = local_day(), size = 10): Shelf[] {
-  return (Object.keys(SHELVES) as ShelfId[]).map((id, i) => ({
+const SHELF_SEED: Record<ShelfId, number> = {
+  quick: 0,
+  classics: 1,
+  weekend: 2,
+  "alcohol-free": 3,
+  brunch: 4,
+  "more-drinks": 5,
+  "more-meals": 6,
+};
+
+/** The rows on Home: up to 10 dishes from each shelf, in a new order every day, mixed to the person's taste. */
+export function home_shelves(day = local_day(), size = 10, mix: HomeMix = "both"): Shelf[] {
+  return HOME_ROWS[mix].map((id) => ({
     id,
     title: SHELVES[id].title,
-    dishes: daily_shuffle(SHELVES[id].dishes, day + i * 7919).slice(0, size),
+    dishes: daily_shuffle(SHELVES[id].dishes, day + SHELF_SEED[id] * 7919).slice(0, size),
   }));
 }
 
-/** Four photos for the Explore card: two meals and two drinks, changing daily. */
-export function explore_collage(day = local_day()): CollectionDish[] {
+/** Four photos for the Explore card, changing daily: two of each, or three of the kind the person prefers. */
+export function explore_collage(day = local_day(), mix: HomeMix = "both"): CollectionDish[] {
   const meals = daily_shuffle(
     COLLECTION.filter((d) => d.kind === "meal"),
     day + 31,
@@ -124,6 +150,8 @@ export function explore_collage(day = local_day()): CollectionDish[] {
     COLLECTION.filter((d) => d.kind === "cocktail"),
     day + 37,
   );
+  if (mix === "cocktails") return [drinks[0], meals[0], drinks[1], drinks[2]];
+  if (mix === "meals") return [meals[0], drinks[0], meals[1], meals[2]];
   return [meals[0], drinks[0], meals[1], drinks[1]];
 }
 

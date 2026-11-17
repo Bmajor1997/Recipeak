@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, type ReactNode, useContext, useEffect, useMemo, useState } from "react";
 import { type Api, create_api } from "./api/client";
 import { type AppUser, firebase, firebaseConfigured } from "./auth/firebase";
-import type { DishImage, Guess, Kind, Recipe } from "./recipes/types";
+import type { Diet, DishImage, Guess, Kind, Recipe } from "./recipes/types";
 import { create_ratings, type Ratings } from "./recipes/ratings";
 import { create_recently_viewed, type RecentlyViewed } from "./recipes/recentlyViewed";
 import { keep_photo, remove_photo } from "./saved/photoStore";
@@ -30,6 +30,8 @@ export type CurrentRecipe =
       picked?: boolean;
       /** The bundled collection dish this recipe came from, so diet versions can be shown without the server. */
       bundledId?: string;
+      /** The diet version it opened in on its own (from the person's diet in the tour or Settings), if any. */
+      diet?: Diet;
     };
 
 type AppState = {

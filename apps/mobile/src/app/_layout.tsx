@@ -9,6 +9,7 @@ import { type ReactNode, useEffect } from "react";
 import { ActivityIndicator, useColorScheme, View } from "react-native";
 import { AppProvider, useApp } from "../AppContext";
 import { CameraProvider } from "../camera/CameraProvider";
+import { OnboardingProvider, useOnboarding } from "../onboarding/OnboardingProvider";
 import { PreferencesProvider, usePreferences } from "../settings/PreferencesProvider";
 import { theme_for, ThemeProvider, useTheme } from "../ui/theme";
 
@@ -32,10 +33,12 @@ function Themed({ children }: { children: ReactNode }) {
 
 function Screens() {
   const { user, ready } = useApp();
+  const onboarding = useOnboarding();
+  const toured = onboarding.values.done;
   const { colors } = useTheme();
   // If the fonts fail to load, the app still works with the phone's own font.
   const [fontsLoaded, fontError] = useFonts({ Fraunces_500Medium, Fraunces_600SemiBold });
-  if (!ready || (!fontsLoaded && !fontError)) {
+  if (!ready || !onboarding.loaded || (!fontsLoaded && !fontError)) {
     return (
       <View style={{ flex: 1, backgroundColor: colors.background, justifyContent: "center" }}>
         <ActivityIndicator size="large" color={colors.accentInk} accessibilityLabel="Loading" />
@@ -50,8 +53,12 @@ function Screens() {
   return (
     <CameraProvider>
       <Stack screenOptions={header}>
+        {/* The first-launch tour comes first, once per device. */}
+        <Stack.Protected guard={!toured}>
+          <Stack.Screen name="onboarding" options={{ headerShown: false, animation: "fade" }} />
+        </Stack.Protected>
         {/* People must be signed in before their first photo. */}
-        <Stack.Protected guard={Boolean(user)}>
+        <Stack.Protected guard={toured && Boolean(user)}>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           {/* The recipe slides up from the bottom, like the camera. */}
           <Stack.Screen
@@ -61,10 +68,12 @@ function Screens() {
           <Stack.Screen name="cook" options={{ title: "Cooking mode" }} />
           <Stack.Screen name="settings/[category]" options={{ headerShown: false }} />
           <Stack.Screen name="feedback/[kind]" options={{ headerShown: false }} />
-          {/* The paywall draws its own close button. */}
+        </Stack.Protected>
+        {/* The paywall draws its own close button. The tour's "See Premium" opens it before sign-in. */}
+        <Stack.Protected guard={!toured || Boolean(user)}>
           <Stack.Screen name="upgrade" options={{ headerShown: false, presentation: "modal" }} />
         </Stack.Protected>
-        <Stack.Protected guard={!user}>
+        <Stack.Protected guard={toured && !user}>
           <Stack.Screen name="sign-in" options={{ headerShown: false }} />
         </Stack.Protected>
       </Stack>
@@ -75,11 +84,13 @@ function Screens() {
 export default function RootLayout() {
   return (
     <AppProvider>
-      <PreferencesProvider>
-        <Themed>
-          <Screens />
-        </Themed>
-      </PreferencesProvider>
+      <OnboardingProvider>
+        <PreferencesProvider>
+          <Themed>
+            <Screens />
+          </Themed>
+        </PreferencesProvider>
+      </OnboardingProvider>
     </AppProvider>
   );
 }

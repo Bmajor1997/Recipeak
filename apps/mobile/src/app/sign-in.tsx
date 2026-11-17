@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useOnboarding } from "../onboarding/OnboardingProvider";
 import { firebase, firebaseConfigured, sign_in_problem, test_mode_available } from "../auth/firebase";
 import { Button, Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
 
 export default function SignIn() {
   const { type } = useTheme();
   const styles = useThemedStyles(create_styles);
-  const [mode, set_mode] = useState<"sign-in" | "create">("sign-in");
+  // After the tour, new people start on "Create account"; "I already have an account" starts on sign-in.
+  const { values: tour } = useOnboarding();
+  const [mode, set_mode] = useState<"sign-in" | "create">(tour.entry === "create" ? "create" : "sign-in");
   const [email, set_email] = useState("");
   const [password, set_password] = useState("");
   const [busy, set_busy] = useState(false);

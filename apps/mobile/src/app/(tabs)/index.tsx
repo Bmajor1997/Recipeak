@@ -17,6 +17,7 @@ import {
 } from "../../recipes/shelves";
 import { NO_IMAGE, type SavedRecipe } from "../../recipes/types";
 import { useOpenWallDish } from "../../recipes/useOpenWallDish";
+import { useOnboarding } from "../../onboarding/OnboardingProvider";
 import { total_minutes } from "../../recipes/search";
 import { greeting } from "../../ui/greeting";
 import { PhotoCard } from "../../ui/PhotoCard";
@@ -30,8 +31,10 @@ export default function HomeScreen() {
   const open = useOpenWallDish();
   const day = local_day();
   const pick = useMemo(() => tonights_pick(day), [day]);
-  const shelves = useMemo(() => home_shelves(day), [day]);
-  const collage = useMemo(() => explore_collage(day), [day]);
+  // More of what the person chose in the first-launch tour: cocktails, meals, or an even mix.
+  const mix = useOnboarding().values.interest;
+  const shelves = useMemo(() => home_shelves(day, 10, mix), [day, mix]);
+  const collage = useMemo(() => explore_collage(day, mix), [day, mix]);
   const cell = Math.floor((useWindowDimensions().width - 20 * 2 - 12 * 2 - 8 * 3) / 4);
   const [viewed, set_viewed] = useState<CollectionDish[]>([]);
   const { photosLeft, refresh_allowance } = useCamera();

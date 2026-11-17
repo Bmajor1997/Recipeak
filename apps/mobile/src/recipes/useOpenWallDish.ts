@@ -2,7 +2,9 @@ import { router } from "expo-router";
 import { useCallback } from "react";
 import { useApp } from "../AppContext";
 import { ApiError } from "../api/client";
-import { bundled_photo_uri, bundled_recipe, find_bundled_dish } from "./bundled";
+import { automatic_diet, diets_for_kind } from "../onboarding/onboarding";
+import { useOnboarding } from "../onboarding/OnboardingProvider";
+import { bundled_photo_uri, bundled_recipe, bundled_version, find_bundled_dish } from "./bundled";
 import { NO_IMAGE, type Kind } from "./types";
 
 /**
@@ -12,13 +14,19 @@ import { NO_IMAGE, type Kind } from "./types";
  */
 export function useOpenWallDish() {
   const { api, set_current, recent } = useApp();
+  const diets = useOnboarding().values.diets;
   return useCallback(
     async (dish: { name: string; kind: Kind }) => {
       const bundled = find_bundled_dish(dish.kind, dish.name);
       set_current({ status: "loading", photo: bundled?.source });
       router.push("/recipe");
       if (bundled) void recent?.add(bundled.id).catch(() => {});
-      const recipe = bundled && bundled_recipe(bundled);
+      const regular = bundled && bundled_recipe(bundled);
+      // A person who eats vegetarian or vegan sees that version straight away: it is built in, so it costs nothing.
+      // When the dish already fits, the regular recipe opens as it is.
+      const auto = bundled ? automatic_diet(diets_for_kind(diets, dish.kind)) : null;
+      const version = bundled && auto ? bundled_version(bundled.id, auto) : null;
+      const recipe = version && !version.already ? version.recipe : regular;
       if (bundled && recipe) {
         const photo = await bundled_photo_uri(bundled);
         set_current({
@@ -32,6 +40,7 @@ export function useOpenWallDish() {
           savedId: null,
           picked: true,
           bundledId: bundled.id,
+          ...(version && !version.already && auto ? { diet: auto } : {}),
         });
         return;
       }
@@ -56,6 +65,6 @@ export function useOpenWallDish() {
         });
       }
     },
-    [api, set_current, recent],
+    [api, set_current, recent, diets],
   );
 }

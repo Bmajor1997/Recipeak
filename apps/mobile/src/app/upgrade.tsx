@@ -46,7 +46,7 @@ export default function Upgrade() {
         <Image source={heroArt} style={styles.art} resizeMode="contain" accessibilityIgnoresInvertColors />
       </View>
 
-      <Text style={styles.eyebrow}>{paywall_eyebrow(reason === "saved" ? "saved" : "photos")}</Text>
+      <Text style={styles.eyebrow}>{paywall_eyebrow(reason === "saved" || reason === "intro" ? reason : "photos")}</Text>
       <Text style={[type.title, { marginTop: 8 }]} accessibilityRole="header">
         Keep snapping. Keep cooking.
       </Text>
