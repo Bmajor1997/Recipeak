@@ -381,7 +381,7 @@
 
 @ beef-burrito | Beef Burrito | 4 | 15 | 20 | wheat, milk | A big flour tortilla stuffed with seasoned ground beef, rice, beans and cheese.
 - 1 | lb | ground beef
-- 2 | tbsp | taco seasoning
+- 2 | tbsp | gluten-free taco seasoning (such as McCormick Gluten Free)
 - 1 | can (15 oz) | pinto or black beans, drained
 - 2 | cups | cooked rice
 - 1 1/2 | cups | shredded cheddar
@@ -411,7 +411,7 @@
 
 @ nachos | Loaded Beef Nachos | 6 | 15 | 15 | milk | Tortilla chips layered with seasoned beef, beans, melted cheese and fresh toppings.
 - 1 | lb | ground beef
-- 2 | tbsp | taco seasoning
+- 2 | tbsp | gluten-free taco seasoning (such as McCormick Gluten Free)
 - 1 | bag (12 oz) | tortilla chips
 - 1 | can (15 oz) | black beans, drained
 - 3 | cups | shredded cheddar and Monterey Jack
@@ -458,7 +458,7 @@
 # Serve topped with tortilla strips, avocado, cheese and cilantro.
 
 @ jambalaya | Jambalaya | 6 | 20 | 45 | shellfish | Louisiana one-pot rice with andouille sausage, chicken and shrimp in a spicy Creole base.
-- 12 | oz | andouille sausage, sliced
+- 12 | oz | gluten-free andouille sausage (such as Aidells Cajun Style), sliced
 - 1 | lb | boneless chicken thighs, diced
 - 1 | | onion, chopped
 - 1 | | green bell pepper, chopped
@@ -515,7 +515,7 @@
 - 4 | cloves | garlic, minced
 - 8 | cups | chicken stock
 - 2 | lb | boneless chicken thighs
-- 1 | lb | andouille sausage, sliced
+- 1 | lb | gluten-free andouille sausage (such as Aidells Cajun Style), sliced
 - 2 | tsp | Cajun seasoning
 - 2 | | bay leaves
 - 4 | | green onions, sliced

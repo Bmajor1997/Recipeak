@@ -29,7 +29,7 @@ G small rocks glass | lime disk | y | -
 
 @ derby | Derby | 1 | 3 | 0 | - | Bourbon, sweet vermouth, orange curaçao and lime.
 - 1 1/2 | oz | bourbon
-- 1/2 | oz | sweet vermouth
+- 1/2 | oz | vegan sweet vermouth (such as Dolin Rouge)
 - 1/2 | oz | orange curaçao
 - 3/4 | oz | fresh lime juice
 # Shake everything with ice.
@@ -53,7 +53,7 @@ G highball glass | long lemon peel spiral | y | Ginger ale with bitters-free lem
 
 @ death-in-the-afternoon | Death in the Afternoon | 1 | 2 | 0 | - | Absinthe topped with Champagne until it clouds, Hemingway's creation.
 - 1 | oz | absinthe
-- 4 | oz | cold Champagne
+- 4 | oz | cold vegan Champagne (such as Moët & Chandon Impérial)
 # Pour the absinthe into a coupe or flute.
 # Slowly add Champagne until it turns milky.
 G coupe or flute | - | y | -
@@ -71,7 +71,7 @@ G Collins glass | mint sprig | y | -
 
 @ remember-the-maine | Remember the Maine | 1 | 3 | 0 | - | Rye, sweet vermouth and cherry liqueur with an absinthe rinse.
 - 2 | oz | rye
-- 3/4 | oz | sweet vermouth
+- 3/4 | oz | vegan sweet vermouth (such as Dolin Rouge)
 - 1/4 | oz | cherry liqueur
 - 1/2 | tsp | absinthe
 # Rinse a chilled coupe with absinthe.
@@ -89,7 +89,7 @@ G coupe | lime wheel | y | -
 
 @ tuxedo-no-2 | Tuxedo No. 2 | 1 | 3 | 0 | - | Gin, dry vermouth, maraschino and orange bitters in an absinthe-rinsed glass.
 - 2 | oz | gin
-- 1 | oz | dry vermouth
+- 1 | oz | vegan dry vermouth (such as Dolin Dry)
 - 1/4 | oz | maraschino liqueur
 - 2 | dashes | orange bitters
 - 1 | dash | absinthe
@@ -135,7 +135,7 @@ G coupe | brandied cherry | y | Pineapple juice with grenadine and a cherry.
 G coupe | lime wheel | y | -
 
 @ chrysanthemum | Chrysanthemum | 1 | 3 | 0 | - | Dry vermouth with Bénédictine and a touch of absinthe.
-- 2 | oz | dry vermouth
+- 2 | oz | vegan dry vermouth (such as Dolin Dry)
 - 1 | oz | Bénédictine
 - 3 | dashes | absinthe
 # Stir everything with ice.
@@ -162,7 +162,7 @@ G highball glass | raspberries and lime | y | Raspberry, lime and ginger beer.
 G coupe | lime twist | y | -
 
 @ porto-flip | Porto Flip | 1 | 4 | 0 | eggs | Ruby port and brandy shaken with a whole egg yolk, topped with nutmeg.
-- 1 1/2 | oz | ruby port
+- 1 1/2 | oz | vegan ruby port (such as Cockburn's Special Reserve)
 - 1/2 | oz | brandy
 - 1 | | egg yolk
 - 1/4 | oz | simple syrup
@@ -181,8 +181,8 @@ G small coupe | grated nutmeg | y | -
 G coupe | lime twist | y | -
 
 @ adonis | Adonis | 1 | 3 | 0 | - | Fino sherry and sweet vermouth, a light aperitif.
-- 1 1/2 | oz | fino sherry
-- 1 1/2 | oz | sweet vermouth
+- 1 1/2 | oz | vegan fino sherry (such as Tio Pepe)
+- 1 1/2 | oz | vegan sweet vermouth (such as Dolin Rouge)
 - 2 | dashes | orange bitters
 # Stir everything with ice.
 # Strain into a chilled coupe.
@@ -291,7 +291,7 @@ G coupe | - | y | -
 - 1 | oz | gold rum
 - 1/2 | oz | fresh lime juice
 - 1/2 | oz | honey syrup
-- 3 | oz | Champagne
+- 3 | oz | vegan Champagne (such as Moët & Chandon Impérial)
 # Shake the rum, lime and honey with ice.
 # Strain into a flute and top with Champagne.
 G Champagne flute | lime twist | y | Lime and honey topped with alcohol-free sparkling wine.
@@ -315,7 +315,7 @@ G coupe | lime wheel | y | Lime and grenadine topped with soda.
 
 @ blackthorn-cocktail | Blackthorn | 1 | 3 | 0 | - | Sloe gin and sweet vermouth with orange bitters.
 - 1 1/2 | oz | sloe gin
-- 1 | oz | sweet vermouth
+- 1 | oz | vegan sweet vermouth (such as Dolin Rouge)
 - 2 | dashes | orange bitters
 # Stir everything with ice.
 # Strain into a chilled coupe.
@@ -324,8 +324,8 @@ G coupe | lemon twist | y | -
 
 @ bloodhound-cocktail | Bloodhound | 1 | 4 | 0 | - | Gin with both vermouths and fresh strawberries.
 - 1 | oz | gin
-- 1/2 | oz | dry vermouth
-- 1/2 | oz | sweet vermouth
+- 1/2 | oz | vegan dry vermouth (such as Dolin Dry)
+- 1/2 | oz | vegan sweet vermouth (such as Dolin Rouge)
 - 3 | | strawberries
 # Muddle the strawberries in a shaker.
 # Add the rest, shake with ice and double-strain into a chilled coupe.
@@ -335,7 +335,7 @@ G coupe | strawberry | y | -
 - 2 | oz | brandy
 - 1/4 | oz | orange curaçao
 - 1 | dash | Angostura bitters
-- 1 | oz | Champagne
+- 1 | oz | vegan Champagne (such as Moët & Chandon Impérial)
 # Rim a coupe with sugar.
 # Stir the brandy, curaçao and bitters with ice, strain into the glass and top with Champagne.
 G coupe, rim sugared if you like | lemon twist | y | -
@@ -371,7 +371,7 @@ G coupe | grapefruit twist | y | Grapefruit and honey syrup topped with soda.
 - 3/4 | oz | fresh lemon juice
 - 3/4 | oz | simple syrup
 - 1 | | egg white
-- 1/2 | oz | dry red wine
+- 1/2 | oz | vegan dry red wine (such as Yellow Tail Shiraz)
 # Dry-shake the whiskey, lemon, syrup and egg white, then shake with ice.
 # Strain over ice and float the red wine on top.
 G coupe or rocks glass | orange twist and cherry (optional) | y | -
@@ -419,7 +419,7 @@ G rocks glass | lime wedge | y | Muddle lime and sugar and top with soda.
 G coupe | - | y | -
 
 @ hugo-spritz | Hugo Spritz | 1 | 3 | 0 | - | Elderflower and mint with prosecco and soda.
-- 3 | oz | prosecco
+- 3 | oz | vegan prosecco (such as Mionetto Organic)
 - 1 | oz | elderflower liqueur or syrup
 - 1 | oz | soda water
 - 6 | | mint leaves
@@ -451,14 +451,14 @@ G rocks glass | cucumber slice | y | -
 @ champagne-cocktail | Champagne Cocktail | 1 | 2 | 0 | - | A bitters-soaked sugar cube in Champagne.
 - 1 | | sugar cube
 - 2 | dashes | Angostura bitters
-- 5 | oz | Champagne
+- 5 | oz | vegan Champagne (such as Moët & Chandon Impérial)
 # Soak the sugar cube with bitters and drop it into a flute.
 # Top slowly with Champagne.
 G Champagne flute | lemon twist | y | Use alcohol-free sparkling wine.
 
 @ jabberwock-cocktail | Jabberwock | 1 | 3 | 0 | - | Gin, dry sherry and Lillet with orange bitters.
 - 1 | oz | gin
-- 1 | oz | manzanilla or fino sherry
+- 1 | oz | vegan manzanilla sherry (such as La Gitana)
 - 1 | oz | Lillet Blanc
 - 2 | dashes | orange bitters
 # Stir everything with ice.
@@ -494,7 +494,7 @@ G copper mug | mint sprig and lime | y | Ginger beer with lime.
 
 @ fanciulli-cocktail | Fanciulli | 1 | 3 | 0 | - | Bourbon and sweet vermouth with a splash of Fernet-Branca.
 - 1 1/2 | oz | bourbon
-- 3/4 | oz | sweet vermouth
+- 3/4 | oz | vegan sweet vermouth (such as Dolin Rouge)
 - 1/4 | oz | Fernet-Branca
 # Stir everything with ice.
 # Strain into a chilled coupe.
@@ -533,7 +533,7 @@ G coupe | mint sprig | y | Blend without the rum and brandy, adding a splash of 
 
 @ greenpoint-cocktail | Greenpoint | 1 | 3 | 0 | - | Rye, sweet vermouth and yellow Chartreuse with two bitters.
 - 2 | oz | rye
-- 1/2 | oz | sweet vermouth
+- 1/2 | oz | vegan sweet vermouth (such as Dolin Rouge)
 - 1/2 | oz | yellow Chartreuse
 - 1 | dash | Angostura bitters
 - 1 | dash | orange bitters
@@ -543,7 +543,7 @@ G coupe | lemon twist | y | -
 
 @ la-perla-cocktail | La Perla | 1 | 3 | 0 | - | Tequila, manzanilla sherry and pear liqueur.
 - 1 1/2 | oz | reposado tequila
-- 1 1/2 | oz | manzanilla sherry
+- 1 1/2 | oz | vegan manzanilla sherry (such as La Gitana)
 - 3/4 | oz | pear liqueur
 # Stir everything with ice.
 # Strain into a chilled coupe.
@@ -560,7 +560,7 @@ G coupe or rocks glass | lemon twist | y | -
 @ left-hand-cocktail | Left Hand | 1 | 3 | 0 | - | A bourbon Negroni variation with chocolate bitters.
 - 1 1/2 | oz | bourbon
 - 3/4 | oz | Campari
-- 3/4 | oz | sweet vermouth
+- 3/4 | oz | vegan sweet vermouth (such as Dolin Rouge)
 - 2 | dashes | chocolate bitters
 # Stir everything with ice.
 # Strain into a chilled coupe.
@@ -578,7 +578,7 @@ G coupe | flamed orange peel | y | -
 - 2 | oz | rye or bourbon
 - 3/4 | oz | fresh lemon juice
 - 3/4 | oz | simple syrup
-- 1/2 | oz | dry red wine
+- 1/2 | oz | vegan dry red wine (such as Yellow Tail Shiraz)
 # Shake the whiskey, lemon and syrup with ice and strain over fresh ice.
 # Pour the wine slowly over the back of a spoon so it floats.
 G rocks glass | - | y | -
@@ -587,7 +587,7 @@ G rocks glass | - | y | -
 - 1 | oz | gin
 - 1/2 | oz | Campari
 - 1/2 | oz | Cointreau
-- 1/2 | oz | dry vermouth
+- 1/2 | oz | vegan dry vermouth (such as Dolin Dry)
 # Stir everything with ice.
 # Strain into a chilled coupe.
 G coupe | lemon or orange twist | y | -
@@ -611,7 +611,7 @@ G rocks glass | flamed orange peel | y | -
 
 @ scofflaw-cocktail | Scofflaw | 1 | 3 | 0 | - | Rye and dry vermouth with lemon and grenadine.
 - 1 1/2 | oz | rye
-- 1 | oz | dry vermouth
+- 1 | oz | vegan dry vermouth (such as Dolin Dry)
 - 3/4 | oz | fresh lemon juice
 - 3/4 | oz | grenadine
 - 1 | dash | orange bitters
@@ -632,7 +632,7 @@ G coupe | orange twist | y | -
 - 1/2 | oz | Cointreau
 - 7 | dashes | Angostura bitters
 - 7 | dashes | Peychaud's bitters
-- 4 | oz | Champagne
+- 4 | oz | vegan Champagne (such as Moët & Chandon Impérial)
 # Stir the bourbon, Cointreau and bitters in a flute.
 # Top with Champagne.
 G Champagne flute | orange twist | y | -
@@ -715,15 +715,15 @@ G rocks glass | orange peel | y | -
 
 @ the-chancellor-cocktail | The Chancellor | 1 | 3 | 0 | - | Scotch, ruby port and dry vermouth with bitters.
 - 2 | oz | blended Scotch
-- 1 | oz | ruby port
-- 1/2 | oz | dry vermouth
+- 1 | oz | vegan ruby port (such as Cockburn's Special Reserve)
+- 1/2 | oz | vegan dry vermouth (such as Dolin Dry)
 - 1 | dash | Peychaud's bitters
 # Stir everything with ice.
 # Strain into a chilled coupe.
 G coupe | - | y | -
 
 @ sherry-flip | Sherry Flip | 1 | 4 | 0 | eggs | Sherry shaken with a whole egg and sugar, topped with nutmeg.
-- 2 | oz | oloroso or cream sherry
+- 2 | oz | vegan oloroso sherry (such as Barbadillo Oloroso Seco)
 - 1 | | whole egg
 - 1/4 | oz | simple syrup
 # Dry-shake everything, then shake again with ice.
@@ -751,7 +751,7 @@ G rocks glass | lemon twist | y | -
 
 @ bijou | Bijou | 1 | 3 | 0 | - | Gin, sweet vermouth and green Chartreuse in equal parts.
 - 1 | oz | gin
-- 1 | oz | sweet vermouth
+- 1 | oz | vegan sweet vermouth (such as Dolin Rouge)
 - 1 | oz | green Chartreuse
 - 1 | dash | orange bitters
 # Stir everything with ice.

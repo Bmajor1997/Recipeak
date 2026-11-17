@@ -64,7 +64,7 @@
 - 4 | slices | Swiss cheese
 - 1/2 | cup | all-purpose flour
 - 2 | | large eggs, beaten
-- 1 | cup | panko breadcrumbs
+- 1 | cup | dairy-free panko breadcrumbs (such as Kikkoman)
 - 2 | tbsp | melted butter
 - 1 | tbsp | Dijon mustard
 # Heat the oven to 375°F.
@@ -275,7 +275,7 @@
 - 1 | tsp | ground ginger
 - 1 | tsp | garlic powder
 - 1 | tsp | onion powder
-- 1 | | bouillon cube, crushed
+- 1 | | gluten-free bouillon cube (such as Herb-Ox), crushed
 - 2 | tbsp | oil
 - | | sliced red onion, tomatoes and cabbage
 # Mix the ground peanuts, spices and bouillon to make yaji spice.
@@ -291,7 +291,7 @@
 - 1 | lb | beef or goat, cooked, with its stock
 - 4 | oz | smoked fish, flaked
 - 2 | tbsp | ground crayfish
-- 2 | | bouillon cubes
+- 2 | | gluten-free bouillon cubes (such as Herb-Ox)
 - 4 | cups | chopped spinach or bitterleaf
 - | | salt
 # Mix the egusi with a little water into a paste.
@@ -359,7 +359,7 @@
 - 2 | | carrots, halved
 - 1 | | eggplant, quartered
 - 1 | | cassava or sweet potato, in chunks
-- 2 | | bouillon cubes
+- 2 | | gluten-free bouillon cubes (such as Herb-Ox)
 - 3 | cups | broken jasmine rice, rinsed
 # Cut slits in the fish and stuff with the rof. Brown the fish in the oil and remove.
 # Cook the onion, then the tomato paste for 5 minutes. Add 8 cups water and the bouillon.
@@ -487,7 +487,7 @@
 # Steam or soak the couscous in some of the broth with a little oil.
 # Mound the couscous, top with meat and vegetables and ladle over broth.
 
-@ lebanese-kibbeh | Lebanese Kibbeh | 6 | 45 | 30 | wheat, tree nuts | Fried bulgur and lamb shells stuffed with spiced meat, onions and pine nuts.
+@ lebanese-kibbeh | Lebanese Kibbeh | 6 | 45 | 30 | milk, wheat, tree nuts | Fried bulgur and lamb shells stuffed with spiced meat, onions and pine nuts.
 - 1 | cup | fine bulgur, soaked 15 minutes and squeezed
 - 1 | lb | very lean ground lamb or beef, for the shell
 - 1 | | onion, grated
@@ -496,6 +496,7 @@
 - 1 | | onion, chopped
 - 1/3 | cup | pine nuts
 - | | salt and oil for frying
+- 1 | cup | plain yogurt, to serve
 # Process the bulgur, lean meat, grated onion, half the spices and salt into a smooth paste, using ice water if needed.
 # For the filling, brown the ground lamb with the chopped onion, pine nuts and remaining spices.
 # Shape a ball of shell mix, hollow it with your finger, fill and seal into an oval.
@@ -597,7 +598,7 @@
 # Add the oxtail, then the beans and eggplant, and cook until tender. Add the bok choy last.
 # Serve with rice and bagoong on the side.
 
-@ indian-idli-sambar | Idli Sambar | 4 | 20 | 40 | - | Soft steamed rice cakes with tangy lentil and vegetable stew.
+@ indian-idli-sambar | Idli Sambar | 4 | 20 | 40 | tree nuts | Soft steamed rice cakes with tangy lentil and vegetable stew.
 - 3 | cups | idli batter (fermented rice and urad dal)
 - 3/4 | cup | toor dal
 - 1 | cup | mixed vegetables (drumstick, carrot, pumpkin)
@@ -609,6 +610,7 @@
 - 1 | tsp | mustard seeds
 - 10 | | curry leaves
 - | | salt
+- 1 | cup | coconut chutney, to serve
 # Grease the idli molds, fill with batter and steam 10 to 12 minutes until set.
 # Cook the toor dal until soft and mash.
 # Cook the vegetables, onion and tomato in water until tender, then add the tamarind, sambar powder, dal and salt and simmer 10 minutes.
@@ -700,7 +702,7 @@
 # Add the beans, eggplant and chiles and cook until tender.
 # Add the greens and fish sauce and serve with rice.
 
-@ armenian-dolma | Armenian Dolma | 6 | 45 | 60 | - | Grape leaves rolled around beef, rice and herbs, simmered in a lemony broth.
+@ armenian-dolma | Armenian Dolma | 6 | 45 | 60 | milk | Grape leaves rolled around beef, rice and herbs, simmered in a lemony broth.
 - 1 | jar (16 oz) | grape leaves, rinsed
 - 1 | lb | ground beef
 - 1/2 | cup | uncooked short-grain rice
@@ -710,6 +712,7 @@
 - 1 | tsp | each salt, pepper and paprika
 - 2 | cups | broth
 - 1 | | lemon, juiced
+- 1 | cup | plain yogurt mixed with 1 grated garlic clove, to serve
 # Mix the beef, rice, onion, herbs, tomato paste and spices.
 # Place a leaf vein side up, add a spoon of filling, fold in the sides and roll tightly.
 # Pack the rolls seam side down in a pot lined with spare leaves.

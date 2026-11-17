@@ -63,8 +63,9 @@ const CHEESE = /\b(?:cheese|queso|paneer|mozzarella|ricotta|feta|halloumi|fondue
 const EGG = /\b(?:eggs?\b|egg (?:white|yolk)s?|yolks?|mayo|mayonnaise|tartar sauce|egg noodles|brioche|challah)/i;
 const EGG_UNSURE = /\b(?:lasagna noodles|dumpling wrappers|spring roll wrappers|empanada dough|tempura bits|gingersnap)/i;
 const HONEY = /\b(?:honey(?!dew|comb)|gardenia mix)/i;
+// Lillet and Guinness are vegan across the brand (Barnivore, company emails 2018 and 2021–22).
 // Wine, beer and some aperitifs may be fined with egg, milk, gelatin or fish products: it depends on the brand.
-const FINED = /\b(?:wine|champagne|prosecco|vermouth|sherry|port\b|beer|lager|stout|guinness|lillet|dubonnet|marsala|sake|shaoxing)/i;
+const FINED = /\b(?:wine|champagne|prosecco|vermouth|sherry|port\b|beer|lager|stout|dubonnet|marsala|sake|shaoxing)/i;
 
 const GLUTEN =
   /\b(?:flour|atta|semolina|couscous|bulgur|bread|breadcrumbs|panko|croutons|pitas?|pide|naan|roti|paratha|rougag|flatbread|baguettes?|rolls|buns|pav|brioche|challah|english muffins|cornbread|injera|dough|pastry|pie crusts?|wrappers|mandarin pancakes|gingersnap|saltine|crackers|pasta|spaghetti|fettuccine|linguine|macaroni|ziti|rigatoni|penne|trofie|lasagna|noodles|ramen|udon|soba|lo mein|vermicelli|tortillas?|oats|soy sauce|maggi|hoisin|oyster sauce|kecap manis|sweet soy|sweet bean sauce|doubanjiang|gochujang|black vinegar|malt vinegar|shaoxing|tempura|tonkatsu sauce|okonomiyaki sauce|takoyaki sauce|beer|lager|stout|guinness|split pea fritters)/i;
@@ -138,7 +139,9 @@ type LineCheck = { verdict: "ok" | "unsure" | "bad"; hit: string; removable: boo
 
 function check_text(text: string, r: Rule, gluten: boolean): Omit<LineCheck, "removable"> {
   // Nut checks read the words as written: coconut milk and peanut butter are not dairy, but they are nuts here.
-  const plain = r.qualified ? text.toLowerCase().replace(r.qualified, " ok ") : text;
+  // A brand suggestion in brackets ("(such as Mionetto Organic Prosecco)") names a product, not another ingredient.
+  const named = text.replace(/\(such as [^)]*\)/gi, " ");
+  const plain = r.qualified ? named.toLowerCase().replace(r.qualified, " ok ") : named;
   const base = r.raw ? plain.toLowerCase().replace(/\b(butternut|nutmeg)\b/g, " ") : clean(plain);
   const t = gluten ? base.replace(GLUTEN_FREE_WORDS, " ok ") : base;
   const bad = first_match(t, r.bad);
