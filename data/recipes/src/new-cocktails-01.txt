@@ -1,5 +1,5 @@
 @ amaretto-sour | Amaretto Sour | 1 | 5 | 0 | tree nuts, eggs | The modern amaretto sour: almond liqueur balanced with fresh lemon and a splash of strong bourbon, shaken with egg white for a silky foam. Sweet, nutty and bright.
-- 1 1/2 | oz | amaretto
+- 1 1/2 | oz | nut-free amaretto (such as Disaronno)
 - 3/4 | oz | cask-strength bourbon
 - 1 | oz | fresh lemon juice
 - 1 | tsp | rich simple syrup (2:1)
@@ -25,7 +25,7 @@ V Use regular-proof bourbon and increase it to 1 oz if you don't have cask stren
 - 1/2 | oz | Galliano L'Autentico
 - 2 | oz | pineapple juice
 - 1 | dash | fresh lime juice
-- 1 1/2 | oz | Prosecco, chilled
+- 1 1/2 | oz | vegan prosecco (such as Mionetto Organic), chilled
 # Shake the rum, Galliano, pineapple juice and lime with ice until very cold.
 # Strain into a chilled coupe or margarita glass.
 # Top with the Prosecco and garnish with a pineapple wedge.
@@ -173,7 +173,7 @@ G coupe | grated nutmeg | y | Shake cold chai concentrate, aquafaba, oat milk an
 
 @ french-connection | French Connection | 1 | 2 | 0 | tree nuts | A smooth 1970s after-dinner sipper: cognac and amaretto stirred over ice. Warm, nutty and simple.
 - 1 1/2 | oz | cognac
-- 3/4 | oz | amaretto
+- 3/4 | oz | nut-free amaretto (such as Disaronno)
 # Fill a rocks glass with ice, ideally one large cube.
 # Add the cognac and amaretto and stir for 15 seconds.
 G rocks glass | lemon twist | y | Stir cold black tea with a splash of almond (orgeat) syrup over ice.
@@ -219,7 +219,7 @@ T Good orgeat makes the drink. Look for one made with real almonds.
 
 @ kir | Kir | 1 | 1 | 0 | - | The classic Burgundy aperitif: crisp, dry white wine blushed pink with a splash of blackcurrant liqueur (crème de cassis).
 - 1/2 | oz | crème de cassis
-- 4 | oz | dry white wine (traditionally Bourgogne Aligoté), well chilled
+- 4 | oz | vegan dry white wine (such as Bonterra Sauvignon Blanc), well chilled
 # Pour the crème de cassis into a chilled white wine glass.
 # Top with the cold wine; it mixes as you pour.
 G white wine glass | - | y | Add a splash of blackcurrant syrup to chilled sparkling water or non-alcoholic white wine.

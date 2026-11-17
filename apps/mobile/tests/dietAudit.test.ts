@@ -171,4 +171,10 @@ describe("diet rules", () => {
     expect(veg.fits).toContain("vegetarian");
     expect(diet_profile(dish("Eggplant Parmesan", ["eggplant", "parmesan"]), "meal").options).toContain("vegetarian");
   });
+
+  it("doesn't read a brand suggestion in brackets as another ingredient", () => {
+    const spritz = { cocktail: { glass: "wine glass", garnish: "", alcoholic: true, non_alcoholic_version: null } };
+    const p = diet_profile(dish("St-Germain", ["vegan dry sparkling wine (such as Mionetto Organic Prosecco)"], spritz), "cocktail");
+    expect(p.fits).toContain("vegan");
+  });
 });

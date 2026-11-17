@@ -1,6 +1,6 @@
 @ queen-elizabeth | Queen Elizabeth | 1 | 3 | 0 | - | The brandy Queen Elizabeth from The Savoy Cocktail Book era: cognac and sweet vermouth with a touch of orange curaçao, stirred and served up with a cherry. Like a rich, orange-scented Manhattan.
 - 1 1/2 | oz | cognac or brandy
-- 1 | oz | sweet vermouth
+- 1 | oz | vegan sweet vermouth (such as Dolin Rouge)
 - 1/4 | oz | orange curaçao
 # Stir the cognac, vermouth and curaçao with ice for 20 to 30 seconds, until very cold.
 # Strain into a chilled coupe.
@@ -52,7 +52,7 @@ V Flash blend with 1 cup crushed ice and serve in a pilsner glass with a lemon p
 @@ vegan = same
 
 @ sherry-sangaree | Sherry Sangaree | 1 | 3 | 0 | - | One of the oldest mixed drinks: rich oloroso sherry lightly sweetened, chilled and served with a dusting of nutmeg and a twist of lemon.
-- 3 | oz | oloroso sherry
+- 3 | oz | vegan oloroso sherry (such as Barbadillo Oloroso Seco)
 - 1 | tsp | rich simple syrup (2:1)
 - | | nutmeg, freshly grated
 # Stir the sherry and syrup with ice until very cold.
@@ -67,7 +67,7 @@ V Serve it long over ice with a splash of soda for a lighter aperitif.
 @@ vegan = same
 
 @ spaghett | Spaghett | 1 | 1 | 0 | - | A cult bar favorite: a cold bottle of light American lager, spiked with Aperol and fresh lemon right in the bottle. Bitter, bubbly and refreshing.
-- 1 | bottle (12 oz) | light lager (such as Miller High Life), ice-cold
+- 1 | bottle (12 oz) | vegan light lager (such as Miller High Life), ice-cold
 - 1 1/2 | oz | Aperol
 - 1/2 | oz | fresh lemon juice
 # Drink or pour off about 2 oz of the beer to make room.
@@ -155,7 +155,7 @@ V Use dark rum in the piña colada half for a richer flavor.
 
 @ st-germain-cocktail | St-Germain Cocktail | 1 | 2 | 0 | - | The elderflower spritz: floral St-Germain liqueur topped with dry sparkling wine and soda over ice, with a twist of lemon.
 - 1 1/2 | oz | St-Germain elderflower liqueur
-- 2 | oz | dry sparkling wine, chilled
+- 2 | oz | vegan dry sparkling wine (such as Mionetto Organic Prosecco), chilled
 - 2 | oz | soda water, chilled
 # Pour the St-Germain into a chilled champagne flute.
 # Top with the sparkling wine, then the soda water.
@@ -209,7 +209,7 @@ V No blender: shake hard with crushed ice and pour everything into the glass.
 
 @ tipperary | Tipperary | 1 | 3 | 0 | - | An Irish cousin of the Manhattan from the early 1900s: Irish whiskey and sweet vermouth with a measure of herbal green Chartreuse, stirred and served up.
 - 2 | oz | Irish whiskey
-- 1 | oz | sweet vermouth
+- 1 | oz | vegan sweet vermouth (such as Dolin Rouge)
 - 1/2 | oz | green Chartreuse
 - 2 | dashes | Angostura bitters
 # Stir the whiskey, vermouth, Chartreuse and bitters with ice for 20 to 30 seconds.

@@ -112,7 +112,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "2", "unit": "oz", "item": "rye or bourbon" },
-      { "amount": "1", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "2", "unit": "dashes", "item": "Angostura bitters" }
     ],
     "steps": ["Stir everything with ice for 20 to 30 seconds.", "Strain into a chilled coupe."],
@@ -185,7 +185,7 @@
     "ingredients": [
       { "amount": "1", "unit": "oz", "item": "London dry gin" },
       { "amount": "1", "unit": "oz", "item": "Campari" },
-      { "amount": "1", "unit": "oz", "item": "sweet vermouth (such as Carpano Antica or Cocchi di Torino)" },
+      { "amount": "1", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "1", "unit": "", "item": "wide orange peel" },
       { "amount": "", "unit": "", "item": "ice, plus 1 large cube for serving" }
     ],
@@ -226,7 +226,7 @@
       { "amount": "1", "unit": "oz", "item": "gin" },
       { "amount": "1/2", "unit": "oz", "item": "fresh lemon juice" },
       { "amount": "1/2", "unit": "oz", "item": "simple syrup" },
-      { "amount": "3", "unit": "oz", "item": "Champagne" }
+      { "amount": "3", "unit": "oz", "item": "vegan Champagne (such as Moët & Chandon Impérial)" }
     ],
     "steps": ["Shake the gin, lemon and syrup with ice.", "Strain into a flute and top with Champagne."],
     "allergens": [],
@@ -307,7 +307,7 @@
       { "amount": "2", "unit": "oz", "item": "vodka" },
       { "amount": "4", "unit": "oz", "item": "tomato juice" },
       { "amount": "1/2", "unit": "oz", "item": "fresh lemon juice" },
-      { "amount": "2", "unit": "dashes", "item": "Worcestershire sauce" },
+      { "amount": "2", "unit": "dashes", "item": "gluten-free Worcestershire sauce (such as Lea & Perrins, US)" },
       { "amount": "2", "unit": "dashes", "item": "hot sauce" },
       { "amount": "1/2", "unit": "tsp", "item": "prepared horseradish" },
       { "amount": "", "unit": "", "item": "pinch of celery salt and black pepper" }
@@ -384,7 +384,7 @@
     "prep_minutes": 2,
     "cook_minutes": 0,
     "ingredients": [
-      { "amount": "3", "unit": "oz", "item": "Champagne or sparkling wine" },
+      { "amount": "3", "unit": "oz", "item": "vegan sparkling wine (such as Moët & Chandon Impérial or Mionetto Organic Prosecco)" },
       { "amount": "3", "unit": "oz", "item": "fresh orange juice" }
     ],
     "steps": ["Pour the sparkling wine into a flute.", "Top gently with the orange juice."],
@@ -407,7 +407,7 @@
     "prep_minutes": 2,
     "cook_minutes": 0,
     "ingredients": [
-      { "amount": "3", "unit": "oz", "item": "dry prosecco, well chilled" },
+      { "amount": "3", "unit": "oz", "item": "vegan dry prosecco (such as Mionetto Organic), well chilled" },
       { "amount": "2", "unit": "oz", "item": "Aperol" },
       { "amount": "1", "unit": "oz", "item": "soda water, well chilled" },
       { "amount": "1", "unit": "", "item": "orange half-wheel" },
@@ -568,7 +568,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "2 1/2", "unit": "oz", "item": "gin" },
-      { "amount": "1/2", "unit": "oz", "item": "dry vermouth" },
+      { "amount": "1/2", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
       { "amount": "1", "unit": "dash", "item": "orange bitters (optional)" }
     ],
     "steps": ["Stir with ice for 30 seconds until very cold.", "Strain into a chilled martini glass."],
@@ -1592,7 +1592,7 @@
     "cook_minutes": 20,
     "ingredients": [
       { "amount": "1", "unit": "lb", "item": "ground beef" },
-      { "amount": "2", "unit": "tbsp", "item": "taco seasoning" },
+      { "amount": "2", "unit": "tbsp", "item": "gluten-free taco seasoning (such as McCormick Gluten Free)" },
       { "amount": "1", "unit": "can (15 oz)", "item": "pinto or black beans, drained" },
       { "amount": "2", "unit": "cups", "item": "cooked rice" },
       { "amount": "1 1/2", "unit": "cups", "item": "shredded cheddar" },
@@ -1652,7 +1652,7 @@
     "cook_minutes": 15,
     "ingredients": [
       { "amount": "1", "unit": "lb", "item": "ground beef" },
-      { "amount": "2", "unit": "tbsp", "item": "taco seasoning" },
+      { "amount": "2", "unit": "tbsp", "item": "gluten-free taco seasoning (such as McCormick Gluten Free)" },
       { "amount": "1", "unit": "bag (12 oz)", "item": "tortilla chips" },
       { "amount": "1", "unit": "can (15 oz)", "item": "black beans, drained" },
       { "amount": "3", "unit": "cups", "item": "shredded cheddar and Monterey Jack" },
@@ -1744,7 +1744,7 @@
     "prep_minutes": 20,
     "cook_minutes": 45,
     "ingredients": [
-      { "amount": "12", "unit": "oz", "item": "andouille sausage, sliced" },
+      { "amount": "12", "unit": "oz", "item": "gluten-free andouille sausage (such as Aidells Cajun Style), sliced" },
       { "amount": "1", "unit": "lb", "item": "boneless chicken thighs, diced" },
       { "amount": "1", "unit": "", "item": "onion, chopped" },
       { "amount": "1", "unit": "", "item": "green bell pepper, chopped" },
@@ -1894,7 +1894,7 @@
       { "amount": "4", "unit": "cloves", "item": "garlic, minced" },
       { "amount": "8", "unit": "cups", "item": "chicken stock" },
       { "amount": "2", "unit": "lb", "item": "boneless chicken thighs" },
-      { "amount": "1", "unit": "lb", "item": "andouille sausage, sliced" },
+      { "amount": "1", "unit": "lb", "item": "gluten-free andouille sausage (such as Aidells Cajun Style), sliced" },
       { "amount": "2", "unit": "tsp", "item": "Cajun seasoning" },
       { "amount": "2", "unit": "", "item": "bay leaves" },
       { "amount": "4", "unit": "", "item": "green onions, sliced" },
@@ -2586,7 +2586,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "Old Tom gin" },
-      { "amount": "1 1/2", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1 1/2", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "1", "unit": "tsp", "item": "maraschino liqueur" },
       { "amount": "2", "unit": "dashes", "item": "Angostura or Boker's bitters" }
     ],
@@ -2629,7 +2629,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "2", "unit": "oz", "item": "rye" },
-      { "amount": "1", "unit": "oz", "item": "dry vermouth" },
+      { "amount": "1", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
       { "amount": "1/4", "unit": "oz", "item": "maraschino liqueur" },
       { "amount": "1/4", "unit": "oz", "item": "Amer Picon or Amaro CioCiaro" }
     ],
@@ -2653,7 +2653,7 @@
       { "amount": "1", "unit": "oz", "item": "passion fruit puree" },
       { "amount": "1/2", "unit": "oz", "item": "fresh lime juice" },
       { "amount": "1/2", "unit": "oz", "item": "vanilla syrup" },
-      { "amount": "2", "unit": "oz", "item": "prosecco, on the side" }
+      { "amount": "2", "unit": "oz", "item": "vegan prosecco (such as Mionetto Organic), on the side" }
     ],
     "steps": [
       "Shake everything except the prosecco with ice.",
@@ -2681,7 +2681,7 @@
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "bourbon or rye" },
       { "amount": "1", "unit": "oz", "item": "Campari" },
-      { "amount": "1", "unit": "oz", "item": "sweet vermouth" }
+      { "amount": "1", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" }
     ],
     "steps": ["Stir everything with ice.", "Strain into a rocks glass over a large cube or into a coupe."],
     "allergens": [],
@@ -2700,7 +2700,7 @@
     "ingredients": [
       { "amount": "3/4", "unit": "oz", "item": "rye" },
       { "amount": "3/4", "unit": "oz", "item": "Cognac" },
-      { "amount": "3/4", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "3/4", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "1", "unit": "tsp", "item": "Bénédictine" },
       { "amount": "2", "unit": "dashes", "item": "Peychaud's bitters" },
       { "amount": "2", "unit": "dashes", "item": "Angostura bitters" }
@@ -2766,7 +2766,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "2", "unit": "oz", "item": "blended Scotch" },
-      { "amount": "1", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "2", "unit": "dashes", "item": "Angostura bitters" }
     ],
     "steps": ["Stir everything with ice.", "Strain into a chilled coupe."],
@@ -2827,7 +2827,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1", "unit": "oz", "item": "rye" },
-      { "amount": "1", "unit": "oz", "item": "dry vermouth" },
+      { "amount": "1", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
       { "amount": "1", "unit": "oz", "item": "Campari" }
     ],
     "steps": ["Stir everything with ice.", "Strain into a chilled coupe."],
@@ -3059,8 +3059,8 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "2", "unit": "oz", "item": "rye" },
-      { "amount": "1/2", "unit": "oz", "item": "sweet vermouth" },
-      { "amount": "1/2", "unit": "oz", "item": "dry vermouth" },
+      { "amount": "1/2", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
+      { "amount": "1/2", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
       { "amount": "2", "unit": "dashes", "item": "Angostura bitters" }
     ],
     "steps": ["Stir everything with ice.", "Strain into a chilled coupe."],
@@ -3082,7 +3082,7 @@
       { "amount": "1", "unit": "oz", "item": "coffee liqueur" },
       { "amount": "1", "unit": "oz", "item": "Irish cream" },
       { "amount": "1", "unit": "oz", "item": "heavy cream" },
-      { "amount": "", "unit": "", "item": "chocolate syrup, for the glass" }
+      { "amount": "", "unit": "", "item": "gluten-free chocolate syrup (such as Hershey's), for the glass" }
     ],
     "steps": ["Swirl chocolate syrup inside a rocks glass.", "Shake everything with ice and strain into the glass over ice."],
     "allergens": ["milk"],
@@ -3212,7 +3212,7 @@
     "ingredients": [
       { "amount": "3/4", "unit": "oz", "item": "blended Scotch" },
       { "amount": "3/4", "unit": "oz", "item": "cherry liqueur (Cherry Heering)" },
-      { "amount": "3/4", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "3/4", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "3/4", "unit": "oz", "item": "fresh orange juice" }
     ],
     "steps": ["Shake everything with ice.", "Strain into a chilled coupe."],
@@ -3399,7 +3399,7 @@
     "prep_minutes": 3,
     "cook_minutes": 0,
     "ingredients": [
-      { "amount": "3 1/2", "unit": "oz", "item": "amontillado sherry" },
+      { "amount": "3 1/2", "unit": "oz", "item": "vegan amontillado sherry (such as Harveys)" },
       { "amount": "1/2", "unit": "oz", "item": "simple syrup" },
       { "amount": "2", "unit": "", "item": "orange slices" }
     ],
@@ -3479,7 +3479,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "Campari" },
-      { "amount": "1 1/2", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1 1/2", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "3", "unit": "oz", "item": "soda water" }
     ],
     "steps": ["Fill a highball with ice.", "Add the Campari and vermouth and top with soda."],
@@ -3504,7 +3504,7 @@
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "vodka" },
       { "amount": "4", "unit": "oz", "item": "Clamato juice" },
-      { "amount": "2", "unit": "dashes", "item": "Worcestershire sauce" },
+      { "amount": "2", "unit": "dashes", "item": "gluten-free Worcestershire sauce (such as Lea & Perrins, US)" },
       { "amount": "2", "unit": "dashes", "item": "hot sauce" },
       { "amount": "", "unit": "", "item": "celery salt, lime wedge and pepper" }
     ],
@@ -3529,7 +3529,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "white rum" },
-      { "amount": "1 1/2", "unit": "oz", "item": "blanc vermouth" },
+      { "amount": "1 1/2", "unit": "oz", "item": "vegan blanc vermouth (such as Dolin Blanc)" },
       { "amount": "1/4", "unit": "oz", "item": "orange curaçao" },
       { "amount": "1", "unit": "tsp", "item": "grenadine" }
     ],
@@ -3577,7 +3577,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "gin" },
-      { "amount": "1/2", "unit": "oz", "item": "dry vermouth" },
+      { "amount": "1/2", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
       { "amount": "1/2", "unit": "oz", "item": "fresh lemon juice" },
       { "amount": "1/2", "unit": "oz", "item": "raspberry syrup" },
       { "amount": "1", "unit": "", "item": "egg white" }
@@ -3602,8 +3602,8 @@
     "prep_minutes": 3,
     "cook_minutes": 0,
     "ingredients": [
-      { "amount": "1 1/2", "unit": "oz", "item": "fino or amontillado sherry" },
-      { "amount": "1 1/2", "unit": "oz", "item": "dry vermouth" },
+      { "amount": "1 1/2", "unit": "oz", "item": "vegan fino sherry (such as Tio Pepe)" },
+      { "amount": "1 1/2", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
       { "amount": "2", "unit": "dashes", "item": "orange bitters" },
       { "amount": "1", "unit": "dash", "item": "Angostura bitters" }
     ],
@@ -3623,7 +3623,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "gin" },
-      { "amount": "1 1/2", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1 1/2", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "2", "unit": "dashes", "item": "Fernet-Branca" }
     ],
     "steps": ["Stir everything with ice.", "Strain into a chilled coupe."],
@@ -3688,7 +3688,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "2", "unit": "oz", "item": "rye" },
-      { "amount": "1", "unit": "oz", "item": "dry vermouth" },
+      { "amount": "1", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
       { "amount": "2", "unit": "dashes", "item": "Angostura bitters" }
     ],
     "steps": ["Stir everything with ice.", "Strain into a chilled coupe."],
@@ -3707,7 +3707,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "blended Scotch" },
-      { "amount": "3/4", "unit": "oz", "item": "amaretto" }
+      { "amount": "3/4", "unit": "oz", "item": "nut-free amaretto (such as Disaronno)" }
     ],
     "steps": ["Stir with ice.", "Strain over a large cube in a rocks glass."],
     "allergens": ["tree nuts"],
@@ -4247,7 +4247,7 @@
     "ingredients": [
       { "amount": "1", "unit": "oz", "item": "mezcal" },
       { "amount": "1", "unit": "oz", "item": "Campari" },
-      { "amount": "1", "unit": "oz", "item": "sweet vermouth" }
+      { "amount": "1", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" }
     ],
     "steps": ["Stir everything with ice.", "Strain over a large cube in a rocks glass."],
     "allergens": [],
@@ -4371,7 +4371,7 @@
     "ingredients": [
       { "amount": "2", "unit": "oz", "item": "bourbon" },
       { "amount": "1", "unit": "oz", "item": "orange curaçao" },
-      { "amount": "1/2", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1/2", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "1/2", "unit": "oz", "item": "fresh lemon juice" }
     ],
     "steps": ["Shake everything with ice.", "Strain into a chilled coupe."],
@@ -4390,7 +4390,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1", "unit": "oz", "item": "Southern Comfort" },
-      { "amount": "1", "unit": "oz", "item": "amaretto" },
+      { "amount": "1", "unit": "oz", "item": "nut-free amaretto (such as Disaronno)" },
       { "amount": "1/2", "unit": "oz", "item": "sloe gin" },
       { "amount": "2", "unit": "oz", "item": "orange juice" }
     ],
@@ -4454,7 +4454,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "2", "unit": "oz", "item": "Cynar" },
-      { "amount": "1", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "1/4", "unit": "oz", "item": "fresh lemon juice" },
       { "amount": "6", "unit": "dashes", "item": "orange bitters" }
     ],
@@ -5342,7 +5342,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "gin" },
-      { "amount": "1/2", "unit": "oz", "item": "fino sherry" },
+      { "amount": "1/2", "unit": "oz", "item": "vegan fino sherry (such as Tio Pepe)" },
       { "amount": "1/2", "unit": "oz", "item": "fresh lemon juice" },
       { "amount": "1/2", "unit": "oz", "item": "simple syrup" },
       { "amount": "2", "unit": "dashes", "item": "orange bitters" }
@@ -5363,7 +5363,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "2", "unit": "oz", "item": "rye" },
-      { "amount": "3/4", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "3/4", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "3/4", "unit": "oz", "item": "Bénédictine" },
       { "amount": "3", "unit": "dashes", "item": "Peychaud's bitters" },
       { "amount": "3", "unit": "dashes", "item": "absinthe" }
@@ -5424,7 +5424,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "gin" },
-      { "amount": "3/4", "unit": "oz", "item": "dry vermouth" },
+      { "amount": "3/4", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
       { "amount": "1/4", "unit": "oz", "item": "Bénédictine" },
       { "amount": "2", "unit": "dashes", "item": "orange bitters" }
     ],
@@ -5444,7 +5444,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "2", "unit": "oz", "item": "blended Scotch" },
-      { "amount": "1", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "1", "unit": "tsp", "item": "Bénédictine" }
     ],
     "steps": ["Stir everything with ice.", "Strain into a chilled coupe."],
@@ -5624,7 +5624,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1/2", "unit": "oz", "item": "crème de cassis" },
-      { "amount": "4", "unit": "oz", "item": "Champagne" }
+      { "amount": "4", "unit": "oz", "item": "vegan Champagne (such as Moët & Chandon Impérial)" }
     ],
     "steps": ["Pour the cassis into a flute.", "Top slowly with Champagne."],
     "allergens": [],
@@ -5674,7 +5674,7 @@
       { "amount": "1", "unit": "bottle (12 oz)", "item": "Mexican lager" },
       { "amount": "1", "unit": "oz", "item": "fresh lime juice" },
       { "amount": "2", "unit": "dashes", "item": "hot sauce" },
-      { "amount": "2", "unit": "dashes", "item": "Worcestershire sauce" },
+      { "amount": "2", "unit": "dashes", "item": "gluten-free Worcestershire sauce (such as Lea & Perrins, US)" },
       { "amount": "1", "unit": "dash", "item": "Maggi or soy sauce" },
       { "amount": "2", "unit": "oz", "item": "tomato or Clamato juice (optional)" },
       { "amount": "", "unit": "", "item": "Tajín or chili salt, for the rim" }
@@ -5700,7 +5700,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "2", "unit": "oz", "item": "white peach puree" },
-      { "amount": "4", "unit": "oz", "item": "prosecco" }
+      { "amount": "4", "unit": "oz", "item": "vegan prosecco (such as Mionetto Organic)" }
     ],
     "steps": ["Pour the peach puree into a flute.", "Top slowly with prosecco and stir gently."],
     "allergens": [],
@@ -5751,8 +5751,8 @@
     "prep_minutes": 2,
     "cook_minutes": 0,
     "ingredients": [
-      { "amount": "4", "unit": "oz", "item": "Guinness or stout" },
-      { "amount": "4", "unit": "oz", "item": "Champagne" }
+      { "amount": "4", "unit": "oz", "item": "Guinness" },
+      { "amount": "4", "unit": "oz", "item": "vegan Champagne (such as Moët & Chandon Impérial)" }
     ],
     "steps": ["Pour the Champagne into a flute or tall glass.", "Slowly float the stout on top over the back of a spoon."],
     "allergens": [],
@@ -5790,7 +5790,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "brandy" },
-      { "amount": "1 1/2", "unit": "oz", "item": "ruby port" },
+      { "amount": "1 1/2", "unit": "oz", "item": "vegan ruby port (such as Cockburn's Special Reserve)" },
       { "amount": "1", "unit": "tsp", "item": "orange curaçao" },
       { "amount": "2", "unit": "dashes", "item": "Angostura bitters" }
     ],
@@ -5811,7 +5811,7 @@
     "ingredients": [
       { "amount": "1", "unit": "oz", "item": "rye" },
       { "amount": "1", "unit": "oz", "item": "brandy" },
-      { "amount": "1", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "2", "unit": "dashes", "item": "Angostura bitters" }
     ],
     "steps": ["Stir everything with ice.", "Strain into a chilled coupe."],
@@ -5933,7 +5933,7 @@
       { "amount": "4", "unit": "", "item": "boneless pork loin chops, 1/2 inch thick" },
       { "amount": "1/2", "unit": "cup", "item": "all-purpose flour" },
       { "amount": "2", "unit": "", "item": "large eggs, beaten" },
-      { "amount": "2", "unit": "cups", "item": "panko breadcrumbs" },
+      { "amount": "2", "unit": "cups", "item": "dairy-free panko breadcrumbs (such as Kikkoman)" },
       { "amount": "", "unit": "", "item": "vegetable oil, for frying" },
       { "amount": "3", "unit": "cups", "item": "finely shredded cabbage" },
       { "amount": "1/4", "unit": "cup", "item": "tonkatsu sauce" },
@@ -5994,7 +5994,7 @@
     "ingredients": [
       { "amount": "1", "unit": "oz", "item": "aquavit" },
       { "amount": "1", "unit": "oz", "item": "Cynar" },
-      { "amount": "1", "unit": "oz", "item": "fino sherry" },
+      { "amount": "1", "unit": "oz", "item": "vegan fino sherry (such as Tio Pepe)" },
       { "amount": "2", "unit": "dashes", "item": "peach bitters" }
     ],
     "steps": ["Stir everything with ice.", "Strain into a chilled coupe."],
@@ -6060,7 +6060,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "Irish whiskey" },
-      { "amount": "1", "unit": "oz", "item": "dry vermouth" },
+      { "amount": "1", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
       { "amount": "1", "unit": "tsp", "item": "green Chartreuse" },
       { "amount": "1", "unit": "tsp", "item": "green crème de menthe" }
     ],
@@ -6106,8 +6106,8 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "gin" },
-      { "amount": "1/2", "unit": "oz", "item": "sweet vermouth" },
-      { "amount": "1/2", "unit": "oz", "item": "dry vermouth" },
+      { "amount": "1/2", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
+      { "amount": "1/2", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
       { "amount": "1", "unit": "oz", "item": "fresh orange juice" },
       { "amount": "2", "unit": "dashes", "item": "Angostura bitters" }
     ],
@@ -6265,7 +6265,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "2", "unit": "oz", "item": "Irish whiskey" },
-      { "amount": "1/2", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1/2", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "1/2", "unit": "oz", "item": "Grand Marnier" },
       { "amount": "3", "unit": "dashes", "item": "orange bitters" }
     ],
@@ -6374,7 +6374,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "bourbon" },
-      { "amount": "1/2", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1/2", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "1/2", "unit": "oz", "item": "orange curaçao" },
       { "amount": "3/4", "unit": "oz", "item": "fresh lime juice" }
     ],
@@ -6531,7 +6531,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1", "unit": "oz", "item": "absinthe" },
-      { "amount": "4", "unit": "oz", "item": "cold Champagne" }
+      { "amount": "4", "unit": "oz", "item": "cold vegan Champagne (such as Moët & Chandon Impérial)" }
     ],
     "steps": ["Pour the absinthe into a coupe or flute.", "Slowly add Champagne until it turns milky."],
     "allergens": [],
@@ -6606,7 +6606,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "2", "unit": "oz", "item": "rye" },
-      { "amount": "3/4", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "3/4", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "1/4", "unit": "oz", "item": "cherry liqueur" },
       { "amount": "1/2", "unit": "tsp", "item": "absinthe" }
     ],
@@ -6679,7 +6679,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "2", "unit": "oz", "item": "gin" },
-      { "amount": "1", "unit": "oz", "item": "dry vermouth" },
+      { "amount": "1", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
       { "amount": "1/4", "unit": "oz", "item": "maraschino liqueur" },
       { "amount": "2", "unit": "dashes", "item": "orange bitters" },
       { "amount": "1", "unit": "dash", "item": "absinthe" }
@@ -6815,7 +6815,7 @@
     "prep_minutes": 3,
     "cook_minutes": 0,
     "ingredients": [
-      { "amount": "2", "unit": "oz", "item": "dry vermouth" },
+      { "amount": "2", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
       { "amount": "1", "unit": "oz", "item": "Bénédictine" },
       { "amount": "3", "unit": "dashes", "item": "absinthe" }
     ],
@@ -6880,7 +6880,7 @@
     "prep_minutes": 4,
     "cook_minutes": 0,
     "ingredients": [
-      { "amount": "1 1/2", "unit": "oz", "item": "ruby port" },
+      { "amount": "1 1/2", "unit": "oz", "item": "vegan ruby port (such as Cockburn's Special Reserve)" },
       { "amount": "1/2", "unit": "oz", "item": "brandy" },
       { "amount": "1", "unit": "", "item": "egg yolk" },
       { "amount": "1/4", "unit": "oz", "item": "simple syrup" }
@@ -7006,7 +7006,7 @@
       { "amount": "2", "unit": "", "item": "tomatoes, roasted" },
       { "amount": "1/2", "unit": "", "item": "onion and 3 garlic cloves, roasted" },
       { "amount": "1/2", "unit": "tsp", "item": "each cinnamon, cloves and cumin" },
-      { "amount": "2", "unit": "oz", "item": "Mexican chocolate" },
+      { "amount": "2", "unit": "oz", "item": "dairy-free Mexican chocolate (such as Ibarra)" },
       { "amount": "3", "unit": "cups", "item": "chicken broth" }
     ],
     "steps": [
@@ -7083,8 +7083,8 @@
     "prep_minutes": 3,
     "cook_minutes": 0,
     "ingredients": [
-      { "amount": "1 1/2", "unit": "oz", "item": "fino sherry" },
-      { "amount": "1 1/2", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1 1/2", "unit": "oz", "item": "vegan fino sherry (such as Tio Pepe)" },
+      { "amount": "1 1/2", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "2", "unit": "dashes", "item": "orange bitters" }
     ],
     "steps": ["Stir everything with ice.", "Strain into a chilled coupe."],
@@ -7810,7 +7810,7 @@
       { "amount": "4", "unit": "slices", "item": "Swiss cheese" },
       { "amount": "1/2", "unit": "cup", "item": "all-purpose flour" },
       { "amount": "2", "unit": "", "item": "large eggs, beaten" },
-      { "amount": "1", "unit": "cup", "item": "panko breadcrumbs" },
+      { "amount": "1", "unit": "cup", "item": "dairy-free panko breadcrumbs (such as Kikkoman)" },
       { "amount": "2", "unit": "tbsp", "item": "melted butter" },
       { "amount": "1", "unit": "tbsp", "item": "Dijon mustard" }
     ],
@@ -8363,7 +8363,7 @@
       { "amount": "1", "unit": "oz", "item": "gold rum" },
       { "amount": "1/2", "unit": "oz", "item": "fresh lime juice" },
       { "amount": "1/2", "unit": "oz", "item": "honey syrup" },
-      { "amount": "3", "unit": "oz", "item": "Champagne" }
+      { "amount": "3", "unit": "oz", "item": "vegan Champagne (such as Moët & Chandon Impérial)" }
     ],
     "steps": ["Shake the rum, lime and honey with ice.", "Strain into a flute and top with Champagne."],
     "allergens": [],
@@ -8412,7 +8412,7 @@
       { "amount": "1", "unit": "tsp", "item": "ground ginger" },
       { "amount": "1", "unit": "tsp", "item": "garlic powder" },
       { "amount": "1", "unit": "tsp", "item": "onion powder" },
-      { "amount": "1", "unit": "", "item": "bouillon cube, crushed" },
+      { "amount": "1", "unit": "", "item": "gluten-free bouillon cube (such as Herb-Ox), crushed" },
       { "amount": "2", "unit": "tbsp", "item": "oil" },
       { "amount": "", "unit": "", "item": "sliced red onion, tomatoes and cabbage" }
     ],
@@ -8443,7 +8443,7 @@
       { "amount": "1", "unit": "lb", "item": "beef or goat, cooked, with its stock" },
       { "amount": "4", "unit": "oz", "item": "smoked fish, flaked" },
       { "amount": "2", "unit": "tbsp", "item": "ground crayfish" },
-      { "amount": "2", "unit": "", "item": "bouillon cubes" },
+      { "amount": "2", "unit": "", "item": "gluten-free bouillon cubes (such as Herb-Ox)" },
       { "amount": "4", "unit": "cups", "item": "chopped spinach or bitterleaf" },
       { "amount": "", "unit": "", "item": "salt" }
     ],
@@ -8571,7 +8571,7 @@
       { "amount": "2", "unit": "", "item": "carrots, halved" },
       { "amount": "1", "unit": "", "item": "eggplant, quartered" },
       { "amount": "1", "unit": "", "item": "cassava or sweet potato, in chunks" },
-      { "amount": "2", "unit": "", "item": "bouillon cubes" },
+      { "amount": "2", "unit": "", "item": "gluten-free bouillon cubes (such as Herb-Ox)" },
       { "amount": "3", "unit": "cups", "item": "broken jasmine rice, rinsed" }
     ],
     "steps": [
@@ -8827,7 +8827,8 @@
       { "amount": "1/2", "unit": "lb", "item": "ground lamb, for the filling" },
       { "amount": "1", "unit": "", "item": "onion, chopped" },
       { "amount": "1/3", "unit": "cup", "item": "pine nuts" },
-      { "amount": "", "unit": "", "item": "salt and oil for frying" }
+      { "amount": "", "unit": "", "item": "salt and oil for frying" },
+      { "amount": "1", "unit": "cup", "item": "plain yogurt, to serve" }
     ],
     "steps": [
       "Process the bulgur, lean meat, grated onion, half the spices and salt into a smooth paste, using ice water if needed.",
@@ -8835,7 +8836,7 @@
       "Shape a ball of shell mix, hollow it with your finger, fill and seal into an oval.",
       "Fry at 350°F for 5 to 6 minutes until deep brown. Serve with yogurt."
     ],
-    "allergens": ["tree nuts", "wheat"],
+    "allergens": ["milk", "tree nuts", "wheat"],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [],
@@ -9045,7 +9046,8 @@
       { "amount": "1", "unit": "tbsp", "item": "oil" },
       { "amount": "1", "unit": "tsp", "item": "mustard seeds" },
       { "amount": "10", "unit": "", "item": "curry leaves" },
-      { "amount": "", "unit": "", "item": "salt" }
+      { "amount": "", "unit": "", "item": "salt" },
+      { "amount": "1", "unit": "cup", "item": "coconut chutney, to serve" }
     ],
     "steps": [
       "Grease the idli molds, fill with batter and steam 10 to 12 minutes until set.",
@@ -9054,7 +9056,7 @@
       "Fry the mustard seeds and curry leaves in oil and pour over the sambar.",
       "Serve the idli with the sambar and coconut chutney."
     ],
-    "allergens": [],
+    "allergens": ["tree nuts"],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [],
@@ -9236,7 +9238,8 @@
       { "amount": "2", "unit": "tbsp", "item": "tomato paste" },
       { "amount": "1", "unit": "tsp", "item": "each salt, pepper and paprika" },
       { "amount": "2", "unit": "cups", "item": "broth" },
-      { "amount": "1", "unit": "", "item": "lemon, juiced" }
+      { "amount": "1", "unit": "", "item": "lemon, juiced" },
+      { "amount": "1", "unit": "cup", "item": "plain yogurt mixed with 1 grated garlic clove, to serve" }
     ],
     "steps": [
       "Mix the beef, rice, onion, herbs, tomato paste and spices.",
@@ -9245,7 +9248,7 @@
       "Add the broth and lemon juice, weigh down with a plate and simmer 1 hour.",
       "Serve with garlic yogurt."
     ],
-    "allergens": [],
+    "allergens": ["milk"],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [],
@@ -9783,7 +9786,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "sloe gin" },
-      { "amount": "1", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "2", "unit": "dashes", "item": "orange bitters" }
     ],
     "steps": ["Stir everything with ice.", "Strain into a chilled coupe."],
@@ -9836,8 +9839,8 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1", "unit": "oz", "item": "gin" },
-      { "amount": "1/2", "unit": "oz", "item": "dry vermouth" },
-      { "amount": "1/2", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1/2", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
+      { "amount": "1/2", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "3", "unit": "", "item": "strawberries" }
     ],
     "steps": ["Muddle the strawberries in a shaker.", "Add the rest, shake with ice and double-strain into a chilled coupe."],
@@ -9920,7 +9923,7 @@
       { "amount": "2", "unit": "oz", "item": "brandy" },
       { "amount": "1/4", "unit": "oz", "item": "orange curaçao" },
       { "amount": "1", "unit": "dash", "item": "Angostura bitters" },
-      { "amount": "1", "unit": "oz", "item": "Champagne" }
+      { "amount": "1", "unit": "oz", "item": "vegan Champagne (such as Moët & Chandon Impérial)" }
     ],
     "steps": ["Rim a coupe with sugar.", "Stir the brandy, curaçao and bitters with ice, strain into the glass and top with Champagne."],
     "allergens": [],
@@ -10075,7 +10078,7 @@
       { "amount": "3/4", "unit": "oz", "item": "fresh lemon juice" },
       { "amount": "3/4", "unit": "oz", "item": "simple syrup" },
       { "amount": "1", "unit": "", "item": "egg white" },
-      { "amount": "1/2", "unit": "oz", "item": "dry red wine" }
+      { "amount": "1/2", "unit": "oz", "item": "vegan dry red wine (such as Yellow Tail Shiraz)" }
     ],
     "steps": ["Dry-shake the whiskey, lemon, syrup and egg white, then shake with ice.", "Strain over ice and float the red wine on top."],
     "allergens": ["eggs"],
@@ -10200,7 +10203,7 @@
     "prep_minutes": 3,
     "cook_minutes": 0,
     "ingredients": [
-      { "amount": "3", "unit": "oz", "item": "prosecco" },
+      { "amount": "3", "unit": "oz", "item": "vegan prosecco (such as Mionetto Organic)" },
       { "amount": "1", "unit": "oz", "item": "elderflower liqueur or syrup" },
       { "amount": "1", "unit": "oz", "item": "soda water" },
       { "amount": "6", "unit": "", "item": "mint leaves" },
@@ -10281,7 +10284,7 @@
     "ingredients": [
       { "amount": "1", "unit": "", "item": "sugar cube" },
       { "amount": "2", "unit": "dashes", "item": "Angostura bitters" },
-      { "amount": "5", "unit": "oz", "item": "Champagne" }
+      { "amount": "5", "unit": "oz", "item": "vegan Champagne (such as Moët & Chandon Impérial)" }
     ],
     "steps": ["Soak the sugar cube with bitters and drop it into a flute.", "Top slowly with Champagne."],
     "allergens": [],
@@ -10304,7 +10307,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1", "unit": "oz", "item": "gin" },
-      { "amount": "1", "unit": "oz", "item": "manzanilla or fino sherry" },
+      { "amount": "1", "unit": "oz", "item": "vegan manzanilla sherry (such as La Gitana)" },
       { "amount": "1", "unit": "oz", "item": "Lillet Blanc" },
       { "amount": "2", "unit": "dashes", "item": "orange bitters" }
     ],
@@ -10394,7 +10397,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "bourbon" },
-      { "amount": "3/4", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "3/4", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "1/4", "unit": "oz", "item": "Fernet-Branca" }
     ],
     "steps": ["Stir everything with ice.", "Strain into a chilled coupe."],
@@ -10486,7 +10489,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "2", "unit": "oz", "item": "rye" },
-      { "amount": "1/2", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1/2", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "1/2", "unit": "oz", "item": "yellow Chartreuse" },
       { "amount": "1", "unit": "dash", "item": "Angostura bitters" },
       { "amount": "1", "unit": "dash", "item": "orange bitters" }
@@ -10507,7 +10510,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "reposado tequila" },
-      { "amount": "1 1/2", "unit": "oz", "item": "manzanilla sherry" },
+      { "amount": "1 1/2", "unit": "oz", "item": "vegan manzanilla sherry (such as La Gitana)" },
       { "amount": "3/4", "unit": "oz", "item": "pear liqueur" }
     ],
     "steps": ["Stir everything with ice.", "Strain into a chilled coupe."],
@@ -10546,7 +10549,7 @@
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "bourbon" },
       { "amount": "3/4", "unit": "oz", "item": "Campari" },
-      { "amount": "3/4", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "3/4", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "2", "unit": "dashes", "item": "chocolate bitters" }
     ],
     "steps": ["Stir everything with ice.", "Strain into a chilled coupe."],
@@ -10586,7 +10589,7 @@
       { "amount": "2", "unit": "oz", "item": "rye or bourbon" },
       { "amount": "3/4", "unit": "oz", "item": "fresh lemon juice" },
       { "amount": "3/4", "unit": "oz", "item": "simple syrup" },
-      { "amount": "1/2", "unit": "oz", "item": "dry red wine" }
+      { "amount": "1/2", "unit": "oz", "item": "vegan dry red wine (such as Yellow Tail Shiraz)" }
     ],
     "steps": [
       "Shake the whiskey, lemon and syrup with ice and strain over fresh ice.",
@@ -10609,7 +10612,7 @@
       { "amount": "1", "unit": "oz", "item": "gin" },
       { "amount": "1/2", "unit": "oz", "item": "Campari" },
       { "amount": "1/2", "unit": "oz", "item": "Cointreau" },
-      { "amount": "1/2", "unit": "oz", "item": "dry vermouth" }
+      { "amount": "1/2", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" }
     ],
     "steps": ["Stir everything with ice.", "Strain into a chilled coupe."],
     "allergens": [],
@@ -10671,7 +10674,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "rye" },
-      { "amount": "1", "unit": "oz", "item": "dry vermouth" },
+      { "amount": "1", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
       { "amount": "3/4", "unit": "oz", "item": "fresh lemon juice" },
       { "amount": "3/4", "unit": "oz", "item": "grenadine" },
       { "amount": "1", "unit": "dash", "item": "orange bitters" }
@@ -10714,7 +10717,7 @@
       { "amount": "1/2", "unit": "oz", "item": "Cointreau" },
       { "amount": "7", "unit": "dashes", "item": "Angostura bitters" },
       { "amount": "7", "unit": "dashes", "item": "Peychaud's bitters" },
-      { "amount": "4", "unit": "oz", "item": "Champagne" }
+      { "amount": "4", "unit": "oz", "item": "vegan Champagne (such as Moët & Chandon Impérial)" }
     ],
     "steps": ["Stir the bourbon, Cointreau and bitters in a flute.", "Top with Champagne."],
     "allergens": [],
@@ -10907,8 +10910,8 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "2", "unit": "oz", "item": "blended Scotch" },
-      { "amount": "1", "unit": "oz", "item": "ruby port" },
-      { "amount": "1/2", "unit": "oz", "item": "dry vermouth" },
+      { "amount": "1", "unit": "oz", "item": "vegan ruby port (such as Cockburn's Special Reserve)" },
+      { "amount": "1/2", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
       { "amount": "1", "unit": "dash", "item": "Peychaud's bitters" }
     ],
     "steps": ["Stir everything with ice.", "Strain into a chilled coupe."],
@@ -10926,7 +10929,7 @@
     "prep_minutes": 4,
     "cook_minutes": 0,
     "ingredients": [
-      { "amount": "2", "unit": "oz", "item": "oloroso or cream sherry" },
+      { "amount": "2", "unit": "oz", "item": "vegan oloroso sherry (such as Barbadillo Oloroso Seco)" },
       { "amount": "1", "unit": "", "item": "whole egg" },
       { "amount": "1/4", "unit": "oz", "item": "simple syrup" }
     ],
@@ -11050,7 +11053,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1", "unit": "oz", "item": "gin" },
-      { "amount": "1", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "1", "unit": "oz", "item": "green Chartreuse" },
       { "amount": "1", "unit": "dash", "item": "orange bitters" }
     ],
@@ -11756,7 +11759,7 @@
       { "amount": "2", "unit": "tbsp", "item": "pepper soup spice (ehuru, uda, uziza blend)" },
       { "amount": "1", "unit": "tbsp", "item": "ground crayfish" },
       { "amount": "1", "unit": "tbsp", "item": "grated ginger" },
-      { "amount": "2", "unit": "", "item": "stock cubes" },
+      { "amount": "2", "unit": "", "item": "gluten-free stock cubes (such as Herb-Ox)" },
       { "amount": "1 1/2", "unit": "tsp", "item": "salt" },
       { "amount": "8", "unit": "cups", "item": "water" },
       { "amount": "1", "unit": "handful", "item": "uziza, utazi or scent leaves (or basil), chopped" },
@@ -12007,7 +12010,7 @@
       { "amount": "5", "unit": "", "item": "large onions, thinly sliced" },
       { "amount": "1", "unit": "", "item": "Scotch bonnet chili, left whole and pricked" },
       { "amount": "1", "unit": "", "item": "bay leaf" },
-      { "amount": "1", "unit": "", "item": "stock cube" },
+      { "amount": "1", "unit": "", "item": "gluten-free stock cube (such as Herb-Ox)" },
       { "amount": "1", "unit": "cup", "item": "water" },
       { "amount": "1/2", "unit": "cup", "item": "green olives" },
       { "amount": "1 1/2", "unit": "tsp", "item": "salt and 1 tsp black pepper" },
@@ -12121,7 +12124,7 @@
       { "amount": "1/2", "unit": "tsp", "item": "salt and a pinch of pepper" },
       { "amount": "1/4", "unit": "cup", "item": "flour" },
       { "amount": "1", "unit": "", "item": "egg, beaten, for coating" },
-      { "amount": "1", "unit": "cup", "item": "panko breadcrumbs" },
+      { "amount": "1", "unit": "cup", "item": "dairy-free panko breadcrumbs (such as Kikkoman)" },
       { "amount": "", "unit": "", "item": "neutral oil, for frying" },
       { "amount": "3/4", "unit": "cup", "item": "dashi" },
       { "amount": "2", "unit": "tbsp", "item": "soy sauce" },
@@ -12312,7 +12315,7 @@
     "prep_minutes": 5,
     "cook_minutes": 0,
     "ingredients": [
-      { "amount": "1 1/2", "unit": "oz", "item": "amaretto" },
+      { "amount": "1 1/2", "unit": "oz", "item": "nut-free amaretto (such as Disaronno)" },
       { "amount": "3/4", "unit": "oz", "item": "cask-strength bourbon" },
       { "amount": "1", "unit": "oz", "item": "fresh lemon juice" },
       { "amount": "1", "unit": "tsp", "item": "rich simple syrup (2:1)" },
@@ -12350,7 +12353,7 @@
       { "amount": "1/2", "unit": "oz", "item": "Galliano L'Autentico" },
       { "amount": "2", "unit": "oz", "item": "pineapple juice" },
       { "amount": "1", "unit": "dash", "item": "fresh lime juice" },
-      { "amount": "1 1/2", "unit": "oz", "item": "Prosecco, chilled" }
+      { "amount": "1 1/2", "unit": "oz", "item": "vegan prosecco (such as Mionetto Organic), chilled" }
     ],
     "steps": [
       "Shake the rum, Galliano, pineapple juice and lime with ice until very cold.",
@@ -12638,7 +12641,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "cognac" },
-      { "amount": "3/4", "unit": "oz", "item": "amaretto" }
+      { "amount": "3/4", "unit": "oz", "item": "nut-free amaretto (such as Disaronno)" }
     ],
     "steps": ["Fill a rocks glass with ice, ideally one large cube.", "Add the cognac and amaretto and stir for 15 seconds."],
     "allergens": ["tree nuts"],
@@ -12729,7 +12732,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1/2", "unit": "oz", "item": "crème de cassis" },
-      { "amount": "4", "unit": "oz", "item": "dry white wine (traditionally Bourgogne Aligoté), well chilled" }
+      { "amount": "4", "unit": "oz", "item": "vegan dry white wine (such as Bonterra Sauvignon Blanc), well chilled" }
     ],
     "steps": ["Pour the crème de cassis into a chilled white wine glass.", "Top with the cold wine; it mixes as you pour."],
     "allergens": [],
@@ -12780,7 +12783,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "cognac or brandy" },
-      { "amount": "1", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "1/4", "unit": "oz", "item": "orange curaçao" }
     ],
     "steps": [
@@ -12878,7 +12881,7 @@
     "prep_minutes": 3,
     "cook_minutes": 0,
     "ingredients": [
-      { "amount": "3", "unit": "oz", "item": "oloroso sherry" },
+      { "amount": "3", "unit": "oz", "item": "vegan oloroso sherry (such as Barbadillo Oloroso Seco)" },
       { "amount": "1", "unit": "tsp", "item": "rich simple syrup (2:1)" },
       { "amount": "", "unit": "", "item": "nutmeg, freshly grated" }
     ],
@@ -12912,7 +12915,7 @@
     "prep_minutes": 1,
     "cook_minutes": 0,
     "ingredients": [
-      { "amount": "1", "unit": "bottle (12 oz)", "item": "light lager (such as Miller High Life), ice-cold" },
+      { "amount": "1", "unit": "bottle (12 oz)", "item": "vegan light lager (such as Miller High Life), ice-cold" },
       { "amount": "1 1/2", "unit": "oz", "item": "Aperol" },
       { "amount": "1/2", "unit": "oz", "item": "fresh lemon juice" }
     ],
@@ -13075,7 +13078,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "1 1/2", "unit": "oz", "item": "St-Germain elderflower liqueur" },
-      { "amount": "2", "unit": "oz", "item": "dry sparkling wine, chilled" },
+      { "amount": "2", "unit": "oz", "item": "vegan dry sparkling wine (such as Mionetto Organic Prosecco), chilled" },
       { "amount": "2", "unit": "oz", "item": "soda water, chilled" }
     ],
     "steps": [
@@ -13176,7 +13179,7 @@
     "cook_minutes": 0,
     "ingredients": [
       { "amount": "2", "unit": "oz", "item": "Irish whiskey" },
-      { "amount": "1", "unit": "oz", "item": "sweet vermouth" },
+      { "amount": "1", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
       { "amount": "1/2", "unit": "oz", "item": "green Chartreuse" },
       { "amount": "2", "unit": "dashes", "item": "Angostura bitters" }
     ],
