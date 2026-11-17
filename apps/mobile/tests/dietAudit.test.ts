@@ -172,6 +172,8 @@ describe("diet rules", () => {
     expect(diet_profile(dish("Mix", ["vegan butter and eggs"]), "meal").fits).not.toContain("vegan");
     const gimlet = dish("Gimlet", ["gin", "lime juice", "sugar-free simple syrup"], drink);
     expect(diet_profile(gimlet, "cocktail").fits).toContain("low-carb");
+    expect(diet_profile(dish("Gin and tonic", ["gin", "sugar-free tonic water"], drink), "cocktail").fits).toContain("low-carb");
+    expect(diet_profile(dish("Mule", ["vodka", "sugar-free ginger beer"], drink), "cocktail").fits).toContain("low-carb");
   });
 
   it("does not hide incompatible ingredients after an ampersand or a sugar-free qualifier", () => {

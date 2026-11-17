@@ -204,7 +204,7 @@ export function cups(amount: string, unit: string): number {
 
 // Words that look like a starch or sugar but aren't one here.
 const NOT_CARB =
-  /\b((?:low-carb|diet|keto)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}|sugar-free (?:simple syrup|syrup|sugar|sweetener)|garam masala|nihari masala|[a-z ]*masala|rice (?:vinegar|wine)|for the dough|pasta water|noodle water|corn husks|(?:long|green|fermented black|coffee) beans|honeycomb|corn oil|cornish)\b/g;
+  /\b((?:low-carb|diet|keto)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}|sugar-free (?:simple syrup|syrup|sugar|sweetener|tonic water|tonic|ginger beer|ginger ale|cola|soda|lemonade|grenadine)|garam masala|nihari masala|[a-z ]*masala|rice (?:vinegar|wine)|for the dough|pasta water|noodle water|corn husks|(?:long|green|fermented black|coffee) beans|honeycomb|corn oil|cornish)\b/g;
 // Condiments with some sugar: they can be swapped for sugar-free ones, so they never make a dish "none".
 const CONDIMENT = /\b(ketchup|barbecue sauce|hoisin|kecap manis|sweet soy|sweet chili sauce|mirin|chutney)\b/;
 
