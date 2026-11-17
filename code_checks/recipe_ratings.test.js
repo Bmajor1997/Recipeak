@@ -44,6 +44,20 @@ test("each account has a daily limit", () => {
   }
 });
 
+test("rating retention removes expired notes and keeps newer ratings", () => {
+  let date = new Date("2024-01-01T00:00:00.000Z");
+  const store = create_usage_store({}, { now: () => date });
+  try {
+    store.ratings.rate("alice", rating({ dish: "Old" }));
+    date = new Date("2026-01-02T00:00:00.000Z");
+    store.ratings.rate("alice", rating({ dish: "Fresh" }));
+    store.ratings.prune();
+    assert.deepEqual(store.ratings.summary().dishes.map((dish) => dish.dish), ["fresh"]);
+  } finally {
+    store.close();
+  }
+});
+
 test("anyone signed in can rate; only admins can read the summary", async () => {
   const store = create_usage_store();
   const authorize = async (request) => {

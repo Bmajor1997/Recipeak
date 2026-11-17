@@ -53,8 +53,26 @@ export type SendRating = (input: {
   note: string;
 }) => Promise<void>;
 
+type Queue = { sending: Promise<void> | null; writing: Promise<void>; rerun: boolean };
+const queues = new WeakMap<KeyValueStorage, Map<string, Queue>>();
+
 export function create_ratings(storage: KeyValueStorage, uid: string, send: SendRating, now = () => new Date()) {
-  let sending: Promise<void> | null = null;
+  let accounts = queues.get(storage);
+  if (!accounts) {
+    accounts = new Map();
+    queues.set(storage, accounts);
+  }
+  let queue = accounts.get(uid);
+  if (!queue) {
+    queue = { sending: null, writing: Promise.resolve(), rerun: false };
+    accounts.set(uid, queue);
+  }
+  const state = queue;
+  function update(work: () => Promise<void>): Promise<void> {
+    const next = state.writing.then(work);
+    state.writing = next.catch(() => {});
+    return next;
+  }
   async function read_all(): Promise<Record<string, Rating>> {
     try {
       const raw = JSON.parse((await storage.getItem(storage_name(uid))) ?? "{}") as Record<string, unknown>;
@@ -70,23 +88,31 @@ export function create_ratings(storage: KeyValueStorage, uid: string, send: Send
   }
   const write_all = (all: Record<string, Rating>) => storage.setItem(storage_name(uid), JSON.stringify(all));
 
-  return {
+  const ratings = {
     async get(kind: Kind, dish: string): Promise<Rating | null> {
       return (await read_all())[rating_key(kind, dish)] ?? null;
     },
     /** Keeps the rating on the phone. Send it with send_pending; the screen doesn't wait for the server. */
     async save(kind: Kind, dish: string, input: { stars: number; made: boolean; tags: RatingTag[]; note: string }): Promise<void> {
-      const all = await read_all();
-      const note = input.note.trim().slice(0, MAX_NOTE);
-      all[rating_key(kind, dish)] = { ...input, note, sent: false, updated_at: now().toISOString() };
-      await write_all(all);
+      await update(async () => {
+        const all = await read_all();
+        const note = input.note.trim().slice(0, MAX_NOTE);
+        all[rating_key(kind, dish)] = { ...input, note, sent: false, updated_at: now().toISOString() };
+        await write_all(all);
+      });
     },
     /** Sends any ratings that were kept while offline. */
     async send_pending(): Promise<void> {
-      if (sending) return sending;
-      sending = (async () => {
-        for (const [key, r] of Object.entries(await read_all())) {
-          if (r.sent) continue;
+      if (state.sending) {
+        state.rerun = true;
+        return state.sending;
+      }
+      state.sending = (async () => {
+        while (true) {
+          await state.writing;
+          const pending = Object.entries(await read_all()).find(([, rating]) => !rating.sent);
+          if (!pending) return;
+          const [key, r] = pending;
           const [kind, dish] = key.split("|") as [Kind, string];
           try {
             await send({ kind, dish, stars: r.stars, made: r.made, tags: r.tags, note: r.note });
@@ -94,18 +120,25 @@ export function create_ratings(storage: KeyValueStorage, uid: string, send: Send
             return;
           }
           // Mark it sent only if it wasn't changed again while it was being sent.
-          const latest = await read_all();
-          if (latest[key]?.updated_at === r.updated_at) {
-            latest[key] = { ...latest[key], sent: true };
-            await write_all(latest);
-          }
+          await update(async () => {
+            const latest = await read_all();
+            if (JSON.stringify(latest[key]) === JSON.stringify(r)) {
+              latest[key] = { ...latest[key], sent: true };
+              await write_all(latest);
+            }
+          });
         }
       })().finally(() => {
-        sending = null;
+        state.sending = null;
+        if (state.rerun) {
+          state.rerun = false;
+          void ratings.send_pending();
+        }
       });
-      return sending;
+      return state.sending;
     },
   };
+  return ratings;
 }
 
 export type Ratings = ReturnType<typeof create_ratings>;

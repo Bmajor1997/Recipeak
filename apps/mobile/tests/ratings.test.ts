@@ -42,13 +42,17 @@ describe("recipe ratings", () => {
     expect((await ratings.get("cocktail", "Mojito"))?.sent).toBe(true);
   });
 
-  it("doesn't mark a rating sent if it changed while sending", async () => {
+  it("sends a newer rating changed while the old version is sending", async () => {
     let release: () => void = () => {};
     let clock = 0;
+    const sent: number[] = [];
     const ratings = create_ratings(
       memory(),
       "dana",
-      () => new Promise<void>((r) => (release = r)),
+      async (rating) => {
+        sent.push(rating.stars);
+        if (sent.length === 1) await new Promise<void>((r) => (release = r));
+      },
       () => new Date(++clock * 1000),
     );
     await ratings.save("meal", "Pho", input);
@@ -57,7 +61,8 @@ describe("recipe ratings", () => {
     await ratings.save("meal", "Pho", { ...input, stars: 1 });
     release();
     await sending;
-    expect(await ratings.get("meal", "Pho")).toMatchObject({ stars: 1, sent: false });
+    expect(sent).toEqual([4, 1]);
+    expect(await ratings.get("meal", "Pho")).toMatchObject({ stars: 1, sent: true });
   });
 
   it("keeps each account's ratings apart and ignores damaged data", async () => {
@@ -66,6 +71,27 @@ describe("recipe ratings", () => {
     expect(await create_ratings(storage, "bob", async () => {}).get("meal", "Pho")).toBeNull();
     storage.data.set("mealsandmixers.ratings.v1.carol", JSON.stringify({ [rating_key("meal", "Pho")]: { stars: 9, made: true } }));
     expect(await create_ratings(storage, "carol", async () => {}).get("meal", "Pho")).toBeNull();
+  });
+
+  it("serializes updates across instances for the same account", async () => {
+    const storage = memory();
+    let release: () => void = () => {};
+    const sent: number[] = [];
+    const send = async (rating: { stars: number }) => {
+      sent.push(rating.stars);
+      if (sent.length === 1) await new Promise<void>((resolve) => (release = resolve));
+    };
+    const first = create_ratings(storage, "alice", send, () => new Date(0));
+    const second = create_ratings(storage, "alice", send, () => new Date(0));
+    await first.save("meal", "Pho", input);
+    const pending = first.send_pending();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    await second.save("meal", "Pho", { ...input, stars: 1 });
+    void second.send_pending();
+    release();
+    await pending;
+    expect(sent).toEqual([4, 1]);
+    expect(await second.get("meal", "Pho")).toMatchObject({ stars: 1, sent: true });
   });
 
   it("offers tags that fit meals and drinks", () => {

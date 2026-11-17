@@ -78,7 +78,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     [uid],
   );
   const recent = useMemo(() => (uid ? create_recently_viewed(AsyncStorage, uid) : null), [uid]);
-  const ratings = useMemo(() => (uid ? create_ratings(AsyncStorage, uid, (input) => api.rate_recipe(input)) : null), [uid, api]);
+  const ratings = useMemo(() => (uid ? create_ratings(AsyncStorage, uid, (input) => api.rate_recipe(input, uid)) : null), [uid, api]);
   // Ratings made while offline are sent the next time the app opens with this account.
   useEffect(() => {
     void ratings?.send_pending();

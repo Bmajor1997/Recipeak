@@ -17,12 +17,17 @@ export class ApiError extends Error {
   }
 }
 
-type Deps = { baseUrl: string | undefined; id_token: () => Promise<string | null>; fetch_impl?: typeof fetch; timeoutMs?: number };
+type Deps = {
+  baseUrl: string | undefined;
+  id_token: (expected_uid?: string) => Promise<string | null>;
+  fetch_impl?: typeof fetch;
+  timeoutMs?: number;
+};
 
 export function create_api({ baseUrl, id_token, fetch_impl = fetch, timeoutMs = 75_000 }: Deps) {
-  async function request(path: string, init: { method: "GET" | "POST"; body?: unknown }): Promise<unknown> {
+  async function request(path: string, init: { method: "GET" | "POST"; body?: unknown; expected_uid?: string }): Promise<unknown> {
     if (!baseUrl) throw new ApiError("This build isn't connected to the recipe server yet.", 0);
-    const token = await id_token();
+    const token = await id_token(init.expected_uid);
     if (!token) throw new ApiError("Please sign in again.", 401);
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
@@ -112,8 +117,11 @@ export function create_api({ baseUrl, id_token, fetch_impl = fetch, timeoutMs = 
       return parse_allowance(await request("/api/allowance", { method: "GET" }));
     },
     /** Saves this account's rating for a dish, replacing any earlier one. */
-    async rate_recipe(input: { kind: Kind; dish: string; stars: number; made: boolean; tags: string[]; note: string }): Promise<void> {
-      await request("/api/recipe-rating", { method: "POST", body: input });
+    async rate_recipe(
+      input: { kind: Kind; dish: string; stars: number; made: boolean; tags: string[]; note: string },
+      expected_uid: string,
+    ): Promise<void> {
+      await request("/api/recipe-rating", { method: "POST", body: input, expected_uid });
     },
     /** Sends a feature request or bug report. Sending again with the same request_id never saves it twice. */
     async send_feedback(input: { kind: FeedbackKind; title: string; description: string; request_id: string }): Promise<string> {
