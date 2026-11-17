@@ -20,6 +20,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { type CurrentRecipe, useApp } from "../AppContext";
 import { ApiError } from "../api/client";
 import { useCamera } from "../camera/CameraProvider";
+import { diets_for_kind, or_list, tap_diets } from "../onboarding/onboarding";
+import { useOnboarding } from "../onboarding/OnboardingProvider";
 import { FREE_SAVED_RECIPES } from "../paywall/plans";
 import { bundled_version } from "../recipes/bundled";
 import { format_ingredient, format_minutes, recipe_as_text } from "../recipes/format";
@@ -126,10 +128,12 @@ function RecipeView({ current }: { current: Ready }) {
   const { width, height } = useWindowDimensions();
   const { recipe, kind, guesses, selected } = current;
   const dishName = guesses[selected]?.name ?? recipe.title;
-  const [diet, set_diet] = useState<Diet | null>(null);
+  const [diet, set_diet] = useState<Diet | null>(current.diet ?? null);
   const [busy, set_busy] = useState(false);
   const [problem, set_problem] = useState<string | null>(null);
-  const [notice, set_notice] = useState<string | null>(null);
+  const [notice, set_notice] = useState<string | null>(
+    current.diet ? `Showing the ${current.diet} version, from your diet in Settings.` : null,
+  );
   const [servings, set_servings] = useState(recipe.servings || 1);
   const [shownRecipe, set_shown_recipe] = useState(recipe);
 
@@ -143,6 +147,11 @@ function RecipeView({ current }: { current: Ready }) {
   const coverUri = current.localPhoto ?? cover.uri;
   const factor = servings / (recipe.servings || 1);
   const coverHeight = Math.min(Math.round(height * 0.42), 400);
+
+  // The diets chosen in the first-launch tour (or later in Settings). Bundled dishes open in their vegetarian or vegan
+  // version on their own (see useOpenWallDish); other diets come from the server and wait for a tap.
+  const myDiets = diets_for_kind(useOnboarding().values.diets, kind);
+  const tapHint = tap_diets(myDiets, kind).filter((d) => d !== diet);
 
   async function load_version(index: number, nextDiet: Diet | null) {
     const guess = guesses[index];
@@ -292,6 +301,7 @@ function RecipeView({ current }: { current: Ready }) {
           {busy && <Notice>Getting that version…</Notice>}
           {problem && <Notice tone="error">{problem}</Notice>}
           {notice && <Notice>{notice}</Notice>}
+          {tapHint.length > 0 && <Notice>For your diet, tap {or_list(tapHint)} below.</Notice>}
           {preferences.error && (
             <Notice>
               Offline cover preferences could not load. You can still save recipe text. Retry loading preferences in Settings.

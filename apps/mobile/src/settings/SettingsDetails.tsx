@@ -10,6 +10,9 @@ import { recipe_as_text } from "../recipes/format";
 import type { Allowance, SavedRecipe } from "../recipes/types";
 import { Button, Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
 import { FEEDBACK_KINDS, FEEDBACK_TEXT, type FeedbackKind } from "../feedback/feedback";
+import { DietPicker, InterestPicker } from "../onboarding/Choices";
+import { toggle_diet } from "../onboarding/onboarding";
+import { useOnboarding } from "../onboarding/OnboardingProvider";
 import { usePreferences } from "./PreferencesProvider";
 import { APPEARANCES, type Appearance } from "./preferences";
 import { CATEGORIES, type Category, Group, Row, SettingsScreen } from "./SettingsUI";
@@ -21,6 +24,8 @@ export function SettingsDetails({ category }: { category: Category }) {
         <Account />
       ) : category === "preferences" ? (
         <Preferences />
+      ) : category === "taste" ? (
+        <Taste />
       ) : category === "library" ? (
         <Library />
       ) : category === "usage" ? (
@@ -31,6 +36,32 @@ export function SettingsDetails({ category }: { category: Category }) {
         <Help />
       )}
     </SettingsScreen>
+  );
+}
+
+/** The answers from the first-launch tour: what Home shows more of, and which diet recipes open in. */
+function Taste() {
+  const { type } = useTheme();
+  const { values, update } = useOnboarding();
+  return (
+    <>
+      <Text style={type.muted}>Changes are saved on this phone right away.</Text>
+      <Group title="WHAT ARE YOU HERE FOR?">
+        <View style={{ padding: 12 }}>
+          <InterestPicker value={values.interest} onChange={(interest) => update({ interest })} />
+        </View>
+      </Group>
+      <Text style={type.muted}>{"You'll still see both. This only changes the mix on Home."}</Text>
+      <Group title="HOW DO YOU EAT?">
+        <View style={{ padding: 12 }}>
+          <DietPicker value={values.diets} onToggle={(choice) => update({ diets: toggle_diet(values.diets, choice) })} />
+        </View>
+      </Group>
+      <Text style={type.muted}>
+        Vegetarian and vegan versions of the dishes on Home and Explore open on their own. For other diets, tap the diet under &quot;Make
+        it…&quot; on a recipe.
+      </Text>
+    </>
   );
 }
 

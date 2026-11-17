@@ -8,6 +8,7 @@ import { useTheme, useThemedStyles, type Palette, create_type } from "../ui/them
 export const CATEGORIES = {
   account: "Account",
   preferences: "Preferences",
+  taste: "Cocktails, meals & diet",
   library: "Saved recipes & storage",
   usage: "Photo allowance",
   help: "Help & privacy",

@@ -1,6 +1,7 @@
 import { createRequire } from "node:module";
 import { createElement, type ReactElement, useEffect } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { OnboardingProvider } from "../src/onboarding/OnboardingProvider";
 import { PreferencesProvider, usePreferences } from "../src/settings/PreferencesProvider";
 import { SettingsDetails } from "../src/settings/SettingsDetails";
 import Settings from "../src/app/(tabs)/settings";
@@ -63,7 +64,7 @@ const mounted: Rendered[] = [];
 async function render(node: ReactElement) {
   let tree!: Rendered;
   await act(async () => {
-    tree = create(createElement(PreferencesProvider, null, node));
+    tree = create(createElement(OnboardingProvider, null, createElement(PreferencesProvider, null, node)));
   });
   mounted.push(tree);
   return tree;

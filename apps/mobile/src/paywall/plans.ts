@@ -14,13 +14,14 @@ export type Plan = {
 export const FREE_TRIAL_DAYS = 7;
 
 /** What the free plan includes: 3 photos (counted on the server) and up to 3 recipes in Saved (counted on the phone). */
-const FREE_PHOTOS = 3;
+export const FREE_PHOTOS = 3;
 export const FREE_SAVED_RECIPES = 3;
 
-/** Why the paywall opened: the free photos ran out, or Saved is full. */
-export type PaywallReason = "photos" | "saved";
+/** Why the paywall opened: the free photos ran out, Saved is full, or "See Premium" in the first-launch tour. */
+export type PaywallReason = "photos" | "saved" | "intro";
 
 export function paywall_eyebrow(reason: PaywallReason): string {
+  if (reason === "intro") return "RECIPEEK PREMIUM";
   return reason === "saved" ? `YOU'VE SAVED YOUR ${FREE_SAVED_RECIPES} FREE RECIPES` : `YOU'VE USED YOUR ${FREE_PHOTOS} FREE PHOTOS`;
 }
 
