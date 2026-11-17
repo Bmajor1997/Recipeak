@@ -23,7 +23,17 @@ export type DietProfile = {
 /** A hand decision for one bundled dish, made in the audit (see dietReview.json). */
 export type DietOverride = { status: DietStatus; why: string };
 
-type Rule = { bad: RegExp[]; unsure?: RegExp[]; core?: RegExp[]; raw?: boolean };
+type Rule = { bad: RegExp[]; unsure?: RegExp[]; core?: RegExp[]; raw?: boolean; qualified?: RegExp };
+
+// A word in front of an ingredient that settles it for one diet: "vegan sweet vermouth", "gluten-free soy sauce".
+// It covers up to three following words, and stops at "and", "or", "with" and "plus" so it can't hide the next item.
+const VEGETARIAN_OK = /\b(?:vegan|plant-based|vegetarian|meatless)(?: (?!and\b|or\b|with\b|plus\b)[a-z'&-]+){1,3}/g;
+const VEGAN_OK = /\b(?:vegan|plant-based)(?: (?!and\b|or\b|with\b|plus\b)[a-z'&-]+){1,3}/g;
+const DAIRY_FREE_OK = /\b(?:vegan|plant-based|dairy-free)(?: (?!and\b|or\b|with\b|plus\b)[a-z'&-]+){1,3}/g;
+const GLUTEN_FREE_OK = /\bgluten-free(?: (?!and\b|or\b|with\b|plus\b)[a-z'&-]+){1,3}/g;
+const NUT_FREE_OK = /\bnut-free(?: (?!and\b|or\b|with\b|plus\b)[a-z'&-]+){1,3}/g;
+// Cheeses made with animal rennet by tradition (Parmesan by law): not vegetarian, but easy to swap.
+const RENNET = /\b(?:parmesan|parmigiano|pecorino|grana padano)/i;
 
 /** The first of the patterns found in the text. */
 function first_match(text: string, patterns: RegExp[] | undefined): string | null {
@@ -42,7 +52,7 @@ const EGG_CORE = /\b(?:eggs?\b|omelet(?:te)?|frittata|huevos|quiche)/i;
 const MEAT_UNSURE = /\b(?:broth|stock\b|stock cubes?|bouillon|kimchi|curry paste|laksa paste|nam prik pao|chili paste|sinigang|fish-free)/i;
 // Kombu dashi, vegetable broth and the like are plant-based; "or" alternatives are handled separately.
 const PLANT_WORDS =
-  /\b(vegetable (?:broth|stock)|kombu dashi|mushroom dashi|vegan [a-z ]+|plant-based [a-z ]+|eggplant|butter beans|butternut|cocoa butter|peanut butter|cream of coconut|coconut (?:cream|milk)|honeydew|crème de [a-zûé]+|creme de [a-z]+|cream sherry|ginger beer|root beer)\b/g;
+  /\b(vegetable (?:broth|stock)|kombu dashi|mushroom dashi|eggplant|butter beans|butternut|cocoa butter|peanut butter|cream of coconut|coconut (?:cream|milk)|honeydew|crème de [a-zûé]+|creme de [a-z]+|cream sherry|ginger beer|root beer)\b/g;
 
 const DAIRY =
   /\b(?:butter|buttermilk|ghee|smen|kibbeh|milk|cream|crema|cheese|cheddar|mozzarella|parmesan|pecorino|kefalotyri|ricotta|feta|paneer|queso|quesillo|oaxaca|monterey jack|gruy[eè]re|provolone|swiss|yogh?urt|irish cream|mashed potatoes|naan|brioche)/i;
@@ -84,19 +94,20 @@ const STARCH_CORE_TITLE =
 function rule(diet: Diet): Rule | null {
   switch (diet) {
     case "vegetarian":
-      return { bad: [MEAT], unsure: [MEAT_UNSURE], core: [MEAT, MEAT_CORE_EXTRA] };
+      return { bad: [MEAT, RENNET], unsure: [MEAT_UNSURE], core: [MEAT, MEAT_CORE_EXTRA], qualified: VEGETARIAN_OK };
     case "vegan":
       return {
         bad: [MEAT, DAIRY, EGG, HONEY],
         unsure: [MEAT_UNSURE, DAIRY_UNSURE, EGG_UNSURE, FINED],
         core: [MEAT, MEAT_CORE_EXTRA, CHEESE, EGG_CORE],
+        qualified: VEGAN_OK,
       };
     case "dairy-free":
-      return { bad: [DAIRY], unsure: [DAIRY_UNSURE], core: [CHEESE] };
+      return { bad: [DAIRY], unsure: [DAIRY_UNSURE], core: [CHEESE], qualified: DAIRY_FREE_OK };
     case "gluten-free":
-      return { bad: [GLUTEN], unsure: [GLUTEN_UNSURE] };
+      return { bad: [GLUTEN], unsure: [GLUTEN_UNSURE], qualified: GLUTEN_FREE_OK };
     case "nut-free":
-      return { bad: [NUTS], unsure: [NUTS_UNSURE], core: [NUTS_CORE], raw: true };
+      return { bad: [NUTS], unsure: [NUTS_UNSURE], core: [NUTS_CORE], raw: true, qualified: NUT_FREE_OK };
     default:
       return null;
   }
@@ -114,7 +125,7 @@ const REMOVABLE =
 
 // A later "or" choice only counts when it names a real substitute, so "chicken breasts or thighs" is still chicken.
 const SUBSTITUTE =
-  /\b(water|oil|vegetable|mushrooms?|tofu|beans|avocado|maple|agave|sparkling|soda water|tamari|cauliflower|corn tortillas|rice|lime|lemon|juice|salsa|sour cream|plant|ok|grapefruit soda|pineapple juice|extra broth|simple syrup)\b/;
+  /\b(vegan|plant-based|vegetarian|gluten-free|dairy-free|nut-free|water|oil|vegetable|mushrooms?|tofu|beans|avocado|maple|agave|sparkling|soda water|tamari|cauliflower|corn tortillas|rice|lime|lemon|juice|salsa|sour cream|plant|ok|grapefruit soda|pineapple juice|extra broth|simple syrup)\b/;
 
 /** The "or" choices in an ingredient line that name a real substitute ("water or chicken broth" → "water"). */
 function substitutes(text: string): string[] {
@@ -127,7 +138,8 @@ type LineCheck = { verdict: "ok" | "unsure" | "bad"; hit: string; removable: boo
 
 function check_text(text: string, r: Rule, gluten: boolean): Omit<LineCheck, "removable"> {
   // Nut checks read the words as written: coconut milk and peanut butter are not dairy, but they are nuts here.
-  const base = r.raw ? text.toLowerCase().replace(/\b(butternut|nutmeg)\b/g, " ") : clean(text);
+  const plain = r.qualified ? text.toLowerCase().replace(r.qualified, " ok ") : text;
+  const base = r.raw ? plain.toLowerCase().replace(/\b(butternut|nutmeg)\b/g, " ") : clean(plain);
   const t = gluten ? base.replace(GLUTEN_FREE_WORDS, " ok ") : base;
   const bad = first_match(t, r.bad);
   if (bad) return { verdict: "bad", hit: bad };
@@ -191,7 +203,7 @@ export function cups(amount: string, unit: string): number {
 
 // Words that look like a starch or sugar but aren't one here.
 const NOT_CARB =
-  /\b(garam masala|nihari masala|[a-z ]*masala|rice (?:vinegar|wine)|for the dough|pasta water|noodle water|corn husks|(?:long|green|fermented black|coffee) beans|honeycomb|corn oil|cornish)\b/g;
+  /\b((?:sugar-free|low-carb|diet|keto)(?: (?!and\b|or\b|with\b|plus\b)[a-z'&-]+){1,3}|garam masala|nihari masala|[a-z ]*masala|rice (?:vinegar|wine)|for the dough|pasta water|noodle water|corn husks|(?:long|green|fermented black|coffee) beans|honeycomb|corn oil|cornish)\b/g;
 // Condiments with some sugar: they can be swapped for sugar-free ones, so they never make a dish "none".
 const CONDIMENT = /\b(ketchup|barbecue sauce|hoisin|kecap manis|sweet soy|sweet chili sauce|mirin|chutney)\b/;
 

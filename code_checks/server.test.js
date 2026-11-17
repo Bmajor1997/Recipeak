@@ -5,7 +5,7 @@ import { create_app } from "../server/app.js";
 import { curated_keys, image_key } from "../server/dish_images.js";
 import { configure } from "../server/main.js";
 import { PremiumVerificationError } from "../server/premium_access.js";
-import { validate_recipe, parse_image, parse_recipe_request } from "../server/recipe_ai.js";
+import { DIETS, identify_payload, parse_image, parse_recipe_request, recipe_payload, validate_recipe } from "../server/recipe_ai.js";
 import { create_usage_store } from "../server/usage_store.js";
 
 const JPEG = `data:image/jpeg;base64,${Buffer.concat([Buffer.from([0xff, 0xd8, 0xff, 0xe0]), Buffer.alloc(64, 7)]).toString("base64")}`;
@@ -224,4 +224,16 @@ test("only photo-wall dishes, with no diet, can be opened for free", async (t) =
   assert.equal((await s.call("/api/featured-recipe", { body: { name: "Margarita", kind: "cocktail", diet: "vegan" } })).status, 400);
   assert.equal((await s.call("/api/featured-recipe", { user: null, body: { name: "Margarita", kind: "cocktail" } })).status, 401);
   assert.equal(s.calls.length, 0);
+});
+
+test("diet versions get each diet's rules, and every recipe is asked to name ingredients precisely", () => {
+  for (const diet of DIETS) {
+    const text = recipe_payload({ name: "Manhattan", kind: "cocktail", diet }).input[0].content[0].text;
+    assert.match(text, new RegExp(`Make it ${diet}`));
+    assert.ok(text.length > 120, `${diet} has rules`);
+  }
+  assert.match(recipe_payload({ name: "Manhattan", kind: "cocktail", diet: "vegan" }).input[0].content[0].text, /vegan sweet vermouth/);
+  assert.match(recipe_payload({ name: "Pesto", kind: "meal", diet: "vegetarian" }).input[0].content[0].text, /vegetarian hard cheese/);
+  assert.match(recipe_payload({ name: "Pesto", kind: "meal" }).instructions, /vegetable broth/);
+  assert.match(identify_payload("data:image/jpeg;base64,AA").instructions, /vegetable broth/);
 });

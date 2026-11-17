@@ -153,4 +153,22 @@ describe("diet rules", () => {
     expect(diet_profile(dish("Lemonade", ["lemon juice", "water", "sugar"], na), "cocktail").fits).toContain("non-alcoholic");
     expect(diet_profile(dish("Stew", ["beef", "dry red wine"]), "meal").status["non-alcoholic"]).toBeUndefined();
   });
+
+  it("reads a qualifier word only for its own diet, so AI recipes can say an item fits", () => {
+    const drink = { cocktail: { glass: "coupe", garnish: "", alcoholic: true, non_alcoholic_version: null } };
+    expect(diet_profile(dish("Manhattan", ["rye", "vegan sweet vermouth"], drink), "cocktail").fits).toContain("vegan");
+    expect(diet_profile(dish("Toast", ["vegan bread"]), "meal").fits).not.toContain("gluten-free");
+    expect(diet_profile(dish("Stir-fry", ["gluten-free soy sauce", "tofu"]), "meal").fits).toContain("gluten-free");
+    expect(diet_profile(dish("Mix", ["vegan butter and eggs"]), "meal").fits).not.toContain("vegan");
+    const gimlet = dish("Gimlet", ["gin", "lime juice", "sugar-free simple syrup"], drink);
+    expect(diet_profile(gimlet, "cocktail").fits).toContain("low-carb");
+  });
+
+  it("treats parmesan and pecorino as not vegetarian, with a vegetarian hard cheese as the swap", () => {
+    const pesto = diet_profile(dish("Pesto Pasta", ["basil", "grated parmesan", "olive oil"]), "meal");
+    expect(pesto.options).toContain("vegetarian");
+    const veg = diet_profile(dish("Pesto Pasta", ["basil", "vegetarian hard cheese", "olive oil"]), "meal");
+    expect(veg.fits).toContain("vegetarian");
+    expect(diet_profile(dish("Eggplant Parmesan", ["eggplant", "parmesan"]), "meal").options).toContain("vegetarian");
+  });
 });
