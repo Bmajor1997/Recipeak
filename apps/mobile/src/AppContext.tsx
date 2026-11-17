@@ -28,6 +28,8 @@ export type CurrentRecipe =
       savedId: string | null;
       /** True when the person chose the dish (Home wall, Explore), so "Not the right dish?" doesn't apply. */
       picked?: boolean;
+      /** The bundled collection dish this recipe came from, so diet versions can be shown without the server. */
+      bundledId?: string;
     };
 
 type AppState = {

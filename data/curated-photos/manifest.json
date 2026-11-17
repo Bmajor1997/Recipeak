@@ -1800,9 +1800,7 @@
       "kind": "cocktail",
       "names": [
         "Fernandito"
-      ],
-      "hidden": true,
-      "hidden_reason": "Photo shows the wrong glass for this drink; hidden until a new photo is added."
+      ]
     },
     {
       "file": "massaman-curry.jpg",
@@ -2628,9 +2626,7 @@
       "kind": "cocktail",
       "names": [
         "Bloodhound cocktail"
-      ],
-      "hidden": true,
-      "hidden_reason": "Photo shows the wrong glass for this drink; hidden until a new photo is added."
+      ]
     },
     {
       "file": "thai-khao-soi.jpg",
@@ -2714,9 +2710,7 @@
       "kind": "cocktail",
       "names": [
         "Corn n Oil cocktail"
-      ],
-      "hidden": true,
-      "hidden_reason": "Photo shows the wrong glass for this drink; hidden until a new photo is added."
+      ]
     },
     {
       "file": "caipiroska.jpg",
@@ -3003,6 +2997,461 @@
       "kind": "cocktail",
       "names": [
         "Bijou"
+      ]
+    },
+    {
+      "file": "adas-polo.jpg",
+      "kind": "meal",
+      "names": [
+        "Adas Polo",
+        "Persian Lentil Rice"
+      ]
+    },
+    {
+      "file": "ajiaco.jpg",
+      "kind": "meal",
+      "names": [
+        "Ajiaco",
+        "Colombian Chicken and Potato Soup"
+      ]
+    },
+    {
+      "file": "amok-trey.jpg",
+      "kind": "meal",
+      "names": [
+        "Amok Trey",
+        "Fish Amok"
+      ]
+    },
+    {
+      "file": "cape-malay-bredie.jpg",
+      "kind": "meal",
+      "names": [
+        "Cape Malay Tomato Bredie",
+        "Tomato Bredie"
+      ]
+    },
+    {
+      "file": "chakhchoukha.jpg",
+      "kind": "meal",
+      "names": [
+        "Chakhchoukha",
+        "Chakhchouka"
+      ]
+    },
+    {
+      "file": "encebollado.jpg",
+      "kind": "meal",
+      "names": [
+        "Encebollado",
+        "Ecuadorian Fish Soup"
+      ]
+    },
+    {
+      "file": "haitian-griot.jpg",
+      "kind": "meal",
+      "names": [
+        "Haitian Griot",
+        "Griot"
+      ]
+    },
+    {
+      "file": "larb.jpg",
+      "kind": "meal",
+      "names": [
+        "Larb",
+        "Laab",
+        "Larb Moo"
+      ]
+    },
+    {
+      "file": "mantu.jpg",
+      "kind": "meal",
+      "names": [
+        "Mantu",
+        "Afghan Dumplings"
+      ]
+    },
+    {
+      "file": "ropa-vieja.jpg",
+      "kind": "meal",
+      "names": [
+        "Ropa Vieja",
+        "Cuban Shredded Beef"
+      ]
+    },
+    {
+      "file": "caldo-verde.jpg",
+      "kind": "meal",
+      "names": [
+        "Caldo Verde",
+        "Portuguese Kale Soup"
+      ]
+    },
+    {
+      "file": "cou-cou-and-flying-fish.jpg",
+      "kind": "meal",
+      "names": [
+        "Cou-Cou and Flying Fish",
+        "Cou Cou and Flying Fish"
+      ]
+    },
+    {
+      "file": "cracked-conch.jpg",
+      "kind": "meal",
+      "names": [
+        "Cracked Conch"
+      ]
+    },
+    {
+      "file": "dan-dan-noodles.jpg",
+      "kind": "meal",
+      "names": [
+        "Dan Dan Noodles",
+        "Dandan Noodles"
+      ]
+    },
+    {
+      "file": "momos.jpg",
+      "kind": "meal",
+      "names": [
+        "Momos",
+        "Momo",
+        "Tibetan Dumplings"
+      ]
+    },
+    {
+      "file": "nasi-lemak.jpg",
+      "kind": "meal",
+      "names": [
+        "Nasi Lemak"
+      ]
+    },
+    {
+      "file": "nigerian-pepper-soup.jpg",
+      "kind": "meal",
+      "names": [
+        "Nigerian Pepper Soup",
+        "Pepper Soup"
+      ]
+    },
+    {
+      "file": "pasta-alla-norma.jpg",
+      "kind": "meal",
+      "names": [
+        "Pasta alla Norma",
+        "Pasta Norma"
+      ]
+    },
+    {
+      "file": "romanian-tripe-soup.jpg",
+      "kind": "meal",
+      "names": [
+        "Romanian Tripe Soup",
+        "Ciorbă de Burtă"
+      ]
+    },
+    {
+      "file": "uzbek-plov.jpg",
+      "kind": "meal",
+      "names": [
+        "Uzbek Plov",
+        "Plov",
+        "Osh"
+      ]
+    },
+    {
+      "file": "bigos.jpg",
+      "kind": "meal",
+      "names": [
+        "Bigos",
+        "Hunter’s Stew"
+      ]
+    },
+    {
+      "file": "chicken-paprikash.jpg",
+      "kind": "meal",
+      "names": [
+        "Chicken Paprikash",
+        "Paprikás Csirke"
+      ]
+    },
+    {
+      "file": "chicken-yassa.jpg",
+      "kind": "meal",
+      "names": [
+        "Chicken Yassa",
+        "Yassa Poulet"
+      ]
+    },
+    {
+      "file": "finnish-salmon-soup.jpg",
+      "kind": "meal",
+      "names": [
+        "Finnish Salmon Soup",
+        "Lohikeitto"
+      ]
+    },
+    {
+      "file": "imam-bayildi.jpg",
+      "kind": "meal",
+      "names": [
+        "Imam Bayildi",
+        "Stuffed Eggplant"
+      ]
+    },
+    {
+      "file": "katsudon.jpg",
+      "kind": "meal",
+      "names": [
+        "Katsudon"
+      ]
+    },
+    {
+      "file": "mangu.jpg",
+      "kind": "meal",
+      "names": [
+        "Mangú",
+        "Los Tres Golpes"
+      ]
+    },
+    {
+      "file": "mohinga.jpg",
+      "kind": "meal",
+      "names": [
+        "Mohinga"
+      ]
+    },
+    {
+      "file": "samgyetang.jpg",
+      "kind": "meal",
+      "names": [
+        "Samgyetang",
+        "Ginseng Chicken Soup"
+      ]
+    },
+    {
+      "file": "tortilla-espanola.jpg",
+      "kind": "meal",
+      "names": [
+        "Tortilla Española",
+        "Spanish Omelette",
+        "Spanish Tortilla"
+      ]
+    },
+    {
+      "file": "amaretto-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Amaretto Sour"
+      ]
+    },
+    {
+      "file": "barracuda.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Barracuda"
+      ]
+    },
+    {
+      "file": "blue-moon.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Blue Moon"
+      ]
+    },
+    {
+      "file": "bourbon-smash.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Bourbon Smash",
+        "Whiskey Smash"
+      ]
+    },
+    {
+      "file": "brooklynite.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Brooklynite"
+      ]
+    },
+    {
+      "file": "cantarito.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Cantarito"
+      ]
+    },
+    {
+      "file": "caribou-lou.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Caribou Lou"
+      ]
+    },
+    {
+      "file": "chilcano.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Chilcano",
+        "Chilcano de Pisco"
+      ]
+    },
+    {
+      "file": "cynar-julep.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Cynar Julep"
+      ]
+    },
+    {
+      "file": "death-flip.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Death Flip"
+      ]
+    },
+    {
+      "file": "french-connection.jpg",
+      "kind": "cocktail",
+      "names": [
+        "French Connection"
+      ]
+    },
+    {
+      "file": "harvey-wallbanger.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Harvey Wallbanger"
+      ]
+    },
+    {
+      "file": "hotel-georgia.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Hotel Georgia"
+      ]
+    },
+    {
+      "file": "kir.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Kir"
+      ]
+    },
+    {
+      "file": "madras.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Madras"
+      ]
+    },
+    {
+      "file": "queen-elizabeth.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Queen Elizabeth"
+      ]
+    },
+    {
+      "file": "raspberry-beret.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Raspberry Beret"
+      ]
+    },
+    {
+      "file": "saturn.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Saturn"
+      ]
+    },
+    {
+      "file": "sherry-sangaree.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Sherry Sangaree",
+        "Sangaree"
+      ]
+    },
+    {
+      "file": "spaghett.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Spaghett"
+      ]
+    },
+    {
+      "file": "b-52.jpg",
+      "kind": "cocktail",
+      "names": [
+        "B-52",
+        "B52 Shot"
+      ]
+    },
+    {
+      "file": "cafe-brulot.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Café Brûlot"
+      ]
+    },
+    {
+      "file": "lynchburg-lemonade.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Lynchburg Lemonade"
+      ]
+    },
+    {
+      "file": "miami-vice.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Miami Vice"
+      ]
+    },
+    {
+      "file": "st-germain-cocktail.jpg",
+      "kind": "cocktail",
+      "names": [
+        "St-Germain Cocktail",
+        "Elderflower Spritz"
+      ]
+    },
+    {
+      "file": "test-pilot.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Test Pilot"
+      ]
+    },
+    {
+      "file": "three-dots-and-a-dash.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Three Dots and a Dash"
+      ]
+    },
+    {
+      "file": "tipperary.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Tipperary"
+      ]
+    },
+    {
+      "file": "woo-woo.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Woo Woo"
+      ]
+    },
+    {
+      "file": "zaza.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Zaza"
       ]
     }
   ]

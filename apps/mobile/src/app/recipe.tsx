@@ -21,6 +21,7 @@ import { type CurrentRecipe, useApp } from "../AppContext";
 import { ApiError } from "../api/client";
 import { useCamera } from "../camera/CameraProvider";
 import { FREE_SAVED_RECIPES } from "../paywall/plans";
+import { bundled_version } from "../recipes/bundled";
 import { format_ingredient, format_minutes, recipe_as_text } from "../recipes/format";
 import { scale_amount } from "../recipes/scale";
 import { RateRecipe } from "../recipes/RateRecipe";
@@ -128,6 +129,7 @@ function RecipeView({ current }: { current: Ready }) {
   const [diet, set_diet] = useState<Diet | null>(null);
   const [busy, set_busy] = useState(false);
   const [problem, set_problem] = useState<string | null>(null);
+  const [notice, set_notice] = useState<string | null>(null);
   const [servings, set_servings] = useState(recipe.servings || 1);
   const [shownRecipe, set_shown_recipe] = useState(recipe);
 
@@ -144,8 +146,17 @@ function RecipeView({ current }: { current: Ready }) {
 
   async function load_version(index: number, nextDiet: Diet | null) {
     const guess = guesses[index];
-    set_busy(true);
     set_problem(null);
+    set_notice(null);
+    // A dish from the bundled collection has hand-written vegetarian and vegan versions: shown at once, offline.
+    const local = current.bundledId && index === selected ? bundled_version(current.bundledId, nextDiet) : null;
+    if (local) {
+      set_diet(nextDiet);
+      if (local.already && nextDiet) set_notice(`This recipe is already ${nextDiet}.`);
+      set_current({ ...current, recipe: local.recipe, savedId: null });
+      return;
+    }
+    set_busy(true);
     try {
       const next = await api.recipe(guess?.name ?? recipe.title, kind, nextDiet ?? undefined);
       set_diet(nextDiet);
@@ -280,6 +291,7 @@ function RecipeView({ current }: { current: Ready }) {
 
           {busy && <Notice>Getting that version…</Notice>}
           {problem && <Notice tone="error">{problem}</Notice>}
+          {notice && <Notice>{notice}</Notice>}
           {preferences.error && (
             <Notice>
               Offline cover preferences could not load. You can still save recipe text. Retry loading preferences in Settings.

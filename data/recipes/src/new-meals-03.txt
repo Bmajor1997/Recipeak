@@ -1,0 +1,420 @@
+@ bigos | Bigos (Polish Hunter's Stew) | 8 | 30 | 150 | - | Poland's slow-cooked hunter's stew: sauerkraut and fresh cabbage braised with smoked kielbasa, pork, wild mushrooms, prunes and red wine until rich, tangy and deeply savory.
+- 1 | oz | dried porcini mushrooms
+- 1 | cup | boiling water, for the mushrooms
+- 6 | oz | thick-cut smoked bacon, diced
+- 1 | lb | pork shoulder, cut into bite-size pieces
+- 1 | lb | smoked kielbasa, sliced into rounds
+- 1 | | large onion, chopped
+- 2 | lb | sauerkraut, drained (keep the juice)
+- 1/2 | head | green cabbage, shredded
+- 10 | | prunes, halved
+- 1 | cup | dry red wine
+- 2 | tbsp | tomato paste
+- 2 | | bay leaves
+- 6 | | allspice berries
+- 5 | | juniper berries, lightly crushed
+- 1 | tsp | caraway seeds
+- 1 | tsp | dried marjoram
+- 1 | tsp | salt and plenty of black pepper
+- | | rye bread or boiled potatoes, to serve
+# Soak the porcini in the boiling water for 20 minutes. Lift them out, chop them, and keep the soaking liquid, leaving any grit behind.
+# In a large heavy pot, cook the bacon until crisp. Brown the pork in the fat for 6 to 8 minutes, then the kielbasa for 3 minutes. Lift everything out.
+# Cook the onion in the same pot for 5 minutes. Add the cabbage and cook 10 minutes until it wilts.
+# Add the sauerkraut, meats, mushrooms and their liquid, prunes, wine, tomato paste and all the spices. Stir well.
+# Cover and simmer very gently for 2 hours, stirring now and then and adding a splash of water if it gets dry. It should be thick, glossy and brown.
+# Taste and balance: add a splash of sauerkraut juice if it's too sweet, or a pinch of sugar if too sour. Serve with rye bread or potatoes.
+T Bigos is famously better on the second and third day. Many Polish cooks reheat it for several days in a row before serving.
+T Taste the sauerkraut first. If it's very sour, rinse it once before using.
+T The dried porcini and prunes give bigos its deep, smoky-sweet flavor; don't leave them out.
+S Keeps 5 days in the fridge and freezes for 3 months; the flavor improves each time it's reheated.
+V Add leftover roast meats such as beef, venison or duck, as hunters once did.
+@@ vegetarian | Vegetarian Bigos | 30 | 90 | - | The same tangy sauerkraut and cabbage stew, made smoky with smoked paprika and rich with plenty of fresh and dried mushrooms.
+~ thick-cut smoked bacon, diced => olive oil
+~ pork shoulder, cut into bite-size pieces => cremini mushrooms, quartered
+~ smoked kielbasa, sliced into rounds => smoked tofu, cubed, and 2 tsp smoked paprika
+~ In a large heavy pot, cook the bacon until crisp. Brown the pork in the fat for 6 to 8 minutes, then the kielbasa for 3 minutes. Lift everything out. => Heat the oil in a large heavy pot. Brown the fresh mushrooms for 6 to 8 minutes, then the smoked tofu for 3 minutes. Lift everything out.
+~ Add the sauerkraut, meats, mushrooms and their liquid => Add the sauerkraut, browned mushrooms and tofu, the porcini and their liquid
+~ Cover and simmer very gently for 2 hours => Cover and simmer very gently for 1 hour
+@@ vegan = vegetarian
+
+@ chicken-paprikash | Chicken Paprikash (Paprikás Csirke) | 4 | 15 | 50 | milk, wheat, eggs | Hungary's comfort classic: bone-in chicken braised in a velvety sauce of onions, sweet Hungarian paprika and sour cream, served over little egg dumplings (nokedli).
+- 2 1/2 | lb | bone-in, skin-on chicken thighs and drumsticks
+- 1 1/2 | tsp | salt, divided
+- 2 | tbsp | lard or oil
+- 2 | | large onions, finely chopped
+- 2 | cloves | garlic, minced
+- 3 | tbsp | sweet Hungarian paprika
+- 1 | | Hungarian wax or bell pepper, chopped
+- 1 | | tomato, chopped
+- 1 1/2 | cups | chicken broth
+- 3/4 | cup | full-fat sour cream, at room temperature
+- 1 | tbsp | flour
+- 2 | cups | flour, for the nokedli
+- 3 | | large eggs, for the nokedli
+- 1/2 | cup | water, for the nokedli
+- 1 | tbsp | butter, for the nokedli
+# Season the chicken with 1 tsp salt. Brown it skin-side down in the lard in a wide pot for 5 to 6 minutes, then turn for 2 minutes. Lift out.
+# Cook the onions in the fat for 10 minutes until soft and golden. Add the garlic for 1 minute.
+# Take the pot off the heat and stir in the paprika, so it doesn't burn. Add the pepper, tomato, broth and the rest of the salt, then return the chicken.
+# Cover and simmer gently for 30 to 35 minutes, until the chicken is tender.
+# Meanwhile, make the nokedli: mix the flour, eggs, water and a pinch of salt into a thick, sticky batter. Scrape small bits into simmering salted water with a spoon or spaetzle maker. When they float, cook 1 minute more, drain and toss with butter.
+# Whisk the sour cream and 1 tbsp flour, then whisk in a ladle of the hot sauce. Stir it into the pot and simmer gently 2 to 3 minutes until thickened. Serve over the nokedli.
+T Always add paprika off the heat. Scorched paprika turns bitter in seconds.
+T Real Hungarian sweet paprika makes the biggest difference; it's richer and redder than generic paprika.
+T Temper the sour cream with hot sauce first so it doesn't split.
+S The braise keeps 3 days; stir in the sour cream when reheating. Nokedli can be made a day ahead and warmed in butter.
+V Serve with egg noodles, rice or mashed potatoes instead of nokedli.
+V Add 1/2 tsp hot paprika for a spicier version.
+@@ vegetarian | Mushroom Paprikash | 15 | 30 | milk, wheat, eggs | Meaty mushrooms simmered in the same onion, paprika and sour cream sauce, served over buttered nokedli.
+~ bone-in, skin-on chicken thighs and drumsticks => mixed mushrooms (cremini, oyster, king oyster), thickly sliced
+~ lard or oil => olive oil
+~ chicken broth => vegetable broth
+~ Season the chicken with 1 tsp salt. Brown it skin-side down in the lard in a wide pot for 5 to 6 minutes, then turn for 2 minutes. Lift out. => Brown the mushrooms in the oil in a wide pot over high heat, in batches, for 6 to 8 minutes. Season with 1 tsp salt and lift out.
+~ Add the pepper, tomato, broth and the rest of the salt, then return the chicken. => Add the pepper, tomato, broth and the rest of the salt, then return the mushrooms.
+~ Cover and simmer gently for 30 to 35 minutes, until the chicken is tender. => Simmer gently, uncovered, for 10 minutes to blend the flavors.
+@@ vegan | Vegan Mushroom Paprikash | 15 | 30 | wheat, tree nuts | Mushrooms in a paprika and onion sauce made creamy with cashew cream, over egg-free dumplings tossed in olive oil.
+~ bone-in, skin-on chicken thighs and drumsticks => mixed mushrooms (cremini, oyster, king oyster), thickly sliced
+~ lard or oil => olive oil
+~ chicken broth => vegetable broth
+~ full-fat sour cream, at room temperature => cashew cream with 1 tsp lemon juice
+~ large eggs, for the nokedli => tbsp olive oil, for the nokedli
+~ water, for the nokedli => water, plus 2 tbsp more, for the nokedli
+~ butter, for the nokedli => olive oil, to toss the nokedli
+~ Season the chicken with 1 tsp salt. Brown it skin-side down in the lard in a wide pot for 5 to 6 minutes, then turn for 2 minutes. Lift out. => Brown the mushrooms in the oil in a wide pot over high heat, in batches, for 6 to 8 minutes. Season with 1 tsp salt and lift out.
+~ Add the pepper, tomato, broth and the rest of the salt, then return the chicken. => Add the pepper, tomato, broth and the rest of the salt, then return the mushrooms.
+~ Cover and simmer gently for 30 to 35 minutes, until the chicken is tender. => Simmer gently, uncovered, for 10 minutes to blend the flavors.
+~ mix the flour, eggs, water and a pinch of salt => mix the flour, olive oil, water and a pinch of salt
+~ drain and toss with butter. => drain and toss with olive oil.
+~ Whisk the sour cream and 1 tbsp flour => Whisk the cashew cream and 1 tbsp flour
+~ Temper the sour cream with hot sauce first so it doesn't split. => Cashew cream won't split, but stir it in at the end so it stays silky.
+~ stir in the sour cream when reheating. Nokedli can be made a day ahead and warmed in butter. => stir in the cashew cream when reheating. Nokedli can be made a day ahead and warmed in olive oil.
+
+@ chicken-yassa | Chicken Yassa | 6 | 20 | 75 | - | Senegal's beloved braise: chicken marinated in lemon, mustard and garlic, grilled, then simmered with a mountain of slowly caramelized onions, olives and a whole hot pepper.
+- 3 | lb | bone-in chicken thighs and legs
+- 4 | | lemons, juiced
+- 3 | tbsp | Dijon mustard, divided
+- 4 | cloves | garlic, minced
+- 1 | tbsp | white vinegar
+- 1/3 | cup | peanut or neutral oil, divided
+- 5 | | large onions, thinly sliced
+- 1 | | Scotch bonnet chili, left whole and pricked
+- 1 | | bay leaf
+- 1 | | stock cube
+- 1 | cup | water
+- 1/2 | cup | green olives
+- 1 1/2 | tsp | salt and 1 tsp black pepper
+- | | white or broken rice, to serve
+# Whisk the lemon juice, 2 tbsp mustard, garlic, vinegar, half the oil, salt and pepper. Toss the chicken and onions in it and marinate at least 3 hours, or overnight.
+# Lift the chicken out, shaking off the onions, and grill or broil it for 5 to 6 minutes a side, until well browned. It doesn't need to be cooked through.
+# Lift the onions from the marinade (keep the liquid). Cook them in the remaining oil in a wide pot over medium heat for 25 to 30 minutes, stirring often, until soft and golden.
+# Add the marinade, remaining mustard, chili, bay leaf, stock cube and water. Nestle in the chicken.
+# Cover and simmer gently for 30 minutes, until the chicken is tender. Add the olives for the last 5 minutes. Serve over rice with plenty of onion sauce.
+T The onions are the star. Give them time to soften and turn sweet before the chicken goes back in.
+T Grilling the chicken first adds a smoky char, the way it's done in Senegal.
+T Keep the chili whole for flavor and gentle heat; break it open if you like it fiery.
+S Marinate up to a day ahead. The finished dish keeps 4 days and tastes even better reheated.
+V Yassa poisson: use thick fish steaks and simmer only 10 minutes.
+@@ vegetarian | Tofu and Chickpea Yassa | 20 | 50 | soy | Grilled tofu and chickpeas simmered in the same lemony mustard sauce with sweet caramelized onions and olives.
+~ bone-in chicken thighs and legs => extra-firm tofu, pressed and cut into thick slabs, plus 1 can (15 oz) chickpeas, drained
+~ stock cube => vegetable stock cube
+~ Toss the chicken and onions in it and marinate at least 3 hours, or overnight. => Toss the tofu and onions in it and marinate at least 1 hour, or overnight.
+~ Lift the chicken out, shaking off the onions, and grill or broil it for 5 to 6 minutes a side, until well browned. It doesn't need to be cooked through. => Lift the tofu out, shaking off the onions, and grill or broil it for 4 to 5 minutes a side, until well browned.
+~ Nestle in the chicken. => Nestle in the tofu and add the chickpeas.
+~ Cover and simmer gently for 30 minutes, until the chicken is tender. => Cover and simmer gently for 15 minutes so the tofu soaks up the sauce.
+~ Grilling the chicken first adds a smoky char, the way it's done in Senegal. => Grilling the tofu first adds a smoky char and helps it hold together.
+@@ vegan = vegetarian
+
+@ finnish-salmon-soup | Lohikeitto (Finnish Salmon Soup) | 4 | 15 | 30 | fish, milk | Finland's comforting salmon soup: tender chunks of salmon, potatoes, carrot and leek in a light, creamy broth, scented with allspice and lots of fresh dill.
+- 1 | lb | skinless salmon fillet, cut into 1-inch chunks
+- 2 | tbsp | butter
+- 1 | | leek, white and light green parts, sliced
+- 1 1/2 | lb | waxy potatoes, peeled and cut into chunks
+- 2 | | carrots, sliced
+- 4 | cups | fish or vegetable stock
+- 1 | | bay leaf
+- 6 | | allspice berries
+- 1 | cup | heavy cream
+- 1/2 | cup | chopped fresh dill, divided
+- 1 | tsp | salt and white pepper, to taste
+- | | rye bread and butter, to serve
+# Melt the butter in a pot and soften the leek for 5 minutes without browning.
+# Add the potatoes, carrots, stock, bay leaf, allspice and salt. Simmer 15 minutes, until the potatoes are just tender.
+# Turn the heat to low. Add the cream, salmon and most of the dill.
+# Cook very gently for 4 to 5 minutes, without boiling, until the salmon just turns opaque. Season with pepper and serve with the rest of the dill and rye bread.
+T Add the salmon at the end and keep the soup below a boil, so the fish stays tender and the cream doesn't split.
+T Fresh dill is essential; dried dill doesn't come close.
+T Use the salmon skin and trimmings to make a quick stock for extra flavor.
+S Best eaten fresh. Leftovers keep 2 days; reheat gently without boiling.
+V Lighter: use half whole milk and half cream.
+@@ vegetarian | Creamy Dill Soup with Smoked Tofu | 15 | 25 | milk, soy | The same leek, potato and dill soup with allspice and cream, with smoked tofu in place of salmon.
+~ skinless salmon fillet, cut into 1-inch chunks => smoked tofu, cut into 1-inch cubes
+~ fish or vegetable stock => vegetable stock
+~ Add the cream, salmon and most of the dill. => Add the cream, smoked tofu and most of the dill.
+~ Cook very gently for 4 to 5 minutes, without boiling, until the salmon just turns opaque. => Cook very gently for 4 to 5 minutes, without boiling, until warmed through.
+~ Add the salmon at the end and keep the soup below a boil, so the fish stays tender and the cream doesn't split. => Keep the soup below a boil once the cream goes in so it doesn't split.
+~ Use the salmon skin and trimmings to make a quick stock for extra flavor. => Smoked tofu gives the gentle smoky depth that salmon brings.
+@@ vegan | Vegan Creamy Dill Soup with Smoked Tofu | 15 | 25 | soy | Leek, potato and smoked tofu in a dill and allspice broth made creamy with oat cream.
+~ skinless salmon fillet, cut into 1-inch chunks => smoked tofu, cut into 1-inch cubes
+~ fish or vegetable stock => vegetable stock
+~ butter => olive oil
+~ heavy cream => oat cream, for cooking
+~ Melt the butter in a pot => Heat the oil in a pot
+~ Add the cream, salmon and most of the dill. => Add the oat cream, smoked tofu and most of the dill.
+~ Cook very gently for 4 to 5 minutes, without boiling, until the salmon just turns opaque. => Cook very gently for 4 to 5 minutes, until warmed through.
+~ Add the salmon at the end and keep the soup below a boil, so the fish stays tender and the cream doesn't split. => Add the oat cream at the end and keep the soup at a gentle simmer.
+~ Use the salmon skin and trimmings to make a quick stock for extra flavor. => Smoked tofu gives the gentle smoky depth that salmon brings.
+~ rye bread and butter => rye bread
+
+@ imam-bayildi | Imam Bayildi (Turkish Stuffed Eggplant) | 4 | 30 | 60 | - | A classic Turkish olive oil dish: whole eggplants fried until silky, split and stuffed with sweet onions, tomatoes, peppers and garlic, then baked until meltingly soft. Best at room temperature.
+- 4 | | medium eggplants
+- 1 | tsp | salt, plus more for the eggplants
+- 2/3 | cup | extra-virgin olive oil, divided
+- 2 | | large onions, thinly sliced
+- 6 | cloves | garlic, sliced
+- 2 | | green peppers (Turkish sivri or Anaheim), chopped
+- 4 | | ripe tomatoes, grated or finely chopped
+- 1 | tbsp | tomato paste
+- 1 | tsp | sugar
+- 1/2 | cup | chopped flat-leaf parsley
+- 1/2 | cup | hot water
+- 1 | | lemon, juiced
+# Peel the eggplants in lengthwise stripes, leaving stripes of skin on. Soak them in salted water for 20 minutes, then pat very dry.
+# Fry the eggplants whole in 1/3 cup oil, turning, for 10 to 12 minutes, until golden and soft. Lay them in a baking dish.
+# In the same pan, cook the onions in the rest of the oil for 10 minutes until soft. Add the garlic and peppers for 3 minutes, then the tomatoes, tomato paste, sugar and salt. Cook 5 minutes, then stir in the parsley.
+# Split each eggplant down the middle without cutting through, and gently open it into a pocket. Fill generously with the onion mixture.
+# Mix the hot water and lemon juice and pour around the eggplants. Cover with foil and bake at 350°F for 40 minutes, until very tender.
+# Cool to room temperature before serving, drizzled with the pan juices.
+T Don't skimp on the olive oil. This is a zeytinyağlı dish: the oil carries all the flavor.
+T Imam bayildi tastes best the next day, served at room temperature.
+T Striping the skin helps the eggplant hold its shape while letting it soften evenly.
+S Keeps 4 days in the fridge. Bring to room temperature before serving.
+V Lighter: roast the oiled eggplants at 425°F for 30 minutes instead of frying.
+V Karnıyarık: add browned ground beef to the filling for the meaty version.
+@@ vegetarian = same
+@@ vegan = same
+
+@ katsudon | Katsudon | 2 | 20 | 25 | wheat, eggs, soy, fish | Japan's comforting rice bowl: a crisp panko pork cutlet simmered briefly with sweet onions in dashi, soy and mirin, then softly set with egg and served over steamed rice.
+- 2 | | boneless pork loin chops (about 5 oz each), 1/2 inch thick
+- 1/2 | tsp | salt and a pinch of pepper
+- 1/4 | cup | flour
+- 1 | | egg, beaten, for coating
+- 1 | cup | panko breadcrumbs
+- | | neutral oil, for frying
+- 3/4 | cup | dashi
+- 2 | tbsp | soy sauce
+- 2 | tbsp | mirin
+- 2 | tsp | sugar
+- 1/2 | | onion, thinly sliced
+- 3 | | eggs, lightly beaten, for topping
+- 1 | | green onion, sliced
+- 2 | servings | steamed Japanese short-grain rice
+# Make a few small cuts in the fat around each chop so it stays flat. Season, then coat in flour, beaten egg and panko.
+# Fry in 1/2 inch of oil at 340°F for 3 to 4 minutes a side, until golden and cooked through. Drain on a rack and slice into strips.
+# In a small frying pan, simmer the dashi, soy sauce, mirin and sugar with the onion for 3 to 4 minutes, until the onion is soft.
+# Lay one sliced cutlet on the onions. Pour half the beaten eggs around and over it, cover and cook 1 minute, until the egg is just barely set.
+# Slide it over a bowl of rice and top with green onion. Repeat for the second bowl.
+T Beat the eggs only lightly so you can still see streaks of white and yolk. That marbled look is the classic finish.
+T Pour the egg around the cutlet, not all over it, so part of the crust stays crisp.
+T Leftover tonkatsu is perfect here; the sauce brings it back to life.
+S Fry the cutlets up to a day ahead and reheat in the oven. Cook the egg topping just before serving.
+V Oyakodon: use sliced chicken thigh simmered in the sauce instead of the pork cutlet.
+@@ vegetarian | Tofu Katsudon | 20 | 25 | wheat, eggs, soy | A crisp panko tofu cutlet simmered with onions in kombu dashi, soy and mirin, softly set with egg over rice.
+~ boneless pork loin chops (about 5 oz each), 1/2 inch thick => slabs of extra-firm tofu (about 5 oz each), pressed, 3/4 inch thick
+~ dashi => kombu dashi or mushroom broth
+~ Make a few small cuts in the fat around each chop so it stays flat. Season, then coat in flour, beaten egg and panko. => Pat the tofu very dry. Season, then coat in flour, beaten egg and panko.
+~ Fry in 1/2 inch of oil at 340°F for 3 to 4 minutes a side, until golden and cooked through. => Fry in 1/2 inch of oil at 350°F for 2 to 3 minutes a side, until golden and crisp.
+~ simmer the dashi, soy sauce => simmer the kombu dashi, soy sauce
+~ Leftover tonkatsu is perfect here; the sauce brings it back to life. => Press the tofu for 20 minutes so the coating stays crisp.
+~ Fry the cutlets up to a day ahead => Fry the tofu cutlets up to a day ahead
+@@ vegan | Vegan Tofu Katsudon | 20 | 25 | wheat, soy | A crisp tofu cutlet in sweet-savory kombu dashi with onions, topped with a soft-set silken tofu "egg" over rice.
+- 2 | | slabs of extra-firm tofu (about 5 oz each), pressed, 3/4 inch thick
+- 1/2 | tsp | salt and a pinch of pepper
+- 1/2 | cup | flour, divided
+- 1/3 | cup | water, for the batter
+- 1 | cup | panko breadcrumbs
+- | | neutral oil, for frying
+- 3/4 | cup | kombu dashi or mushroom broth
+- 2 | tbsp | soy sauce
+- 2 | tbsp | mirin
+- 2 | tsp | sugar
+- 1/2 | | onion, thinly sliced
+- 7 | oz | silken tofu, blended with 1 tbsp cornstarch, a pinch of turmeric and a pinch of salt
+- 1 | | green onion, sliced
+- 2 | servings | steamed Japanese short-grain rice
+# Pat the firm tofu very dry and season it. Whisk 1/4 cup flour with the water into a smooth batter. Coat the tofu in plain flour, then batter, then panko.
+# Fry in 1/2 inch of oil at 350°F for 2 to 3 minutes a side, until golden and crisp. Drain and slice into strips.
+# In a small frying pan, simmer the kombu dashi, soy sauce, mirin and sugar with the onion for 3 to 4 minutes, until the onion is soft.
+# Lay one sliced cutlet on the onions. Spoon half the silken tofu mixture around it, cover and cook 2 to 3 minutes, until softly set.
+# Slide it over a bowl of rice and top with green onion. Repeat for the second bowl.
+T The silken tofu, cornstarch and turmeric mixture sets softly like egg in the hot sauce.
+T Press the firm tofu for 20 minutes so the coating stays crisp.
+S Fry the tofu cutlets up to a day ahead and reheat in the oven.
+
+@ mangu | Mangú con los Tres Golpes | 4 | 15 | 25 | milk, eggs | The Dominican Republic's favorite breakfast: buttery mashed green plantains topped with vinegary red onions, served with the "three hits": fried salami, fried cheese and fried eggs.
+- 4 | | green (unripe) plantains, peeled and cut in chunks
+- 2 | tsp | salt, divided
+- 4 | tbsp | butter
+- 1 | cup | cold water, from the plantain pot
+- 1 | | large red onion, sliced into rings
+- 1/4 | cup | white or apple cider vinegar
+- 2 | tbsp | olive oil
+- 8 | oz | Dominican salami, sliced 1/4 inch thick
+- 8 | oz | queso de freír (frying cheese), sliced 1/2 inch thick
+- 4 | | eggs
+- | | neutral oil, for frying
+- 1 | | avocado, sliced, to serve
+# Boil the plantains in salted water for 15 to 20 minutes, until very tender.
+# Meanwhile, cook the onion rings in the olive oil for 3 minutes, add the vinegar and a pinch of salt and cook 2 minutes more, until just softened and tangy.
+# Drain the plantains, keeping some of the water. Mash them with the butter, adding cold water a little at a time, until smooth and creamy.
+# Fry the salami slices in a little oil for 2 minutes a side until crisp at the edges. Fry the cheese in the same pan for 1 to 2 minutes a side until golden.
+# Fry the eggs sunny side up.
+# Pile the mangú on plates, top with the onions and their juices, and serve with the salami, cheese, eggs and avocado.
+T Mash the plantains while they're hot and add the water cold. Dominican cooks swear it makes the mangú extra smooth.
+T Use fully green plantains; ripe ones make a sweet, different dish.
+T Pat the cheese dry before frying so it browns instead of spattering.
+S Mangú stiffens as it cools; reheat with a splash of water and stir until smooth.
+V Use queso blanco or halloumi if you can't find queso de freír.
+@@ vegetarian | Mangú with Fried Cheese and Eggs | 15 | 25 | milk, eggs | Buttery mashed green plantains with tangy red onions, fried cheese, fried eggs and avocado, without the salami.
+~ Dominican salami, sliced 1/4 inch thick => portobello mushrooms, sliced thick and seasoned with smoked paprika
+~ Fry the salami slices in a little oil for 2 minutes a side until crisp at the edges. => Fry the mushroom slices in a little oil for 3 minutes a side until browned.
+~ with the salami, cheese, eggs and avocado => with the mushrooms, cheese, eggs and avocado
+@@ vegan | Vegan Mangú | 15 | 25 | soy | Mashed green plantains made with olive oil, topped with tangy onions and served with smoky mushrooms, fried tofu and avocado.
+~ butter => olive oil
+~ Dominican salami, sliced 1/4 inch thick => portobello mushrooms, sliced thick and seasoned with smoked paprika
+~ queso de freír (frying cheese), sliced 1/2 inch thick => extra-firm tofu, pressed and sliced 1/2 inch thick
+~ eggs => ripe plantain, sliced and fried (maduros)
+~ Mash them with the butter => Mash them with the olive oil
+~ Fry the salami slices in a little oil for 2 minutes a side until crisp at the edges. Fry the cheese in the same pan for 1 to 2 minutes a side until golden. => Fry the mushroom slices in a little oil for 3 minutes a side until browned. Fry the tofu in the same pan for 3 minutes a side until golden.
+~ Fry the eggs sunny side up. => Fry the ripe plantain slices for 2 minutes a side until caramelized.
+~ with the salami, cheese, eggs and avocado => with the mushrooms, tofu, sweet plantains and avocado
+~ Pat the cheese dry before frying so it browns instead of spattering. => Pat the tofu dry before frying so it browns well.
+
+@ mohinga | Mohinga (Burmese Fish Noodle Soup) | 6 | 30 | 60 | fish, shellfish, eggs | Myanmar's national breakfast: thin rice noodles in a thick, golden catfish broth fragrant with lemongrass, ginger and turmeric, thickened with toasted rice and chickpea flour. Topped with egg, fritters, lime and chili.
+- 1 1/2 | lb | catfish fillets
+- 10 | cups | water
+- 3 | stalks | lemongrass, bruised, plus 1 stalk finely chopped
+- 2 | inch | ginger, half sliced, half grated
+- 1 1/2 | tsp | turmeric, divided
+- 4 | tbsp | fish sauce, divided
+- 1/4 | cup | oil
+- 2 | | onions, finely chopped
+- 4 | cloves | garlic, grated
+- 1 | tsp | shrimp paste
+- 1 | tsp | paprika and 1/2 tsp chili flakes
+- 1/4 | cup | rice flour, toasted in a dry pan until golden
+- 3 | tbsp | chickpea flour, toasted in a dry pan until golden
+- 8 | | small shallots, peeled and left whole
+- 1 | cup | sliced banana stem or banana blossom (optional)
+- 1 | lb | thin rice vermicelli, cooked
+- 3 | | hard-boiled eggs, quartered
+- | | cilantro, lime wedges, chili flakes, fried onions and split pea fritters, to serve
+# Simmer the catfish in the water with the bruised lemongrass, sliced ginger, 1 tsp turmeric and 1 tbsp fish sauce for 15 minutes. Lift out the fish and flake it. Strain and keep the broth.
+# In a large pot, fry the onions in the oil for 8 minutes until golden. Add the garlic, grated ginger, chopped lemongrass, shrimp paste, paprika, chili flakes and the rest of the turmeric for 2 minutes.
+# Add the flaked fish and stir for 2 minutes. Pour in the broth.
+# Whisk the toasted rice flour and chickpea flour with a cup of water until smooth, then stir into the pot. Add the shallots and banana stem.
+# Simmer 30 minutes, stirring often, until thickened and the shallots are soft. Season with the remaining fish sauce.
+# Put noodles in each bowl, ladle the soup over and top with egg, cilantro, lime, chili and crunchy fritters or fried onions.
+T Toast the rice flour and chickpea flour until nutty and golden; this gives the broth its body and flavor.
+T Whisk the flours into cold water before adding them, so the soup stays smooth.
+T The crunchy toppings matter as much as the soup. Don't skip the fritters or fried onions.
+S The broth keeps 3 days in the fridge or 3 months frozen. Cook the noodles fresh.
+V Use canned mackerel or sardines, a favorite shortcut in Burmese homes abroad.
+@@ vegetarian | Vegetarian Mohinga | 30 | 45 | soy, eggs | The same golden lemongrass broth thickened with toasted rice and chickpea flour, made with oyster mushrooms and soy sauce instead of fish.
+~ catfish fillets => oyster mushrooms, torn
+~ fish sauce, divided => light soy sauce, divided
+~ shrimp paste => white miso
+~ Simmer the catfish in the water with the bruised lemongrass, sliced ginger, 1 tsp turmeric and 1 tbsp fish sauce for 15 minutes. Lift out the fish and flake it. Strain and keep the broth. => Simmer the water with the bruised lemongrass, sliced ginger, 1 tsp turmeric and 1 tbsp soy sauce for 15 minutes. Strain and keep the broth.
+~ shrimp paste, paprika => miso, paprika
+~ Add the flaked fish and stir for 2 minutes. => Add the mushrooms and stir for 4 minutes.
+~ Season with the remaining fish sauce. => Season with the remaining soy sauce.
+@@ vegan | Vegan Mohinga | 30 | 45 | soy | Mushroom mohinga in the same lemongrass broth, topped with fried tofu instead of egg.
+~ catfish fillets => oyster mushrooms, torn
+~ fish sauce, divided => light soy sauce, divided
+~ shrimp paste => white miso
+~ hard-boiled eggs, quartered => cubes of fried tofu (8 oz)
+~ Simmer the catfish in the water with the bruised lemongrass, sliced ginger, 1 tsp turmeric and 1 tbsp fish sauce for 15 minutes. Lift out the fish and flake it. Strain and keep the broth. => Simmer the water with the bruised lemongrass, sliced ginger, 1 tsp turmeric and 1 tbsp soy sauce for 15 minutes. Strain and keep the broth.
+~ shrimp paste, paprika => miso, paprika
+~ Add the flaked fish and stir for 2 minutes. => Add the mushrooms and stir for 4 minutes.
+~ Season with the remaining fish sauce. => Season with the remaining soy sauce.
+~ top with egg, cilantro => top with tofu, cilantro
+
+@ samgyetang | Samgyetang (Korean Ginseng Chicken Soup) | 2 | 20 | 60 | - | Korea's restorative summer soup: a whole small chicken stuffed with sweet rice, ginseng, jujubes and garlic, simmered until falling-off-the-bone tender in a milky broth.
+- 2 | | Cornish hens (about 1 1/2 lb each)
+- 1/2 | cup | sweet (glutinous) rice, soaked 1 hour
+- 2 | | fresh ginseng roots (or 2 tbsp dried ginseng)
+- 4 | | dried jujubes (red dates)
+- 16 | cloves | garlic, peeled
+- 4 | slices | ginger
+- 8 | cups | water
+- 2 | | green onions, chopped
+- | | salt and black pepper, at the table
+- | | radish kimchi, to serve
+# Rinse the hens inside and out and pat dry. Stuff each with soaked rice, 1 ginseng root, 1 jujube and 4 garlic cloves. Don't pack it too tightly.
+# Cross the legs and tie them, or tuck one leg through a small slit in the other, to keep the stuffing in.
+# Put the hens in a pot with the water, ginger, the rest of the garlic and jujubes, and any leftover rice.
+# Bring to a boil, skim, then simmer, covered, for 50 to 60 minutes, until the meat pulls easily from the bone and the rice is soft.
+# Serve each hen in a large bowl of broth, scattered with green onion. Season with salt and pepper at the table and eat with kimchi.
+T Leave room for the rice to swell or it will burst out of the hen.
+T Samgyetang is seasoned by each diner at the table, so the broth is cooked without salt.
+T Look for samgyetang kits at Korean markets; they bundle the rice, jujubes and dried ginseng.
+S Keeps 3 days in the fridge; reheat gently. Leftover broth makes a lovely rice porridge.
+V Use a 3-lb whole chicken for 4 people and simmer 1 hour 15 minutes.
+@@ vegetarian | Ginseng Mushroom Soup with Sweet Rice | 20 | 45 | soy | A vegetarian take on samgyetang: ginseng, jujubes, garlic and sweet rice simmered with shiitake, king oyster mushrooms and tofu into a soothing broth.
+- 8 | | dried shiitake mushrooms
+- 2 | | king oyster mushrooms, sliced
+- 7 | oz | firm tofu, cut in large cubes
+- 1/2 | cup | sweet (glutinous) rice, soaked 1 hour
+- 2 | | fresh ginseng roots (or 2 tbsp dried ginseng)
+- 6 | | dried jujubes (red dates)
+- 16 | cloves | garlic, peeled
+- 4 | slices | ginger
+- 1 | piece | kombu (about 4 inches)
+- 8 | cups | water
+- 2 | | green onions, chopped
+- | | salt and black pepper, at the table
+- | | radish kimchi, to serve
+# Simmer the water with the shiitake, kombu, ginseng, ginger, garlic and jujubes for 20 minutes. Remove the kombu.
+# Add the soaked rice and simmer 20 minutes, stirring now and then, until the rice is soft and the broth turns cloudy and silky.
+# Add the king oyster mushrooms and tofu and simmer 5 minutes more.
+# Serve in large bowls, scattered with green onion. Season with salt and pepper at the table and eat with kimchi.
+T The shiitake and kombu build a deep, savory broth in place of the chicken.
+S Keeps 3 days in the fridge; add a splash of water when reheating, as the rice thickens it.
+@@ vegan = vegetarian
+
+@ tortilla-espanola | Tortilla Española (Spanish Omelette) | 6 | 15 | 40 | eggs | Spain's beloved tapa: thin slices of potato and onion slowly poached in olive oil, folded into beaten eggs and cooked into a thick, golden cake with a soft, juicy center.
+- 2 | lb | Yukon Gold potatoes, peeled and thinly sliced
+- 1 | | large yellow onion, thinly sliced
+- 1 1/2 | cups | extra-virgin olive oil
+- 1 1/2 | tsp | salt, divided
+- 6 | | large eggs
+# Heat the oil in a 10-inch nonstick skillet over medium-low heat. Add the potatoes, onion and 1 tsp salt. The oil should almost cover them.
+# Cook gently for 20 to 25 minutes, turning now and then, until the potatoes are completely tender but not browned.
+# Drain the potatoes and onion in a colander set over a bowl, keeping the oil. Beat the eggs with the rest of the salt in a large bowl, then fold in the warm potatoes. Rest 10 minutes.
+# Wipe the pan, heat 2 tbsp of the reserved oil over medium heat and pour in the mixture. Cook 4 to 5 minutes, shaking the pan and tucking in the edges, until the bottom is golden.
+# Put a large plate over the pan and flip the tortilla onto it in one confident move. Slide it back into the pan and cook 2 to 3 minutes more.
+# Slide onto a plate and rest 5 minutes. Serve warm or at room temperature, cut in wedges.
+T The potatoes should poach, not fry. Keep the heat low so they turn soft and creamy.
+T Resting the potatoes in the egg lets them soak it up for a juicy, cohesive tortilla.
+T Strain and keep the potato oil; it's wonderful for cooking.
+S Keeps 2 days in the fridge. Many Spaniards prefer it the next day, at room temperature.
+V Leave the center runny (poco hecha) for the classic bar-style tortilla.
+V Add sliced chorizo or roasted peppers to the eggs.
+@@ vegetarian = same
+@@ vegan | Vegan Tortilla Española | 15 | 45 | - | Olive-oil-poached potatoes and onion folded into a chickpea flour batter and cooked into a golden, sliceable cake.
+- 2 | lb | Yukon Gold potatoes, peeled and thinly sliced
+- 1 | | large yellow onion, thinly sliced
+- 1 1/2 | cups | extra-virgin olive oil
+- 1 1/2 | tsp | salt, divided
+- 1 1/4 | cups | chickpea flour
+- 1 1/4 | cups | water
+- 1/4 | tsp | turmeric
+- 1/2 | tsp | baking powder
+# Heat the oil in a 10-inch nonstick skillet over medium-low heat. Add the potatoes, onion and 1 tsp salt. Cook gently for 20 to 25 minutes, turning now and then, until completely tender but not browned.
+# Whisk the chickpea flour, water, turmeric, baking powder and the rest of the salt into a smooth batter and rest it while the potatoes cook.
+# Drain the potatoes and onion, keeping the oil, and fold them into the batter.
+# Heat 2 tbsp of the reserved oil in the wiped pan over medium heat. Pour in the mixture and cook 6 to 8 minutes, until the bottom is golden and the edges are set.
+# Flip onto a plate, slide back into the pan and cook 5 to 6 minutes more, until set all the way through.
+# Rest 10 minutes before cutting into wedges. Serve warm or at room temperature.
+T Chickpea flour needs a little longer than egg to set, so cook it a few minutes more on each side.
+T Resting before slicing lets it firm up into clean wedges.
+S Keeps 2 days in the fridge; it's great at room temperature.
