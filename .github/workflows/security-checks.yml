@@ -2,8 +2,9 @@ name: Meals and Mixers Code Quality & Security Checks
 
 # Ported from Votic's security-checks.yml. Language-specific steps (npm, licenses,
 # Trivy) switch on automatically once the files they scan exist.
-# CodeQL, dependency review and Harden-Runner need paid plans on private repositories,
-# so they skip while the repository is private and run automatically once it is public.
+# CodeQL and dependency review run on public repositories. Private repositories can opt in by
+# setting ENABLE_GITHUB_CODE_SECURITY=true after confirming their GitHub plan and repository settings.
+# Harden-Runner is currently skipped while this repository is private.
 
 on:
   push:
@@ -22,13 +23,15 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
 
 jobs:
+  # Warns when a pull request introduces vulnerable or disallowed dependencies.
   dependency-review:
     name: Dependency Review
-    if: github.event_name == 'pull_request' && !github.event.repository.private
+    if: ${{ github.event_name == 'pull_request' && (!github.event.repository.private || vars.ENABLE_GITHUB_CODE_SECURITY == 'true') }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Monitor runner network activity
+        if: ${{ !github.event.repository.private }}
         uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
         with:
           egress-policy: audit
@@ -37,9 +40,10 @@ jobs:
         with:
           deny-licenses: AGPL-1.0-only, AGPL-3.0-only, AGPL-3.0-or-later, GPL-2.0-only, GPL-2.0-or-later, GPL-3.0-only, GPL-3.0-or-later, SSPL-1.0
 
+  # CodeQL searches the code for potential security flaws when GitHub Code Security is available.
   codeql:
     name: CodeQL Security Analysis
-    if: ${{ !github.event.repository.private }}
+    if: ${{ !github.event.repository.private || vars.ENABLE_GITHUB_CODE_SECURITY == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
@@ -47,6 +51,7 @@ jobs:
       security-events: write
     steps:
       - name: Monitor runner network activity
+        if: ${{ !github.event.repository.private }}
         uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
         with:
           egress-policy: audit
@@ -61,6 +66,7 @@ jobs:
       - name: Analyze with CodeQL
         uses: github/codeql-action/analyze@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
 
+  # Check the workflow files themselves for syntax and security mistakes.
   workflow-lint:
     name: Workflow Security Lint
     runs-on: ubuntu-latest
@@ -82,6 +88,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: pipx run zizmor==1.32.0 --format plain .github/workflows
 
+  # Scan dependencies, source code, repository history, and any infrastructure files.
   security:
     name: Security Scans and Tests
     runs-on: ubuntu-latest
@@ -132,9 +139,10 @@ jobs:
             npm-audit.json
             security/vulnerability-report.md
 
+      # Pin the scanner image digest so the v2.6.0 tag cannot silently change its contents.
       - name: Scan dependencies with OSV-Scanner
         if: always() && hashFiles('**/package-lock.json', '**/requirements*.txt', '**/poetry.lock', '**/pubspec.lock', '**/Podfile.lock', '**/build.gradle*') != ''
-        run: docker run --rm -v "$PWD:/src" ghcr.io/google/osv-scanner:v2.6.0 scan --config=/src/osv-scanner.toml -r /src
+        run: docker run --rm -v "$PWD:/src" ghcr.io/google/osv-scanner:v2.6.0@sha256:afd838850ac1a0fcc15ff4a041dc9ba11123c3f0d2666217a5f0fcf9222b55fa scan --config=/src/osv-scanner.toml -r /src
 
       - name: Scan Dockerfiles and infrastructure config with Trivy
         # trivy-action is pinned by commit: its version tags were hijacked in March 2026 (CVE-2026-33634).

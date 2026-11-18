@@ -130,14 +130,17 @@ export function validate_recipe(recipe) {
   if (cocktail !== null && (typeof cocktail !== "object" || typeof cocktail.alcoholic !== "boolean")) throw new SyntaxError("Invalid cocktail details");
   const title = text(recipe.title, 120);
   if (!title) throw new SyntaxError("Missing title");
+  const ingredients = recipe.ingredients.map((i) => ({ amount: text(i?.amount, 40), unit: text(i?.unit, 40), item: text(i?.item, 200) }));
+  const steps = recipe.steps.map((step) => text(step));
+  if (ingredients.some((i) => !i.item) || steps.some((step) => !step)) throw new SyntaxError("Empty recipe ingredient or step");
   return {
     title,
     description: text(recipe.description),
     servings: whole(recipe.servings, 100) || 1,
     prep_minutes: whole(recipe.prep_minutes, 2880),
     cook_minutes: whole(recipe.cook_minutes, 2880),
-    ingredients: recipe.ingredients.map((i) => ({ amount: text(i?.amount, 40), unit: text(i?.unit, 40), item: text(i?.item, 200) })),
-    steps: recipe.steps.map((s) => text(s)),
+    ingredients,
+    steps,
     allergens: [...new Set(recipe.allergens)],
     cocktail: cocktail === null ? null : {
       glass: text(cocktail.glass, 80),
