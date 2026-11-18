@@ -38,6 +38,30 @@ jobs:
       - name: Run backend and security tooling tests
         run: npm test
 
+  recipe-data:
+    name: Recipe data and allergen review
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Get the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Check generated recipe data
+        run: python3 scripts/check_recipe_consistency.py
+      - name: Test recipe data checks
+        run: python3 -m unittest discover -s code_checks -p 'recipe_ci_test.py'
+      - name: Report possible allergen mismatches
+        run: |
+          python3 scripts/check_allergens.py > "$RUNNER_TEMP/recipe-allergen-review.md"
+          cat "$RUNNER_TEMP/recipe-allergen-review.md" >> "$GITHUB_STEP_SUMMARY"
+      - name: Save allergen review report
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: recipe-allergen-review
+          path: ${{ runner.temp }}/recipe-allergen-review.md
+          retention-days: 30
+
   mobile:
     name: Mobile app checks
     runs-on: ubuntu-latest

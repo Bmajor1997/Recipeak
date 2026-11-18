@@ -51,6 +51,17 @@ describe("diet options for the bundled recipes", () => {
     expect(parse_recipe(vegan).allergens).not.toContain("tree nuts");
   });
 
+  it("checks the ingredients of each displayed vegan version for nuts", () => {
+    const written = variants as Record<string, Record<string, unknown>>;
+    for (const id of ["ajiaco", "romanian-tripe-soup", "chicken-paprikash"]) {
+      const regular = parse_recipe((recipes as Record<string, unknown>)[id]);
+      const vegan = parse_recipe(written[id].vegan);
+      expect(diet_profile(regular, "meal").fits, `${id} standard`).toContain("nut-free");
+      expect(diet_profile(vegan, "meal").fits, `${id} vegan`).not.toContain("nut-free");
+      expect(diet_profile(vegan, "meal").options, `${id} vegan`).toContain("nut-free");
+    }
+  });
+
   it("only keeps audit decisions for dishes that exist", () => {
     for (const id of Object.keys(review)) expect(Object.keys(recipes), id).toContain(id);
   });
@@ -126,6 +137,20 @@ describe("diet rules", () => {
       "cocktail",
     );
     expect(m.status.vegan?.status).toBe("review");
+  });
+
+  it("checks each photo recipe independently when the ingredients change", () => {
+    const first = diet_profile(dish("First match", ["tomatoes", "olive oil"]), "meal");
+    const next = diet_profile(dish("Another match", ["tomatoes", "peanuts"]), "meal");
+    expect(first.fits).toContain("nut-free");
+    expect(next.fits).not.toContain("nut-free");
+    expect(next.options).toContain("nut-free");
+  });
+
+  it("does not confirm a diet when an ingredient is unspecific", () => {
+    const profile = diet_profile(dish("Soup", ["broth", "carrots"]), "meal");
+    expect(profile.fits).not.toContain("vegetarian");
+    expect(profile.status.vegetarian?.status).toBe("review");
   });
 
   it("counts coconut and peanut butter as nuts, but not butternut squash or nutmeg", () => {
