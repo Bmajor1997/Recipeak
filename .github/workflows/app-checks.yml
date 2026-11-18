@@ -12,7 +12,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
+# Each job below checks a different part of Recipeek. These run on pushes and pull requests.
 jobs:
+  # Backend behavior, including identity, subscription, upload and AI-response edge cases.
   server:
     name: Backend lint and tests
     runs-on: ubuntu-latest
@@ -35,9 +37,11 @@ jobs:
         run: npm ci --ignore-scripts
       - name: Lint backend
         run: npm run lint
+      # Includes security_edges.test.js: no real accounts, purchases, or paid AI calls are used.
       - name: Run backend and security tooling tests
         run: npm test
 
+  # Check generated recipes and publish possible allergen mismatches for human review.
   recipe-data:
     name: Recipe data and allergen review
     runs-on: ubuntu-latest
@@ -62,6 +66,7 @@ jobs:
           path: ${{ runner.temp }}/recipe-allergen-review.md
           retention-days: 30
 
+  # Check app types, code style, diet and other logic, Android bundle, and dependencies.
   mobile:
     name: Mobile app checks
     runs-on: ubuntu-latest
@@ -91,6 +96,7 @@ jobs:
         run: npm run lint
       - name: Check formatting
         run: npm run format:check
+      # Includes checks that AI recipe ingredients do not automatically inherit a diet label.
       - name: Run logic tests
         run: npm test
       - name: Build the Android JavaScript bundle

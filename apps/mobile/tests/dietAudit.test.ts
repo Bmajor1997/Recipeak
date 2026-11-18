@@ -147,6 +147,16 @@ describe("diet rules", () => {
     expect(next.options).toContain("nut-free");
   });
 
+  // Model output must be checked using its actual ingredients, not its requested diet or title.
+  it("flags AI recipe ingredients that contradict their requested diet", () => {
+    const supposedVegan = diet_profile(dish("Vegan stew", ["chicken", "vegetable broth"]), "meal");
+    const supposedNutFree = diet_profile(dish("Nut-free soup", ["peanuts", "carrots"]), "meal");
+    expect(supposedVegan.fits).not.toContain("vegan");
+    expect(supposedVegan.options).toContain("vegan");
+    expect(supposedNutFree.fits).not.toContain("nut-free");
+    expect(supposedNutFree.options).toContain("nut-free");
+  });
+
   it("does not confirm a diet when an ingredient is unspecific", () => {
     const profile = diet_profile(dish("Soup", ["broth", "carrots"]), "meal");
     expect(profile.fits).not.toContain("vegetarian");
