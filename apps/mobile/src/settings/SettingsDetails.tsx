@@ -511,7 +511,7 @@ function Help() {
         Find a recipe
       </Text>
       <Text style={type.body}>
-        Tap Camera, take a photo or choose one from your gallery, then tap Send. Choose another match if needed. Open a recipe to adjust
+        Tap Snap, take a photo or choose one from your gallery, then tap Send. Choose another match if needed. Open a recipe to adjust
         servings, request a diet version, save it, or share its text.
       </Text>
       <Text accessibilityRole="header" style={type.heading}>

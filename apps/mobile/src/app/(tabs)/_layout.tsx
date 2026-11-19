@@ -1,12 +1,14 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { LinearGradient } from "expo-linear-gradient";
 import { Tabs } from "expo-router";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useCamera } from "../../camera/CameraProvider";
 import { useTheme, useThemedStyles, type Palette } from "../../ui/theme";
 
-/** The raised camera button in the exact middle of the tab bar (two tabs on each side): a dark button inside a citrus-colored ring. It opens the camera instead of a page. */
-function CameraTabButton() {
+/**
+ * The camera button: a wide "Snap" pill built into the middle of the tab bar (two tabs on each side).
+ * It sits inside the bar, so it never covers a recipe, and it opens the camera instead of a page.
+ */
+function SnapTabButton() {
   const { colors } = useTheme();
   const styles = useThemedStyles(create_styles);
   const { open_camera } = useCamera();
@@ -14,16 +16,16 @@ function CameraTabButton() {
     <View style={styles.slot}>
       <Pressable
         accessibilityRole="button"
-        accessibilityLabel="Camera"
+        accessibilityLabel="Snap"
         accessibilityHint="Opens the camera to photograph a meal or a cocktail"
         onPress={open_camera}
-        style={({ pressed }) => [styles.camera, pressed && { transform: [{ scale: 0.94 }] }]}
+        hitSlop={6}
+        style={({ pressed }) => [styles.pill, pressed && { opacity: 0.85, transform: [{ scale: 0.96 }] }]}
       >
-        <LinearGradient colors={["#FF6F61", "#FFB347", "#FF3D6E"]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.ring}>
-          <View style={styles.inner}>
-            <Ionicons name="camera" size={28} color={colors.accentInk} />
-          </View>
-        </LinearGradient>
+        <Ionicons name="camera" size={22} color={colors.accentText} />
+        <Text style={styles.label} maxFontSizeMultiplier={1.4}>
+          Snap
+        </Text>
       </Pressable>
     </View>
   );
@@ -50,7 +52,7 @@ export default function TabsLayout() {
         name="explore"
         options={{ title: "Explore", tabBarIcon: ({ color }) => <Ionicons name="compass-outline" size={26} color={color as string} /> }}
       />
-      <Tabs.Screen name="camera" options={{ title: "Camera", tabBarButton: () => <CameraTabButton /> }} />
+      <Tabs.Screen name="camera" options={{ title: "Camera", tabBarButton: () => <SnapTabButton /> }} />
       <Tabs.Screen
         name="saved"
         options={{ title: "Saved", tabBarIcon: ({ color }) => <Ionicons name="bookmark-outline" size={26} color={color as string} /> }}
@@ -65,15 +67,15 @@ export default function TabsLayout() {
 
 const create_styles = (colors: Palette) =>
   StyleSheet.create({
-    slot: { flex: 1, alignItems: "center" },
-    camera: {
-      width: 76,
-      height: 76,
-      borderRadius: 38,
-      marginTop: -28,
-      padding: 5,
-      backgroundColor: colors.background,
+    slot: { flex: 1.5, alignItems: "center", justifyContent: "flex-start", paddingTop: 2 },
+    pill: {
+      minHeight: 44,
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 6,
+      paddingHorizontal: 16,
+      borderRadius: 22,
+      backgroundColor: colors.accent,
     },
-    ring: { flex: 1, borderRadius: 33, padding: 3 },
-    inner: { flex: 1, borderRadius: 30, backgroundColor: colors.surface, alignItems: "center", justifyContent: "center" },
+    label: { color: colors.accentText, fontSize: 16, fontWeight: "700" },
   });
