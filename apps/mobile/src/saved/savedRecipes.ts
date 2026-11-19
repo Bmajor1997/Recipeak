@@ -17,7 +17,7 @@ export type PhotoStore = {
 
 /** Before 2026-11-15 there was one list for the whole phone. The first account to open Saved after the update takes it over. */
 const DEVICE_WIDE_NAME = "mealsandmixers.saved.v1";
-const account_storage_name = (uid: string) => `mealsandmixers.saved.v2.${encodeURIComponent(uid)}`;
+export const saved_storage_name = (uid: string) => `mealsandmixers.saved.v2.${encodeURIComponent(uid)}`;
 const MAX_SAVED = 500;
 
 /** Thrown when a free account already has its free saved recipes and tries to save another. */
@@ -35,7 +35,7 @@ export function create_saved_recipes(
   { now = () => new Date(), new_id = random_id, photos = no_photos }: { now?: () => Date; new_id?: () => string; photos?: PhotoStore } = {},
 ) {
   if (!uid) throw new Error("Saved recipes need a signed-in account.");
-  const storage_name = account_storage_name(uid);
+  const storage_name = saved_storage_name(uid);
   let moved_over: Promise<void> | null = null;
 
   /** Moves the old phone-wide list (if any) into this account, once, and removes it so no other account gets it. */

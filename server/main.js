@@ -17,7 +17,7 @@ export function configure(env) {
   if (env.FIREBASE_PROJECT_ID) authorize = create_firebase_authorizer(env.FIREBASE_PROJECT_ID);
   else if (env.MM_DEV_ALLOW_UNAUTHENTICATED === "1") {
     // Local development only: treat each network address as one account.
-    authorize = async (request) => ({ uid: `dev:${request.socket.remoteAddress}` });
+    authorize = async (request) => ({ uid: `dev:${request.socket.remoteAddress}`, auth_time: Math.floor(Date.now() / 1000) });
   } else throw new Error("Set FIREBASE_PROJECT_ID, or MM_DEV_ALLOW_UNAUTHENTICATED=1 for local development.");
 
   // Without a RevenueCat key (development only), everyone is a free user.
@@ -45,6 +45,7 @@ if (import.meta.main) {
   setInterval(() => {
     try { store.feedback.prune(); } catch { console.warn("Feedback retention is waiting for storage; it will retry."); }
     try { store.ratings.prune(); } catch { console.warn("Rating retention is waiting for storage; it will retry."); }
+    try { store.prune_deleted(); } catch { console.warn("Deleted-account cleanup is waiting for storage; it will retry."); }
   }, 3_600_000).unref();
   const server = createServer({ requestTimeout: 90_000, headersTimeout: 15_000 }, handle);
   server.listen(port, process.env.HOST || "127.0.0.1", () => console.log(`Recipeak backend on port ${port}`));

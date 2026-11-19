@@ -67,7 +67,8 @@ export function create_usage_store(env = {}, { now = () => new Date(), path = en
     );
     CREATE TABLE IF NOT EXISTS dish_recipes (
       key TEXT PRIMARY KEY, kind TEXT NOT NULL, name TEXT NOT NULL, recipe_json TEXT NOT NULL, created_at TEXT NOT NULL
-    );`);
+    );
+    CREATE TABLE IF NOT EXISTS deleted_accounts (user_id TEXT PRIMARY KEY, deleted_at TEXT NOT NULL);`);
 
   const limits = {
     free_photos: number_setting(env, "MM_FREE_PHOTOS", 3),
@@ -92,7 +93,12 @@ export function create_usage_store(env = {}, { now = () => new Date(), path = en
     "SELECT COUNT(*) AS n FROM ai_usage WHERE user_id=? AND feature='recipe' AND status<>'rejected'").get(user_id).n;
 
   // Feature requests and bug reports share this private ledger. Anything older than a year is removed.
-  const feedback = create_feedback_store(db, { now });
+  // A deleted account's sign-in token stays valid for up to an hour, so its id is refused for a week after deletion.
+  const account_deleted = (user_id) => Boolean(db.prepare("SELECT 1 FROM deleted_accounts WHERE user_id=?").get(user_id));
+  const prune_deleted = () =>
+    db.prepare("DELETE FROM deleted_accounts WHERE deleted_at<?").run(new Date(now().getTime() - 7 * 86400000).toISOString());
+  prune_deleted();
+  const feedback = create_feedback_store(db, { now, account_deleted });
   feedback.prune();
   // Recipe ratings and "I made this" notes, kept for two years.
   const ratings = create_rating_store(db, { now });
@@ -102,6 +108,26 @@ export function create_usage_store(env = {}, { now = () => new Date(), path = en
     limits,
     feedback,
     ratings,
+    account_deleted,
+    prune_deleted,
+
+    /**
+     * Deletes everything kept about one account: feedback, ratings and the link between it and its usage.
+     * Usage rows stay without the account id, because the monthly budgets add up every request's cost.
+     */
+    delete_account(user_id) {
+      if (typeof user_id !== "string" || !user_id) throw new Error("An account id is required.");
+      db.exec("BEGIN IMMEDIATE");
+      try {
+        feedback.remove_user(user_id);
+        ratings.remove_user(user_id);
+        db.prepare("UPDATE ai_usage SET user_id='deleted-account', provider_request_id=NULL WHERE user_id=?").run(user_id);
+        db.prepare("INSERT OR REPLACE INTO deleted_accounts (user_id,deleted_at) VALUES (?,?)").run(user_id, now().toISOString());
+        db.exec("COMMIT");
+      } catch (error) { db.exec("ROLLBACK"); throw error; }
+      return { ok: true };
+    },
+
     free_photos_left(user_id) { return Math.max(0, limits.free_photos - photos_used(user_id)); },
 
     /** Atomically check every limit and reserve the worst-case cost before calling the provider. */

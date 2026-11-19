@@ -26,7 +26,7 @@ export function tags_for(kind: Kind): RatingTag[] {
 export type Rating = { stars: number; made: boolean; tags: RatingTag[]; note: string; sent: boolean; updated_at: string };
 export const MAX_NOTE = 500;
 
-const storage_name = (uid: string) => `mealsandmixers.ratings.v1.${encodeURIComponent(uid)}`;
+export const ratings_storage_name = (uid: string) => `mealsandmixers.ratings.v1.${encodeURIComponent(uid)}`;
 export const rating_key = (kind: Kind, dish: string) => `${kind}|${normalize_dish_name(dish)}`;
 
 function clean(v: unknown): Rating | null {
@@ -75,7 +75,7 @@ export function create_ratings(storage: KeyValueStorage, uid: string, send: Send
   }
   async function read_all(): Promise<Record<string, Rating>> {
     try {
-      const raw = JSON.parse((await storage.getItem(storage_name(uid))) ?? "{}") as Record<string, unknown>;
+      const raw = JSON.parse((await storage.getItem(ratings_storage_name(uid))) ?? "{}") as Record<string, unknown>;
       const out: Record<string, Rating> = {};
       for (const [key, value] of Object.entries(raw)) {
         const r = clean(value);
@@ -86,7 +86,7 @@ export function create_ratings(storage: KeyValueStorage, uid: string, send: Send
       return {};
     }
   }
-  const write_all = (all: Record<string, Rating>) => storage.setItem(storage_name(uid), JSON.stringify(all));
+  const write_all = (all: Record<string, Rating>) => storage.setItem(ratings_storage_name(uid), JSON.stringify(all));
 
   const ratings = {
     async get(kind: Kind, dish: string): Promise<Rating | null> {

@@ -433,7 +433,11 @@ function RecipeView({ current }: { current: Ready }) {
           <Text style={type.body}>
             {recipe.allergens.length ? `Contains ${recipe.allergens.join(", ")}.` : "None of the major allergens are listed."}
           </Text>
-          <Text style={[type.muted, { marginTop: 4 }]}>{"A photo can't show every ingredient. Check labels if allergies matter."}</Text>
+          <Text style={[type.muted, { marginTop: 4 }]}>
+            {
+              "A photo can't show every ingredient. Check labels if allergies matter. Leaving an ingredient out doesn't remove traces of it from shared kitchens or packaged foods."
+            }
+          </Text>
 
           <RateRecipe key={`${kind}|${dishName}`} kind={kind} dish={dishName} />
 

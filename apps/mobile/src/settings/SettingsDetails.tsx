@@ -1,10 +1,13 @@
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useRef, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Modal, Pressable, ScrollView, Share, StyleSheet, Switch, Text, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Modal, Pressable, ScrollView, Share, StyleSheet, Switch, Text, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../AppContext";
+import { clear_account_device_data, delete_account, delete_account_problem } from "../auth/deleteAccount";
 import { firebase } from "../auth/firebase";
+import { remove_photo } from "../saved/photoStore";
 import { FREE_SAVED_RECIPES } from "../paywall/plans";
 import { recipe_as_text } from "../recipes/format";
 import type { Allowance, SavedRecipe } from "../recipes/types";
@@ -91,8 +94,11 @@ function Feedback() {
 function Account() {
   const { type } = useTheme();
   const styles = useThemedStyles(create_styles);
-  const { user, set_current } = useApp();
+  const { user, api, set_current } = useApp();
   const [confirm, set_confirm] = useState(false);
+  const [deleting, set_deleting] = useState(false);
+  const [password, set_password] = useState("");
+  const [delete_error, set_delete_error] = useState<string | null>(null);
   const [busy, set_busy] = useState(false);
   const [error, set_error] = useState<string | null>(null);
   const [notice, set_notice] = useState<string | null>(null);
@@ -120,6 +126,29 @@ function Account() {
           ? "Couldn’t request a password reset. Check your connection and try again."
           : "Couldn’t sign out. Check your connection and try again.",
       );
+    } finally {
+      pending.current = false;
+      set_busy(false);
+    }
+  }
+  async function run_delete() {
+    const uid = user?.uid;
+    if (pending.current || !uid) return;
+    pending.current = true;
+    set_busy(true);
+    set_delete_error(null);
+    try {
+      await delete_account(password, {
+        confirm_password: (value) => firebase.confirm_password(value),
+        delete_server_data: () => api.delete_account(uid),
+        delete_sign_in: () => firebase.delete_sign_in(),
+        clear_device: () => clear_account_device_data(AsyncStorage, uid, remove_photo),
+      });
+      set_password("");
+      set_current(null);
+      set_deleting(false);
+    } catch (problem) {
+      set_delete_error(delete_account_problem(problem));
     } finally {
       pending.current = false;
       set_busy(false);
@@ -163,6 +192,54 @@ function Account() {
             {error && <Notice tone="error">{error}</Notice>}
             <Button label="Cancel" variant="secondary" disabled={busy} onPress={() => set_confirm(false)} />
             <Button label="Confirm sign out" busy={busy} onPress={() => void run("sign-out")} />
+          </ScrollView>
+        </View>
+      </Modal>
+      <Button
+        label="Delete account"
+        variant="secondary"
+        disabled={busy}
+        onPress={() => {
+          set_delete_error(null);
+          set_password("");
+          set_deleting(true);
+        }}
+      />
+      <Modal
+        visible={deleting}
+        transparent
+        animationType="none"
+        onRequestClose={() => {
+          if (!busy) set_deleting(false);
+        }}
+      >
+        <View style={[styles.overlay, { paddingTop: insets.top + 20, paddingBottom: insets.bottom + 20 }]}>
+          <ScrollView accessibilityViewIsModal keyboardShouldPersistTaps="handled" contentContainerStyle={styles.dialog}>
+            <Text accessibilityRole="header" style={type.title}>
+              Delete your account?
+            </Text>
+            <Text style={type.body}>
+              This can’t be undone. It deletes your sign-in, the feedback and ratings you sent, and your saved recipes, photos and settings
+              on this phone.
+            </Text>
+            <Text style={type.body}>
+              Deleting your account doesn’t cancel a Premium subscription. Cancel it first in your App Store or Google Play subscriptions.
+            </Text>
+            <Text style={type.label}>PASSWORD</Text>
+            <TextInput
+              style={styles.input}
+              value={password}
+              onChangeText={set_password}
+              secureTextEntry
+              autoComplete="current-password"
+              textContentType="password"
+              accessibilityLabel="Password"
+              accessibilityHint="Enter your password to confirm"
+              editable={!busy}
+            />
+            {delete_error && <Notice tone="error">{delete_error}</Notice>}
+            <Button label="Cancel" variant="secondary" disabled={busy} onPress={() => set_deleting(false)} />
+            <Button label="Delete account forever" busy={busy} disabled={!password} onPress={() => void run_delete()} />
           </ScrollView>
         </View>
       </Modal>
@@ -457,14 +534,14 @@ function Help() {
       </Text>
       <Text style={type.body}>
         Recipes represent the kind of dish or drink, rather than the restaurant’s exact recipe. Photos cannot reveal every ingredient. Check
-        ingredients and labels when allergies matter.
+        ingredients and labels when allergies matter. Leaving out an ingredient doesn’t remove traces of it from shared kitchens or packaged
+        foods.
       </Text>
       <Text accessibilityRole="header" style={type.heading}>
         About
       </Text>
       <Text style={type.muted}>
-        Recipeak · Early release. Published privacy and terms pages, a support contact, and account deletion are not configured in this app
-        yet.
+        Recipeak · Early release. Published privacy and terms pages and a support contact are not configured in this app yet.
       </Text>
     </>
   );
@@ -491,5 +568,15 @@ const create_styles = (colors: Palette) =>
       justifyContent: "center",
     },
     overlay: { flex: 1, backgroundColor: colors.scrim, justifyContent: "center", paddingHorizontal: 20 },
+    input: {
+      minHeight: 54,
+      borderRadius: 12,
+      borderWidth: 1,
+      borderColor: colors.border,
+      backgroundColor: colors.background,
+      color: colors.text,
+      fontSize: 16,
+      paddingHorizontal: 14,
+    },
     dialog: { padding: 24, gap: 12, backgroundColor: colors.surface, borderRadius: 18, maxWidth: 600, width: "100%", alignSelf: "center" },
   });
