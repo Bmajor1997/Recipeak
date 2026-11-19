@@ -8,17 +8,17 @@ or add a decision for it to `dietReview.json` (`fits`, `option` or `none`, with 
 
 ## Totals
 
-Options shown before the audit: 3037 (every diet on every recipe). Now: 829.
+Options shown before the audit: 3270 (every diet on every recipe). Now: 1128.
 
-| Diet          | Already fits | Option | Can't be adapted | Needs review |
-| ------------- | ------------ | ------ | ---------------- | ------------ |
-| vegetarian    | 289          | 81     | 95               | 0            |
-| vegan         | 217          | 136    | 110              | 2            |
-| gluten-free   | 331          | 132    | 0                | 2            |
-| dairy-free    | 338          | 106    | 9                | 12           |
-| nut-free      | 425          | 18     | 21               | 1            |
-| low-carb      | 23           | 109    | 333              | 0            |
-| non-alcoholic | 0            | 247    | 0                | 0            |
+| Diet | Already fits | Option | Can't be adapted | Needs review |
+|---|---|---|---|---|
+| vegetarian | 319 | 180 | 0 | 0 |
+| vegan | 240 | 256 | 0 | 3 |
+| gluten-free | 360 | 137 | 0 | 2 |
+| dairy-free | 366 | 120 | 0 | 13 |
+| nut-free | 456 | 42 | 0 | 1 |
+| low-carb | 26 | 117 | 356 | 0 |
+| non-alcoholic | 0 | 276 | 0 | 0 |
 
 ## Rules used
 
@@ -34,33 +34,34 @@ Options shown before the audit: 3037 (every diet on every recipe). Now: 829.
 
 ## Brands named in the recipes
 
-| Brand                                | Settles     | Source                                                |
-| ------------------------------------ | ----------- | ----------------------------------------------------- |
-| Dolin vermouth (Rouge, Dry, Blanc)   | vegan       | Barnivore, company email Sept 2024; Waitrose label    |
-| Lillet (all)                         | vegan       | Barnivore, company email Apr 2018; lillet.com         |
-| Guinness (all)                       | vegan       | Barnivore, company emails 2021–22                     |
-| Miller High Life                     | vegan       | Barnivore, MillerCoors email                          |
-| Moët & Chandon Champagne             | vegan       | Barnivore, company email                              |
-| Mionetto Organic Prosecco            | vegan       | US retail label (Hannaford)                           |
-| Tio Pepe fino sherry                 | vegan       | Barnivore, González Byass email Feb 2022; Ocado label |
-| La Gitana manzanilla                 | vegan       | Enotria and Laithwaites labels                        |
-| Harveys amontillado                  | vegan       | Enotria label                                         |
-| Barbadillo Oloroso Seco              | vegan       | Grapevine label                                       |
-| Cockburn's Special Reserve port      | vegan       | Barnivore, company email May 2019                     |
-| Bonterra white wines                 | vegan       | Bonterra site; Barnivore company email                |
-| Yellow Tail red wines                | vegan       | Healthline and Domino, citing Barnivore               |
-| Disaronno                            | nut-free    | AAAAI Ask the Expert; Disaronno statement             |
-| Lea & Perrins Worcestershire (US)    | gluten-free | Kraft Heinz product page                              |
-| Hershey's chocolate syrup            | gluten-free | Hershey's label                                       |
-| McCormick Gluten Free Taco Seasoning | gluten-free | McCormick; certified gluten-free (contains milk)      |
-| Aidells Cajun Style andouille        | gluten-free | Aidells label                                         |
-| Herb-Ox bouillon                     | gluten-free | Celiac.com brand list                                 |
-| Ibarra Mexican chocolate             | dairy-free  | ingredients: sugar, cacao, soy lecithin, cinnamon     |
-| Kikkoman panko (plain)               | dairy-free  | Kikkoman ingredients: wheat flour, sugar, yeast, salt |
+| Brand | Settles | Source |
+|---|---|---|
+| Dolin vermouth (Rouge, Dry, Blanc) | vegan | Barnivore, company email Sept 2024; Waitrose label |
+| Lillet (all) | vegan | Barnivore, company email Apr 2018; lillet.com |
+| Guinness (all) | vegan | Barnivore, company emails 2021–22 |
+| Miller High Life | vegan | Barnivore, MillerCoors email |
+| Moët & Chandon Champagne | vegan | Barnivore, company email |
+| Mionetto Organic Prosecco | vegan | US retail label (Hannaford) |
+| Tio Pepe fino sherry | vegan | Barnivore, González Byass email Feb 2022; Ocado label |
+| La Gitana manzanilla | vegan | Enotria and Laithwaites labels |
+| Harveys amontillado | vegan | Enotria label |
+| Barbadillo Oloroso Seco | vegan | Grapevine label |
+| Cockburn's Special Reserve port | vegan | Barnivore, company email May 2019 |
+| Bonterra white wines | vegan | Bonterra site; Barnivore company email |
+| Yellow Tail red wines | vegan | Healthline and Domino, citing Barnivore |
+| Disaronno | nut-free | AAAAI Ask the Expert; Disaronno statement |
+| Lea & Perrins Worcestershire (US) | gluten-free | Kraft Heinz product page |
+| Hershey's chocolate syrup | gluten-free | Hershey's label |
+| McCormick Gluten Free Taco Seasoning | gluten-free | McCormick; certified gluten-free (contains milk) |
+| Aidells Cajun Style andouille | gluten-free | Aidells label |
+| Herb-Ox bouillon | gluten-free | Celiac.com brand list |
+| Ibarra Mexican chocolate | dairy-free | ingredients: sugar, cacao, soy lecithin, cinnamon |
+| Kikkoman panko (plain) | dairy-free | Kikkoman ingredients: wheat flour, sugar, yeast, salt |
 
-## Still to check: Vegan (2)
+## Still to check: Vegan (3)
 
 - **Fried Spring Rolls**: check "spring roll wrappers"
+- **Hummus**: check "warm pita bread, to serve"
 - **Zaza**: check "Dubonnet Rouge"
 
 ## Still to check: Gluten-free (2)
@@ -68,13 +69,14 @@ Options shown before the audit: 3037 (every diet on every recipe). Now: 829.
 - **Brazilian Feijoada**: check "smoked sausage (linguiça), sliced"
 - **Idli Sambar**: check "sambar powder"
 
-## Still to check: Dairy-free (12)
+## Still to check: Dairy-free (13)
 
 - **BLT Sandwich**: check "sandwich bread, toasted"
 - **Beef Empanadas**: check "empanada dough rounds"
 - **Bigos (Polish Hunter's Stew)**: check "rye bread or boiled potatoes, to serve"
 - **Caldo Verde (Portuguese Kale Soup)**: check "black pepper and crusty cornbread (broa), to serve"
 - **Choripán**: check "crusty rolls"
+- **Hummus**: check "warm pita bread, to serve"
 - **Mole Poblano**: check "bread, torn"
 - **Pork Banh Mi**: check "Vietnamese baguettes or soft French rolls"
 - **Pork Schnitzel**: check "fine dry breadcrumbs"

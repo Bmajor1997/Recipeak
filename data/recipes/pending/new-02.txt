@@ -1,0 +1,186 @@
+@ cardinale | Cardinale | 1 | 3 | 0 | - | A drier, sharper cousin of the Negroni: gin and dry vermouth with just a splash of Campari, stirred cold and served up.
+- 1 1/3 | oz | London dry gin
+- 2/3 | oz | vegan dry vermouth (such as Dolin Dry)
+- 2 | tsp | Campari
+- 1 | | lemon twist, to garnish
+- | | ice, for stirring
+# Chill a coupe or martini glass.
+# Add the gin, dry vermouth and Campari to a mixing glass and fill it with ice.
+# Stir for about 20 seconds, until very cold.
+# Strain into the chilled glass, squeeze the lemon twist over the top and drop it in.
+T Stir, don't shake. Shaking clouds the drink and waters it down.
+T Keep your vermouth in the fridge once opened. It is wine and goes stale in a few weeks at room temperature.
+V For a bolder drink, raise the Campari to 1/2 oz.
+G coupe | lemon twist | y | Stir 2 oz non-alcoholic gin alternative with 1/2 oz non-alcoholic bitter aperitivo and a dash of verjus over ice, then strain.
+
+@ rabo-de-galo | Rabo de Galo | 1 | 2 | 0 | - | Brazil's own bittersweet aperitif: cachaça stirred over ice with sweet vermouth and a touch of Cynar. The name means "rooster's tail".
+- 2 | oz | cachaça
+- 2/3 | oz | vegan sweet vermouth (such as Dolin Rouge)
+- 1/2 | oz | Cynar
+- 2 | dashes | Angostura bitters (optional)
+- 1 | | orange twist, to garnish
+- | | ice
+# Fill a rocks glass with ice.
+# Pour in the cachaça, sweet vermouth, Cynar and bitters, if using.
+# Stir briefly to chill and mix.
+# Squeeze the orange twist over the drink and drop it in.
+T Cynar is an Italian artichoke liqueur. It adds a gentle bitterness; Campari works if you can't find it.
+T Unaged (silver) cachaça gives a grassier drink; aged cachaça makes it rounder and warmer.
+G rocks glass | orange twist | y | Stir 2 oz non-alcoholic red aperitivo with a splash of cold black tea and a dash of orange juice over ice.
+
+@ russian-spring-punch | Russian Spring Punch | 1 | 4 | 0 | - | Dick Bradsell's London party drink from the 1980s: vodka, lemon and blackcurrant shaken, then topped tall with sparkling wine.
+- 3/4 | oz | vodka
+- 3/4 | oz | fresh lemon juice
+- 1/2 | oz | crème de cassis
+- 2 | tsp | simple syrup
+- 3 | oz | chilled vegan dry sparkling wine (such as Mionetto Organic Prosecco)
+- 2 | | blackberries, to garnish
+- 1 | | lemon slice, to garnish (optional)
+- | | ice
+# Fill a highball glass with ice.
+# Add the vodka, lemon juice, crème de cassis and simple syrup to a shaker with ice and shake for 10 seconds.
+# Strain into the glass.
+# Top with the sparkling wine, stir once gently and garnish with the blackberries and lemon slice.
+T Add the sparkling wine last and stir only once, so it keeps its bubbles.
+T No cassis? Chambord or another berry liqueur makes a close substitute.
+S For a crowd, mix the vodka, lemon, cassis and syrup in a jug ahead of time and keep it in the fridge. Top each glass with wine as you serve.
+G highball glass | blackberries | y | Shake 1 oz lemon juice and 1 oz blackcurrant syrup with ice, strain over ice and top with 4 oz sparkling water.
+
+@ spicy-fifty | Spicy Fifty | 1 | 4 | 0 | - | Salvatore Calabrese's modern classic: vanilla vodka, elderflower, lime and honey with a slow warmth from fresh red chili.
+- 1 2/3 | oz | vanilla vodka
+- 1/2 | oz | elderflower cordial
+- 1/2 | oz | fresh lime juice
+- 1/3 | oz | honey syrup (equal parts honey and hot water)
+- 2 | | thin slices of fresh red chili, seeds removed
+- 1 | | small red chili, to garnish
+- | | ice, for shaking
+# Chill a coupe or martini glass.
+# Add the chili slices to a shaker, then the vodka, elderflower cordial, lime juice and honey syrup.
+# Fill with ice and shake hard for 15 seconds.
+# Double-strain through a fine sieve into the chilled glass and hang the chili on the rim.
+T Taste your chili first. Heat varies a lot; use one slice if it's fierce.
+T Double-straining catches the chili seeds and bits, so the drink stays smooth.
+G coupe | red chili | y | Shake 1 oz elderflower cordial, 1 oz lime juice and a chili slice with ice, strain, and top with 2 oz soda water.
+
+@ illegal | Illegal | 1 | 4 | 0 | eggs | A smoky mezcal sour with funky overproof Jamaican rum, falernum and a dash of maraschino. Strong, tropical and layered.
+- 1 | oz | espadín mezcal
+- 1/2 | oz | overproof white Jamaican rum
+- 1/2 | oz | falernum
+- 1 | bar spoon | maraschino liqueur
+- 3/4 | oz | fresh lime juice
+- 1/2 | oz | simple syrup
+- 1 | tsp | egg white (optional)
+- | | ice, for shaking
+# Chill a coupe or cocktail glass.
+# Add everything to a shaker and fill it with ice.
+# Shake hard for 15 seconds.
+# Strain into the chilled glass, or over fresh ice in a clay cup.
+T The small splash of egg white is only for texture. Leave it out and the drink is just as good.
+T Overproof rum is very strong. Measure it carefully.
+G coupe | lime wheel | y | Shake 1 oz lime juice, 1/2 oz falernum syrup and 1 oz pineapple juice with ice, strain, and add 2 drops of liquid smoke if you like.
+@@ vegetarian = same
+@@ vegan | Vegan Illegal | 4 | 0 | - | The same smoky mezcal sour, with aquafaba in place of the egg white.
+~ egg white (optional) => aquafaba (chickpea water, optional)
+~ splash of egg white => splash of aquafaba
+
+@ canchanchara | Canchánchara | 1 | 3 | 0 | - | One of Cuba's oldest drinks, from the town of Trinidad: raw cane spirit stirred with honey, lime and a little water over ice.
+- 2 | oz | Cuban aguardiente (or a light Cuban-style rum)
+- 1/2 | oz | fresh lime juice
+- 1/2 | oz | raw honey
+- 1 2/3 | oz | cold water
+- | | cracked ice
+- 1 | | lime wedge, to garnish
+# In a rocks glass or clay cup, stir the honey and lime juice together until the honey dissolves.
+# Add the water and stir again.
+# Fill the glass with cracked ice and pour in the aguardiente.
+# Stir well from the bottom up and garnish with the lime wedge.
+T Dissolve the honey before adding ice. Cold honey turns stiff and won't mix in.
+T Traditionally it's served in a small clay cup that keeps the drink cold.
+G rocks glass | lime wedge | y | Stir 1/2 oz honey and 1/2 oz lime juice with 3 oz cold water over cracked ice.
+
+@ dons-special-daiquiri | Don's Special Daiquiri | 1 | 4 | 0 | - | Don the Beachcomber's tropical daiquiri: two rums, passion fruit and honey flash-blended with crushed ice.
+- 1 | oz | gold Jamaican rum
+- 1/2 | oz | white Cuban-style rum
+- 1/2 | oz | passion fruit syrup
+- 1/2 | oz | fresh lime juice
+- 1/2 | oz | honey syrup (equal parts honey and hot water)
+- 1 | cup | crushed ice, plus more to fill
+- 1/2 | | fresh passion fruit, to garnish
+# Add the rums, passion fruit syrup, lime juice, honey syrup and the cup of crushed ice to a blender.
+# Blend for just 3 to 5 seconds, until frothy but not slushy.
+# Pour into a footed glass and top up with more crushed ice.
+# Garnish with the passion fruit half.
+T A quick flash-blend chills and froths the drink. Blend too long and it turns into a slushie.
+T No blender? Shake hard with crushed ice and pour everything into the glass unstrained.
+G footed glass | passion fruit half | y | Flash-blend 1 oz passion fruit syrup, 3/4 oz lime juice, 1/2 oz honey syrup and 2 oz pineapple juice with crushed ice.
+
+@ grand-margarita | Grand Margarita | 1 | 3 | 0 | - | The top-shelf margarita: 100% agave tequila and Grand Marnier with lime, shaken and served on the rocks in a salt-rimmed glass.
+- 1 1/2 | oz | 100% agave tequila
+- 1 | oz | Grand Marnier
+- 1/2 | oz | fresh lime juice
+- 1 | | lime wedge, for the rim
+- | | flaky sea salt, for the rim
+- 1 | | lime slice, to garnish
+- | | ice
+# Run the lime wedge around the outer rim of a rocks glass and dip it in sea salt.
+# Fill the glass with ice.
+# Add the tequila, Grand Marnier and lime juice to a shaker with ice and shake hard for 10 seconds.
+# Strain into the glass and garnish with the lime slice.
+T Salt only the outside of the rim, so the salt doesn't fall into the drink.
+T Grand Marnier is made with cognac, which makes this richer and rounder than a triple sec margarita.
+V Use reposado tequila for a warmer, oakier drink.
+G rocks glass | lime slice and salt rim | y | Shake 1 oz lime juice, 1 oz orange juice and 1/2 oz agave syrup with ice and strain into a salt-rimmed glass of ice.
+
+@ pisco-punch | Pisco Punch | 1 | 4 | 0 | - | San Francisco's Gold Rush-era favorite: pisco with pineapple, lemon and clove, finished with a splash of dry white wine.
+- 2 | oz | pisco
+- 3/4 | oz | fresh pineapple juice
+- 1/2 | oz | simple syrup
+- 1/2 | oz | fresh lemon juice
+- 1 | oz | chilled vegan dry white wine (such as Bonterra Sauvignon Blanc)
+- 3 | | whole cloves
+- | | ice, for shaking
+# In a shaker, gently press the cloves into the simple syrup with a muddler to release their flavor.
+# Add the pisco, pineapple juice and lemon juice, then fill with ice.
+# Shake hard and double-strain into a large wine glass or goblet.
+# Pour the wine on top and stir gently.
+T Press the cloves lightly. Crushing them hard makes the drink bitter.
+T Fresh pineapple juice gives a lovely foam; carton juice works but is flatter.
+G wine glass | pineapple wedge | y | Shake 2 oz pineapple juice, 1/2 oz lemon juice, 1/2 oz simple syrup and 2 cloves with ice, strain, and top with 1 oz white grape juice.
+
+@ iba-tiki | IBA Tiki | 1 | 6 | 0 | tree nuts | A modern Cuban tiki drink: two rums, amaretto and hazelnut liqueur with passion fruit, pineapple, lime and fresh ginger over pebble ice.
+- 1 | oz | aged rum (such as Havana Club Profundo)
+- 1 | oz | smoky aged rum (such as Havana Club Smoky)
+- 1/2 | oz | nut-free amaretto (such as Disaronno)
+- 1 | tsp | Frangelico hazelnut liqueur
+- 5 | drops | maraschino liqueur
+- 1 | oz | passion fruit purée
+- 3 | oz | fresh pineapple juice
+- 1 | oz | fresh lime juice
+- 1 | | thin slice of fresh ginger
+- | | pebble or crushed ice
+- | | citrus wheels and a dried pineapple slice, to garnish
+# Fill a tiki mug or tall glass with pebble ice.
+# Muddle the ginger slice in the bottom of a shaker.
+# Add all the remaining ingredients, fill with ice and shake hard for 15 seconds.
+# Strain into the mug and garnish with the citrus wheels and dried pineapple.
+T Frangelico is made from hazelnuts. Use 1 tsp more amaretto in its place for a nut-free drink.
+T Any good aged rum works. A dash of smoky mezcal can stand in for the smoky rum.
+G tiki mug | citrus wheels and dried pineapple | y | Shake 1 oz passion fruit purée, 3 oz pineapple juice, 1 oz lime juice, 1/2 oz simple syrup and a ginger slice with ice.
+
+@ vento | Ve.n.to | 1 | 5 | 0 | eggs | Italy's grappa sour: smooth white grappa with lemon, chamomile honey and chamomile liqueur, served over ice with white grapes.
+- 1 1/2 | oz | smooth white grappa
+- 3/4 | oz | fresh lemon juice
+- 1/2 | oz | chamomile honey syrup (equal parts honey and hot chamomile tea)
+- 1/2 | oz | chamomile liqueur
+- 1 | tsp | egg white (optional)
+- | | ice
+- 1 | | strip of lemon zest, to garnish
+- 3 | | white grapes on a pick, to garnish
+# Fill a small tumbler with ice.
+# Add the grappa, lemon juice, chamomile honey syrup, chamomile liqueur and egg white, if using, to a shaker.
+# Fill with ice and shake hard for 15 seconds.
+# Strain into the tumbler and garnish with the lemon zest and grapes.
+T Make the syrup by stirring honey into an equal amount of freshly brewed chamomile tea. It keeps in the fridge for two weeks.
+T Choose a soft, young grappa. Aged or very strong grappas overpower the chamomile.
+S Make the chamomile honey syrup up to two weeks ahead and keep it in the fridge.
+G small tumbler | lemon zest and white grapes | y | Shake 1 oz lemon juice, 3/4 oz chamomile honey syrup and 2 oz white grape juice with ice and strain over ice.

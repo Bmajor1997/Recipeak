@@ -51,25 +51,6 @@ V Bay Breeze: use pineapple juice in place of the grapefruit juice.
 V Cape Codder: leave out the grapefruit juice and garnish with lime.
 G highball glass | orange twist and cherry | y | Build 4 oz cranberry juice and 2 oz grapefruit juice over ice and top with a splash of soda water.
 
-@ porn-star-martini | Porn Star Martini | 1 | 5 | 0 | - | A modern classic of vanilla vodka and passion fruit, shaken until frothy and served with a small glass of Champagne on the side.
-- 1 2/3 | oz | vanilla vodka
-- 2/3 | oz | passion fruit liqueur (such as Passoã)
-- 1 2/3 | oz | passion fruit purée
-- 2 | bar spoons | vanilla sugar (or 1/2 oz vanilla syrup)
-- 1 2/3 | oz | chilled vegan Champagne (such as Moët & Chandon Impérial), to serve
-- 1/2 | | fresh passion fruit, to garnish
-- | | ice, for shaking
-# Chill a coupe or martini glass.
-# Add the vanilla vodka, passion fruit liqueur, passion fruit purée and vanilla sugar to a shaker and fill it with ice.
-# Shake hard for 15 seconds, until the outside of the shaker is frosty.
-# Strain into the chilled glass and float the passion fruit half on top.
-# Pour the Champagne into a shot glass and serve it alongside.
-T Sip the Champagne between sips of the cocktail: it cleans the palate and resets the sweetness.
-T Frozen passion fruit purée, thawed, is more reliable than fresh fruit and easy to find.
-T Make vanilla sugar by burying a used vanilla pod in a jar of sugar for a week.
-V Many bars add 1/2 oz fresh lime juice for a sharper drink.
-G coupe | passion fruit half | y | Shake 2 oz passion fruit purée, 1/2 oz lime juice and 1/2 oz vanilla syrup with ice, strain, and serve with sparkling water on the side.
-
 @ old-cuban | Old Cuban | 1 | 4 | 0 | - | Aged rum, lime, mint and bitters shaken together and topped with Champagne. Like an elegant, sparkling mojito.
 - 6 | | fresh mint leaves, plus a sprig to garnish
 - 1 1/2 | oz | aged rum
