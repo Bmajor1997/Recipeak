@@ -327,7 +327,7 @@ T Use a julienne peeler for the papaya. Shreds that are too thick won't soak up 
 T For a gluten-free version, use tamari instead of soy sauce.
 @@ vegan = vegetarian
 
-@ tom-kha-gai | Tom Kha Gai (Thai Coconut Chicken Soup) | 4 | 15 | 20 | fish, tree nuts | A creamy Thai soup of chicken and mushrooms simmered in coconut milk and broth with galangal, lemongrass and lime leaves, finished with lime and fish sauce.
+@ tom-kha-gai | Tom Kha Gai (Thai Coconut Chicken Soup) | 4 | 15 | 20 | fish | A creamy Thai soup of chicken and mushrooms simmered in coconut milk and broth with galangal, lemongrass and lime leaves, finished with lime and fish sauce.
 - 1 | lb | boneless, skinless chicken thighs, thinly sliced
 - 2 | cups | low-sodium chicken broth
 - 1 1/2 | cups | full-fat coconut milk
@@ -349,7 +349,7 @@ T Keep it at a gentle simmer once the coconut milk is in. A hard boil can make i
 T The lemongrass, galangal and lime leaves are for flavor, not for eating. Leave them in the pot when you serve.
 T Galangal is not the same as ginger, but ginger will do in a pinch.
 S Refrigerate for up to 2 days. Reheat gently and add a fresh squeeze of lime.
-@@ vegetarian | Tom Kha Hed (Thai Coconut Mushroom Soup) | 15 | 20 | tree nuts, soy, wheat | A creamy Thai soup of tofu and mushrooms simmered in coconut milk and vegetable broth with galangal, lemongrass and lime leaves, finished with lime and soy sauce.
+@@ vegetarian | Tom Kha Hed (Thai Coconut Mushroom Soup) | 15 | 20 | soy, wheat | A creamy Thai soup of tofu and mushrooms simmered in coconut milk and vegetable broth with galangal, lemongrass and lime leaves, finished with lime and soy sauce.
 - 14 | oz | firm tofu, cut into 3/4-inch cubes
 - 2 | cups | low-sodium vegetable broth
 - 1 1/2 | cups | full-fat coconut milk

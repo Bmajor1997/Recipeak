@@ -70,7 +70,7 @@ T No grill? Char the corn directly over a gas burner, or under a hot broiler, tu
 T Feta is a good stand-in if you can't find cotija.
 V Esquites: cut the charred kernels off the cob and toss them with the same toppings to serve in cups.
 
-@ moqueca | Moqueca Baiana (Brazilian Fish Stew) | 4 | 25 | 25 | fish, shellfish, tree nuts | The coastal stew from Bahia, Brazil: firm white fish and shrimp simmered with peppers, tomatoes and onion in coconut milk, colored and flavored with red dendê palm oil.
+@ moqueca | Moqueca Baiana (Brazilian Fish Stew) | 4 | 25 | 25 | fish, shellfish | The coastal stew from Bahia, Brazil: firm white fish and shrimp simmered with peppers, tomatoes and onion in coconut milk, colored and flavored with red dendê palm oil.
 - 1 1/2 | lb | firm white fish fillets (such as cod, halibut or snapper), cut into 2-inch pieces
 - 8 | oz | raw shrimp, peeled and deveined
 - 2 | | limes, juiced

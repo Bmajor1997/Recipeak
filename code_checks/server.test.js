@@ -267,4 +267,6 @@ test("deleting an account needs a fresh sign-in, removes its data, and refuses t
   assert.equal(after.status, 401);
   assert.equal(after.json.code, "ACCOUNT_DELETED");
   assert.equal((await s.call("/api/allowance", { user: "bob" })).status, 200);
+  // If removing the sign-in failed on the phone, trying again still works.
+  assert.equal((await s.call("/api/account/delete", { user: "alice@fresh", body: {} })).status, 200);
 });
