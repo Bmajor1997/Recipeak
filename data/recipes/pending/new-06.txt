@@ -46,7 +46,7 @@ S Stack cooked crêpes with parchment between them and refrigerate for up to 3 d
 V Savory crêpes: leave out the sugar and fill with ham, Gruyère and a fried egg.
 V Crêpes Suzette: warm the crêpes in a sauce of butter, sugar, orange juice and orange liqueur.
 
-@ borscht | Ukrainian Borscht | 6 | 25 | 80 | milk | Ukraine's ruby-red beet soup: beef broth simmered with beets, cabbage, potatoes and carrots, made tangy with a splash of vinegar and finished with dill and sour cream.
+@ borscht | Ukrainian Borscht | 6 | 25 | 95 | milk | Ukraine's ruby-red beet soup: beef broth simmered with beets, cabbage, potatoes and carrots, made tangy with a splash of vinegar and finished with dill and sour cream.
 - 1 | lb | boneless beef chuck, cut into 3/4-inch cubes
 - 8 | cups | water
 - 1 | | bay leaf
@@ -63,7 +63,7 @@ V Crêpes Suzette: warm the crêpes in a sauce of butter, sugar, orange juice an
 - 3 | cloves | garlic, minced
 - 1/4 | cup | chopped fresh dill, plus more to serve
 - | | sour cream, to serve
-# Put the beef, water, bay leaf and 1 teaspoon salt in a large pot. Bring to a boil, skim off the foam, then cover partly and simmer for 45 minutes, until the beef is nearly tender.
+# Put the beef, water, bay leaf and 1 teaspoon salt in a large pot. Bring to a boil, skim off the foam, then cover partly and simmer for 1 hour, until the beef is nearly tender.
 # Meanwhile, heat the oil in a large skillet over medium heat. Cook the onion and carrot for 5 minutes, until soft.
 # Add the beets, tomato paste, vinegar and sugar and cook, stirring, for 10 minutes, adding a splash of broth if it starts to stick. The vinegar keeps the beets bright red.
 # Add the potatoes and the rest of the salt to the broth and simmer for 10 minutes.
@@ -194,7 +194,7 @@ V Finish on a hot grill instead of under the broiler.
 # Rest the wrapped brisket in an empty cooler or a 150°F oven for at least 1 hour, or up to 4.
 # Slice across the grain into pencil-thick slices, separating the lean flat from the fattier point, and serve with pickles and onion.
 T In Texas it comes on butcher paper with slices of white bread on the side.
-T Plan on about 1 to 1 1/2 hours per pound. Start early, since a long rest keeps it warm.
+T Plan on 10 to 14 hours of cooking plus the rest. Start early: a finished brisket stays hot for hours wrapped in a cooler, but a late one can't be rushed.
 T Cook to feel, not just temperature. Done brisket feels like a probe sliding into soft butter.
 T The flat and point grains run in different directions. Cut the two apart before slicing each one across its grain.
 S Wrap leftovers tightly and refrigerate for up to 4 days. Reheat slices wrapped in foil with a splash of broth at 300°F.
