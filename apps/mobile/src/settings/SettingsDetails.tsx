@@ -18,6 +18,7 @@ import { toggle_diet } from "../onboarding/onboarding";
 import { useOnboarding } from "../onboarding/OnboardingProvider";
 import { legal_page_urls, SUPPORT_EMAIL, support_mail_url } from "./legalLinks";
 import { usePreferences } from "./PreferencesProvider";
+import { useTips } from "../tips/TipsProvider";
 import { APPEARANCES, type Appearance } from "./preferences";
 import { CATEGORIES, type Category, Group, Row, SettingsScreen } from "./SettingsUI";
 
@@ -508,6 +509,8 @@ function Help() {
   const { type } = useTheme();
   const pages = legal_page_urls(process.env.EXPO_PUBLIC_API_BASE_URL);
   const [link_problem, set_link_problem] = useState<string | null>(null);
+  const tips = useTips();
+  const [tips_reset, set_tips_reset] = useState(false);
   const open_link = (url: string) => {
     set_link_problem(null);
     Linking.openURL(url).catch(() => set_link_problem(`Couldn’t open that link. You can email ${SUPPORT_EMAIL}.`));
@@ -534,6 +537,14 @@ function Help() {
         <Row label="Contact support" detail={SUPPORT_EMAIL} icon="mail-outline" onPress={() => open_link(support_mail_url())} />
       </Group>
       {link_problem && <Notice tone="error">{link_problem}</Notice>}
+      <Button
+        label={tips_reset ? "Tips will show again" : "Show tips again"}
+        variant="secondary"
+        onPress={() => {
+          tips.reset();
+          set_tips_reset(true);
+        }}
+      />
       <Text accessibilityRole="header" style={type.heading}>
         Find a recipe
       </Text>

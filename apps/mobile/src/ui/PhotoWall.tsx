@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { AccessibilityInfo, Animated, Easing, Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { usePreferences } from "../settings/PreferencesProvider";
+import { useTips } from "../tips/TipsProvider";
+import { TipBubble } from "./TipBubble";
 import { useOpenWallDish } from "../recipes/useOpenWallDish";
 import { fonts, useTheme, useThemedStyles, type Palette } from "./theme";
 import { row_motion, WALL_GAP, WALL_TILE } from "./wallMotion";
@@ -28,11 +30,16 @@ function Row({
   photos,
   reverse,
   still,
+  held,
+  on_hold,
   onOpen,
 }: {
   photos: WallPhoto[];
   reverse: boolean;
   still: boolean;
+  /** A finger is on the wall: both rows pause where they are, so a photo is easy to tap. */
+  held: boolean;
+  on_hold: (down: boolean) => void;
   onOpen: (dish: WallPhoto) => void;
 }) {
   const styles = useThemedStyles(create_styles);
@@ -41,15 +48,47 @@ function Row({
 
   useEffect(() => {
     if (still) {
+      progress.stopAnimation();
       progress.setValue(0);
       return;
     }
+    if (held) {
+      progress.stopAnimation();
+      return;
+    }
+    // Carry on from wherever the row stopped, then loop as usual.
+    let live = true;
+    let running: Animated.CompositeAnimation | null = null;
     const loop = Animated.loop(
       Animated.timing(progress, { toValue: 1, duration: motion.durationMs, easing: Easing.linear, useNativeDriver: true }),
     );
-    loop.start();
-    return () => loop.stop();
-  }, [progress, still, motion.durationMs]);
+    progress.stopAnimation((value) => {
+      if (!live) return;
+      const left = 1 - value;
+      if (value <= 0 || left <= 0) {
+        progress.setValue(0);
+        running = loop;
+        loop.start();
+        return;
+      }
+      running = Animated.timing(progress, {
+        toValue: 1,
+        duration: motion.durationMs * left,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      });
+      running.start(({ finished }) => {
+        if (!finished || !live) return;
+        progress.setValue(0);
+        running = loop;
+        loop.start();
+      });
+    });
+    return () => {
+      live = false;
+      running?.stop();
+    };
+  }, [progress, still, held, motion.durationMs]);
 
   const translateX = progress.interpolate({ inputRange: [0, 1], outputRange: [motion.from, motion.to] });
   return (
@@ -61,6 +100,8 @@ function Row({
           <Pressable
             key={i}
             onPress={() => onOpen(dish)}
+            onPressIn={() => on_hold(true)}
+            onPressOut={() => on_hold(false)}
             accessible={!copy}
             importantForAccessibility={copy ? "no-hide-descendants" : "auto"}
             accessibilityRole="button"
@@ -82,17 +123,26 @@ export function PhotoWall() {
   const systemReduceMotion = useReduceMotion();
   const preferences = usePreferences();
   const still = systemReduceMotion || !preferences.ready || preferences.values.pausePhotoWall;
-  const open = useOpenWallDish();
+  const open_dish = useOpenWallDish();
+  const tips = useTips();
+  const [held, set_held] = useState(false);
+  const open = (dish: WallPhoto) => {
+    tips.mark_seen("photo-wall");
+    open_dish(dish);
+  };
   return (
     <View style={styles.wrap}>
       <View style={styles.wall}>
         <View style={{ marginLeft: -40 }}>
-          <Row photos={WALL_ROWS[0]} reverse={false} still={still} onOpen={open} />
+          <Row photos={WALL_ROWS[0]} reverse={false} still={still} held={held} on_hold={set_held} onOpen={open} />
         </View>
         <View style={{ marginLeft: -100 }}>
-          <Row photos={WALL_ROWS[1]} reverse still={still} onOpen={open} />
+          <Row photos={WALL_ROWS[1]} reverse still={still} held={held} on_hold={set_held} onOpen={open} />
         </View>
       </View>
+      {tips.is_due("photo-wall") && (
+        <TipBubble text="Tap any photo to see its recipe." arrow="up" on_dismiss={() => tips.mark_seen("photo-wall")} style={styles.tip} />
+      )}
       <View style={styles.caption}>
         <Text style={styles.captionTitle}>{CURATED_COUNT} meals and drinks, and counting</Text>
         <Text style={type.muted}>Tap one for the recipe, or snap your own</Text>
@@ -108,5 +158,6 @@ const create_styles = (colors: Palette) =>
     row: { flexDirection: "row", gap: WALL_GAP, marginBottom: WALL_GAP },
     tile: { width: WALL_TILE, height: WALL_TILE, borderRadius: 16, backgroundColor: colors.surface },
     caption: { paddingHorizontal: 20, marginTop: 12 },
+    tip: { marginHorizontal: 16, marginTop: 10 },
     captionTitle: { color: colors.text, fontSize: 18, fontFamily: fonts.display },
   });

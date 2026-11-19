@@ -35,7 +35,9 @@ import { DIETS, type Diet, type Guess, type Kind } from "../recipes/types";
 import { useDishImage } from "../recipes/useDishImage";
 import { usePreferences } from "../settings/PreferencesProvider";
 import { SavedLimitError } from "../saved/savedRecipes";
+import { useTips } from "../tips/TipsProvider";
 import { FocusedCover } from "../ui/FocusedCover";
+import { TipBubble } from "../ui/TipBubble";
 import { Button, Chip, fonts, Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
 
 const heroArt = require("../../assets/hero.png");
@@ -48,7 +50,19 @@ export default function RecipeScreen() {
   return <RecipeView current={current} />;
 }
 
-function Sheet({ children, footer }: { children: React.ReactNode; footer?: React.ReactNode }) {
+function Sheet({
+  children,
+  footer,
+  on_share,
+  share_tip,
+}: {
+  children: React.ReactNode;
+  footer?: React.ReactNode;
+  /** Shows a share button at the top right, beside the close button. */
+  on_share?: () => void;
+  /** The one-time "you can share this" tip, shown under the share button after a first save. */
+  share_tip?: React.ReactNode;
+}) {
   const styles = useThemedStyles(create_styles);
   const insets = useSafeAreaInsets();
   // On Android the recipe fills the screen, so a solid band keeps scrolled text out from under the clock and icons.
@@ -66,7 +80,13 @@ function Sheet({ children, footer }: { children: React.ReactNode; footer?: React
       {status_space > 0 && <View style={[styles.statusBand, { height: status_space }]} pointerEvents="none" />}
       <View style={[styles.topBar, { top: 18 + status_space }]} pointerEvents="box-none">
         <RoundButton icon="chevron-down" label="Close recipe" onPress={() => router.back()} />
+        {on_share && <RoundButton icon="share-outline" label="Share recipe" onPress={on_share} />}
       </View>
+      {share_tip && (
+        <View style={[styles.shareTip, { top: 18 + status_space + 52 }]} pointerEvents="box-none">
+          {share_tip}
+        </View>
+      )}
       <View style={{ height: insets.bottom }} />
     </View>
   );
@@ -145,6 +165,12 @@ function RecipeView({ current }: { current: Ready }) {
   const [problem, set_problem] = useState<string | null>(null);
   // Save problems show beside the Save button, not at the top of the page, so they're seen and announced.
   const [save_problem, set_save_problem] = useState<string | null>(null);
+  const [just_saved, set_just_saved] = useState(false);
+  const tips = useTips();
+  const share_recipe = () => {
+    tips.mark_seen("share");
+    void Share.share({ message: recipe_as_text(recipe) });
+  };
   const [notice, set_notice] = useState<string | null>(
     current.diet ? `Showing the ${current.diet} version, from your diet in Settings.` : null,
   );
@@ -214,6 +240,7 @@ function RecipeView({ current }: { current: Ready }) {
         const limit = (await is_subscriber()) ? undefined : FREE_SAVED_RECIPES;
         const entry = await saved.save(kind, recipe, preferences.ready && preferences.values.saveCoverPhotos ? coverUri : null, { limit });
         set_current({ ...current, savedId: entry.id });
+        set_just_saved(true);
       }
     } catch (error) {
       if (error instanceof SavedLimitError) router.push({ pathname: "/upgrade", params: { reason: "saved" } });
@@ -266,7 +293,20 @@ function RecipeView({ current }: { current: Ready }) {
   );
 
   return (
-    <Sheet footer={footer}>
+    <Sheet
+      footer={footer}
+      on_share={share_recipe}
+      share_tip={
+        just_saved && tips.is_due("share") ? (
+          <TipBubble
+            text="Saved. Tap share to send it to a friend."
+            arrow="up"
+            arrow_at="right"
+            on_dismiss={() => tips.mark_seen("share")}
+          />
+        ) : null
+      }
+    >
       <ScrollView contentContainerStyle={{ paddingBottom: 110 + insets.bottom }}>
         {/* Cover photo from the shared library; the app's art shows while it's being created. */}
         <View style={[styles.cover, { width, height: coverHeight }]}>
@@ -457,7 +497,7 @@ function RecipeView({ current }: { current: Ready }) {
           <RateRecipe key={`${kind}|${dishName}`} kind={kind} dish={dishName} />
 
           <View style={styles.shareRow}>
-            <Button label="Share recipe" variant="secondary" onPress={() => Share.share({ message: recipe_as_text(recipe) })} />
+            <Button label="Share recipe" variant="secondary" onPress={share_recipe} />
           </View>
 
           <Text style={[type.muted, { marginTop: 16 }]}>
@@ -683,6 +723,7 @@ const create_styles = (colors: Palette) =>
     tip: { flexDirection: "row", gap: 12, marginBottom: 12 },
     stepNumber: { color: colors.accentInk, fontSize: 24, lineHeight: 28, fontFamily: fonts.displayMedium, minWidth: 36 },
     shareRow: { marginTop: 16 },
+    shareTip: { position: "absolute", left: 16, right: 16 },
     topBar: { position: "absolute", left: 16, right: 16, flexDirection: "row", justifyContent: "space-between" },
     round: { backgroundColor: "rgba(0,0,0,0.5)", alignItems: "center", justifyContent: "center" },
     bottomBar: {

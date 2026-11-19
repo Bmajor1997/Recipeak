@@ -12,6 +12,7 @@ import { CameraProvider } from "../camera/CameraProvider";
 import { OnboardingTour } from "../onboarding/OnboardingTour";
 import { OnboardingProvider, useOnboarding } from "../onboarding/OnboardingProvider";
 import { PreferencesProvider, usePreferences } from "../settings/PreferencesProvider";
+import { TipsProvider } from "../tips/TipsProvider";
 import { theme_for, ThemeProvider, useTheme } from "../ui/theme";
 
 /** Light or dark: the person's choice in Settings, or the phone's own setting ("Match phone", the default). */
@@ -84,7 +85,9 @@ export default function RootLayout() {
       <OnboardingProvider>
         <PreferencesProvider>
           <Themed>
-            <Screens />
+            <TipsProvider>
+              <Screens />
+            </TipsProvider>
           </Themed>
         </PreferencesProvider>
       </OnboardingProvider>
