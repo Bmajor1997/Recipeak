@@ -12939,6 +12939,185 @@
    "variations": []
   }
  },
+ "egg-fried-rice": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Egg Fried Rice",
+   "description": "The everyday Chinese fried rice: day-old rice tossed in a very hot pan with soft egg, peas, carrot and scallions. Ready in ten minutes.",
+   "servings": 4,
+   "prep_minutes": 10,
+   "cook_minutes": 10,
+   "ingredients": [
+    {
+     "amount": "4",
+     "unit": "cups",
+     "item": "cold cooked jasmine rice, ideally a day old"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "large eggs, beaten with a pinch of salt"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "neutral oil, divided"
+    },
+    {
+     "amount": "2",
+     "unit": "cloves",
+     "item": "garlic, minced"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "frozen peas and diced carrots"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "scallions, thinly sliced, whites and greens kept apart"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "tbsp",
+     "item": "light soy sauce"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "toasted sesame oil"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "ground white pepper"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "salt, to taste"
+    }
+   ],
+   "steps": [
+    "Break up any clumps of rice with your fingers so the grains are separate.",
+    "Heat a wok or large skillet over high heat until it just starts to smoke. Add 1 tablespoon of the oil, pour in the eggs and scramble for 30 seconds, until just set but still glossy. Slide them onto a plate.",
+    "Add the rest of the oil, then the garlic and scallion whites. Stir for 15 seconds, until fragrant.",
+    "Add the peas and carrots and stir-fry for 1 minute.",
+    "Add the rice and spread it out. Let it sit for 30 seconds to toast, then toss. Repeat for 3 to 4 minutes, until every grain is hot and slightly chewy.",
+    "Add the soy sauce around the edge of the pan so it sizzles, then the sesame oil and white pepper. Toss well.",
+    "Return the egg, breaking it into pieces, add the scallion greens and toss once more. Taste for salt and serve right away."
+   ],
+   "allergens": [
+    "eggs",
+    "sesame",
+    "soy",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Cold, day-old rice is drier, so it fries into separate grains. Fresh rice steams and turns mushy.",
+    "No leftover rice? Spread freshly cooked rice on a tray and refrigerate it uncovered for an hour.",
+    "Cook in two batches if your pan is small. A crowded pan can't stay hot enough to fry."
+   ],
+   "make_ahead": "Keep leftovers in the fridge for up to 3 days and reheat in a hot pan with a splash of water.",
+   "variations": [
+    "Yangzhou fried rice: add diced char siu and small shrimp with the peas.",
+    "Kimchi fried rice: add 1/2 cup chopped kimchi with the garlic and top with a fried egg."
+   ]
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": {
+    "title": "Vegan Tofu Fried Rice",
+    "description": "The everyday Chinese fried rice made with crumbled tofu instead of scrambled egg, plus peas, carrot and scallions, all tossed in a very hot pan.",
+    "servings": 4,
+    "prep_minutes": 10,
+    "cook_minutes": 10,
+    "ingredients": [
+     {
+      "amount": "4",
+      "unit": "cups",
+      "item": "cold cooked jasmine rice, ideally a day old"
+     },
+     {
+      "amount": "7",
+      "unit": "oz",
+      "item": "firm tofu, patted dry and crumbled"
+     },
+     {
+      "amount": "1",
+      "unit": "pinch",
+      "item": "ground turmeric"
+     },
+     {
+      "amount": "3",
+      "unit": "tbsp",
+      "item": "neutral oil, divided"
+     },
+     {
+      "amount": "2",
+      "unit": "cloves",
+      "item": "garlic, minced"
+     },
+     {
+      "amount": "1/2",
+      "unit": "cup",
+      "item": "frozen peas and diced carrots"
+     },
+     {
+      "amount": "3",
+      "unit": "",
+      "item": "scallions, thinly sliced, whites and greens kept apart"
+     },
+     {
+      "amount": "1 1/2",
+      "unit": "tbsp",
+      "item": "light soy sauce"
+     },
+     {
+      "amount": "1",
+      "unit": "tsp",
+      "item": "toasted sesame oil"
+     },
+     {
+      "amount": "1/4",
+      "unit": "tsp",
+      "item": "ground white pepper"
+     },
+     {
+      "amount": "",
+      "unit": "",
+      "item": "salt, to taste"
+     }
+    ],
+    "steps": [
+     "Break up any clumps of rice with your fingers so the grains are separate.",
+     "Heat a wok or large skillet over high heat until it just starts to smoke. Add 1 tablespoon of the oil and the tofu, sprinkle with the turmeric and a pinch of salt, and stir-fry for 3 minutes, until golden. Slide it onto a plate.",
+     "Add the rest of the oil, then the garlic and scallion whites. Stir for 15 seconds, until fragrant.",
+     "Add the peas and carrots and stir-fry for 1 minute.",
+     "Add the rice and spread it out. Let it sit for 30 seconds to toast, then toss. Repeat for 3 to 4 minutes, until every grain is hot and slightly chewy.",
+     "Add the soy sauce around the edge of the pan so it sizzles, then the sesame oil and white pepper. Toss well.",
+     "Return the tofu, add the scallion greens and toss once more. Taste for salt and serve right away."
+    ],
+    "allergens": [
+     "sesame",
+     "soy",
+     "wheat"
+    ],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+     "Cold, day-old rice is drier, so it fries into separate grains. Fresh rice steams and turns mushy.",
+     "The pinch of turmeric gives the tofu a golden color, and drying it well helps it brown.",
+     "Cook in two batches if your pan is small. A crowded pan can't stay hot enough to fry."
+    ],
+    "make_ahead": "Keep leftovers in the fridge for up to 3 days and reheat in a hot pan with a splash of water.",
+    "variations": []
+   }
+  }
+ },
  "eggnog": {
   "kind": "cocktail",
   "recipe": {
@@ -15773,6 +15952,72 @@
    "variations": []
   }
  },
+ "gin-fizz": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Gin Fizz",
+   "description": "The original fizz: gin, lemon and a little sugar shaken hard, then lifted with a splash of soda. Served short and without ice, so it's crisp and bright from the first sip.",
+   "servings": 1,
+   "prep_minutes": 3,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "London dry gin"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "2",
+     "unit": "tsp",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "chilled soda water"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lemon slice, to garnish"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice, for shaking"
+    }
+   ],
+   "steps": [
+    "Chill a small tumbler or fizz glass in the freezer.",
+    "Add the gin, lemon juice and simple syrup to a shaker, fill it with ice and shake hard for 15 seconds.",
+    "Strain into the chilled glass with no ice.",
+    "Top with the soda water and garnish with the lemon slice."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "small tumbler",
+    "garnish": "lemon slice",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 1 oz lemon juice and 3/4 oz simple syrup with ice, strain, and top with 3 oz soda water."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Shake longer than you think: the extra air and dilution give a fizz its light, almost frothy texture.",
+    "Keep the soda in the fridge. Cold soda holds its bubbles; warm soda goes flat on contact.",
+    "Too sharp? Add another teaspoon of syrup. Lemons vary a lot."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Silver Fizz: add 1 egg white and dry-shake without ice first for a silky foam.",
+    "Sloe Gin Fizz: use sloe gin in place of London dry gin."
+   ]
+  }
+ },
  "gin-gin-mule": {
   "kind": "cocktail",
   "recipe": {
@@ -17364,6 +17609,93 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "hummus": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Hummus",
+   "description": "Silky, whipped chickpea and tahini dip with lemon and garlic, finished with olive oil. Cooking dried chickpeas until very soft is the secret to its smoothness.",
+   "servings": 6,
+   "prep_minutes": 15,
+   "cook_minutes": 60,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "dried chickpeas"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "baking soda, divided"
+    },
+    {
+     "amount": "2/3",
+     "unit": "cup",
+     "item": "tahini, well stirred"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "2",
+     "unit": "cloves",
+     "item": "garlic"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "salt, plus more to taste"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "ice water"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "ground cumin (optional)"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "extra-virgin olive oil, paprika and chopped parsley, to serve"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "warm pita bread, to serve"
+    }
+   ],
+   "steps": [
+    "The night before, cover the chickpeas with plenty of cold water, stir in 1/2 teaspoon of the baking soda, and soak overnight.",
+    "Drain and rinse the chickpeas, put them in a pot with the rest of the baking soda and cover them by 3 inches with fresh water.",
+    "Bring to a boil, skim off any foam and skins, then simmer for 45 to 60 minutes, until the chickpeas are very soft and fall apart when pressed. Drain well.",
+    "Blend the lemon juice, garlic and salt in a food processor and let it sit for 5 minutes to mellow the garlic.",
+    "Add the tahini and blend until thick, then pour in the ice water little by little with the machine running, until the mixture turns pale and smooth.",
+    "Add the warm chickpeas and the cumin, if using, and blend for 3 to 4 minutes, scraping down the sides, until completely smooth. Add more ice water if it's too thick.",
+    "Taste for salt and lemon. Spread in a shallow bowl, swirl a groove with the back of a spoon, and fill it with olive oil. Sprinkle with paprika and parsley and serve with warm pita."
+   ],
+   "allergens": [
+    "sesame",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Overcooking the chickpeas is the goal: soft chickpeas blend smooth, while firm ones stay grainy.",
+    "Ice water makes the tahini fluffy and lightens its color.",
+    "Good tahini matters most. It should taste nutty and pour easily, not bitter or stiff."
+   ],
+   "make_ahead": "Keep it covered in the fridge for up to 5 days. Bring it to room temperature and stir in a spoonful of water before serving.",
+   "variations": [
+    "Quick version: simmer 2 cans of drained chickpeas with 1/2 teaspoon baking soda for 20 minutes, then rinse and blend.",
+    "Hummus with meat: top with spiced ground lamb and toasted pine nuts."
+   ]
   }
  },
  "hurricane": {
@@ -19079,6 +19411,76 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "john-collins": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "John Collins",
+   "description": "A tall, sparkling gin lemonade built right in the glass: London dry gin, lemon, sugar and soda over plenty of ice.",
+   "servings": 1,
+   "prep_minutes": 3,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "London dry gin"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "chilled soda water"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lemon slice, to garnish"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "maraschino cherry, to garnish"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Fill a highball glass with ice.",
+    "Pour in the gin, lemon juice and simple syrup.",
+    "Add the soda water and stir gently once or twice, just to mix.",
+    "Garnish with the lemon slice and cherry."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "lemon slice and maraschino cherry",
+    "alcoholic": true,
+    "non_alcoholic_version": "Build 1 oz lemon juice and 3/4 oz simple syrup over ice and top with 4 oz soda water."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Stir before the soda goes in if you like, then only lift the drink once after. Heavy stirring knocks out the fizz.",
+    "A John Collins uses London dry gin; a Tom Collins traditionally uses the sweeter Old Tom gin."
+   ],
+   "make_ahead": "Mix a pitcher of gin, lemon and syrup up to 4 hours ahead and keep it cold. Pour over ice and top each glass with soda.",
+   "variations": [
+    "Whiskey Collins: swap bourbon for the gin.",
+    "Juan Collins: swap blanco tequila for the gin."
+   ]
   }
  },
  "jollof-rice": {
@@ -26453,6 +26855,77 @@
    "variations": []
   }
  },
+ "old-cuban": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Old Cuban",
+   "description": "Aged rum, lime, mint and bitters shaken together and topped with Champagne. Like an elegant, sparkling mojito.",
+   "servings": 1,
+   "prep_minutes": 4,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "6",
+     "unit": "",
+     "item": "fresh mint leaves, plus a sprig to garnish"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "aged rum"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "fresh lime juice"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "2",
+     "unit": "dashes",
+     "item": "Angostura bitters"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "chilled vegan brut Champagne (such as Moët & Chandon Impérial)"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice, for shaking"
+    }
+   ],
+   "steps": [
+    "Chill a coupe.",
+    "Add the mint, rum, lime juice, simple syrup and bitters to a shaker and fill it with ice.",
+    "Shake hard for 10 to 15 seconds.",
+    "Double strain through a fine strainer into the chilled coupe so no bits of mint get in.",
+    "Top with the Champagne and garnish with a mint sprig."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "coupe",
+    "garnish": "mint sprig",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 1 oz lime juice, 1 oz simple syrup and 6 mint leaves with ice, strain, and top with 3 oz chilled ginger ale."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Don't muddle the mint hard. Shaking with ice releases enough flavor without the bitter, grassy taste of crushed leaves.",
+    "A dry prosecco works if you don't have Champagne.",
+    "Slap the mint sprig between your palms before garnishing to wake up its aroma."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Old Cuban Royale: double the Champagne and serve in a flute."
+   ]
+  }
+ },
  "old-fashioned": {
   "kind": "cocktail",
   "recipe": {
@@ -28839,6 +29312,77 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "porn-star-martini": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Porn Star Martini",
+   "description": "A modern classic of vanilla vodka and passion fruit, shaken until frothy and served with a small glass of Champagne on the side.",
+   "servings": 1,
+   "prep_minutes": 5,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 2/3",
+     "unit": "oz",
+     "item": "vanilla vodka"
+    },
+    {
+     "amount": "2/3",
+     "unit": "oz",
+     "item": "passion fruit liqueur (such as Passoã)"
+    },
+    {
+     "amount": "1 2/3",
+     "unit": "oz",
+     "item": "passion fruit purée"
+    },
+    {
+     "amount": "2",
+     "unit": "bar spoons",
+     "item": "vanilla sugar (or 1/2 oz vanilla syrup)"
+    },
+    {
+     "amount": "1 2/3",
+     "unit": "oz",
+     "item": "chilled vegan Champagne (such as Moët & Chandon Impérial), to serve"
+    },
+    {
+     "amount": "1/2",
+     "unit": "",
+     "item": "fresh passion fruit, to garnish"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice, for shaking"
+    }
+   ],
+   "steps": [
+    "Chill a coupe or martini glass.",
+    "Add the vanilla vodka, passion fruit liqueur, passion fruit purée and vanilla sugar to a shaker and fill it with ice.",
+    "Shake hard for 15 seconds, until the outside of the shaker is frosty.",
+    "Strain into the chilled glass and float the passion fruit half on top.",
+    "Pour the Champagne into a shot glass and serve it alongside."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "coupe",
+    "garnish": "passion fruit half",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 2 oz passion fruit purée, 1/2 oz lime juice and 1/2 oz vanilla syrup with ice, strain, and serve with sparkling water on the side."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Sip the Champagne between sips of the cocktail: it cleans the palate and resets the sweetness.",
+    "Frozen passion fruit purée, thawed, is more reliable than fresh fruit and easy to find.",
+    "Make vanilla sugar by burying a used vanilla pod in a jar of sugar for a week."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Many bars add 1/2 oz fresh lime juice for a sharper drink."
+   ]
   }
  },
  "pornstar-martini": {
@@ -31616,6 +32160,70 @@
    "variations": []
   }
  },
+ "sea-breeze": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Sea Breeze",
+   "description": "Vodka with tart cranberry and a splash of grapefruit, poured over ice. Pink, easy and very refreshing.",
+   "servings": 1,
+   "prep_minutes": 2,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/3",
+     "unit": "oz",
+     "item": "vodka"
+    },
+    {
+     "amount": "4",
+     "unit": "oz",
+     "item": "cranberry juice"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "grapefruit juice, preferably fresh"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "orange twist, to garnish"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "cherry, to garnish"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Fill a highball glass with ice.",
+    "Pour in the vodka, cranberry juice and grapefruit juice and stir briefly.",
+    "Garnish with the orange twist and cherry."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "orange twist and cherry",
+    "alcoholic": true,
+    "non_alcoholic_version": "Build 4 oz cranberry juice and 2 oz grapefruit juice over ice and top with a splash of soda water."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Fresh grapefruit juice makes a big difference: it's sharper and less sweet than bottled.",
+    "For a foamy top, shake everything with ice and strain over fresh ice instead of building it."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Bay Breeze: use pineapple juice in place of the grapefruit juice.",
+    "Cape Codder: leave out the grapefruit juice and garnish with lime."
+   ]
+  }
+ },
  "seelbach-cocktail": {
   "kind": "cocktail",
   "recipe": {
@@ -32684,6 +33292,102 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "southern-fried-chicken": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Southern Fried Chicken",
+   "description": "Bone-in chicken soaked in seasoned buttermilk, double-dredged in spiced flour and fried until deep golden and crackly. Juicy inside, crunchy outside.",
+   "servings": 4,
+   "prep_minutes": 30,
+   "cook_minutes": 40,
+   "ingredients": [
+    {
+     "amount": "3 1/2",
+     "unit": "lb",
+     "item": "bone-in, skin-on chicken pieces (drumsticks, thighs and halved breasts)"
+    },
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "buttermilk"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "hot sauce"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "kosher salt, plus 2 tsp for the flour"
+    },
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "all-purpose flour"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "cornstarch"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "paprika"
+    },
+    {
+     "amount": "2",
+     "unit": "tsp",
+     "item": "garlic powder"
+    },
+    {
+     "amount": "2",
+     "unit": "tsp",
+     "item": "onion powder"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "black pepper"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "cayenne pepper"
+    },
+    {
+     "amount": "2",
+     "unit": "quarts",
+     "item": "vegetable or canola oil, for frying"
+    }
+   ],
+   "steps": [
+    "Whisk the buttermilk, hot sauce and 1 tablespoon salt in a large bowl. Add the chicken, turn to coat, cover and refrigerate for at least 4 hours or up to 24.",
+    "Whisk the flour, cornstarch, paprika, garlic powder, onion powder, black pepper, cayenne and 2 teaspoons salt in a wide dish. Drizzle in 3 tablespoons of the buttermilk marinade and rub it in with your fingers to make small, shaggy clumps.",
+    "Lift each piece of chicken out of the buttermilk, let the excess drip off, and press it firmly into the flour on all sides. Dip it back in the buttermilk for a second, then press it into the flour again. Set the pieces on a rack for 10 minutes while the oil heats.",
+    "Heat 2 inches of oil in a heavy Dutch oven to 350°F. Fry the chicken in batches without crowding, skin side down first. The oil temperature will drop: keep it around 300 to 325°F.",
+    "Fry for 12 to 15 minutes, turning every few minutes, until deep golden and the meat reaches 165°F in the breast and 175°F in the thighs and drumsticks.",
+    "Drain on a rack set over a sheet pan and season lightly with salt while hot. Let the oil come back to 350°F between batches."
+   ],
+   "allergens": [
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "A clip-on thermometer is the most important tool here. Oil that's too hot burns the crust before the meat cooks; too cool, and the chicken turns greasy.",
+    "The flour clumps from the buttermilk are what make the craggy, extra-crunchy crust.",
+    "If the outside is done before the inside, finish the pieces on the rack in a 350°F oven."
+   ],
+   "make_ahead": "Refrigerate leftovers for up to 3 days. Reheat on a rack in a 400°F oven for 15 minutes to re-crisp; the microwave makes the crust soggy.",
+   "variations": [
+    "Nashville hot chicken: brush the hot chicken with 1/2 cup frying oil mixed with 2 tablespoons cayenne, 1 tablespoon brown sugar and 1 teaspoon paprika.",
+    "Boneless: use chicken thighs and fry for 6 to 8 minutes."
+   ]
   }
  },
  "southside": {
@@ -34179,6 +34883,75 @@
    "vegan": "same"
   }
  },
+ "tiramisu": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Tiramisù",
+   "description": "The classic Italian no-bake dessert: espresso-dipped ladyfingers layered with a light mascarpone cream and dusted with cocoa. It sets overnight in the fridge.",
+   "servings": 8,
+   "prep_minutes": 30,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "very fresh large eggs, separated"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "sugar, divided"
+    },
+    {
+     "amount": "16",
+     "unit": "oz",
+     "item": "mascarpone, at room temperature"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "cups",
+     "item": "strong brewed espresso, cooled"
+    },
+    {
+     "amount": "7",
+     "unit": "oz",
+     "item": "savoiardi (Italian ladyfingers), about 24"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "unsweetened cocoa powder, for dusting"
+    }
+   ],
+   "steps": [
+    "Beat the egg yolks with half the sugar for 3 to 4 minutes, until pale and thick.",
+    "Add the mascarpone and beat on low just until smooth.",
+    "In a clean bowl with clean beaters, whip the egg whites to soft peaks, then add the rest of the sugar and whip to firm, glossy peaks.",
+    "Fold the whites into the mascarpone mixture in three additions, gently, so the cream stays light.",
+    "Pour the espresso into a shallow dish. Dip each ladyfinger for 1 second per side and lay it in an 8-by-11-inch dish to make a single layer.",
+    "Spread half the cream over the ladyfingers. Repeat with a second layer of dipped ladyfingers and the rest of the cream.",
+    "Smooth the top, cover and refrigerate for at least 6 hours, or overnight.",
+    "Dust generously with cocoa through a fine sieve just before serving."
+   ],
+   "allergens": [
+    "eggs",
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Dip the ladyfingers quickly. They keep soaking in the fridge, and too much coffee makes the dessert soggy.",
+    "This uses raw eggs. If you'd rather not, buy pasteurized eggs, which whip just as well.",
+    "Don't overbeat the mascarpone or it can turn grainy."
+   ],
+   "make_ahead": "Make it a day ahead: it slices more cleanly. It keeps in the fridge for up to 3 days.",
+   "variations": [
+    "Add 3 tablespoons of Marsala, dark rum or coffee liqueur to the espresso.",
+    "Make it in individual glasses, breaking the ladyfingers to fit."
+   ]
+  }
+ },
  "tom-collins": {
   "kind": "cocktail",
   "recipe": {
@@ -34772,6 +35545,276 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "tuna-and-cucumber-maki": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Tuna and Cucumber Maki Rolls",
+   "description": "Classic thin sushi rolls of seasoned rice and nori, half filled with tuna and half with crisp cucumber. Served with soy sauce, wasabi and pickled ginger.",
+   "servings": 3,
+   "prep_minutes": 45,
+   "cook_minutes": 30,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "Japanese short-grain rice"
+    },
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "water"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "unseasoned rice vinegar"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "sugar"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "3",
+     "unit": "sheets",
+     "item": "nori, cut in half crosswise"
+    },
+    {
+     "amount": "6",
+     "unit": "oz",
+     "item": "sushi-grade tuna, cut into 1/3-inch-thick sticks"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "Japanese or Persian cucumber, cut into thin sticks"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "wasabi paste, to serve"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "pickled ginger, to serve"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "soy sauce, to serve"
+    }
+   ],
+   "steps": [
+    "Rinse the rice in a bowl of cold water, swirling and draining, 4 or 5 times until the water runs almost clear. Drain for 15 minutes.",
+    "Cook the rice with the water in a rice cooker, or in a covered pot: boil, then simmer on low for 15 minutes and rest off the heat, still covered, for 10 minutes.",
+    "Meanwhile, warm the vinegar, sugar and salt in a small pan, stirring until the sugar dissolves. Let it cool.",
+    "Spread the hot rice in a wide bowl. Drizzle the vinegar mixture over it and fold with a spatula, cutting through the rice rather than stirring, while fanning it to cool. Cover with a damp towel until it's at room temperature.",
+    "Lay a bamboo mat on the counter and place a half sheet of nori on it, shiny side down. Wet your hands and spread a thin, even layer of rice over the nori, leaving a 1/2-inch strip bare at the far edge.",
+    "Lay a line of tuna across the middle of the rice for 3 of the rolls, and cucumber for the other 3.",
+    "Lift the near edge of the mat and roll it over the filling, pressing gently, then keep rolling until the bare strip of nori seals the roll.",
+    "Cut each roll into 6 pieces with a sharp, wet knife, wiping the blade between cuts. Serve with wasabi, pickled ginger and soy sauce."
+   ],
+   "allergens": [
+    "fish",
+    "soy",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Keep a bowl of water with a splash of vinegar beside you. Wet hands stop the rice from sticking to your fingers.",
+    "Use less rice than you think. A thin layer keeps the roll neat and lets the filling stand out.",
+    "Cool the rice to room temperature before rolling: hot rice makes the nori go limp."
+   ],
+   "make_ahead": "Sushi is best eaten within a few hours. Don't refrigerate it, because cold makes the rice hard.",
+   "variations": [
+    "Spicy tuna roll: chop the tuna and mix it with a little mayonnaise and sriracha before rolling.",
+    "Avocado roll: use thin slices of ripe avocado as the filling."
+   ]
+  },
+  "variants": {
+   "vegetarian": {
+    "title": "Avocado and Cucumber Maki Rolls",
+    "description": "Classic thin sushi rolls of seasoned rice and nori, half filled with creamy avocado and half with crisp cucumber. Served with soy sauce, wasabi and pickled ginger.",
+    "servings": 3,
+    "prep_minutes": 45,
+    "cook_minutes": 30,
+    "ingredients": [
+     {
+      "amount": "2",
+      "unit": "cups",
+      "item": "Japanese short-grain rice"
+     },
+     {
+      "amount": "2",
+      "unit": "cups",
+      "item": "water"
+     },
+     {
+      "amount": "1/4",
+      "unit": "cup",
+      "item": "unseasoned rice vinegar"
+     },
+     {
+      "amount": "2",
+      "unit": "tbsp",
+      "item": "sugar"
+     },
+     {
+      "amount": "1",
+      "unit": "tsp",
+      "item": "salt"
+     },
+     {
+      "amount": "3",
+      "unit": "sheets",
+      "item": "nori, cut in half crosswise"
+     },
+     {
+      "amount": "1",
+      "unit": "",
+      "item": "ripe avocado, cut into thin strips"
+     },
+     {
+      "amount": "1",
+      "unit": "",
+      "item": "Japanese or Persian cucumber, cut into thin sticks"
+     },
+     {
+      "amount": "",
+      "unit": "",
+      "item": "wasabi paste, to serve"
+     },
+     {
+      "amount": "",
+      "unit": "",
+      "item": "pickled ginger, to serve"
+     },
+     {
+      "amount": "",
+      "unit": "",
+      "item": "soy sauce, to serve"
+     }
+    ],
+    "steps": [
+     "Rinse the rice in a bowl of cold water, swirling and draining, 4 or 5 times until the water runs almost clear. Drain for 15 minutes.",
+     "Cook the rice with the water in a rice cooker, or in a covered pot: boil, then simmer on low for 15 minutes and rest off the heat, still covered, for 10 minutes.",
+     "Meanwhile, warm the vinegar, sugar and salt in a small pan, stirring until the sugar dissolves. Let it cool.",
+     "Spread the hot rice in a wide bowl. Drizzle the vinegar mixture over it and fold with a spatula, cutting through the rice rather than stirring, while fanning it to cool. Cover with a damp towel until it's at room temperature.",
+     "Lay a bamboo mat on the counter and place a half sheet of nori on it, shiny side down. Wet your hands and spread a thin, even layer of rice over the nori, leaving a 1/2-inch strip bare at the far edge.",
+     "Lay a line of avocado across the middle of the rice for 3 of the rolls, and cucumber for the other 3.",
+     "Lift the near edge of the mat and roll it over the filling, pressing gently, then keep rolling until the bare strip of nori seals the roll.",
+     "Cut each roll into 6 pieces with a sharp, wet knife, wiping the blade between cuts. Serve with wasabi, pickled ginger and soy sauce."
+    ],
+    "allergens": [
+     "soy",
+     "wheat"
+    ],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+     "Keep a bowl of water with a splash of vinegar beside you. Wet hands stop the rice from sticking to your fingers.",
+     "Use less rice than you think. A thin layer keeps the roll neat and lets the filling stand out.",
+     "Cool the rice to room temperature before rolling: hot rice makes the nori go limp."
+    ],
+    "make_ahead": "Sushi is best eaten within a few hours. Don't refrigerate it, because cold makes the rice hard.",
+    "variations": []
+   },
+   "vegan": {
+    "title": "Avocado and Cucumber Maki Rolls",
+    "description": "Classic thin sushi rolls of seasoned rice and nori, half filled with creamy avocado and half with crisp cucumber. Served with soy sauce, wasabi and pickled ginger.",
+    "servings": 3,
+    "prep_minutes": 45,
+    "cook_minutes": 30,
+    "ingredients": [
+     {
+      "amount": "2",
+      "unit": "cups",
+      "item": "Japanese short-grain rice"
+     },
+     {
+      "amount": "2",
+      "unit": "cups",
+      "item": "water"
+     },
+     {
+      "amount": "1/4",
+      "unit": "cup",
+      "item": "unseasoned rice vinegar"
+     },
+     {
+      "amount": "2",
+      "unit": "tbsp",
+      "item": "sugar"
+     },
+     {
+      "amount": "1",
+      "unit": "tsp",
+      "item": "salt"
+     },
+     {
+      "amount": "3",
+      "unit": "sheets",
+      "item": "nori, cut in half crosswise"
+     },
+     {
+      "amount": "1",
+      "unit": "",
+      "item": "ripe avocado, cut into thin strips"
+     },
+     {
+      "amount": "1",
+      "unit": "",
+      "item": "Japanese or Persian cucumber, cut into thin sticks"
+     },
+     {
+      "amount": "",
+      "unit": "",
+      "item": "wasabi paste, to serve"
+     },
+     {
+      "amount": "",
+      "unit": "",
+      "item": "pickled ginger, to serve"
+     },
+     {
+      "amount": "",
+      "unit": "",
+      "item": "soy sauce, to serve"
+     }
+    ],
+    "steps": [
+     "Rinse the rice in a bowl of cold water, swirling and draining, 4 or 5 times until the water runs almost clear. Drain for 15 minutes.",
+     "Cook the rice with the water in a rice cooker, or in a covered pot: boil, then simmer on low for 15 minutes and rest off the heat, still covered, for 10 minutes.",
+     "Meanwhile, warm the vinegar, sugar and salt in a small pan, stirring until the sugar dissolves. Let it cool.",
+     "Spread the hot rice in a wide bowl. Drizzle the vinegar mixture over it and fold with a spatula, cutting through the rice rather than stirring, while fanning it to cool. Cover with a damp towel until it's at room temperature.",
+     "Lay a bamboo mat on the counter and place a half sheet of nori on it, shiny side down. Wet your hands and spread a thin, even layer of rice over the nori, leaving a 1/2-inch strip bare at the far edge.",
+     "Lay a line of avocado across the middle of the rice for 3 of the rolls, and cucumber for the other 3.",
+     "Lift the near edge of the mat and roll it over the filling, pressing gently, then keep rolling until the bare strip of nori seals the roll.",
+     "Cut each roll into 6 pieces with a sharp, wet knife, wiping the blade between cuts. Serve with wasabi, pickled ginger and soy sauce."
+    ],
+    "allergens": [
+     "soy",
+     "wheat"
+    ],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+     "Keep a bowl of water with a splash of vinegar beside you. Wet hands stop the rice from sticking to your fingers.",
+     "Use less rice than you think. A thin layer keeps the roll neat and lets the filling stand out.",
+     "Cool the rice to room temperature before rolling: hot rice makes the nori go limp."
+    ],
+    "make_ahead": "Sushi is best eaten within a few hours. Don't refrigerate it, because cold makes the rice hard.",
+    "variations": []
+   }
   }
  },
  "tunisian-couscous": {

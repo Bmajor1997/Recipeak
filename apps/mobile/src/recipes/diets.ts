@@ -55,10 +55,11 @@ const PLANT_WORDS =
   /\b(vegetable (?:broth|stock)|kombu dashi|mushroom dashi|eggplant|butter beans|butternut|cocoa butter|peanut butter|cream of coconut|coconut (?:cream|milk)|honeydew|crème de [a-zûé]+|creme de [a-z]+|cream sherry|ginger beer|root beer)\b/g;
 
 const DAIRY =
-  /\b(?:butter|buttermilk|ghee|smen|kibbeh|milk|cream|crema|cheese|cheddar|mozzarella|parmesan|pecorino|kefalotyri|ricotta|feta|paneer|queso|quesillo|oaxaca|monterey jack|gruy[eè]re|provolone|swiss|yogh?urt|irish cream|mashed potatoes|naan|brioche)/i;
+  /\b(?:butter|buttermilk|ghee|smen|kibbeh|milk|cream|crema|cheese|cheddar|mozzarella|parmesan|pecorino|kefalotyri|ricotta|feta|paneer|queso|quesillo|oaxaca|monterey jack|gruy[eè]re|provolone|swiss|yogh?urt|irish cream|mashed potatoes|naan|brioche|mascarpone|cr[eè]me fra[iî]che|kefir|quark|labneh|halloumi|burrata|custard|ice cream|dulce de leche|queso fresco|cotija|cheese curds)/i;
 const DAIRY_UNSURE =
   /\b(?:bread|rolls|buns|pav|english muffins|puff pastry|pie crusts?|empanada dough|paratha|roti|cornbread|gingersnap|chocolate(?! bitters))/i;
-const CHEESE = /\b(?:cheese|queso|paneer|mozzarella|ricotta|feta|halloumi|fondue|parmesan|parmigiana|cacio|provolone|burrata)/i;
+const CHEESE =
+  /\b(?:cheese|queso|paneer|mozzarella|ricotta|feta|halloumi|fondue|parmesan|parmigiana|cacio|provolone|burrata|mascarpone|cheese curds)/i;
 
 const EGG = /\b(?:eggs?\b|egg (?:white|yolk)s?|yolks?|mayo|mayonnaise|tartar sauce|egg noodles|brioche|challah)/i;
 const EGG_UNSURE = /\b(?:lasagna noodles|dumpling wrappers|spring roll wrappers|empanada dough|tempura bits|gingersnap)/i;
@@ -68,7 +69,7 @@ const HONEY = /\b(?:honey(?!dew|comb)|gardenia mix)/i;
 const FINED = /\b(?:wine|champagne|prosecco|vermouth|sherry|port\b|beer|lager|stout|dubonnet|marsala|sake|shaoxing)/i;
 
 const GLUTEN =
-  /\b(?:flour|atta|semolina|couscous|bulgur|bread|breadcrumbs|panko|croutons|pitas?|pide|naan|roti|paratha|rougag|flatbread|baguettes?|rolls|buns|pav|brioche|challah|english muffins|cornbread|injera|dough|pastry|pie crusts?|wrappers|mandarin pancakes|gingersnap|saltine|crackers|pasta|spaghetti|fettuccine|linguine|macaroni|ziti|rigatoni|penne|trofie|lasagna|noodles|ramen|udon|soba|lo mein|vermicelli|tortillas?|oats|soy sauce|maggi|hoisin|oyster sauce|kecap manis|sweet soy|sweet bean sauce|doubanjiang|gochujang|black vinegar|malt vinegar|shaoxing|tempura|tonkatsu sauce|okonomiyaki sauce|takoyaki sauce|beer|lager|stout|guinness|split pea fritters)/i;
+  /\b(?:flour|atta|semolina|couscous|bulgur|bread|breadcrumbs|panko|croutons|pitas?|pide|naan|roti|paratha|rougag|flatbread|baguettes?|rolls|buns|pav|brioche|challah|english muffins|cornbread|injera|dough|pastry|pie crusts?|wrappers|mandarin pancakes|gingersnap|saltine|crackers|pasta|spaghetti|fettuccine|linguine|macaroni|ziti|rigatoni|penne|trofie|lasagna|noodles|ramen|udon|soba|lo mein|vermicelli|tortillas?|oats|soy sauce|maggi|hoisin|oyster sauce|kecap manis|sweet soy|sweet bean sauce|doubanjiang|gochujang|black vinegar|malt vinegar|shaoxing|tempura|tonkatsu sauce|okonomiyaki sauce|takoyaki sauce|beer|lager|stout|guinness|split pea fritters|ladyfingers|savoiardi|biscuits|cookies|cake|graham|wafers|phyllo|filo|croissants?|bagels?|muffins?|matzo|barley|farro|spelt|orzo|gnocchi|seitan|churros?|cr[eê]pes?|dumplings?|wontons?|gyoza|bao|pancakes?|waffles?|brownies?|shortcrust)/i;
 // Not wheat, barley or rye, though their names look like it.
 const GLUTEN_FREE_WORDS =
   /\b(rice (?:flour|noodles|vermicelli|paper|cakes)|chickpea flour|corn (?:tortillas?|flour)|taco shells or corn tortillas|tortilla (?:chips|strips)|glass noodles|sweet potato starch noodles|flat rice noodles|fresh (?:flat|wide) rice noodles|rice vermicelli|thin rice vermicelli|dried flat rice noodles|tamari|ginger beer|root beer|bread and butter pickles|masa harina|cylindrical rice cakes|prawn crackers)\b/g;
@@ -83,7 +84,7 @@ const NUTS_UNSURE = /\b(?:amaretto|noyaux)/i;
 
 // Low-carb: a starch cooked into the dish is its heart; sugar, a coating or a side can be cut or swapped.
 const STARCH =
-  /\b(?:flour|atta|semolina|couscous|bulgur|bread|breadcrumbs|panko|croutons|pitas?|pide|naan|roti|paratha|rougag|flatbread|baguettes?|rolls|buns|pav|brioche|challah|english muffins|cornbread|injera|dough|pastry|pie crusts?|wrappers|mandarin pancakes|gingersnap|saltine|crackers|pasta|spaghetti|fettuccine|linguine|macaroni|ziti|rigatoni|penne|trofie|lasagna|noodles|ramen|udon|soba|lo mein|vermicelli|tortillas?|oats|tempura|split pea fritters|rice|potato(?:es)?|hash browns|french fries|plantains?|yams?\b|cassava|yuca|taro|corn\b|cornmeal|masarepa|masa|grits|hominy|polenta|beans|black-eyed peas|chickpeas|lentils|dal\b|split peas|quinoa|farofa|dosa batter|idli batter|tortilla chips|tortilla strips|taco shells|tteok|rice cakes|plantain chips|injera)/i;
+  /\b(?:flour|atta|semolina|couscous|bulgur|bread|breadcrumbs|panko|croutons|pitas?|pide|naan|roti|paratha|rougag|flatbread|baguettes?|rolls|buns|pav|brioche|challah|english muffins|cornbread|injera|dough|pastry|pie crusts?|wrappers|mandarin pancakes|gingersnap|saltine|crackers|pasta|spaghetti|fettuccine|linguine|macaroni|ziti|rigatoni|penne|trofie|lasagna|noodles|ramen|udon|soba|lo mein|vermicelli|tortillas?|oats|tempura|split pea fritters|rice|potato(?:es)?|hash browns|french fries|plantains?|yams?\b|cassava|yuca|taro|corn\b|cornmeal|masarepa|masa|grits|hominy|polenta|beans|black-eyed peas|chickpeas|lentils|dal\b|split peas|quinoa|farofa|dosa batter|idli batter|tortilla chips|tortilla strips|taco shells|tteok|rice cakes|plantain chips|injera|ladyfingers|savoiardi|biscuits|cookies|cake|graham|phyllo|filo|croissants?|bagels?|barley|farro|orzo|gnocchi|churros?|cr[eê]pes?|wontons?|gyoza|bao)/i;
 const SUGAR =
   /\b(?:sugar|honey|syrup|molasses|jam\b|marmalade|chutney|ketchup|hoisin|kecap manis|sweet soy|sweet chili sauce|barbecue sauce|mirin|raisins|dates|prunes|apricots|jujubes|grenadine|cola|soda\b|ginger ale|ginger beer|tonic|lemonade|falernum|beer|lager|stout|guinness)/i;
 // In a drink, these carry the flavor, so a low-carb version would be a different drink.

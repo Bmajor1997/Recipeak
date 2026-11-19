@@ -25,6 +25,9 @@ meat, fish or (for vegan) dairy, eggs or honey.
 
 Run from the repo root:  python3 scripts/build_recipes.py
 It checks every recipe against the app's rules and the photo manifest, and refuses to write if anything is wrong.
+
+Recipes still waiting for a cover photo go in data/recipes/pending/ in the same format. They get every check and are
+written to recipes.json, but the app only shows dishes with a photo, so they appear once their photo is in the manifest.
 """
 import json
 import sys
@@ -32,6 +35,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "data" / "recipes" / "src"
+PENDING = ROOT / "data" / "recipes" / "pending"
 OUT = ROOT / "data" / "recipes" / "recipes.json"
 ALLERGENS = {"milk", "eggs", "fish", "shellfish", "tree nuts", "peanuts", "wheat", "soy", "sesame"}
 NOTES = {
@@ -62,7 +66,9 @@ def fail(stem, msg):
     problems.append(f"{stem}: {msg}")
 
 
-for path in sorted(SRC.glob("*.txt")):
+pending = set()
+for path in sorted(SRC.glob("*.txt")) + sorted(PENDING.glob("*.txt")):
+    waiting = path.parent == PENDING
     current = None
     for raw in path.read_text(encoding="utf-8").splitlines():
         line = raw.strip()
@@ -120,6 +126,8 @@ for path in sorted(SRC.glob("*.txt")):
             if stem in recipes:
                 fail(stem, "written twice")
             recipes[stem] = current
+            if waiting:
+                pending.add(stem)
         elif current is None:
             problems.append(f"{path.name}: line outside a recipe: {line[:60]}")
         elif tag == "-":
@@ -222,8 +230,10 @@ for stem, r in recipes.items():
     if r.get("variant_of"):
         continue
     kind = kinds.get(stem)
+    if not kind and stem in pending:
+        kind = "cocktail" if r["cocktail"] else "meal"
     if not kind:
-        fail(stem, "no photo with this file name")
+        fail(stem, "no photo with this file name (put recipes still waiting for a photo in data/recipes/pending/)")
         continue
     entry = {"kind": kind, "recipe": check(stem, r, kind)}
     variants = r.get("variants")
@@ -254,6 +264,7 @@ if problems:
     print("\n".join(problems))
     sys.exit(1)
 OUT.write_text(json.dumps(dict(sorted(out.items())), ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-print(f"{len(out)} recipes written ({sum(1 for e in out.values() if e.get('variants'))} with vegetarian and vegan versions); {len(missing)} photos still without a recipe")
+waiting = sorted(s for s in pending if s not in kinds)
+print(f"{len(out)} recipes written ({sum(1 for e in out.values() if e.get('variants'))} with vegetarian and vegan versions); {len(missing)} photos still without a recipe; {len(waiting)} recipes waiting for a photo")
 if "--list-missing" in sys.argv:
     print(" ".join(missing))
