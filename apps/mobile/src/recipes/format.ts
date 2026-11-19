@@ -32,6 +32,6 @@ export function recipe_as_text(recipe: Recipe): string {
   if (recipe.cocktail?.non_alcoholic_version) lines.push("", `Non-alcoholic version: ${recipe.cocktail.non_alcoholic_version}`);
   if (recipe.allergens.length) lines.push("", `Contains: ${recipe.allergens.join(", ")}`);
   if (recipe.note) lines.push("", `Note: ${recipe.note}`);
-  lines.push("", "From Recipeek. A representative recipe, not the original restaurant or bar recipe.");
+  lines.push("", "From Recipeak. A representative recipe, not the original restaurant or bar recipe.");
   return lines.join("\n");
 }

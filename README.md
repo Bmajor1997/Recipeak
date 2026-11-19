@@ -1,14 +1,14 @@
-# Recipeek
+# Recipeak
 
-The app is called **Recipeek** (it started as Meals and Mixers). The repository is `Bmajor1997/Recipeek`; GitHub forwards the old `Meals-and-Mixers` address. The package ID, URL scheme and storage keys keep the old name so saved recipes and sign-ins keep working.
+The app is called **Recipeak** (it started as Meals and Mixers). The repository is `Bmajor1997/Recipeak`; GitHub forwards the old `Recipeek` and `Meals-and-Mixers` addresses. The package ID and URL scheme keep the original `mealsandmixers` name so saved recipes and sign-ins keep working.
 
 <p align="center">
-  <img src="assets/app-icon.png" alt="Recipeek app icon: a white serif R inside the citrus camera ring, on near-black" width="256">
+  <img src="assets/app-icon.png" alt="Recipeak app icon: a white serif R inside the citrus camera ring, on near-black" width="256">
 </p>
 
 **Take a photo of a meal or a cocktail, and get a recipe for it.**
 
-Meals and Mixers is a camera app. Point it at a plate of food or a drink, and it identifies what the dish or cocktail is, then gives you a recipe to make it yourself.
+Recipeak is a camera app. Point it at a plate of food or a drink, and it identifies what the dish or cocktail is, then gives you a recipe to make it yourself.
 
 The recipe is for that *kind* of dish or drink, not the exact recipe the restaurant or bar used. A photo of a margarita gets a good classic margarita recipe; a photo of chicken parmesan gets a solid chicken parmesan recipe. When the app isn't sure what it's looking at, it shows its best few guesses and lets you choose.
 

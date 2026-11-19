@@ -45,7 +45,7 @@ export default function SignIn() {
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
           <Text style={type.title} accessibilityRole="header">
-            Recipeek
+            Recipeak
           </Text>
           <Text style={[type.body, { marginTop: 8, marginBottom: 24 }]}>
             Snap a meal or a cocktail and get a recipe to make it yourself.

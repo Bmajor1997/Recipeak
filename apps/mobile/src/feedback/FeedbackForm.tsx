@@ -82,7 +82,7 @@ function AccountFeedbackForm({ kind }: { kind: FeedbackKind }) {
         ) : (
           <View style={styles.fields}>
             <Text style={type.muted}>
-              Your feedback is private and goes only to the Recipeek team. Please don’t include passwords or payment details.
+              Your feedback is private and goes only to the Recipeak team. Please don’t include passwords or payment details.
             </Text>
             {FEEDBACK_FIELDS.map((field) => (
               <View key={field.key} style={styles.field}>

@@ -1,4 +1,4 @@
-// Feature requests and bug reports, sent privately to the Recipeek team (ported from Votic's feedback form).
+// Feature requests and bug reports, sent privately to the Recipeak team (ported from Votic's feedback form).
 // The server keeps them in its private ledger for up to a year; the team reads them on the admin dashboard.
 
 export type FeedbackKind = "feature" | "bug";
@@ -8,13 +8,13 @@ export const is_feedback_kind = (value: unknown): value is FeedbackKind => FEEDB
 export const FEEDBACK_TEXT: Record<FeedbackKind, { title: string; detail: string; thanks: string }> = {
   feature: {
     title: "Suggest a Feature",
-    detail: "Suggest improvements to make Recipeek work better for you.",
-    thanks: "Thanks for your suggestion! Your feedback helps make Recipeek better.",
+    detail: "Suggest improvements to make Recipeak work better for you.",
+    thanks: "Thanks for your suggestion! Your feedback helps make Recipeak better.",
   },
   bug: {
     title: "Report a Bug",
-    detail: "Tell us about a problem you had in Recipeek.",
-    thanks: "Thanks for reporting this! Your feedback helps us fix Recipeek.",
+    detail: "Tell us about a problem you had in Recipeak.",
+    thanks: "Thanks for reporting this! Your feedback helps us fix Recipeak.",
   },
 };
 

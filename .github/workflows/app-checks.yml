@@ -12,7 +12,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
-# Each job below checks a different part of Recipeek. These run on pushes and pull requests.
+# Each job below checks a different part of Recipeak. These run on pushes and pull requests.
 jobs:
   # Backend behavior, including identity, subscription, upload and AI-response edge cases.
   server:

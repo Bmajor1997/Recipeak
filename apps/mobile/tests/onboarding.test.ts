@@ -35,6 +35,17 @@ describe("first-launch tour answers", () => {
     expect(await store.load()).toEqual(answers);
   });
 
+  it("still reads answers saved before the Recipeak respelling", async () => {
+    const storage = memory();
+    const answers = { done: true, interest: "meals" as const, diets: [], entry: "create" as const };
+    storage.data.set("recipeek.onboarding.v1", JSON.stringify(answers));
+    const store = create_onboarding_store(storage);
+    expect(await store.load()).toEqual(answers);
+    await store.save({ ...answers, interest: "both" });
+    expect(storage.data.get("recipeak.onboarding.v1")).toContain('"both"');
+    expect((await store.load()).interest).toBe("both");
+  });
+
   it("keeps valid parts of damaged data and drops the rest", () => {
     expect(parse_onboarding("not json")).toEqual(DEFAULT_ONBOARDING);
     expect(parse_onboarding("[1,2]")).toEqual(DEFAULT_ONBOARDING);

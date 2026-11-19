@@ -1,4 +1,4 @@
-"""Draws the Recipeek icon: the camera button's citrus ring with a serif R inside, on near-black.
+"""Draws the Recipeak icon: the camera button's citrus ring with a serif R inside, on near-black.
 
 Run from the repo root (needs Pillow and the app's node_modules for the Fraunces font):
     python3 scripts/make_app_icon.py

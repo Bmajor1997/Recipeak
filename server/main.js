@@ -1,4 +1,4 @@
-// Starts the Recipeek backend. Configuration comes only from environment variables (see .env.example).
+// Starts the Recipeak backend. Configuration comes only from environment variables (see .env.example).
 import { createServer } from "node:http";
 import { create_app } from "./app.js";
 import { create_image_library, curated_keys } from "./dish_images.js";
@@ -47,5 +47,5 @@ if (import.meta.main) {
     try { store.ratings.prune(); } catch { console.warn("Rating retention is waiting for storage; it will retry."); }
   }, 3_600_000).unref();
   const server = createServer({ requestTimeout: 90_000, headersTimeout: 15_000 }, handle);
-  server.listen(port, process.env.HOST || "127.0.0.1", () => console.log(`Recipeek backend on port ${port}`));
+  server.listen(port, process.env.HOST || "127.0.0.1", () => console.log(`Recipeak backend on port ${port}`));
 }

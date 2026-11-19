@@ -1,4 +1,4 @@
-// Talks to the Recipeek backend. The OpenAI key never reaches the phone: only the user's Firebase ID token is sent.
+// Talks to the Recipeak backend. The OpenAI key never reaches the phone: only the user's Firebase ID token is sent.
 import { parse_allowance, parse_dish_image, parse_identification, parse_recipe } from "../recipes/parse";
 import type { FeedbackKind } from "../feedback/feedback";
 import type { Allowance, Diet, DishImage, Identification, Kind, Recipe } from "../recipes/types";

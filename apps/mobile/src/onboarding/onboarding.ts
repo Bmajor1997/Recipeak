@@ -1,4 +1,4 @@
-// The first-launch tour's answers (design "Recipeek onboarding mockup", approved 2026-11-17). They are kept on this
+// The first-launch tour's answers (design "Recipeak onboarding mockup", approved 2026-11-17). They are kept on this
 // device, not per account, because the tour runs before sign-in.
 import type { KeyValueStorage } from "../saved/savedRecipes";
 import { DIETS, type Diet, type Kind } from "../recipes/types";
@@ -13,7 +13,9 @@ export type Entry = "create" | "sign-in";
 export type Onboarding = { done: boolean; interest: Interest; diets: Diet[]; entry: Entry };
 export const DEFAULT_ONBOARDING: Onboarding = { done: false, interest: "both", diets: [], entry: "create" };
 
-const KEY = "recipeek.onboarding.v1";
+const KEY = "recipeak.onboarding.v1";
+// Answers saved before the app was respelled Recipeak, read once so nobody sees the tour again.
+const OLD_KEY = "recipeek.onboarding.v1";
 
 const is_interest = (v: unknown): v is Interest => INTERESTS.includes(v as Interest);
 const is_diet = (v: unknown): v is Diet => (DIETS as readonly string[]).includes(v as string);
@@ -41,7 +43,8 @@ export function parse_onboarding(raw: string | null): Onboarding {
 export function create_onboarding_store(storage: KeyValueStorage) {
   return {
     async load(): Promise<Onboarding> {
-      return parse_onboarding(await storage.getItem(KEY));
+      const raw = (await storage.getItem(KEY)) ?? (await storage.getItem(OLD_KEY));
+      return parse_onboarding(raw);
     },
     async save(value: Onboarding): Promise<void> {
       await storage.setItem(KEY, JSON.stringify(value));
