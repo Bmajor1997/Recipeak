@@ -71,6 +71,24 @@ describe("formatting", () => {
     expect(text).toContain("1. Bread the chicken.");
     expect(text).toContain("Contains: milk, eggs, wheat");
     expect(text).toContain("not the original restaurant or bar recipe");
+    expect(text).toContain("Made with Recipeak");
+    expect(text).not.toContain("My note");
+    expect(text).not.toContain("Get Recipeak");
+  });
+
+  it("shares the version on screen: scaled servings, the diet version, the person's note and the store link", () => {
+    const base = recipe.servings || 1;
+    const text = recipe_as_text(recipe, {
+      servings: base * 2,
+      diet: "vegan",
+      note: "  Less salt next time  ",
+      store_url: "https://play.google.com/store/apps/details?id=example",
+    });
+    expect(text.split("\n")[1]).toBe("Vegan version");
+    expect(text).toContain(`Serves ${base * 2}`);
+    expect(text).toContain("• 4 lb chicken breasts");
+    expect(text).toContain("My note: Less salt next time");
+    expect(text.trim().endsWith("Get Recipeak: https://play.google.com/store/apps/details?id=example")).toBe(true);
   });
 });
 
