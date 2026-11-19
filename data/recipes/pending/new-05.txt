@@ -108,7 +108,7 @@ T Chop by hand. A food processor turns the parsley into a watery paste.
 S Chop the herbs and vegetables a few hours ahead and keep them in the fridge separately. Mix and dress just before serving.
 V Gluten-free: use 1/2 cup cooked quinoa instead of bulgur.
 
-@ lamb-shish-kebab | Lamb Shish Kebab | 4 | 20 | 15 | milk | Turkish grilled lamb skewers: chunks of leg of lamb marinated in onion juice, yogurt and red pepper paste, grilled with peppers and onion.
+@ lamb-shish-kebab | Lamb Shish Kebab | 4 | 20 | 15 | milk, wheat | Turkish grilled lamb skewers: chunks of leg of lamb marinated in onion juice, yogurt and red pepper paste, grilled with peppers and onion.
 - 2 | lb | boneless leg of lamb, cut into 1 1/2-inch cubes
 - 1 | | large onion
 - 1/2 | cup | plain whole-milk yogurt
@@ -182,7 +182,7 @@ V Lamb kabsa: use 3 lb bone-in lamb shoulder pieces and simmer for 1 1/2 hours b
 - | | black pepper, to taste
 # Toss the eggplant with 1 teaspoon salt in a colander and let it drain for 20 minutes. Pat it dry.
 # Heat 2 tablespoons oil in a large pot over medium-high heat. Brown the eggplant for 8 to 10 minutes, until golden and tender. Set it aside in a bowl.
-# Add 1 tablespoon oil and brown the zucchini for 5 minutes, until golden but still firm. Add it to the bowl.
+# Add 2 tablespoons oil and brown the zucchini for 5 minutes, until golden but still firm. Add it to the bowl.
 # Add 2 tablespoons oil, the onion and peppers and cook for 8 to 10 minutes, until soft. Add the garlic and tomato paste and cook for 1 minute.
 # Add the tomatoes, herbes de Provence, bay leaf and the remaining salt. Simmer for 10 minutes, until thickened.
 # Return the eggplant and zucchini, stir gently, cover and simmer over low heat for 15 minutes.
@@ -219,7 +219,7 @@ V Serve with tomato sauce or pesto instead of brown butter.
 - | | salt, for the pasta water
 # Bring a pot of water to a boil, using less water than usual so it gets extra starchy, and salt it lightly. Pecorino is salty.
 # Cook the pasta until 2 minutes short of al dente. Before draining, scoop out 2 cups of the cooking water.
-# Meanwhile, toast the pepper in a large, dry skillet over medium heat for 1 minute, until fragrant. Add 1/2 cup of the pasta water and let it simmer.
+# While the pasta cooks, toast the pepper in a large, dry skillet over medium heat for 1 minute, until fragrant. Ladle in 1/2 cup of the pasta cooking water and let it simmer.
 # Put the cheese in a bowl and stir in about 1/3 cup of the warm (not boiling) pasta water to make a smooth, thick paste.
 # Add the drained pasta to the skillet and toss for 1 to 2 minutes, adding splashes of pasta water, until al dente.
 # Take the pan off the heat. Let it cool for 30 seconds, then add the cheese paste and toss quickly, adding more pasta water a little at a time, until the sauce is creamy and coats the pasta.
