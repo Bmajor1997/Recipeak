@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { legal_page_urls, support_mail_url } from "../src/settings/legalLinks";
 import { create_preferences, DEFAULT_PREFERENCES } from "../src/settings/preferences";
 import type { KeyValueStorage } from "../src/saved/savedRecipes";
 import { DARK_COLORS, LIGHT_COLORS } from "../src/ui/palette";
@@ -77,5 +78,16 @@ describe("appearance", () => {
   it("has a light and a dark theme with the same colour names", () => {
     expect(LIGHT_COLORS.background).not.toBe(DARK_COLORS.background);
     expect(Object.keys(LIGHT_COLORS).sort()).toEqual(Object.keys(DARK_COLORS).sort());
+  });
+});
+
+describe("legal links", () => {
+  it("builds the privacy and terms addresses from the server address", () => {
+    expect(legal_page_urls("https://api.example.test/")).toEqual({
+      privacy: "https://api.example.test/privacy",
+      terms: "https://api.example.test/terms",
+    });
+    expect(legal_page_urls(undefined)).toBeNull();
+    expect(support_mail_url()).toBe("mailto:majorapps.support@gmail.com?subject=Recipeak%20support");
   });
 });

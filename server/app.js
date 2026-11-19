@@ -30,6 +30,19 @@ const ADMIN_FILES = {
   "/admin/feedback.css": ["feedback.css", "text/css; charset=utf-8"],
 };
 const admin_file = (name) => readFileSync(new URL(`../admin/${name}`, import.meta.url));
+// Public privacy policy and terms of use, linked from the app and the store listings. No scripts; only their own styles.
+const LEGAL_PAGE_HEADERS = {
+  ...SECURITY_HEADERS,
+  "Content-Security-Policy": "default-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; style-src 'self'",
+  "Cache-Control": "public, max-age=3600",
+  "Cross-Origin-Resource-Policy": "cross-origin",
+};
+const LEGAL_FILES = {
+  "/privacy": ["privacy.html", "text/html; charset=utf-8"],
+  "/terms": ["terms.html", "text/html; charset=utf-8"],
+  "/legal/legal.css": ["legal.css", "text/css; charset=utf-8"],
+};
+const legal_file = (name) => readFileSync(new URL(`./legal/${name}`, import.meta.url));
 const FEEDBACK_BODY = 16_384;
 
 // Base64 grows a file by a third; leave room for the JSON wrapper.
@@ -172,6 +185,12 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
       if (request.method === "GET" && path === "/admin/feedback-config") {
         // The Firebase web API key is a public project identifier, not a secret; the server still checks every request.
         return send_json(response, 200, { apiKey: env.FIREBASE_WEB_API_KEY || "" });
+      }
+      if (request.method === "GET" && Object.hasOwn(LEGAL_FILES, path)) {
+        const [name, type] = LEGAL_FILES[path];
+        const bytes = legal_file(name);
+        for (const [k, v] of Object.entries({ ...LEGAL_PAGE_HEADERS, "Content-Type": type })) response.setHeader(k, v);
+        return response.writeHead(200).end(bytes);
       }
       if (request.method === "GET" && ADMIN_FILES[path]) {
         const [name, type] = ADMIN_FILES[path];
