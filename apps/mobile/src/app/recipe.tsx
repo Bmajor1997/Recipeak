@@ -3,8 +3,10 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
+import * as Sharing from "expo-sharing";
 import { useMemo, useRef, useState } from "react";
 import {
+  Alert,
   ActivityIndicator,
   Image,
   Platform,
@@ -35,6 +37,7 @@ import { DIETS, type Diet, type Guess, type Kind } from "../recipes/types";
 import { useDishImage } from "../recipes/useDishImage";
 import { usePreferences } from "../settings/PreferencesProvider";
 import { SavedLimitError } from "../saved/savedRecipes";
+import { STORE_URL } from "../settings/legalLinks";
 import { useTips } from "../tips/TipsProvider";
 import { FocusedCover } from "../ui/FocusedCover";
 import { TipBubble } from "../ui/TipBubble";
@@ -152,7 +155,7 @@ function Problem({ message, source }: { message: string; source: "photo" | "wall
 function RecipeView({ current }: { current: Ready }) {
   const { colors, type } = useTheme();
   const styles = useThemedStyles(create_styles);
-  const { set_current, api, saved } = useApp();
+  const { set_current, api, saved, ratings } = useApp();
   const preferences = usePreferences();
   const saving = useRef(false);
   const { photosLeft } = useCamera();
@@ -167,9 +170,24 @@ function RecipeView({ current }: { current: Ready }) {
   const [save_problem, set_save_problem] = useState<string | null>(null);
   const [just_saved, set_just_saved] = useState(false);
   const tips = useTips();
-  const share_recipe = () => {
+  // Shares the version on screen: its serving size, its diet version, the person's own note and, for a recipe from
+  // their own photo, that photo. Android can't send text and a photo together, so it asks which one.
+  const share_recipe = async () => {
     tips.mark_seen("share");
-    void Share.share({ message: recipe_as_text(recipe) });
+    const rating = await ratings?.get(kind, dishName).catch(() => null);
+    const message = recipe_as_text(recipe, { servings, diet, note: rating?.note, store_url: STORE_URL });
+    const photo = current.localPhoto;
+    const share_text = () => void Share.share({ message }).catch(() => undefined);
+    if (!photo) return share_text();
+    if (Platform.OS === "ios") return void Share.share({ message, url: photo }).catch(() => undefined);
+    Alert.alert("Share", "What would you like to share?", [
+      { text: "The recipe", onPress: share_text },
+      {
+        text: "Your photo",
+        onPress: () => void Sharing.shareAsync(photo, { mimeType: "image/jpeg", dialogTitle: recipe.title }).catch(() => undefined),
+      },
+      { text: "Cancel", style: "cancel" },
+    ]);
   };
   const [notice, set_notice] = useState<string | null>(
     current.diet ? `Showing the ${current.diet} version, from your diet in Settings.` : null,

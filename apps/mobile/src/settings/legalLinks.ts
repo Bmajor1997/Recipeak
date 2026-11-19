@@ -8,4 +8,7 @@ export function legal_page_urls(base_url: string | undefined): { privacy: string
   return { privacy: `${base}/privacy`, terms: `${base}/terms` };
 }
 
+/** Recipeak's Google Play page. Set it once the app is published; until then shared recipes leave the link out. */
+export const STORE_URL: string | null = null;
+
 export const support_mail_url = () => `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent("Recipeak support")}`;
