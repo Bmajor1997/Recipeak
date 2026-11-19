@@ -8,16 +8,16 @@ or add a decision for it to `dietReview.json` (`fits`, `option` or `none`, with 
 
 ## Totals
 
-Options shown before the audit: 3390 (every diet on every recipe). Now: 1194.
+Options shown before the audit: 3456 (every diet on every recipe). Now: 1235.
 
 | Diet | Already fits | Option | Can't be adapted | Needs review |
 |---|---|---|---|---|
-| vegetarian | 322 | 197 | 0 | 0 |
-| vegan | 242 | 274 | 0 | 3 |
-| gluten-free | 365 | 152 | 0 | 2 |
-| dairy-free | 380 | 126 | 0 | 13 |
-| nut-free | 473 | 45 | 0 | 1 |
-| low-carb | 28 | 124 | 367 | 0 |
+| vegetarian | 323 | 207 | 0 | 0 |
+| vegan | 242 | 285 | 0 | 3 |
+| gluten-free | 368 | 159 | 0 | 3 |
+| dairy-free | 382 | 135 | 0 | 13 |
+| nut-free | 484 | 45 | 0 | 1 |
+| low-carb | 30 | 128 | 372 | 0 |
 | non-alcoholic | 0 | 276 | 0 | 0 |
 
 ## Rules used
@@ -64,10 +64,11 @@ Options shown before the audit: 3390 (every diet on every recipe). Now: 1194.
 - **Hummus**: check "warm pita bread, to serve"
 - **Zaza**: check "Dubonnet Rouge"
 
-## Still to check: Gluten-free (2)
+## Still to check: Gluten-free (3)
 
 - **Brazilian Feijoada**: check "smoked sausage (linguiça), sliced"
 - **Idli Sambar**: check "sambar powder"
+- **Oven-Baked BBQ Ribs**: check "barbecue sauce"
 
 ## Still to check: Dairy-free (13)
 

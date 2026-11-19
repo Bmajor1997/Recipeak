@@ -1969,6 +1969,110 @@
    "variations": []
   }
  },
+ "bangers-and-mash": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Bangers and Mash with Onion Gravy",
+   "description": "The great British pub supper: plump pork sausages on creamy mashed potatoes, smothered in a rich, slow-cooked onion gravy. Peas on the side.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 40,
+   "ingredients": [
+    {
+     "amount": "8",
+     "unit": "",
+     "item": "British-style pork sausages (bangers)"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "vegetable oil"
+    },
+    {
+     "amount": "2",
+     "unit": "lb",
+     "item": "Yukon Gold or russet potatoes, peeled and cut into chunks"
+    },
+    {
+     "amount": "5",
+     "unit": "tbsp",
+     "item": "unsalted butter, divided"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "warm whole milk"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "large onions, thinly sliced"
+    },
+    {
+     "amount": "2",
+     "unit": "cloves",
+     "item": "garlic, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "brown sugar"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "all-purpose flour"
+    },
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "beef broth"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "Dijon mustard"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "fresh thyme leaves (optional)"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "salt and black pepper, to taste"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "cooked peas, to serve"
+    }
+   ],
+   "steps": [
+    "Make the gravy: melt 2 tablespoons butter in a skillet over medium-low heat. Add the onions and a pinch of salt and cook, stirring now and then, for 20 to 25 minutes, until soft and deep golden. Add the garlic and brown sugar for the last 2 minutes.",
+    "Stir in the flour and cook for 1 minute. Gradually stir in the broth, mustard and thyme, if using, and simmer for 5 to 8 minutes, until thickened. Season with pepper.",
+    "Meanwhile, boil the potatoes in salted water for 15 to 20 minutes, until tender. Drain, then mash with the remaining 3 tablespoons butter and the warm milk. Season with salt and pepper.",
+    "While everything cooks, heat the oil in a large skillet over medium-low heat. Cook the sausages for 15 to 20 minutes, turning often, until browned all over and cooked through (160°F).",
+    "Pile the mash onto plates, top with two sausages each and spoon over plenty of onion gravy. Serve with peas."
+   ],
+   "allergens": [
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Cook the sausages gently. High heat splits the skins, which is how \"bangers\" got their name.",
+    "Don't rush the onions. Their slow-cooked sweetness is what makes the gravy."
+   ],
+   "make_ahead": "Make the gravy up to 3 days ahead and reheat with a splash of water.",
+   "variations": [
+    "Use Cumberland, Lincolnshire or Irish-style sausages if you can find them.",
+    "Toad in the hole: bake the browned sausages in a Yorkshire pudding batter instead."
+   ]
+  }
+ },
  "banh-mi": {
   "kind": "meal",
   "recipe": {
@@ -2170,6 +2274,89 @@
    "make_ahead": "",
    "variations": [
     "Use coconut rum instead of vodka for a more tropical drink."
+   ]
+  }
+ },
+ "bbq-ribs": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Oven-Baked BBQ Ribs",
+   "description": "Fall-off-the-bone baby back ribs without a smoker: rubbed with smoky spices, baked low and slow in foil, then brushed with barbecue sauce and broiled until sticky.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 180,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "racks",
+     "item": "baby back pork ribs (about 5 lb total)"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "brown sugar"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "smoked paprika"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "kosher salt"
+    },
+    {
+     "amount": "2",
+     "unit": "tsp",
+     "item": "garlic powder"
+    },
+    {
+     "amount": "2",
+     "unit": "tsp",
+     "item": "onion powder"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "ground black pepper"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "chili powder"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "cayenne pepper (optional)"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "cups",
+     "item": "barbecue sauce"
+    }
+   ],
+   "steps": [
+    "Heat the oven to 275°F. Pull the thin, shiny membrane off the bone side of each rack, using a paper towel to grip it. Pat the ribs dry.",
+    "Mix the brown sugar, paprika, salt, garlic powder, onion powder, black pepper, chili powder and cayenne. Rub it all over both racks.",
+    "Wrap each rack tightly in heavy-duty foil, meat side up, and set them on a baking sheet.",
+    "Bake for 2 1/2 to 3 hours, until the meat is very tender and has pulled back from the ends of the bones.",
+    "Carefully open the foil, pour off the juices and turn on the broiler.",
+    "Brush the ribs thickly with barbecue sauce and broil for 3 to 5 minutes, watching closely, until sticky and lightly charred. Brush with more sauce and rest for 5 minutes before cutting between the bones."
+   ],
+   "allergens": [],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Removing the membrane lets the rub in and makes the ribs more tender to eat.",
+    "Low heat and a tight foil seal steam the ribs until tender without drying them out.",
+    "Check the label if you need to avoid fish: some barbecue sauces contain Worcestershire sauce, which is made with anchovies."
+   ],
+   "make_ahead": "Bake the ribs in foil up to 2 days ahead and refrigerate. Sauce and broil just before serving.",
+   "variations": [
+    "Spare ribs or St. Louis ribs: bake for about 30 minutes longer.",
+    "Finish on a hot grill instead of under the broiler."
    ]
   }
  },
@@ -3848,6 +4035,101 @@
    "variations": []
   }
  },
+ "biscuits-and-gravy": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Biscuits and Sausage Gravy",
+   "description": "The Southern breakfast classic: tall, flaky buttermilk biscuits split open and smothered in creamy, peppery pork sausage gravy.",
+   "servings": 6,
+   "prep_minutes": 20,
+   "cook_minutes": 25,
+   "ingredients": [
+    {
+     "amount": "2 1/2",
+     "unit": "cups",
+     "item": "all-purpose flour, plus more for the counter"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "baking powder"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "baking soda"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "kosher salt"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "sugar"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "cold unsalted butter, cubed"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "cold buttermilk, plus more for brushing"
+    },
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "bulk pork breakfast sausage"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "all-purpose flour, for the gravy"
+    },
+    {
+     "amount": "3 1/2",
+     "unit": "cups",
+     "item": "whole milk, warmed"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "tsp",
+     "item": "coarsely ground black pepper"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "salt, to taste"
+    }
+   ],
+   "steps": [
+    "Heat the oven to 450°F and line a baking sheet with parchment.",
+    "Whisk the 2 1/2 cups flour, baking powder, baking soda, salt and sugar. Cut in the butter with a pastry cutter or your fingertips until it looks like coarse crumbs with some pea-size pieces.",
+    "Stir in the buttermilk just until a shaggy dough forms. Turn it out on a floured counter, pat it into a rectangle, fold it in half, and pat out again. Repeat twice, then pat to 1 inch thick.",
+    "Cut out 2 1/2-inch rounds, pressing straight down without twisting. Set them on the baking sheet, touching, and brush the tops with buttermilk.",
+    "Bake for 12 to 15 minutes, until tall and golden.",
+    "Meanwhile, brown the sausage in a large skillet over medium heat, breaking it up, for 8 to 10 minutes. Don't drain the fat.",
+    "Sprinkle the 1/3 cup flour over the sausage and stir for 1 to 2 minutes. Slowly stir in the warm milk and simmer, stirring, for 5 to 8 minutes, until thick and creamy. Season with the pepper and salt.",
+    "Split the warm biscuits and spoon the gravy over."
+   ],
+   "allergens": [
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Keep the butter and buttermilk cold, and handle the dough as little as possible. That's what makes biscuits flaky and tall.",
+    "Placing the biscuits so they touch helps them rise up instead of spreading out.",
+    "Gravy too thick? Stir in more milk. Too thin? Simmer a few minutes longer."
+   ],
+   "make_ahead": "Freeze unbaked biscuits on the tray, then bag them. Bake from frozen for 2 to 3 minutes longer.",
+   "variations": []
+  }
+ },
  "bitter-giuseppe": {
   "kind": "cocktail",
   "recipe": {
@@ -4584,6 +4866,121 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "borscht": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Ukrainian Borscht",
+   "description": "Ukraine's ruby-red beet soup: beef broth simmered with beets, cabbage, potatoes and carrots, made tangy with a splash of vinegar and finished with dill and sour cream.",
+   "servings": 6,
+   "prep_minutes": 25,
+   "cook_minutes": 80,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "boneless beef chuck, cut into 3/4-inch cubes"
+    },
+    {
+     "amount": "8",
+     "unit": "cups",
+     "item": "water"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "bay leaf"
+    },
+    {
+     "amount": "2 1/2",
+     "unit": "tsp",
+     "item": "kosher salt, plus more to taste"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "sunflower or vegetable oil"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "onion, chopped"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "carrot, grated"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "medium beets, peeled and grated or cut into thin matchsticks"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "tomato paste"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "white vinegar, plus more to taste"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "sugar"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "medium potatoes, peeled and cubed"
+    },
+    {
+     "amount": "3",
+     "unit": "cups",
+     "item": "thinly shredded green cabbage"
+    },
+    {
+     "amount": "3",
+     "unit": "cloves",
+     "item": "garlic, minced"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "chopped fresh dill, plus more to serve"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "sour cream, to serve"
+    }
+   ],
+   "steps": [
+    "Put the beef, water, bay leaf and 1 teaspoon salt in a large pot. Bring to a boil, skim off the foam, then cover partly and simmer for 45 minutes, until the beef is nearly tender.",
+    "Meanwhile, heat the oil in a large skillet over medium heat. Cook the onion and carrot for 5 minutes, until soft.",
+    "Add the beets, tomato paste, vinegar and sugar and cook, stirring, for 10 minutes, adding a splash of broth if it starts to stick. The vinegar keeps the beets bright red.",
+    "Add the potatoes and the rest of the salt to the broth and simmer for 10 minutes.",
+    "Stir in the cabbage and the beet mixture and simmer for 10 minutes more, until all the vegetables are tender.",
+    "Turn off the heat, stir in the garlic and dill, and let the soup stand for 10 minutes. Taste and add more salt or vinegar.",
+    "Serve with a spoonful of sour cream and more dill."
+   ],
+   "allergens": [
+    "milk"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Taste at the end for balance. Borscht should be both sweet from the beets and clearly tangy.",
+    "Dark rye bread is the classic side.",
+    "Wear gloves when grating beets, or rub your hands with lemon juice afterwards to remove stains."
+   ],
+   "make_ahead": "Borscht tastes even better the next day. Refrigerate for up to 4 days or freeze for up to 3 months.",
+   "variations": [
+    "Vegetarian borscht: skip the beef, use vegetable broth and add a can of drained white beans with the cabbage."
+   ]
   }
  },
  "boston-cocktail": {
@@ -5415,6 +5812,94 @@
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
    "make_ahead": "",
+   "variations": []
+  }
+ },
+ "buffalo-wings": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Buffalo Wings",
+   "description": "The 1964 Anchor Bar original from Buffalo, New York: crisp fried, unbreaded wings tossed in hot sauce and butter, with celery sticks and blue cheese dip.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 30,
+   "ingredients": [
+    {
+     "amount": "3",
+     "unit": "lb",
+     "item": "chicken wings, split into flats and drumettes, tips removed"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "kosher salt"
+    },
+    {
+     "amount": "2",
+     "unit": "quarts",
+     "item": "vegetable or canola oil, for frying"
+    },
+    {
+     "amount": "2/3",
+     "unit": "cup",
+     "item": "Frank's RedHot Original cayenne pepper sauce"
+    },
+    {
+     "amount": "5",
+     "unit": "tbsp",
+     "item": "unsalted butter"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "mayonnaise"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "sour cream"
+    },
+    {
+     "amount": "3",
+     "unit": "oz",
+     "item": "blue cheese, crumbled"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1",
+     "unit": "clove",
+     "item": "garlic, grated"
+    },
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "celery stalks, cut into sticks"
+    }
+   ],
+   "steps": [
+    "Make the blue cheese dip: mix the mayonnaise, sour cream, blue cheese, lemon juice and garlic with a pinch of salt and pepper. Chill until needed.",
+    "Pat the wings very dry with paper towels and season with the salt.",
+    "Heat 2 inches of oil in a heavy pot to 375°F. Fry the wings in batches for 10 to 12 minutes, until golden, very crisp and cooked through. Drain on a rack.",
+    "Meanwhile, melt the butter with the hot sauce in a small pan, whisking to combine. Keep it warm.",
+    "Toss the hot wings in a large bowl with the sauce until well coated.",
+    "Serve right away with the celery sticks and blue cheese dip."
+   ],
+   "allergens": [
+    "eggs",
+    "milk"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Dry wings fry crisper and spatter less. For extra crisp skin, leave them uncovered in the fridge for a few hours first.",
+    "More butter makes milder wings; less butter makes them hotter.",
+    "To bake instead: toss the dry wings with 1 tbsp baking powder and the salt and bake on a rack at 425°F for 45 to 50 minutes, turning once."
+   ],
+   "make_ahead": "Make the blue cheese dip up to 3 days ahead.",
    "variations": []
   }
  },
@@ -12072,6 +12557,84 @@
    }
   }
  },
+ "crepes": {
+  "kind": "meal",
+  "recipe": {
+   "title": "French Crêpes",
+   "description": "Thin, tender French pancakes made from a simple rested batter of flour, eggs, milk and melted butter. Serve them with lemon and sugar, jam or chocolate spread.",
+   "servings": 4,
+   "prep_minutes": 10,
+   "cook_minutes": 25,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "all-purpose flour"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "sugar"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "large eggs"
+    },
+    {
+     "amount": "1 1/4",
+     "unit": "cups",
+     "item": "whole milk"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "water"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "unsalted butter, melted, plus more for the pan"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "lemon wedges and sugar, to serve"
+    }
+   ],
+   "steps": [
+    "Whisk the flour, sugar and salt in a bowl. Make a well, add the eggs and about half the milk and whisk to a smooth, thick batter.",
+    "Whisk in the rest of the milk, the water and the melted butter until the batter is as thin as heavy cream. Or blend everything in a blender for 15 seconds.",
+    "Cover and rest the batter for at least 30 minutes at room temperature, or overnight in the fridge.",
+    "Heat an 8- to 10-inch nonstick or crêpe pan over medium heat and brush it lightly with butter.",
+    "Pour in about 1/4 cup of batter and immediately tilt and swirl the pan to coat the bottom in a thin layer.",
+    "Cook for 1 minute, until the edges lift and the underside is lightly golden. Flip and cook for 20 to 30 seconds more.",
+    "Stack the crêpes on a plate. Serve folded into quarters with a squeeze of lemon and a sprinkle of sugar."
+   ],
+   "allergens": [
+    "eggs",
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Resting the batter relaxes the gluten, which makes the crêpes softer and less likely to tear.",
+    "The first crêpe is often a test. Adjust the heat and the amount of batter after it.",
+    "If the batter thickens after resting, stir in a splash of milk."
+   ],
+   "make_ahead": "Stack cooked crêpes with parchment between them and refrigerate for up to 3 days, or freeze for a month. Warm in a dry pan.",
+   "variations": [
+    "Savory crêpes: leave out the sugar and fill with ham, Gruyère and a fried egg.",
+    "Crêpes Suzette: warm the crêpes in a sauce of butter, sugar, orange juice and orange liqueur."
+   ]
+  }
+ },
  "croque-monsieur": {
   "kind": "meal",
   "recipe": {
@@ -15477,6 +16040,119 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "fish-pie": {
+  "kind": "meal",
+  "recipe": {
+   "title": "British Fish Pie",
+   "description": "The British family favorite: cod, smoked haddock, salmon and shrimp in a creamy parsley sauce under a thick blanket of buttery mashed potato, baked until golden.",
+   "servings": 6,
+   "prep_minutes": 30,
+   "cook_minutes": 45,
+   "ingredients": [
+    {
+     "amount": "2 1/2",
+     "unit": "lb",
+     "item": "floury potatoes (such as russets), peeled and cut into chunks"
+    },
+    {
+     "amount": "6",
+     "unit": "tbsp",
+     "item": "unsalted butter, divided"
+    },
+    {
+     "amount": "2 1/2",
+     "unit": "cups",
+     "item": "whole milk, divided"
+    },
+    {
+     "amount": "8",
+     "unit": "oz",
+     "item": "skinless cod or haddock fillet"
+    },
+    {
+     "amount": "8",
+     "unit": "oz",
+     "item": "skinless smoked haddock fillet"
+    },
+    {
+     "amount": "8",
+     "unit": "oz",
+     "item": "skinless salmon fillet"
+    },
+    {
+     "amount": "6",
+     "unit": "oz",
+     "item": "raw shrimp, peeled and deveined"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "bay leaf"
+    },
+    {
+     "amount": "1/2",
+     "unit": "",
+     "item": "onion, peeled"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "all-purpose flour"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "Dijon mustard"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lemon, zested"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "chopped fresh parsley"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "frozen peas (optional)"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "salt and black pepper, to taste"
+    }
+   ],
+   "steps": [
+    "Boil the potatoes in salted water for 15 to 20 minutes, until tender. Drain well and mash with 3 tablespoons of the butter and 1/4 cup of the milk. Season with salt and pepper.",
+    "Meanwhile, put the cod, smoked haddock and salmon in a wide pan with the rest of the milk, the bay leaf and onion. Bring just to a simmer and poach gently for 5 minutes. Lift out the fish, strain the milk and keep it.",
+    "Heat the oven to 400°F. Melt the remaining 3 tablespoons butter in a saucepan, stir in the flour and cook for 1 minute. Gradually whisk in the warm poaching milk and simmer, stirring, for 3 minutes, until thick and smooth.",
+    "Stir the mustard, lemon zest and parsley into the sauce and season with pepper. Taste before adding salt; smoked fish is salty.",
+    "Flake the fish into large chunks in a 2 1/2-quart baking dish and scatter over the raw shrimp and peas, if using. Pour the sauce over and stir very gently.",
+    "Spoon the mash over the top, spread it to the edges and rough up the surface with a fork.",
+    "Bake for 25 to 30 minutes, until the top is golden and the sauce bubbles at the edges. Rest for 5 minutes before serving."
+   ],
+   "allergens": [
+    "fish",
+    "milk",
+    "shellfish",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Undercook the fish when poaching. It finishes cooking in the oven and stays in big, juicy flakes.",
+    "Let the sauce cool slightly before adding the mash, so the potato sits on top instead of sinking in."
+   ],
+   "make_ahead": "Assemble up to a day ahead and refrigerate. Bake from cold for 40 to 45 minutes.",
+   "variations": [
+    "Add halved hard-boiled eggs to the filling, the traditional way.",
+    "Stir 1/2 cup grated sharp cheddar into the mash for a cheesy top."
+   ]
   }
  },
  "fish-tacos": {
@@ -23385,6 +24061,91 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "lobster-roll": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Maine Lobster Roll",
+   "description": "The New England summer classic: big chunks of chilled lobster lightly dressed with mayonnaise, lemon and celery, piled into a buttery toasted split-top bun.",
+   "servings": 4,
+   "prep_minutes": 20,
+   "cook_minutes": 5,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "cooked lobster meat, cut into large chunks"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "mayonnaise"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "finely diced celery"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "chopped fresh chives"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "kosher salt"
+    },
+    {
+     "amount": "1/8",
+     "unit": "tsp",
+     "item": "ground black pepper"
+    },
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "split-top New England-style hot dog buns"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "unsalted butter, softened"
+    },
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "butter lettuce leaves (optional)"
+    }
+   ],
+   "steps": [
+    "Gently fold the lobster with the mayonnaise, lemon juice, celery, chives, salt and pepper. Chill while you toast the buns.",
+    "Spread the flat outer sides of the buns with the butter.",
+    "Toast the buns in a skillet over medium heat for 1 to 2 minutes per side, until golden.",
+    "Line each bun with a lettuce leaf, if using, and pile in the lobster. Serve right away."
+   ],
+   "allergens": [
+    "eggs",
+    "milk",
+    "shellfish",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Go light on the mayonnaise. It should coat the lobster, not drown it.",
+    "Split-top buns have flat sides that toast evenly. Regular hot dog buns work in a pinch.",
+    "One 1 1/2-lb lobster gives roughly 1/3 lb of meat."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Connecticut-style: skip the mayonnaise and celery and toss the lobster in 4 tbsp warm melted butter with a squeeze of lemon instead."
+   ]
   }
  },
  "lomo-saltado": {
@@ -32015,6 +32776,90 @@
    "variations": []
   }
  },
+ "poutine": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Poutine",
+   "description": "Quebec's late-night classic: crisp, twice-fried fries topped with squeaky fresh cheese curds and drowned in hot, savory brown gravy that just starts to melt them.",
+   "servings": 4,
+   "prep_minutes": 30,
+   "cook_minutes": 40,
+   "ingredients": [
+    {
+     "amount": "2 1/2",
+     "unit": "lb",
+     "item": "russet potatoes, cut into 1/2-inch-thick fries"
+    },
+    {
+     "amount": "2",
+     "unit": "quarts",
+     "item": "vegetable or canola oil, for frying"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "unsalted butter"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "all-purpose flour"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "cups",
+     "item": "beef broth"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "chicken broth"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "cider vinegar"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "ground black pepper"
+    },
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "fresh cheese curds, at room temperature"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "kosher salt, to taste"
+    }
+   ],
+   "steps": [
+    "Soak the cut potatoes in cold water for at least 30 minutes, then drain and dry them very well.",
+    "Make the gravy: melt the butter in a saucepan over medium heat, whisk in the flour and cook, stirring, for 3 to 4 minutes, until golden brown. Gradually whisk in both broths, the vinegar and pepper. Simmer for 8 to 10 minutes, until it coats a spoon. Taste for salt and keep hot.",
+    "Heat 2 inches of oil in a heavy pot to 325°F. Fry the potatoes in batches for 5 to 6 minutes, until soft and pale but not browned. Drain on a rack.",
+    "Heat the oil to 375°F and fry the potatoes again for 2 to 3 minutes, until deep golden and crisp. Drain and salt right away.",
+    "Pile the hot fries into bowls, scatter over the cheese curds and pour the very hot gravy on top. Serve right away."
+   ],
+   "allergens": [
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Fresh, squeaky cheese curds are the heart of poutine. Bring them to room temperature so the gravy softens them.",
+    "The gravy must be very hot, or the curds won't start to melt.",
+    "Short on time? Use crisp oven-baked frozen fries."
+   ],
+   "make_ahead": "Make the gravy up to 3 days ahead and reheat until steaming.",
+   "variations": [
+    "Add pulled pork, sautéed mushrooms or bacon on top."
+   ]
+  }
+ },
  "pozole-rojo": {
   "kind": "meal",
   "recipe": {
@@ -32342,6 +33187,98 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "quiche-lorraine": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Quiche Lorraine",
+   "description": "The classic from Lorraine in eastern France: a crisp butter pastry shell filled with smoky bacon and a silky, nutmeg-scented egg and cream custard.",
+   "servings": 6,
+   "prep_minutes": 30,
+   "cook_minutes": 75,
+   "ingredients": [
+    {
+     "amount": "1 1/4",
+     "unit": "cups",
+     "item": "all-purpose flour, plus more for rolling"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "kosher salt, plus 1/2 tsp for the custard"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "cold unsalted butter, cubed"
+    },
+    {
+     "amount": "3 to 4",
+     "unit": "tbsp",
+     "item": "ice water"
+    },
+    {
+     "amount": "6",
+     "unit": "oz",
+     "item": "thick-cut smoked bacon, cut into 1/2-inch strips"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "large eggs"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "large egg yolk"
+    },
+    {
+     "amount": "1 1/4",
+     "unit": "cups",
+     "item": "heavy cream"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "whole milk"
+    },
+    {
+     "amount": "1/8",
+     "unit": "tsp",
+     "item": "ground nutmeg"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "ground black pepper"
+    }
+   ],
+   "steps": [
+    "Make the pastry: mix the flour and salt, then rub in the butter with your fingertips until it looks like coarse crumbs with some pea-size pieces. Stir in just enough ice water for the dough to hold together. Flatten into a disk, wrap and chill for 1 hour.",
+    "Roll the dough out on a floured counter and line a 9-inch tart pan or deep pie dish. Prick the base with a fork and chill for 15 minutes. Heat the oven to 400°F.",
+    "Line the pastry with parchment and fill with pie weights or dried beans. Bake for 15 minutes, remove the weights and bake 8 to 10 minutes more, until pale golden. Lower the oven to 325°F.",
+    "Meanwhile, cook the bacon in a skillet over medium heat for 6 to 8 minutes, until golden but not crisp. Drain on paper towels.",
+    "Whisk the eggs, yolk, cream, milk, nutmeg, pepper and 1/2 teaspoon salt until smooth, without beating in air.",
+    "Scatter the bacon in the warm pastry shell and pour in the custard.",
+    "Bake for 35 to 40 minutes, until the edges are set but the center still wobbles slightly. Cool for at least 20 minutes before slicing."
+   ],
+   "allergens": [
+    "eggs",
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Blind-baking the crust first is what keeps the bottom crisp instead of soggy.",
+    "Take the quiche out while the center still jiggles. It keeps cooking as it cools, and an overbaked custard turns rubbery."
+   ],
+   "make_ahead": "Bake up to a day ahead, refrigerate, and serve at room temperature or reheat at 325°F for 15 minutes.",
+   "variations": [
+    "Add 1 cup grated Gruyère with the bacon, the way it's often made outside France.",
+    "Use a 9-inch store-bought pie crust to save time."
+   ]
   }
  },
  "rabo-de-galo": {
@@ -38063,6 +39000,71 @@
   "variants": {
    "vegetarian": "same",
    "vegan": "same"
+  }
+ },
+ "texas-brisket": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Texas-Style Smoked Brisket",
+   "description": "Central Texas barbecue at its simplest: a whole brisket rubbed with just coarse salt and pepper, smoked low and slow over oak until it's tender, juicy and wrapped in a dark, peppery bark.",
+   "servings": 12,
+   "prep_minutes": 30,
+   "cook_minutes": 720,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "whole packer beef brisket (12 to 14 lb)"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "kosher salt"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "coarsely ground black pepper"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "oak or hickory wood, for smoking"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "pink butcher paper or heavy-duty foil, for wrapping"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "pickles and sliced onion, to serve (optional)"
+    }
+   ],
+   "steps": [
+    "Trim the hard fat on the fat side down to about 1/4 inch and remove any silver skin on the meat side.",
+    "Mix the salt and pepper and season the brisket generously on all sides. Let it sit while the smoker heats.",
+    "Heat a smoker to 250°F with oak or hickory. Put the brisket in fat side up, with the thicker end toward the hottest part of the smoker.",
+    "Smoke for 6 to 8 hours, until the bark is dark and set and the internal temperature reaches about 165°F. The temperature will stall for a while around this point; that's normal.",
+    "Wrap the brisket tightly in butcher paper or foil and return it to the smoker.",
+    "Keep cooking for 4 to 6 hours more, until the thickest part reaches 203°F and a probe slides in with almost no resistance.",
+    "Rest the wrapped brisket in an empty cooler or a 150°F oven for at least 1 hour, or up to 4.",
+    "Slice across the grain into pencil-thick slices, separating the lean flat from the fattier point, and serve with pickles and onion."
+   ],
+   "allergens": [],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "In Texas it comes on butcher paper with slices of white bread on the side.",
+    "Plan on about 1 to 1 1/2 hours per pound. Start early, since a long rest keeps it warm.",
+    "Cook to feel, not just temperature. Done brisket feels like a probe sliding into soft butter.",
+    "The flat and point grains run in different directions. Cut the two apart before slicing each one across its grain."
+   ],
+   "make_ahead": "Wrap leftovers tightly and refrigerate for up to 4 days. Reheat slices wrapped in foil with a splash of broth at 300°F.",
+   "variations": [
+    "No smoker? Season, then roast on a rack at 275°F for about 6 hours, wrap in foil and cook to 203°F. It won't be smoky, but it will be tender."
+   ]
   }
  },
  "thai-green-curry": {
