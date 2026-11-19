@@ -2,7 +2,7 @@ import { router, useFocusEffect } from "expo-router";
 import { useCallback, useRef, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Modal, Pressable, ScrollView, Share, StyleSheet, Switch, Text, TextInput, View } from "react-native";
+import { Linking, Modal, Pressable, ScrollView, Share, StyleSheet, Switch, Text, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../AppContext";
 import { clear_account_device_data, delete_account, delete_account_problem } from "../auth/deleteAccount";
@@ -16,6 +16,7 @@ import { FEEDBACK_KINDS, FEEDBACK_TEXT, type FeedbackKind } from "../feedback/fe
 import { DietPicker, InterestPicker } from "../onboarding/Choices";
 import { toggle_diet } from "../onboarding/onboarding";
 import { useOnboarding } from "../onboarding/OnboardingProvider";
+import { legal_page_urls, SUPPORT_EMAIL, support_mail_url } from "./legalLinks";
 import { usePreferences } from "./PreferencesProvider";
 import { APPEARANCES, type Appearance } from "./preferences";
 import { CATEGORIES, type Category, Group, Row, SettingsScreen } from "./SettingsUI";
@@ -505,8 +506,34 @@ function Usage() {
 
 function Help() {
   const { type } = useTheme();
+  const pages = legal_page_urls(process.env.EXPO_PUBLIC_API_BASE_URL);
+  const [link_problem, set_link_problem] = useState<string | null>(null);
+  const open_link = (url: string) => {
+    set_link_problem(null);
+    Linking.openURL(url).catch(() => set_link_problem(`Couldn’t open that link. You can email ${SUPPORT_EMAIL}.`));
+  };
   return (
     <>
+      <Group title="PRIVACY & SUPPORT">
+        {pages && (
+          <Row
+            label="Privacy policy"
+            detail="What Recipeak keeps and why"
+            icon="shield-checkmark-outline"
+            onPress={() => open_link(pages.privacy)}
+          />
+        )}
+        {pages && (
+          <Row
+            label="Terms of use"
+            detail="The rules for using Recipeak"
+            icon="document-text-outline"
+            onPress={() => open_link(pages.terms)}
+          />
+        )}
+        <Row label="Contact support" detail={SUPPORT_EMAIL} icon="mail-outline" onPress={() => open_link(support_mail_url())} />
+      </Group>
+      {link_problem && <Notice tone="error">{link_problem}</Notice>}
       <Text accessibilityRole="header" style={type.heading}>
         Find a recipe
       </Text>
@@ -540,9 +567,7 @@ function Help() {
       <Text accessibilityRole="header" style={type.heading}>
         About
       </Text>
-      <Text style={type.muted}>
-        Recipeak · Early release. Published privacy and terms pages and a support contact are not configured in this app yet.
-      </Text>
+      <Text style={type.muted}>Recipeak · Early release · Made by Benjamin Major</Text>
     </>
   );
 }

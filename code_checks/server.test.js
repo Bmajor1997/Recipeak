@@ -55,7 +55,7 @@ async function start({ reply = IDENTIFIED, status, delay, premium = async () => 
     headers: { ...(user ? { Authorization: `Bearer ${user}` } : {}), ...(body !== undefined || raw ? { "Content-Type": "application/json" } : {}) },
     body: raw ?? (body === undefined ? undefined : JSON.stringify(body)),
   }).then(async (r) => ({ status: r.status, json: await r.json(), headers: r.headers }));
-  return { call, calls, store, warnings, close: () => new Promise((r) => server.close(r)) };
+  return { base, call, calls, store, warnings, close: () => new Promise((r) => server.close(r)) };
 }
 
 test("requests without a signed-in account are refused before any work", async (t) => {
@@ -269,4 +269,21 @@ test("deleting an account needs a fresh sign-in, removes its data, and refuses t
   assert.equal((await s.call("/api/allowance", { user: "bob" })).status, 200);
   // If removing the sign-in failed on the phone, trying again still works.
   assert.equal((await s.call("/api/account/delete", { user: "alice@fresh", body: {} })).status, 200);
+});
+
+test("the privacy policy and terms are public pages with a strict content policy", async (t) => {
+  const s = await start(); t.after(s.close);
+  for (const path of ["/privacy", "/terms"]) {
+    const r = await fetch(s.base + path);
+    assert.equal(r.status, 200);
+    assert.match(r.headers.get("content-type"), /text\/html/);
+    assert.match(r.headers.get("content-security-policy"), /default-src 'none'/);
+    assert.doesNotMatch(r.headers.get("content-security-policy"), /script-src/);
+    const html = await r.text();
+    assert.match(html, /majorapps\.support@gmail\.com/);
+    assert.match(html, /Benjamin Major/);
+    assert.doesNotMatch(html, /\{\{/);
+  }
+  assert.equal((await fetch(s.base + "/legal/legal.css")).status, 200);
+  assert.equal((await fetch(s.base + "/legal/../app.js")).status, 404);
 });
