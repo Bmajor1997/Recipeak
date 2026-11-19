@@ -5781,6 +5781,62 @@
    "variations": []
   }
  },
+ "cacio-e-pepe": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Cacio e Pepe",
+   "description": "Rome's three-ingredient pasta: spaghetti tossed with finely grated Pecorino Romano, starchy pasta water and lots of toasted black pepper into a creamy, peppery sauce.",
+   "servings": 4,
+   "prep_minutes": 5,
+   "cook_minutes": 15,
+   "ingredients": [
+    {
+     "amount": "12",
+     "unit": "oz",
+     "item": "spaghetti, tonnarelli or bucatini"
+    },
+    {
+     "amount": "2",
+     "unit": "tsp",
+     "item": "whole black peppercorns, coarsely cracked"
+    },
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "very finely grated Pecorino Romano, plus more to serve"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "salt, for the pasta water"
+    }
+   ],
+   "steps": [
+    "Bring a pot of water to a boil, using less water than usual so it gets extra starchy, and salt it lightly. Pecorino is salty.",
+    "Cook the pasta until 2 minutes short of al dente. Before draining, scoop out 2 cups of the cooking water.",
+    "Meanwhile, toast the pepper in a large, dry skillet over medium heat for 1 minute, until fragrant. Add 1/2 cup of the pasta water and let it simmer.",
+    "Put the cheese in a bowl and stir in about 1/3 cup of the warm (not boiling) pasta water to make a smooth, thick paste.",
+    "Add the drained pasta to the skillet and toss for 1 to 2 minutes, adding splashes of pasta water, until al dente.",
+    "Take the pan off the heat. Let it cool for 30 seconds, then add the cheese paste and toss quickly, adding more pasta water a little at a time, until the sauce is creamy and coats the pasta.",
+    "Serve right away with more pecorino and pepper."
+   ],
+   "allergens": [
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "If the cheese is too hot, it clumps. Mixing it into a paste with warm water first, off the heat, keeps the sauce smooth.",
+    "Grate the cheese on the finest holes of the grater. Coarse shreds won't melt into a sauce.",
+    "Pecorino Romano is made with animal rennet, so this dish isn't vegetarian."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Add 2 tablespoons of butter to the pan with the pepper for an even silkier, more forgiving sauce."
+   ]
+  }
+ },
  "caesar-salad": {
   "kind": "meal",
   "recipe": {
@@ -12014,6 +12070,90 @@
     "make_ahead": "Coat the mushrooms up to 1 hour ahead and chill on a tray; fry just before serving.",
     "variations": []
    }
+  }
+ },
+ "croque-monsieur": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Croque Monsieur",
+   "description": "The Paris café classic: a ham and Gruyère sandwich with Dijon mustard, covered in creamy béchamel and more cheese, then baked and broiled until golden and bubbling.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 20,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "unsalted butter"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "all-purpose flour"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "cups",
+     "item": "whole milk, warmed"
+    },
+    {
+     "amount": "1/8",
+     "unit": "tsp",
+     "item": "ground nutmeg"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "kosher salt"
+    },
+    {
+     "amount": "1/8",
+     "unit": "tsp",
+     "item": "ground white pepper"
+    },
+    {
+     "amount": "8",
+     "unit": "",
+     "item": "thick slices of white sandwich bread"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "Dijon mustard"
+    },
+    {
+     "amount": "8",
+     "unit": "oz",
+     "item": "thinly sliced ham"
+    },
+    {
+     "amount": "8",
+     "unit": "oz",
+     "item": "Gruyère cheese, grated (about 2 cups)"
+    }
+   ],
+   "steps": [
+    "Heat the oven to 400°F and line a baking sheet with parchment.",
+    "Make the béchamel: melt the butter in a saucepan over medium heat, whisk in the flour and cook for 1 minute. Slowly whisk in the warm milk and simmer, whisking, for 3 to 4 minutes, until thick. Stir in the nutmeg, salt and white pepper.",
+    "Toast the bread lightly on the baking sheet for 5 minutes.",
+    "Spread 4 slices with mustard and a thin layer of béchamel. Top with the ham and half the cheese, then the other slices of bread.",
+    "Spread the remaining béchamel thickly over the tops and sprinkle with the rest of the cheese.",
+    "Bake for 6 to 8 minutes, until the cheese melts, then broil for 2 to 3 minutes, watching closely, until golden brown and bubbling."
+   ],
+   "allergens": [
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Make the béchamel thick, so it sits on top of the sandwich instead of running off.",
+    "Watch the broiler closely. The top goes from golden to burnt in under a minute."
+   ],
+   "make_ahead": "Make the béchamel up to 2 days ahead and keep it covered in the fridge. Warm it gently before using.",
+   "variations": [
+    "Croque madame: top each sandwich with a fried egg."
+   ]
   }
  },
  "cuba-libre": {
@@ -20836,6 +20976,141 @@
    "variations": []
   }
  },
+ "kabsa": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Chicken Kabsa",
+   "description": "Saudi Arabia's national dish: chicken and basmati rice cooked together in a tomato broth scented with cardamom, cinnamon, cloves and dried lime, topped with toasted almonds and raisins.",
+   "servings": 6,
+   "prep_minutes": 20,
+   "cook_minutes": 60,
+   "ingredients": [
+    {
+     "amount": "3",
+     "unit": "lb",
+     "item": "bone-in chicken pieces (thighs and drumsticks)"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "vegetable oil"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "onions, chopped"
+    },
+    {
+     "amount": "4",
+     "unit": "cloves",
+     "item": "garlic, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "grated fresh ginger"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "tomato paste"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "tomatoes, chopped"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "carrot, grated"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "dried limes (loomi), pierced with a knife"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "cinnamon stick"
+    },
+    {
+     "amount": "6",
+     "unit": "",
+     "item": "green cardamom pods, cracked"
+    },
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "whole cloves"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "bay leaves"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "kabsa spice mix or baharat"
+    },
+    {
+     "amount": "2 1/2",
+     "unit": "tsp",
+     "item": "kosher salt"
+    },
+    {
+     "amount": "5",
+     "unit": "cups",
+     "item": "water"
+    },
+    {
+     "amount": "2 1/2",
+     "unit": "cups",
+     "item": "basmati rice, rinsed and soaked for 20 minutes"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "slivered almonds, toasted"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "golden raisins"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "chopped parsley, to serve"
+    }
+   ],
+   "steps": [
+    "Heat the oil in a large, wide pot over medium-high heat. Brown the chicken on both sides in batches, about 8 minutes, and set it aside.",
+    "Add the onions to the pot and cook for 6 to 8 minutes, until golden. Add the garlic and ginger and cook for 1 minute.",
+    "Stir in the tomato paste, tomatoes, carrot, dried limes, cinnamon, cardamom, cloves, bay leaves, spice mix and salt and cook for 2 minutes.",
+    "Return the chicken, add the water and bring to a boil. Cover and simmer for 30 minutes, until the chicken is tender.",
+    "Lift out the chicken. If you like, brown it under a hot broiler for 5 minutes while the rice cooks.",
+    "Drain the rice and stir it into the broth. Bring back to a boil, then cover tightly and cook over very low heat for 20 minutes, until the rice is tender and the liquid is absorbed.",
+    "Rest for 5 minutes, then fluff the rice onto a large platter, set the chicken on top and scatter with almonds, raisins and parsley."
+   ],
+   "allergens": [
+    "tree nuts"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Dried limes give kabsa its tangy, slightly smoky flavor. Find them at Middle Eastern grocers; a strip of lime zest and a squeeze of juice is a rough stand-in.",
+    "Measure the broth after the chicken comes out: you want about 4 cups for the rice. Add water or boil it down as needed.",
+    "Nut allergy? Leave off the almonds; the dish is just as good."
+   ],
+   "make_ahead": "Refrigerate leftovers for up to 3 days and reheat covered with a splash of water.",
+   "variations": [
+    "Lamb kabsa: use 3 lb bone-in lamb shoulder pieces and simmer for 1 1/2 hours before adding the rice."
+   ]
+  }
+ },
  "kahlua-and-cream": {
   "kind": "cocktail",
   "recipe": {
@@ -21281,6 +21556,113 @@
    "variations": []
   }
  },
+ "kimchi-jjigae": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Kimchi Jjigae (Kimchi Stew)",
+   "description": "Korea's favorite everyday stew: sour, well-aged kimchi simmered with pork belly and tofu in a spicy, savory broth. Served bubbling hot with rice.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 30,
+   "ingredients": [
+    {
+     "amount": "8",
+     "unit": "oz",
+     "item": "pork belly, sliced 1/4 inch thick into bite-size pieces"
+    },
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "well-aged (sour) napa cabbage kimchi, chopped"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "kimchi juice from the jar"
+    },
+    {
+     "amount": "1/2",
+     "unit": "",
+     "item": "onion, sliced"
+    },
+    {
+     "amount": "2",
+     "unit": "cloves",
+     "item": "garlic, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "gochugaru (Korean chili flakes)"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "gochujang (Korean chili paste)"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "sugar"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "soy sauce"
+    },
+    {
+     "amount": "2 1/2",
+     "unit": "cups",
+     "item": "anchovy-kelp stock or low-sodium chicken broth"
+    },
+    {
+     "amount": "14",
+     "unit": "oz",
+     "item": "firm or medium tofu, sliced 1/2 inch thick"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "scallions, cut into 2-inch pieces"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "toasted sesame oil"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "steamed rice, to serve"
+    }
+   ],
+   "steps": [
+    "Put a heavy pot over medium heat and add the pork belly. Cook, stirring, for 4 to 5 minutes, until the fat renders and the edges brown.",
+    "Add the kimchi, onion and garlic and cook for 5 minutes, until the kimchi softens and smells toasty.",
+    "Stir in the gochugaru, gochujang, sugar and soy sauce, then add the kimchi juice and stock.",
+    "Bring to a boil, then cover and simmer for 15 minutes.",
+    "Lay the tofu on top, add the scallions and simmer for 5 minutes more, until the tofu is hot through.",
+    "Taste for salt, drizzle with sesame oil and serve hot with rice."
+   ],
+   "allergens": [
+    "fish",
+    "sesame",
+    "shellfish",
+    "soy",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "The older and more sour the kimchi, the better the stew. Fresh kimchi tastes flat here; add 1 teaspoon rice vinegar if yours is young.",
+    "Most kimchi is made with fish sauce or salted shrimp. Check the jar if anyone has a fish or shellfish allergy."
+   ],
+   "make_ahead": "The stew tastes even better reheated the next day. Keep it in the fridge for up to 3 days.",
+   "variations": [
+    "Use canned tuna or Spam in place of the pork belly."
+   ]
+  }
+ },
  "kir": {
   "kind": "cocktail",
   "recipe": {
@@ -21410,6 +21792,134 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "korean-fried-chicken": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Korean Fried Chicken (Yangnyeom)",
+   "description": "Twice-fried chicken with a thin, shatteringly crisp potato-starch crust, tossed in a sticky, sweet and spicy gochujang glaze.",
+   "servings": 4,
+   "prep_minutes": 30,
+   "cook_minutes": 35,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "lb",
+     "item": "chicken wings and drumettes, or boneless thighs cut into 2-inch pieces"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "kosher salt"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "ground black pepper"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "grated fresh ginger"
+    },
+    {
+     "amount": "3/4",
+     "unit": "cup",
+     "item": "potato starch"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "all-purpose flour"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "baking powder"
+    },
+    {
+     "amount": "3/4",
+     "unit": "cup",
+     "item": "ice-cold water"
+    },
+    {
+     "amount": "2",
+     "unit": "quarts",
+     "item": "vegetable or canola oil, for frying"
+    },
+    {
+     "amount": "3",
+     "unit": "cloves",
+     "item": "garlic, minced"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "gochujang (Korean chili paste)"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "ketchup"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "rice syrup or light corn syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "soy sauce"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "brown sugar"
+    },
+    {
+     "amount": "2",
+     "unit": "tsp",
+     "item": "rice vinegar"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "toasted sesame seeds, to serve"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "scallions, sliced, to serve"
+    }
+   ],
+   "steps": [
+    "Pat the chicken dry and toss it with the salt, pepper and ginger.",
+    "Whisk the potato starch, flour, baking powder and ice water into a thin batter. Add the chicken and turn to coat.",
+    "Heat 2 inches of oil in a heavy pot to 325°F. Fry the chicken in batches for 8 to 10 minutes, until cooked through and pale gold. Drain on a rack for 5 minutes.",
+    "Heat the oil to 375°F and fry the chicken again for 2 to 3 minutes, until deep golden and very crisp. Drain.",
+    "Meanwhile, make the glaze: warm 1 teaspoon of oil in a wide pan over medium heat and fry the garlic for 30 seconds. Add the gochujang, ketchup, syrup, soy sauce, brown sugar and vinegar and simmer for 2 minutes, until glossy and bubbling.",
+    "Turn off the heat, add the hot chicken and toss quickly to coat.",
+    "Sprinkle with sesame seeds and scallions and serve right away."
+   ],
+   "allergens": [
+    "sesame",
+    "soy",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "The second, hotter fry drives out moisture, so the crust stays crisp even under the sauce.",
+    "Potato starch makes the crust thin and light. Cornstarch works too, but flour alone turns heavy.",
+    "Toss the chicken in the glaze just before serving. If it sits, the crust softens."
+   ],
+   "make_ahead": "Make the glaze up to 3 days ahead and keep it in the fridge.",
+   "variations": [
+    "Soy garlic chicken: glaze with 1/4 cup soy sauce, 3 tbsp honey, 2 tbsp rice syrup and 4 cloves garlic instead.",
+    "Serve with cubes of pickled radish (chicken-mu) on the side."
+   ]
   }
  },
  "korean-sundubu-jjigae": {
@@ -21841,6 +22351,108 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "lamb-shish-kebab": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Lamb Shish Kebab",
+   "description": "Turkish grilled lamb skewers: chunks of leg of lamb marinated in onion juice, yogurt and red pepper paste, grilled with peppers and onion.",
+   "servings": 4,
+   "prep_minutes": 20,
+   "cook_minutes": 15,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "lb",
+     "item": "boneless leg of lamb, cut into 1 1/2-inch cubes"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "large onion"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "plain whole-milk yogurt"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "Turkish red pepper paste (biber salçası) or tomato paste"
+    },
+    {
+     "amount": "2",
+     "unit": "cloves",
+     "item": "garlic, grated"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "Aleppo pepper or 1/2 tsp red pepper flakes"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "ground cumin"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "kosher salt"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "ground black pepper"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "green bell peppers, cut into 1 1/2-inch pieces"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "red onion, cut into 1 1/2-inch pieces"
+    },
+    {
+     "amount": "8",
+     "unit": "",
+     "item": "metal or soaked bamboo skewers"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "warm flatbread, sliced tomatoes and sumac onions, to serve"
+    }
+   ],
+   "steps": [
+    "Grate the large onion into a sieve set over a bowl and press hard to collect the juice. Discard the pulp.",
+    "Stir the yogurt, olive oil, pepper paste, garlic, Aleppo pepper, cumin, salt and black pepper into the onion juice. Add the lamb, toss well, cover and refrigerate for at least 4 hours, or overnight.",
+    "Thread the lamb onto skewers, alternating with pieces of pepper and red onion.",
+    "Heat a grill to high. Grill the skewers for 10 to 12 minutes, turning every few minutes, until charred outside and still pink inside (135°F for medium-rare).",
+    "Rest for 5 minutes, then serve with flatbread, tomatoes and sliced onions sprinkled with sumac."
+   ],
+   "allergens": [
+    "milk"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Only the onion juice goes into the marinade. Bits of onion would burn on the grill.",
+    "Leave a little space between pieces on the skewer so the heat can reach every side."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Chicken shish: use boneless chicken thighs and grill to 165°F."
+   ]
   }
  },
  "lamb-tagine": {
@@ -30988,6 +31600,125 @@
    "variations": []
   }
  },
+ "pork-souvlaki": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Pork Souvlaki with Tzatziki",
+   "description": "Greece's favorite street food: cubes of pork marinated in lemon, garlic, oregano and olive oil, grilled on skewers and tucked into warm pita with tzatziki, tomato and onion.",
+   "servings": 4,
+   "prep_minutes": 25,
+   "cook_minutes": 12,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "lb",
+     "item": "boneless pork shoulder, cut into 1-inch cubes"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "extra-virgin olive oil"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "red wine vinegar"
+    },
+    {
+     "amount": "4",
+     "unit": "cloves",
+     "item": "garlic, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "dried Greek oregano"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "kosher salt"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "ground black pepper"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "plain Greek yogurt"
+    },
+    {
+     "amount": "1/2",
+     "unit": "",
+     "item": "English cucumber, grated and squeezed dry"
+    },
+    {
+     "amount": "1",
+     "unit": "clove",
+     "item": "garlic, grated, for the tzatziki"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "chopped fresh dill"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "fresh lemon juice, for the tzatziki"
+    },
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "pita breads, warmed"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "tomatoes, sliced"
+    },
+    {
+     "amount": "1/2",
+     "unit": "",
+     "item": "red onion, thinly sliced"
+    },
+    {
+     "amount": "8",
+     "unit": "",
+     "item": "metal or soaked bamboo skewers"
+    }
+   ],
+   "steps": [
+    "Whisk the olive oil, 3 tablespoons lemon juice, vinegar, minced garlic, oregano, salt and pepper in a bowl. Add the pork, toss, cover and refrigerate for at least 2 hours, or overnight.",
+    "Make the tzatziki: stir the yogurt, cucumber, grated garlic, dill and 1 teaspoon lemon juice together with a pinch of salt. Chill until needed.",
+    "Thread the pork onto the skewers.",
+    "Heat a grill or grill pan to medium-high. Grill the skewers for 10 to 12 minutes, turning every few minutes, until charred at the edges and cooked through (145°F).",
+    "Serve the pork on warm pita with tzatziki, tomato and onion, or on a plate with lemon wedges."
+   ],
+   "allergens": [
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Pork shoulder stays juicy on the grill. Tenderloin works but cooks faster, so watch it.",
+    "Squeeze the grated cucumber well, or the tzatziki will turn watery."
+   ],
+   "make_ahead": "Make the tzatziki up to 2 days ahead; it gets better as it sits.",
+   "variations": [
+    "Chicken souvlaki: use boneless chicken thighs and grill for 10 minutes, to 165°F.",
+    "Add a few fries inside the pita, the way many Greek street stalls do."
+   ]
+  }
+ },
  "pornstar-martini": {
   "kind": "cocktail",
   "recipe": {
@@ -31140,6 +31871,77 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "potato-gnocchi": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Potato Gnocchi with Brown Butter and Sage",
+   "description": "Light, pillowy Italian potato dumplings made from baked russets, a little flour and an egg, tossed in nutty brown butter with crisp sage leaves.",
+   "servings": 4,
+   "prep_minutes": 45,
+   "cook_minutes": 70,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "lb",
+     "item": "russet potatoes, scrubbed"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "large egg, beaten"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "kosher salt, plus more for the water"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "all-purpose flour, plus more for dusting"
+    },
+    {
+     "amount": "6",
+     "unit": "tbsp",
+     "item": "unsalted butter"
+    },
+    {
+     "amount": "12",
+     "unit": "",
+     "item": "fresh sage leaves"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "black pepper, to taste"
+    }
+   ],
+   "steps": [
+    "Heat the oven to 400°F. Prick the potatoes and bake them directly on the rack for 50 to 60 minutes, until very tender.",
+    "While they're still hot, peel the potatoes and press them through a ricer onto a clean counter. Spread them out and let them steam for 5 minutes.",
+    "Sprinkle the egg, salt and 3/4 cup of the flour over the potatoes. Gently fold and press together with a bench scraper or your hands, adding more flour only as needed, until a soft dough forms. Don't knead.",
+    "Divide the dough into 4 pieces. Roll each into a 3/4-inch rope on a floured counter and cut into 3/4-inch pieces. Roll each over a fork if you like, for ridges.",
+    "Bring a large pot of salted water to a gentle boil. Cook the gnocchi in batches until they float, then 30 seconds more, about 2 minutes. Lift them out with a slotted spoon.",
+    "Meanwhile, melt the butter in a large skillet over medium heat and cook, swirling, until it smells nutty and turns golden brown. Add the sage and fry for 30 seconds, until crisp.",
+    "Add the gnocchi to the brown butter, toss gently, season with pepper and serve."
+   ],
+   "allergens": [
+    "eggs",
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Bake the potatoes instead of boiling them. Drier potatoes need less flour, and less flour means lighter gnocchi.",
+    "Use as little flour as you can. Too much makes gnocchi dense and chewy."
+   ],
+   "make_ahead": "Freeze uncooked gnocchi on a floured tray, then bag them. Cook from frozen for 3 to 4 minutes.",
+   "variations": [
+    "Serve with tomato sauce or pesto instead of brown butter."
+   ]
   }
  },
  "potato-salad": {
@@ -31978,6 +32780,103 @@
     "make_ahead": "",
     "variations": []
    }
+  }
+ },
+ "ratatouille": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Ratatouille",
+   "description": "The Provençal summer vegetable stew: eggplant, zucchini, peppers and onion each browned in olive oil, then simmered gently with tomatoes, garlic and herbs.",
+   "servings": 6,
+   "prep_minutes": 25,
+   "cook_minutes": 50,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "large eggplant, cut into 3/4-inch cubes"
+    },
+    {
+     "amount": "2",
+     "unit": "tsp",
+     "item": "kosher salt, divided"
+    },
+    {
+     "amount": "6",
+     "unit": "tbsp",
+     "item": "extra-virgin olive oil, divided, plus more to serve"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "zucchini, cut into 3/4-inch cubes"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "onion, chopped"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "red or yellow bell peppers, cut into 3/4-inch pieces"
+    },
+    {
+     "amount": "4",
+     "unit": "cloves",
+     "item": "garlic, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "tomato paste"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "lb",
+     "item": "ripe tomatoes, chopped, or one 28-oz can whole tomatoes, crushed"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "herbes de Provence"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "bay leaf"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "torn fresh basil, to serve"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "black pepper, to taste"
+    }
+   ],
+   "steps": [
+    "Toss the eggplant with 1 teaspoon salt in a colander and let it drain for 20 minutes. Pat it dry.",
+    "Heat 2 tablespoons oil in a large pot over medium-high heat. Brown the eggplant for 8 to 10 minutes, until golden and tender. Set it aside in a bowl.",
+    "Add 1 tablespoon oil and brown the zucchini for 5 minutes, until golden but still firm. Add it to the bowl.",
+    "Add 2 tablespoons oil, the onion and peppers and cook for 8 to 10 minutes, until soft. Add the garlic and tomato paste and cook for 1 minute.",
+    "Add the tomatoes, herbes de Provence, bay leaf and the remaining salt. Simmer for 10 minutes, until thickened.",
+    "Return the eggplant and zucchini, stir gently, cover and simmer over low heat for 15 minutes.",
+    "Remove the bay leaf, season with pepper, and serve warm or at room temperature with basil and a drizzle of olive oil."
+   ],
+   "allergens": [],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Browning each vegetable on its own keeps them from turning to mush and gives them a deeper flavor.",
+    "Ratatouille is even better the next day, once the flavors have mingled."
+   ],
+   "make_ahead": "Refrigerate for up to 4 days or freeze for up to 3 months.",
+   "variations": [
+    "Serve over polenta or with a fried egg on top for a full meal."
+   ]
   }
  },
  "remember-the-maine": {
@@ -36415,6 +37314,89 @@
    "make_ahead": "",
    "variations": [
     "Sweet and sour chicken: use boneless chicken thighs and fry them for 1 minute less the first time."
+   ]
+  }
+ },
+ "tabbouleh": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Tabbouleh",
+   "description": "The Lebanese parsley salad: mostly finely chopped parsley and mint with tomato, scallion and a little fine bulgur, dressed with plenty of lemon and olive oil.",
+   "servings": 4,
+   "prep_minutes": 30,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "fine bulgur (#1 grade)"
+    },
+    {
+     "amount": "4",
+     "unit": "cups",
+     "item": "finely chopped flat-leaf parsley (about 3 large bunches)"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "finely chopped fresh mint"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "ripe tomatoes, finely diced"
+    },
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "scallions, thinly sliced"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "fresh lemon juice, plus more to taste"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "extra-virgin olive oil"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "kosher salt"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "ground allspice or Lebanese seven-spice (optional)"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "romaine lettuce leaves, to serve"
+    }
+   ],
+   "steps": [
+    "Put the bulgur in a bowl, add the diced tomatoes and their juice and the lemon juice, and let it soak for 20 minutes, until tender.",
+    "Meanwhile, wash and dry the parsley and mint very well, then chop them finely with a sharp knife.",
+    "Add the parsley, mint, scallions, olive oil, salt and allspice, if using, to the bulgur and toss well.",
+    "Taste and add more lemon or salt. It should be bright and tangy.",
+    "Serve right away, with lettuce leaves for scooping."
+   ],
+   "allergens": [
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Real tabbouleh is a parsley salad with a little bulgur, not a grain salad with herbs.",
+    "Dry the herbs completely before chopping. Wet herbs bruise and make the salad soggy.",
+    "Chop by hand. A food processor turns the parsley into a watery paste."
+   ],
+   "make_ahead": "Chop the herbs and vegetables a few hours ahead and keep them in the fridge separately. Mix and dress just before serving.",
+   "variations": [
+    "Gluten-free: use 1/2 cup cooked quinoa instead of bulgur."
    ]
   }
  },
