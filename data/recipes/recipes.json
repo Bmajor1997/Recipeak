@@ -749,7 +749,7 @@
   "kind": "cocktail",
   "recipe": {
    "title": "Amaretto Sour",
-   "description": "The modern amaretto sour: almond liqueur balanced with fresh lemon and a splash of strong bourbon, shaken with egg white for a silky foam. Sweet, nutty and bright.",
+   "description": "The modern amaretto sour: a nut-free, almond-flavored amaretto balanced with fresh lemon and a splash of strong bourbon, shaken with egg white for a silky foam. Sweet, rich and bright.",
    "servings": 1,
    "prep_minutes": 5,
    "cook_minutes": 0,
@@ -813,7 +813,7 @@
    "vegetarian": "same",
    "vegan": {
     "title": "Vegan Amaretto Sour",
-    "description": "The same nutty, bright amaretto sour, with aquafaba (chickpea water) whipped into the foam instead of egg white.",
+    "description": "The same rich, bright amaretto sour, with aquafaba (chickpea water) whipped into the foam instead of egg white.",
     "servings": 1,
     "prep_minutes": 5,
     "cook_minutes": 0,
@@ -17302,7 +17302,7 @@
   "kind": "cocktail",
   "recipe": {
    "title": "French Connection",
-   "description": "A smooth 1970s after-dinner sipper: cognac and amaretto stirred over ice. Warm, nutty and simple.",
+   "description": "A smooth 1970s after-dinner sipper: cognac and nut-free amaretto stirred over ice. Warm, almond-scented and simple.",
    "servings": 1,
    "prep_minutes": 2,
    "cook_minutes": 0,
