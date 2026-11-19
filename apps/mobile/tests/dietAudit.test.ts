@@ -2,12 +2,13 @@
 import { writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import manifest from "../../../data/curated-photos/manifest.json";
+import built from "../../../data/recipes/recipes.json";
 import recipes from "../src/recipes/collection.json";
 import variants from "../src/recipes/collectionVariants.json";
 import review from "../src/recipes/dietReview.json";
 import { bundled_diet_profile } from "../src/recipes/dietProfile";
 import { parse_recipe } from "../src/recipes/parse";
-import { diet_profile } from "../src/recipes/diets";
+import { diet_profile, type DietOverride } from "../src/recipes/diets";
 import type { Diet, Kind, Recipe } from "../src/recipes/types";
 
 const kinds = Object.fromEntries(manifest.photos.map((p) => [p.file.replace(/\.[a-z]+$/, ""), p.kind as Kind]));
@@ -15,6 +16,17 @@ const all = Object.entries(recipes as Record<string, unknown>).map(([id, raw]) =
   const recipe = parse_recipe(raw);
   return { id, recipe, kind: kinds[id], profile: bundled_diet_profile(id, recipe, kinds[id]) };
 });
+
+// Recipes in data/recipes/pending/ are built but not in the app until their photo arrives: check them the same way.
+type Built = { kind: Kind; recipe: unknown; variants?: Record<string, unknown> };
+const waiting = Object.entries(built as Record<string, Built>)
+  .filter(([id]) => !(id in recipes))
+  .map(([id, entry]) => {
+    const recipe = parse_recipe(entry.recipe);
+    const hand = (Object.keys(entry.variants ?? {}) as Diet[]).filter((d) => entry.variants?.[d] !== "same");
+    const overrides = (review as Record<string, Partial<Record<Diet, DietOverride>>>)[id] ?? {};
+    return { id, recipe, kind: entry.kind, variants: entry.variants ?? {}, profile: diet_profile(recipe, entry.kind, hand, overrides) };
+  });
 
 describe("diet options for the bundled recipes", () => {
   it("never offers a diet the recipe already meets, and offers non-alcoholic only for alcoholic drinks", () => {
@@ -63,12 +75,28 @@ describe("diet options for the bundled recipes", () => {
   });
 
   it("only keeps audit decisions for dishes that exist", () => {
-    for (const id of Object.keys(review)) expect(Object.keys(recipes), id).toContain(id);
+    for (const id of Object.keys(review)) expect(Object.keys(built), id).toContain(id);
+  });
+
+  it("checks the recipes still waiting for a photo the same way", () => {
+    const wrong: string[] = [];
+    for (const { id, kind, recipe, variants: v, profile } of waiting) {
+      for (const d of profile.options) if (profile.fits.includes(d)) wrong.push(`${id} offers ${d} it already meets`);
+      if (kind === "meal" && profile.options.includes("non-alcoholic")) wrong.push(`${id} meal offers non-alcoholic`);
+      if (kind === "cocktail" && !recipe.cocktail?.alcoholic && profile.options.includes("non-alcoholic")) wrong.push(id);
+      for (const diet of ["vegetarian", "vegan"] as Diet[]) {
+        if (!(diet in v)) continue;
+        const got = profile.status[diet]?.status;
+        const ok = v[diet] === "same" ? got === "fits" || got === "review" : got === "option";
+        if (!ok) wrong.push(`${id} ${diet}: ${got}`);
+      }
+    }
+    expect(wrong).toEqual([]);
   });
 
   // DIET_AUDIT=path writes the full table, for reviewing the rules by hand.
   it.runIf(process.env.DIET_AUDIT)("writes the audit table", () => {
-    const rows = all.map(({ id, kind, recipe, profile }) => ({
+    const rows = [...all, ...waiting].map(({ id, kind, recipe, profile }) => ({
       id,
       kind,
       title: recipe.title,

@@ -21,6 +21,8 @@ def main():
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(ROOT / relative, target)
         shutil.copytree(ROOT / "data/recipes/src", root / "data/recipes/src")
+        if (ROOT / "data/recipes/pending").is_dir():
+            shutil.copytree(ROOT / "data/recipes/pending", root / "data/recipes/pending")
         proc = subprocess.run([sys.executable, str(root / "scripts/build_recipes.py")], capture_output=True, text=True)
         if proc.returncode:
             print(proc.stdout, proc.stderr, sep="\n", file=sys.stderr)
