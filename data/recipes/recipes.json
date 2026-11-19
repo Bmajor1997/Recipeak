@@ -1366,6 +1366,68 @@
    ]
   }
  },
+ "appletini": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Appletini",
+   "description": "The bright green 1990s favorite: vodka and sour apple schnapps shaken with a little lemon and served up in a martini glass.",
+   "servings": 1,
+   "prep_minutes": 3,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "vodka"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "sour apple schnapps (such as DeKuyper Sour Apple Pucker)"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "apple juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "thin green apple slice, to garnish"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice, for shaking"
+    }
+   ],
+   "steps": [
+    "Chill a martini glass.",
+    "Add the vodka, schnapps, apple juice and lemon juice to a shaker and fill it with ice.",
+    "Shake for 15 seconds.",
+    "Strain into the chilled glass and float the apple slice on top."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "martini glass",
+    "garnish": "green apple slice",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 3 oz green apple juice, 1/2 oz lemon juice and 1/2 oz simple syrup with ice and strain."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Brush the apple slice with lemon juice so it doesn't turn brown.",
+    "Too sweet? Leave out the apple juice and add 1/2 oz more vodka."
+   ],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
  "arepas": {
   "kind": "meal",
   "recipe": {
@@ -2051,6 +2113,64 @@
   "variants": {
    "vegetarian": "same",
    "vegan": "same"
+  }
+ },
+ "bay-breeze": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Bay Breeze",
+   "description": "A sweet, pink beach drink of vodka with cranberry and pineapple juice over ice.",
+   "servings": 1,
+   "prep_minutes": 2,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "vodka"
+    },
+    {
+     "amount": "3",
+     "unit": "oz",
+     "item": "cranberry juice cocktail"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "pineapple juice"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lime wedge, to garnish"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Fill a highball glass with ice.",
+    "Pour in the vodka and cranberry juice.",
+    "Top with the pineapple juice, which floats for a two-tone look, then stir if you like.",
+    "Garnish with the lime wedge."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "lime wedge",
+    "alcoholic": true,
+    "non_alcoholic_version": "Build 4 oz cranberry juice and 2 oz pineapple juice over ice with a squeeze of lime."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Shake the pineapple juice with ice first for a frothy top."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Use coconut rum instead of vodka for a more tropical drink."
+   ]
   }
  },
  "beef-bourguignon": {
@@ -6262,6 +6382,63 @@
   "variants": {
    "vegetarian": "same",
    "vegan": "same"
+  }
+ },
+ "cape-codder": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Cape Codder",
+   "description": "The original vodka cranberry: vodka and cranberry juice over ice with a squeeze of lime.",
+   "servings": 1,
+   "prep_minutes": 2,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "vodka"
+    },
+    {
+     "amount": "4",
+     "unit": "oz",
+     "item": "cranberry juice cocktail"
+    },
+    {
+     "amount": "1/4",
+     "unit": "oz",
+     "item": "fresh lime juice"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lime wedge, to garnish"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Fill a highball glass with ice.",
+    "Pour in the vodka, cranberry juice and lime juice.",
+    "Stir gently and garnish with the lime wedge."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "lime wedge",
+    "alcoholic": true,
+    "non_alcoholic_version": "Build 4 oz cranberry juice and 1/2 oz lime juice over ice and top with 2 oz soda water."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Use sweetened cranberry juice cocktail. Pure cranberry juice is very sour on its own."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Cape Cod Cooler: top with 2 oz soda water for a longer, lighter drink."
+   ]
   }
  },
  "cape-malay-bredie": {
@@ -12714,6 +12891,63 @@
    "variations": []
   }
  },
+ "dirty-martini": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Dirty Martini",
+   "description": "A savory martini made with a splash of olive brine. Gin or vodka with dry vermouth, stirred ice-cold and garnished with olives.",
+   "servings": 1,
+   "prep_minutes": 3,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "2 1/2",
+     "unit": "oz",
+     "item": "gin or vodka"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "vegan dry vermouth (such as Dolin Dry)"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "green olive brine from the jar"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "green olives on a pick, to garnish"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice, for stirring"
+    }
+   ],
+   "steps": [
+    "Chill a martini glass in the freezer.",
+    "Add the gin or vodka, vermouth and olive brine to a mixing glass and fill it with ice.",
+    "Stir for 20 to 30 seconds, until very cold.",
+    "Strain into the chilled glass and add the olives."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "martini glass",
+    "garnish": "olives",
+    "alcoholic": true,
+    "non_alcoholic_version": "Stir 3 oz non-alcoholic gin alternative with 1/2 oz olive brine over ice and strain."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Use the brine from a jar of olives you like eating. Good olives make good brine.",
+    "Want it dirtier? Add up to 1 oz of brine. Want it cleaner? Start with 1/4 oz."
+   ],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
  "division-bell-cocktail": {
   "kind": "cocktail",
   "recipe": {
@@ -15708,6 +15942,58 @@
    "variations": []
   }
  },
+ "fuzzy-navel": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Fuzzy Navel",
+   "description": "The 1980s two-ingredient classic: peach schnapps and orange juice over ice. \"Fuzzy\" for the peach, \"navel\" for the orange.",
+   "servings": 1,
+   "prep_minutes": 2,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "peach schnapps"
+    },
+    {
+     "amount": "4",
+     "unit": "oz",
+     "item": "fresh orange juice"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "orange slice, to garnish"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Fill a highball glass with ice.",
+    "Pour in the peach schnapps, then the orange juice.",
+    "Stir gently and garnish with the orange slice."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "orange slice",
+    "alcoholic": true,
+    "non_alcoholic_version": "Build 4 oz orange juice and 2 oz peach nectar over ice."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Equal parts is the original, but it's very sweet. Two parts orange juice to one of schnapps is more balanced."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Hairy Navel: add 1 oz vodka."
+   ]
+  }
+ },
  "garibaldi": {
   "kind": "cocktail",
   "recipe": {
@@ -16258,6 +16544,64 @@
    "variations": []
   }
  },
+ "gin-rickey": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Gin Rickey",
+   "description": "The dry, unsweetened cooler from 1880s Washington: gin and fresh lime over ice, topped with soda.",
+   "servings": 1,
+   "prep_minutes": 2,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "London dry gin"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "fresh lime juice"
+    },
+    {
+     "amount": "4",
+     "unit": "oz",
+     "item": "chilled soda water"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "squeezed lime half, to garnish"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Fill a highball glass with ice.",
+    "Pour in the gin and lime juice.",
+    "Top with the soda water and stir gently.",
+    "Drop the squeezed lime shell into the glass."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "lime shell",
+    "alcoholic": true,
+    "non_alcoholic_version": "Build 1 oz lime juice and 1/2 oz simple syrup over ice and top with 5 oz soda water."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "A Rickey has no sugar. That's what makes it different from a Collins."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Joe Rickey: use bourbon in place of the gin, as the original did."
+   ]
+  }
+ },
  "godfather": {
   "kind": "cocktail",
   "recipe": {
@@ -16792,6 +17136,58 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "greyhound": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Greyhound",
+   "description": "Vodka and fresh grapefruit juice over ice. Tart, simple and very refreshing; add a salt rim and it becomes a Salty Dog.",
+   "servings": 1,
+   "prep_minutes": 2,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "vodka"
+    },
+    {
+     "amount": "4",
+     "unit": "oz",
+     "item": "fresh grapefruit juice"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "grapefruit wedge, to garnish"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Fill a highball glass with ice.",
+    "Pour in the vodka and grapefruit juice.",
+    "Stir gently and garnish with the grapefruit wedge."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "grapefruit wedge",
+    "alcoholic": true,
+    "non_alcoholic_version": "Build 4 oz grapefruit juice over ice and top with 2 oz tonic water."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Pink grapefruit is a little sweeter and gives the drink a pretty color."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Use gin instead of vodka for a more herbal drink."
+   ]
   }
  },
  "grilled-cheese": {
@@ -17568,6 +17964,70 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "hot-toddy": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Hot Toddy",
+   "description": "The classic winter warmer: whiskey, honey and lemon stirred into hot water, with a cinnamon stick and a clove-studded lemon slice.",
+   "servings": 1,
+   "prep_minutes": 3,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "whiskey (bourbon, rye or Scotch)"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "honey"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "4",
+     "unit": "oz",
+     "item": "just-boiled water"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lemon slice, studded with 3 whole cloves"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "cinnamon stick"
+    }
+   ],
+   "steps": [
+    "Warm a heatproof mug by filling it with hot water, then pour that water out.",
+    "Add the honey and lemon juice to the mug.",
+    "Pour in the hot water and stir until the honey dissolves.",
+    "Stir in the whiskey, then add the clove-studded lemon slice and cinnamon stick."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "mug",
+    "garnish": "lemon slice and cinnamon stick",
+    "alcoholic": true,
+    "non_alcoholic_version": "Stir 1/2 oz honey and 1/2 oz lemon juice into 6 oz hot ginger or black tea."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Add the whiskey last, after the water, so it doesn't lose its aroma to the heat.",
+    "Swap the water for hot black or chamomile tea for a deeper flavor."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Use brandy or dark rum in place of the whiskey."
+   ]
   }
  },
  "hotel-georgia": {
@@ -20149,6 +20609,64 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "kamikaze": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Kamikaze",
+   "description": "Equal parts vodka, triple sec and fresh lime, shaken hard. Like a vodka margarita, served up or as shots.",
+   "servings": 1,
+   "prep_minutes": 2,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "vodka"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "triple sec"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "fresh lime juice"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lime wedge, to garnish"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice, for shaking"
+    }
+   ],
+   "steps": [
+    "Chill a cocktail glass, or two shot glasses.",
+    "Add the vodka, triple sec and lime juice to a shaker and fill it with ice.",
+    "Shake hard for 10 seconds.",
+    "Strain into the glass and garnish with the lime wedge."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "cocktail glass",
+    "garnish": "lime wedge",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 1 oz lime juice, 1 oz orange juice and 1/2 oz simple syrup with ice and strain."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Fresh lime makes all the difference. Bottled lime juice makes it taste harsh."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Blue Kamikaze: use blue curaçao instead of triple sec."
+   ]
   }
  },
  "katsudon": {
@@ -26035,6 +26553,74 @@
    "variations": []
   }
  },
+ "mulled-wine": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Mulled Wine",
+   "description": "Red wine gently warmed with orange, cinnamon, cloves and star anise, sweetened and finished with a splash of brandy.",
+   "servings": 6,
+   "prep_minutes": 5,
+   "cook_minutes": 20,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "bottle (750 ml)",
+     "item": "vegan dry red wine (such as Yellow Tail Shiraz)"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "brandy"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "sugar, plus more to taste"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "orange"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "cinnamon sticks, plus more to serve"
+    },
+    {
+     "amount": "6",
+     "unit": "",
+     "item": "whole cloves"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "star anise"
+    }
+   ],
+   "steps": [
+    "Peel a few wide strips of zest from the orange with a vegetable peeler, then juice the orange.",
+    "Put the wine, orange juice, zest, sugar, cinnamon, cloves and star anise in a saucepan.",
+    "Warm over low heat, stirring until the sugar dissolves, for about 20 minutes. Keep it steaming but never let it boil.",
+    "Turn off the heat and stir in the brandy.",
+    "Strain into heatproof glasses or mugs and serve with a cinnamon stick."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "mug",
+    "garnish": "orange slice and cinnamon stick",
+    "alcoholic": true,
+    "non_alcoholic_version": "Warm 3 cups red grape juice, 1 cup apple juice, orange zest and the same spices gently for 15 minutes."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Don't let it boil. Boiling burns off the alcohol and makes the spices taste harsh.",
+    "Any inexpensive, fruity red works well. Save the good bottle."
+   ],
+   "make_ahead": "Keep it warm on the lowest heat or in a slow cooker for up to 2 hours.",
+   "variations": []
+  }
+ },
  "mushroom-risotto": {
   "kind": "meal",
   "recipe": {
@@ -29374,6 +29960,73 @@
    "variations": []
   }
  },
+ "pimms-cup": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Pimm's Cup",
+   "description": "England's summer garden drink: Pimm's No. 1 over ice with sparkling lemonade, cucumber, strawberry, orange and mint.",
+   "servings": 1,
+   "prep_minutes": 3,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "Pimm's No. 1"
+    },
+    {
+     "amount": "6",
+     "unit": "oz",
+     "item": "chilled sparkling lemonade (such as Sprite or 7UP)"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "thin slices of cucumber"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "strawberries, sliced"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "orange slice"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "mint sprig"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Fill a tall glass with ice, tucking the cucumber, strawberry and orange slices in between the cubes.",
+    "Pour in the Pimm's.",
+    "Top with the lemonade and stir gently.",
+    "Slap the mint sprig between your hands to wake it up and add it to the glass."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "cucumber, strawberry and mint",
+    "alcoholic": true,
+    "non_alcoholic_version": "Build 1 1/2 oz cold black tea, 1 oz lemon juice and the fruit over ice and top with 4 oz ginger ale."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "The rule is one part Pimm's to three parts lemonade. Use the clear, fizzy kind, not American still lemonade.",
+    "For a drier drink, use half lemonade and half ginger ale."
+   ],
+   "make_ahead": "For a crowd, fill a jug with ice and fruit, add the Pimm's, and top with lemonade just before serving.",
+   "variations": []
+  }
+ },
  "pina-colada": {
   "kind": "cocktail",
   "recipe": {
@@ -29871,77 +30524,6 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
-  }
- },
- "porn-star-martini": {
-  "kind": "cocktail",
-  "recipe": {
-   "title": "Porn Star Martini",
-   "description": "A modern classic of vanilla vodka and passion fruit, shaken until frothy and served with a small glass of Champagne on the side.",
-   "servings": 1,
-   "prep_minutes": 5,
-   "cook_minutes": 0,
-   "ingredients": [
-    {
-     "amount": "1 2/3",
-     "unit": "oz",
-     "item": "vanilla vodka"
-    },
-    {
-     "amount": "2/3",
-     "unit": "oz",
-     "item": "passion fruit liqueur (such as Passoã)"
-    },
-    {
-     "amount": "1 2/3",
-     "unit": "oz",
-     "item": "passion fruit purée"
-    },
-    {
-     "amount": "2",
-     "unit": "bar spoons",
-     "item": "vanilla sugar (or 1/2 oz vanilla syrup)"
-    },
-    {
-     "amount": "1 2/3",
-     "unit": "oz",
-     "item": "chilled vegan Champagne (such as Moët & Chandon Impérial), to serve"
-    },
-    {
-     "amount": "1/2",
-     "unit": "",
-     "item": "fresh passion fruit, to garnish"
-    },
-    {
-     "amount": "",
-     "unit": "",
-     "item": "ice, for shaking"
-    }
-   ],
-   "steps": [
-    "Chill a coupe or martini glass.",
-    "Add the vanilla vodka, passion fruit liqueur, passion fruit purée and vanilla sugar to a shaker and fill it with ice.",
-    "Shake hard for 15 seconds, until the outside of the shaker is frosty.",
-    "Strain into the chilled glass and float the passion fruit half on top.",
-    "Pour the Champagne into a shot glass and serve it alongside."
-   ],
-   "allergens": [],
-   "cocktail": {
-    "glass": "coupe",
-    "garnish": "passion fruit half",
-    "alcoholic": true,
-    "non_alcoholic_version": "Shake 2 oz passion fruit purée, 1/2 oz lime juice and 1/2 oz vanilla syrup with ice, strain, and serve with sparkling water on the side."
-   },
-   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
-   "tips": [
-    "Sip the Champagne between sips of the cocktail: it cleans the palate and resets the sweetness.",
-    "Frozen passion fruit purée, thawed, is more reliable than fresh fruit and easy to find.",
-    "Make vanilla sugar by burying a used vanilla pod in a jar of sugar for a week."
-   ],
-   "make_ahead": "",
-   "variations": [
-    "Many bars add 1/2 oz fresh lime juice for a sharper drink."
-   ]
   }
  },
  "pornstar-martini": {
@@ -30747,6 +31329,63 @@
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "ranch-water": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Ranch Water",
+   "description": "The West Texas porch drink: blanco tequila and lots of fresh lime topped with bubbly Topo Chico mineral water.",
+   "servings": 1,
+   "prep_minutes": 2,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "blanco tequila"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "fresh lime juice"
+    },
+    {
+     "amount": "6",
+     "unit": "oz",
+     "item": "chilled Topo Chico or other sparkling mineral water"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lime wedge, to garnish"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Fill a tall glass with ice.",
+    "Pour in the tequila and lime juice.",
+    "Top with the mineral water and stir gently.",
+    "Garnish with the lime wedge."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "lime wedge",
+    "alcoholic": true,
+    "non_alcoholic_version": "Build 1 oz lime juice and a pinch of salt over ice and top with 6 oz sparkling mineral water."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Topo Chico is very fizzy and a little salty. Any strongly carbonated mineral water works.",
+    "For a little extra orange flavor, add 1/4 oz orange liqueur."
+   ],
    "make_ahead": "",
    "variations": []
   }
@@ -32412,6 +33051,96 @@
    "variations": []
   }
  },
+ "sangria": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Red Wine Sangria",
+   "description": "Spain's party punch: fruity red wine soaked overnight with orange, lemon, apple, brandy and a little orange liqueur, then poured over ice.",
+   "servings": 6,
+   "prep_minutes": 15,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "bottle (750 ml)",
+     "item": "chilled vegan dry red wine (such as Yellow Tail Shiraz)"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "brandy"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "orange liqueur (such as Cointreau)"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "fresh orange juice"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "sugar, plus more to taste"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "orange, thinly sliced"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lemon, thinly sliced"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "apple, cored and cut into small cubes"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "cinnamon stick (optional)"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "chilled sparkling water (optional), to serve"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice, to serve"
+    }
+   ],
+   "steps": [
+    "In a large pitcher, stir the sugar into the orange juice, brandy and orange liqueur until it dissolves.",
+    "Add the orange, lemon and apple and the cinnamon stick, if using.",
+    "Pour in the wine and stir.",
+    "Cover and chill for at least 4 hours, or overnight.",
+    "Just before serving, stir in the sparkling water, if using, and pour over ice with some of the fruit in each glass."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "wine glass",
+    "garnish": "orange slice",
+    "alcoholic": true,
+    "non_alcoholic_version": "Mix 3 cups red grape juice, 1 cup orange juice, the sliced fruit and a cinnamon stick, chill, and top with sparkling water."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Use a fruity, not-too-oaky red. Spanish Garnacha or Tempranillo is traditional.",
+    "Taste after chilling and add more sugar if needed. Cold drinks taste less sweet."
+   ],
+   "make_ahead": "Make it the day before. The flavor gets better as the fruit soaks.",
+   "variations": [
+    "White Sangria: use a dry white wine and add peaches or green grapes."
+   ]
+  }
+ },
  "saratoga": {
   "kind": "cocktail",
   "recipe": {
@@ -33895,6 +34624,69 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "sloe-gin-fizz": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Sloe Gin Fizz",
+   "description": "Ruby-red sloe gin shaken with lemon and a little sugar, then topped with soda. Fruity, tart and light.",
+   "servings": 1,
+   "prep_minutes": 3,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "sloe gin"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/4",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "chilled soda water"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lemon slice, to garnish"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Fill a highball glass with ice.",
+    "Add the sloe gin, lemon juice and simple syrup to a shaker with ice and shake for 10 seconds.",
+    "Strain into the glass.",
+    "Top with the soda water, stir once and garnish with the lemon slice."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "lemon slice",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 1 oz plum or blackcurrant syrup with 3/4 oz lemon juice, strain over ice and top with 4 oz soda water."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Sloe gin is sweeter and lower in alcohol than regular gin. Taste before adding the syrup."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Swap half the sloe gin for London dry gin for a drier, stronger drink."
+   ]
   }
  },
  "south-african-bobotie": {
