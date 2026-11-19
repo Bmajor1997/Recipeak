@@ -1366,6 +1366,117 @@
    ]
   }
  },
+ "apple-pie": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Classic Apple Pie",
+   "description": "The all-American double-crust pie: a flaky butter pastry filled with thinly sliced tart apples, cinnamon and a little brown sugar, baked until golden and bubbling.",
+   "servings": 8,
+   "prep_minutes": 45,
+   "cook_minutes": 70,
+   "ingredients": [
+    {
+     "amount": "2 1/2",
+     "unit": "cups",
+     "item": "all-purpose flour"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "sugar, for the crust"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "cold unsalted butter, cubed"
+    },
+    {
+     "amount": "6 to 8",
+     "unit": "tbsp",
+     "item": "ice water"
+    },
+    {
+     "amount": "3",
+     "unit": "lb",
+     "item": "firm, tart apples (such as Granny Smith, or a mix with Honeycrisp), peeled, cored and sliced 1/4 inch thick"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "granulated sugar"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "packed light brown sugar"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "all-purpose flour, for the filling"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "tsp",
+     "item": "ground cinnamon"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "ground nutmeg"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "salt, for the filling"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "milk, for brushing"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "coarse sugar, for sprinkling"
+    }
+   ],
+   "steps": [
+    "Make the crust: mix the flour, salt and sugar, then cut in the butter until some pea-size pieces remain. Sprinkle in ice water a tablespoon at a time, mixing just until the dough holds together. Divide in two, flatten into disks, wrap and chill for at least 1 hour.",
+    "Toss the apples with the lemon juice, granulated sugar, brown sugar, flour, cinnamon, nutmeg and salt.",
+    "Heat the oven to 425°F with a rack in the lower third and a baking sheet on it.",
+    "Roll one disk into a 12-inch circle and fit it into a 9-inch pie dish. Pile in the apples, mounding them in the center.",
+    "Roll the second disk into an 11-inch circle and lay it over the top. Trim, fold the edges under and crimp. Cut 4 or 5 slits in the top, brush with milk and sprinkle with coarse sugar. Chill for 15 minutes.",
+    "Bake on the hot baking sheet for 20 minutes, then lower the oven to 375°F and bake for 45 to 50 minutes more, until deep golden and the juices bubble through the slits. Cover the edges with foil if they brown too fast.",
+    "Cool for at least 3 hours before slicing, so the filling can set."
+   ],
+   "allergens": [
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Keep the butter cold and visible in the dough. Those flecks of butter make the crust flaky.",
+    "Firm apples hold their shape. Soft apples like McIntosh turn to applesauce.",
+    "Wait for the bubbling: the juices must boil to thicken."
+   ],
+   "make_ahead": "Bake up to a day ahead and keep at room temperature, loosely covered.",
+   "variations": [
+    "Serve warm with vanilla ice cream or a slice of sharp cheddar."
+   ]
+  }
+ },
  "appletini": {
   "kind": "cocktail",
   "recipe": {
@@ -1920,6 +2031,99 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "baklava": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Baklava",
+   "description": "Greek layered pastry: sheets of crisp, buttery phyllo filled with cinnamon-spiced walnuts and soaked in a honey and lemon syrup.",
+   "servings": 24,
+   "prep_minutes": 45,
+   "cook_minutes": 50,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "sugar, for the syrup"
+    },
+    {
+     "amount": "3/4",
+     "unit": "cup",
+     "item": "water"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "honey"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "cinnamon stick"
+    },
+    {
+     "amount": "4",
+     "unit": "cups",
+     "item": "walnuts, finely chopped"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "sugar, for the filling"
+    },
+    {
+     "amount": "2",
+     "unit": "tsp",
+     "item": "ground cinnamon"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "ground cloves"
+    },
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "phyllo dough (about 30 sheets), thawed"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "unsalted butter, melted"
+    }
+   ],
+   "steps": [
+    "Make the syrup: simmer the sugar, water, honey, lemon juice and cinnamon stick for 10 minutes. Remove the cinnamon and let the syrup cool completely.",
+    "Heat the oven to 350°F and butter a 9x13-inch baking pan. Mix the walnuts, 1/3 cup sugar, cinnamon and cloves.",
+    "Unroll the phyllo and keep it covered with a damp towel. Lay 8 sheets in the pan, brushing each one with butter.",
+    "Sprinkle a third of the walnuts over the phyllo. Add 6 more buttered sheets, then another third of the nuts, 6 more sheets, and the last of the nuts.",
+    "Finish with 8 to 10 buttered sheets, brushing the top generously.",
+    "With a sharp knife, cut all the way through into 24 diamonds or squares.",
+    "Bake for 45 to 50 minutes, until deep golden and crisp.",
+    "Pour the cooled syrup slowly over the hot baklava. Let it sit uncovered for at least 6 hours, or overnight, before serving."
+   ],
+   "allergens": [
+    "milk",
+    "tree nuts",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Pour cool syrup over hot baklava, never hot over hot. That keeps the layers crisp instead of soggy.",
+    "Cut before baking. Baked phyllo shatters if you try to cut it afterwards.",
+    "Keep the phyllo covered while you work, or it dries out and cracks."
+   ],
+   "make_ahead": "Store at room temperature, loosely covered, for up to 1 week. Don't refrigerate; it softens the pastry.",
+   "variations": [
+    "Use pistachios, or a mix of walnuts and pistachios, for the filling."
+   ]
   }
  },
  "bamboo": {
@@ -5815,6 +6019,86 @@
    "variations": []
   }
  },
+ "brownies": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Fudgy Brownies",
+   "description": "Dense, chewy, deeply chocolatey brownies with a crackly top, made in one bowl with melted butter, chocolate and cocoa.",
+   "servings": 16,
+   "prep_minutes": 15,
+   "cook_minutes": 25,
+   "ingredients": [
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "unsalted butter"
+    },
+    {
+     "amount": "4",
+     "unit": "oz",
+     "item": "semisweet or bittersweet chocolate, chopped"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "sugar"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "large eggs, at room temperature"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "vanilla extract"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "unsweetened cocoa powder"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "all-purpose flour"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "chocolate chips (optional)"
+    }
+   ],
+   "steps": [
+    "Heat the oven to 350°F. Line an 8-inch square pan with parchment, leaving an overhang.",
+    "Melt the butter and chopped chocolate together in a bowl in the microwave in 30-second bursts, stirring, until smooth.",
+    "Whisk in the sugar, then the eggs and vanilla, and keep whisking for 1 minute, until thick and glossy.",
+    "Stir in the cocoa, flour and salt just until combined, then fold in the chocolate chips, if using.",
+    "Spread the batter in the pan and bake for 22 to 26 minutes, until a toothpick in the center comes out with moist crumbs.",
+    "Cool completely in the pan before lifting out and cutting into squares."
+   ],
+   "allergens": [
+    "eggs",
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Whisking the eggs and sugar hard is what gives brownies their shiny, crackly top.",
+    "Pull them out while the center still looks slightly underdone. They firm up as they cool."
+   ],
+   "make_ahead": "Store airtight for up to 4 days, or freeze for up to 3 months.",
+   "variations": [
+    "Double the recipe in a 9x13-inch pan and bake for about 30 minutes."
+   ]
+  }
+ },
  "buffalo-wings": {
   "kind": "meal",
   "recipe": {
@@ -7438,6 +7722,107 @@
    "vegan": "same"
   }
  },
+ "carnitas": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Carnitas",
+   "description": "Michoacán-style pulled pork: chunks of pork shoulder slowly braised with orange, garlic and spices in their own fat, then crisped until the edges are golden and crunchy.",
+   "servings": 8,
+   "prep_minutes": 20,
+   "cook_minutes": 180,
+   "ingredients": [
+    {
+     "amount": "4",
+     "unit": "lb",
+     "item": "boneless pork shoulder, cut into 2-inch chunks"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "kosher salt"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "ground cumin"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "dried Mexican oregano"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "ground black pepper"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "lard or vegetable oil"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "orange, halved"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "white onion, quartered"
+    },
+    {
+     "amount": "6",
+     "unit": "cloves",
+     "item": "garlic, smashed"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "bay leaves"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "cinnamon stick (optional)"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "water"
+    },
+    {
+     "amount": "16",
+     "unit": "",
+     "item": "small corn tortillas, warmed"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "chopped onion, cilantro, lime wedges and salsa, to serve"
+    }
+   ],
+   "steps": [
+    "Heat the oven to 300°F. Toss the pork with the salt, cumin, oregano and pepper.",
+    "Put the pork in a Dutch oven in a snug layer with the lard. Squeeze in the orange juice and add the squeezed halves, the onion, garlic, bay leaves, cinnamon stick, if using, and the water.",
+    "Bring to a simmer on the stove, cover and transfer to the oven. Cook for 3 hours, until the pork is very tender.",
+    "Remove the orange, onion, garlic, bay leaves and cinnamon. Lift out the pork and shred it into large pieces.",
+    "Skim off about 1/2 cup of the fat from the pot. Heat some of it in a large skillet over medium-high heat and fry the pork in batches, without stirring for 2 to 3 minutes, until crisp and golden on the bottom. Or spread it on a sheet pan, drizzle with the fat and broil for 5 minutes.",
+    "Drizzle with a little of the cooking juices and serve in warm tortillas with onion, cilantro, lime and salsa."
+   ],
+   "allergens": [],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "The crisping step is what makes carnitas. Without it, you have pulled pork.",
+    "Choose a well-marbled shoulder. The fat renders out and does the frying for you."
+   ],
+   "make_ahead": "Refrigerate the braised, shredded pork in its juices for up to 4 days. Crisp just before serving.",
+   "variations": [
+    "Use the carnitas for burritos, tortas or rice bowls."
+   ]
+  }
+ },
  "carrot-cake": {
   "kind": "meal",
   "recipe": {
@@ -8233,6 +8618,103 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "cheesecake": {
+  "kind": "meal",
+  "recipe": {
+   "title": "New York Cheesecake",
+   "description": "The classic New York cheesecake: dense, rich and tangy with cream cheese and sour cream, baked slowly in a water bath on a buttery graham cracker crust.",
+   "servings": 12,
+   "prep_minutes": 30,
+   "cook_minutes": 90,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "cups",
+     "item": "graham cracker crumbs (about 11 full sheets)"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "sugar, for the crust"
+    },
+    {
+     "amount": "6",
+     "unit": "tbsp",
+     "item": "unsalted butter, melted"
+    },
+    {
+     "amount": "2",
+     "unit": "lb",
+     "item": "full-fat cream cheese (four 8-oz blocks), softened"
+    },
+    {
+     "amount": "1 1/4",
+     "unit": "cups",
+     "item": "sugar"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "all-purpose flour"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "2",
+     "unit": "tsp",
+     "item": "vanilla extract"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "lemon zest"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "large eggs, at room temperature"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "full-fat sour cream, at room temperature"
+    }
+   ],
+   "steps": [
+    "Heat the oven to 350°F. Wrap the outside of a 9-inch springform pan in two layers of wide heavy-duty foil.",
+    "Mix the graham cracker crumbs, 1/3 cup sugar and butter and press firmly into the bottom of the pan. Bake for 10 minutes, then cool. Lower the oven to 325°F and bring a kettle of water to a boil.",
+    "Beat the cream cheese, 1 1/4 cups sugar, flour and salt on medium speed until completely smooth, about 2 minutes, scraping the bowl.",
+    "Beat in the vanilla, lemon zest and juice. Add the eggs one at a time on low speed, mixing just until combined. Mix in the sour cream.",
+    "Pour the filling over the crust. Set the pan in a roasting pan and pour boiling water into the roasting pan to come 1 inch up the sides.",
+    "Bake for 75 to 85 minutes, until the edges are set and the center still jiggles slightly.",
+    "Turn off the oven, prop the door open and leave the cheesecake inside for 1 hour. Then cool on a rack and refrigerate for at least 6 hours, or overnight."
+   ],
+   "allergens": [
+    "eggs",
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Have everything at room temperature. Cold cream cheese makes a lumpy batter.",
+    "Mix on low once the eggs go in. Beating in air causes cracks.",
+    "For clean slices, dip the knife in hot water and wipe it dry between cuts."
+   ],
+   "make_ahead": "Refrigerate for up to 5 days, or freeze whole or in slices for up to 2 months.",
+   "variations": [
+    "Top with strawberry or cherry sauce just before serving."
+   ]
   }
  },
  "chicago-cocktail": {
@@ -11082,6 +11564,100 @@
    "variations": []
   }
  },
+ "churros": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Churros with Chocolate Sauce",
+   "description": "Crisp, ridged fritters of piped choux dough, fried golden, rolled in cinnamon sugar and dunked in a thick, warm chocolate sauce.",
+   "servings": 6,
+   "prep_minutes": 20,
+   "cook_minutes": 25,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "water"
+    },
+    {
+     "amount": "6",
+     "unit": "tbsp",
+     "item": "unsalted butter"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "sugar, for the dough"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "all-purpose flour"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "large eggs"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "vanilla extract"
+    },
+    {
+     "amount": "2",
+     "unit": "quarts",
+     "item": "vegetable or canola oil, for frying"
+    },
+    {
+     "amount": "3/4",
+     "unit": "cup",
+     "item": "sugar, for coating"
+    },
+    {
+     "amount": "2",
+     "unit": "tsp",
+     "item": "ground cinnamon"
+    },
+    {
+     "amount": "4",
+     "unit": "oz",
+     "item": "semisweet chocolate, chopped"
+    },
+    {
+     "amount": "3/4",
+     "unit": "cup",
+     "item": "heavy cream"
+    }
+   ],
+   "steps": [
+    "Make the sauce: heat the cream until steaming, pour it over the chocolate and let it sit for 2 minutes, then whisk until smooth. Keep warm.",
+    "Mix the 3/4 cup sugar and cinnamon in a shallow dish.",
+    "Bring the water, butter, 1 tablespoon sugar and salt to a boil in a saucepan. Add the flour all at once and stir hard with a wooden spoon for 1 to 2 minutes, until the dough forms a smooth ball and leaves a film on the pan.",
+    "Let the dough cool for 5 minutes, then beat in the eggs one at a time, then the vanilla, until smooth and glossy.",
+    "Spoon the dough into a piping bag fitted with a large open star tip.",
+    "Heat 2 inches of oil in a heavy pot to 360°F. Pipe 5-inch lengths straight into the oil, snipping them off with scissors. Fry 4 or 5 at a time for 3 to 4 minutes, turning, until deep golden.",
+    "Drain for a few seconds on paper towels, then roll in the cinnamon sugar while hot. Serve right away with the chocolate sauce."
+   ],
+   "allergens": [
+    "eggs",
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Use a star tip. The ridges help the churros cook evenly and stop them from bursting in the oil.",
+    "Keep the oil near 360°F. Too hot and they brown outside while staying raw inside."
+   ],
+   "make_ahead": "Make the dough up to a day ahead and refrigerate it in the piping bag; let it warm slightly before piping.",
+   "variations": []
+  }
+ },
  "clam-chowder": {
   "kind": "meal",
   "recipe": {
@@ -12555,6 +13131,72 @@
     "make_ahead": "Coat the mushrooms up to 1 hour ahead and chill on a tray; fry just before serving.",
     "variations": []
    }
+  }
+ },
+ "creme-brulee": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Crème Brûlée",
+   "description": "The French classic: a silky vanilla bean custard baked gently in a water bath, chilled, then topped with a glassy layer of caramelized sugar to crack with your spoon.",
+   "servings": 6,
+   "prep_minutes": 20,
+   "cook_minutes": 40,
+   "ingredients": [
+    {
+     "amount": "3",
+     "unit": "cups",
+     "item": "heavy cream"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "vanilla bean, split and seeds scraped (or 2 tsp vanilla extract)"
+    },
+    {
+     "amount": "6",
+     "unit": "",
+     "item": "large egg yolks"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "sugar"
+    },
+    {
+     "amount": "1",
+     "unit": "pinch",
+     "item": "salt"
+    },
+    {
+     "amount": "6",
+     "unit": "tsp",
+     "item": "superfine or turbinado sugar, for the tops"
+    }
+   ],
+   "steps": [
+    "Heat the oven to 300°F and bring a kettle of water to a boil. Set six 6-ounce ramekins in a roasting pan.",
+    "Heat the cream with the vanilla seeds and pod until it just begins to steam. Turn off the heat and let it steep for 15 minutes, then remove the pod.",
+    "Whisk the yolks, 1/2 cup sugar and salt until pale. Slowly whisk in the warm cream, a little at a time.",
+    "Strain the custard into a pitcher and pour it into the ramekins.",
+    "Pour boiling water into the roasting pan to come halfway up the sides of the ramekins.",
+    "Bake for 35 to 40 minutes, until set at the edges but still wobbly in the center.",
+    "Cool the ramekins on a rack, then cover and refrigerate for at least 4 hours.",
+    "Just before serving, sprinkle each with 1 teaspoon sugar and melt it with a kitchen torch until deep golden and bubbling. Let it harden for 1 minute."
+   ],
+   "allergens": [
+    "eggs",
+    "milk"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Add the warm cream slowly. Pouring it in all at once can scramble the yolks.",
+    "No torch? Put the sugared custards under a very hot broiler for 1 to 2 minutes, watching closely."
+   ],
+   "make_ahead": "Bake the custards up to 3 days ahead. Caramelize the tops just before serving.",
+   "variations": [
+    "Add the zest of an orange or a spoonful of espresso powder to the cream."
+   ]
   }
  },
  "crepes": {
@@ -14627,6 +15269,83 @@
    "variations": []
   }
  },
+ "elote": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Elote (Mexican Street Corn)",
+   "description": "Mexican street corn: ears of corn charred on the grill, slathered in mayonnaise and crema, rolled in salty cotija and finished with chile powder and lime.",
+   "servings": 4,
+   "prep_minutes": 10,
+   "cook_minutes": 12,
+   "ingredients": [
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "ears of corn, husked"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "vegetable oil"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "mayonnaise"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "Mexican crema or sour cream"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "finely crumbled cotija cheese"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "ancho or guajillo chile powder, plus more to serve"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "chopped cilantro"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lime, cut into wedges"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "salt, to taste"
+    }
+   ],
+   "steps": [
+    "Heat a grill or grill pan to medium-high. Brush the corn with oil and grill for 10 to 12 minutes, turning every couple of minutes, until tender and charred in spots.",
+    "Mix the mayonnaise and crema in a small bowl. Spread the cotija on a plate.",
+    "Brush each hot ear all over with the mayonnaise mixture, then roll it in the cotija, pressing so it sticks.",
+    "Sprinkle with chile powder and cilantro and serve with lime wedges for squeezing."
+   ],
+   "allergens": [
+    "eggs",
+    "milk"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "No grill? Char the corn directly over a gas burner, or under a hot broiler, turning often.",
+    "Feta is a good stand-in if you can't find cotija."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Esquites: cut the charred kernels off the cob and toss them with the same toppings to serve in cups."
+   ]
+  }
+ },
  "encebollado": {
   "kind": "meal",
   "recipe": {
@@ -16331,6 +17050,87 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "flan": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Flan",
+   "description": "The Latin American caramel custard: a silky, vanilla-scented egg and milk custard baked in a water bath over a layer of caramel that becomes a golden sauce when you turn it out.",
+   "servings": 8,
+   "prep_minutes": 20,
+   "cook_minutes": 60,
+   "ingredients": [
+    {
+     "amount": "3/4",
+     "unit": "cup",
+     "item": "sugar, for the caramel"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "water, for the caramel"
+    },
+    {
+     "amount": "1",
+     "unit": "can (14 oz)",
+     "item": "sweetened condensed milk"
+    },
+    {
+     "amount": "1",
+     "unit": "can (12 oz)",
+     "item": "evaporated milk"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "whole milk"
+    },
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "large eggs"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "large egg yolks"
+    },
+    {
+     "amount": "2",
+     "unit": "tsp",
+     "item": "vanilla extract"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "salt"
+    }
+   ],
+   "steps": [
+    "Heat the oven to 325°F and bring a kettle of water to a boil. Set a 9-inch round cake pan or 8 1/2 x 4 1/2-inch loaf pan inside a larger roasting pan.",
+    "Make the caramel: stir the sugar and water in a small, heavy saucepan and cook over medium-high heat without stirring, swirling the pan now and then, until it turns a deep amber, 6 to 8 minutes.",
+    "Immediately pour the caramel into the cake pan and tilt to coat the bottom. It will harden; that's fine.",
+    "Whisk the condensed milk, evaporated milk, whole milk, eggs, yolks, vanilla and salt until smooth, without beating in air. Strain through a fine sieve over the caramel.",
+    "Cover the pan with foil. Pour boiling water into the roasting pan to come halfway up the sides.",
+    "Bake for 50 to 65 minutes, until the edges are set and the center jiggles slightly.",
+    "Cool in the water bath for 30 minutes, then refrigerate for at least 6 hours, or overnight.",
+    "To serve, run a thin knife around the edge, set a deep plate on top and flip quickly. Let the caramel pour over."
+   ],
+   "allergens": [
+    "eggs",
+    "milk"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Watch the caramel closely. It goes from amber to burnt in seconds, and burnt caramel tastes bitter.",
+    "Straining the custard catches any bits of egg, so the flan is perfectly smooth."
+   ],
+   "make_ahead": "Flan keeps covered in its pan in the fridge for up to 4 days. Unmold just before serving.",
+   "variations": [
+    "Coconut flan: replace the whole milk with coconut milk and add 1/2 cup sweetened shredded coconut."
+   ]
   }
  },
  "floradora": {
@@ -28106,6 +28906,116 @@
    "variations": []
   }
  },
+ "moqueca": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Moqueca Baiana (Brazilian Fish Stew)",
+   "description": "The coastal stew from Bahia, Brazil: firm white fish and shrimp simmered with peppers, tomatoes and onion in coconut milk, colored and flavored with red dendê palm oil.",
+   "servings": 4,
+   "prep_minutes": 25,
+   "cook_minutes": 25,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "lb",
+     "item": "firm white fish fillets (such as cod, halibut or snapper), cut into 2-inch pieces"
+    },
+    {
+     "amount": "8",
+     "unit": "oz",
+     "item": "raw shrimp, peeled and deveined"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "limes, juiced"
+    },
+    {
+     "amount": "3",
+     "unit": "cloves",
+     "item": "garlic, minced"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "tsp",
+     "item": "kosher salt, divided"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "onion, thinly sliced"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "red bell pepper, thinly sliced"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "green bell pepper, thinly sliced"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "ripe tomatoes, sliced"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "malagueta or other small hot chile, minced (optional)"
+    },
+    {
+     "amount": "1",
+     "unit": "can (13.5 oz)",
+     "item": "full-fat coconut milk"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "dendê (red palm) oil"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "chopped cilantro"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "steamed rice, to serve"
+    }
+   ],
+   "steps": [
+    "Toss the fish and shrimp with the lime juice, garlic and 1 teaspoon salt. Let them sit for 15 minutes.",
+    "Heat the olive oil in a wide, heavy pot over medium heat. Cook the onion and peppers for 5 minutes, until softened.",
+    "Add the tomatoes, chile, if using, and the remaining salt and cook for 5 minutes, until the tomatoes start to break down.",
+    "Nestle the fish into the vegetables and pour over the coconut milk and dendê oil. Bring to a gentle simmer, cover and cook for 8 minutes.",
+    "Add the shrimp and simmer for 3 to 4 minutes more, until the fish flakes and the shrimp are pink.",
+    "Stir in most of the cilantro, taste for salt and lime, and serve over rice with the rest of the cilantro on top."
+   ],
+   "allergens": [
+    "fish",
+    "shellfish",
+    "tree nuts"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Dendê oil gives moqueca baiana its deep orange color and flavor. Find it at Brazilian or West African grocers; 2 tablespoons of olive oil plus 1 teaspoon paprika is the closest stand-in.",
+    "Stir gently once the fish is in, so the pieces stay whole."
+   ],
+   "make_ahead": "",
+   "variations": [
+    "Moqueca capixaba: the Espírito Santo version skips the coconut milk and dendê, using olive oil and annatto instead."
+   ]
+  }
+ },
  "moroccan-harira": {
   "kind": "meal",
   "recipe": {
@@ -37962,6 +38872,86 @@
    "vegan": "same"
   }
  },
+ "steak-chimichurri": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Argentine Grilled Steak with Chimichurri",
+   "description": "Asado-style grilled steak with Argentina's bright green sauce of finely chopped parsley, oregano and garlic in olive oil and red wine vinegar.",
+   "servings": 4,
+   "prep_minutes": 20,
+   "cook_minutes": 15,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "lb",
+     "item": "skirt, flank or strip steak"
+    },
+    {
+     "amount": "2",
+     "unit": "tsp",
+     "item": "coarse salt"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "ground black pepper"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "finely chopped flat-leaf parsley"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "finely chopped fresh oregano, or 2 tsp dried"
+    },
+    {
+     "amount": "4",
+     "unit": "cloves",
+     "item": "garlic, finely minced"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "red pepper flakes"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "red wine vinegar"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "extra-virgin olive oil"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "kosher salt, for the sauce"
+    }
+   ],
+   "steps": [
+    "Make the chimichurri: stir the parsley, oregano, garlic, red pepper flakes, vinegar, olive oil and salt together in a bowl. Let it sit for at least 30 minutes, or up to 2 hours, so the flavors meld.",
+    "Pat the steak dry and season it all over with the coarse salt and pepper. Let it sit at room temperature for 30 minutes.",
+    "Heat a grill to high. Grill the steak for 3 to 5 minutes per side, depending on thickness, until well charred and medium-rare (130°F).",
+    "Rest the steak for 10 minutes, then slice thinly across the grain.",
+    "Serve with plenty of chimichurri spooned over."
+   ],
+   "allergens": [],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Chop by hand. A food processor turns chimichurri into a paste; it should be a loose sauce of herbs in oil.",
+    "Slice skirt and flank steak across the grain, or it will be chewy."
+   ],
+   "make_ahead": "Chimichurri keeps in the fridge for up to 5 days and gets better on the second day. Bring it to room temperature before serving.",
+   "variations": [
+    "Serve with grilled chorizo, provoleta (grilled provolone) or grilled vegetables, the way an Argentine asado would."
+   ]
+  }
+ },
  "stinger": {
   "kind": "cocktail",
   "recipe": {
@@ -38334,6 +39324,114 @@
    "make_ahead": "Chop the herbs and vegetables a few hours ahead and keep them in the fridge separately. Mix and dress just before serving.",
    "variations": [
     "Gluten-free: use 1/2 cup cooked quinoa instead of bulgur."
+   ]
+  }
+ },
+ "tacos-al-pastor": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Tacos al Pastor",
+   "description": "Mexico City's favorite taco: thin slices of pork marinated in dried chiles, achiote and pineapple, seared until charred and tucked into warm corn tortillas with pineapple, onion and cilantro.",
+   "servings": 6,
+   "prep_minutes": 30,
+   "cook_minutes": 20,
+   "ingredients": [
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "dried guajillo chiles, stemmed and seeded"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "dried ancho chiles, stemmed and seeded"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "fresh or canned pineapple chunks, plus 6 thin rounds of fresh pineapple for grilling"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "achiote paste"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "white vinegar"
+    },
+    {
+     "amount": "1/2",
+     "unit": "",
+     "item": "white onion, plus 1/2 onion finely chopped, to serve"
+    },
+    {
+     "amount": "3",
+     "unit": "cloves",
+     "item": "garlic"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "dried Mexican oregano"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "ground cumin"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "tsp",
+     "item": "kosher salt"
+    },
+    {
+     "amount": "2 1/2",
+     "unit": "lb",
+     "item": "boneless pork shoulder, sliced 1/4 inch thick"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "vegetable oil"
+    },
+    {
+     "amount": "18",
+     "unit": "",
+     "item": "small corn tortillas, warmed"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "chopped cilantro, to serve"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "lime wedges and salsa verde, to serve"
+    }
+   ],
+   "steps": [
+    "Toast the chiles in a dry skillet over medium heat for 20 to 30 seconds per side, until fragrant. Soak them in hot water for 15 minutes, then drain.",
+    "Blend the chiles, pineapple chunks, achiote paste, vinegar, the half onion, garlic, oregano, cumin and salt with 1/2 cup water until very smooth.",
+    "Toss the pork with the marinade, cover and refrigerate for at least 2 hours, or overnight.",
+    "Heat a large cast-iron skillet or griddle over high heat with a little of the oil. Sear the pork in batches, without crowding, for 2 to 3 minutes per side, until cooked through and charred at the edges.",
+    "Sear the pineapple rounds for 2 minutes per side, until caramelized.",
+    "Chop the pork and pineapple into small pieces.",
+    "Pile into warm tortillas and top with chopped onion, cilantro, a squeeze of lime and salsa."
+   ],
+   "allergens": [],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Partly freezing the pork for 30 minutes makes it much easier to slice thin.",
+    "Sear in batches. Crowding the pan steams the meat instead of charring it.",
+    "Wear gloves when mixing: achiote stains hands and counters."
+   ],
+   "make_ahead": "Marinate the pork up to 24 hours ahead.",
+   "variations": [
+    "Grill the pork and pineapple over a hot grill instead of in a skillet."
    ]
   }
  },
