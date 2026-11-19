@@ -119,8 +119,12 @@ Ported from Votic on 2026-11-15. **Settings > Feedback** offers **Suggest a Feat
 
 - **People's photos are not kept anywhere.** The backend sends the photo to OpenAI with `store:false`, returns the recipe, and discards it; the app doesn't keep it either. Only the dish's name reaches the image model for cover photos. The usage ledger records counts and costs only, never photos, as in Votic.
 - **No secrets in the app.** The OpenAI, RevenueCat and Firebase admin credentials stay in the backend's secret settings, the same as Votic.
-- **Allergens.** Every recipe lists common allergens it contains, with a note that the photo cannot show hidden ingredients.
-- **Alcohol.** Cocktail recipes affect the app's content rating in the app stores. Plan an age confirmation before alcoholic recipes are shown, and always offer non-alcoholic versions.
+- **Allergens.** Every recipe lists the nine major US allergens it contains, with a note that the photo cannot show hidden ingredients and that leaving an ingredient out doesn't remove traces of it. Coconut is not labeled a tree nut (FDA guidance, January 2025), but the nut-free diet option still treats it as one (decided 2026-11-19).
+- **Alcohol.** Cocktail recipes affect the app's content rating in the app stores. The terms set the minimum age at 18, and legal drinking age for alcoholic recipes; non-alcoholic versions are offered.
+- **Privacy policy and terms (2026-11-19).** In Benjamin Major's name, published by the backend at `/privacy` and `/terms` (files in `server/legal/`), and linked from Settings > Help & privacy with the support email.
+- **Support email.** `majorapps.support@gmail.com`, one inbox shared by all of Ben's apps (decided 2026-11-19).
+- **Account deletion (2026-11-19).** Settings > Account > Delete account asks for the password again, then deletes the server's feedback, ratings and usage links (usage costs stay without the account ID), the Firebase sign-in, and the account's data on the phone. The server requires a sign-in from the last five minutes, refuses a deleted account's leftover token for a week, and lets a half-finished deletion be retried.
+- **Code scanning.** CodeQL needs a paid GitHub plan for private repositories, so it stays off; Semgrep, gitleaks, OSV-Scanner, Trivy and npm audit run on every change instead.
 - **Untrusted input.** Text in a photo (a menu, a sign) is treated as content, never as instructions to the AI.
 
 ## 5. Build phases
@@ -129,10 +133,12 @@ Ported from Votic on 2026-11-15. **Settings > Feedback** offers **Suggest a Feat
 2. **Core loop on a real phone:** connect Firebase sign-in and the live OpenAI key, test with real photos, tune the prompt, and polish guesses, "not food" and error states.
 3. **Paid plan:** RevenueCat paywall after the 3 free photos, checked on the server. The paywall screen and prices are in the app (see "The paywall" above); still to do: the Google Play subscription products and trial, RevenueCat offerings, and connecting the buttons.
 4. **Saving and sharing polish:** scale servings, share a recipe as text, account sync for Saved.
-5. **Android release:** test APK, Play internal testing, privacy policy, Play data-safety form, content rating.
+5. **Android release:** put the backend online at a permanent address (the privacy policy URL for Play comes from it), test APK, Play internal testing, Play data-safety form, content rating. Privacy policy, terms and in-app account deletion are done (2026-11-19).
 6. **iPhone:** iOS build workflow, camera permission text, App Store review.
 
 ## 6. Open questions
 
 - **Paid plan:** whether paid use has a monthly photo limit. (Price, monthly and yearly were decided on 2026-11-15.)
+- **Recipes:** keep or drop the vegetarian som tam (soy sauce swap); whether cotija counts as not vegetarian, like Parmesan and Pecorino.
+- **Starter photo library:** approve the about $8–12 cost of generating the 200 starter cover photos (`data/seed-dishes.json`).
 - **Free photos:** do the 3 free photos ever refresh (for example monthly), or are they 3 in total? Planned as 3 in total for now.
