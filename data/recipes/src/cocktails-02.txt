@@ -463,7 +463,7 @@ G Champagne flute | blackberry or raspberry | y | Blackcurrant syrup topped with
 # Pour into a glass and top with more crushed ice.
 G hurricane or Collins glass | pineapple wedge and mint | y | -
 
-@ michelada | Michelada | 1 | 4 | 0 | fish, shellfish, soy | Mexican beer with lime, hot sauce and savory seasonings in a salted glass.
+@ michelada | Michelada | 1 | 4 | 0 | fish, shellfish, soy, wheat | Mexican beer with lime, hot sauce and savory seasonings in a salted glass.
 - 1 | bottle (12 oz) | Mexican lager
 - 1 | oz | fresh lime juice
 - 2 | dashes | hot sauce

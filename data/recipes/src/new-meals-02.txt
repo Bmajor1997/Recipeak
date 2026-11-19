@@ -216,7 +216,7 @@ V Kothey momo: pan-fry the bottoms in oil after steaming until crisp.
 ~ The oil in the filling and the juice from the onion make the momos burst with broth when you bite them. => Squeeze the salted cabbage well, or the filling will turn watery and tear the wrappers.
 @@ vegan = vegetarian
 
-@ nasi-lemak | Nasi Lemak | 4 | 40 | 45 | fish, eggs, peanuts | Malaysia's national dish: fragrant coconut and pandan rice served with a sweet-spicy sambal, crispy fried anchovies, roasted peanuts, a boiled egg and fresh cucumber.
+@ nasi-lemak | Nasi Lemak | 4 | 40 | 45 | fish, shellfish, eggs, peanuts | Malaysia's national dish: fragrant coconut and pandan rice served with a sweet-spicy sambal, crispy fried anchovies, roasted peanuts, a boiled egg and fresh cucumber.
 - 2 | cups | jasmine rice, rinsed
 - 1 | cup | coconut milk
 - 1 1/4 | cups | water

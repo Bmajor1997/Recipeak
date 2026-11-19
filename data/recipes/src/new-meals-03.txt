@@ -28,7 +28,7 @@ T Taste the sauerkraut first. If it's very sour, rinse it once before using.
 T The dried porcini and prunes give bigos its deep, smoky-sweet flavor; don't leave them out.
 S Keeps 5 days in the fridge and freezes for 3 months; the flavor improves each time it's reheated.
 V Add leftover roast meats such as beef, venison or duck, as hunters once did.
-@@ vegetarian | Vegetarian Bigos | 30 | 90 | - | The same tangy sauerkraut and cabbage stew, made smoky with smoked paprika and rich with plenty of fresh and dried mushrooms.
+@@ vegetarian | Vegetarian Bigos | 30 | 90 | soy | The same tangy sauerkraut and cabbage stew, made smoky with smoked paprika and rich with plenty of fresh and dried mushrooms.
 ~ thick-cut smoked bacon, diced => olive oil
 ~ pork shoulder, cut into bite-size pieces => cremini mushrooms, quartered
 ~ smoked kielbasa, sliced into rounds => smoked tofu, cubed, and 2 tsp smoked paprika
@@ -319,7 +319,7 @@ T Whisk the flours into cold water before adding them, so the soup stays smooth.
 T The crunchy toppings matter as much as the soup. Don't skip the fritters or fried onions.
 S The broth keeps 3 days in the fridge or 3 months frozen. Cook the noodles fresh.
 V Use canned mackerel or sardines, a favorite shortcut in Burmese homes abroad.
-@@ vegetarian | Vegetarian Mohinga | 30 | 45 | soy, eggs | The same golden lemongrass broth thickened with toasted rice and chickpea flour, made with oyster mushrooms and soy sauce instead of fish.
+@@ vegetarian | Vegetarian Mohinga | 30 | 45 | soy, wheat, eggs | The same golden lemongrass broth thickened with toasted rice and chickpea flour, made with oyster mushrooms and soy sauce instead of fish.
 ~ catfish fillets => oyster mushrooms, torn
 ~ fish sauce, divided => light soy sauce, divided
 ~ shrimp paste => white miso
@@ -327,7 +327,7 @@ V Use canned mackerel or sardines, a favorite shortcut in Burmese homes abroad.
 ~ shrimp paste, paprika => miso, paprika
 ~ Add the flaked fish and stir for 2 minutes. => Add the mushrooms and stir for 4 minutes.
 ~ Season with the remaining fish sauce. => Season with the remaining soy sauce.
-@@ vegan | Vegan Mohinga | 30 | 45 | soy | Mushroom mohinga in the same lemongrass broth, topped with fried tofu instead of egg.
+@@ vegan | Vegan Mohinga | 30 | 45 | soy, wheat | Mushroom mohinga in the same lemongrass broth, topped with fried tofu instead of egg.
 ~ catfish fillets => oyster mushrooms, torn
 ~ fish sauce, divided => light soy sauce, divided
 ~ shrimp paste => white miso

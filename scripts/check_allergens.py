@@ -12,7 +12,7 @@ RULES = {
     "fish": r"\b(fish|anchov|cod|salmon|haddock|tuna|bonito|dashi|worcestershire|eel|unagi|saltfish)\b",
     "shellfish": r"\b(shrimp|prawn|crab|clam|mussel|lobster|scallop|oyster sauce|squid|octopus|crayfish|bagoong|shrimp paste|clamato)\b",
     "peanuts": r"\b(peanut)",
-    "tree nuts": r"\b(almonds?|walnuts?|pecans?|cashews?|pistachios?|pine nuts|hazelnuts?|orgeat|amaretto|noyaux|coconut)\b",
+    "tree nuts": r"\b(almonds?|walnuts?|pecans?|cashews?|pistachios?|pine nuts|hazelnuts?|macadamias?|brazil nuts?|orgeat|amaretto|noyaux|frangelico|nutella|praline|marzipan)\b",
     "sesame": r"\b(sesame|tahini)\b",
 }
 def find_flags(recipes):

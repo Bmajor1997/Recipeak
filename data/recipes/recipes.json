@@ -1135,7 +1135,8 @@
     ],
     "allergens": [
      "eggs",
-     "soy"
+     "soy",
+     "wheat"
     ],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -1248,7 +1249,8 @@
      "Top each with a spoon of coconut cream, finely shredded lime leaf and chili strips. Serve hot with rice."
     ],
     "allergens": [
-     "soy"
+     "soy",
+     "wheat"
     ],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -3964,7 +3966,9 @@
      "Cover and simmer very gently for 1 hour, stirring now and then and adding a splash of water if it gets dry. It should be thick, glossy and brown.",
      "Taste and balance: add a splash of sauerkraut juice if it's too sweet, or a pinch of sugar if too sour. Serve with rye bread or potatoes."
     ],
-    "allergens": [],
+    "allergens": [
+     "soy"
+    ],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [
@@ -4081,7 +4085,9 @@
      "Cover and simmer very gently for 1 hour, stirring now and then and adding a splash of water if it gets dry. It should be thick, glossy and brown.",
      "Taste and balance: add a splash of sauerkraut juice if it's too sweet, or a pinch of sugar if too sour. Serve with rye bread or potatoes."
     ],
-    "allergens": [],
+    "allergens": [
+     "soy"
+    ],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [
@@ -7369,7 +7375,9 @@
     "Add the potatoes and cook, covered, for 25 to 30 minutes more, until the potatoes are tender and the lamb pulls easily from the bone.",
     "Uncover for the last 10 minutes if the sauce is thin. It should be thick and glossy. Taste for salt and sugar, then serve over rice with parsley."
    ],
-   "allergens": [],
+   "allergens": [
+    "wheat"
+   ],
    "cocktail": null,
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
    "tips": [
@@ -8075,6 +8083,7 @@
     "Pile the bread in a wide dish and ladle over plenty of the hot sauce, letting it soak in. Top with the lamb, chickpeas and vegetables and serve extra sauce on the side."
    ],
    "allergens": [
+    "milk",
     "wheat"
    ],
    "cocktail": null,
@@ -16334,7 +16343,8 @@
    "allergens": [
     "fish",
     "shellfish",
-    "soy"
+    "soy",
+    "wheat"
    ],
    "cocktail": null,
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -19385,7 +19395,9 @@
      "Heat 1 inch of oil to 350°F and fry in batches for 4 to 5 minutes, until deep golden and crisp.",
      "Drain and serve hot with pikliz, plantains and rice, with a squeeze of sour orange on top."
     ],
-    "allergens": [],
+    "allergens": [
+     "soy"
+    ],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [
@@ -19468,7 +19480,9 @@
      "Heat 1 inch of oil to 350°F and fry in batches for 4 to 5 minutes, until deep golden and crisp.",
      "Drain and serve hot with pikliz, plantains and rice, with a squeeze of sour orange on top."
     ],
-    "allergens": [],
+    "allergens": [
+     "soy"
+    ],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [
@@ -20903,9 +20917,7 @@
     "Fry the mustard seeds and curry leaves in oil and pour over the sambar.",
     "Serve the idli with the sambar and coconut chutney."
    ],
-   "allergens": [
-    "tree nuts"
-   ],
+   "allergens": [],
    "cocktail": null,
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
    "tips": [],
@@ -22186,7 +22198,8 @@
    ],
    "allergens": [
     "sesame",
-    "soy"
+    "soy",
+    "wheat"
    ],
    "cocktail": null,
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -24190,7 +24203,8 @@
      "Pile onto a plate, sprinkle with the rest of the herbs and rice powder, and serve with sticky rice and crisp vegetables to scoop it up."
     ],
     "allergens": [
-     "soy"
+     "soy",
+     "wheat"
     ],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -24278,7 +24292,8 @@
      "Pile onto a plate, sprinkle with the rest of the herbs and rice powder, and serve with sticky rice and crisp vegetables to scoop it up."
     ],
     "allergens": [
-     "soy"
+     "soy",
+     "wheat"
     ],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -25625,7 +25640,8 @@
     "eggs",
     "fish",
     "shellfish",
-    "soy"
+    "soy",
+    "wheat"
    ],
    "cocktail": null,
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -27450,7 +27466,8 @@
    "allergens": [
     "fish",
     "shellfish",
-    "soy"
+    "soy",
+    "wheat"
    ],
    "cocktail": {
     "glass": "pint glass",
@@ -28144,7 +28161,8 @@
     ],
     "allergens": [
      "eggs",
-     "soy"
+     "soy",
+     "wheat"
     ],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -28263,7 +28281,8 @@
      "Put noodles in each bowl, ladle the soup over and top with tofu, cilantro, lime, chili and crunchy fritters or fried onions."
     ],
     "allergens": [
-     "soy"
+     "soy",
+     "wheat"
     ],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -28999,8 +29018,7 @@
    ],
    "allergens": [
     "fish",
-    "shellfish",
-    "tree nuts"
+    "shellfish"
    ],
    "cocktail": null,
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -29749,7 +29767,8 @@
    "allergens": [
     "eggs",
     "fish",
-    "peanuts"
+    "peanuts",
+    "shellfish"
    ],
    "cocktail": null,
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -32611,7 +32630,9 @@
     "Top the noodles with sliced brisket, raw beef slices and drained onion. Ladle the boiling broth straight over the raw beef to cook it pink. Serve right away with the herb plate, lime, chilies, hoisin and sriracha on the side."
    ],
    "allergens": [
-    "fish"
+    "fish",
+    "soy",
+    "wheat"
    ],
    "cocktail": null,
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -40871,8 +40892,7 @@
     "Taste: it should be sour and salty first, then creamy. Add more lime or fish sauce if needed. Serve topped with cilantro."
    ],
    "allergens": [
-    "fish",
-    "tree nuts"
+    "fish"
    ],
    "cocktail": null,
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -40962,7 +40982,6 @@
     ],
     "allergens": [
      "soy",
-     "tree nuts",
      "wheat"
     ],
     "cocktail": null,
@@ -41052,7 +41071,6 @@
     ],
     "allergens": [
      "soy",
-     "tree nuts",
      "wheat"
     ],
     "cocktail": null,

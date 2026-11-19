@@ -599,7 +599,7 @@
 # Remove the beef. Stir the gingersnaps and raisins into the liquid and simmer until thick.
 # Slice the beef and serve with the gravy.
 
-@ japchae | Japchae | 4 | 25 | 15 | soy, sesame | Korean sweet potato glass noodles stir-fried with beef and vegetables in sesame-soy sauce.
+@ japchae | Japchae | 4 | 25 | 15 | soy, wheat, sesame | Korean sweet potato glass noodles stir-fried with beef and vegetables in sesame-soy sauce.
 - 8 | oz | sweet potato starch noodles (dangmyeon)
 - 6 | oz | beef sirloin, thinly sliced
 - 1/4 | cup | soy sauce

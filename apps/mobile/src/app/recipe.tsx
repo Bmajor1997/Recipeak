@@ -7,6 +7,7 @@ import { useMemo, useRef, useState } from "react";
 import {
   ActivityIndicator,
   Image,
+  Platform,
   Pressable,
   ScrollView,
   Share,
@@ -50,12 +51,20 @@ export default function RecipeScreen() {
 function Sheet({ children, footer }: { children: React.ReactNode; footer?: React.ReactNode }) {
   const styles = useThemedStyles(create_styles);
   const insets = useSafeAreaInsets();
+  // On Android the recipe fills the screen, so a solid band keeps scrolled text out from under the clock and icons.
+  // On iOS it's a sheet below the status bar and needs no band.
+  const status_space = Platform.OS === "android" ? insets.top : 0;
   return (
     <View style={styles.screen}>
-      <View style={styles.handle} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" />
+      <View
+        style={[styles.handle, { top: 8 + status_space }]}
+        accessibilityElementsHidden
+        importantForAccessibility="no-hide-descendants"
+      />
       {children}
       {footer}
-      <View style={[styles.topBar, { top: 18 }]} pointerEvents="box-none">
+      {status_space > 0 && <View style={[styles.statusBand, { height: status_space }]} pointerEvents="none" />}
+      <View style={[styles.topBar, { top: 18 + status_space }]} pointerEvents="box-none">
         <RoundButton icon="chevron-down" label="Close recipe" onPress={() => router.back()} />
       </View>
       <View style={{ height: insets.bottom }} />
@@ -134,6 +143,8 @@ function RecipeView({ current }: { current: Ready }) {
   const [diet, set_diet] = useState<Diet | null>(current.diet ?? null);
   const [busy, set_busy] = useState(false);
   const [problem, set_problem] = useState<string | null>(null);
+  // Save problems show beside the Save button, not at the top of the page, so they're seen and announced.
+  const [save_problem, set_save_problem] = useState<string | null>(null);
   const [notice, set_notice] = useState<string | null>(
     current.diet ? `Showing the ${current.diet} version, from your diet in Settings.` : null,
   );
@@ -192,6 +203,7 @@ function RecipeView({ current }: { current: Ready }) {
     // One save or removal at a time: a double tap must not save twice or leave an extra photo behind.
     if (preferences.busy || saving.current) return;
     saving.current = true;
+    set_save_problem(null);
     try {
       if (current.savedId) {
         await saved.remove(current.savedId);
@@ -206,7 +218,7 @@ function RecipeView({ current }: { current: Ready }) {
     } catch (error) {
       if (error instanceof SavedLimitError) router.push({ pathname: "/upgrade", params: { reason: "saved" } });
       else
-        set_problem(
+        set_save_problem(
           error instanceof ApiError ? "Couldn't check your plan to save this recipe. Please try again." : (error as Error).message,
         );
     } finally {
@@ -225,28 +237,31 @@ function RecipeView({ current }: { current: Ready }) {
 
   const footer = (
     <View style={[styles.bottomBar, { paddingBottom: insets.bottom + 12 }]}>
-      <View style={styles.stepper}>
-        <RoundButton icon="remove" label="Fewer servings" small onPress={() => set_servings(Math.max(1, servings - 1))} />
-        <Text style={styles.servings} accessibilityLiveRegion="polite">
-          Serves {servings}
-        </Text>
-        <RoundButton icon="add" label="More servings" small onPress={() => set_servings(Math.min(50, servings + 1))} />
+      {save_problem && <Notice tone="error">{save_problem}</Notice>}
+      <View style={styles.bottomRow}>
+        <View style={styles.stepper}>
+          <RoundButton icon="remove" label="Fewer servings" small onPress={() => set_servings(Math.max(1, servings - 1))} />
+          <Text style={styles.servings} accessibilityLiveRegion="polite">
+            Serves {servings}
+          </Text>
+          <RoundButton icon="add" label="More servings" small onPress={() => set_servings(Math.min(50, servings + 1))} />
+        </View>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={current.savedId ? "Saved. Tap to remove from Saved" : "Save recipe"}
+          accessibilityState={{ disabled: preferences.busy }}
+          disabled={preferences.busy}
+          onPress={toggle_save}
+          style={({ pressed }) => [styles.save, current.savedId && styles.saved, pressed && { opacity: 0.8 }]}
+        >
+          <Ionicons
+            name={current.savedId ? "bookmark" : "bookmark-outline"}
+            size={20}
+            color={current.savedId ? colors.text : colors.accentText}
+          />
+          <Text style={[styles.saveText, current.savedId && { color: colors.text }]}>{current.savedId ? "Saved" : "Save"}</Text>
+        </Pressable>
       </View>
-      <Pressable
-        accessibilityRole="button"
-        accessibilityLabel={current.savedId ? "Saved. Tap to remove from Saved" : "Save recipe"}
-        accessibilityState={{ disabled: preferences.busy }}
-        disabled={preferences.busy}
-        onPress={toggle_save}
-        style={({ pressed }) => [styles.save, current.savedId && styles.saved, pressed && { opacity: 0.8 }]}
-      >
-        <Ionicons
-          name={current.savedId ? "bookmark" : "bookmark-outline"}
-          size={20}
-          color={current.savedId ? colors.text : colors.accentText}
-        />
-        <Text style={[styles.saveText, current.savedId && { color: colors.text }]}>{current.savedId ? "Saved" : "Save"}</Text>
-      </Pressable>
     </View>
   );
 
@@ -675,15 +690,15 @@ const create_styles = (colors: Palette) =>
       left: 0,
       right: 0,
       bottom: 0,
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
+      gap: 8,
       paddingHorizontal: 16,
       paddingTop: 12,
       backgroundColor: colors.surface,
       borderTopWidth: StyleSheet.hairlineWidth,
       borderTopColor: colors.border,
     },
+    bottomRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
+    statusBand: { position: "absolute", top: 0, left: 0, right: 0, backgroundColor: colors.background },
     stepper: { flexDirection: "row", alignItems: "center", gap: 10 },
     servings: { color: colors.text, fontSize: 15, fontWeight: "600", minWidth: 74, textAlign: "center" },
     save: {

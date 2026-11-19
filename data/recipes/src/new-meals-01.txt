@@ -132,7 +132,7 @@ T Fresh kroeung is the soul of the dish. Make a double batch and freeze half for
 T Cut the fish into even pieces so every piece cooks in the same time.
 S The kroeung paste keeps 1 week in the fridge or 3 months frozen. Amok is best eaten freshly steamed.
 V Chicken amok: use thinly sliced chicken thigh and steam 25 minutes.
-@@ vegetarian | Vegetarian Amok | 40 | 20 | soy, eggs | The same fragrant coconut custard with tofu and mushrooms in place of fish, and soy sauce and miso instead of fish sauce and shrimp paste.
+@@ vegetarian | Vegetarian Amok | 40 | 20 | soy, wheat, eggs | The same fragrant coconut custard with tofu and mushrooms in place of fish, and soy sauce and miso instead of fish sauce and shrimp paste.
 ~ firm white fish (catfish, tilapia or cod), cut into bite-size pieces => extra-firm tofu and oyster mushrooms, cut into bite-size pieces
 ~ shrimp paste => white miso
 ~ fish sauce => light soy sauce
@@ -140,7 +140,7 @@ V Chicken amok: use thinly sliced chicken thigh and steam 25 minutes.
 ~ Spoon the fish and curry into the cups. => Spoon the tofu and curry into the cups.
 ~ the custard is set but still trembles slightly and the fish flakes. => the custard is set but still trembles slightly.
 ~ Cut the fish into even pieces so every piece cooks in the same time. => Press the tofu for 15 minutes so it soaks up the curry instead of watering it down.
-@@ vegan | Vegan Amok | 40 | 20 | soy | Tofu and mushroom amok in a coconut curry set with a little cornstarch instead of egg.
+@@ vegan | Vegan Amok | 40 | 20 | soy, wheat | Tofu and mushroom amok in a coconut curry set with a little cornstarch instead of egg.
 ~ firm white fish (catfish, tilapia or cod), cut into bite-size pieces => extra-firm tofu and oyster mushrooms, cut into bite-size pieces
 ~ shrimp paste => white miso
 ~ fish sauce => light soy sauce
@@ -152,7 +152,7 @@ V Chicken amok: use thinly sliced chicken thigh and steam 25 minutes.
 ~ The egg is what turns the curry into amok's soft, mousse-like custard. Steam gently: a hard boil makes it grainy. => Cornstarch sets the curry softly in place of egg. Whisk it in well so it doesn't clump.
 ~ Cut the fish into even pieces so every piece cooks in the same time. => Press the tofu for 15 minutes so it soaks up the curry instead of watering it down.
 
-@ cape-malay-bredie | Cape Malay Tomato Bredie | 6 | 25 | 120 | - | South Africa's slow-cooked lamb and tomato stew, gently spiced with cinnamon, cloves and cardamom, until the lamb falls from the bone and the tomatoes turn jammy.
+@ cape-malay-bredie | Cape Malay Tomato Bredie | 6 | 25 | 120 | wheat | South Africa's slow-cooked lamb and tomato stew, gently spiced with cinnamon, cloves and cardamom, until the lamb falls from the bone and the tomatoes turn jammy.
 - 3 | lb | lamb neck or shoulder chops, cut into large pieces
 - 2 | tbsp | flour, for dusting
 - 3 | tbsp | neutral oil
@@ -208,7 +208,7 @@ T Simmering the sauce on its own first gives the spices time to soften into the 
 S Keeps 4 days in the fridge or 3 months frozen.
 @@ vegan = vegetarian
 
-@ chakhchoukha | Chakhchoukha | 6 | 40 | 75 | wheat | An Algerian feast dish from the Aurès: thin semolina flatbread torn into pieces and soaked in marqa, a spiced tomato stew of lamb, chickpeas and vegetables.
+@ chakhchoukha | Chakhchoukha | 6 | 40 | 75 | wheat, milk | An Algerian feast dish from the Aurès: thin semolina flatbread torn into pieces and soaked in marqa, a spiced tomato stew of lamb, chickpeas and vegetables.
 - 2 | lb | lamb shoulder, cut into large chunks
 - 3 | tbsp | olive oil
 - 1 | | large onion, grated
@@ -307,7 +307,7 @@ T Dry the pork well before frying; wet meat spatters and won't crisp.
 T Keep the Scotch bonnet whole for flavor with gentle heat; slit it if you like it fiery.
 S Marinate and braise up to 2 days ahead, then fry just before serving.
 V Air fryer: toss the braised pork with a little oil and air-fry at 400°F for 12 to 15 minutes, shaking twice.
-@@ vegetarian | Vegetarian Griot | 30 | 30 | - | Big oyster mushrooms and tofu soaked in the same sour orange and epis marinade, then fried until crisp, with pikliz and plantains.
+@@ vegetarian | Vegetarian Griot | 30 | 30 | soy | Big oyster mushrooms and tofu soaked in the same sour orange and epis marinade, then fried until crisp, with pikliz and plantains.
 - 1 | lb | oyster or king oyster mushrooms, torn into large pieces
 - 14 | oz | extra-firm tofu, pressed and cut in 1 1/2-inch cubes
 - 1/2 | cup | sour orange juice, or half orange and half lime juice
@@ -351,7 +351,7 @@ T Season off the heat so the lime stays bright and fresh.
 T Toasted rice powder is essential: it adds a nutty crunch and soaks up the juices.
 S The toasted rice powder keeps 2 months in a sealed jar. Larb is best eaten right after mixing.
 V Larb gai: make it with ground chicken instead of pork.
-@@ vegetarian | Vegetarian Larb | 20 | 15 | soy | Crumbled tofu and mushrooms dressed with lime, soy sauce and chili, with fresh herbs and toasted rice powder.
+@@ vegetarian | Vegetarian Larb | 20 | 15 | soy, wheat | Crumbled tofu and mushrooms dressed with lime, soy sauce and chili, with fresh herbs and toasted rice powder.
 ~ ground pork => extra-firm tofu and mushrooms, finely chopped (about 1 lb total)
 ~ fish sauce => light soy sauce
 ~ Cook the pork with the water in a pan over medium heat, breaking it up, for 5 to 7 minutes, just until no longer pink. Don't brown it; it should stay moist. => Cook the tofu and mushrooms in a lightly oiled pan over medium-high heat for 6 to 8 minutes, until the mushrooms have released their liquid and the tofu is lightly golden.

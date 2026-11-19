@@ -183,7 +183,9 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
       if (!route) throw new HttpError(404, "Not found.");
       const user = await authorize(request, path);
       if (!user?.uid) throw new HttpError(401, "Please sign in again.");
-      if (store?.account_deleted?.(user.uid)) throw new HttpError(401, "This account was deleted.", { code: "ACCOUNT_DELETED" });
+      // A deleted account can only finish deleting: if removing its sign-in failed on the phone, the retry must still work.
+      if (path !== "/api/account/delete" && store?.account_deleted?.(user.uid))
+        throw new HttpError(401, "This account was deleted.", { code: "ACCOUNT_DELETED" });
       let body = null;
       if (route.max_body) {
         if (!/^application\/json\b/i.test(String(request.headers["content-type"] || ""))) throw new HttpError(415, "Send JSON.");

@@ -161,7 +161,7 @@
         "Spoon the tofu and curry into the cups. Steam over simmering water, covered, for 20 to 25 minutes, until the custard is set but still trembles slightly.",
         "Top each with a spoon of coconut cream, finely shredded lime leaf and chili strips. Serve hot with rice."
       ],
-      "allergens": ["eggs", "soy"],
+      "allergens": ["eggs", "soy", "wheat"],
       "cocktail": null,
       "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
       "tips": [
@@ -204,7 +204,7 @@
         "Spoon the tofu and curry into the cups. Steam over simmering water, covered, for 20 to 25 minutes, until the curry has thickened and set softly.",
         "Top each with a spoon of coconut cream, finely shredded lime leaf and chili strips. Serve hot with rice."
       ],
-      "allergens": ["soy"],
+      "allergens": ["soy", "wheat"],
       "cocktail": null,
       "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
       "tips": [
@@ -497,7 +497,7 @@
         "Heat 1 inch of oil to 350°F and fry in batches for 4 to 5 minutes, until deep golden and crisp.",
         "Drain and serve hot with pikliz, plantains and rice, with a squeeze of sour orange on top."
       ],
-      "allergens": [],
+      "allergens": ["soy"],
       "cocktail": null,
       "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
       "tips": ["A light coat of cornstarch gives the crackly crust that braised pork gets naturally."],
@@ -530,7 +530,7 @@
         "Heat 1 inch of oil to 350°F and fry in batches for 4 to 5 minutes, until deep golden and crisp.",
         "Drain and serve hot with pikliz, plantains and rice, with a squeeze of sour orange on top."
       ],
-      "allergens": [],
+      "allergens": ["soy"],
       "cocktail": null,
       "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
       "tips": ["A light coat of cornstarch gives the crackly crust that braised pork gets naturally."],
@@ -566,7 +566,7 @@
         "Add the shallots, green onions, most of the herbs and 2 tbsp of the toasted rice powder and toss.",
         "Pile onto a plate, sprinkle with the rest of the herbs and rice powder, and serve with sticky rice and crisp vegetables to scoop it up."
       ],
-      "allergens": ["soy"],
+      "allergens": ["soy", "wheat"],
       "cocktail": null,
       "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
       "tips": [
@@ -604,7 +604,7 @@
         "Add the shallots, green onions, most of the herbs and 2 tbsp of the toasted rice powder and toss.",
         "Pile onto a plate, sprinkle with the rest of the herbs and rice powder, and serve with sticky rice and crisp vegetables to scoop it up."
       ],
-      "allergens": ["soy"],
+      "allergens": ["soy", "wheat"],
       "cocktail": null,
       "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
       "tips": [
@@ -1600,7 +1600,7 @@
         "Cover and simmer very gently for 1 hour, stirring now and then and adding a splash of water if it gets dry. It should be thick, glossy and brown.",
         "Taste and balance: add a splash of sauerkraut juice if it's too sweet, or a pinch of sugar if too sour. Serve with rye bread or potatoes."
       ],
-      "allergens": [],
+      "allergens": ["soy"],
       "cocktail": null,
       "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
       "tips": [
@@ -1645,7 +1645,7 @@
         "Cover and simmer very gently for 1 hour, stirring now and then and adding a splash of water if it gets dry. It should be thick, glossy and brown.",
         "Taste and balance: add a splash of sauerkraut juice if it's too sweet, or a pinch of sugar if too sour. Serve with rye bread or potatoes."
       ],
-      "allergens": [],
+      "allergens": ["soy"],
       "cocktail": null,
       "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
       "tips": [
@@ -2098,7 +2098,7 @@
         "Simmer 30 minutes, stirring often, until thickened and the shallots are soft. Season with the remaining soy sauce.",
         "Put noodles in each bowl, ladle the soup over and top with egg, cilantro, lime, chili and crunchy fritters or fried onions."
       ],
-      "allergens": ["eggs", "soy"],
+      "allergens": ["eggs", "soy", "wheat"],
       "cocktail": null,
       "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
       "tips": [
@@ -2143,7 +2143,7 @@
         "Simmer 30 minutes, stirring often, until thickened and the shallots are soft. Season with the remaining soy sauce.",
         "Put noodles in each bowl, ladle the soup over and top with tofu, cilantro, lime, chili and crunchy fritters or fried onions."
       ],
-      "allergens": ["soy"],
+      "allergens": ["soy", "wheat"],
       "cocktail": null,
       "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
       "tips": [

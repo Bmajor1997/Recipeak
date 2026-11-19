@@ -723,7 +723,7 @@
       "Soak the noodles in warm water 30 minutes, then dip portions in boiling water for 15 to 30 seconds until just tender. Divide among large warmed bowls.",
       "Top the noodles with sliced brisket, raw beef slices and drained onion. Ladle the boiling broth straight over the raw beef to cook it pink. Serve right away with the herb plate, lime, chilies, hoisin and sriracha on the side."
     ],
-    "allergens": ["fish"],
+    "allergens": ["fish", "soy", "wheat"],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [
@@ -5680,7 +5680,7 @@
       { "amount": "", "unit": "", "item": "Tajín or chili salt, for the rim" }
     ],
     "steps": ["Rim a pint glass with chili salt and fill with ice.", "Add the lime, sauces and juice, then top with beer."],
-    "allergens": ["fish", "shellfish", "soy"],
+    "allergens": ["fish", "shellfish", "soy", "wheat"],
     "cocktail": {
       "glass": "pint glass",
       "garnish": "lime wedge and chili-salt rim",
@@ -7551,7 +7551,7 @@
       "Stir-fry the vegetables one at a time until just tender, then the beef.",
       "Toss everything with the noodles and the rest of the sauce. Sprinkle with sesame seeds."
     ],
-    "allergens": ["sesame", "soy"],
+    "allergens": ["sesame", "soy", "wheat"],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [],
@@ -9056,7 +9056,7 @@
       "Fry the mustard seeds and curry leaves in oil and pour over the sambar.",
       "Serve the idli with the sambar and coconut chutney."
     ],
-    "allergens": ["tree nuts"],
+    "allergens": [],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [],
@@ -9123,7 +9123,7 @@
       "Add the noodles and toss until they absorb the liquid.",
       "Serve with calamansi wedges."
     ],
-    "allergens": ["fish", "shellfish", "soy"],
+    "allergens": ["fish", "shellfish", "soy", "wheat"],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [],
@@ -9824,7 +9824,7 @@
       "Push aside, scramble the eggs and mix in.",
       "Toss in the sprouts and chives for 30 seconds."
     ],
-    "allergens": ["eggs", "fish", "shellfish", "soy"],
+    "allergens": ["eggs", "fish", "shellfish", "soy", "wheat"],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [],
@@ -11227,7 +11227,7 @@
       "Add the potatoes and cook, covered, for 25 to 30 minutes more, until the potatoes are tender and the lamb pulls easily from the bone.",
       "Uncover for the last 10 minutes if the sauce is thin. It should be thick and glossy. Taste for salt and sugar, then serve over rice with parsley."
     ],
-    "allergens": [],
+    "allergens": ["wheat"],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [
@@ -11273,7 +11273,7 @@
       "Meanwhile, steam the torn bread over the stew or in a steamer basket for 10 minutes, tossing once, until soft and pliable. Toss with the butter.",
       "Pile the bread in a wide dish and ladle over plenty of the hot sauce, letting it soak in. Top with the lamb, chickpeas and vegetables and serve extra sauce on the side."
     ],
-    "allergens": ["wheat"],
+    "allergens": ["milk", "wheat"],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [
@@ -11735,7 +11735,7 @@
       "In the same oil, fry the chili paste over medium-low heat for 10 to 15 minutes, stirring, until dark red and the oil separates. Add the onion rings, tamarind water and sugar and simmer 5 minutes. Stir in a third of the anchovies.",
       "Mound the rice on plates and serve with sambal, anchovies, peanuts, egg and cucumber around it."
     ],
-    "allergens": ["eggs", "fish", "peanuts"],
+    "allergens": ["eggs", "fish", "peanuts", "shellfish"],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [

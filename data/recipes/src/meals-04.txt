@@ -598,7 +598,7 @@
 # Add the oxtail, then the beans and eggplant, and cook until tender. Add the bok choy last.
 # Serve with rice and bagoong on the side.
 
-@ indian-idli-sambar | Idli Sambar | 4 | 20 | 40 | tree nuts | Soft steamed rice cakes with tangy lentil and vegetable stew.
+@ indian-idli-sambar | Idli Sambar | 4 | 20 | 40 | - | Soft steamed rice cakes with tangy lentil and vegetable stew.
 - 3 | cups | idli batter (fermented rice and urad dal)
 - 3/4 | cup | toor dal
 - 1 | cup | mixed vegetables (drumstick, carrot, pumpkin)
@@ -634,7 +634,7 @@
 # Boil in salted water 10 to 12 minutes.
 # Dust with pepper. Bite a hole, sip the juice, and leave the knot.
 
-@ filipino-pancit | Filipino Pancit Bihon | 6 | 20 | 15 | soy, fish, shellfish | Thin rice noodles stir-fried with chicken, shrimp and vegetables, served with calamansi.
+@ filipino-pancit | Filipino Pancit Bihon | 6 | 20 | 15 | soy, wheat, fish, shellfish | Thin rice noodles stir-fried with chicken, shrimp and vegetables, served with calamansi.
 - 8 | oz | rice vermicelli (bihon), soaked
 - 8 | oz | chicken breast, sliced
 - 8 | oz | shrimp, peeled
@@ -980,7 +980,7 @@
 # Roll in flour, dip in the remaining beaten eggs and coat in breadcrumbs.
 # Fry at 350°F for 4 to 5 minutes until golden. Serve with marinara.
 
-@ malaysian-char-kway-teow | Char Kway Teow | 2 | 15 | 10 | shellfish, soy, eggs, fish | Smoky stir-fried flat rice noodles with shrimp, Chinese sausage, egg and bean sprouts.
+@ malaysian-char-kway-teow | Char Kway Teow | 2 | 15 | 10 | shellfish, soy, wheat, eggs, fish | Smoky stir-fried flat rice noodles with shrimp, Chinese sausage, egg and bean sprouts.
 - 1 | lb | fresh flat rice noodles
 - 8 | oz | shrimp, peeled
 - 1 | | Chinese sausage (lap cheong), sliced

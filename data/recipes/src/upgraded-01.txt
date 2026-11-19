@@ -150,7 +150,7 @@ V Use aged rum for a richer, caramel flavor.
 V Less sweet: cut the syrup to 1/2 oz.
 G highball glass | mint sprig and lime wheel | y | Leave out the rum, add 1/2 oz more lime and top with extra soda or ginger ale.
 
-@ pho | Beef Pho | 6 | 30 | 240 | fish | Northern-style Vietnamese beef noodle soup: a clear, deeply savory broth scented with charred onion, ginger and toasted spices, poured over rice noodles and paper-thin beef.
+@ pho | Beef Pho | 6 | 30 | 240 | fish, soy, wheat | Northern-style Vietnamese beef noodle soup: a clear, deeply savory broth scented with charred onion, ginger and toasted spices, poured over rice noodles and paper-thin beef.
 - 4 | lb | beef bones (knuckle and marrow), plus 1 lb oxtail if you can find it
 - 1 1/2 | lb | beef brisket or chuck, in one piece
 - 2 | | large yellow onions, unpeeled, halved
