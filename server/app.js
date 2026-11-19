@@ -123,7 +123,17 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     return work(body);
   };
 
+  // Deleting an account needs a sign-in from the last five minutes, so a phone left unlocked can't do it.
+  const RECENT_SIGN_IN_SECONDS = 5 * 60;
+  async function delete_account(user) {
+    const signed_in = typeof user.auth_time === "number" ? user.auth_time : 0;
+    if (Date.now() / 1000 - signed_in > RECENT_SIGN_IN_SECONDS)
+      throw new HttpError(401, "Enter your password again to delete your account.", { code: "RECENT_SIGN_IN_REQUIRED" });
+    return store.delete_account(user.uid);
+  }
+
   const routes = {
+    "POST /api/account/delete": { handler: delete_account, max_body: 256 },
     "POST /api/identify": { handler: identify, max_body: MAX_IDENTIFY_BODY },
     "POST /api/recipe": { handler: recipe, max_body: 2048 },
     "POST /api/featured-recipe": { handler: featured_recipe, max_body: 2048 },
@@ -173,6 +183,7 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
       if (!route) throw new HttpError(404, "Not found.");
       const user = await authorize(request, path);
       if (!user?.uid) throw new HttpError(401, "Please sign in again.");
+      if (store?.account_deleted?.(user.uid)) throw new HttpError(401, "This account was deleted.", { code: "ACCOUNT_DELETED" });
       let body = null;
       if (route.max_body) {
         if (!/^application\/json\b/i.test(String(request.headers["content-type"] || ""))) throw new HttpError(415, "Send JSON.");

@@ -10,8 +10,10 @@ export const DEFAULT_PREFERENCES: Preferences = { pausePhotoWall: false, saveCov
 const is_appearance = (value: unknown): value is Appearance => APPEARANCES.includes(value as Appearance);
 
 /** Preferences belong to this sign-in on this device, like saved recipes. */
+export const preferences_storage_name = (uid: string) => `mealsandmixers.preferences.v1.${encodeURIComponent(uid)}`;
+
 export function create_preferences(storage: KeyValueStorage, uid: string) {
-  const key = `mealsandmixers.preferences.v1.${encodeURIComponent(uid)}`;
+  const key = preferences_storage_name(uid);
   return {
     async load(): Promise<Preferences> {
       const raw = await storage.getItem(key);

@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { randomUUID } from "node:crypto";
 import { createServer } from "node:http";
 import { test } from "node:test";
 import { create_app } from "../server/app.js";
@@ -40,7 +41,10 @@ async function start({ reply = IDENTIFIED, status, delay, premium = async () => 
   const warnings = [];
   const authorize = async (request) => {
     const m = /^Bearer (\S+)$/.exec(request.headers.authorization || "");
-    return m ? { uid: m[1] } : false;
+    if (!m) return false;
+    // "alice@fresh" stands for alice right after she entered her password; plain "alice" signed in long ago.
+    const fresh = m[1].endsWith("@fresh");
+    return fresh ? { uid: m[1].slice(0, -"@fresh".length), auth_time: Math.floor(Date.now() / 1000) } : { uid: m[1] };
   };
   const handle = create_app({ env: { OPENAI_API_KEY: "sk-test-key", ...env }, store, authorize, premium, featured, fetch_impl, log: { warn: (...a) => warnings.push(a) } });
   const server = createServer(handle);
@@ -236,4 +240,31 @@ test("diet versions get each diet's rules, and every recipe is asked to name ing
   assert.match(recipe_payload({ name: "Pesto", kind: "meal", diet: "vegetarian" }).input[0].content[0].text, /vegetarian hard cheese/);
   assert.match(recipe_payload({ name: "Pesto", kind: "meal" }).instructions, /vegetable broth/);
   assert.match(identify_payload("data:image/jpeg;base64,AA").instructions, /vegetable broth/);
+});
+
+test("deleting an account needs a fresh sign-in, removes its data, and refuses the account afterwards", async (t) => {
+  const s = await start(); t.after(s.close);
+  assert.equal((await s.call("/api/identify", { body: { image: JPEG } })).status, 200);
+  assert.equal((await s.call("/api/recipe-rating", { body: { kind: "cocktail", dish: "Margarita", stars: 4, made: true, tags: [], note: "Nice" } })).status, 200);
+  assert.equal((await s.call("/api/feedback", { body: { category: "feature", title: "More drinks", description: "Please add more tiki drinks.", requestId: randomUUID() } })).status, 200);
+
+  assert.equal(s.store.feedback.dashboard("", 0).features.length, 1);
+  const stale = await s.call("/api/account/delete", { body: {} });
+  assert.equal(stale.status, 401);
+  assert.equal(stale.json.code, "RECENT_SIGN_IN_REQUIRED");
+  assert.ok(s.store.records().some((row) => row.user_id === "alice"));
+
+  const done = await s.call("/api/account/delete", { user: "alice@fresh", body: {} });
+  assert.equal(done.status, 200);
+  assert.equal(done.json.ok, true);
+  const rows = s.store.records();
+  assert.ok(rows.length > 0, "usage costs still count towards the monthly budget");
+  assert.ok(rows.every((row) => row.user_id !== "alice" && row.provider_request_id === null));
+  assert.equal(s.store.ratings.summary().dishes.length, 0);
+  assert.equal(s.store.feedback.dashboard("", 0).features.length, 0);
+
+  const after = await s.call("/api/allowance");
+  assert.equal(after.status, 401);
+  assert.equal(after.json.code, "ACCOUNT_DELETED");
+  assert.equal((await s.call("/api/allowance", { user: "bob" })).status, 200);
 });

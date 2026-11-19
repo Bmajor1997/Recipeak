@@ -27,6 +27,10 @@ const mocks = vi.hoisted(() => ({
   list: vi.fn(),
   reset_password: vi.fn(),
   sign_out: vi.fn(),
+  confirm_password: vi.fn(),
+  delete_sign_in: vi.fn(),
+  delete_account: vi.fn(),
+  remove_item: vi.fn(),
   set_current: vi.fn(),
   push: vi.fn(),
   back: vi.fn(),
@@ -34,19 +38,30 @@ const mocks = vi.hoisted(() => ({
   canGoBack: vi.fn(),
   category: "preferences",
 }));
-vi.mock("@react-native-async-storage/async-storage", () => ({ default: { getItem: mocks.get, setItem: mocks.set, removeItem: vi.fn() } }));
+vi.mock("@react-native-async-storage/async-storage", () => ({
+  default: { getItem: mocks.get, setItem: mocks.set, removeItem: mocks.remove_item },
+}));
 vi.mock("../src/AppContext", () => {
-  const api = { allowance: mocks.allowance };
+  const api = { allowance: mocks.allowance, delete_account: mocks.delete_account };
   const saved = { list: mocks.list };
   return { useApp: () => ({ user: mocks.user, api, saved, set_current: mocks.set_current }) };
 });
-vi.mock("../src/auth/firebase", () => ({ firebase: { reset_password: mocks.reset_password, sign_out: mocks.sign_out } }));
+vi.mock("../src/auth/firebase", () => ({
+  firebase: {
+    reset_password: mocks.reset_password,
+    sign_out: mocks.sign_out,
+    confirm_password: mocks.confirm_password,
+    delete_sign_in: mocks.delete_sign_in,
+  },
+}));
+vi.mock("../src/saved/photoStore", () => ({ remove_photo: vi.fn(), keep_photo: vi.fn() }));
 vi.mock("react-native", () => ({
   View: "View",
   Text: "Text",
   Pressable: "Pressable",
   ScrollView: "ScrollView",
   Switch: "Switch",
+  TextInput: "TextInput",
   ActivityIndicator: "ActivityIndicator",
   Modal: ({ visible, children, ...props }: { visible: boolean; children: ReactElement }) =>
     createElement("Modal", props, visible ? children : null),
@@ -198,6 +213,28 @@ describe("Settings interactions", () => {
     expect(text(tree)).toContain("Couldn’t sign out");
     await press(tree, "Confirm sign out");
     expect(mocks.sign_out).toHaveBeenCalledTimes(2);
+    expect(mocks.set_current).toHaveBeenCalledWith(null);
+  });
+  it("deletes the account only after the password is confirmed, and keeps a wrong password retryable", async () => {
+    mocks.remove_item.mockResolvedValue(undefined);
+    mocks.delete_account.mockResolvedValue(undefined);
+    mocks.delete_sign_in.mockResolvedValue(undefined);
+    const tree = await render(createElement(SettingsDetails, { category: "account" }));
+    await press(tree, "Delete account");
+    expect(text(tree)).toContain("doesn’t cancel a Premium subscription");
+    await act(async () => {
+      (tree.root.findByProps({ accessibilityLabel: "Password" }).props.onChangeText as (v: string) => void)("hunter22");
+    });
+    mocks.confirm_password.mockRejectedValueOnce(Object.assign(new Error("bad"), { code: "auth/wrong-password" }));
+    await press(tree, "Delete account forever");
+    expect(text(tree)).toContain("That password isn't right");
+    expect(mocks.delete_account).not.toHaveBeenCalled();
+    mocks.confirm_password.mockResolvedValue(undefined);
+    await press(tree, "Delete account forever");
+    expect(mocks.confirm_password).toHaveBeenLastCalledWith("hunter22");
+    expect(mocks.delete_account).toHaveBeenCalledWith("first");
+    expect(mocks.delete_sign_in).toHaveBeenCalledTimes(1);
+    expect(mocks.remove_item).toHaveBeenCalledWith("mealsandmixers.saved.v2.first");
     expect(mocks.set_current).toHaveBeenCalledWith(null);
   });
 });

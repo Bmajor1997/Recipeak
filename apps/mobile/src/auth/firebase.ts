@@ -8,8 +8,11 @@ import {
   type Auth,
   type Persistence,
   createUserWithEmailAndPassword,
+  deleteUser,
+  EmailAuthProvider,
   getAuth,
   onIdTokenChanged,
+  reauthenticateWithCredential,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut as firebaseSignOut,
@@ -84,6 +87,21 @@ export const firebase = {
   async sign_out() {
     if (!firebaseConfigured) return set_test_user(null);
     await firebaseSignOut(auth());
+  },
+  /** Checks the password again, and refreshes the sign-in so the server sees it as recent. */
+  async confirm_password(password: string) {
+    if (!firebaseConfigured) return;
+    const user = auth().currentUser;
+    if (!user?.email) throw new Error("Sign in again to delete your account.");
+    await reauthenticateWithCredential(user, EmailAuthProvider.credential(user.email, password));
+    await user.getIdToken(true);
+  },
+  /** Removes the sign-in itself. Run it after the server data is gone. */
+  async delete_sign_in() {
+    if (!firebaseConfigured) return set_test_user(null);
+    const user = auth().currentUser;
+    if (!user) throw new Error("Sign in again to delete your account.");
+    await deleteUser(user);
   },
   async id_token(expected_uid?: string): Promise<string | null> {
     if (!firebaseConfigured) return null;

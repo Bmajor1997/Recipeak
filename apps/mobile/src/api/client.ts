@@ -127,6 +127,10 @@ export function create_api({ baseUrl, id_token, fetch_impl = fetch, timeoutMs = 
     ): Promise<void> {
       await request("/api/recipe-rating", { method: "POST", body: input, expected_uid });
     },
+    /** Deletes everything the recipe server keeps for this account. Needs a sign-in from the last few minutes. */
+    async delete_account(expected_uid: string): Promise<void> {
+      await request("/api/account/delete", { method: "POST", body: {}, expected_uid });
+    },
     /** Sends a feature request or bug report. Sending again with the same request_id never saves it twice. */
     async send_feedback(input: { kind: FeedbackKind; title: string; description: string; request_id: string }): Promise<string> {
       const json = (await request("/api/feedback", {
