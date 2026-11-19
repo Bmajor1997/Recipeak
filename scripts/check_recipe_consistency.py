@@ -14,7 +14,7 @@ def read_json(path):
 
 
 def main():
-    with tempfile.TemporaryDirectory(prefix="recipeek-check-") as tmp:
+    with tempfile.TemporaryDirectory(prefix="recipeak-check-") as tmp:
         root = Path(tmp)
         for relative in ("scripts/build_recipes.py", "data/curated-photos/manifest.json"):
             target = root / relative

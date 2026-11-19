@@ -61,7 +61,7 @@ const IDENTIFY_SCHEMA = {
   },
 };
 
-const RECIPE_RULES = `You are the recipe engine for Recipeek, a cooking app.
+const RECIPE_RULES = `You are the recipe engine for Recipeak, a cooking app.
 - Give a good, representative home recipe for the dish or drink. Never claim it is the restaurant's or bar's exact recipe.
 - Use US measurements only: cups, tablespoons (tbsp), teaspoons (tsp), ounces (oz), pounds (lb), and degrees Fahrenheit.
 - List every one of the nine major US allergens the recipe contains.

@@ -1,5 +1,5 @@
 // The paywall, shown after the 3 free photos, when a free account tries to save a 4th recipe, or from "See Premium" in
-// the first-launch tour (design "A · Plan picker", approved 2026-11-15; art switched to the Recipeek logo 2026-11-17).
+// the first-launch tour (design "A · Plan picker", approved 2026-11-15; art switched to the Recipeak logo 2026-11-17).
 // Buying is not connected yet: RevenueCat and the Google Play products come in phase 3 (docs/PROJECT-PLAN.md).
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
@@ -41,7 +41,7 @@ export function Paywall({ reason, onClose }: { reason: PaywallReason; onClose: (
       </View>
 
       <View style={styles.artCard}>
-        <Image source={logo} style={styles.art} accessibilityLabel="Recipeek logo" />
+        <Image source={logo} style={styles.art} accessibilityLabel="Recipeak logo" />
       </View>
 
       <Text style={styles.eyebrow}>{paywall_eyebrow(reason)}</Text>

@@ -1,4 +1,4 @@
-// The first-launch tour (design "Recipeek onboarding mockup", approved 2026-11-17): welcome, try a sample dish,
+// The first-launch tour (design "Recipeak onboarding mockup", approved 2026-11-17): welcome, try a sample dish,
 // cocktails or meals, diet, camera, and what's free. Every step after the welcome can be skipped. The root layout
 // shows it in place of the app until it is finished, so nothing else (and no navigation) can open before it.
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -101,9 +101,9 @@ function Welcome({ onStart, onHaveAccount }: { onStart: () => void; onHaveAccoun
         style={StyleSheet.absoluteFill}
       />
       <View style={[styles.welcome, { paddingBottom: insets.bottom + 32 }]}>
-        <Image source={icon} style={styles.logo} accessibilityLabel="Recipeek logo" />
+        <Image source={icon} style={styles.logo} accessibilityLabel="Recipeak logo" />
         <Text style={styles.brand} accessibilityRole="header">
-          Recipeek
+          Recipeak
         </Text>
         <Text style={[type.body, { fontSize: 20, lineHeight: 28, textAlign: "center" }]}>
           Snap any meal or cocktail.{"\n"}Get the recipe.
@@ -291,7 +291,7 @@ function CameraStep({ onDone }: { onDone: () => void }) {
           Point, snap, cook
         </Text>
         <Text style={[type.muted, { fontSize: 17, lineHeight: 24, textAlign: "center", marginTop: 10 }]}>
-          Recipeek needs your camera to recognize the dish in front of you.
+          Recipeak needs your camera to recognize the dish in front of you.
         </Text>
         <View style={{ gap: 14, marginTop: 32, alignSelf: "stretch", paddingHorizontal: 4 }}>
           <Point bold="Only when you tap the camera." rest="We never record in the background." />

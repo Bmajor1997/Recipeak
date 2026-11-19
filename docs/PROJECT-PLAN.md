@@ -1,6 +1,6 @@
-# Recipeek — project plan
+# Recipeak — project plan
 
-Recipeek is the app's name (renamed from Meals and Mixers on 2026-11-16). The icon is the camera button's citrus ring with a serif R; redraw every size with `python3 scripts/make_app_icon.py`. The repository was renamed to `Bmajor1997/Recipeek` the same day. Package IDs, the URL scheme and storage keys keep the old name on purpose.
+Recipeak is the app's name (renamed from Meals and Mixers on 2026-11-16 as Recipeek, respelled Recipeak on 2026-11-19). The icon is the camera button's citrus ring with a serif R; redraw every size with `python3 scripts/make_app_icon.py`. The repository is `Bmajor1997/Recipeak` (GitHub forwards the old `Recipeek` and `Meals-and-Mixers` addresses). Package IDs and the URL scheme keep the original `mealsandmixers` name on purpose; the onboarding store still reads answers saved under the old `recipeek.` key.
 
 Status: **approved; phase 1 in progress**, updated 2026-11-15.
 

@@ -1,4 +1,4 @@
-// HTTP handler for the Recipeek backend. Plain Node http, like Votic: no framework to keep patched.
+// HTTP handler for the Recipeak backend. Plain Node http, like Votic: no framework to keep patched.
 import { AiLimitError, HttpError } from "./errors.js";
 import { ai_failure_reason, call_openai } from "./openai_gateway.js";
 import { curated_catalog, image_key } from "./dish_images.js";
