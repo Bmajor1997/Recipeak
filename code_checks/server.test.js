@@ -280,7 +280,7 @@ test("the privacy policy and terms are public pages with a strict content policy
     assert.match(r.headers.get("content-security-policy"), /default-src 'none'/);
     assert.doesNotMatch(r.headers.get("content-security-policy"), /script-src/);
     const html = await r.text();
-    assert.match(html, /majorapps\.support@gmail\.com/);
+    assert.match(html, /turelapps@gmail\.com/);
     assert.match(html, /Benjamin Major/);
     assert.doesNotMatch(html, /\{\{/);
   }
