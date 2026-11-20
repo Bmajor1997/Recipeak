@@ -16006,5 +16006,39 @@
     ],
     "make_ahead": "Bake the ribs in foil up to 2 days ahead and refrigerate. Sauce and broil just before serving.",
     "variations": ["Spare ribs or St. Louis ribs: bake for about 30 minutes longer.", "Finish on a hot grill instead of under the broiler."]
+  },
+  "cardinale": {
+    "title": "Cardinale",
+    "description": "A drier, sharper cousin of the Negroni: gin and dry vermouth with just a splash of Campari, stirred cold and served up.",
+    "servings": 1,
+    "prep_minutes": 3,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/3", "unit": "oz", "item": "London dry gin" },
+      { "amount": "2/3", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
+      { "amount": "2", "unit": "tsp", "item": "Campari" },
+      { "amount": "1", "unit": "", "item": "lemon twist, to garnish" },
+      { "amount": "", "unit": "", "item": "ice, for stirring" }
+    ],
+    "steps": [
+      "Chill a coupe or martini glass.",
+      "Add the gin, dry vermouth and Campari to a mixing glass and fill it with ice.",
+      "Stir for about 20 seconds, until very cold.",
+      "Strain into the chilled glass, squeeze the lemon twist over the top and drop it in."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "coupe",
+      "garnish": "lemon twist",
+      "alcoholic": true,
+      "non_alcoholic_version": "Stir 2 oz non-alcoholic gin alternative with 1/2 oz non-alcoholic bitter aperitivo and a dash of verjus over ice, then strain."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Stir, don't shake. Shaking clouds the drink and waters it down.",
+      "Keep your vermouth in the fridge once opened. It is wine and goes stale in a few weeks at room temperature."
+    ],
+    "make_ahead": "",
+    "variations": ["For a bolder drink, raise the Campari to 1/2 oz."]
   }
 }

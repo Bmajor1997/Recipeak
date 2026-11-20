@@ -2433,4 +2433,5 @@ export const COLLECTION: CollectionDish[] = [
     source: require("../../assets/collection/xiaolongbao.jpg"),
   },
   { id: "bbq-ribs", name: "Oven-Baked BBQ Ribs", kind: "meal", aliases: [], source: require("../../assets/collection/bbq-ribs.jpg") },
+  { id: "cardinale", name: "Cardinale", kind: "cocktail", aliases: [], source: require("../../assets/collection/cardinale.jpg") },
 ];
