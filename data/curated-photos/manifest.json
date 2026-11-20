@@ -3453,6 +3453,62 @@
       "names": [
         "Zaza"
       ]
+    },
+    {
+      "file": "appletini.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Appletini"
+      ]
+    },
+    {
+      "file": "tabbouleh.jpg",
+      "kind": "meal",
+      "names": [
+        "Tabbouleh"
+      ]
+    },
+    {
+      "file": "kimchi-jjigae.jpg",
+      "kind": "meal",
+      "names": [
+        "Kimchi Jjigae (Kimchi Stew)"
+      ]
+    },
+    {
+      "file": "buffalo-wings.jpg",
+      "kind": "meal",
+      "names": [
+        "Buffalo Wings"
+      ]
+    },
+    {
+      "file": "lobster-roll.jpg",
+      "kind": "meal",
+      "names": [
+        "Maine Lobster Roll"
+      ]
+    },
+    {
+      "file": "cape-codder.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Cape Codder"
+      ]
+    },
+    {
+      "file": "steak-chimichurri.jpg",
+      "kind": "meal",
+      "names": [
+        "Argentine Grilled Steak with Chimichurri"
+      ]
+    },
+    {
+      "file": "bangers-and-mash.jpg",
+      "kind": "meal",
+      "names": [
+        "Bangers and Mash with Onion Gravy"
+      ]
     }
   ]
 }
