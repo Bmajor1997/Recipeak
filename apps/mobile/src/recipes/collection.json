@@ -15557,5 +15557,454 @@
     ],
     "make_ahead": "",
     "variations": ["Use reposado tequila for a warmer, oakier drink."]
+  },
+  "egg-fried-rice": {
+    "title": "Egg Fried Rice",
+    "description": "The everyday Chinese fried rice: day-old rice tossed in a very hot pan with soft egg, peas, carrot and scallions. Ready in ten minutes.",
+    "servings": 4,
+    "prep_minutes": 10,
+    "cook_minutes": 10,
+    "ingredients": [
+      { "amount": "4", "unit": "cups", "item": "cold cooked jasmine rice, ideally a day old" },
+      { "amount": "3", "unit": "", "item": "large eggs, beaten with a pinch of salt" },
+      { "amount": "3", "unit": "tbsp", "item": "neutral oil, divided" },
+      { "amount": "2", "unit": "cloves", "item": "garlic, minced" },
+      { "amount": "1/2", "unit": "cup", "item": "frozen peas and diced carrots" },
+      { "amount": "3", "unit": "", "item": "scallions, thinly sliced, whites and greens kept apart" },
+      { "amount": "1 1/2", "unit": "tbsp", "item": "light soy sauce" },
+      { "amount": "1", "unit": "tsp", "item": "toasted sesame oil" },
+      { "amount": "1/4", "unit": "tsp", "item": "ground white pepper" },
+      { "amount": "", "unit": "", "item": "salt, to taste" }
+    ],
+    "steps": [
+      "Break up any clumps of rice with your fingers so the grains are separate.",
+      "Heat a wok or large skillet over high heat until it just starts to smoke. Add 1 tablespoon of the oil, pour in the eggs and scramble for 30 seconds, until just set but still glossy. Slide them onto a plate.",
+      "Add the rest of the oil, then the garlic and scallion whites. Stir for 15 seconds, until fragrant.",
+      "Add the peas and carrots and stir-fry for 1 minute.",
+      "Add the rice and spread it out. Let it sit for 30 seconds to toast, then toss. Repeat for 3 to 4 minutes, until every grain is hot and slightly chewy.",
+      "Add the soy sauce around the edge of the pan so it sizzles, then the sesame oil and white pepper. Toss well.",
+      "Return the egg, breaking it into pieces, add the scallion greens and toss once more. Taste for salt and serve right away."
+    ],
+    "allergens": ["eggs", "sesame", "soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Cold, day-old rice is drier, so it fries into separate grains. Fresh rice steams and turns mushy.",
+      "No leftover rice? Spread freshly cooked rice on a tray and refrigerate it uncovered for an hour.",
+      "Cook in two batches if your pan is small. A crowded pan can't stay hot enough to fry."
+    ],
+    "make_ahead": "Keep leftovers in the fridge for up to 3 days and reheat in a hot pan with a splash of water.",
+    "variations": [
+      "Yangzhou fried rice: add diced char siu and small shrimp with the peas.",
+      "Kimchi fried rice: add 1/2 cup chopped kimchi with the garlic and top with a fried egg."
+    ]
+  },
+  "texas-brisket": {
+    "title": "Texas-Style Smoked Brisket",
+    "description": "Central Texas barbecue at its simplest: a whole brisket rubbed with just coarse salt and pepper, smoked low and slow over oak until it's tender, juicy and wrapped in a dark, peppery bark.",
+    "servings": 12,
+    "prep_minutes": 30,
+    "cook_minutes": 720,
+    "ingredients": [
+      { "amount": "1", "unit": "", "item": "whole packer beef brisket (12 to 14 lb)" },
+      { "amount": "1/4", "unit": "cup", "item": "kosher salt" },
+      { "amount": "1/4", "unit": "cup", "item": "coarsely ground black pepper" },
+      { "amount": "", "unit": "", "item": "oak or hickory wood, for smoking" },
+      { "amount": "", "unit": "", "item": "pink butcher paper or heavy-duty foil, for wrapping" },
+      { "amount": "", "unit": "", "item": "pickles and sliced onion, to serve (optional)" }
+    ],
+    "steps": [
+      "Trim the hard fat on the fat side down to about 1/4 inch and remove any silver skin on the meat side.",
+      "Mix the salt and pepper and season the brisket generously on all sides. Let it sit while the smoker heats.",
+      "Heat a smoker to 250°F with oak or hickory. Put the brisket in fat side up, with the thicker end toward the hottest part of the smoker.",
+      "Smoke for 6 to 8 hours, until the bark is dark and set and the internal temperature reaches about 165°F. The temperature will stall for a while around this point; that's normal.",
+      "Wrap the brisket tightly in butcher paper or foil and return it to the smoker.",
+      "Keep cooking for 4 to 6 hours more, until the thickest part reaches 203°F and a probe slides in with almost no resistance.",
+      "Rest the wrapped brisket in an empty cooler or a 150°F oven for at least 1 hour, or up to 4.",
+      "Slice across the grain into pencil-thick slices, separating the lean flat from the fattier point, and serve with pickles and onion."
+    ],
+    "allergens": [],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "In Texas it comes on butcher paper with slices of white bread on the side.",
+      "Plan on 10 to 14 hours of cooking plus the rest. Start early: a finished brisket stays hot for hours wrapped in a cooler, but a late one can't be rushed.",
+      "Cook to feel, not just temperature. Done brisket feels like a probe sliding into soft butter.",
+      "The flat and point grains run in different directions. Cut the two apart before slicing each one across its grain."
+    ],
+    "make_ahead": "Wrap leftovers tightly and refrigerate for up to 4 days. Reheat slices wrapped in foil with a splash of broth at 300°F.",
+    "variations": [
+      "No smoker? Season, then roast on a rack at 275°F for about 6 hours, wrap in foil and cook to 203°F. It won't be smoky, but it will be tender."
+    ]
+  },
+  "lamb-shish-kebab": {
+    "title": "Lamb Shish Kebab",
+    "description": "Turkish grilled lamb skewers: chunks of leg of lamb marinated in onion juice, yogurt and red pepper paste, grilled with peppers and onion.",
+    "servings": 4,
+    "prep_minutes": 20,
+    "cook_minutes": 15,
+    "ingredients": [
+      { "amount": "2", "unit": "lb", "item": "boneless leg of lamb, cut into 1 1/2-inch cubes" },
+      { "amount": "1", "unit": "", "item": "large onion" },
+      { "amount": "1/2", "unit": "cup", "item": "plain whole-milk yogurt" },
+      { "amount": "3", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "1", "unit": "tbsp", "item": "Turkish red pepper paste (biber salçası) or tomato paste" },
+      { "amount": "2", "unit": "cloves", "item": "garlic, grated" },
+      { "amount": "1", "unit": "tsp", "item": "Aleppo pepper or 1/2 tsp red pepper flakes" },
+      { "amount": "1", "unit": "tsp", "item": "ground cumin" },
+      { "amount": "1", "unit": "tsp", "item": "kosher salt" },
+      { "amount": "1/2", "unit": "tsp", "item": "ground black pepper" },
+      { "amount": "2", "unit": "", "item": "green bell peppers, cut into 1 1/2-inch pieces" },
+      { "amount": "1", "unit": "", "item": "red onion, cut into 1 1/2-inch pieces" },
+      { "amount": "8", "unit": "", "item": "metal or soaked bamboo skewers" },
+      { "amount": "", "unit": "", "item": "warm flatbread, sliced tomatoes and sumac onions, to serve" }
+    ],
+    "steps": [
+      "Grate the large onion into a sieve set over a bowl and press hard to collect the juice. Discard the pulp.",
+      "Stir the yogurt, olive oil, pepper paste, garlic, Aleppo pepper, cumin, salt and black pepper into the onion juice. Add the lamb, toss well, cover and refrigerate for at least 4 hours, or overnight.",
+      "Thread the lamb onto skewers, alternating with pieces of pepper and red onion.",
+      "Heat a grill to high. Grill the skewers for 10 to 12 minutes, turning every few minutes, until charred outside and still pink inside (135°F for medium-rare).",
+      "Rest for 5 minutes, then serve with flatbread, tomatoes and sliced onions sprinkled with sumac."
+    ],
+    "allergens": ["milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Only the onion juice goes into the marinade. Bits of onion would burn on the grill.",
+      "Leave a little space between pieces on the skewer so the heat can reach every side."
+    ],
+    "make_ahead": "",
+    "variations": ["Chicken shish: use boneless chicken thighs and grill to 165°F."]
+  },
+  "bay-breeze": {
+    "title": "Bay Breeze",
+    "description": "A sweet, pink beach drink of vodka with cranberry and pineapple juice over ice.",
+    "servings": 1,
+    "prep_minutes": 2,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "vodka" },
+      { "amount": "3", "unit": "oz", "item": "cranberry juice cocktail" },
+      { "amount": "1 1/2", "unit": "oz", "item": "pineapple juice" },
+      { "amount": "1", "unit": "", "item": "lime wedge, to garnish" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Fill a highball glass with ice.",
+      "Pour in the vodka and cranberry juice.",
+      "Top with the pineapple juice, which floats for a two-tone look, then stir if you like.",
+      "Garnish with the lime wedge."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "lime wedge",
+      "alcoholic": true,
+      "non_alcoholic_version": "Build 4 oz cranberry juice and 2 oz pineapple juice over ice with a squeeze of lime."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": ["Shake the pineapple juice with ice first for a frothy top."],
+    "make_ahead": "",
+    "variations": ["Use coconut rum instead of vodka for a more tropical drink."]
+  },
+  "vento": {
+    "title": "Ve.n.to",
+    "description": "Italy's grappa sour: smooth white grappa with lemon, chamomile honey and chamomile cordial, served over ice with white grapes.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "smooth white grappa" },
+      { "amount": "3/4", "unit": "oz", "item": "fresh lemon juice" },
+      { "amount": "1/2", "unit": "oz", "item": "chamomile honey syrup (equal parts honey and hot chamomile tea)" },
+      { "amount": "1/2", "unit": "oz", "item": "chamomile cordial or liqueur" },
+      { "amount": "1", "unit": "tsp", "item": "egg white (optional)" },
+      { "amount": "", "unit": "", "item": "ice" },
+      { "amount": "1", "unit": "", "item": "strip of lemon zest, to garnish" },
+      { "amount": "3", "unit": "", "item": "white grapes on a pick, to garnish" }
+    ],
+    "steps": [
+      "Fill a small tumbler with ice.",
+      "Add the grappa, lemon juice, chamomile honey syrup, chamomile cordial and egg white, if using, to a shaker.",
+      "Fill with ice and shake hard for 15 seconds.",
+      "Strain into the tumbler and garnish with the lemon zest and grapes."
+    ],
+    "allergens": ["eggs"],
+    "cocktail": {
+      "glass": "small tumbler",
+      "garnish": "lemon zest and white grapes",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake 1 oz lemon juice, 3/4 oz chamomile honey syrup and 2 oz white grape juice with ice and strain over ice."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Make the syrup by stirring honey into an equal amount of freshly brewed chamomile tea. It keeps in the fridge for two weeks.",
+      "Choose a soft, young grappa. Aged or very strong grappas overpower the chamomile."
+    ],
+    "make_ahead": "Make the chamomile honey syrup up to two weeks ahead and keep it in the fridge.",
+    "variations": []
+  },
+  "ranch-water": {
+    "title": "Ranch Water",
+    "description": "The West Texas porch drink: blanco tequila and lots of fresh lime topped with bubbly Topo Chico mineral water.",
+    "servings": 1,
+    "prep_minutes": 2,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "2", "unit": "oz", "item": "blanco tequila" },
+      { "amount": "3/4", "unit": "oz", "item": "fresh lime juice" },
+      { "amount": "6", "unit": "oz", "item": "chilled Topo Chico or other sparkling mineral water" },
+      { "amount": "1", "unit": "", "item": "lime wedge, to garnish" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Fill a tall glass with ice.",
+      "Pour in the tequila and lime juice.",
+      "Top with the mineral water and stir gently.",
+      "Garnish with the lime wedge."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "lime wedge",
+      "alcoholic": true,
+      "non_alcoholic_version": "Build 1 oz lime juice and a pinch of salt over ice and top with 6 oz sparkling mineral water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Topo Chico is very fizzy and a little salty. Any strongly carbonated mineral water works.",
+      "For a little extra orange flavor, add 1/4 oz orange liqueur."
+    ],
+    "make_ahead": "",
+    "variations": []
+  },
+  "illegal": {
+    "title": "Illegal",
+    "description": "A smoky mezcal sour with funky overproof Jamaican rum, falernum and a dash of maraschino. Strong, tropical and layered.",
+    "servings": 1,
+    "prep_minutes": 4,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1", "unit": "oz", "item": "espadín mezcal" },
+      { "amount": "1/2", "unit": "oz", "item": "overproof white Jamaican rum" },
+      { "amount": "1/2", "unit": "oz", "item": "falernum" },
+      { "amount": "1", "unit": "bar spoon", "item": "maraschino liqueur" },
+      { "amount": "3/4", "unit": "oz", "item": "fresh lime juice" },
+      { "amount": "1/2", "unit": "oz", "item": "simple syrup" },
+      { "amount": "1", "unit": "tsp", "item": "egg white (optional)" },
+      { "amount": "", "unit": "", "item": "ice, for shaking" }
+    ],
+    "steps": [
+      "Chill a coupe or cocktail glass.",
+      "Add everything to a shaker and fill it with ice.",
+      "Shake hard for 15 seconds.",
+      "Strain into the chilled glass, or over fresh ice in a clay cup."
+    ],
+    "allergens": ["eggs"],
+    "cocktail": {
+      "glass": "coupe",
+      "garnish": "lime wheel",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake 1 oz lime juice, 1/2 oz falernum syrup and 1 oz pineapple juice with ice, strain, and add 2 drops of liquid smoke if you like."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "The small splash of egg white is only for texture. Leave it out and the drink is just as good.",
+      "Overproof rum is very strong. Measure it carefully."
+    ],
+    "make_ahead": "",
+    "variations": []
+  },
+  "old-cuban": {
+    "title": "Old Cuban",
+    "description": "Aged rum, lime, mint and bitters shaken together and topped with Champagne. Like an elegant, sparkling mojito.",
+    "servings": 1,
+    "prep_minutes": 4,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "6", "unit": "", "item": "fresh mint leaves, plus a sprig to garnish" },
+      { "amount": "1 1/2", "unit": "oz", "item": "aged rum" },
+      { "amount": "3/4", "unit": "oz", "item": "fresh lime juice" },
+      { "amount": "1", "unit": "oz", "item": "simple syrup" },
+      { "amount": "2", "unit": "dashes", "item": "Angostura bitters" },
+      { "amount": "2", "unit": "oz", "item": "chilled vegan brut Champagne (such as Moët & Chandon Impérial)" },
+      { "amount": "", "unit": "", "item": "ice, for shaking" }
+    ],
+    "steps": [
+      "Chill a coupe.",
+      "Add the mint, rum, lime juice, simple syrup and bitters to a shaker and fill it with ice.",
+      "Shake hard for 10 to 15 seconds.",
+      "Double strain through a fine strainer into the chilled coupe so no bits of mint get in.",
+      "Top with the Champagne and garnish with a mint sprig."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "coupe",
+      "garnish": "mint sprig",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake 1 oz lime juice, 1 oz simple syrup and 6 mint leaves with ice, strain, and top with 3 oz chilled ginger ale."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Don't muddle the mint hard. Shaking with ice releases enough flavor without the bitter, grassy taste of crushed leaves.",
+      "A dry prosecco works if you don't have Champagne.",
+      "Slap the mint sprig between your palms before garnishing to wake up its aroma."
+    ],
+    "make_ahead": "",
+    "variations": ["Old Cuban Royale: double the Champagne and serve in a flute."]
+  },
+  "spicy-fifty": {
+    "title": "Spicy Fifty",
+    "description": "Salvatore Calabrese's modern classic: vanilla vodka, elderflower, lime and honey with a slow warmth from fresh red chili.",
+    "servings": 1,
+    "prep_minutes": 4,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 2/3", "unit": "oz", "item": "vanilla vodka" },
+      { "amount": "1/2", "unit": "oz", "item": "elderflower cordial" },
+      { "amount": "1/2", "unit": "oz", "item": "fresh lime juice" },
+      { "amount": "1/3", "unit": "oz", "item": "honey syrup (equal parts honey and hot water)" },
+      { "amount": "2", "unit": "", "item": "thin slices of fresh red chili, seeds removed" },
+      { "amount": "1", "unit": "", "item": "small red chili, to garnish" },
+      { "amount": "", "unit": "", "item": "ice, for shaking" }
+    ],
+    "steps": [
+      "Chill a coupe or martini glass.",
+      "Add the chili slices to a shaker, then the vodka, elderflower cordial, lime juice and honey syrup.",
+      "Fill with ice and shake hard for 15 seconds.",
+      "Double-strain through a fine sieve into the chilled glass and hang the chili on the rim."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "coupe",
+      "garnish": "red chili",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake 1 oz elderflower cordial, 1 oz lime juice and a chili slice with ice, strain, and top with 2 oz soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Taste your chili first. Heat varies a lot; use one slice if it's fierce.",
+      "Double-straining catches the chili seeds and bits, so the drink stays smooth."
+    ],
+    "make_ahead": "",
+    "variations": []
+  },
+  "mulled-wine": {
+    "title": "Mulled Wine",
+    "description": "Red wine gently warmed with orange, cinnamon, cloves and star anise, sweetened and finished with a splash of brandy.",
+    "servings": 6,
+    "prep_minutes": 5,
+    "cook_minutes": 20,
+    "ingredients": [
+      { "amount": "1", "unit": "bottle (750 ml)", "item": "vegan dry red wine (such as Yellow Tail Shiraz)" },
+      { "amount": "1/4", "unit": "cup", "item": "brandy" },
+      { "amount": "1/4", "unit": "cup", "item": "sugar, plus more to taste" },
+      { "amount": "1", "unit": "", "item": "orange" },
+      { "amount": "2", "unit": "", "item": "cinnamon sticks, plus more to serve" },
+      { "amount": "6", "unit": "", "item": "whole cloves" },
+      { "amount": "2", "unit": "", "item": "star anise" }
+    ],
+    "steps": [
+      "Peel a few wide strips of zest from the orange with a vegetable peeler, then juice the orange.",
+      "Put the wine, orange juice, zest, sugar, cinnamon, cloves and star anise in a saucepan.",
+      "Warm over low heat, stirring until the sugar dissolves, for about 20 minutes. Keep it steaming but never let it boil.",
+      "Turn off the heat and stir in the brandy.",
+      "Strain into heatproof glasses or mugs and serve with a cinnamon stick."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "mug",
+      "garnish": "orange slice and cinnamon stick",
+      "alcoholic": true,
+      "non_alcoholic_version": "Warm 3 cups red grape juice, 1 cup apple juice, orange zest and the same spices gently for 15 minutes."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Don't let it boil. Boiling burns off the alcohol and makes the spices taste harsh.",
+      "Any inexpensive, fruity red works well. Save the good bottle."
+    ],
+    "make_ahead": "Keep it warm on the lowest heat or in a slow cooker for up to 2 hours.",
+    "variations": []
+  },
+  "xiaolongbao": {
+    "title": "Xiaolongbao (Soup Dumplings)",
+    "description": "Shanghai's famous soup dumplings: thin pleated wrappers around a gingery pork filling and a burst of hot broth. Served with black vinegar and ginger.",
+    "servings": 4,
+    "prep_minutes": 90,
+    "cook_minutes": 15,
+    "ingredients": [
+      { "amount": "1", "unit": "cup", "item": "low-sodium chicken broth" },
+      { "amount": "2 1/4", "unit": "tsp", "item": "unflavored powdered gelatin (1 packet)" },
+      { "amount": "2", "unit": "cups", "item": "all-purpose flour, plus more for rolling" },
+      { "amount": "3/4", "unit": "cup", "item": "warm water" },
+      { "amount": "8", "unit": "oz", "item": "ground pork (not too lean)" },
+      { "amount": "1", "unit": "tbsp", "item": "light soy sauce" },
+      { "amount": "1", "unit": "tbsp", "item": "Shaoxing wine" },
+      { "amount": "1", "unit": "tsp", "item": "toasted sesame oil" },
+      { "amount": "1", "unit": "tsp", "item": "sugar" },
+      { "amount": "1/2", "unit": "tsp", "item": "salt" },
+      { "amount": "1/4", "unit": "tsp", "item": "ground white pepper" },
+      { "amount": "1", "unit": "tbsp", "item": "minced fresh ginger" },
+      { "amount": "2", "unit": "", "item": "scallions, finely minced" },
+      { "amount": "1/4", "unit": "cup", "item": "Chinese black vinegar, to serve" },
+      { "amount": "1", "unit": "tbsp", "item": "fresh ginger cut into fine matchsticks, to serve" },
+      { "amount": "", "unit": "", "item": "napa cabbage leaves or parchment, for the steamer" }
+    ],
+    "steps": [
+      "Make the aspic: sprinkle the gelatin over the cold broth in a small pan and let it soften for 5 minutes. Warm gently, stirring, until dissolved. Pour into a shallow dish and chill for at least 3 hours, until firm.",
+      "Make the dough: stir the flour and warm water together, then knead for 8 to 10 minutes, until smooth. Cover and rest for 30 minutes.",
+      "Mix the pork, soy sauce, Shaoxing wine, sesame oil, sugar, salt, white pepper, minced ginger and scallions, stirring hard in one direction until sticky. Finely chop the aspic and fold it in. Keep the filling cold.",
+      "Roll the dough into a log and cut it into 32 pieces. Roll each into a 3 1/4-inch circle, thinner at the edges than in the center.",
+      "Put 1 tablespoon of filling in the center of a wrapper. Pleat the edge all the way around, about 16 to 18 small folds, then pinch and twist the top to seal.",
+      "Line a steamer with cabbage leaves or parchment and set the dumplings in it 1 inch apart.",
+      "Steam over boiling water for 8 minutes.",
+      "Serve right away with black vinegar and ginger matchsticks for dipping."
+    ],
+    "allergens": ["sesame", "soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Lift each dumpling gently into a spoon, nibble a small hole, sip the soup, then eat the rest.",
+      "Keep the filling and aspic cold while you work. Warm aspic melts and makes the dumplings hard to seal."
+    ],
+    "make_ahead": "Freeze uncooked dumplings on a floured tray, then bag them. Steam from frozen for 11 to 12 minutes.",
+    "variations": []
+  },
+  "bbq-ribs": {
+    "title": "Oven-Baked BBQ Ribs",
+    "description": "Fall-off-the-bone baby back ribs without a smoker: rubbed with smoky spices, baked low and slow in foil, then brushed with barbecue sauce and broiled until sticky.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 180,
+    "ingredients": [
+      { "amount": "2", "unit": "racks", "item": "baby back pork ribs (about 5 lb total)" },
+      { "amount": "2", "unit": "tbsp", "item": "brown sugar" },
+      { "amount": "1", "unit": "tbsp", "item": "smoked paprika" },
+      { "amount": "1", "unit": "tbsp", "item": "kosher salt" },
+      { "amount": "2", "unit": "tsp", "item": "garlic powder" },
+      { "amount": "2", "unit": "tsp", "item": "onion powder" },
+      { "amount": "1", "unit": "tsp", "item": "ground black pepper" },
+      { "amount": "1", "unit": "tsp", "item": "chili powder" },
+      { "amount": "1/2", "unit": "tsp", "item": "cayenne pepper (optional)" },
+      { "amount": "1 1/2", "unit": "cups", "item": "barbecue sauce" }
+    ],
+    "steps": [
+      "Heat the oven to 275°F. Pull the thin, shiny membrane off the bone side of each rack, using a paper towel to grip it. Pat the ribs dry.",
+      "Mix the brown sugar, paprika, salt, garlic powder, onion powder, black pepper, chili powder and cayenne. Rub it all over both racks.",
+      "Wrap each rack tightly in heavy-duty foil, meat side up, and set them on a baking sheet.",
+      "Bake for 2 1/2 to 3 hours, until the meat is very tender and has pulled back from the ends of the bones.",
+      "Carefully open the foil, pour off the juices and turn on the broiler.",
+      "Brush the ribs thickly with barbecue sauce and broil for 3 to 5 minutes, watching closely, until sticky and lightly charred. Brush with more sauce and rest for 5 minutes before cutting between the bones."
+    ],
+    "allergens": [],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Removing the membrane lets the rub in and makes the ribs more tender to eat.",
+      "Low heat and a tight foil seal steam the ribs until tender without drying them out.",
+      "Check the label if you need to avoid fish: some barbecue sauces contain Worcestershire sauce, which is made with anchovies."
+    ],
+    "make_ahead": "Bake the ribs in foil up to 2 days ahead and refrigerate. Sauce and broil just before serving.",
+    "variations": ["Spare ribs or St. Louis ribs: bake for about 30 minutes longer.", "Finish on a hot grill instead of under the broiler."]
   }
 }
