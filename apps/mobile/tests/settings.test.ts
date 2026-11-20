@@ -88,6 +88,6 @@ describe("legal links", () => {
       terms: "https://api.example.test/terms",
     });
     expect(legal_page_urls(undefined)).toBeNull();
-    expect(support_mail_url()).toBe("mailto:majorapps.support@gmail.com?subject=Recipeak%20support");
+    expect(support_mail_url()).toBe("mailto:turelapps@gmail.com?subject=Recipeak%20support");
   });
 });

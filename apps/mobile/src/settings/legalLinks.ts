@@ -1,5 +1,5 @@
 // Where the privacy policy, terms of use and support email live. The recipe server publishes the two pages.
-export const SUPPORT_EMAIL = "majorapps.support@gmail.com";
+export const SUPPORT_EMAIL = "turelapps@gmail.com";
 
 /** The public page addresses, or null when this build isn't connected to a recipe server. */
 export function legal_page_urls(base_url: string | undefined): { privacy: string; terms: string } | null {
