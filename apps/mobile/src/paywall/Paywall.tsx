@@ -1,9 +1,10 @@
 // The paywall, shown after the 3 free photos, when a free account tries to save a 4th recipe, or from "See Premium" in
-// the first-launch tour (design "A · Plan picker", approved 2026-11-15; art switched to the Recipeak logo 2026-11-17).
+// the first-launch tour (design "A · Plan picker", approved 2026-11-15; art: the outline place setting with a martini, approved 2026-11-20,
+// drawn straight on the background with no card behind it).
 // Buying is not connected yet: RevenueCat and the Google Play products come in phase 3 (docs/PROJECT-PLAN.md).
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   DEFAULT_PLAN,
@@ -18,7 +19,7 @@ import {
 } from "./plans";
 import { Button, Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
 
-const logo = require("../../assets/icon.png");
+const art = require("../../assets/paywall-art.png");
 const PLAN_ORDER: PlanId[] = ["yearly", "monthly"];
 const NOT_YET = "Subscriptions aren't open yet. Your saved recipes are still here, and we'll let you know when you can subscribe.";
 
@@ -26,6 +27,8 @@ export function Paywall({ reason, onClose }: { reason: PaywallReason; onClose: (
   const { colors, type } = useTheme();
   const styles = useThemedStyles(create_styles);
   const insets = useSafeAreaInsets();
+  // Exact sizes: Android otherwise sizes a bundled picture from its pixels and leaves a big gap around it.
+  const art_width = Math.min(340, useWindowDimensions().width - 48);
   const [selected, set_selected] = useState<PlanId>(DEFAULT_PLAN);
   const [notice, set_notice] = useState<string | null>(null);
 
@@ -40,8 +43,8 @@ export function Paywall({ reason, onClose }: { reason: PaywallReason; onClose: (
         </Pressable>
       </View>
 
-      <View style={styles.artCard}>
-        <Image source={logo} style={styles.art} accessibilityLabel="Recipeak logo" />
+      <View style={styles.artWrap}>
+        <Image source={art} style={{ width: art_width, height: (art_width * 600) / 1040 }} resizeMode="contain" accessible={false} />
       </View>
 
       <Text style={styles.eyebrow}>{paywall_eyebrow(reason)}</Text>
@@ -106,18 +109,7 @@ const create_styles = (colors: Palette) =>
       alignItems: "center",
       justifyContent: "center",
     },
-    artCard: {
-      height: 196,
-      marginTop: 8,
-      borderRadius: 24,
-      backgroundColor: colors.surface,
-      borderWidth: 1,
-      borderColor: colors.border,
-      alignItems: "center",
-      justifyContent: "center",
-      overflow: "hidden",
-    },
-    art: { width: 132, height: 132, borderRadius: 30 },
+    artWrap: { marginTop: 8, alignItems: "center" },
     eyebrow: { marginTop: 24, color: colors.accentInk, fontSize: 12, fontWeight: "700", letterSpacing: 1.4 },
     plans: { marginTop: 20, gap: 10 },
     plan: {
