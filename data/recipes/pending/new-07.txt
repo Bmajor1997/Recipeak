@@ -69,6 +69,25 @@ V Use the carnitas for burritos, tortas or rice bowls.
 T No grill? Char the corn directly over a gas burner, or under a hot broiler, turning often.
 T Feta is a good stand-in if you can't find cotija.
 V Esquites: cut the charred kernels off the cob and toss them with the same toppings to serve in cups.
+@@ vegetarian | Vegetarian Elote | 10 | 12 | eggs, milk | Mexican street corn, charred and slathered in mayonnaise and crema, rolled in a salty cotija-style cheese made without animal rennet, with chile and lime.
+~ finely crumbled cotija cheese => finely crumbled vegetarian cotija-style cheese (made with microbial rennet)
+~ Spread the cotija => Spread the cheese
+~ roll it in the cotija => roll it in the cheese
+T Traditional cotija is made with animal rennet. Look for one labeled vegetarian or made with microbial rennet, or use a vegetarian feta.
+@@ vegan | Vegan Elote | 10 | 12 | - | Mexican street corn, charred and slathered in a creamy lime-chile sauce, rolled in crumbled vegan feta.
+- 4 | | ears of corn, husked
+- 1 | tbsp | vegetable oil
+- 1/4 | cup | vegan mayonnaise
+- 1/4 | cup | dairy-free sour cream
+- 1/2 | cup | finely crumbled vegan feta-style cheese
+- 1 | tsp | ancho or guajillo chile powder, plus more to serve
+- 2 | tbsp | chopped cilantro
+- 1 | | lime, cut into wedges
+# Heat a grill or grill pan to medium-high. Brush the corn with oil and grill for 10 to 12 minutes, turning every couple of minutes, until tender and charred in spots.
+# Stir the vegan mayo and dairy-free sour cream together in a small bowl. Spread the crumbled vegan feta on a plate.
+# Brush each hot ear all over with the sauce, then roll it in the crumbles, pressing so they stick.
+# Sprinkle with chile powder and cilantro and serve with lime wedges for squeezing.
+T Check labels: some vegan mayonnaise contains soy, and some vegan cheeses are made from cashews or almonds.
 
 @ moqueca | Moqueca Baiana (Brazilian Fish Stew) | 4 | 25 | 25 | fish, shellfish | The coastal stew from Bahia, Brazil: firm white fish and shrimp simmered with peppers, tomatoes and onion in coconut milk, colored and flavored with red dendê palm oil.
 - 1 1/2 | lb | firm white fish fillets (such as cod, halibut or snapper), cut into 2-inch pieces

@@ -32,8 +32,8 @@ const VEGAN_OK = /\b(?:vegan|plant-based)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]
 const DAIRY_FREE_OK = /\b(?:vegan|plant-based|dairy-free)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
 const GLUTEN_FREE_OK = /\bgluten-free(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
 const NUT_FREE_OK = /\bnut-free(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
-// Cheeses made with animal rennet by tradition (Parmesan by law): not vegetarian, but easy to swap.
-const RENNET = /\b(?:parmesan|parmigiano|pecorino|grana padano)/i;
+// Cheeses made with animal rennet by tradition (Parmesan by law, cotija by custom): not vegetarian, but easy to swap.
+const RENNET = /\b(?:parmesan|parmigiano|pecorino|grana padano|cotija)/i;
 
 /** The first of the patterns found in the text. */
 function first_match(text: string, patterns: RegExp[] | undefined): string | null {

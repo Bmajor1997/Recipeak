@@ -71,7 +71,7 @@ const RECIPE_RULES = `You are the recipe engine for Recipeak, a cooking app.
 
 // What each diet version must leave out, and the words the app reads to know a brand-dependent item fits.
 const DIET_RULES = {
-  vegetarian: 'No meat, poultry, fish, shellfish, gelatin, fish sauce, anchovy or Worcestershire sauce. Parmesan and pecorino are made with animal rennet: use "vegetarian hard cheese" instead. Name plant-based swaps with the word "vegetarian" or "vegan" in front ("vegetarian Worcestershire sauce").',
+  vegetarian: 'No meat, poultry, fish, shellfish, gelatin, fish sauce, anchovy or Worcestershire sauce. Parmesan, pecorino and cotija are made with animal rennet: use "vegetarian hard cheese" (or "vegetarian cotija-style cheese") instead. Name plant-based swaps with the word "vegetarian" or "vegan" in front ("vegetarian Worcestershire sauce").',
   vegan: 'No meat, fish, eggs, dairy, honey or gelatin. Write "vegan" in front of anything whose brand decides it: wine, vermouth, sherry, port, beer, bread, wrappers, chocolate and every plant-based swap ("vegan sweet vermouth", "vegan butter").',
   "gluten-free": 'No wheat, barley or rye. Write "gluten-free" in front of anything that normally has gluten or whose brand decides it: soy sauce, flour, pasta, bread, beer, Worcestershire sauce, bouillon, sausage and oats ("gluten-free soy sauce").',
   "dairy-free": 'No milk, butter, cream, cheese, yogurt or ghee. Write "dairy-free" in front of the swaps and of bread or chocolate ("dairy-free butter").',

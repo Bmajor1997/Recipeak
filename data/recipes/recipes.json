@@ -15350,6 +15350,137 @@
    "variations": [
     "Esquites: cut the charred kernels off the cob and toss them with the same toppings to serve in cups."
    ]
+  },
+  "variants": {
+   "vegetarian": {
+    "title": "Vegetarian Elote",
+    "description": "Mexican street corn, charred and slathered in mayonnaise and crema, rolled in a salty cotija-style cheese made without animal rennet, with chile and lime.",
+    "servings": 4,
+    "prep_minutes": 10,
+    "cook_minutes": 12,
+    "ingredients": [
+     {
+      "amount": "4",
+      "unit": "",
+      "item": "ears of corn, husked"
+     },
+     {
+      "amount": "1",
+      "unit": "tbsp",
+      "item": "vegetable oil"
+     },
+     {
+      "amount": "1/4",
+      "unit": "cup",
+      "item": "mayonnaise"
+     },
+     {
+      "amount": "1/4",
+      "unit": "cup",
+      "item": "Mexican crema or sour cream"
+     },
+     {
+      "amount": "1/2",
+      "unit": "cup",
+      "item": "finely crumbled vegetarian cotija-style cheese (made with microbial rennet)"
+     },
+     {
+      "amount": "1",
+      "unit": "tsp",
+      "item": "ancho or guajillo chile powder, plus more to serve"
+     },
+     {
+      "amount": "2",
+      "unit": "tbsp",
+      "item": "chopped cilantro"
+     },
+     {
+      "amount": "1",
+      "unit": "",
+      "item": "lime, cut into wedges"
+     }
+    ],
+    "steps": [
+     "Heat a grill or grill pan to medium-high. Brush the corn with oil and grill for 10 to 12 minutes, turning every couple of minutes, until tender and charred in spots.",
+     "Mix the mayonnaise and crema in a small bowl. Spread the cheese on a plate.",
+     "Brush each hot ear all over with the mayonnaise mixture, then roll it in the cheese, pressing so it sticks.",
+     "Sprinkle with chile powder and cilantro and serve with lime wedges for squeezing."
+    ],
+    "allergens": [
+     "eggs",
+     "milk"
+    ],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+     "Traditional cotija is made with animal rennet. Look for one labeled vegetarian or made with microbial rennet, or use a vegetarian feta."
+    ],
+    "make_ahead": "",
+    "variations": []
+   },
+   "vegan": {
+    "title": "Vegan Elote",
+    "description": "Mexican street corn, charred and slathered in a creamy lime-chile sauce, rolled in crumbled vegan feta.",
+    "servings": 4,
+    "prep_minutes": 10,
+    "cook_minutes": 12,
+    "ingredients": [
+     {
+      "amount": "4",
+      "unit": "",
+      "item": "ears of corn, husked"
+     },
+     {
+      "amount": "1",
+      "unit": "tbsp",
+      "item": "vegetable oil"
+     },
+     {
+      "amount": "1/4",
+      "unit": "cup",
+      "item": "vegan mayonnaise"
+     },
+     {
+      "amount": "1/4",
+      "unit": "cup",
+      "item": "dairy-free sour cream"
+     },
+     {
+      "amount": "1/2",
+      "unit": "cup",
+      "item": "finely crumbled vegan feta-style cheese"
+     },
+     {
+      "amount": "1",
+      "unit": "tsp",
+      "item": "ancho or guajillo chile powder, plus more to serve"
+     },
+     {
+      "amount": "2",
+      "unit": "tbsp",
+      "item": "chopped cilantro"
+     },
+     {
+      "amount": "1",
+      "unit": "",
+      "item": "lime, cut into wedges"
+     }
+    ],
+    "steps": [
+     "Heat a grill or grill pan to medium-high. Brush the corn with oil and grill for 10 to 12 minutes, turning every couple of minutes, until tender and charred in spots.",
+     "Stir the vegan mayo and dairy-free sour cream together in a small bowl. Spread the crumbled vegan feta on a plate.",
+     "Brush each hot ear all over with the sauce, then roll it in the crumbles, pressing so they stick.",
+     "Sprinkle with chile powder and cilantro and serve with lime wedges for squeezing."
+    ],
+    "allergens": [],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+     "Check labels: some vegan mayonnaise contains soy, and some vegan cheeses are made from cashews or almonds."
+    ],
+    "make_ahead": "",
+    "variations": []
+   }
   }
  },
  "encebollado": {
