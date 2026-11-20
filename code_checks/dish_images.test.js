@@ -86,15 +86,15 @@ test("installing hand-picked photos is safe to repeat and ignores bad entries", 
 
 test("a missing photo is created once in the background, then served to everyone", async (t) => {
   const { images, store, calls, dir } = library(t, { delay: 30 });
-  assert.deepEqual(images.status({ kind: "cocktail", name: "Kamikaze", user_id: "alice" }), { status: "pending", url: null });
-  assert.deepEqual(images.status({ kind: "cocktail", name: "kamikaze", user_id: "bob" }), { status: "pending", url: null });
+  assert.deepEqual(images.status({ kind: "cocktail", name: "Imaginary Test Cocktail", user_id: "alice" }), { status: "pending", url: null });
+  assert.deepEqual(images.status({ kind: "cocktail", name: "imaginary test cocktail", user_id: "bob" }), { status: "pending", url: null });
   await images.settled();
   assert.equal(calls.length, 1, "two requests for the same dish make one image");
   assert.equal(calls[0].body.size, "1024x1536");
   assert.equal(calls[0].body.output_format, "jpeg");
-  const ready = images.status({ kind: "cocktail", name: "Kamikaze", user_id: "carol" });
+  const ready = images.status({ kind: "cocktail", name: "Imaginary Test Cocktail", user_id: "carol" });
   assert.equal(ready.status, "ready");
-  assert.equal(ready.url, `/images/${image_key("cocktail", "Kamikaze")}.jpg`);
+  assert.equal(ready.url, `/images/${image_key("cocktail", "Imaginary Test Cocktail")}.jpg`);
   assert.equal(calls.length, 1);
   assert.deepEqual(readdirSync(dir).filter((f) => f.endsWith(".tmp")), [], "no half-written files left behind");
   const [row] = store.records();
@@ -144,7 +144,7 @@ test("the server returns photos for every guess and serves the files publicly", 
     ingredients: [{ amount: "2", unit: "oz", item: "tequila" }], steps: ["Shake."], allergens: [],
     cocktail: { glass: "Rocks", garnish: "Lime", alcoholic: true, non_alcoholic_version: null }, note: "",
   };
-  const reply = { kind: "cocktail", guesses: [{ name: "Margarita", confidence: "high" }, { name: "Kamikaze", confidence: "low" }], recipe };
+  const reply = { kind: "cocktail", guesses: [{ name: "Margarita", confidence: "high" }, { name: "Imaginary Test Cocktail", confidence: "low" }], recipe };
   const fetch_impl = async () => ({
     ok: true, status: 200, headers: { get: () => null },
     json: async () => ({ status: "completed", usage: { input_tokens: 10, output_tokens: 10, total_tokens: 20 },

@@ -15030,5 +15030,532 @@
     ],
     "make_ahead": "Store at room temperature, loosely covered, for up to 1 week. Don't refrigerate; it softens the pastry.",
     "variations": ["Use pistachios, or a mix of walnuts and pistachios, for the filling."]
+  },
+  "kabsa": {
+    "title": "Chicken Kabsa",
+    "description": "Saudi Arabia's national dish: chicken and basmati rice cooked together in a tomato broth scented with cardamom, cinnamon, cloves and dried lime, topped with toasted almonds and raisins.",
+    "servings": 6,
+    "prep_minutes": 20,
+    "cook_minutes": 60,
+    "ingredients": [
+      { "amount": "3", "unit": "lb", "item": "bone-in chicken pieces (thighs and drumsticks)" },
+      { "amount": "3", "unit": "tbsp", "item": "vegetable oil" },
+      { "amount": "2", "unit": "", "item": "onions, chopped" },
+      { "amount": "4", "unit": "cloves", "item": "garlic, minced" },
+      { "amount": "1", "unit": "tbsp", "item": "grated fresh ginger" },
+      { "amount": "2", "unit": "tbsp", "item": "tomato paste" },
+      { "amount": "2", "unit": "", "item": "tomatoes, chopped" },
+      { "amount": "1", "unit": "", "item": "carrot, grated" },
+      { "amount": "2", "unit": "", "item": "dried limes (loomi), pierced with a knife" },
+      { "amount": "1", "unit": "", "item": "cinnamon stick" },
+      { "amount": "6", "unit": "", "item": "green cardamom pods, cracked" },
+      { "amount": "4", "unit": "", "item": "whole cloves" },
+      { "amount": "2", "unit": "", "item": "bay leaves" },
+      { "amount": "2", "unit": "tbsp", "item": "kabsa spice mix or baharat" },
+      { "amount": "2 1/2", "unit": "tsp", "item": "kosher salt" },
+      { "amount": "5", "unit": "cups", "item": "water" },
+      { "amount": "2 1/2", "unit": "cups", "item": "basmati rice, rinsed and soaked for 20 minutes" },
+      { "amount": "1/3", "unit": "cup", "item": "slivered almonds, toasted" },
+      { "amount": "1/3", "unit": "cup", "item": "golden raisins" },
+      { "amount": "2", "unit": "tbsp", "item": "chopped parsley, to serve" }
+    ],
+    "steps": [
+      "Heat the oil in a large, wide pot over medium-high heat. Brown the chicken on both sides in batches, about 8 minutes, and set it aside.",
+      "Add the onions to the pot and cook for 6 to 8 minutes, until golden. Add the garlic and ginger and cook for 1 minute.",
+      "Stir in the tomato paste, tomatoes, carrot, dried limes, cinnamon, cardamom, cloves, bay leaves, spice mix and salt and cook for 2 minutes.",
+      "Return the chicken, add the water and bring to a boil. Cover and simmer for 30 minutes, until the chicken is tender.",
+      "Lift out the chicken. If you like, brown it under a hot broiler for 5 minutes while the rice cooks.",
+      "Drain the rice and stir it into the broth. Bring back to a boil, then cover tightly and cook over very low heat for 20 minutes, until the rice is tender and the liquid is absorbed.",
+      "Rest for 5 minutes, then fluff the rice onto a large platter, set the chicken on top and scatter with almonds, raisins and parsley."
+    ],
+    "allergens": ["tree nuts"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Dried limes give kabsa its tangy, slightly smoky flavor. Find them at Middle Eastern grocers; a strip of lime zest and a squeeze of juice is a rough stand-in.",
+      "Measure the broth after the chicken comes out: you want about 4 cups for the rice. Add water or boil it down as needed.",
+      "Nut allergy? Leave off the almonds; the dish is just as good."
+    ],
+    "make_ahead": "Refrigerate leftovers for up to 3 days and reheat covered with a splash of water.",
+    "variations": ["Lamb kabsa: use 3 lb bone-in lamb shoulder pieces and simmer for 1 1/2 hours before adding the rice."]
+  },
+  "kamikaze": {
+    "title": "Kamikaze",
+    "description": "Equal parts vodka, triple sec and fresh lime, shaken hard. Like a vodka margarita, served up or as shots.",
+    "servings": 1,
+    "prep_minutes": 2,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1", "unit": "oz", "item": "vodka" },
+      { "amount": "1", "unit": "oz", "item": "triple sec" },
+      { "amount": "1", "unit": "oz", "item": "fresh lime juice" },
+      { "amount": "1", "unit": "", "item": "lime wedge, to garnish" },
+      { "amount": "", "unit": "", "item": "ice, for shaking" }
+    ],
+    "steps": [
+      "Chill a cocktail glass, or two shot glasses.",
+      "Add the vodka, triple sec and lime juice to a shaker and fill it with ice.",
+      "Shake hard for 10 seconds.",
+      "Strain into the glass and garnish with the lime wedge."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "cocktail glass",
+      "garnish": "lime wedge",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake 1 oz lime juice, 1 oz orange juice and 1/2 oz simple syrup with ice and strain."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": ["Fresh lime makes all the difference. Bottled lime juice makes it taste harsh."],
+    "make_ahead": "",
+    "variations": ["Blue Kamikaze: use blue curaçao instead of triple sec."]
+  },
+  "hummus": {
+    "title": "Hummus",
+    "description": "Silky, whipped chickpea and tahini dip with lemon and garlic, finished with olive oil. Cooking dried chickpeas until very soft is the secret to its smoothness.",
+    "servings": 6,
+    "prep_minutes": 15,
+    "cook_minutes": 60,
+    "ingredients": [
+      { "amount": "1", "unit": "cup", "item": "dried chickpeas" },
+      { "amount": "1", "unit": "tsp", "item": "baking soda, divided" },
+      { "amount": "2/3", "unit": "cup", "item": "tahini, well stirred" },
+      { "amount": "1/4", "unit": "cup", "item": "fresh lemon juice" },
+      { "amount": "2", "unit": "cloves", "item": "garlic" },
+      { "amount": "1", "unit": "tsp", "item": "salt, plus more to taste" },
+      { "amount": "1/3", "unit": "cup", "item": "ice water" },
+      { "amount": "1/2", "unit": "tsp", "item": "ground cumin (optional)" },
+      { "amount": "", "unit": "", "item": "extra-virgin olive oil, paprika and chopped parsley, to serve" },
+      { "amount": "", "unit": "", "item": "warm pita bread, to serve" }
+    ],
+    "steps": [
+      "The night before, cover the chickpeas with plenty of cold water, stir in 1/2 teaspoon of the baking soda, and soak overnight.",
+      "Drain and rinse the chickpeas, put them in a pot with the rest of the baking soda and cover them by 3 inches with fresh water.",
+      "Bring to a boil, skim off any foam and skins, then simmer for 45 to 60 minutes, until the chickpeas are very soft and fall apart when pressed. Drain well.",
+      "Blend the lemon juice, garlic and salt in a food processor and let it sit for 5 minutes to mellow the garlic.",
+      "Add the tahini and blend until thick, then pour in the ice water little by little with the machine running, until the mixture turns pale and smooth.",
+      "Add the warm chickpeas and the cumin, if using, and blend for 3 to 4 minutes, scraping down the sides, until completely smooth. Add more ice water if it's too thick.",
+      "Taste for salt and lemon. Spread in a shallow bowl, swirl a groove with the back of a spoon, and fill it with olive oil. Sprinkle with paprika and parsley and serve with warm pita."
+    ],
+    "allergens": ["sesame", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Overcooking the chickpeas is the goal: soft chickpeas blend smooth, while firm ones stay grainy.",
+      "Ice water makes the tahini fluffy and lightens its color.",
+      "Good tahini matters most. It should taste nutty and pour easily, not bitter or stiff."
+    ],
+    "make_ahead": "Keep it covered in the fridge for up to 5 days. Bring it to room temperature and stir in a spoonful of water before serving.",
+    "variations": [
+      "Quick version: simmer 2 cans of drained chickpeas with 1/2 teaspoon baking soda for 20 minutes, then rinse and blend.",
+      "Hummus with meat: top with spiced ground lamb and toasted pine nuts."
+    ]
+  },
+  "creme-brulee": {
+    "title": "Crème Brûlée",
+    "description": "The French classic: a silky vanilla bean custard baked gently in a water bath, chilled, then topped with a glassy layer of caramelized sugar to crack with your spoon.",
+    "servings": 6,
+    "prep_minutes": 20,
+    "cook_minutes": 40,
+    "ingredients": [
+      { "amount": "3", "unit": "cups", "item": "heavy cream" },
+      { "amount": "1", "unit": "", "item": "vanilla bean, split and seeds scraped (or 2 tsp vanilla extract)" },
+      { "amount": "6", "unit": "", "item": "large egg yolks" },
+      { "amount": "1/2", "unit": "cup", "item": "sugar" },
+      { "amount": "1", "unit": "pinch", "item": "salt" },
+      { "amount": "6", "unit": "tsp", "item": "superfine or turbinado sugar, for the tops" }
+    ],
+    "steps": [
+      "Heat the oven to 300°F and bring a kettle of water to a boil. Set six 6-ounce ramekins in a roasting pan.",
+      "Heat the cream with the vanilla seeds and pod until it just begins to steam. Turn off the heat and let it steep for 15 minutes, then remove the pod.",
+      "Whisk the yolks, 1/2 cup sugar and salt until pale. Slowly whisk in the warm cream, a little at a time.",
+      "Strain the custard into a pitcher and pour it into the ramekins.",
+      "Pour boiling water into the roasting pan to come halfway up the sides of the ramekins.",
+      "Bake for 35 to 40 minutes, until set at the edges but still wobbly in the center.",
+      "Cool the ramekins on a rack, then cover and refrigerate for at least 4 hours.",
+      "Just before serving, sprinkle each with 1 teaspoon sugar and melt it with a kitchen torch until deep golden and bubbling. Let it harden for 1 minute."
+    ],
+    "allergens": ["eggs", "milk"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Add the warm cream slowly. Pouring it in all at once can scramble the yolks.",
+      "No torch? Put the sugared custards under a very hot broiler for 1 to 2 minutes, watching closely."
+    ],
+    "make_ahead": "Bake the custards up to 3 days ahead. Caramelize the tops just before serving.",
+    "variations": ["Add the zest of an orange or a spoonful of espresso powder to the cream."]
+  },
+  "flan": {
+    "title": "Flan",
+    "description": "The Latin American caramel custard: a silky, vanilla-scented egg and milk custard baked in a water bath over a layer of caramel that becomes a golden sauce when you turn it out.",
+    "servings": 8,
+    "prep_minutes": 20,
+    "cook_minutes": 60,
+    "ingredients": [
+      { "amount": "3/4", "unit": "cup", "item": "sugar, for the caramel" },
+      { "amount": "3", "unit": "tbsp", "item": "water, for the caramel" },
+      { "amount": "1", "unit": "can (14 oz)", "item": "sweetened condensed milk" },
+      { "amount": "1", "unit": "can (12 oz)", "item": "evaporated milk" },
+      { "amount": "1/2", "unit": "cup", "item": "whole milk" },
+      { "amount": "4", "unit": "", "item": "large eggs" },
+      { "amount": "2", "unit": "", "item": "large egg yolks" },
+      { "amount": "2", "unit": "tsp", "item": "vanilla extract" },
+      { "amount": "1/4", "unit": "tsp", "item": "salt" }
+    ],
+    "steps": [
+      "Heat the oven to 325°F and bring a kettle of water to a boil. Set a 9-inch round cake pan or 8 1/2 x 4 1/2-inch loaf pan inside a larger roasting pan.",
+      "Make the caramel: stir the sugar and water in a small, heavy saucepan and cook over medium-high heat without stirring, swirling the pan now and then, until it turns a deep amber, 6 to 8 minutes.",
+      "Immediately pour the caramel into the cake pan and tilt to coat the bottom. It will harden; that's fine.",
+      "Whisk the condensed milk, evaporated milk, whole milk, eggs, yolks, vanilla and salt until smooth, without beating in air. Strain through a fine sieve over the caramel.",
+      "Cover the pan with foil. Pour boiling water into the roasting pan to come halfway up the sides.",
+      "Bake for 50 to 65 minutes, until the edges are set and the center jiggles slightly.",
+      "Cool in the water bath for 30 minutes, then refrigerate for at least 6 hours, or overnight.",
+      "To serve, run a thin knife around the edge, set a deep plate on top and flip quickly. Let the caramel pour over."
+    ],
+    "allergens": ["eggs", "milk"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Watch the caramel closely. It goes from amber to burnt in seconds, and burnt caramel tastes bitter.",
+      "Straining the custard catches any bits of egg, so the flan is perfectly smooth."
+    ],
+    "make_ahead": "Flan keeps covered in its pan in the fridge for up to 4 days. Unmold just before serving.",
+    "variations": ["Coconut flan: replace the whole milk with coconut milk and add 1/2 cup sweetened shredded coconut."]
+  },
+  "sea-breeze": {
+    "title": "Sea Breeze",
+    "description": "Vodka with tart cranberry and a splash of grapefruit, poured over ice. Pink, easy and very refreshing.",
+    "servings": 1,
+    "prep_minutes": 2,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/3", "unit": "oz", "item": "vodka" },
+      { "amount": "4", "unit": "oz", "item": "cranberry juice" },
+      { "amount": "1", "unit": "oz", "item": "grapefruit juice, preferably fresh" },
+      { "amount": "1", "unit": "", "item": "orange twist, to garnish" },
+      { "amount": "1", "unit": "", "item": "cherry, to garnish" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Fill a highball glass with ice.",
+      "Pour in the vodka, cranberry juice and grapefruit juice and stir briefly.",
+      "Garnish with the orange twist and cherry."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "orange twist and cherry",
+      "alcoholic": true,
+      "non_alcoholic_version": "Build 4 oz cranberry juice and 2 oz grapefruit juice over ice and top with a splash of soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Fresh grapefruit juice makes a big difference: it's sharper and less sweet than bottled.",
+      "For a foamy top, shake everything with ice and strain over fresh ice instead of building it."
+    ],
+    "make_ahead": "",
+    "variations": [
+      "Bay Breeze: use pineapple juice in place of the grapefruit juice.",
+      "Cape Codder: leave out the grapefruit juice and garnish with lime."
+    ]
+  },
+  "potato-gnocchi": {
+    "title": "Potato Gnocchi with Brown Butter and Sage",
+    "description": "Light, pillowy Italian potato dumplings made from baked russets, a little flour and an egg, tossed in nutty brown butter with crisp sage leaves.",
+    "servings": 4,
+    "prep_minutes": 45,
+    "cook_minutes": 70,
+    "ingredients": [
+      { "amount": "2", "unit": "lb", "item": "russet potatoes, scrubbed" },
+      { "amount": "1", "unit": "", "item": "large egg, beaten" },
+      { "amount": "1", "unit": "tsp", "item": "kosher salt, plus more for the water" },
+      { "amount": "1", "unit": "cup", "item": "all-purpose flour, plus more for dusting" },
+      { "amount": "6", "unit": "tbsp", "item": "unsalted butter" },
+      { "amount": "12", "unit": "", "item": "fresh sage leaves" },
+      { "amount": "", "unit": "", "item": "black pepper, to taste" }
+    ],
+    "steps": [
+      "Heat the oven to 400°F. Prick the potatoes and bake them directly on the rack for 50 to 60 minutes, until very tender.",
+      "While they're still hot, peel the potatoes and press them through a ricer onto a clean counter. Spread them out and let them steam for 5 minutes.",
+      "Sprinkle the egg, salt and 3/4 cup of the flour over the potatoes. Gently fold and press together with a bench scraper or your hands, adding more flour only as needed, until a soft dough forms. Don't knead.",
+      "Divide the dough into 4 pieces. Roll each into a 3/4-inch rope on a floured counter and cut into 3/4-inch pieces. Roll each over a fork if you like, for ridges.",
+      "Bring a large pot of salted water to a gentle boil. Cook the gnocchi in batches until they float, then 30 seconds more, about 2 minutes. Lift them out with a slotted spoon.",
+      "Meanwhile, melt the butter in a large skillet over medium heat and cook, swirling, until it smells nutty and turns golden brown. Add the sage and fry for 30 seconds, until crisp.",
+      "Add the gnocchi to the brown butter, toss gently, season with pepper and serve."
+    ],
+    "allergens": ["eggs", "milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Bake the potatoes instead of boiling them. Drier potatoes need less flour, and less flour means lighter gnocchi.",
+      "Use as little flour as you can. Too much makes gnocchi dense and chewy."
+    ],
+    "make_ahead": "Freeze uncooked gnocchi on a floured tray, then bag them. Cook from frozen for 3 to 4 minutes.",
+    "variations": ["Serve with tomato sauce or pesto instead of brown butter."]
+  },
+  "rabo-de-galo": {
+    "title": "Rabo de Galo",
+    "description": "Brazil's own bittersweet aperitif: cachaça stirred over ice with sweet vermouth and a touch of Cynar. The name means \"rooster's tail\".",
+    "servings": 1,
+    "prep_minutes": 2,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "2", "unit": "oz", "item": "cachaça" },
+      { "amount": "2/3", "unit": "oz", "item": "vegan sweet vermouth (such as Dolin Rouge)" },
+      { "amount": "1/2", "unit": "oz", "item": "Cynar" },
+      { "amount": "2", "unit": "dashes", "item": "Angostura bitters (optional)" },
+      { "amount": "1", "unit": "", "item": "orange twist, to garnish" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Fill a rocks glass with ice.",
+      "Pour in the cachaça, sweet vermouth, Cynar and bitters, if using.",
+      "Stir briefly to chill and mix.",
+      "Squeeze the orange twist over the drink and drop it in."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "rocks glass",
+      "garnish": "orange twist",
+      "alcoholic": true,
+      "non_alcoholic_version": "Stir 2 oz non-alcoholic red aperitivo with a splash of cold black tea and a dash of orange juice over ice."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Cynar is an Italian artichoke liqueur. It adds a gentle bitterness; Campari works if you can't find it.",
+      "Unaged (silver) cachaça gives a grassier drink; aged cachaça makes it rounder and warmer."
+    ],
+    "make_ahead": "",
+    "variations": []
+  },
+  "sangria": {
+    "title": "Red Wine Sangria",
+    "description": "Spain's party punch: fruity red wine soaked overnight with orange, lemon, apple, brandy and a little orange liqueur, then poured over ice.",
+    "servings": 6,
+    "prep_minutes": 15,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1", "unit": "bottle (750 ml)", "item": "chilled vegan dry red wine (such as Yellow Tail Shiraz)" },
+      { "amount": "1/2", "unit": "cup", "item": "brandy" },
+      { "amount": "1/4", "unit": "cup", "item": "orange liqueur (such as Cointreau)" },
+      { "amount": "1/2", "unit": "cup", "item": "fresh orange juice" },
+      { "amount": "2", "unit": "tbsp", "item": "sugar, plus more to taste" },
+      { "amount": "1", "unit": "", "item": "orange, thinly sliced" },
+      { "amount": "1", "unit": "", "item": "lemon, thinly sliced" },
+      { "amount": "1", "unit": "", "item": "apple, cored and cut into small cubes" },
+      { "amount": "1", "unit": "", "item": "cinnamon stick (optional)" },
+      { "amount": "1", "unit": "cup", "item": "chilled sparkling water (optional), to serve" },
+      { "amount": "", "unit": "", "item": "ice, to serve" }
+    ],
+    "steps": [
+      "In a large pitcher, stir the sugar into the orange juice, brandy and orange liqueur until it dissolves.",
+      "Add the orange, lemon and apple and the cinnamon stick, if using.",
+      "Pour in the wine and stir.",
+      "Cover and chill for at least 4 hours, or overnight.",
+      "Just before serving, stir in the sparkling water, if using, and pour over ice with some of the fruit in each glass."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "wine glass",
+      "garnish": "orange slice",
+      "alcoholic": true,
+      "non_alcoholic_version": "Mix 3 cups red grape juice, 1 cup orange juice, the sliced fruit and a cinnamon stick, chill, and top with lemon-lime soda."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Use a fruity, not-too-oaky red. Spanish Garnacha or Tempranillo is traditional.",
+      "Taste after chilling and add more sugar if needed. Cold drinks taste less sweet."
+    ],
+    "make_ahead": "Make it the day before. The flavor gets better as the fruit soaks.",
+    "variations": ["White Sangria: use a dry white wine and add peaches or green grapes."]
+  },
+  "sloe-gin-fizz": {
+    "title": "Sloe Gin Fizz",
+    "description": "Ruby-red sloe gin shaken with lemon and a little sugar, then topped with soda. Fruity, tart and light.",
+    "servings": 1,
+    "prep_minutes": 3,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "sloe gin" },
+      { "amount": "3/4", "unit": "oz", "item": "fresh lemon juice" },
+      { "amount": "1/4", "unit": "oz", "item": "simple syrup" },
+      { "amount": "2", "unit": "oz", "item": "chilled soda water" },
+      { "amount": "1", "unit": "", "item": "lemon slice, to garnish" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Fill a highball glass with ice.",
+      "Add the sloe gin, lemon juice and simple syrup to a shaker with ice and shake for 10 seconds.",
+      "Strain into the glass.",
+      "Top with the soda water, stir once and garnish with the lemon slice."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "lemon slice",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake 1 oz plum or blackcurrant syrup with 3/4 oz lemon juice, strain over ice and top with 4 oz soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": ["Sloe gin is sweeter and lower in alcohol than regular gin. Taste before adding the syrup."],
+    "make_ahead": "",
+    "variations": ["Swap half the sloe gin for London dry gin for a drier, stronger drink."]
+  },
+  "borscht": {
+    "title": "Ukrainian Borscht",
+    "description": "Ukraine's ruby-red beet soup: beef broth simmered with beets, cabbage, potatoes and carrots, made tangy with a splash of vinegar and finished with dill and sour cream.",
+    "servings": 6,
+    "prep_minutes": 25,
+    "cook_minutes": 95,
+    "ingredients": [
+      { "amount": "1", "unit": "lb", "item": "boneless beef chuck, cut into 3/4-inch cubes" },
+      { "amount": "8", "unit": "cups", "item": "water" },
+      { "amount": "1", "unit": "", "item": "bay leaf" },
+      { "amount": "2 1/2", "unit": "tsp", "item": "kosher salt, plus more to taste" },
+      { "amount": "2", "unit": "tbsp", "item": "sunflower or vegetable oil" },
+      { "amount": "1", "unit": "", "item": "onion, chopped" },
+      { "amount": "1", "unit": "", "item": "carrot, grated" },
+      { "amount": "3", "unit": "", "item": "medium beets, peeled and grated or cut into thin matchsticks" },
+      { "amount": "2", "unit": "tbsp", "item": "tomato paste" },
+      { "amount": "2", "unit": "tbsp", "item": "white vinegar, plus more to taste" },
+      { "amount": "1", "unit": "tsp", "item": "sugar" },
+      { "amount": "2", "unit": "", "item": "medium potatoes, peeled and cubed" },
+      { "amount": "3", "unit": "cups", "item": "thinly shredded green cabbage" },
+      { "amount": "3", "unit": "cloves", "item": "garlic, minced" },
+      { "amount": "1/4", "unit": "cup", "item": "chopped fresh dill, plus more to serve" },
+      { "amount": "", "unit": "", "item": "sour cream, to serve" }
+    ],
+    "steps": [
+      "Put the beef, water, bay leaf and 1 teaspoon salt in a large pot. Bring to a boil, skim off the foam, then cover partly and simmer for 1 hour, until the beef is nearly tender.",
+      "Meanwhile, heat the oil in a large skillet over medium heat. Cook the onion and carrot for 5 minutes, until soft.",
+      "Add the beets, tomato paste, vinegar and sugar and cook, stirring, for 10 minutes, adding a splash of broth if it starts to stick. The vinegar keeps the beets bright red.",
+      "Add the potatoes and the rest of the salt to the broth and simmer for 10 minutes.",
+      "Stir in the cabbage and the beet mixture and simmer for 10 minutes more, until all the vegetables are tender.",
+      "Turn off the heat, stir in the garlic and dill, and let the soup stand for 10 minutes. Taste and add more salt or vinegar.",
+      "Serve with a spoonful of sour cream and more dill."
+    ],
+    "allergens": ["milk"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Taste at the end for balance. Borscht should be both sweet from the beets and clearly tangy.",
+      "Dark rye bread is the classic side.",
+      "Wear gloves when grating beets, or rub your hands with lemon juice afterwards to remove stains."
+    ],
+    "make_ahead": "Borscht tastes even better the next day. Refrigerate for up to 4 days or freeze for up to 3 months.",
+    "variations": ["Vegetarian borscht: skip the beef, use vegetable broth and add a can of drained white beans with the cabbage."]
+  },
+  "russian-spring-punch": {
+    "title": "Russian Spring Punch",
+    "description": "Dick Bradsell's London party drink from the 1980s: vodka, lemon and blackcurrant shaken, then topped tall with sparkling wine.",
+    "servings": 1,
+    "prep_minutes": 4,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "3/4", "unit": "oz", "item": "vodka" },
+      { "amount": "3/4", "unit": "oz", "item": "fresh lemon juice" },
+      { "amount": "1/2", "unit": "oz", "item": "crème de cassis" },
+      { "amount": "2", "unit": "tsp", "item": "simple syrup" },
+      { "amount": "3", "unit": "oz", "item": "chilled vegan dry sparkling wine (such as Mionetto Organic Prosecco)" },
+      { "amount": "2", "unit": "", "item": "blackberries, to garnish" },
+      { "amount": "1", "unit": "", "item": "lemon slice, to garnish (optional)" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Fill a highball glass with ice.",
+      "Add the vodka, lemon juice, crème de cassis and simple syrup to a shaker with ice and shake for 10 seconds.",
+      "Strain into the glass.",
+      "Top with the sparkling wine, stir once gently and garnish with the blackberries and lemon slice."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "blackberries",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake 1 oz lemon juice and 1 oz blackcurrant syrup with ice, strain over ice and top with 4 oz sparkling white grape juice."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Add the sparkling wine last and stir only once, so it keeps its bubbles.",
+      "No cassis? Chambord or another berry liqueur makes a close substitute."
+    ],
+    "make_ahead": "For a crowd, mix the vodka, lemon, cassis and syrup in a jug ahead of time and keep it in the fridge. Top each glass with wine as you serve.",
+    "variations": []
+  },
+  "ratatouille": {
+    "title": "Ratatouille",
+    "description": "The Provençal summer vegetable stew: eggplant, zucchini, peppers and onion each browned in olive oil, then simmered gently with tomatoes, garlic and herbs.",
+    "servings": 6,
+    "prep_minutes": 25,
+    "cook_minutes": 50,
+    "ingredients": [
+      { "amount": "1", "unit": "", "item": "large eggplant, cut into 3/4-inch cubes" },
+      { "amount": "2", "unit": "tsp", "item": "kosher salt, divided" },
+      { "amount": "6", "unit": "tbsp", "item": "extra-virgin olive oil, divided, plus more to serve" },
+      { "amount": "2", "unit": "", "item": "zucchini, cut into 3/4-inch cubes" },
+      { "amount": "1", "unit": "", "item": "onion, chopped" },
+      { "amount": "2", "unit": "", "item": "red or yellow bell peppers, cut into 3/4-inch pieces" },
+      { "amount": "4", "unit": "cloves", "item": "garlic, minced" },
+      { "amount": "1", "unit": "tbsp", "item": "tomato paste" },
+      { "amount": "1 1/2", "unit": "lb", "item": "ripe tomatoes, chopped, or one 28-oz can whole tomatoes, crushed" },
+      { "amount": "1", "unit": "tsp", "item": "herbes de Provence" },
+      { "amount": "1", "unit": "", "item": "bay leaf" },
+      { "amount": "1/4", "unit": "cup", "item": "torn fresh basil, to serve" },
+      { "amount": "", "unit": "", "item": "black pepper, to taste" }
+    ],
+    "steps": [
+      "Toss the eggplant with 1 teaspoon salt in a colander and let it drain for 20 minutes. Pat it dry.",
+      "Heat 2 tablespoons oil in a large pot over medium-high heat. Brown the eggplant for 8 to 10 minutes, until golden and tender. Set it aside in a bowl.",
+      "Add 2 tablespoons oil and brown the zucchini for 5 minutes, until golden but still firm. Add it to the bowl.",
+      "Add 2 tablespoons oil, the onion and peppers and cook for 8 to 10 minutes, until soft. Add the garlic and tomato paste and cook for 1 minute.",
+      "Add the tomatoes, herbes de Provence, bay leaf and the remaining salt. Simmer for 10 minutes, until thickened.",
+      "Return the eggplant and zucchini, stir gently, cover and simmer over low heat for 15 minutes.",
+      "Remove the bay leaf, season with pepper, and serve warm or at room temperature with basil and a drizzle of olive oil."
+    ],
+    "allergens": [],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Browning each vegetable on its own keeps them from turning to mush and gives them a deeper flavor.",
+      "Ratatouille is even better the next day, once the flavors have mingled."
+    ],
+    "make_ahead": "Refrigerate for up to 4 days or freeze for up to 3 months.",
+    "variations": ["Serve over polenta or with a fried egg on top for a full meal."]
+  },
+  "grand-margarita": {
+    "title": "Grand Margarita",
+    "description": "The top-shelf margarita: 100% agave tequila and Grand Marnier with lime, shaken and served on the rocks in a salt-rimmed glass.",
+    "servings": 1,
+    "prep_minutes": 3,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "100% agave tequila" },
+      { "amount": "1", "unit": "oz", "item": "Grand Marnier" },
+      { "amount": "1/2", "unit": "oz", "item": "fresh lime juice" },
+      { "amount": "1", "unit": "", "item": "lime wedge, for the rim" },
+      { "amount": "", "unit": "", "item": "flaky sea salt, for the rim" },
+      { "amount": "1", "unit": "", "item": "lime slice, to garnish" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Run the lime wedge around the outer rim of a rocks glass and dip it in sea salt.",
+      "Fill the glass with ice.",
+      "Add the tequila, Grand Marnier and lime juice to a shaker with ice and shake hard for 10 seconds.",
+      "Strain into the glass and garnish with the lime slice."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "rocks glass",
+      "garnish": "lime slice and salt rim",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake 1 oz lime juice, 1 oz orange juice and 1/2 oz agave syrup with ice and strain into a salt-rimmed glass of ice."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Salt only the outside of the rim, so the salt doesn't fall into the drink.",
+      "Grand Marnier is made with cognac, which makes this richer and rounder than a triple sec margarita."
+    ],
+    "make_ahead": "",
+    "variations": ["Use reposado tequila for a warmer, oakier drink."]
   }
 }
