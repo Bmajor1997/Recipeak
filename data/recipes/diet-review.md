@@ -8,11 +8,11 @@ or add a decision for it to `dietReview.json` (`fits`, `option` or `none`, with 
 
 ## Totals
 
-Options shown before the audit: 3528 (every diet on every recipe). Now: 1268.
+Options shown before the audit: 3528 (every diet on every recipe). Now: 1269.
 
 | Diet | Already fits | Option | Can't be adapted | Needs review |
 |---|---|---|---|---|
-| vegetarian | 331 | 211 | 0 | 0 |
+| vegetarian | 330 | 212 | 0 | 0 |
 | vegan | 242 | 297 | 0 | 3 |
 | gluten-free | 375 | 164 | 0 | 3 |
 | dairy-free | 386 | 143 | 0 | 13 |

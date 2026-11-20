@@ -52,14 +52,15 @@ NOT_VEGETARIAN = ["chicken", "beef", "pork", "lamb", "mutton", "goat", "bacon", 
                   "fish", "salmon", "tuna", "anchov", "shrimp", "prawn", "crab", "conch", "squid", "tripe", "oxtail", "gelatin",
                   "veal", "turkey", "duck", "lard", "fish sauce", "oyster sauce", "dashi", "bonito", "catfish", "mackerel",
                   # Made with animal rennet by tradition (Parmesan by law): use a vegetarian hard cheese instead.
-                  "parmesan", "parmigiano", "pecorino", "grana padano"]
+                  "parmesan", "parmigiano", "pecorino", "grana padano", "cotija"]
 NOT_VEGAN = NOT_VEGETARIAN + ["egg", "milk", "butter", "cream", "cheese", "yogurt", "yoghurt", "honey", "ghee", "ricotta",
                               "parmesan", "pecorino", "feta", "paneer", "sour cream", "crème", "mayonnaise", "whey"]
 PLANT_OK = ["coconut milk", "coconut cream", "oat milk", "soy milk", "almond milk", "vegan butter", "vegan cheese", "vegan",
             "plant-based", "aquafaba", "eggplant", "butternut", "butter beans", "peanut butter", "cocoa butter", "cream of coconut",
             "egg-free", "no egg", "vegan irish cream", "cashew cream", "oat cream", "soy cream", "dairy-free yogurt", "dairy-free", "nutritional yeast", "mushroom", "creamy", "honeydew", "agave",
             "cheesecloth", "crème de", "creme de", "kombu dashi", "mushroom dashi", "butterfly pea", "buttery", "fish-free", "fishless",
-            "chicken-style", "vegetable", "jackfruit", "tofu", "seitan", "tempeh", "vegetarian parmesan-style", "vegetarian pecorino-style"]
+            "chicken-style", "vegetable", "jackfruit", "tofu", "seitan", "tempeh", "vegetarian parmesan-style", "vegetarian pecorino-style",
+            "vegetarian cotija-style", "vegan mayonnaise", "vegan mayo", "dairy-free sour cream", "vegan feta-style cheese", "vegan feta"]
 
 
 def fail(stem, msg):
