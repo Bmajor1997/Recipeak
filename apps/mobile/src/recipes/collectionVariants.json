@@ -2539,5 +2539,391 @@
   },
   "tipperary": { "vegetarian": "same", "vegan": "same" },
   "woo-woo": { "vegetarian": "same", "vegan": "same" },
-  "zaza": { "vegetarian": "same", "vegan": "same" }
+  "zaza": { "vegetarian": "same", "vegan": "same" },
+  "tom-kha-gai": {
+    "vegetarian": {
+      "title": "Tom Kha Hed (Thai Coconut Mushroom Soup)",
+      "description": "A creamy Thai soup of tofu and mushrooms simmered in coconut milk and vegetable broth with galangal, lemongrass and lime leaves, finished with lime and soy sauce.",
+      "servings": 4,
+      "prep_minutes": 15,
+      "cook_minutes": 20,
+      "ingredients": [
+        { "amount": "14", "unit": "oz", "item": "firm tofu, cut into 3/4-inch cubes" },
+        { "amount": "2", "unit": "cups", "item": "low-sodium vegetable broth" },
+        { "amount": "1 1/2", "unit": "cups", "item": "full-fat coconut milk" },
+        { "amount": "2", "unit": "stalks", "item": "lemongrass, bottom halves only, smashed and cut into 2-inch pieces" },
+        { "amount": "12", "unit": "", "item": "thin slices of fresh galangal" },
+        { "amount": "5", "unit": "", "item": "makrut (kaffir) lime leaves, torn" },
+        { "amount": "1 to 3", "unit": "", "item": "Thai bird's eye chilies, smashed" },
+        { "amount": "10", "unit": "oz", "item": "oyster or straw mushrooms, torn into bite-size pieces" },
+        { "amount": "3", "unit": "tbsp", "item": "light soy sauce, plus more to taste" },
+        { "amount": "1", "unit": "tsp", "item": "palm sugar or light brown sugar" },
+        { "amount": "3", "unit": "tbsp", "item": "fresh lime juice, plus more to taste" },
+        { "amount": "1/4", "unit": "cup", "item": "cilantro leaves, to serve" }
+      ],
+      "steps": [
+        "Bring the broth to a simmer in a pot. Add the lemongrass, galangal, lime leaves and chilies and simmer for 5 minutes to release their flavor.",
+        "Add the coconut milk and tofu and bring back to a gentle simmer. Cook for 3 minutes.",
+        "Add the mushrooms, soy sauce and sugar and simmer for 3 to 4 minutes more, until the mushrooms are tender.",
+        "Turn off the heat and stir in the lime juice.",
+        "Taste: it should be sour and salty first, then creamy. Add more lime or soy sauce if needed. Serve topped with cilantro."
+      ],
+      "allergens": ["soy", "wheat"],
+      "cocktail": null,
+      "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+      "tips": [
+        "Keep it at a gentle simmer once the coconut milk is in. A hard boil can make it split.",
+        "The lemongrass, galangal and lime leaves are for flavor, not for eating. Leave them in the pot when you serve.",
+        "Galangal is not the same as ginger, but ginger will do in a pinch."
+      ],
+      "make_ahead": "Refrigerate for up to 2 days. Reheat gently and add a fresh squeeze of lime.",
+      "variations": []
+    },
+    "vegan": {
+      "title": "Tom Kha Hed (Thai Coconut Mushroom Soup)",
+      "description": "A creamy Thai soup of tofu and mushrooms simmered in coconut milk and vegetable broth with galangal, lemongrass and lime leaves, finished with lime and soy sauce.",
+      "servings": 4,
+      "prep_minutes": 15,
+      "cook_minutes": 20,
+      "ingredients": [
+        { "amount": "14", "unit": "oz", "item": "firm tofu, cut into 3/4-inch cubes" },
+        { "amount": "2", "unit": "cups", "item": "low-sodium vegetable broth" },
+        { "amount": "1 1/2", "unit": "cups", "item": "full-fat coconut milk" },
+        { "amount": "2", "unit": "stalks", "item": "lemongrass, bottom halves only, smashed and cut into 2-inch pieces" },
+        { "amount": "12", "unit": "", "item": "thin slices of fresh galangal" },
+        { "amount": "5", "unit": "", "item": "makrut (kaffir) lime leaves, torn" },
+        { "amount": "1 to 3", "unit": "", "item": "Thai bird's eye chilies, smashed" },
+        { "amount": "10", "unit": "oz", "item": "oyster or straw mushrooms, torn into bite-size pieces" },
+        { "amount": "3", "unit": "tbsp", "item": "light soy sauce, plus more to taste" },
+        { "amount": "1", "unit": "tsp", "item": "palm sugar or light brown sugar" },
+        { "amount": "3", "unit": "tbsp", "item": "fresh lime juice, plus more to taste" },
+        { "amount": "1/4", "unit": "cup", "item": "cilantro leaves, to serve" }
+      ],
+      "steps": [
+        "Bring the broth to a simmer in a pot. Add the lemongrass, galangal, lime leaves and chilies and simmer for 5 minutes to release their flavor.",
+        "Add the coconut milk and tofu and bring back to a gentle simmer. Cook for 3 minutes.",
+        "Add the mushrooms, soy sauce and sugar and simmer for 3 to 4 minutes more, until the mushrooms are tender.",
+        "Turn off the heat and stir in the lime juice.",
+        "Taste: it should be sour and salty first, then creamy. Add more lime or soy sauce if needed. Serve topped with cilantro."
+      ],
+      "allergens": ["soy", "wheat"],
+      "cocktail": null,
+      "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+      "tips": [
+        "Keep it at a gentle simmer once the coconut milk is in. A hard boil can make it split.",
+        "The lemongrass, galangal and lime leaves are for flavor, not for eating. Leave them in the pot when you serve.",
+        "Galangal is not the same as ginger, but ginger will do in a pinch."
+      ],
+      "make_ahead": "Refrigerate for up to 2 days. Reheat gently and add a fresh squeeze of lime.",
+      "variations": []
+    }
+  },
+  "tempura": {
+    "vegetarian": {
+      "title": "Vegetable Tempura",
+      "description": "Sweet potato, eggplant, shiitake and zucchini in a light, ice-cold batter, fried crisp and served with a kombu and soy dipping sauce.",
+      "servings": 4,
+      "prep_minutes": 30,
+      "cook_minutes": 25,
+      "ingredients": [
+        { "amount": "1", "unit": "", "item": "small sweet potato, cut into 1/4-inch rounds" },
+        { "amount": "1", "unit": "", "item": "small Japanese eggplant, cut into 1/4-inch slices" },
+        { "amount": "12", "unit": "", "item": "shiitake mushrooms, stems removed" },
+        { "amount": "1", "unit": "", "item": "small zucchini, cut into 1/4-inch slices" },
+        { "amount": "1", "unit": "", "item": "small onion, cut into 1/2-inch rings" },
+        { "amount": "1", "unit": "cup", "item": "all-purpose flour, plus 1/4 cup for dusting" },
+        { "amount": "1", "unit": "", "item": "large cold egg" },
+        { "amount": "3/4", "unit": "cup", "item": "ice-cold water, plus a few ice cubes" },
+        { "amount": "2", "unit": "quarts", "item": "vegetable or canola oil, for frying" },
+        { "amount": "1", "unit": "cup", "item": "kombu broth (a 4-inch piece of kombu soaked in 1 cup water for 30 minutes)" },
+        { "amount": "1/4", "unit": "cup", "item": "soy sauce" },
+        { "amount": "1/4", "unit": "cup", "item": "mirin" },
+        { "amount": "2", "unit": "tbsp", "item": "finely grated daikon radish, to serve" },
+        { "amount": "1", "unit": "tsp", "item": "finely grated fresh ginger, to serve" }
+      ],
+      "steps": [
+        "Make the dipping sauce: bring the kombu broth, soy sauce and mirin to a simmer in a small pan, then turn off the heat and let it cool.",
+        "Pat the vegetables very dry.",
+        "Heat 2 inches of oil in a heavy pot to 340°F.",
+        "Make the batter right before frying: whisk the egg and ice water in a bowl, add 1 cup flour all at once and stir just a few strokes with chopsticks. Lumps are fine.",
+        "Dust each piece lightly in the extra flour, dip it in the batter and let the excess drip off.",
+        "Fry a few pieces at a time for 2 to 3 minutes, turning once, until crisp and pale gold. Drain on a rack.",
+        "Serve right away with the dipping sauce, grated daikon and ginger."
+      ],
+      "allergens": ["eggs", "soy", "wheat"],
+      "cocktail": null,
+      "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+      "tips": [
+        "Keep the batter ice-cold and barely mixed. Stirring builds gluten, which makes the coating heavy and bready.",
+        "The dusting of flour helps the batter cling, especially to shrimp and smooth vegetables.",
+        "Skim floating bits of batter from the oil between batches so they don't burn."
+      ],
+      "make_ahead": "",
+      "variations": []
+    },
+    "vegan": {
+      "title": "Vegan Vegetable Tempura",
+      "description": "Sweet potato, eggplant, shiitake and zucchini in an egg-free batter made with ice-cold sparkling water, fried crisp and served with a kombu and soy dipping sauce.",
+      "servings": 4,
+      "prep_minutes": 30,
+      "cook_minutes": 25,
+      "ingredients": [
+        { "amount": "1", "unit": "", "item": "small sweet potato, cut into 1/4-inch rounds" },
+        { "amount": "1", "unit": "", "item": "small Japanese eggplant, cut into 1/4-inch slices" },
+        { "amount": "12", "unit": "", "item": "shiitake mushrooms, stems removed" },
+        { "amount": "1", "unit": "", "item": "small zucchini, cut into 1/4-inch slices" },
+        { "amount": "1", "unit": "", "item": "small onion, cut into 1/2-inch rings" },
+        { "amount": "1", "unit": "cup", "item": "all-purpose flour, plus 1/4 cup for dusting" },
+        { "amount": "1/4", "unit": "cup", "item": "cornstarch" },
+        { "amount": "1", "unit": "cup", "item": "ice-cold sparkling water, plus a few ice cubes" },
+        { "amount": "2", "unit": "quarts", "item": "vegetable or canola oil, for frying" },
+        { "amount": "1", "unit": "cup", "item": "kombu broth (a 4-inch piece of kombu soaked in 1 cup water for 30 minutes)" },
+        { "amount": "1/4", "unit": "cup", "item": "soy sauce" },
+        { "amount": "1/4", "unit": "cup", "item": "mirin" },
+        { "amount": "2", "unit": "tbsp", "item": "finely grated daikon radish, to serve" },
+        { "amount": "1", "unit": "tsp", "item": "finely grated fresh ginger, to serve" }
+      ],
+      "steps": [
+        "Make the dipping sauce: bring the kombu broth, soy sauce and mirin to a simmer in a small pan, then turn off the heat and let it cool.",
+        "Pat the vegetables very dry.",
+        "Heat 2 inches of oil in a heavy pot to 340°F.",
+        "Make the batter right before frying: whisk 1 cup flour with the cornstarch in a bowl, pour in the ice-cold sparkling water all at once and stir just a few strokes with chopsticks. Lumps are fine.",
+        "Dust each piece lightly in the extra flour, dip it in the batter and let the excess drip off.",
+        "Fry a few pieces at a time for 2 to 3 minutes, turning once, until crisp and pale gold. Drain on a rack.",
+        "Serve right away with the dipping sauce, grated daikon and ginger."
+      ],
+      "allergens": ["soy", "wheat"],
+      "cocktail": null,
+      "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+      "tips": ["The bubbles in the sparkling water make the egg-free batter extra light. Open the bottle just before you mix."],
+      "make_ahead": "",
+      "variations": []
+    }
+  },
+  "tuna-and-cucumber-maki": {
+    "vegetarian": {
+      "title": "Avocado and Cucumber Maki Rolls",
+      "description": "Classic thin sushi rolls of seasoned rice and nori, half filled with creamy avocado and half with crisp cucumber. Served with soy sauce, wasabi and pickled ginger.",
+      "servings": 3,
+      "prep_minutes": 45,
+      "cook_minutes": 30,
+      "ingredients": [
+        { "amount": "2", "unit": "cups", "item": "Japanese short-grain rice" },
+        { "amount": "2", "unit": "cups", "item": "water" },
+        { "amount": "1/4", "unit": "cup", "item": "unseasoned rice vinegar" },
+        { "amount": "2", "unit": "tbsp", "item": "sugar" },
+        { "amount": "1", "unit": "tsp", "item": "salt" },
+        { "amount": "3", "unit": "sheets", "item": "nori, cut in half crosswise" },
+        { "amount": "1", "unit": "", "item": "ripe avocado, cut into thin strips" },
+        { "amount": "1", "unit": "", "item": "Japanese or Persian cucumber, cut into thin sticks" },
+        { "amount": "", "unit": "", "item": "wasabi paste, to serve" },
+        { "amount": "", "unit": "", "item": "pickled ginger, to serve" },
+        { "amount": "", "unit": "", "item": "soy sauce, to serve" }
+      ],
+      "steps": [
+        "Rinse the rice in a bowl of cold water, swirling and draining, 4 or 5 times until the water runs almost clear. Drain for 15 minutes.",
+        "Cook the rice with the water in a rice cooker, or in a covered pot: boil, then simmer on low for 15 minutes and rest off the heat, still covered, for 10 minutes.",
+        "Meanwhile, warm the vinegar, sugar and salt in a small pan, stirring until the sugar dissolves. Let it cool.",
+        "Spread the hot rice in a wide bowl. Drizzle the vinegar mixture over it and fold with a spatula, cutting through the rice rather than stirring, while fanning it to cool. Cover with a damp towel until it's at room temperature.",
+        "Lay a bamboo mat on the counter and place a half sheet of nori on it, shiny side down. Wet your hands and spread a thin, even layer of rice over the nori, leaving a 1/2-inch strip bare at the far edge.",
+        "Lay a line of avocado across the middle of the rice for 3 of the rolls, and cucumber for the other 3.",
+        "Lift the near edge of the mat and roll it over the filling, pressing gently, then keep rolling until the bare strip of nori seals the roll.",
+        "Cut each roll into 6 pieces with a sharp, wet knife, wiping the blade between cuts. Serve with wasabi, pickled ginger and soy sauce."
+      ],
+      "allergens": ["soy", "wheat"],
+      "cocktail": null,
+      "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+      "tips": [
+        "Keep a bowl of water with a splash of vinegar beside you. Wet hands stop the rice from sticking to your fingers.",
+        "Use less rice than you think. A thin layer keeps the roll neat and lets the filling stand out.",
+        "Cool the rice to room temperature before rolling: hot rice makes the nori go limp."
+      ],
+      "make_ahead": "Sushi is best eaten within a few hours. Don't refrigerate it, because cold makes the rice hard.",
+      "variations": []
+    },
+    "vegan": {
+      "title": "Avocado and Cucumber Maki Rolls",
+      "description": "Classic thin sushi rolls of seasoned rice and nori, half filled with creamy avocado and half with crisp cucumber. Served with soy sauce, wasabi and pickled ginger.",
+      "servings": 3,
+      "prep_minutes": 45,
+      "cook_minutes": 30,
+      "ingredients": [
+        { "amount": "2", "unit": "cups", "item": "Japanese short-grain rice" },
+        { "amount": "2", "unit": "cups", "item": "water" },
+        { "amount": "1/4", "unit": "cup", "item": "unseasoned rice vinegar" },
+        { "amount": "2", "unit": "tbsp", "item": "sugar" },
+        { "amount": "1", "unit": "tsp", "item": "salt" },
+        { "amount": "3", "unit": "sheets", "item": "nori, cut in half crosswise" },
+        { "amount": "1", "unit": "", "item": "ripe avocado, cut into thin strips" },
+        { "amount": "1", "unit": "", "item": "Japanese or Persian cucumber, cut into thin sticks" },
+        { "amount": "", "unit": "", "item": "wasabi paste, to serve" },
+        { "amount": "", "unit": "", "item": "pickled ginger, to serve" },
+        { "amount": "", "unit": "", "item": "soy sauce, to serve" }
+      ],
+      "steps": [
+        "Rinse the rice in a bowl of cold water, swirling and draining, 4 or 5 times until the water runs almost clear. Drain for 15 minutes.",
+        "Cook the rice with the water in a rice cooker, or in a covered pot: boil, then simmer on low for 15 minutes and rest off the heat, still covered, for 10 minutes.",
+        "Meanwhile, warm the vinegar, sugar and salt in a small pan, stirring until the sugar dissolves. Let it cool.",
+        "Spread the hot rice in a wide bowl. Drizzle the vinegar mixture over it and fold with a spatula, cutting through the rice rather than stirring, while fanning it to cool. Cover with a damp towel until it's at room temperature.",
+        "Lay a bamboo mat on the counter and place a half sheet of nori on it, shiny side down. Wet your hands and spread a thin, even layer of rice over the nori, leaving a 1/2-inch strip bare at the far edge.",
+        "Lay a line of avocado across the middle of the rice for 3 of the rolls, and cucumber for the other 3.",
+        "Lift the near edge of the mat and roll it over the filling, pressing gently, then keep rolling until the bare strip of nori seals the roll.",
+        "Cut each roll into 6 pieces with a sharp, wet knife, wiping the blade between cuts. Serve with wasabi, pickled ginger and soy sauce."
+      ],
+      "allergens": ["soy", "wheat"],
+      "cocktail": null,
+      "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+      "tips": [
+        "Keep a bowl of water with a splash of vinegar beside you. Wet hands stop the rice from sticking to your fingers.",
+        "Use less rice than you think. A thin layer keeps the roll neat and lets the filling stand out.",
+        "Cool the rice to room temperature before rolling: hot rice makes the nori go limp."
+      ],
+      "make_ahead": "Sushi is best eaten within a few hours. Don't refrigerate it, because cold makes the rice hard.",
+      "variations": []
+    }
+  },
+  "miso-soup": {
+    "vegetarian": {
+      "title": "Vegetarian Miso Soup",
+      "description": "Japan's everyday miso soup made with a kombu and shiitake broth, plus soft tofu, wakame seaweed and scallions.",
+      "servings": 4,
+      "prep_minutes": 10,
+      "cook_minutes": 15,
+      "ingredients": [
+        { "amount": "4", "unit": "cups", "item": "water" },
+        { "amount": "1", "unit": "", "item": "4-inch square of kombu (dried kelp)" },
+        { "amount": "4", "unit": "", "item": "dried shiitake mushrooms" },
+        { "amount": "4", "unit": "tbsp", "item": "miso paste (white or red), plus more to taste" },
+        { "amount": "7", "unit": "oz", "item": "silken or soft tofu, cut into 1/2-inch cubes" },
+        { "amount": "1", "unit": "tbsp", "item": "dried wakame seaweed" },
+        { "amount": "2", "unit": "", "item": "scallions, thinly sliced" }
+      ],
+      "steps": [
+        "Soak the kombu and dried shiitake in the water in a saucepan for 30 minutes.",
+        "Heat the pan slowly over medium-low heat and simmer gently for 5 minutes. Lift out the kombu and mushrooms; slice the mushrooms and return them to the broth.",
+        "Soak the wakame in a bowl of water for 5 minutes, then drain.",
+        "Warm the broth over low heat. Put the miso in a ladle or small sieve, lower it into the broth and whisk until it dissolves.",
+        "Add the tofu and wakame and heat gently for 1 to 2 minutes. Do not let the soup boil.",
+        "Ladle into bowls and top with the scallions."
+      ],
+      "allergens": ["soy"],
+      "cocktail": null,
+      "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+      "tips": [
+        "Never boil miso soup once the miso is in. Boiling dulls its aroma and flavor.",
+        "Start with 1 tablespoon of miso per cup of broth and add more to taste. Brands vary in saltiness."
+      ],
+      "make_ahead": "Make the kombu and shiitake broth up to 3 days ahead and keep it in the fridge. Add the miso and tofu just before serving.",
+      "variations": []
+    },
+    "vegan": {
+      "title": "Vegan Miso Soup",
+      "description": "Japan's everyday miso soup made with a kombu and shiitake broth, plus soft tofu, wakame seaweed and scallions.",
+      "servings": 4,
+      "prep_minutes": 10,
+      "cook_minutes": 15,
+      "ingredients": [
+        { "amount": "4", "unit": "cups", "item": "water" },
+        { "amount": "1", "unit": "", "item": "4-inch square of kombu (dried kelp)" },
+        { "amount": "4", "unit": "", "item": "dried shiitake mushrooms" },
+        { "amount": "4", "unit": "tbsp", "item": "miso paste (white or red), plus more to taste" },
+        { "amount": "7", "unit": "oz", "item": "silken or soft tofu, cut into 1/2-inch cubes" },
+        { "amount": "1", "unit": "tbsp", "item": "dried wakame seaweed" },
+        { "amount": "2", "unit": "", "item": "scallions, thinly sliced" }
+      ],
+      "steps": [
+        "Soak the kombu and dried shiitake in the water in a saucepan for 30 minutes.",
+        "Heat the pan slowly over medium-low heat and simmer gently for 5 minutes. Lift out the kombu and mushrooms; slice the mushrooms and return them to the broth.",
+        "Soak the wakame in a bowl of water for 5 minutes, then drain.",
+        "Warm the broth over low heat. Put the miso in a ladle or small sieve, lower it into the broth and whisk until it dissolves.",
+        "Add the tofu and wakame and heat gently for 1 to 2 minutes. Do not let the soup boil.",
+        "Ladle into bowls and top with the scallions."
+      ],
+      "allergens": ["soy"],
+      "cocktail": null,
+      "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+      "tips": [
+        "Never boil miso soup once the miso is in. Boiling dulls its aroma and flavor.",
+        "Start with 1 tablespoon of miso per cup of broth and add more to taste. Brands vary in saltiness."
+      ],
+      "make_ahead": "Make the kombu and shiitake broth up to 3 days ahead and keep it in the fridge. Add the miso and tofu just before serving.",
+      "variations": []
+    }
+  },
+  "som-tam": {
+    "vegetarian": {
+      "title": "Vegetarian Som Tam",
+      "description": "Thailand's crunchy, fiery green papaya salad, seasoned with soy sauce and lime instead of fish sauce and dried shrimp.",
+      "servings": 2,
+      "prep_minutes": 20,
+      "cook_minutes": 0,
+      "ingredients": [
+        { "amount": "3", "unit": "cups", "item": "shredded green (unripe) papaya" },
+        { "amount": "2", "unit": "cloves", "item": "garlic" },
+        { "amount": "1 to 4", "unit": "", "item": "Thai bird's eye chilies, to taste" },
+        { "amount": "1 1/2", "unit": "tbsp", "item": "palm sugar, finely chopped" },
+        { "amount": "3", "unit": "", "item": "yard-long beans or 6 green beans, cut into 2-inch pieces" },
+        { "amount": "4", "unit": "tbsp", "item": "roasted unsalted peanuts" },
+        { "amount": "2", "unit": "tbsp", "item": "light soy sauce" },
+        { "amount": "2 1/2", "unit": "tbsp", "item": "fresh lime juice" },
+        { "amount": "1", "unit": "tsp", "item": "tamarind paste (optional)" },
+        { "amount": "6", "unit": "", "item": "cherry tomatoes, halved" }
+      ],
+      "steps": [
+        "In a large mortar, pound the garlic and chilies to a rough paste.",
+        "Add the palm sugar and pound until it softens.",
+        "Add the long beans and peanuts and pound a few times, just to bruise the beans and break the peanuts.",
+        "Add the soy sauce, lime juice and tamarind paste, if using, and stir until the sugar dissolves.",
+        "Add the papaya and tomatoes. Pound lightly while turning everything with a spoon, for about 1 minute, until the papaya softens slightly and soaks up the dressing.",
+        "Taste: it should be sour, salty, sweet and spicy. Adjust with more lime, soy sauce or sugar and serve right away."
+      ],
+      "allergens": ["peanuts", "soy", "wheat"],
+      "cocktail": null,
+      "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+      "tips": [
+        "No mortar? Mash the garlic, chilies and sugar in a large bowl with the end of a rolling pin, then toss everything together.",
+        "Use a julienne peeler for the papaya. Shreds that are too thick won't soak up the dressing.",
+        "For a gluten-free version, use tamari instead of soy sauce."
+      ],
+      "make_ahead": "",
+      "variations": []
+    },
+    "vegan": {
+      "title": "Vegan Som Tam",
+      "description": "Thailand's crunchy, fiery green papaya salad, seasoned with soy sauce and lime instead of fish sauce and dried shrimp.",
+      "servings": 2,
+      "prep_minutes": 20,
+      "cook_minutes": 0,
+      "ingredients": [
+        { "amount": "3", "unit": "cups", "item": "shredded green (unripe) papaya" },
+        { "amount": "2", "unit": "cloves", "item": "garlic" },
+        { "amount": "1 to 4", "unit": "", "item": "Thai bird's eye chilies, to taste" },
+        { "amount": "1 1/2", "unit": "tbsp", "item": "palm sugar, finely chopped" },
+        { "amount": "3", "unit": "", "item": "yard-long beans or 6 green beans, cut into 2-inch pieces" },
+        { "amount": "4", "unit": "tbsp", "item": "roasted unsalted peanuts" },
+        { "amount": "2", "unit": "tbsp", "item": "light soy sauce" },
+        { "amount": "2 1/2", "unit": "tbsp", "item": "fresh lime juice" },
+        { "amount": "1", "unit": "tsp", "item": "tamarind paste (optional)" },
+        { "amount": "6", "unit": "", "item": "cherry tomatoes, halved" }
+      ],
+      "steps": [
+        "In a large mortar, pound the garlic and chilies to a rough paste.",
+        "Add the palm sugar and pound until it softens.",
+        "Add the long beans and peanuts and pound a few times, just to bruise the beans and break the peanuts.",
+        "Add the soy sauce, lime juice and tamarind paste, if using, and stir until the sugar dissolves.",
+        "Add the papaya and tomatoes. Pound lightly while turning everything with a spoon, for about 1 minute, until the papaya softens slightly and soaks up the dressing.",
+        "Taste: it should be sour, salty, sweet and spicy. Adjust with more lime, soy sauce or sugar and serve right away."
+      ],
+      "allergens": ["peanuts", "soy", "wheat"],
+      "cocktail": null,
+      "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+      "tips": [
+        "No mortar? Mash the garlic, chilies and sugar in a large bowl with the end of a rolling pin, then toss everything together.",
+        "Use a julienne peeler for the papaya. Shreds that are too thick won't soak up the dressing.",
+        "For a gluten-free version, use tamari instead of soy sauce."
+      ],
+      "make_ahead": "",
+      "variations": []
+    }
+  }
 }

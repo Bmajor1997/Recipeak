@@ -13836,5 +13836,1199 @@
     "tips": ["Equal parts is the original, but it's very sweet. Two parts orange juice to one of schnapps is more balanced."],
     "make_ahead": "",
     "variations": ["Hairy Navel: add 1 oz vodka."]
+  },
+  "tom-kha-gai": {
+    "title": "Tom Kha Gai (Thai Coconut Chicken Soup)",
+    "description": "A creamy Thai soup of chicken and mushrooms simmered in coconut milk and broth with galangal, lemongrass and lime leaves, finished with lime and fish sauce.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 20,
+    "ingredients": [
+      { "amount": "1", "unit": "lb", "item": "boneless, skinless chicken thighs, thinly sliced" },
+      { "amount": "2", "unit": "cups", "item": "low-sodium chicken broth" },
+      { "amount": "1 1/2", "unit": "cups", "item": "full-fat coconut milk" },
+      { "amount": "2", "unit": "stalks", "item": "lemongrass, bottom halves only, smashed and cut into 2-inch pieces" },
+      { "amount": "12", "unit": "", "item": "thin slices of fresh galangal" },
+      { "amount": "5", "unit": "", "item": "makrut (kaffir) lime leaves, torn" },
+      { "amount": "1 to 3", "unit": "", "item": "Thai bird's eye chilies, smashed" },
+      { "amount": "6", "unit": "oz", "item": "oyster or straw mushrooms, torn into bite-size pieces" },
+      { "amount": "3", "unit": "tbsp", "item": "fish sauce, plus more to taste" },
+      { "amount": "1", "unit": "tsp", "item": "palm sugar or light brown sugar" },
+      { "amount": "3", "unit": "tbsp", "item": "fresh lime juice, plus more to taste" },
+      { "amount": "1/4", "unit": "cup", "item": "cilantro leaves, to serve" }
+    ],
+    "steps": [
+      "Bring the broth to a simmer in a pot. Add the lemongrass, galangal, lime leaves and chilies and simmer for 5 minutes to release their flavor.",
+      "Add the coconut milk and chicken and bring back to a gentle simmer. Cook for 5 minutes.",
+      "Add the mushrooms, fish sauce and sugar and simmer for 3 to 4 minutes more, until the chicken is cooked through.",
+      "Turn off the heat and stir in the lime juice.",
+      "Taste: it should be sour and salty first, then creamy. Add more lime or fish sauce if needed. Serve topped with cilantro."
+    ],
+    "allergens": ["fish"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Keep it at a gentle simmer once the coconut milk is in. A hard boil can make it split.",
+      "The lemongrass, galangal and lime leaves are for flavor, not for eating. Leave them in the pot when you serve.",
+      "Galangal is not the same as ginger, but ginger will do in a pinch."
+    ],
+    "make_ahead": "Refrigerate for up to 2 days. Reheat gently and add a fresh squeeze of lime.",
+    "variations": []
+  },
+  "tempura": {
+    "title": "Shrimp and Vegetable Tempura",
+    "description": "Shrimp and vegetables in a lacy, ice-cold batter, fried until pale gold and shatteringly crisp. Served with a light soy and dashi dipping sauce.",
+    "servings": 4,
+    "prep_minutes": 30,
+    "cook_minutes": 25,
+    "ingredients": [
+      { "amount": "12", "unit": "", "item": "large shrimp, peeled with tails on, deveined" },
+      { "amount": "1", "unit": "", "item": "small sweet potato, cut into 1/4-inch rounds" },
+      { "amount": "1", "unit": "", "item": "small Japanese eggplant, cut into 1/4-inch slices" },
+      { "amount": "8", "unit": "", "item": "shiitake mushrooms, stems removed" },
+      { "amount": "1", "unit": "", "item": "small zucchini, cut into 1/4-inch slices" },
+      { "amount": "1", "unit": "cup", "item": "all-purpose flour, plus 1/4 cup for dusting" },
+      { "amount": "1", "unit": "", "item": "large cold egg" },
+      { "amount": "3/4", "unit": "cup", "item": "ice-cold water, plus a few ice cubes" },
+      { "amount": "2", "unit": "quarts", "item": "vegetable or canola oil, for frying" },
+      { "amount": "1", "unit": "cup", "item": "dashi" },
+      { "amount": "1/4", "unit": "cup", "item": "soy sauce" },
+      { "amount": "1/4", "unit": "cup", "item": "mirin" },
+      { "amount": "2", "unit": "tbsp", "item": "finely grated daikon radish, to serve" },
+      { "amount": "1", "unit": "tsp", "item": "finely grated fresh ginger, to serve" }
+    ],
+    "steps": [
+      "Make the dipping sauce: bring the dashi, soy sauce and mirin to a simmer in a small pan, then turn off the heat and let it cool.",
+      "Make 3 or 4 shallow cuts across the underside of each shrimp and press them gently flat so they stay straight when fried. Pat the shrimp and vegetables very dry.",
+      "Heat 2 inches of oil in a heavy pot to 340°F for the vegetables.",
+      "Make the batter right before frying: whisk the egg and ice water in a bowl, add 1 cup flour all at once and stir just a few strokes with chopsticks. Lumps are fine.",
+      "Dust each piece lightly in the extra flour, dip it in the batter and let the excess drip off.",
+      "Fry the vegetables a few at a time for 2 to 3 minutes, turning once, until crisp and pale gold. Drain on a rack.",
+      "Raise the oil to 350°F and fry the shrimp for 1 to 2 minutes, until just cooked through.",
+      "Serve right away with the dipping sauce, grated daikon and ginger."
+    ],
+    "allergens": ["eggs", "fish", "shellfish", "soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Keep the batter ice-cold and barely mixed. Stirring builds gluten, which makes the coating heavy and bready.",
+      "The dusting of flour helps the batter cling, especially to shrimp and smooth vegetables.",
+      "Skim floating bits of batter from the oil between batches so they don't burn."
+    ],
+    "make_ahead": "",
+    "variations": ["Add onion rings, green beans, kabocha squash or shiso leaves."]
+  },
+  "general-tsos-chicken": {
+    "title": "General Tso's Chicken",
+    "description": "The Chinese-American takeout favorite: crisp fried chicken in a sticky, sweet, sour and gently spicy sauce with garlic, ginger and dried red chilies.",
+    "servings": 4,
+    "prep_minutes": 25,
+    "cook_minutes": 20,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "lb", "item": "boneless, skinless chicken thighs, cut into 1-inch pieces" },
+      { "amount": "1", "unit": "tbsp", "item": "soy sauce" },
+      { "amount": "1", "unit": "tbsp", "item": "Shaoxing wine" },
+      { "amount": "1", "unit": "", "item": "large egg white" },
+      { "amount": "3/4", "unit": "cup", "item": "cornstarch" },
+      { "amount": "1", "unit": "quart", "item": "vegetable or canola oil, for frying" },
+      { "amount": "1/2", "unit": "cup", "item": "low-sodium chicken broth" },
+      { "amount": "2", "unit": "tbsp", "item": "soy sauce" },
+      { "amount": "1", "unit": "tsp", "item": "dark soy sauce" },
+      { "amount": "2 1/2", "unit": "tbsp", "item": "Chinese rice vinegar" },
+      { "amount": "1", "unit": "tbsp", "item": "hoisin sauce" },
+      { "amount": "3", "unit": "tbsp", "item": "sugar" },
+      { "amount": "1", "unit": "tbsp", "item": "cornstarch" },
+      { "amount": "3", "unit": "cloves", "item": "garlic, minced" },
+      { "amount": "1", "unit": "tbsp", "item": "minced fresh ginger" },
+      { "amount": "6 to 8", "unit": "", "item": "small dried red chilies" },
+      { "amount": "1", "unit": "tsp", "item": "toasted sesame oil" },
+      { "amount": "2", "unit": "", "item": "scallions, sliced" },
+      { "amount": "1", "unit": "tsp", "item": "toasted sesame seeds, to serve" },
+      { "amount": "", "unit": "", "item": "steamed rice, to serve" }
+    ],
+    "steps": [
+      "Toss the chicken with 1 tablespoon soy sauce, the Shaoxing wine and egg white. Let it sit for 15 minutes.",
+      "Whisk the broth, 2 tablespoons soy sauce, dark soy sauce, rice vinegar, hoisin, sugar and 1 tablespoon cornstarch in a bowl.",
+      "Toss the chicken in the 3/4 cup cornstarch, pressing to coat.",
+      "Heat 2 inches of oil in a wok or heavy pot to 350°F. Fry the chicken in batches for 4 to 5 minutes, until golden and cooked through. Drain on a rack.",
+      "Pour off all but 1 tablespoon of oil. Over medium heat, add the dried chilies and fry for 10 seconds, then add the garlic and ginger and stir for 20 seconds.",
+      "Stir the sauce, pour it in and cook, stirring, until thick and glossy, about 1 minute.",
+      "Add the chicken and sesame oil and toss to coat. Top with the scallions and sesame seeds and serve with rice."
+    ],
+    "allergens": ["eggs", "sesame", "soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Fry the chilies only until they darken slightly. Burnt chilies turn bitter.",
+      "For extra-crisp chicken, fry it a second time at 375°F for 1 minute before tossing it in the sauce."
+    ],
+    "make_ahead": "",
+    "variations": ["Add steamed broccoli florets with the chicken."]
+  },
+  "southern-fried-chicken": {
+    "title": "Southern Fried Chicken",
+    "description": "Bone-in chicken soaked in seasoned buttermilk, double-dredged in spiced flour and fried until deep golden and crackly. Juicy inside, crunchy outside.",
+    "servings": 4,
+    "prep_minutes": 30,
+    "cook_minutes": 40,
+    "ingredients": [
+      { "amount": "3 1/2", "unit": "lb", "item": "bone-in, skin-on chicken pieces (drumsticks, thighs and halved breasts)" },
+      { "amount": "2", "unit": "cups", "item": "buttermilk" },
+      { "amount": "2", "unit": "tbsp", "item": "hot sauce" },
+      { "amount": "1", "unit": "tbsp", "item": "kosher salt, plus 2 tsp for the flour" },
+      { "amount": "2", "unit": "cups", "item": "all-purpose flour" },
+      { "amount": "1/2", "unit": "cup", "item": "cornstarch" },
+      { "amount": "1", "unit": "tbsp", "item": "paprika" },
+      { "amount": "2", "unit": "tsp", "item": "garlic powder" },
+      { "amount": "2", "unit": "tsp", "item": "onion powder" },
+      { "amount": "1", "unit": "tsp", "item": "black pepper" },
+      { "amount": "1/2", "unit": "tsp", "item": "cayenne pepper" },
+      { "amount": "2", "unit": "quarts", "item": "vegetable or canola oil, for frying" }
+    ],
+    "steps": [
+      "Whisk the buttermilk, hot sauce and 1 tablespoon salt in a large bowl. Add the chicken, turn to coat, cover and refrigerate for at least 4 hours or up to 24.",
+      "Whisk the flour, cornstarch, paprika, garlic powder, onion powder, black pepper, cayenne and 2 teaspoons salt in a wide dish. Drizzle in 3 tablespoons of the buttermilk marinade and rub it in with your fingers to make small, shaggy clumps.",
+      "Lift each piece of chicken out of the buttermilk, let the excess drip off, and press it firmly into the flour on all sides. Dip it back in the buttermilk for a second, then press it into the flour again. Set the pieces on a rack for 10 minutes while the oil heats.",
+      "Heat 2 inches of oil in a heavy Dutch oven to 350°F. Fry the chicken in batches without crowding, skin side down first. The oil temperature will drop: keep it around 300 to 325°F.",
+      "Fry for 15 to 18 minutes, turning every few minutes, until deep golden and the meat reaches 165°F in the breast and 175°F in the thighs and drumsticks.",
+      "Drain on a rack set over a sheet pan and season lightly with salt while hot. Let the oil come back to 350°F between batches."
+    ],
+    "allergens": ["milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "A clip-on thermometer is the most important tool here. Oil that's too hot burns the crust before the meat cooks; too cool, and the chicken turns greasy.",
+      "The flour clumps from the buttermilk are what make the craggy, extra-crunchy crust.",
+      "If the outside is done before the inside, finish the pieces on the rack in a 350°F oven."
+    ],
+    "make_ahead": "Refrigerate leftovers for up to 3 days. Reheat on a rack in a 400°F oven for 15 minutes to re-crisp; the microwave makes the crust soggy.",
+    "variations": [
+      "Nashville hot chicken: brush the hot chicken with 1/2 cup frying oil mixed with 2 tablespoons cayenne, 1 tablespoon brown sugar and 1 teaspoon paprika.",
+      "Boneless: use chicken thighs and fry for 6 to 8 minutes."
+    ]
+  },
+  "sweet-and-sour-pork": {
+    "title": "Sweet and Sour Pork",
+    "description": "The Cantonese classic: crisp, twice-fried pork tossed with pineapple, peppers and onion in a glossy, tangy ketchup and vinegar sauce.",
+    "servings": 4,
+    "prep_minutes": 25,
+    "cook_minutes": 20,
+    "ingredients": [
+      { "amount": "1", "unit": "lb", "item": "boneless pork shoulder, cut into 1-inch pieces" },
+      { "amount": "1", "unit": "tbsp", "item": "light soy sauce" },
+      { "amount": "1", "unit": "tsp", "item": "Shaoxing wine" },
+      { "amount": "1/4", "unit": "tsp", "item": "ground white pepper" },
+      { "amount": "1", "unit": "", "item": "large egg white" },
+      { "amount": "1/2", "unit": "cup", "item": "cornstarch" },
+      { "amount": "1/4", "unit": "cup", "item": "all-purpose flour" },
+      { "amount": "1", "unit": "quart", "item": "vegetable or canola oil, for frying" },
+      { "amount": "1/2", "unit": "", "item": "red bell pepper, cut into 1-inch pieces" },
+      { "amount": "1/2", "unit": "", "item": "green bell pepper, cut into 1-inch pieces" },
+      { "amount": "1/2", "unit": "", "item": "onion, cut into 1-inch pieces" },
+      { "amount": "1", "unit": "cup", "item": "fresh or canned pineapple chunks, drained" },
+      { "amount": "2", "unit": "cloves", "item": "garlic, minced" },
+      { "amount": "1/3", "unit": "cup", "item": "ketchup" },
+      { "amount": "1/4", "unit": "cup", "item": "rice vinegar" },
+      { "amount": "1/4", "unit": "cup", "item": "sugar" },
+      { "amount": "1/4", "unit": "cup", "item": "water or pineapple juice" },
+      { "amount": "1", "unit": "tsp", "item": "cornstarch, mixed with 1 tbsp water" },
+      { "amount": "", "unit": "", "item": "steamed rice, to serve" }
+    ],
+    "steps": [
+      "Toss the pork with the soy sauce, Shaoxing wine, white pepper and egg white and let it sit for 15 minutes.",
+      "Mix the ketchup, rice vinegar, sugar and water or pineapple juice in a bowl.",
+      "Mix the 1/2 cup cornstarch and the flour on a plate. Roll each piece of pork in it, pressing so the coating sticks.",
+      "Heat 2 inches of oil in a wok or heavy pot to 350°F. Fry the pork in two batches for 4 minutes, until lightly golden. Drain on a rack.",
+      "Heat the oil to 375°F and fry all the pork again for 1 to 2 minutes, until deep golden and very crisp. Drain.",
+      "Pour off all but 1 tablespoon of oil. Stir-fry the garlic, peppers and onion over high heat for 1 minute.",
+      "Add the sauce and bring to a boil, then stir in the cornstarch mixture until glossy. Add the pineapple.",
+      "Add the pork, toss quickly to coat and serve right away with rice."
+    ],
+    "allergens": ["eggs", "soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "The second, hotter fry is what keeps the coating crisp under the sauce.",
+      "Taste the sauce before it goes in. It should be clearly sour as well as sweet; add a little more vinegar if needed."
+    ],
+    "make_ahead": "",
+    "variations": ["Sweet and sour chicken: use boneless chicken thighs and fry them for 1 minute less the first time."]
+  },
+  "korean-fried-chicken": {
+    "title": "Korean Fried Chicken (Yangnyeom)",
+    "description": "Twice-fried chicken with a thin, shatteringly crisp potato-starch crust, tossed in a sticky, sweet and spicy gochujang glaze.",
+    "servings": 4,
+    "prep_minutes": 30,
+    "cook_minutes": 35,
+    "ingredients": [
+      { "amount": "2", "unit": "lb", "item": "chicken wings and drumettes, or boneless thighs cut into 2-inch pieces" },
+      { "amount": "1", "unit": "tsp", "item": "kosher salt" },
+      { "amount": "1/2", "unit": "tsp", "item": "ground black pepper" },
+      { "amount": "1", "unit": "tbsp", "item": "grated fresh ginger" },
+      { "amount": "3/4", "unit": "cup", "item": "potato starch" },
+      { "amount": "1/4", "unit": "cup", "item": "all-purpose flour" },
+      { "amount": "1/2", "unit": "tsp", "item": "baking powder" },
+      { "amount": "3/4", "unit": "cup", "item": "ice-cold water" },
+      { "amount": "2", "unit": "quarts", "item": "vegetable or canola oil, for frying" },
+      { "amount": "3", "unit": "cloves", "item": "garlic, minced" },
+      { "amount": "1/4", "unit": "cup", "item": "gochujang (Korean chili paste)" },
+      { "amount": "1/4", "unit": "cup", "item": "ketchup" },
+      { "amount": "1/4", "unit": "cup", "item": "rice syrup or light corn syrup" },
+      { "amount": "1", "unit": "tbsp", "item": "soy sauce" },
+      { "amount": "1", "unit": "tbsp", "item": "brown sugar" },
+      { "amount": "2", "unit": "tsp", "item": "rice vinegar" },
+      { "amount": "1", "unit": "tbsp", "item": "toasted sesame seeds, to serve" },
+      { "amount": "2", "unit": "", "item": "scallions, sliced, to serve" }
+    ],
+    "steps": [
+      "Pat the chicken dry and toss it with the salt, pepper and ginger.",
+      "Whisk the potato starch, flour, baking powder and ice water into a thin batter. Add the chicken and turn to coat.",
+      "Heat 2 inches of oil in a heavy pot to 325°F. Fry the chicken in batches for 8 to 10 minutes, until cooked through and pale gold. Drain on a rack for 5 minutes.",
+      "Heat the oil to 375°F and fry the chicken again for 2 to 3 minutes, until deep golden and very crisp. Drain.",
+      "Meanwhile, make the glaze: warm 1 teaspoon of oil in a wide pan over medium heat and fry the garlic for 30 seconds. Add the gochujang, ketchup, syrup, soy sauce, brown sugar and vinegar and simmer for 2 minutes, until glossy and bubbling.",
+      "Turn off the heat, add the hot chicken and toss quickly to coat.",
+      "Sprinkle with sesame seeds and scallions and serve right away."
+    ],
+    "allergens": ["sesame", "soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "The second, hotter fry drives out moisture, so the crust stays crisp even under the sauce.",
+      "Potato starch makes the crust thin and light. Cornstarch works too, but flour alone turns heavy.",
+      "Toss the chicken in the glaze just before serving. If it sits, the crust softens."
+    ],
+    "make_ahead": "Make the glaze up to 3 days ahead and keep it in the fridge.",
+    "variations": [
+      "Soy garlic chicken: glaze with 1/4 cup soy sauce, 3 tbsp honey, 2 tbsp rice syrup and 4 cloves garlic instead.",
+      "Serve with cubes of pickled radish (chicken-mu) on the side."
+    ]
+  },
+  "canchanchara": {
+    "title": "Canchánchara",
+    "description": "One of Cuba's oldest drinks, from the town of Trinidad: raw cane spirit stirred with honey, lime and a little water over ice.",
+    "servings": 1,
+    "prep_minutes": 3,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "2", "unit": "oz", "item": "Cuban aguardiente (or a light Cuban-style rum)" },
+      { "amount": "1/2", "unit": "oz", "item": "fresh lime juice" },
+      { "amount": "1/2", "unit": "oz", "item": "raw honey" },
+      { "amount": "1 2/3", "unit": "oz", "item": "cold water" },
+      { "amount": "", "unit": "", "item": "cracked ice" },
+      { "amount": "1", "unit": "", "item": "lime wedge, to garnish" }
+    ],
+    "steps": [
+      "In a rocks glass or clay cup, stir the honey and lime juice together until the honey dissolves.",
+      "Add the water and stir again.",
+      "Fill the glass with cracked ice and pour in the aguardiente.",
+      "Stir well from the bottom up and garnish with the lime wedge."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "rocks glass",
+      "garnish": "lime wedge",
+      "alcoholic": true,
+      "non_alcoholic_version": "Stir 1/2 oz honey and 1/2 oz lime juice with 3 oz cold water over cracked ice."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Dissolve the honey before adding ice. Cold honey turns stiff and won't mix in.",
+      "Traditionally it's served in a small clay cup that keeps the drink cold."
+    ],
+    "make_ahead": "",
+    "variations": []
+  },
+  "poutine": {
+    "title": "Poutine",
+    "description": "Quebec's late-night classic: crisp, twice-fried fries topped with squeaky fresh cheese curds and drowned in hot, savory brown gravy that just starts to melt them.",
+    "servings": 4,
+    "prep_minutes": 30,
+    "cook_minutes": 40,
+    "ingredients": [
+      { "amount": "2 1/2", "unit": "lb", "item": "russet potatoes, cut into 1/2-inch-thick fries" },
+      { "amount": "2", "unit": "quarts", "item": "vegetable or canola oil, for frying" },
+      { "amount": "3", "unit": "tbsp", "item": "unsalted butter" },
+      { "amount": "1/4", "unit": "cup", "item": "all-purpose flour" },
+      { "amount": "1 1/2", "unit": "cups", "item": "beef broth" },
+      { "amount": "1", "unit": "cup", "item": "chicken broth" },
+      { "amount": "1", "unit": "tsp", "item": "cider vinegar" },
+      { "amount": "1/2", "unit": "tsp", "item": "ground black pepper" },
+      { "amount": "2", "unit": "cups", "item": "fresh cheese curds, at room temperature" },
+      { "amount": "", "unit": "", "item": "kosher salt, to taste" }
+    ],
+    "steps": [
+      "Soak the cut potatoes in cold water for at least 30 minutes, then drain and dry them very well.",
+      "Make the gravy: melt the butter in a saucepan over medium heat, whisk in the flour and cook, stirring, for 3 to 4 minutes, until golden brown. Gradually whisk in both broths, the vinegar and pepper. Simmer for 8 to 10 minutes, until it coats a spoon. Taste for salt and keep hot.",
+      "Heat 2 inches of oil in a heavy pot to 325°F. Fry the potatoes in batches for 5 to 6 minutes, until soft and pale but not browned. Drain on a rack.",
+      "Heat the oil to 375°F and fry the potatoes again for 2 to 3 minutes, until deep golden and crisp. Drain and salt right away.",
+      "Pile the hot fries into bowls, scatter over the cheese curds and pour the very hot gravy on top. Serve right away."
+    ],
+    "allergens": ["milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Fresh, squeaky cheese curds are the heart of poutine. Bring them to room temperature so the gravy softens them.",
+      "The gravy must be very hot, or the curds won't start to melt.",
+      "Short on time? Use crisp oven-baked frozen fries."
+    ],
+    "make_ahead": "Make the gravy up to 3 days ahead and reheat until steaming.",
+    "variations": ["Add pulled pork, sautéed mushrooms or bacon on top."]
+  },
+  "quiche-lorraine": {
+    "title": "Quiche Lorraine",
+    "description": "The classic from Lorraine in eastern France: a crisp butter pastry shell filled with smoky bacon and a silky, nutmeg-scented egg and cream custard.",
+    "servings": 6,
+    "prep_minutes": 30,
+    "cook_minutes": 75,
+    "ingredients": [
+      { "amount": "1 1/4", "unit": "cups", "item": "all-purpose flour, plus more for rolling" },
+      { "amount": "1/2", "unit": "tsp", "item": "kosher salt, plus 1/2 tsp for the custard" },
+      { "amount": "1/2", "unit": "cup", "item": "cold unsalted butter, cubed" },
+      { "amount": "3 to 4", "unit": "tbsp", "item": "ice water" },
+      { "amount": "6", "unit": "oz", "item": "thick-cut smoked bacon, cut into 1/2-inch strips" },
+      { "amount": "3", "unit": "", "item": "large eggs" },
+      { "amount": "1", "unit": "", "item": "large egg yolk" },
+      { "amount": "1 1/4", "unit": "cups", "item": "heavy cream" },
+      { "amount": "1/2", "unit": "cup", "item": "whole milk" },
+      { "amount": "1/8", "unit": "tsp", "item": "ground nutmeg" },
+      { "amount": "1/4", "unit": "tsp", "item": "ground black pepper" }
+    ],
+    "steps": [
+      "Make the pastry: mix the flour and salt, then rub in the butter with your fingertips until it looks like coarse crumbs with some pea-size pieces. Stir in just enough ice water for the dough to hold together. Flatten into a disk, wrap and chill for 1 hour.",
+      "Roll the dough out on a floured counter and line a 9-inch tart pan or deep pie dish. Prick the base with a fork and chill for 15 minutes. Heat the oven to 400°F.",
+      "Line the pastry with parchment and fill with pie weights or dried beans. Bake for 15 minutes, remove the weights and bake 8 to 10 minutes more, until pale golden. Lower the oven to 325°F.",
+      "Meanwhile, cook the bacon in a skillet over medium heat for 6 to 8 minutes, until golden but not crisp. Drain on paper towels.",
+      "Whisk the eggs, yolk, cream, milk, nutmeg, pepper and 1/2 teaspoon salt until smooth, without beating in air.",
+      "Scatter the bacon in the warm pastry shell and pour in the custard.",
+      "Bake for 35 to 40 minutes, until the edges are set but the center still wobbles slightly. Cool for at least 20 minutes before slicing."
+    ],
+    "allergens": ["eggs", "milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Blind-baking the crust first is what keeps the bottom crisp instead of soggy.",
+      "Take the quiche out while the center still jiggles. It keeps cooking as it cools, and an overbaked custard turns rubbery."
+    ],
+    "make_ahead": "Bake up to a day ahead, refrigerate, and serve at room temperature or reheat at 325°F for 15 minutes.",
+    "variations": [
+      "Add 1 cup grated Gruyère with the bacon, the way it's often made outside France.",
+      "Use a 9-inch store-bought pie crust to save time."
+    ]
+  },
+  "tiramisu": {
+    "title": "Tiramisù",
+    "description": "The classic Italian no-bake dessert: espresso-dipped ladyfingers layered with a light mascarpone cream and dusted with cocoa. It sets overnight in the fridge.",
+    "servings": 8,
+    "prep_minutes": 30,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "4", "unit": "", "item": "very fresh large eggs, separated" },
+      { "amount": "1/2", "unit": "cup", "item": "sugar, divided" },
+      { "amount": "16", "unit": "oz", "item": "mascarpone, at room temperature" },
+      { "amount": "1 1/2", "unit": "cups", "item": "strong brewed espresso, cooled" },
+      { "amount": "7", "unit": "oz", "item": "savoiardi (Italian ladyfingers), about 24" },
+      { "amount": "", "unit": "", "item": "unsweetened cocoa powder, for dusting" }
+    ],
+    "steps": [
+      "Beat the egg yolks with half the sugar for 3 to 4 minutes, until pale and thick.",
+      "Add the mascarpone and beat on low just until smooth.",
+      "In a clean bowl with clean beaters, whip the egg whites to soft peaks, then add the rest of the sugar and whip to firm, glossy peaks.",
+      "Fold the whites into the mascarpone mixture in three additions, gently, so the cream stays light.",
+      "Pour the espresso into a shallow dish. Dip each ladyfinger for 1 second per side and lay it in an 8-by-11-inch dish to make a single layer.",
+      "Spread half the cream over the ladyfingers. Repeat with a second layer of dipped ladyfingers and the rest of the cream.",
+      "Smooth the top, cover and refrigerate for at least 6 hours, or overnight.",
+      "Dust generously with cocoa through a fine sieve just before serving."
+    ],
+    "allergens": ["eggs", "milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Dip the ladyfingers quickly. They keep soaking in the fridge, and too much coffee makes the dessert soggy.",
+      "This uses raw eggs. If you'd rather not, buy pasteurized eggs, which whip just as well.",
+      "Don't overbeat the mascarpone or it can turn grainy."
+    ],
+    "make_ahead": "Make it a day ahead: it slices more cleanly. It keeps in the fridge for up to 3 days.",
+    "variations": [
+      "Add 3 tablespoons of Marsala, dark rum or coffee liqueur to the espresso.",
+      "Make it in individual glasses, breaking the ladyfingers to fit."
+    ]
+  },
+  "tuna-and-cucumber-maki": {
+    "title": "Tuna and Cucumber Maki Rolls",
+    "description": "Classic thin sushi rolls of seasoned rice and nori, half filled with tuna and half with crisp cucumber. Served with soy sauce, wasabi and pickled ginger.",
+    "servings": 3,
+    "prep_minutes": 45,
+    "cook_minutes": 30,
+    "ingredients": [
+      { "amount": "2", "unit": "cups", "item": "Japanese short-grain rice" },
+      { "amount": "2", "unit": "cups", "item": "water" },
+      { "amount": "1/4", "unit": "cup", "item": "unseasoned rice vinegar" },
+      { "amount": "2", "unit": "tbsp", "item": "sugar" },
+      { "amount": "1", "unit": "tsp", "item": "salt" },
+      { "amount": "3", "unit": "sheets", "item": "nori, cut in half crosswise" },
+      { "amount": "6", "unit": "oz", "item": "sushi-grade tuna, cut into 1/3-inch-thick sticks" },
+      { "amount": "1", "unit": "", "item": "Japanese or Persian cucumber, cut into thin sticks" },
+      { "amount": "", "unit": "", "item": "wasabi paste, to serve" },
+      { "amount": "", "unit": "", "item": "pickled ginger, to serve" },
+      { "amount": "", "unit": "", "item": "soy sauce, to serve" }
+    ],
+    "steps": [
+      "Rinse the rice in a bowl of cold water, swirling and draining, 4 or 5 times until the water runs almost clear. Drain for 15 minutes.",
+      "Cook the rice with the water in a rice cooker, or in a covered pot: boil, then simmer on low for 15 minutes and rest off the heat, still covered, for 10 minutes.",
+      "Meanwhile, warm the vinegar, sugar and salt in a small pan, stirring until the sugar dissolves. Let it cool.",
+      "Spread the hot rice in a wide bowl. Drizzle the vinegar mixture over it and fold with a spatula, cutting through the rice rather than stirring, while fanning it to cool. Cover with a damp towel until it's at room temperature.",
+      "Lay a bamboo mat on the counter and place a half sheet of nori on it, shiny side down. Wet your hands and spread a thin, even layer of rice over the nori, leaving a 1/2-inch strip bare at the far edge.",
+      "Lay a line of tuna across the middle of the rice for 3 of the rolls, and cucumber for the other 3.",
+      "Lift the near edge of the mat and roll it over the filling, pressing gently, then keep rolling until the bare strip of nori seals the roll.",
+      "Cut each roll into 6 pieces with a sharp, wet knife, wiping the blade between cuts. Serve with wasabi, pickled ginger and soy sauce."
+    ],
+    "allergens": ["fish", "soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Keep a bowl of water with a splash of vinegar beside you. Wet hands stop the rice from sticking to your fingers.",
+      "Use less rice than you think. A thin layer keeps the roll neat and lets the filling stand out.",
+      "Cool the rice to room temperature before rolling: hot rice makes the nori go limp."
+    ],
+    "make_ahead": "Sushi is best eaten within a few hours. Don't refrigerate it, because cold makes the rice hard.",
+    "variations": [
+      "Spicy tuna roll: chop the tuna and mix it with a little mayonnaise and sriracha before rolling.",
+      "Avocado roll: use thin slices of ripe avocado as the filling."
+    ]
+  },
+  "cacio-e-pepe": {
+    "title": "Cacio e Pepe",
+    "description": "Rome's three-ingredient pasta: spaghetti tossed with finely grated Pecorino Romano, starchy pasta water and lots of toasted black pepper into a creamy, peppery sauce.",
+    "servings": 4,
+    "prep_minutes": 5,
+    "cook_minutes": 15,
+    "ingredients": [
+      { "amount": "12", "unit": "oz", "item": "spaghetti, tonnarelli or bucatini" },
+      { "amount": "2", "unit": "tsp", "item": "whole black peppercorns, coarsely cracked" },
+      { "amount": "2", "unit": "cups", "item": "very finely grated Pecorino Romano, plus more to serve" },
+      { "amount": "", "unit": "", "item": "salt, for the pasta water" }
+    ],
+    "steps": [
+      "Bring a pot of water to a boil, using less water than usual so it gets extra starchy, and salt it lightly. Pecorino is salty.",
+      "Cook the pasta until 2 minutes short of al dente. Before draining, scoop out 2 cups of the cooking water.",
+      "While the pasta cooks, toast the pepper in a large, dry skillet over medium heat for 1 minute, until fragrant. Ladle in 1/2 cup of the pasta cooking water and let it simmer.",
+      "Put the cheese in a bowl and stir in about 1/3 cup of the warm (not boiling) pasta water to make a smooth, thick paste.",
+      "Add the drained pasta to the skillet and toss for 1 to 2 minutes, adding splashes of pasta water, until al dente.",
+      "Take the pan off the heat. Let it cool for 30 seconds, then add the cheese paste and toss quickly, adding more pasta water a little at a time, until the sauce is creamy and coats the pasta.",
+      "Serve right away with more pecorino and pepper."
+    ],
+    "allergens": ["milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "If the cheese is too hot, it clumps. Mixing it into a paste with warm water first, off the heat, keeps the sauce smooth.",
+      "Grate the cheese on the finest holes of the grater. Coarse shreds won't melt into a sauce.",
+      "Pecorino Romano is made with animal rennet, so this dish isn't vegetarian."
+    ],
+    "make_ahead": "",
+    "variations": ["Add 2 tablespoons of butter to the pan with the pepper for an even silkier, more forgiving sauce."]
+  },
+  "pork-souvlaki": {
+    "title": "Pork Souvlaki with Tzatziki",
+    "description": "Greece's favorite street food: cubes of pork marinated in lemon, garlic, oregano and olive oil, grilled on skewers and tucked into warm pita with tzatziki, tomato and onion.",
+    "servings": 4,
+    "prep_minutes": 25,
+    "cook_minutes": 12,
+    "ingredients": [
+      { "amount": "2", "unit": "lb", "item": "boneless pork shoulder, cut into 1-inch cubes" },
+      { "amount": "1/3", "unit": "cup", "item": "extra-virgin olive oil" },
+      { "amount": "3", "unit": "tbsp", "item": "fresh lemon juice" },
+      { "amount": "1", "unit": "tbsp", "item": "red wine vinegar" },
+      { "amount": "4", "unit": "cloves", "item": "garlic, minced" },
+      { "amount": "1", "unit": "tbsp", "item": "dried Greek oregano" },
+      { "amount": "1", "unit": "tsp", "item": "kosher salt" },
+      { "amount": "1/2", "unit": "tsp", "item": "ground black pepper" },
+      { "amount": "1", "unit": "cup", "item": "plain Greek yogurt" },
+      { "amount": "1/2", "unit": "", "item": "English cucumber, grated and squeezed dry" },
+      { "amount": "1", "unit": "clove", "item": "garlic, grated, for the tzatziki" },
+      { "amount": "1", "unit": "tbsp", "item": "chopped fresh dill" },
+      { "amount": "1", "unit": "tsp", "item": "fresh lemon juice, for the tzatziki" },
+      { "amount": "4", "unit": "", "item": "pita breads, warmed" },
+      { "amount": "2", "unit": "", "item": "tomatoes, sliced" },
+      { "amount": "1/2", "unit": "", "item": "red onion, thinly sliced" },
+      { "amount": "8", "unit": "", "item": "metal or soaked bamboo skewers" }
+    ],
+    "steps": [
+      "Whisk the olive oil, 3 tablespoons lemon juice, vinegar, minced garlic, oregano, salt and pepper in a bowl. Add the pork, toss, cover and refrigerate for at least 2 hours, or overnight.",
+      "Make the tzatziki: stir the yogurt, cucumber, grated garlic, dill and 1 teaspoon lemon juice together with a pinch of salt. Chill until needed.",
+      "Thread the pork onto the skewers.",
+      "Heat a grill or grill pan to medium-high. Grill the skewers for 10 to 12 minutes, turning every few minutes, until charred at the edges and cooked through (145°F).",
+      "Serve the pork on warm pita with tzatziki, tomato and onion, or on a plate with lemon wedges."
+    ],
+    "allergens": ["milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Pork shoulder stays juicy on the grill. Tenderloin works but cooks faster, so watch it.",
+      "Squeeze the grated cucumber well, or the tzatziki will turn watery."
+    ],
+    "make_ahead": "Make the tzatziki up to 2 days ahead; it gets better as it sits.",
+    "variations": [
+      "Chicken souvlaki: use boneless chicken thighs and grill for 10 minutes, to 165°F.",
+      "Add a few fries inside the pita, the way many Greek street stalls do."
+    ]
+  },
+  "japanese-curry": {
+    "title": "Japanese Chicken Curry",
+    "description": "Japan's favorite comfort food: chicken, potato and carrot simmered in a thick, mild, slightly sweet curry gravy made with a homemade roux. Served over rice.",
+    "servings": 4,
+    "prep_minutes": 20,
+    "cook_minutes": 45,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "lb", "item": "boneless, skinless chicken thighs, cut into bite-size pieces" },
+      { "amount": "1", "unit": "tbsp", "item": "vegetable oil" },
+      { "amount": "2", "unit": "", "item": "onions, thinly sliced" },
+      { "amount": "2", "unit": "", "item": "carrots, cut into chunks" },
+      { "amount": "2", "unit": "", "item": "Yukon Gold potatoes, cut into large chunks" },
+      { "amount": "1", "unit": "tbsp", "item": "grated fresh ginger" },
+      { "amount": "2", "unit": "cloves", "item": "garlic, grated" },
+      { "amount": "3 1/2", "unit": "cups", "item": "low-sodium chicken broth" },
+      { "amount": "1/2", "unit": "", "item": "apple, peeled and finely grated" },
+      { "amount": "1", "unit": "tbsp", "item": "soy sauce" },
+      { "amount": "1", "unit": "tbsp", "item": "ketchup" },
+      { "amount": "4", "unit": "tbsp", "item": "unsalted butter" },
+      { "amount": "1/3", "unit": "cup", "item": "all-purpose flour" },
+      { "amount": "3", "unit": "tbsp", "item": "Japanese curry powder (such as S&B)" },
+      { "amount": "1", "unit": "tsp", "item": "garam masala" },
+      { "amount": "", "unit": "", "item": "salt, to taste" },
+      { "amount": "4", "unit": "cups", "item": "hot cooked Japanese short-grain rice, to serve" },
+      { "amount": "", "unit": "", "item": "pickled red ginger or fukujinzuke, to serve (optional)" }
+    ],
+    "steps": [
+      "Heat the oil in a large pot over medium heat. Add the onions with a pinch of salt and cook, stirring often, for 15 minutes, until soft and golden brown.",
+      "Add the ginger, garlic and chicken and cook for 3 minutes, until the chicken is no longer pink outside.",
+      "Add the carrots, potatoes, broth and grated apple. Bring to a boil, skim off any foam, then cover and simmer for 20 minutes, until the potatoes are tender.",
+      "Meanwhile, make the roux: melt the butter in a small pan over medium-low heat, stir in the flour and cook, stirring, for 8 to 10 minutes, until it smells nutty and turns light brown. Stir in the curry powder and garam masala and cook for 30 seconds more, then turn off the heat.",
+      "Ladle about 1 cup of the hot broth into the roux and whisk until smooth, then stir it back into the pot.",
+      "Add the soy sauce and ketchup and simmer gently, stirring, for 5 minutes, until the curry is thick and glossy. Taste for salt.",
+      "Serve over the rice, with pickles on the side if you like."
+    ],
+    "allergens": ["milk", "soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Browning the onions slowly gives the curry its deep, sweet flavor. Don't rush it.",
+      "Stir the curry often once the roux is in. The thick sauce can stick and scorch."
+    ],
+    "make_ahead": "The curry tastes even better the next day. Refrigerate for up to 3 days or freeze for up to 2 months; the potatoes soften a little after freezing.",
+    "variations": [
+      "Katsu curry: serve the curry with a crispy breaded pork or chicken cutlet.",
+      "For a spicier curry, add 1/2 to 1 tsp cayenne pepper with the curry powder."
+    ]
+  },
+  "john-collins": {
+    "title": "John Collins",
+    "description": "A tall, sparkling gin lemonade built right in the glass: London dry gin, lemon, sugar and soda over plenty of ice.",
+    "servings": 1,
+    "prep_minutes": 3,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "London dry gin" },
+      { "amount": "1", "unit": "oz", "item": "fresh lemon juice" },
+      { "amount": "1/2", "unit": "oz", "item": "simple syrup" },
+      { "amount": "2", "unit": "oz", "item": "chilled soda water" },
+      { "amount": "1", "unit": "", "item": "lemon slice, to garnish" },
+      { "amount": "1", "unit": "", "item": "maraschino cherry, to garnish" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Fill a highball glass with ice.",
+      "Pour in the gin, lemon juice and simple syrup.",
+      "Add the soda water and stir gently once or twice, just to mix.",
+      "Garnish with the lemon slice and cherry."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "lemon slice and maraschino cherry",
+      "alcoholic": true,
+      "non_alcoholic_version": "Build 1 oz lemon juice and 3/4 oz simple syrup over ice and top with 4 oz soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Stir gently, just once or twice, after the soda goes in. Heavy stirring knocks out the fizz.",
+      "A John Collins uses London dry gin; a Tom Collins traditionally uses the sweeter Old Tom gin."
+    ],
+    "make_ahead": "Mix a pitcher of gin, lemon and syrup up to 4 hours ahead and keep it cold. Pour over ice and top each glass with soda.",
+    "variations": ["Whiskey Collins: swap bourbon for the gin.", "Juan Collins: swap blanco tequila for the gin."]
+  },
+  "miso-soup": {
+    "title": "Miso Soup",
+    "description": "Japan's everyday soup: a light kombu and bonito broth with miso stirred in at the end, plus soft tofu, wakame seaweed and scallions.",
+    "servings": 4,
+    "prep_minutes": 10,
+    "cook_minutes": 15,
+    "ingredients": [
+      { "amount": "4", "unit": "cups", "item": "water" },
+      { "amount": "1", "unit": "", "item": "4-inch square of kombu (dried kelp)" },
+      { "amount": "1", "unit": "cup", "item": "loosely packed katsuobushi (bonito flakes)" },
+      { "amount": "4", "unit": "tbsp", "item": "miso paste (white or red), plus more to taste" },
+      { "amount": "7", "unit": "oz", "item": "silken or soft tofu, cut into 1/2-inch cubes" },
+      { "amount": "1", "unit": "tbsp", "item": "dried wakame seaweed" },
+      { "amount": "2", "unit": "", "item": "scallions, thinly sliced" }
+    ],
+    "steps": [
+      "Soak the kombu in the water in a saucepan for 30 minutes.",
+      "Heat the pan slowly over medium-low heat. Just before it boils, lift out the kombu.",
+      "Add the bonito flakes, bring just to a boil, then turn off the heat and let them steep for 2 minutes. Strain the broth (dashi) and return it to the pan.",
+      "Soak the wakame in a bowl of water for 5 minutes, then drain.",
+      "Warm the dashi over low heat. Put the miso in a ladle or small sieve, lower it into the broth and whisk until it dissolves.",
+      "Add the tofu and wakame and heat gently for 1 to 2 minutes. Do not let the soup boil.",
+      "Ladle into bowls and top with the scallions."
+    ],
+    "allergens": ["fish", "soy"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Never boil miso soup once the miso is in. Boiling dulls its aroma and flavor.",
+      "Start with 1 tablespoon of miso per cup of broth and add more to taste. Brands vary in saltiness."
+    ],
+    "make_ahead": "Make the dashi up to 3 days ahead and keep it in the fridge. Add the miso and tofu just before serving.",
+    "variations": ["Add sliced mushrooms, spinach or cubes of daikon, cooking them in the dashi before the miso goes in."]
+  },
+  "moqueca": {
+    "title": "Moqueca Baiana (Brazilian Fish Stew)",
+    "description": "The coastal stew from Bahia, Brazil: firm white fish and shrimp simmered with peppers, tomatoes and onion in coconut milk, colored and flavored with red dendê palm oil.",
+    "servings": 4,
+    "prep_minutes": 25,
+    "cook_minutes": 25,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "lb", "item": "firm white fish fillets (such as cod, halibut or snapper), cut into 2-inch pieces" },
+      { "amount": "8", "unit": "oz", "item": "raw shrimp, peeled and deveined" },
+      { "amount": "2", "unit": "", "item": "limes, juiced" },
+      { "amount": "3", "unit": "cloves", "item": "garlic, minced" },
+      { "amount": "1 1/2", "unit": "tsp", "item": "kosher salt, divided" },
+      { "amount": "2", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "1", "unit": "", "item": "onion, thinly sliced" },
+      { "amount": "1", "unit": "", "item": "red bell pepper, thinly sliced" },
+      { "amount": "1", "unit": "", "item": "green bell pepper, thinly sliced" },
+      { "amount": "3", "unit": "", "item": "ripe tomatoes, sliced" },
+      { "amount": "1", "unit": "", "item": "malagueta or other small hot chile, minced (optional)" },
+      { "amount": "1", "unit": "can (13.5 oz)", "item": "full-fat coconut milk" },
+      { "amount": "2", "unit": "tbsp", "item": "dendê (red palm) oil" },
+      { "amount": "1/2", "unit": "cup", "item": "chopped cilantro" },
+      { "amount": "", "unit": "", "item": "steamed rice, to serve" }
+    ],
+    "steps": [
+      "Toss the fish and shrimp with the lime juice, garlic and 1 teaspoon salt. Let them sit for 15 minutes.",
+      "Heat the olive oil in a wide, heavy pot over medium heat. Cook the onion and peppers for 5 minutes, until softened.",
+      "Add the tomatoes, chile, if using, and the remaining salt and cook for 5 minutes, until the tomatoes start to break down.",
+      "Nestle the fish into the vegetables and pour over the coconut milk and dendê oil. Bring to a gentle simmer, cover and cook for 8 minutes.",
+      "Add the shrimp and simmer for 3 to 4 minutes more, until the fish flakes and the shrimp are pink.",
+      "Stir in most of the cilantro, taste for salt and lime, and serve over rice with the rest of the cilantro on top."
+    ],
+    "allergens": ["fish", "shellfish"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Dendê oil gives moqueca baiana its deep orange color and flavor. Find it at Brazilian or West African grocers; 2 tablespoons of olive oil plus 1 teaspoon paprika is the closest stand-in.",
+      "Stir gently once the fish is in, so the pieces stay whole."
+    ],
+    "make_ahead": "",
+    "variations": ["Moqueca capixaba: the Espírito Santo version skips the coconut milk and dendê, using olive oil and annatto instead."]
+  },
+  "iba-tiki": {
+    "title": "IBA Tiki",
+    "description": "A modern Cuban tiki drink: two rums, amaretto and hazelnut liqueur with passion fruit, pineapple, lime and fresh ginger over pebble ice.",
+    "servings": 1,
+    "prep_minutes": 6,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1", "unit": "oz", "item": "aged rum (such as Havana Club Profundo)" },
+      { "amount": "1", "unit": "oz", "item": "smoky aged rum (such as Havana Club Smoky)" },
+      { "amount": "1/2", "unit": "oz", "item": "nut-free amaretto (such as Disaronno)" },
+      { "amount": "1", "unit": "tsp", "item": "Frangelico hazelnut liqueur" },
+      { "amount": "5", "unit": "drops", "item": "maraschino liqueur" },
+      { "amount": "1", "unit": "oz", "item": "passion fruit purée" },
+      { "amount": "3", "unit": "oz", "item": "fresh pineapple juice" },
+      { "amount": "1", "unit": "oz", "item": "fresh lime juice" },
+      { "amount": "1", "unit": "", "item": "thin slice of fresh ginger" },
+      { "amount": "", "unit": "", "item": "pebble or crushed ice" },
+      { "amount": "", "unit": "", "item": "citrus wheels and a dried pineapple slice, to garnish" }
+    ],
+    "steps": [
+      "Fill a tiki mug or tall glass with pebble ice.",
+      "Muddle the ginger slice in the bottom of a shaker.",
+      "Add all the remaining ingredients, fill with ice and shake hard for 15 seconds.",
+      "Strain into the mug and garnish with the citrus wheels and dried pineapple."
+    ],
+    "allergens": ["tree nuts"],
+    "cocktail": {
+      "glass": "tiki mug",
+      "garnish": "citrus wheels and dried pineapple",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake 1 oz passion fruit purée, 3 oz pineapple juice, 1 oz lime juice, 1/2 oz simple syrup and a ginger slice with ice."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Frangelico is made from hazelnuts. Use 1 tsp more amaretto in its place for a nut-free drink.",
+      "Any good aged rum works. A dash of smoky mezcal can stand in for the smoky rum."
+    ],
+    "make_ahead": "",
+    "variations": []
+  },
+  "pimms-cup": {
+    "title": "Pimm's Cup",
+    "description": "England's summer garden drink: Pimm's No. 1 over ice with sparkling lemonade, cucumber, strawberry, orange and mint.",
+    "servings": 1,
+    "prep_minutes": 3,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "2", "unit": "oz", "item": "Pimm's No. 1" },
+      { "amount": "6", "unit": "oz", "item": "chilled sparkling lemonade (such as Sprite or 7UP)" },
+      { "amount": "2", "unit": "", "item": "thin slices of cucumber" },
+      { "amount": "2", "unit": "", "item": "strawberries, sliced" },
+      { "amount": "1", "unit": "", "item": "orange slice" },
+      { "amount": "1", "unit": "", "item": "mint sprig" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Fill a tall glass with ice, tucking the cucumber, strawberry and orange slices in between the cubes.",
+      "Pour in the Pimm's.",
+      "Top with the lemonade and stir gently.",
+      "Slap the mint sprig between your hands to wake it up and add it to the glass."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "cucumber, strawberry and mint",
+      "alcoholic": true,
+      "non_alcoholic_version": "Build 1 1/2 oz cold black tea, 1 oz lemon juice and the fruit over ice and top with 4 oz ginger ale."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "The rule is one part Pimm's to three parts lemonade. Use the clear, fizzy kind, not American still lemonade.",
+      "For a drier drink, use half lemonade and half ginger ale."
+    ],
+    "make_ahead": "For a crowd, fill a jug with ice and fruit, add the Pimm's, and top with lemonade just before serving.",
+    "variations": []
+  },
+  "dons-special-daiquiri": {
+    "title": "Don's Special Daiquiri",
+    "description": "Don the Beachcomber's tropical daiquiri: two rums, passion fruit and honey flash-blended with crushed ice.",
+    "servings": 1,
+    "prep_minutes": 4,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1", "unit": "oz", "item": "gold Jamaican rum" },
+      { "amount": "1/2", "unit": "oz", "item": "white Cuban-style rum" },
+      { "amount": "1/2", "unit": "oz", "item": "passion fruit syrup" },
+      { "amount": "1/2", "unit": "oz", "item": "fresh lime juice" },
+      { "amount": "1/2", "unit": "oz", "item": "honey syrup (equal parts honey and hot water)" },
+      { "amount": "1", "unit": "cup", "item": "crushed ice, plus more to fill" },
+      { "amount": "1/2", "unit": "", "item": "fresh passion fruit, to garnish" }
+    ],
+    "steps": [
+      "Add the rums, passion fruit syrup, lime juice, honey syrup and the cup of crushed ice to a blender.",
+      "Blend for just 3 to 5 seconds, until frothy but not slushy.",
+      "Pour into a footed glass and top up with more crushed ice.",
+      "Garnish with the passion fruit half."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "footed glass",
+      "garnish": "passion fruit half",
+      "alcoholic": true,
+      "non_alcoholic_version": "Flash-blend 1 oz passion fruit syrup, 3/4 oz lime juice, 1/2 oz honey syrup and 2 oz pineapple juice with crushed ice."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "A quick flash-blend chills and froths the drink. Blend too long and it turns into a slushie.",
+      "No blender? Shake hard with crushed ice and pour everything into the glass unstrained."
+    ],
+    "make_ahead": "",
+    "variations": []
+  },
+  "som-tam": {
+    "title": "Som Tam (Thai Green Papaya Salad)",
+    "description": "Thailand's crunchy, fiery salad: shredded green papaya pounded with garlic, chilies, lime, fish sauce and palm sugar, with tomatoes, long beans, peanuts and dried shrimp.",
+    "servings": 2,
+    "prep_minutes": 20,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "3", "unit": "cups", "item": "shredded green (unripe) papaya" },
+      { "amount": "2", "unit": "cloves", "item": "garlic" },
+      { "amount": "1 to 4", "unit": "", "item": "Thai bird's eye chilies, to taste" },
+      { "amount": "1 1/2", "unit": "tbsp", "item": "palm sugar, finely chopped" },
+      { "amount": "3", "unit": "", "item": "yard-long beans or 6 green beans, cut into 2-inch pieces" },
+      { "amount": "1", "unit": "tbsp", "item": "small dried shrimp" },
+      { "amount": "3", "unit": "tbsp", "item": "roasted unsalted peanuts" },
+      { "amount": "2", "unit": "tbsp", "item": "fish sauce" },
+      { "amount": "2", "unit": "tbsp", "item": "fresh lime juice" },
+      { "amount": "1", "unit": "tsp", "item": "tamarind paste (optional)" },
+      { "amount": "6", "unit": "", "item": "cherry tomatoes, halved" }
+    ],
+    "steps": [
+      "In a large mortar, pound the garlic and chilies to a rough paste.",
+      "Add the palm sugar and pound until it softens.",
+      "Add the long beans, dried shrimp and peanuts and pound a few times, just to bruise the beans and break the peanuts.",
+      "Add the fish sauce, lime juice and tamarind paste, if using, and stir until the sugar dissolves.",
+      "Add the papaya and tomatoes. Pound lightly while turning everything with a spoon, for about 1 minute, until the papaya softens slightly and soaks up the dressing.",
+      "Taste: it should be sour, salty, sweet and spicy. Adjust with more lime, fish sauce or sugar and serve right away."
+    ],
+    "allergens": ["fish", "peanuts", "shellfish"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "No mortar? Mash the garlic, chilies and sugar in a large bowl with the end of a rolling pin, then toss everything together.",
+      "Use a julienne peeler for the papaya. Shreds that are too thick won't soak up the dressing.",
+      "Shredded carrot or cucumber can stand in for green papaya."
+    ],
+    "make_ahead": "",
+    "variations": ["Serve with sticky rice and grilled chicken for the classic Isaan meal."]
+  },
+  "crepes": {
+    "title": "French Crêpes",
+    "description": "Thin, tender French pancakes made from a simple rested batter of flour, eggs, milk and melted butter. Serve them with lemon and sugar, jam or chocolate spread.",
+    "servings": 4,
+    "prep_minutes": 10,
+    "cook_minutes": 25,
+    "ingredients": [
+      { "amount": "1", "unit": "cup", "item": "all-purpose flour" },
+      { "amount": "1", "unit": "tbsp", "item": "sugar" },
+      { "amount": "1/4", "unit": "tsp", "item": "salt" },
+      { "amount": "3", "unit": "", "item": "large eggs" },
+      { "amount": "1 1/4", "unit": "cups", "item": "whole milk" },
+      { "amount": "1/4", "unit": "cup", "item": "water" },
+      { "amount": "3", "unit": "tbsp", "item": "unsalted butter, melted, plus more for the pan" },
+      { "amount": "", "unit": "", "item": "lemon wedges and sugar, to serve" }
+    ],
+    "steps": [
+      "Whisk the flour, sugar and salt in a bowl. Make a well, add the eggs and about half the milk and whisk to a smooth, thick batter.",
+      "Whisk in the rest of the milk, the water and the melted butter until the batter is as thin as heavy cream. Or blend everything in a blender for 15 seconds.",
+      "Cover and rest the batter for at least 30 minutes at room temperature, or overnight in the fridge.",
+      "Heat an 8- to 10-inch nonstick or crêpe pan over medium heat and brush it lightly with butter.",
+      "Pour in about 1/4 cup of batter and immediately tilt and swirl the pan to coat the bottom in a thin layer.",
+      "Cook for 1 minute, until the edges lift and the underside is lightly golden. Flip and cook for 20 to 30 seconds more.",
+      "Stack the crêpes on a plate. Serve folded into quarters with a squeeze of lemon and a sprinkle of sugar."
+    ],
+    "allergens": ["eggs", "milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Resting the batter relaxes the gluten, which makes the crêpes softer and less likely to tear.",
+      "The first crêpe is often a test. Adjust the heat and the amount of batter after it.",
+      "If the batter thickens after resting, stir in a splash of milk."
+    ],
+    "make_ahead": "Stack cooked crêpes with parchment between them and refrigerate for up to 3 days, or freeze for a month. Warm in a dry pan.",
+    "variations": [
+      "Savory crêpes: leave out the sugar and fill with ham, Gruyère and a fried egg.",
+      "Crêpes Suzette: warm the crêpes in a sauce of butter, sugar, orange juice and orange liqueur."
+    ]
+  },
+  "brownies": {
+    "title": "Fudgy Brownies",
+    "description": "Dense, chewy, deeply chocolatey brownies with a crackly top, made in one bowl with melted butter, chocolate and cocoa.",
+    "servings": 16,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "ingredients": [
+      { "amount": "1/2", "unit": "cup", "item": "unsalted butter" },
+      { "amount": "4", "unit": "oz", "item": "semisweet or bittersweet chocolate, chopped" },
+      { "amount": "1", "unit": "cup", "item": "sugar" },
+      { "amount": "2", "unit": "", "item": "large eggs, at room temperature" },
+      { "amount": "1", "unit": "tsp", "item": "vanilla extract" },
+      { "amount": "1/3", "unit": "cup", "item": "unsweetened cocoa powder" },
+      { "amount": "1/2", "unit": "cup", "item": "all-purpose flour" },
+      { "amount": "1/4", "unit": "tsp", "item": "salt" },
+      { "amount": "1/2", "unit": "cup", "item": "chocolate chips (optional)" }
+    ],
+    "steps": [
+      "Heat the oven to 350°F. Line an 8-inch square pan with parchment, leaving an overhang.",
+      "Melt the butter and chopped chocolate together in a bowl in the microwave in 30-second bursts, stirring, until smooth.",
+      "Whisk in the sugar, then the eggs and vanilla, and keep whisking for 1 minute, until thick and glossy.",
+      "Stir in the cocoa, flour and salt just until combined, then fold in the chocolate chips, if using.",
+      "Spread the batter in the pan and bake for 22 to 26 minutes, until a toothpick in the center comes out with moist crumbs.",
+      "Cool completely in the pan before lifting out and cutting into squares."
+    ],
+    "allergens": ["eggs", "milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Check the chocolate label if you avoid soy: many brands contain soy lecithin.",
+      "Whisking the eggs and sugar hard is what gives brownies their shiny, crackly top.",
+      "Pull them out while the center still looks slightly underdone. They firm up as they cool."
+    ],
+    "make_ahead": "Store airtight for up to 4 days, or freeze for up to 3 months.",
+    "variations": ["Double the recipe in a 9x13-inch pan and bake for about 30 minutes."]
+  },
+  "yakitori": {
+    "title": "Yakitori (Chicken and Scallion Skewers)",
+    "description": "Japanese grilled chicken skewers, called negima: juicy thigh meat threaded with scallion and brushed with a sweet, glossy soy and mirin tare.",
+    "servings": 4,
+    "prep_minutes": 30,
+    "cook_minutes": 15,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "lb", "item": "boneless, skinless chicken thighs, cut into 1-inch pieces" },
+      { "amount": "8", "unit": "", "item": "thick scallions, white and light green parts cut into 1-inch lengths, greens kept" },
+      { "amount": "1/2", "unit": "cup", "item": "soy sauce" },
+      { "amount": "1/2", "unit": "cup", "item": "mirin" },
+      { "amount": "1/4", "unit": "cup", "item": "sake" },
+      { "amount": "1/4", "unit": "cup", "item": "water" },
+      { "amount": "2", "unit": "tsp", "item": "brown sugar" },
+      { "amount": "1", "unit": "tsp", "item": "vegetable oil" },
+      { "amount": "", "unit": "", "item": "shichimi togarashi, to serve (optional)" },
+      { "amount": "12", "unit": "", "item": "6-inch bamboo skewers, soaked in water for 30 minutes" }
+    ],
+    "steps": [
+      "Make the tare: put the soy sauce, mirin, sake, water, brown sugar and a few scallion greens in a small pan. Boil, then simmer for 10 to 15 minutes, until reduced by about a third and slightly syrupy. Discard the greens and let it cool a little.",
+      "Thread the chicken and scallion pieces onto the skewers, alternating them and pressing them snugly together.",
+      "Heat a grill, or a grill pan or broiler, to medium-high and brush the grates or pan with the oil.",
+      "Grill the skewers for 4 to 5 minutes, turning often, until lightly charred.",
+      "Brush with the tare and grill for 30 seconds per side. Repeat two or three times, until glossy and the chicken is cooked through (165°F).",
+      "Serve with a final brush of tare and a sprinkle of shichimi togarashi, if you like."
+    ],
+    "allergens": ["soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Pour some tare into a separate bowl for brushing so the leftover sauce stays clean for serving.",
+      "Thigh meat stays juicy on the grill. Breast meat dries out quickly."
+    ],
+    "make_ahead": "Make the tare up to 2 weeks ahead and keep it in the fridge.",
+    "variations": ["Shio style: season the skewers with salt only and skip the tare."]
+  },
+  "pisco-punch": {
+    "title": "Pisco Punch",
+    "description": "San Francisco's Gold Rush-era favorite: pisco with pineapple, lemon and clove, finished with a splash of dry white wine.",
+    "servings": 1,
+    "prep_minutes": 4,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "2", "unit": "oz", "item": "pisco" },
+      { "amount": "3/4", "unit": "oz", "item": "fresh pineapple juice" },
+      { "amount": "1/2", "unit": "oz", "item": "simple syrup" },
+      { "amount": "1/2", "unit": "oz", "item": "fresh lemon juice" },
+      { "amount": "1", "unit": "oz", "item": "chilled vegan dry white wine (such as Bonterra Sauvignon Blanc)" },
+      { "amount": "3", "unit": "", "item": "whole cloves" },
+      { "amount": "", "unit": "", "item": "ice, for shaking" }
+    ],
+    "steps": [
+      "In a shaker, gently press the cloves into the simple syrup with a muddler to release their flavor.",
+      "Add the pisco, pineapple juice and lemon juice, then fill with ice.",
+      "Shake hard and double-strain into a large wine glass or goblet.",
+      "Pour the wine on top and stir gently."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "wine glass",
+      "garnish": "pineapple wedge",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake 2 oz pineapple juice, 1/2 oz lemon juice, 1/2 oz simple syrup and 2 cloves with ice, strain, and top with 1 oz white grape juice."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Press the cloves lightly. Crushing them hard makes the drink bitter.",
+      "Fresh pineapple juice gives a lovely foam; carton juice works but is flatter."
+    ],
+    "make_ahead": "",
+    "variations": []
+  },
+  "biscuits-and-gravy": {
+    "title": "Biscuits and Sausage Gravy",
+    "description": "The Southern breakfast classic: tall, flaky buttermilk biscuits split open and smothered in creamy, peppery pork sausage gravy.",
+    "servings": 6,
+    "prep_minutes": 20,
+    "cook_minutes": 25,
+    "ingredients": [
+      { "amount": "2 1/2", "unit": "cups", "item": "all-purpose flour, plus more for the counter" },
+      { "amount": "1", "unit": "tbsp", "item": "baking powder" },
+      { "amount": "1/2", "unit": "tsp", "item": "baking soda" },
+      { "amount": "1", "unit": "tsp", "item": "kosher salt" },
+      { "amount": "1", "unit": "tsp", "item": "sugar" },
+      { "amount": "1/2", "unit": "cup", "item": "cold unsalted butter, cubed" },
+      { "amount": "1", "unit": "cup", "item": "cold buttermilk, plus more for brushing" },
+      { "amount": "1", "unit": "lb", "item": "bulk pork breakfast sausage" },
+      { "amount": "1/3", "unit": "cup", "item": "all-purpose flour, for the gravy" },
+      { "amount": "3 1/2", "unit": "cups", "item": "whole milk, warmed" },
+      { "amount": "1 1/2", "unit": "tsp", "item": "coarsely ground black pepper" },
+      { "amount": "", "unit": "", "item": "salt, to taste" }
+    ],
+    "steps": [
+      "Heat the oven to 450°F and line a baking sheet with parchment.",
+      "Whisk the 2 1/2 cups flour, baking powder, baking soda, salt and sugar. Cut in the butter with a pastry cutter or your fingertips until it looks like coarse crumbs with some pea-size pieces.",
+      "Stir in the buttermilk just until a shaggy dough forms. Turn it out on a floured counter, pat it into a rectangle, fold it in half, and pat out again. Repeat twice, then pat to 1 inch thick.",
+      "Cut out 2 1/2-inch rounds, pressing straight down without twisting. Set them on the baking sheet, touching, and brush the tops with buttermilk.",
+      "Bake for 12 to 15 minutes, until tall and golden.",
+      "Meanwhile, brown the sausage in a large skillet over medium heat, breaking it up, for 8 to 10 minutes. Don't drain the fat.",
+      "Sprinkle the 1/3 cup flour over the sausage and stir for 1 to 2 minutes. Slowly stir in the warm milk and simmer, stirring, for 5 to 8 minutes, until thick and creamy. Season with the pepper and salt.",
+      "Split the warm biscuits and spoon the gravy over."
+    ],
+    "allergens": ["milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Keep the butter and buttermilk cold, and handle the dough as little as possible. That's what makes biscuits flaky and tall.",
+      "Placing the biscuits so they touch helps them rise up instead of spreading out.",
+      "Gravy too thick? Stir in more milk. Too thin? Simmer a few minutes longer."
+    ],
+    "make_ahead": "Freeze unbaked biscuits on the tray, then bag them. Bake from frozen for 2 to 3 minutes longer.",
+    "variations": []
+  },
+  "fish-pie": {
+    "title": "British Fish Pie",
+    "description": "The British family favorite: cod, smoked haddock, salmon and shrimp in a creamy parsley sauce under a thick blanket of buttery mashed potato, baked until golden.",
+    "servings": 6,
+    "prep_minutes": 30,
+    "cook_minutes": 45,
+    "ingredients": [
+      { "amount": "2 1/2", "unit": "lb", "item": "floury potatoes (such as russets), peeled and cut into chunks" },
+      { "amount": "6", "unit": "tbsp", "item": "unsalted butter, divided" },
+      { "amount": "2 1/2", "unit": "cups", "item": "whole milk, divided" },
+      { "amount": "8", "unit": "oz", "item": "skinless cod or haddock fillet" },
+      { "amount": "8", "unit": "oz", "item": "skinless smoked haddock fillet" },
+      { "amount": "8", "unit": "oz", "item": "skinless salmon fillet" },
+      { "amount": "6", "unit": "oz", "item": "raw shrimp, peeled and deveined" },
+      { "amount": "1", "unit": "", "item": "bay leaf" },
+      { "amount": "1/2", "unit": "", "item": "onion, peeled" },
+      { "amount": "1/4", "unit": "cup", "item": "all-purpose flour" },
+      { "amount": "1", "unit": "tsp", "item": "Dijon mustard" },
+      { "amount": "1", "unit": "", "item": "lemon, zested" },
+      { "amount": "1/4", "unit": "cup", "item": "chopped fresh parsley" },
+      { "amount": "1/2", "unit": "cup", "item": "frozen peas (optional)" },
+      { "amount": "", "unit": "", "item": "salt and black pepper, to taste" }
+    ],
+    "steps": [
+      "Boil the potatoes in salted water for 15 to 20 minutes, until tender. Drain well and mash with 3 tablespoons of the butter and 1/4 cup of the milk. Season with salt and pepper.",
+      "Meanwhile, put the cod, smoked haddock and salmon in a wide pan with the rest of the milk, the bay leaf and onion. Bring just to a simmer and poach gently for 5 minutes. Lift out the fish, strain the milk and keep it.",
+      "Heat the oven to 400°F. Melt the remaining 3 tablespoons butter in a saucepan, stir in the flour and cook for 1 minute. Gradually whisk in the warm poaching milk and simmer, stirring, for 3 minutes, until thick and smooth.",
+      "Stir the mustard, lemon zest and parsley into the sauce and season with pepper. Taste before adding salt; smoked fish is salty.",
+      "Flake the fish into large chunks in a 2 1/2-quart baking dish and scatter over the raw shrimp and peas, if using. Pour the sauce over and stir very gently.",
+      "Spoon the mash over the top, spread it to the edges and rough up the surface with a fork.",
+      "Bake for 25 to 30 minutes, until the top is golden and the sauce bubbles at the edges. Rest for 5 minutes before serving."
+    ],
+    "allergens": ["fish", "milk", "shellfish", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Undercook the fish when poaching. It finishes cooking in the oven and stays in big, juicy flakes.",
+      "Let the sauce cool slightly before adding the mash, so the potato sits on top instead of sinking in."
+    ],
+    "make_ahead": "Assemble up to a day ahead and refrigerate. Bake from cold for 40 to 45 minutes.",
+    "variations": [
+      "Add halved hard-boiled eggs to the filling, the traditional way.",
+      "Stir 1/2 cup grated sharp cheddar into the mash for a cheesy top."
+    ]
+  },
+  "croque-monsieur": {
+    "title": "Croque Monsieur",
+    "description": "The Paris café classic: a ham and Gruyère sandwich with Dijon mustard, covered in creamy béchamel and more cheese, then baked and broiled until golden and bubbling.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 20,
+    "ingredients": [
+      { "amount": "2", "unit": "tbsp", "item": "unsalted butter" },
+      { "amount": "2", "unit": "tbsp", "item": "all-purpose flour" },
+      { "amount": "1 1/2", "unit": "cups", "item": "whole milk, warmed" },
+      { "amount": "1/8", "unit": "tsp", "item": "ground nutmeg" },
+      { "amount": "1/4", "unit": "tsp", "item": "kosher salt" },
+      { "amount": "1/8", "unit": "tsp", "item": "ground white pepper" },
+      { "amount": "8", "unit": "", "item": "thick slices of white sandwich bread" },
+      { "amount": "2", "unit": "tbsp", "item": "Dijon mustard" },
+      { "amount": "8", "unit": "oz", "item": "thinly sliced ham" },
+      { "amount": "8", "unit": "oz", "item": "Gruyère cheese, grated (about 2 cups)" }
+    ],
+    "steps": [
+      "Heat the oven to 400°F and line a baking sheet with parchment.",
+      "Make the béchamel: melt the butter in a saucepan over medium heat, whisk in the flour and cook for 1 minute. Slowly whisk in the warm milk and simmer, whisking, for 3 to 4 minutes, until thick. Stir in the nutmeg, salt and white pepper.",
+      "Toast the bread lightly on the baking sheet for 5 minutes.",
+      "Spread 4 slices with mustard and a thin layer of béchamel. Top with the ham and half the cheese, then the other slices of bread.",
+      "Spread the remaining béchamel thickly over the tops and sprinkle with the rest of the cheese.",
+      "Bake for 6 to 8 minutes, until the cheese melts, then broil for 2 to 3 minutes, watching closely, until golden brown and bubbling."
+    ],
+    "allergens": ["milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Make the béchamel thick, so it sits on top of the sandwich instead of running off.",
+      "Watch the broiler closely. The top goes from golden to burnt in under a minute."
+    ],
+    "make_ahead": "Make the béchamel up to 2 days ahead and keep it covered in the fridge. Warm it gently before using.",
+    "variations": ["Croque madame: top each sandwich with a fried egg."]
+  },
+  "carnitas": {
+    "title": "Carnitas",
+    "description": "Michoacán-style pulled pork: chunks of pork shoulder slowly braised with orange, garlic and spices in their own fat, then crisped until the edges are golden and crunchy.",
+    "servings": 8,
+    "prep_minutes": 20,
+    "cook_minutes": 180,
+    "ingredients": [
+      { "amount": "4", "unit": "lb", "item": "boneless pork shoulder, cut into 2-inch chunks" },
+      { "amount": "1", "unit": "tbsp", "item": "kosher salt" },
+      { "amount": "1", "unit": "tsp", "item": "ground cumin" },
+      { "amount": "1", "unit": "tsp", "item": "dried Mexican oregano" },
+      { "amount": "1/2", "unit": "tsp", "item": "ground black pepper" },
+      { "amount": "1/4", "unit": "cup", "item": "lard or vegetable oil" },
+      { "amount": "1", "unit": "", "item": "orange, halved" },
+      { "amount": "1", "unit": "", "item": "white onion, quartered" },
+      { "amount": "6", "unit": "cloves", "item": "garlic, smashed" },
+      { "amount": "2", "unit": "", "item": "bay leaves" },
+      { "amount": "1", "unit": "", "item": "cinnamon stick (optional)" },
+      { "amount": "1", "unit": "cup", "item": "water" },
+      { "amount": "16", "unit": "", "item": "small corn tortillas, warmed" },
+      { "amount": "", "unit": "", "item": "chopped onion, cilantro, lime wedges and salsa, to serve" }
+    ],
+    "steps": [
+      "Heat the oven to 300°F. Toss the pork with the salt, cumin, oregano and pepper.",
+      "Put the pork in a Dutch oven in a snug layer with the lard. Squeeze in the orange juice and add the squeezed halves, the onion, garlic, bay leaves, cinnamon stick, if using, and the water.",
+      "Bring to a simmer on the stove, cover and transfer to the oven. Cook for 3 hours, until the pork is very tender.",
+      "Remove the orange, onion, garlic, bay leaves and cinnamon. Lift out the pork and shred it into large pieces.",
+      "Skim off about 1/2 cup of the fat from the pot. Heat some of it in a large skillet over medium-high heat and fry the pork in batches, without stirring for 2 to 3 minutes, until crisp and golden on the bottom. Or spread it on a sheet pan, drizzle with the fat and broil for 5 minutes.",
+      "Drizzle with a little of the cooking juices and serve in warm tortillas with onion, cilantro, lime and salsa."
+    ],
+    "allergens": [],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "The crisping step is what makes carnitas. Without it, you have pulled pork.",
+      "Choose a well-marbled shoulder. The fat renders out and does the frying for you."
+    ],
+    "make_ahead": "Refrigerate the braised, shredded pork in its juices for up to 4 days. Crisp just before serving.",
+    "variations": ["Use the carnitas for burritos, tortas or rice bowls."]
+  },
+  "baklava": {
+    "title": "Baklava",
+    "description": "Greek layered pastry: sheets of crisp, buttery phyllo filled with cinnamon-spiced walnuts and soaked in a honey and lemon syrup.",
+    "servings": 24,
+    "prep_minutes": 45,
+    "cook_minutes": 50,
+    "ingredients": [
+      { "amount": "1", "unit": "cup", "item": "sugar, for the syrup" },
+      { "amount": "3/4", "unit": "cup", "item": "water" },
+      { "amount": "1/2", "unit": "cup", "item": "honey" },
+      { "amount": "1", "unit": "tbsp", "item": "fresh lemon juice" },
+      { "amount": "1", "unit": "", "item": "cinnamon stick" },
+      { "amount": "4", "unit": "cups", "item": "walnuts, finely chopped" },
+      { "amount": "1/3", "unit": "cup", "item": "sugar, for the filling" },
+      { "amount": "2", "unit": "tsp", "item": "ground cinnamon" },
+      { "amount": "1/4", "unit": "tsp", "item": "ground cloves" },
+      { "amount": "1", "unit": "lb", "item": "phyllo dough (about 30 sheets), thawed" },
+      { "amount": "1", "unit": "cup", "item": "unsalted butter, melted" }
+    ],
+    "steps": [
+      "Make the syrup: simmer the sugar, water, honey, lemon juice and cinnamon stick for 10 minutes. Remove the cinnamon and let the syrup cool completely.",
+      "Heat the oven to 350°F and butter a 9x13-inch baking pan. Mix the walnuts, 1/3 cup sugar, cinnamon and cloves.",
+      "Unroll the phyllo and keep it covered with a damp towel. Lay 8 sheets in the pan, brushing each one with butter.",
+      "Sprinkle a third of the walnuts over the phyllo. Add 6 more buttered sheets, then another third of the nuts, 6 more sheets, and the last of the nuts.",
+      "Finish with 8 to 10 buttered sheets, brushing the top generously.",
+      "With a sharp knife, cut all the way through into 24 diamonds or squares.",
+      "Bake for 45 to 50 minutes, until deep golden and crisp.",
+      "Pour the cooled syrup slowly over the hot baklava. Let it sit uncovered for at least 6 hours, or overnight, before serving."
+    ],
+    "allergens": ["milk", "tree nuts", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Pour cool syrup over hot baklava, never hot over hot. That keeps the layers crisp instead of soggy.",
+      "Cut before baking. Baked phyllo shatters if you try to cut it afterwards.",
+      "Keep the phyllo covered while you work, or it dries out and cracks."
+    ],
+    "make_ahead": "Store at room temperature, loosely covered, for up to 1 week. Don't refrigerate; it softens the pastry.",
+    "variations": ["Use pistachios, or a mix of walnuts and pistachios, for the filling."]
   }
 }
