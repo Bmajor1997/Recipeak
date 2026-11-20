@@ -113,7 +113,7 @@ export default function HomeScreen() {
               <Pressable
                 key={dish.id}
                 accessibilityRole="button"
-                accessibilityLabel={`Open ${dish.name} recipe`}
+                accessibilityLabel={`Open ${dish.name} recipe, ${dish.kind === "meal" ? "meal" : "drink"}`}
                 onPress={() => void open(dish)}
                 style={({ pressed }) => [styles.recentChip, pressed && { opacity: 0.7 }]}
               >
@@ -135,7 +135,7 @@ export default function HomeScreen() {
               <Pressable
                 key={dish.id}
                 accessibilityRole="button"
-                accessibilityLabel={`Open ${dish.name} recipe`}
+                accessibilityLabel={`Open ${dish.name} recipe, ${dish.kind === "meal" ? "meal" : "drink"}`}
                 onPress={() => void open(dish)}
                 style={[styles.collageCell, { width: cell, height: cell }]}
               >
@@ -237,14 +237,11 @@ function TonightsPick({ pairing, on_open }: { pairing: Pairing; on_open: (dish: 
               <Pressable
                 key={dish.id}
                 accessibilityRole="button"
-                accessibilityLabel={`Open ${dish.name} recipe`}
+                accessibilityLabel={`Open ${dish.name} recipe, ${dish.kind === "meal" ? "meal" : "drink"}`}
                 onPress={() => on_open(dish)}
                 style={({ pressed }) => [{ width: half, height: PICK_HEIGHT, overflow: "hidden" }, pressed && { opacity: 0.8 }]}
               >
                 <Image source={dish.source} style={{ width: half, height: PICK_HEIGHT }} resizeMode="cover" accessible={false} />
-                <View style={styles.pickLabel}>
-                  <Text style={styles.pickLabelText}>{dish.kind === "meal" ? "Meal" : "Drink"}</Text>
-                </View>
               </Pressable>
             ))}
           </View>
@@ -292,16 +289,6 @@ const create_styles = (colors: Palette) =>
     },
     pickCard: { backgroundColor: colors.surface, borderRadius: 18, overflow: "hidden" },
     pickPhotos: { flexDirection: "row", height: PICK_HEIGHT, gap: 2 },
-    pickLabel: {
-      position: "absolute",
-      left: 10,
-      top: 10,
-      paddingHorizontal: 9,
-      paddingVertical: 3,
-      borderRadius: 10,
-      backgroundColor: "rgba(0,0,0,0.55)",
-    },
-    pickLabelText: { color: "#FFFFFF", fontSize: 12, fontWeight: "600" },
     recentChip: {
       flexDirection: "row",
       alignItems: "center",
