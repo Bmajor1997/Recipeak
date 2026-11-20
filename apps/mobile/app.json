@@ -8,14 +8,22 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "backgroundColor": "#0F0F10",
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#0F0F10"
-    },
     "plugins": [
       "expo-router",
       "expo-system-ui",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 180,
+          "resizeMode": "contain",
+          "backgroundColor": "#0F0F10",
+          "dark": {
+            "image": "./assets/splash-icon.png",
+            "backgroundColor": "#0F0F10"
+          }
+        }
+      ],
       [
         "expo-camera",
         {
