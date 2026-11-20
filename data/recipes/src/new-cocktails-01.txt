@@ -43,7 +43,7 @@ V Serve it in a hollowed-out pineapple for a party.
 # Shake the gin, crème de violette and lemon juice with ice until very cold.
 # Fine strain into a chilled cocktail glass.
 # Express a lemon twist over the top and drop it in.
-G cocktail glass | lemon twist | y | Shake lemon juice, a dash of violet syrup and cold sparkling water with ice and strain into a cocktail glass.
+G cocktail glass | lemon twist | y | Shake lemon juice and a dash of violet syrup with ice, strain into a cocktail glass and top with a splash of lemon-lime soda.
 T Use a crisp London dry gin; soft gins get lost under the violet.
 T Crème de violette varies by brand. Start with 1/2 oz and add more if you want a deeper violet color and flavor.
 V For a silkier version, add 1/2 oz egg white and dry shake first.
@@ -142,7 +142,7 @@ V Chilcano de maracuyá: shake in 1 oz passion fruit pulp before topping with gi
 # Gently muddle the mint with the syrup and lemon juice in a julep cup or rocks glass.
 # Add the Cynar and fill with crushed ice. Swizzle with a spoon until the glass frosts.
 # Top with grapefruit juice or soda and more crushed ice. Garnish with a big mint sprig.
-G julep cup | mint sprig | y | Muddle mint with syrup and lemon, then top with grapefruit juice, soda and crushed ice.
+G julep cup | mint sprig | y | Muddle mint with syrup and lemon, then top with grapefruit juice, grapefruit soda and crushed ice.
 T Cynar is bitter but not harsh; grapefruit and mint bring out its sweet, herbal side.
 T Swizzling over crushed ice chills and dilutes the drink quickly; that's what makes a julep.
 V Add a splash of gin for a stronger version, as in the original Buenos Aires recipe.
@@ -207,7 +207,7 @@ V Freddy Fudpucker: use tequila instead of vodka.
 # Shake the gin, orgeat, lemon juice, egg white and orange flower water without ice for 15 seconds.
 # Add ice and shake hard again.
 # Fine strain into a chilled coupe and grate a little nutmeg over the foam.
-G coupe | grated nutmeg | y | Shake orgeat, lemon, cold sparkling water and a drop of orange flower water with aquafaba.
+G coupe | grated nutmeg | y | Shake orgeat, lemon, aquafaba and a drop of orange flower water with ice, strain and top with a splash of club soda.
 T Orange flower water is very strong; measure in dashes, not spoons.
 T Good orgeat makes the drink. Look for one made with real almonds.
 ! Uses raw egg white; use pasteurized egg white if you prefer.
@@ -222,7 +222,7 @@ T Good orgeat makes the drink. Look for one made with real almonds.
 - 4 | oz | vegan dry white wine (such as Bonterra Sauvignon Blanc), well chilled
 # Pour the crème de cassis into a chilled white wine glass.
 # Top with the cold wine; it mixes as you pour.
-G white wine glass | - | y | Add a splash of blackcurrant syrup to chilled sparkling water or non-alcoholic white wine.
+G white wine glass | - | y | Add a splash of blackcurrant syrup to chilled sparkling white grape juice or non-alcoholic white wine.
 T Keep the cassis light; the drink should be pale pink, not purple.
 T Both the wine and glass should be very cold.
 V Kir Royale: use Champagne instead of white wine, served in a flute.

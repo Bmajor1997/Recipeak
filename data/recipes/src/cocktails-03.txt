@@ -267,7 +267,7 @@ G coupe | orange twist | y | -
 - 6 | | mint leaves
 # Shake everything with ice.
 # Double-strain into a chilled coupe.
-G coupe | mint leaf | y | Shake lime, syrup and mint and top with soda.
+G coupe | mint leaf | y | Shake lime, syrup and mint and top with lemon-lime soda.
 
 @ jasmine | Jasmine | 1 | 3 | 0 | - | Gin, Campari, orange liqueur and lemon. Tastes like grapefruit juice.
 - 1 1/2 | oz | gin
@@ -311,7 +311,7 @@ G coupe | lemon twist | y | -
 - 1/2 | oz | grenadine
 # Shake everything with ice.
 # Strain into a chilled coupe.
-G coupe | lime wheel | y | Lime and grenadine topped with soda.
+G coupe | lime wheel | y | Lime and grenadine topped with lemon-lime soda.
 
 @ blackthorn-cocktail | Blackthorn | 1 | 3 | 0 | - | Sloe gin and sweet vermouth with orange bitters.
 - 1 1/2 | oz | sloe gin
@@ -364,7 +364,7 @@ G coupe | lemon twist | y | -
 - 1/2 | oz | honey syrup
 # Shake everything with ice.
 # Strain into a chilled coupe.
-G coupe | grapefruit twist | y | Grapefruit and honey syrup topped with soda.
+G coupe | grapefruit twist | y | Grapefruit and honey syrup topped with grapefruit soda.
 
 @ continental-sour | Continental Sour | 1 | 4 | 0 | eggs | A whiskey sour with egg white, finished with a float of red wine.
 - 2 | oz | bourbon or rye
@@ -408,7 +408,7 @@ G rocks glass | lime wedge | y | -
 - 2 | tsp | sugar
 # Muddle the lime and sugar in a rocks glass.
 # Add the vodka, fill with crushed ice and stir.
-G rocks glass | lime wedge | y | Muddle lime and sugar and top with soda.
+G rocks glass | lime wedge | y | Muddle lime and sugar and top with lemon-lime soda.
 
 @ diamondback-cocktail | Diamondback | 1 | 3 | 0 | - | Rye, applejack and yellow Chartreuse, strong and herbal.
 - 1 1/2 | oz | rye
@@ -426,7 +426,7 @@ G coupe | - | y | -
 - 1 | | lime wedge
 # Gently press the mint in a wine glass and fill with ice.
 # Add the elderflower and prosecco, top with soda and squeeze in the lime.
-G wine glass | mint sprig and lime wheel | y | Elderflower syrup, mint and lime topped with soda.
+G wine glass | mint sprig and lime wheel | y | Elderflower syrup, mint and lime topped with sparkling white grape juice.
 
 @ eastside-cocktail | Eastside | 1 | 3 | 0 | - | Gin, lime and sugar shaken with cucumber and mint.
 - 2 | oz | gin
@@ -436,7 +436,7 @@ G wine glass | mint sprig and lime wheel | y | Elderflower syrup, mint and lime 
 - 6 | | mint leaves
 # Muddle the cucumber and mint with the syrup and lime.
 # Add the gin, shake with ice and double-strain into a chilled coupe.
-G coupe | cucumber slice | y | Muddle cucumber, mint, lime and syrup and top with soda.
+G coupe | cucumber slice | y | Muddle cucumber, mint, lime and syrup and top with tonic water.
 
 @ irish-maid-cocktail | Irish Maid | 1 | 3 | 0 | - | Irish whiskey with elderflower liqueur, lemon and cucumber.
 - 2 | oz | Irish whiskey
@@ -482,7 +482,7 @@ G coupe | edible flower (optional) | y | -
 - 2 | oz | soda water
 # Shake everything except the soda with ice.
 # Strain over ice and top with soda.
-G rocks glass | lime wheel | y | Lime, grenadine and soda.
+G rocks glass | lime wheel | y | Lime and grenadine topped with lime soda (such as Jarritos Lime).
 
 @ kentucky-mule | Kentucky Mule | 1 | 2 | 0 | - | Bourbon, lime and ginger beer in a copper mug.
 - 2 | oz | bourbon
@@ -516,7 +516,7 @@ G rocks glass | raspberries and lime | y | -
 - 1/4 | oz | ginger syrup
 # Shake everything with ice.
 # Strain over a large cube in a rocks glass.
-G rocks glass | lemon twist | y | Lemon, honey and ginger syrups topped with soda.
+G rocks glass | lemon twist | y | Lemon, honey and ginger syrups topped with ginger beer.
 ! Recipes for this drink vary between bars; this is one common version.
 
 @ missionary-s-downfall | Missionary's Downfall | 1 | 4 | 0 | - | Don the Beachcomber's frozen rum drink with mint, pineapple, honey and peach.
@@ -598,7 +598,7 @@ G coupe | lemon or orange twist | y | -
 - 3 | oz | soda water
 # Fill a highball with ice and add the Cognac and syrup.
 # Top with soda and stir.
-G highball glass | raspberries | y | Raspberry syrup with soda and lemon.
+G highball glass | raspberries | y | Raspberry syrup topped with ginger ale and a squeeze of lemon.
 
 @ oaxaca-old-fashioned | Oaxaca Old Fashioned | 1 | 3 | 0 | - | Reposado tequila and mezcal with agave and bitters.
 - 1 1/2 | oz | reposado tequila
@@ -684,7 +684,7 @@ G coupe | lime twist | y | -
 - 1/2 | oz | agave syrup
 # Shake everything with ice.
 # Strain over ice in a rocks glass.
-G rocks glass | lime wheel | y | Lime and agave shaken and topped with soda.
+G rocks glass | lime wheel | y | Lime and agave shaken and topped with lime soda (such as Jarritos Lime).
 
 @ trinidad-sour | Trinidad Sour | 1 | 3 | 0 | tree nuts | A bold sour with a full ounce and a half of Angostura bitters as the base.
 - 1 1/2 | oz | Angostura bitters

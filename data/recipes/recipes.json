@@ -905,7 +905,7 @@
     "glass": "highball glass",
     "garnish": "orange slice",
     "alcoholic": true,
-    "non_alcoholic_version": "Non-alcoholic bitter aperitivo with soda and orange."
+    "non_alcoholic_version": "Non-alcoholic bitter aperitivo topped with club soda and an orange slice."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -1902,7 +1902,7 @@
     "glass": "coupe",
     "garnish": "lime wheel",
     "alcoholic": true,
-    "non_alcoholic_version": "Lime and grenadine topped with soda."
+    "non_alcoholic_version": "Lime and grenadine topped with lemon-lime soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -3393,7 +3393,7 @@
     "glass": "coupe",
     "garnish": "lemon twist",
     "alcoholic": true,
-    "non_alcoholic_version": "Shake lemon and honey syrup and top with soda."
+    "non_alcoholic_version": "Shake lemon and honey syrup and top with ginger ale."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -4547,7 +4547,7 @@
     "glass": "coupe",
     "garnish": "blackberry on a pick",
     "alcoholic": true,
-    "non_alcoholic_version": "Muddle blackberries, lemon and syrup and top with soda."
+    "non_alcoholic_version": "Muddle blackberries, lemon and syrup and top with ginger ale."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -5019,7 +5019,7 @@
     "glass": "cocktail glass",
     "garnish": "lemon twist",
     "alcoholic": true,
-    "non_alcoholic_version": "Shake lemon juice, a dash of violet syrup and cold sparkling water with ice and strain into a cocktail glass."
+    "non_alcoholic_version": "Shake lemon juice and a dash of violet syrup with ice, strain into a cocktail glass and top with a splash of lemon-lime soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [
@@ -6017,7 +6017,7 @@
     "glass": "coupe",
     "garnish": "grapefruit twist",
     "alcoholic": true,
-    "non_alcoholic_version": "Grapefruit and honey syrup topped with soda."
+    "non_alcoholic_version": "Grapefruit and honey syrup topped with grapefruit soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -6804,7 +6804,7 @@
     "glass": "rocks glass",
     "garnish": "lime wedge",
     "alcoholic": true,
-    "non_alcoholic_version": "Muddle lime and sugar and top with soda."
+    "non_alcoholic_version": "Muddle lime and sugar and top with guaraná soda (such as Guaraná Antarctica) or lemon-lime soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -6846,7 +6846,7 @@
     "glass": "rocks glass",
     "garnish": "lime wedge",
     "alcoholic": true,
-    "non_alcoholic_version": "Muddle lime and sugar and top with soda."
+    "non_alcoholic_version": "Muddle lime and sugar and top with lemon-lime soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -11793,7 +11793,7 @@
     "glass": "coupe",
     "garnish": "raspberries on a pick",
     "alcoholic": true,
-    "non_alcoholic_version": "Shake raspberry syrup, lemon and egg white and top with soda."
+    "non_alcoholic_version": "Shake raspberry syrup, lemon and egg white and top with sparkling lemonade."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -12402,7 +12402,7 @@
     "glass": "coupe or martini glass",
     "garnish": "orange peel",
     "alcoholic": true,
-    "non_alcoholic_version": "Shake 2 oz cranberry juice, 3/4 oz lime juice and 1/2 oz orange juice with ice and top with a splash of soda."
+    "non_alcoholic_version": "Shake 2 oz cranberry juice, 3/4 oz lime juice and 1/2 oz orange juice with ice and top with a splash of lemon-lime soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [
@@ -13459,7 +13459,7 @@
     "glass": "julep cup",
     "garnish": "mint sprig",
     "alcoholic": true,
-    "non_alcoholic_version": "Muddle mint with syrup and lemon, then top with grapefruit juice, soda and crushed ice."
+    "non_alcoholic_version": "Muddle mint with syrup and lemon, then top with grapefruit juice, grapefruit soda and crushed ice."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [
@@ -13510,7 +13510,7 @@
     "glass": "coupe",
     "garnish": "lime wheel",
     "alcoholic": true,
-    "non_alcoholic_version": "Shake lime and syrup with ice and top with soda."
+    "non_alcoholic_version": "Shake lime and syrup with ice and top with lemon-lime soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -14709,7 +14709,7 @@
     "glass": "coupe",
     "garnish": "cucumber slice",
     "alcoholic": true,
-    "non_alcoholic_version": "Muddle cucumber, mint, lime and syrup and top with soda."
+    "non_alcoholic_version": "Muddle cucumber, mint, lime and syrup and top with tonic water."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -18218,7 +18218,7 @@
     "glass": "coupe",
     "garnish": "lime wheel",
     "alcoholic": true,
-    "non_alcoholic_version": "Shake lime juice, syrup and a few cucumber slices and top with soda."
+    "non_alcoholic_version": "Shake lime juice, syrup and a few cucumber slices and top with tonic water."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -18309,7 +18309,7 @@
     "glass": "rocks glass",
     "garnish": "basil sprig",
     "alcoholic": true,
-    "non_alcoholic_version": "Muddle basil, lemon and syrup and top with soda."
+    "non_alcoholic_version": "Muddle basil, lemon and syrup and top with tonic water."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -18569,7 +18569,7 @@
     "glass": "rocks glass",
     "garnish": "lemon twist",
     "alcoholic": true,
-    "non_alcoholic_version": "Lemon, honey and ginger syrups topped with soda."
+    "non_alcoholic_version": "Lemon, honey and ginger syrups topped with ginger beer."
    },
    "note": "Recipes for this drink vary between bars; this is one common version.",
    "tips": [],
@@ -19978,7 +19978,7 @@
     "glass": "coupe",
     "garnish": "grated nutmeg",
     "alcoholic": true,
-    "non_alcoholic_version": "Shake orgeat, lemon, cold sparkling water and a drop of orange flower water with aquafaba."
+    "non_alcoholic_version": "Shake orgeat, lemon, aquafaba and a drop of orange flower water with ice, strain and top with a splash of club soda."
    },
    "note": "Uses raw egg white; use pasteurized egg white if you prefer.",
    "tips": [
@@ -20040,7 +20040,7 @@
      "glass": "coupe",
      "garnish": "grated nutmeg",
      "alcoholic": true,
-     "non_alcoholic_version": "Shake orgeat, lemon, cold sparkling water and a drop of orange flower water with aquafaba."
+     "non_alcoholic_version": "Shake orgeat, lemon, aquafaba and a drop of orange flower water with ice, strain and top with a splash of club soda."
     },
     "note": "Aquafaba foams like aquafaba (liquid from a can of chickpeas); give it a long, hard dry shake.",
     "tips": [
@@ -20215,7 +20215,7 @@
     "glass": "wine glass",
     "garnish": "mint sprig and lime wheel",
     "alcoholic": true,
-    "non_alcoholic_version": "Elderflower syrup, mint and lime topped with soda."
+    "non_alcoholic_version": "Elderflower syrup, mint and lime topped with sparkling white grape juice."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -20364,7 +20364,7 @@
     "glass": "hurricane glass",
     "garnish": "orange slice and cherry",
     "alcoholic": true,
-    "non_alcoholic_version": "Passion fruit, orange and lime juice with grenadine and soda."
+    "non_alcoholic_version": "Passion fruit, orange and lime juice with grenadine, topped with lemon-lime soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -23309,7 +23309,7 @@
     "glass": "white wine glass",
     "garnish": "",
     "alcoholic": true,
-    "non_alcoholic_version": "Add a splash of blackcurrant syrup to chilled sparkling water or non-alcoholic white wine."
+    "non_alcoholic_version": "Add a splash of blackcurrant syrup to chilled sparkling white grape juice or non-alcoholic white wine."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [
@@ -24790,7 +24790,7 @@
     "glass": "sugar-rimmed martini glass",
     "garnish": "lemon twist",
     "alcoholic": true,
-    "non_alcoholic_version": "Shake lemon and syrup and top with soda in a sugar-rimmed glass."
+    "non_alcoholic_version": "Shake lemon and syrup and top with sparkling lemonade in a sugar-rimmed glass."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -25825,7 +25825,7 @@
     "glass": "rocks glass",
     "garnish": "lime wheel",
     "alcoholic": true,
-    "non_alcoholic_version": "Passion fruit, lime, agave and soda."
+    "non_alcoholic_version": "Passion fruit, lime and agave topped with grapefruit soda (such as Jarritos Toronja)."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -26691,7 +26691,7 @@
     "glass": "rocks glass",
     "garnish": "salted rim and lime wheel",
     "alcoholic": true,
-    "non_alcoholic_version": "Shake 2 oz lime juice, 1 oz orange juice and 1/2 oz agave syrup with ice and top with sparkling water."
+    "non_alcoholic_version": "Shake 2 oz lime juice, 1 oz orange juice and 1/2 oz agave syrup with ice and top with lime soda (such as Jarritos Lime) or grapefruit soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [
@@ -27422,7 +27422,7 @@
     "glass": "rocks glass",
     "garnish": "lime wheel",
     "alcoholic": true,
-    "non_alcoholic_version": "Lime, grenadine and soda."
+    "non_alcoholic_version": "Lime and grenadine topped with lime soda (such as Jarritos Lime)."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -27656,7 +27656,7 @@
     "glass": "rocks or highball glass",
     "garnish": "lemon wheel and cherry",
     "alcoholic": true,
-    "non_alcoholic_version": "Honeydew juice with lemon, lime and soda."
+    "non_alcoholic_version": "Honeydew juice with lemon and lime, topped with lemon-lime soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -33236,7 +33236,7 @@
     "glass": "Collins glass",
     "garnish": "orange slice and cherry",
     "alcoholic": true,
-    "non_alcoholic_version": "Lime, syrup, grenadine and pineapple juice topped with soda."
+    "non_alcoholic_version": "Lime, syrup, grenadine and pineapple juice topped with ginger ale."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -33590,7 +33590,7 @@
     "glass": "coupe",
     "garnish": "half a passion fruit",
     "alcoholic": true,
-    "non_alcoholic_version": "Shake passion fruit puree, lime and vanilla syrup and top with soda."
+    "non_alcoholic_version": "Shake passion fruit puree, lime and vanilla syrup and top with sparkling white grape juice."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -34704,7 +34704,7 @@
     "glass": "coupe",
     "garnish": "fresh raspberries on a pick",
     "alcoholic": true,
-    "non_alcoholic_version": "Muddle raspberries with lemon and syrup, shake with aquafaba and cold sparkling water, and strain into a coupe."
+    "non_alcoholic_version": "Muddle raspberries with lemon and syrup, shake with aquafaba and ice, strain into a coupe and top with a splash of sparkling lemonade."
    },
    "note": "Uses raw egg white; use pasteurized egg white if you prefer.",
    "tips": [
@@ -34767,7 +34767,7 @@
      "glass": "coupe",
      "garnish": "fresh raspberries on a pick",
      "alcoholic": true,
-     "non_alcoholic_version": "Muddle raspberries with lemon and syrup, shake with aquafaba and cold sparkling water, and strain into a coupe."
+     "non_alcoholic_version": "Muddle raspberries with lemon and syrup, shake with aquafaba and ice, strain into a coupe and top with a splash of sparkling lemonade."
     },
     "note": "Aquafaba foams like aquafaba (liquid from a can of chickpeas); dry shake it hard.",
     "tips": [
@@ -35164,7 +35164,7 @@
     "glass": "highball glass",
     "garnish": "raspberries",
     "alcoholic": true,
-    "non_alcoholic_version": "Raspberry syrup with soda and lemon."
+    "non_alcoholic_version": "Raspberry syrup topped with ginger ale and a squeeze of lemon."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -35969,7 +35969,7 @@
     "glass": "highball glass",
     "garnish": "blackberries",
     "alcoholic": true,
-    "non_alcoholic_version": "Shake 1 oz lemon juice and 1 oz blackcurrant syrup with ice, strain over ice and top with 4 oz sparkling water."
+    "non_alcoholic_version": "Shake 1 oz lemon juice and 1 oz blackcurrant syrup with ice, strain over ice and top with 4 oz sparkling white grape juice."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [
@@ -36046,7 +36046,7 @@
     "glass": "highball glass",
     "garnish": "salted rim and grapefruit wedge",
     "alcoholic": true,
-    "non_alcoholic_version": "Grapefruit juice with soda in a salted glass."
+    "non_alcoholic_version": "Grapefruit juice topped with grapefruit soda in a salted glass."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -36486,7 +36486,7 @@
     "glass": "wine glass",
     "garnish": "orange slice",
     "alcoholic": true,
-    "non_alcoholic_version": "Mix 3 cups red grape juice, 1 cup orange juice, the sliced fruit and a cinnamon stick, chill, and top with sparkling water."
+    "non_alcoholic_version": "Mix 3 cups red grape juice, 1 cup orange juice, the sliced fruit and a cinnamon stick, chill, and top with lemon-lime soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [
@@ -36593,7 +36593,7 @@
     "glass": "coupe",
     "garnish": "lemon twist",
     "alcoholic": true,
-    "non_alcoholic_version": "Shake passion fruit syrup, lemon, a little orgeat and cold sparkling water with ice."
+    "non_alcoholic_version": "Shake passion fruit syrup, lemon and a little orgeat with ice, strain over ice and top with ginger ale."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [
@@ -36932,7 +36932,7 @@
     "glass": "highball glass",
     "garnish": "orange slice",
     "alcoholic": true,
-    "non_alcoholic_version": "Orange juice with a splash of soda."
+    "non_alcoholic_version": "Orange juice with a splash of lemon-lime soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -37976,7 +37976,7 @@
     "glass": "hurricane glass",
     "garnish": "pineapple wedge and cherry",
     "alcoholic": true,
-    "non_alcoholic_version": "Pineapple, lime, cherry juice and grenadine topped with soda."
+    "non_alcoholic_version": "Pineapple, lime, cherry juice and grenadine topped with ginger ale."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -38527,7 +38527,7 @@
     "glass": "coupe",
     "garnish": "mint leaf",
     "alcoholic": true,
-    "non_alcoholic_version": "Shake lime, syrup and mint and top with soda."
+    "non_alcoholic_version": "Shake lime, syrup and mint and top with lemon-lime soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -39005,7 +39005,7 @@
     "glass": "champagne flute",
     "garnish": "lemon twist",
     "alcoholic": true,
-    "non_alcoholic_version": "Mix elderflower cordial with sparkling water and a squeeze of lemon over ice."
+    "non_alcoholic_version": "Mix elderflower cordial with sparkling white grape juice and a squeeze of lemon over ice."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [
@@ -40764,7 +40764,7 @@
     "glass": "tiki mug",
     "garnish": "pineapple, orange slice, cherry and mint",
     "alcoholic": true,
-    "non_alcoholic_version": "Shake the juices and grenadine and top with soda."
+    "non_alcoholic_version": "Shake the juices and grenadine and top with ginger beer."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -41403,7 +41403,7 @@
     "glass": "rocks glass",
     "garnish": "lime wheel",
     "alcoholic": true,
-    "non_alcoholic_version": "Lime and agave shaken and topped with soda."
+    "non_alcoholic_version": "Lime and agave shaken and topped with lime soda (such as Jarritos Lime)."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],

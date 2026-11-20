@@ -24,7 +24,7 @@ V Add 2 dashes of Angostura bitters for a drier, spicier drink.
 # Add the gin, raspberry liqueur, lemon juice, syrup and egg white and shake without ice for 15 seconds.
 # Add ice and shake hard again.
 # Double strain into a chilled coupe and garnish with raspberries on a pick.
-G coupe | fresh raspberries on a pick | y | Muddle raspberries with lemon and syrup, shake with aquafaba and cold sparkling water, and strain into a coupe.
+G coupe | fresh raspberries on a pick | y | Muddle raspberries with lemon and syrup, shake with aquafaba and ice, strain into a coupe and top with a splash of sparkling lemonade.
 T Double strain through a fine sieve to catch the raspberry seeds.
 T Ripe, in-season raspberries give the brightest color and flavor.
 V Use vodka instead of gin for a softer drink.
@@ -44,7 +44,7 @@ V Use vodka instead of gin for a softer drink.
 # Shake the gin, lemon juice, passion fruit syrup, falernum and orgeat hard with ice.
 # Fine strain into a chilled coupe.
 # Garnish with a lemon twist curled around the rim, like the rings of Saturn.
-G coupe | lemon twist | y | Shake passion fruit syrup, lemon, a little orgeat and cold sparkling water with ice.
+G coupe | lemon twist | y | Shake passion fruit syrup, lemon and a little orgeat with ice, strain over ice and top with ginger ale.
 T The tiki-bar version is flash-blended with crushed ice and served in a tall glass; shaken and served up, it's crisper.
 T A juniper-forward London dry gin holds up well against the tropical syrups.
 V Flash blend with 1 cup crushed ice and serve in a pilsner glass with a lemon peel ring.
@@ -160,7 +160,7 @@ V Use dark rum in the piña colada half for a richer flavor.
 # Pour the St-Germain into a chilled champagne flute.
 # Top with the sparkling wine, then the soda water.
 # Stir once gently and garnish with a lemon twist.
-G champagne flute | lemon twist | y | Mix elderflower cordial with sparkling water and a squeeze of lemon over ice.
+G champagne flute | lemon twist | y | Mix elderflower cordial with sparkling white grape juice and a squeeze of lemon over ice.
 T Pour the bubbles gently down the side of the glass so they stay lively.
 T Squeeze the lemon twist over the drink first to release its oils.
 V Hugo: add fresh mint and lime and use Prosecco.

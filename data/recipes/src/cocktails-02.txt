@@ -24,7 +24,7 @@ G rocks glass | candied ginger | y | Shake lemon and honey-ginger syrup with col
 - 1 | | egg white
 # Dry-shake everything without ice, then shake again with ice.
 # Strain into a chilled coupe.
-G coupe | raspberries on a pick | y | Shake raspberry syrup, lemon and egg white and top with soda.
+G coupe | raspberries on a pick | y | Shake raspberry syrup, lemon and egg white and top with sparkling lemonade.
 
 @ bamboo | Bamboo | 1 | 3 | 0 | - | A light, low-alcohol stir of dry sherry and dry vermouth.
 - 1 1/2 | oz | vegan fino sherry (such as Tio Pepe)
@@ -145,7 +145,7 @@ G rocks glass or coupe | Angostura drops | y | -
 - 1 | dash | Angostura bitters
 # Shake everything with ice.
 # Strain into a hurricane or Collins glass with ice.
-G hurricane glass | pineapple wedge and cherry | y | Pineapple, lime, cherry juice and grenadine topped with soda.
+G hurricane glass | pineapple wedge and cherry | y | Pineapple, lime, cherry juice and grenadine topped with ginger ale.
 
 @ irish-coffee | Irish Coffee | 1 | 5 | 0 | milk | Hot coffee with Irish whiskey and brown sugar under lightly whipped cream.
 - 1 1/2 | oz | Irish whiskey
@@ -208,7 +208,7 @@ G hurricane glass | orange slice and cherry | y | Pineapple, orange and banana j
 - 1/2 | oz | simple syrup
 # Rim a martini glass with sugar.
 # Shake everything with ice and strain into the glass.
-G sugar-rimmed martini glass | lemon twist | y | Shake lemon and syrup and top with soda in a sugar-rimmed glass.
+G sugar-rimmed martini glass | lemon twist | y | Shake lemon and syrup and top with sparkling lemonade in a sugar-rimmed glass.
 
 @ eggnog | Eggnog | 6 | 15 | 10 | eggs, milk | Rich, nutmeg-spiced cooked custard with bourbon or rum.
 - 4 | | large egg yolks
@@ -243,7 +243,7 @@ G julep cup | big mint sprig | y | Mint, syrup and iced tea over crushed ice.
 - 1 | dash | Angostura bitters
 # Shake everything with ice.
 # Pour into a tiki mug and top with crushed ice.
-G tiki mug | pineapple, orange slice, cherry and mint | y | Shake the juices and grenadine and top with soda.
+G tiki mug | pineapple, orange slice, cherry and mint | y | Shake the juices and grenadine and top with ginger beer.
 
 @ caipirinha | Caipirinha | 1 | 4 | 0 | - | Brazil's cachaça muddled with lime and sugar.
 - 2 | oz | cachaça
@@ -251,7 +251,7 @@ G tiki mug | pineapple, orange slice, cherry and mint | y | Shake the juices and
 - 2 | tsp | sugar
 # Muddle the lime and sugar in a rocks glass.
 # Add the cachaça and fill with crushed ice. Stir.
-G rocks glass | lime wedge | y | Muddle lime and sugar and top with soda.
+G rocks glass | lime wedge | y | Muddle lime and sugar and top with guaraná soda (such as Guaraná Antarctica) or lemon-lime soda.
 
 @ aviation | Aviation | 1 | 3 | 0 | - | Gin, maraschino, crème de violette and lemon, pale lavender in color.
 - 2 | oz | gin
@@ -278,7 +278,7 @@ G rocks glass | lemon peel | y | -
 - 3/4 | oz | honey syrup
 # Shake everything with ice.
 # Strain into a chilled coupe.
-G coupe | lemon twist | y | Shake lemon and honey syrup and top with soda.
+G coupe | lemon twist | y | Shake lemon and honey syrup and top with ginger ale.
 
 @ mezcal-negroni | Mezcal Negroni | 1 | 3 | 0 | - | A smoky Negroni made with mezcal.
 - 1 | oz | mezcal
@@ -584,7 +584,7 @@ G coupe | grated nutmeg | y | -
 - 2 | oz | soda water
 # Shake everything except the soda with ice.
 # Strain into an ice-filled glass and top with soda.
-G rocks glass | lime wheel | y | Passion fruit, lime, agave and soda.
+G rocks glass | lime wheel | y | Passion fruit, lime and agave topped with grapefruit soda (such as Jarritos Toronja).
 
 @ shamrock | Shamrock | 1 | 3 | 0 | - | Irish whiskey and dry vermouth with green Chartreuse and crème de menthe.
 - 1 1/2 | oz | Irish whiskey

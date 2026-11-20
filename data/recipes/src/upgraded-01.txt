@@ -101,7 +101,7 @@ T Cointreau is drier and stronger than generic triple sec, and keeps the drink b
 S Make it to order. For a party, mix everything but the ice up to a day ahead, chill the bottle, and shake each drink with ice when serving.
 V Use plain vodka with a dash of orange bitters if you don't have citrus vodka.
 V White Cosmo: use white cranberry juice and garnish with frozen cranberries.
-G coupe or martini glass | orange peel | y | Shake 2 oz cranberry juice, 3/4 oz lime juice and 1/2 oz orange juice with ice and top with a splash of soda.
+G coupe or martini glass | orange peel | y | Shake 2 oz cranberry juice, 3/4 oz lime juice and 1/2 oz orange juice with ice and top with a splash of lemon-lime soda.
 
 @ pepperoni-pizza | Pepperoni Pizza | 2 | 20 | 10 | wheat, milk | Pizzeria-style at home: a blistered, crisp crust, a bright no-cook sauce, melty mozzarella and pepperoni that curls into crisp little cups.
 - 1 | lb | pizza dough, at room temperature for 1 hour
@@ -279,7 +279,7 @@ S For a pitcher of 8: mix 2 cups tequila, 1 cup lime juice, 3/4 cup Cointreau, 1
 V Tommy's Margarita: skip the Cointreau and use 1/2 oz agave syrup for a cleaner, more tequila-forward drink.
 V Spicy: muddle 2 jalapeño slices in the shaker, or use a chili-salt rim (Tajín).
 V Frozen: blend all the ingredients with 1 cup ice until smooth.
-G rocks glass | salted rim and lime wheel | y | Shake 2 oz lime juice, 1 oz orange juice and 1/2 oz agave syrup with ice and top with sparkling water.
+G rocks glass | salted rim and lime wheel | y | Shake 2 oz lime juice, 1 oz orange juice and 1/2 oz agave syrup with ice and top with lime soda (such as Jarritos Lime) or grapefruit soda.
 
 @ fish-tacos | Baja Fish Tacos | 4 | 25 | 20 | fish, wheat, eggs, milk | Ensenada-style: light, crackly beer-battered fish tucked into warm corn tortillas with crunchy cabbage, lime crema and fresh pico de gallo.
 - 1 1/2 | lb | firm white fish (cod, halibut or mahi-mahi), cut into 4 x 1 inch strips
