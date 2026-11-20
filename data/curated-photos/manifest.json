@@ -3962,6 +3962,34 @@
       "names": [
         "Cardinale"
       ]
+    },
+    {
+      "file": "wonton-soup.jpg",
+      "kind": "meal",
+      "names": [
+        "Wonton Soup"
+      ]
+    },
+    {
+      "file": "tacos-al-pastor.jpg",
+      "kind": "meal",
+      "names": [
+        "Tacos al Pastor"
+      ]
+    },
+    {
+      "file": "elote.jpg",
+      "kind": "meal",
+      "names": [
+        "Elote (Mexican Street Corn)"
+      ]
+    },
+    {
+      "file": "cheesecake.jpg",
+      "kind": "meal",
+      "names": [
+        "New York Cheesecake"
+      ]
     }
   ]
 }
