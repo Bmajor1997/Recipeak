@@ -13552,5 +13552,289 @@
       "Use Cumberland, Lincolnshire or Irish-style sausages if you can find them.",
       "Toad in the hole: bake the browned sausages in a Yorkshire pudding batter instead."
     ]
+  },
+  "gin-fizz": {
+    "title": "Gin Fizz",
+    "description": "The original fizz: gin, lemon and a little sugar shaken hard, then lifted with a splash of soda. Served short and without ice, so it's crisp and bright from the first sip.",
+    "servings": 1,
+    "prep_minutes": 3,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "London dry gin" },
+      { "amount": "1", "unit": "oz", "item": "fresh lemon juice" },
+      { "amount": "2", "unit": "tsp", "item": "simple syrup" },
+      { "amount": "1", "unit": "oz", "item": "chilled soda water" },
+      { "amount": "1", "unit": "", "item": "lemon slice, to garnish" },
+      { "amount": "", "unit": "", "item": "ice, for shaking" }
+    ],
+    "steps": [
+      "Chill a small tumbler or fizz glass in the freezer.",
+      "Add the gin, lemon juice and simple syrup to a shaker, fill it with ice and shake hard for 15 seconds.",
+      "Strain into the chilled glass with no ice.",
+      "Top with the soda water and garnish with the lemon slice."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "small tumbler",
+      "garnish": "lemon slice",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake 1 oz lemon juice and 3/4 oz simple syrup with ice, strain, and top with 3 oz soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Shake longer than you think: the extra air and dilution give a fizz its light, almost frothy texture.",
+      "Keep the soda in the fridge. Cold soda holds its bubbles; warm soda goes flat on contact.",
+      "Too sharp? Add another teaspoon of syrup. Lemons vary a lot."
+    ],
+    "make_ahead": "",
+    "variations": [
+      "Silver Fizz: add 1 egg white and dry-shake without ice first for a silky foam.",
+      "Sloe Gin Fizz: use sloe gin in place of London dry gin."
+    ]
+  },
+  "gin-rickey": {
+    "title": "Gin Rickey",
+    "description": "The dry, unsweetened cooler from 1880s Washington: gin and fresh lime over ice, topped with soda.",
+    "servings": 1,
+    "prep_minutes": 2,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "2", "unit": "oz", "item": "London dry gin" },
+      { "amount": "3/4", "unit": "oz", "item": "fresh lime juice" },
+      { "amount": "4", "unit": "oz", "item": "chilled soda water" },
+      { "amount": "1", "unit": "", "item": "squeezed lime half, to garnish" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Fill a highball glass with ice.",
+      "Pour in the gin and lime juice.",
+      "Top with the soda water and stir gently.",
+      "Drop the squeezed lime shell into the glass."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "lime shell",
+      "alcoholic": true,
+      "non_alcoholic_version": "Build 1 oz lime juice and 1/2 oz simple syrup over ice and top with 5 oz soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": ["A Rickey has no sugar. That's what makes it different from a Collins."],
+    "make_ahead": "",
+    "variations": ["Joe Rickey: use bourbon in place of the gin, as the original did."]
+  },
+  "apple-pie": {
+    "title": "Classic Apple Pie",
+    "description": "The all-American double-crust pie: a flaky butter pastry filled with thinly sliced tart apples, cinnamon and a little brown sugar, baked until golden and bubbling.",
+    "servings": 8,
+    "prep_minutes": 45,
+    "cook_minutes": 70,
+    "ingredients": [
+      { "amount": "2 1/2", "unit": "cups", "item": "all-purpose flour" },
+      { "amount": "1", "unit": "tsp", "item": "salt" },
+      { "amount": "1", "unit": "tbsp", "item": "sugar, for the crust" },
+      { "amount": "1", "unit": "cup", "item": "cold unsalted butter, cubed" },
+      { "amount": "6 to 8", "unit": "tbsp", "item": "ice water" },
+      {
+        "amount": "3",
+        "unit": "lb",
+        "item": "firm, tart apples (such as Granny Smith, or a mix with Honeycrisp), peeled, cored and sliced 1/4 inch thick"
+      },
+      { "amount": "1", "unit": "tbsp", "item": "fresh lemon juice" },
+      { "amount": "1/2", "unit": "cup", "item": "granulated sugar" },
+      { "amount": "1/4", "unit": "cup", "item": "packed light brown sugar" },
+      { "amount": "3", "unit": "tbsp", "item": "all-purpose flour, for the filling" },
+      { "amount": "1 1/2", "unit": "tsp", "item": "ground cinnamon" },
+      { "amount": "1/4", "unit": "tsp", "item": "ground nutmeg" },
+      { "amount": "1/4", "unit": "tsp", "item": "salt, for the filling" },
+      { "amount": "1", "unit": "tbsp", "item": "milk, for brushing" },
+      { "amount": "1", "unit": "tbsp", "item": "coarse sugar, for sprinkling" }
+    ],
+    "steps": [
+      "Make the crust: mix the flour, salt and sugar, then cut in the butter until some pea-size pieces remain. Sprinkle in ice water a tablespoon at a time, mixing just until the dough holds together. Divide in two, flatten into disks, wrap and chill for at least 1 hour.",
+      "Toss the apples with the lemon juice, granulated sugar, brown sugar, flour, cinnamon, nutmeg and salt.",
+      "Heat the oven to 425°F with a rack in the lower third and a baking sheet on it.",
+      "Roll one disk into a 12-inch circle and fit it into a 9-inch pie dish. Pile in the apples, mounding them in the center.",
+      "Roll the second disk into an 11-inch circle and lay it over the top. Trim, fold the edges under and crimp. Cut 4 or 5 slits in the top, brush with milk and sprinkle with coarse sugar. Chill for 15 minutes.",
+      "Bake on the hot baking sheet for 20 minutes, then lower the oven to 375°F and bake for 45 to 50 minutes more, until deep golden and the juices bubble through the slits. Cover the edges with foil if they brown too fast.",
+      "Cool for at least 3 hours before slicing, so the filling can set."
+    ],
+    "allergens": ["milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Keep the butter cold and visible in the dough. Those flecks of butter make the crust flaky.",
+      "Firm apples hold their shape. Soft apples like McIntosh turn to applesauce.",
+      "Wait for the bubbling: the juices must boil to thicken."
+    ],
+    "make_ahead": "Bake up to a day ahead and keep at room temperature, loosely covered.",
+    "variations": ["Serve warm with vanilla ice cream or a slice of sharp cheddar."]
+  },
+  "greyhound": {
+    "title": "Greyhound",
+    "description": "Vodka and fresh grapefruit juice over ice. Tart, simple and very refreshing; add a salt rim and it becomes a Salty Dog.",
+    "servings": 1,
+    "prep_minutes": 2,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "2", "unit": "oz", "item": "vodka" },
+      { "amount": "4", "unit": "oz", "item": "fresh grapefruit juice" },
+      { "amount": "1", "unit": "", "item": "grapefruit wedge, to garnish" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Fill a highball glass with ice.",
+      "Pour in the vodka and grapefruit juice.",
+      "Stir gently and garnish with the grapefruit wedge."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "grapefruit wedge",
+      "alcoholic": true,
+      "non_alcoholic_version": "Build 4 oz grapefruit juice over ice and top with 2 oz tonic water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": ["Pink grapefruit is a little sweeter and gives the drink a pretty color."],
+    "make_ahead": "",
+    "variations": ["Use gin instead of vodka for a more herbal drink."]
+  },
+  "hot-toddy": {
+    "title": "Hot Toddy",
+    "description": "The classic winter warmer: whiskey, honey and lemon stirred into hot water, with a cinnamon stick and a clove-studded lemon slice.",
+    "servings": 1,
+    "prep_minutes": 3,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "whiskey (bourbon, rye or Scotch)" },
+      { "amount": "1/2", "unit": "oz", "item": "honey" },
+      { "amount": "1/2", "unit": "oz", "item": "fresh lemon juice" },
+      { "amount": "4", "unit": "oz", "item": "just-boiled water" },
+      { "amount": "1", "unit": "", "item": "lemon slice, studded with 3 whole cloves" },
+      { "amount": "1", "unit": "", "item": "cinnamon stick" }
+    ],
+    "steps": [
+      "Warm a heatproof mug by filling it with hot water, then pour that water out.",
+      "Add the honey and lemon juice to the mug.",
+      "Pour in the hot water and stir until the honey dissolves.",
+      "Stir in the whiskey, then add the clove-studded lemon slice and cinnamon stick."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "mug",
+      "garnish": "lemon slice and cinnamon stick",
+      "alcoholic": true,
+      "non_alcoholic_version": "Stir 1/2 oz honey and 1/2 oz lemon juice into 6 oz hot ginger or black tea."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Add the whiskey last, after the water, so it doesn't lose its aroma to the heat.",
+      "Swap the water for hot black or chamomile tea for a deeper flavor."
+    ],
+    "make_ahead": "",
+    "variations": ["Use brandy or dark rum in place of the whiskey."]
+  },
+  "dirty-martini": {
+    "title": "Dirty Martini",
+    "description": "A savory martini made with a splash of olive brine. Gin or vodka with dry vermouth, stirred ice-cold and garnished with olives.",
+    "servings": 1,
+    "prep_minutes": 3,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "2 1/2", "unit": "oz", "item": "gin or vodka" },
+      { "amount": "1/2", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
+      { "amount": "1/2", "unit": "oz", "item": "green olive brine from the jar" },
+      { "amount": "3", "unit": "", "item": "green olives on a pick, to garnish" },
+      { "amount": "", "unit": "", "item": "ice, for stirring" }
+    ],
+    "steps": [
+      "Chill a martini glass in the freezer.",
+      "Add the gin or vodka, vermouth and olive brine to a mixing glass and fill it with ice.",
+      "Stir for 20 to 30 seconds, until very cold.",
+      "Strain into the chilled glass and add the olives."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "martini glass",
+      "garnish": "olives",
+      "alcoholic": true,
+      "non_alcoholic_version": "Stir 3 oz non-alcoholic gin alternative with 1/2 oz olive brine over ice and strain."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [
+      "Use the brine from a jar of olives you like eating. Good olives make good brine.",
+      "Want it dirtier? Add up to 1 oz of brine. Want it cleaner? Start with 1/4 oz."
+    ],
+    "make_ahead": "",
+    "variations": []
+  },
+  "churros": {
+    "title": "Churros with Chocolate Sauce",
+    "description": "Crisp, ridged fritters of piped choux dough, fried golden, rolled in cinnamon sugar and dunked in a thick, warm chocolate sauce.",
+    "servings": 6,
+    "prep_minutes": 20,
+    "cook_minutes": 25,
+    "ingredients": [
+      { "amount": "1", "unit": "cup", "item": "water" },
+      { "amount": "6", "unit": "tbsp", "item": "unsalted butter" },
+      { "amount": "1", "unit": "tbsp", "item": "sugar, for the dough" },
+      { "amount": "1/2", "unit": "tsp", "item": "salt" },
+      { "amount": "1", "unit": "cup", "item": "all-purpose flour" },
+      { "amount": "3", "unit": "", "item": "large eggs" },
+      { "amount": "1", "unit": "tsp", "item": "vanilla extract" },
+      { "amount": "2", "unit": "quarts", "item": "vegetable or canola oil, for frying" },
+      { "amount": "3/4", "unit": "cup", "item": "sugar, for coating" },
+      { "amount": "2", "unit": "tsp", "item": "ground cinnamon" },
+      { "amount": "4", "unit": "oz", "item": "semisweet chocolate, chopped" },
+      { "amount": "3/4", "unit": "cup", "item": "heavy cream" }
+    ],
+    "steps": [
+      "Make the sauce: heat the cream until steaming, pour it over the chocolate and let it sit for 2 minutes, then whisk until smooth. Keep warm.",
+      "Mix the 3/4 cup sugar and cinnamon in a shallow dish.",
+      "Bring the water, butter, 1 tablespoon sugar and salt to a boil in a saucepan. Add the flour all at once and stir hard with a wooden spoon for 1 to 2 minutes, until the dough forms a smooth ball and leaves a film on the pan.",
+      "Let the dough cool for 5 minutes, then beat in the eggs one at a time, then the vanilla, until smooth and glossy.",
+      "Spoon the dough into a piping bag fitted with a large open star tip.",
+      "Heat 2 inches of oil in a heavy pot to 360°F. Pipe 5-inch lengths straight into the oil, snipping them off with scissors. Fry 4 or 5 at a time for 3 to 4 minutes, turning, until deep golden.",
+      "Drain for a few seconds on paper towels, then roll in the cinnamon sugar while hot. Serve right away with the chocolate sauce."
+    ],
+    "allergens": ["eggs", "milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Check the chocolate label if you avoid soy: many brands contain soy lecithin.",
+      "Use a star tip. The ridges help the churros cook evenly and stop them from bursting in the oil.",
+      "Keep the oil near 360°F. Too hot and they brown outside while staying raw inside."
+    ],
+    "make_ahead": "Make the dough up to a day ahead and refrigerate it in the piping bag; let it warm slightly before piping.",
+    "variations": []
+  },
+  "fuzzy-navel": {
+    "title": "Fuzzy Navel",
+    "description": "The 1980s two-ingredient classic: peach schnapps and orange juice over ice. \"Fuzzy\" for the peach, \"navel\" for the orange.",
+    "servings": 1,
+    "prep_minutes": 2,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "2", "unit": "oz", "item": "peach schnapps" },
+      { "amount": "4", "unit": "oz", "item": "fresh orange juice" },
+      { "amount": "1", "unit": "", "item": "orange slice, to garnish" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Fill a highball glass with ice.",
+      "Pour in the peach schnapps, then the orange juice.",
+      "Stir gently and garnish with the orange slice."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "orange slice",
+      "alcoholic": true,
+      "non_alcoholic_version": "Build 4 oz orange juice and 2 oz peach nectar over ice."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": ["Equal parts is the original, but it's very sweet. Two parts orange juice to one of schnapps is more balanced."],
+    "make_ahead": "",
+    "variations": ["Hairy Navel: add 1 oz vodka."]
   }
 }

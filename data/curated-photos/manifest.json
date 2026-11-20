@@ -3509,6 +3509,62 @@
       "names": [
         "Bangers and Mash with Onion Gravy"
       ]
+    },
+    {
+      "file": "gin-fizz.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Gin Fizz"
+      ]
+    },
+    {
+      "file": "gin-rickey.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Gin Rickey"
+      ]
+    },
+    {
+      "file": "apple-pie.jpg",
+      "kind": "meal",
+      "names": [
+        "Classic Apple Pie"
+      ]
+    },
+    {
+      "file": "greyhound.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Greyhound"
+      ]
+    },
+    {
+      "file": "hot-toddy.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Hot Toddy"
+      ]
+    },
+    {
+      "file": "dirty-martini.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Dirty Martini"
+      ]
+    },
+    {
+      "file": "churros.jpg",
+      "kind": "meal",
+      "names": [
+        "Churros with Chocolate Sauce"
+      ]
+    },
+    {
+      "file": "fuzzy-navel.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Fuzzy Navel"
+      ]
     }
   ]
 }
