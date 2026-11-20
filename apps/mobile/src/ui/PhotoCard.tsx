@@ -29,6 +29,7 @@ export function PhotoCard({
   height: number;
   onPress: () => void;
 }) {
+  // Said by screen readers only: the photo already shows whether it is a meal or a drink (Ben, 2026-11-20).
   const label = kind === "cocktail" ? "Drink" : "Meal";
   return (
     <Pressable
@@ -51,9 +52,6 @@ export function PhotoCard({
         </View>
       )}
       <LinearGradient colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.82)"]} locations={[0.35, 1]} style={StyleSheet.absoluteFill} />
-      <View style={styles.pill}>
-        <Text style={styles.pillText}>{label}</Text>
-      </View>
       <View style={styles.footer}>
         <Text style={styles.title} numberOfLines={2}>
           {title}
@@ -67,16 +65,6 @@ export function PhotoCard({
 const styles = StyleSheet.create({
   card: { borderRadius: 20, overflow: "hidden" },
   fallback: { flex: 1, alignItems: "center", justifyContent: "center", paddingBottom: 30 },
-  pill: {
-    position: "absolute",
-    top: 10,
-    left: 10,
-    backgroundColor: "rgba(0,0,0,0.55)",
-    borderRadius: 12,
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-  },
-  pillText: { color: "#FFFFFF", fontSize: 11, fontWeight: "600" },
   footer: { position: "absolute", left: 12, right: 12, bottom: 12 },
   title: { color: "#FFFFFF", fontSize: 15, lineHeight: 19, fontFamily: fonts.display },
   meta: { color: "#D4D4D8", fontSize: 12, marginTop: 2 },
