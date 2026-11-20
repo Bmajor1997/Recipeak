@@ -2925,5 +2925,87 @@
       "make_ahead": "",
       "variations": []
     }
+  },
+  "egg-fried-rice": {
+    "vegetarian": "same",
+    "vegan": {
+      "title": "Vegan Tofu Fried Rice",
+      "description": "The everyday Chinese fried rice made with crumbled tofu instead of scrambled egg, plus peas, carrot and scallions, all tossed in a very hot pan.",
+      "servings": 4,
+      "prep_minutes": 10,
+      "cook_minutes": 10,
+      "ingredients": [
+        { "amount": "4", "unit": "cups", "item": "cold cooked jasmine rice, ideally a day old" },
+        { "amount": "7", "unit": "oz", "item": "firm tofu, patted dry and crumbled" },
+        { "amount": "1", "unit": "pinch", "item": "ground turmeric" },
+        { "amount": "3", "unit": "tbsp", "item": "neutral oil, divided" },
+        { "amount": "2", "unit": "cloves", "item": "garlic, minced" },
+        { "amount": "1/2", "unit": "cup", "item": "frozen peas and diced carrots" },
+        { "amount": "3", "unit": "", "item": "scallions, thinly sliced, whites and greens kept apart" },
+        { "amount": "1 1/2", "unit": "tbsp", "item": "light soy sauce" },
+        { "amount": "1", "unit": "tsp", "item": "toasted sesame oil" },
+        { "amount": "1/4", "unit": "tsp", "item": "ground white pepper" },
+        { "amount": "", "unit": "", "item": "salt, to taste" }
+      ],
+      "steps": [
+        "Break up any clumps of rice with your fingers so the grains are separate.",
+        "Heat a wok or large skillet over high heat until it just starts to smoke. Add 1 tablespoon of the oil and the tofu, sprinkle with the turmeric and a pinch of salt, and stir-fry for 3 minutes, until golden. Slide it onto a plate.",
+        "Add the rest of the oil, then the garlic and scallion whites. Stir for 15 seconds, until fragrant.",
+        "Add the peas and carrots and stir-fry for 1 minute.",
+        "Add the rice and spread it out. Let it sit for 30 seconds to toast, then toss. Repeat for 3 to 4 minutes, until every grain is hot and slightly chewy.",
+        "Add the soy sauce around the edge of the pan so it sizzles, then the sesame oil and white pepper. Toss well.",
+        "Return the tofu, add the scallion greens and toss once more. Taste for salt and serve right away."
+      ],
+      "allergens": ["sesame", "soy", "wheat"],
+      "cocktail": null,
+      "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+      "tips": [
+        "Cold, day-old rice is drier, so it fries into separate grains. Fresh rice steams and turns mushy.",
+        "The pinch of turmeric gives the tofu a golden color, and drying it well helps it brown.",
+        "Cook in two batches if your pan is small. A crowded pan can't stay hot enough to fry."
+      ],
+      "make_ahead": "Keep leftovers in the fridge for up to 3 days and reheat in a hot pan with a splash of water.",
+      "variations": []
+    }
+  },
+  "illegal": {
+    "vegetarian": "same",
+    "vegan": {
+      "title": "Vegan Illegal",
+      "description": "The same smoky mezcal sour, with aquafaba in place of the egg white.",
+      "servings": 1,
+      "prep_minutes": 4,
+      "cook_minutes": 0,
+      "ingredients": [
+        { "amount": "1", "unit": "oz", "item": "espadín mezcal" },
+        { "amount": "1/2", "unit": "oz", "item": "overproof white Jamaican rum" },
+        { "amount": "1/2", "unit": "oz", "item": "falernum" },
+        { "amount": "1", "unit": "bar spoon", "item": "maraschino liqueur" },
+        { "amount": "3/4", "unit": "oz", "item": "fresh lime juice" },
+        { "amount": "1/2", "unit": "oz", "item": "simple syrup" },
+        { "amount": "1", "unit": "tsp", "item": "aquafaba (chickpea water, optional)" },
+        { "amount": "", "unit": "", "item": "ice, for shaking" }
+      ],
+      "steps": [
+        "Chill a coupe or cocktail glass.",
+        "Add everything to a shaker and fill it with ice.",
+        "Shake hard for 15 seconds.",
+        "Strain into the chilled glass, or over fresh ice in a clay cup."
+      ],
+      "allergens": [],
+      "cocktail": {
+        "glass": "coupe",
+        "garnish": "lime wheel",
+        "alcoholic": true,
+        "non_alcoholic_version": "Shake 1 oz lime juice, 1/2 oz falernum syrup and 1 oz pineapple juice with ice, strain, and add 2 drops of liquid smoke if you like."
+      },
+      "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+      "tips": [
+        "The small splash of aquafaba is only for texture. Leave it out and the drink is just as good.",
+        "Overproof rum is very strong. Measure it carefully."
+      ],
+      "make_ahead": "",
+      "variations": []
+    }
   }
 }

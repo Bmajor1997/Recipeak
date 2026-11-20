@@ -3871,6 +3871,90 @@
       "names": [
         "Grand Margarita"
       ]
+    },
+    {
+      "file": "egg-fried-rice.jpg",
+      "kind": "meal",
+      "names": [
+        "Egg Fried Rice"
+      ]
+    },
+    {
+      "file": "texas-brisket.jpg",
+      "kind": "meal",
+      "names": [
+        "Texas-Style Smoked Brisket"
+      ]
+    },
+    {
+      "file": "lamb-shish-kebab.jpg",
+      "kind": "meal",
+      "names": [
+        "Lamb Shish Kebab"
+      ]
+    },
+    {
+      "file": "bay-breeze.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Bay Breeze"
+      ]
+    },
+    {
+      "file": "vento.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Ve.n.to"
+      ]
+    },
+    {
+      "file": "ranch-water.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Ranch Water"
+      ]
+    },
+    {
+      "file": "illegal.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Illegal"
+      ]
+    },
+    {
+      "file": "old-cuban.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Old Cuban"
+      ]
+    },
+    {
+      "file": "spicy-fifty.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Spicy Fifty"
+      ]
+    },
+    {
+      "file": "mulled-wine.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Mulled Wine"
+      ]
+    },
+    {
+      "file": "xiaolongbao.jpg",
+      "kind": "meal",
+      "names": [
+        "Xiaolongbao (Soup Dumplings)"
+      ]
+    },
+    {
+      "file": "bbq-ribs.jpg",
+      "kind": "meal",
+      "names": [
+        "Oven-Baked BBQ Ribs"
+      ]
     }
   ]
 }
