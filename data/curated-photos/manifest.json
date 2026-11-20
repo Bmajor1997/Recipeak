@@ -3773,6 +3773,104 @@
       "names": [
         "Baklava"
       ]
+    },
+    {
+      "file": "kabsa.jpg",
+      "kind": "meal",
+      "names": [
+        "Chicken Kabsa"
+      ]
+    },
+    {
+      "file": "kamikaze.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Kamikaze"
+      ]
+    },
+    {
+      "file": "hummus.jpg",
+      "kind": "meal",
+      "names": [
+        "Hummus"
+      ]
+    },
+    {
+      "file": "creme-brulee.jpg",
+      "kind": "meal",
+      "names": [
+        "Crème Brûlée"
+      ]
+    },
+    {
+      "file": "flan.jpg",
+      "kind": "meal",
+      "names": [
+        "Flan"
+      ]
+    },
+    {
+      "file": "sea-breeze.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Sea Breeze"
+      ]
+    },
+    {
+      "file": "potato-gnocchi.jpg",
+      "kind": "meal",
+      "names": [
+        "Potato Gnocchi with Brown Butter and Sage"
+      ]
+    },
+    {
+      "file": "rabo-de-galo.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Rabo de Galo"
+      ]
+    },
+    {
+      "file": "sangria.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Red Wine Sangria"
+      ]
+    },
+    {
+      "file": "sloe-gin-fizz.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Sloe Gin Fizz"
+      ]
+    },
+    {
+      "file": "borscht.jpg",
+      "kind": "meal",
+      "names": [
+        "Ukrainian Borscht"
+      ]
+    },
+    {
+      "file": "russian-spring-punch.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Russian Spring Punch"
+      ]
+    },
+    {
+      "file": "ratatouille.jpg",
+      "kind": "meal",
+      "names": [
+        "Ratatouille"
+      ]
+    },
+    {
+      "file": "grand-margarita.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Grand Margarita"
+      ]
     }
   ]
 }
