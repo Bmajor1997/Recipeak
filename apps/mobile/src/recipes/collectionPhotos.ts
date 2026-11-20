@@ -2434,4 +2434,14 @@ export const COLLECTION: CollectionDish[] = [
   },
   { id: "bbq-ribs", name: "Oven-Baked BBQ Ribs", kind: "meal", aliases: [], source: require("../../assets/collection/bbq-ribs.jpg") },
   { id: "cardinale", name: "Cardinale", kind: "cocktail", aliases: [], source: require("../../assets/collection/cardinale.jpg") },
+  { id: "wonton-soup", name: "Wonton Soup", kind: "meal", aliases: [], source: require("../../assets/collection/wonton-soup.jpg") },
+  {
+    id: "tacos-al-pastor",
+    name: "Tacos al Pastor",
+    kind: "meal",
+    aliases: [],
+    source: require("../../assets/collection/tacos-al-pastor.jpg"),
+  },
+  { id: "elote", name: "Elote (Mexican Street Corn)", kind: "meal", aliases: [], source: require("../../assets/collection/elote.jpg") },
+  { id: "cheesecake", name: "New York Cheesecake", kind: "meal", aliases: [], source: require("../../assets/collection/cheesecake.jpg") },
 ];
