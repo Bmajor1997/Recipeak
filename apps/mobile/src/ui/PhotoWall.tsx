@@ -9,7 +9,7 @@ import { row_motion, WALL_GAP, WALL_TILE } from "./wallMotion";
 import { CURATED_COUNT, WALL_ROWS, type WallPhoto } from "./wallPhotos";
 
 /** Turns on the wall's motion unless the phone's "reduce motion" setting is on. */
-function useReduceMotion() {
+export function useReduceMotion() {
   const [reduce, set_reduce] = useState(false);
   useEffect(() => {
     let live = true;
