@@ -2,7 +2,7 @@ import { router, useFocusEffect } from "expo-router";
 import { useCallback, useRef, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Linking, Modal, Pressable, ScrollView, Share, StyleSheet, Switch, Text, TextInput, View } from "react-native";
+import { Linking, Modal, Platform, Pressable, ScrollView, Share, StyleSheet, Switch, Text, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../AppContext";
 import { clear_account_device_data, delete_account, delete_account_problem } from "../auth/deleteAccount";
@@ -17,11 +17,25 @@ import { FEEDBACK_KINDS, FEEDBACK_TEXT, type FeedbackKind } from "../feedback/fe
 import { DietPicker, InterestPicker } from "../onboarding/Choices";
 import { toggle_diet } from "../onboarding/onboarding";
 import { useOnboarding } from "../onboarding/OnboardingProvider";
-import { legal_page_urls, STORE_URL, SUPPORT_EMAIL, support_mail_url } from "./legalLinks";
+import { legal_page_urls, manage_subscription_url, STORE_URL, SUPPORT_EMAIL, support_mail_url } from "./legalLinks";
+import { subscriptions } from "../paywall/subscriptions";
 import { usePreferences } from "./PreferencesProvider";
 import { useTips } from "../tips/TipsProvider";
 import { APPEARANCES, type Appearance } from "./preferences";
 import { CATEGORIES, type Category, Group, Row, SettingsScreen } from "./SettingsUI";
+
+/** How this account signs in, for the account card. */
+export function signed_in_with(providers: string[] | undefined): string {
+  if (providers?.includes("google.com")) return "Signed in with Google";
+  if (providers?.includes("apple.com")) return "Signed in with Apple";
+  return "Signed in with email";
+}
+
+/** "2 of 3 photos left" for free accounts. */
+export function photos_left_line(plan: Allowance): string {
+  const left = plan.free_photos_left ?? 0;
+  return `${left} of ${plan.free_photos_total} photo${plan.free_photos_total === 1 ? "" : "s"} left`;
+}
 
 export function SettingsDetails({ category }: { category: Category }) {
   return (
@@ -104,6 +118,39 @@ function Account() {
   const [delete_error, set_delete_error] = useState<string | null>(null);
   // Accounts made with Google or Apple have no password, so they confirm with that account instead.
   const method = confirm_method(user);
+  // The plan line in the account card. Left out quietly if it can't load; Photo allowance shows the details.
+  const [plan, set_plan] = useState<Allowance | null>(null);
+  useFocusEffect(
+    useCallback(() => {
+      let live = true;
+      api.allowance().then(
+        (value) => live && set_plan(value),
+        () => live && set_plan(null),
+      );
+      return () => {
+        live = false;
+      };
+    }, [api]),
+  );
+  async function restore() {
+    if (pending.current) return;
+    pending.current = true;
+    set_busy(true);
+    set_error(null);
+    set_notice(null);
+    const outcome = await subscriptions.restore();
+    pending.current = false;
+    set_busy(false);
+    if (outcome.kind === "failed") set_error(outcome.message);
+    else if (outcome.kind === "purchased") {
+      set_notice("Premium is on for this account.");
+      api.allowance().then(set_plan, () => {});
+    }
+  }
+  const open_page = (url: string) => {
+    set_error(null);
+    Linking.openURL(url).catch(() => set_error("Couldn’t open that page. Check your connection and try again."));
+  };
   const [busy, set_busy] = useState(false);
   const [error, set_error] = useState<string | null>(null);
   const [notice, set_notice] = useState<string | null>(null);
@@ -165,24 +212,66 @@ function Account() {
   }
   return (
     <>
-      <Text style={type.body}>{user?.email ?? "Signed-in account"}</Text>
-      <Text style={type.muted}>
-        Your sign-in lets the recipe service check your photo allowance. Your saved recipes belong to this account.
-      </Text>
+      <View style={styles.accountCard}>
+        <View style={styles.avatar} accessible={false}>
+          <Text style={styles.avatarText}>{(user?.email ?? "R").slice(0, 1).toUpperCase()}</Text>
+        </View>
+        <View style={{ flex: 1, gap: 2 }}>
+          <Text style={styles.accountEmail}>{user?.email ?? "Signed-in account"}</Text>
+          <Text style={type.muted}>{signed_in_with(user?.providers)}</Text>
+          {plan && (
+            <View style={styles.planLine}>
+              <Text style={type.muted}>{plan.premium ? "Premium" : `Free · ${photos_left_line(plan)}`}</Text>
+              {!plan.premium && (
+                <Pressable
+                  accessibilityRole="link"
+                  accessibilityLabel="See Premium"
+                  hitSlop={10}
+                  onPress={() => router.push({ pathname: "/upgrade", params: { reason: "intro" } })}
+                >
+                  <Text style={styles.planLink}>See Premium</Text>
+                </Pressable>
+              )}
+            </View>
+          )}
+        </View>
+      </View>
       {!confirm && error && <Notice tone="error">{error}</Notice>}
       {notice && <Notice>{notice}</Notice>}
-      {method === "password" && (
-        <Button label="Reset password" variant="secondary" disabled={busy || !user?.email} onPress={() => void run("reset")} />
-      )}
-      <Button
-        label="Sign out"
-        variant="secondary"
-        disabled={busy}
-        onPress={() => {
-          set_error(null);
-          set_confirm(true);
-        }}
-      />
+      <Group>
+        {method === "password" && (
+          <Row
+            label="Change password"
+            detail="We’ll email you a link to set a new one"
+            icon="lock-closed-outline"
+            onPress={() => {
+              if (!busy && user?.email) void run("reset");
+            }}
+          />
+        )}
+        {plan?.premium && (
+          <Row
+            label="Manage subscription"
+            detail={`Change or cancel in ${Platform.OS === "ios" ? "the App Store" : "Google Play"}`}
+            icon="card-outline"
+            trailing="open-outline"
+            onPress={() => open_page(manage_subscription_url(Platform.OS))}
+          />
+        )}
+        <Row label="Restore purchase" detail="Bought Premium on another phone" icon="refresh-outline" onPress={() => void restore()} />
+      </Group>
+      <Group>
+        <Row
+          label="Sign out"
+          detail="Your saved recipes stay with your account"
+          icon="log-out-outline"
+          onPress={() => {
+            if (busy) return;
+            set_error(null);
+            set_confirm(true);
+          }}
+        />
+      </Group>
       <Modal
         visible={confirm}
         transparent
@@ -206,16 +295,21 @@ function Account() {
           </ScrollView>
         </View>
       </Modal>
-      <Button
-        label="Delete account"
-        variant="secondary"
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel="Delete account"
+        accessibilityHint="Permanently removes your account and saved recipes"
         disabled={busy}
         onPress={() => {
           set_delete_error(null);
           set_password("");
           set_deleting(true);
         }}
-      />
+        style={({ pressed }) => [styles.deleteLink, pressed && { opacity: 0.6 }]}
+      >
+        <Text style={styles.deleteText}>Delete account</Text>
+        <Text style={[type.muted, { textAlign: "center" }]}>Permanently removes your account and saved recipes</Text>
+      </Pressable>
       <Modal
         visible={deleting}
         transparent
@@ -636,6 +730,23 @@ const create_styles = (colors: Palette) =>
       justifyContent: "center",
     },
     overlay: { flex: 1, backgroundColor: colors.scrim, justifyContent: "center", paddingHorizontal: 20 },
+    accountCard: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 14,
+      padding: 16,
+      borderRadius: 18,
+      borderWidth: 1,
+      borderColor: colors.border,
+      backgroundColor: colors.surface,
+    },
+    avatar: { width: 48, height: 48, borderRadius: 24, backgroundColor: colors.accentTint, alignItems: "center", justifyContent: "center" },
+    avatarText: { color: colors.accentInk, fontSize: 20, fontWeight: "600" },
+    accountEmail: { color: colors.text, fontSize: 16, fontWeight: "600" },
+    planLine: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 6, marginTop: 4 },
+    planLink: { color: colors.accentInk, fontSize: 14, fontWeight: "600" },
+    deleteLink: { marginTop: 24, alignItems: "center", gap: 4, paddingVertical: 12, minHeight: 48 },
+    deleteText: { color: colors.danger, fontSize: 16, fontWeight: "600" },
     input: {
       minHeight: 54,
       borderRadius: 12,

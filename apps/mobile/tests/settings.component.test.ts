@@ -28,6 +28,7 @@ const mocks = vi.hoisted(() => ({
   reset_password: vi.fn(),
   sign_out: vi.fn(),
   confirm_password: vi.fn(),
+  restore: vi.fn(),
   delete_sign_in: vi.fn(),
   delete_account: vi.fn(),
   remove_item: vi.fn(),
@@ -54,6 +55,7 @@ vi.mock("../src/auth/firebase", () => ({
     delete_sign_in: mocks.delete_sign_in,
   },
 }));
+vi.mock("../src/paywall/subscriptions", () => ({ subscriptions: { restore: mocks.restore } }));
 vi.mock("../src/saved/photoStore", () => ({ remove_photo: vi.fn(), keep_photo: vi.fn() }));
 vi.mock("react-native", () => ({
   View: "View",
@@ -66,6 +68,7 @@ vi.mock("react-native", () => ({
   Modal: ({ visible, children, ...props }: { visible: boolean; children: ReactElement }) =>
     createElement("Modal", props, visible ? children : null),
   StyleSheet: { create: (s: unknown) => s, hairlineWidth: 1 },
+  Platform: { OS: "android" },
   Share: { share: vi.fn().mockResolvedValue({ action: "sharedAction" }) },
 }));
 vi.mock("@expo/vector-icons/Ionicons", () => ({ default: "Icon" }));
@@ -199,13 +202,34 @@ describe("Settings interactions", () => {
     await press(tree, "Refresh photo allowance");
     expect(text(tree)).toContain("2 of 3 free photos left.");
   });
+  it("shows who is signed in and their plan, and arranges the account actions", async () => {
+    const tree = await render(createElement(SettingsDetails, { category: "account" }));
+    expect(text(tree)).toContain("first@example.test");
+    expect(text(tree)).toContain("Signed in with email");
+    expect(text(tree)).toContain("Free · 2 of 3 photos left");
+    await press(tree, "See Premium");
+    expect(mocks.push).toHaveBeenCalledWith({ pathname: "/upgrade", params: { reason: "intro" } });
+    expect(text(tree)).not.toContain("Manage subscription");
+    mocks.restore.mockResolvedValueOnce({ kind: "failed", message: "No subscription was found for this store account." });
+    await press(tree, "Restore purchase");
+    expect(text(tree)).toContain("No subscription was found");
+  });
+  it("hides Change password for Google accounts and offers Manage subscription to subscribers", async () => {
+    mocks.user = { uid: "first", email: "first@example.test", providers: ["google.com"] } as typeof mocks.user;
+    mocks.allowance.mockResolvedValue({ premium: true, free_photos_left: null, free_photos_total: 3 });
+    const tree = await render(createElement(SettingsDetails, { category: "account" }));
+    expect(text(tree)).toContain("Signed in with Google");
+    expect(text(tree)).toContain("Premium");
+    expect(text(tree)).not.toContain("Change password");
+    expect(text(tree)).toContain("Manage subscription");
+  });
   it("confirms sign-out, lets the user cancel, and keeps failed requests retryable", async () => {
     const tree = await render(createElement(SettingsDetails, { category: "account" }));
     await press(tree, "Sign out");
     expect(mocks.sign_out).not.toHaveBeenCalled();
     await press(tree, "Cancel");
     expect(mocks.sign_out).not.toHaveBeenCalled();
-    await press(tree, "Reset password");
+    await press(tree, "Change password");
     expect(mocks.reset_password).toHaveBeenCalledWith("first@example.test");
     await press(tree, "Sign out");
     mocks.sign_out.mockRejectedValueOnce(new Error("offline"));
