@@ -1,17 +1,23 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Image, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useOnboarding } from "../onboarding/OnboardingProvider";
 import { firebase, firebaseConfigured, sign_in_problem, test_mode_available } from "../auth/firebase";
-import { Button, Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
+import { Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
 
+// Google's own four-colour "G", as its sign-in branding guidelines ask for.
+const GOOGLE_G = require("../../assets/google-g.png");
+
+/**
+ * Sign-in, styled after Mindvalley's (2026-11-21): three rounded pill buttons — Continue with Google, Log in and
+ * Create an account — then an email form for the last two. Sign in with Apple joins them on iPhone.
+ */
 export default function SignIn() {
-  const { type } = useTheme();
+  const { type, colors } = useTheme();
   const styles = useThemedStyles(create_styles);
-  // After the tour, new people start on "Create account"; "I already have an account" starts on sign-in.
-  const { values: tour } = useOnboarding();
-  const [mode, set_mode] = useState<"sign-in" | "create">(tour.entry === "create" ? "create" : "sign-in");
+  // The three choices first; Log in and Create an account open the email form.
+  const [step, set_step] = useState<"choose" | "sign-in" | "create">("choose");
+  const mode = step === "create" ? "create" : "sign-in";
   const [email, set_email] = useState("");
   const [password, set_password] = useState("");
   const [busy, set_busy] = useState(false);
@@ -61,45 +67,73 @@ export default function SignIn() {
     set_message({ text: "If there's an account for that email, a reset link is on its way.", tone: "muted" });
   }
 
-  return (
-    <SafeAreaView style={styles.screen}>
-      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={{ flex: 1 }}>
-        <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-          <Text style={type.title} accessibilityRole="header">
-            Recipeak
-          </Text>
-          <Text style={[type.body, { marginTop: 8, marginBottom: 24 }]}>
-            Snap a meal or a cocktail and get a recipe to make it yourself.
-          </Text>
+  const open_form = (next: "sign-in" | "create") => {
+    set_step(next);
+    set_message(null);
+  };
+
+  if (step === "choose")
+    return (
+      <SafeAreaView style={styles.screen}>
+        <ScrollView contentContainerStyle={styles.chooseContent}>
+          <View style={styles.intro}>
+            <Text style={type.title} accessibilityRole="header">
+              Recipeak
+            </Text>
+            <Text style={[type.body, { marginTop: 8 }]}>Snap a meal or a cocktail and get a recipe to make it yourself.</Text>
+          </View>
           {!firebaseConfigured && (
             <Notice tone="error">{"Sign-in isn't set up in this build yet. Add the Firebase settings to apps/mobile/.env."}</Notice>
           )}
-          {test_mode_available && <Button label="Continue in test mode" onPress={() => firebase.start_test_mode()} />}
-          {apple && (
-            <ProviderButton
-              icon="logo-apple"
-              label="Continue with Apple"
-              busy={provider_busy === "apple"}
-              disabled={provider_busy !== null}
-              onPress={() => void continue_with("apple")}
-            />
-          )}
-          {firebase.google_available && (
-            <ProviderButton
-              icon="logo-google"
-              label="Continue with Google"
-              busy={provider_busy === "google"}
+          {test_mode_available && <PillButton label="Continue in test mode" variant="outline" onPress={() => firebase.start_test_mode()} />}
+          {message && <Notice tone={message.tone}>{message.text}</Notice>}
+          {Platform.OS !== "web" && (
+            <PillButton
+              label={provider_busy === "google" ? "Opening…" : "Continue with Google"}
+              variant="filled"
+              icon={<Image source={GOOGLE_G} style={styles.googleG} accessible={false} />}
               disabled={provider_busy !== null}
               onPress={() => void continue_with("google")}
             />
           )}
-          {(apple || firebase.google_available) && (
-            <View style={styles.divider} accessible={false}>
-              <View style={styles.rule} />
-              <Text style={styles.or}>or use your email</Text>
-              <View style={styles.rule} />
-            </View>
+          {apple && (
+            <PillButton
+              label={provider_busy === "apple" ? "Opening…" : "Continue with Apple"}
+              variant="outline"
+              icon={<Ionicons name="logo-apple" size={20} color={colors.text} />}
+              disabled={provider_busy !== null}
+              onPress={() => void continue_with("apple")}
+            />
           )}
+          <PillButton label="Log in" variant="outline" disabled={provider_busy !== null} onPress={() => open_form("sign-in")} />
+          <Text style={styles.newHere}>New to Recipeak?</Text>
+          <PillButton label="Create an account" variant="outline" disabled={provider_busy !== null} onPress={() => open_form("create")} />
+        </ScrollView>
+      </SafeAreaView>
+    );
+
+  return (
+    <SafeAreaView style={styles.screen}>
+      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={{ flex: 1 }}>
+        <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Back"
+            hitSlop={12}
+            onPress={() => {
+              set_step("choose");
+              set_message(null);
+            }}
+            style={styles.back}
+          >
+            <Ionicons name="chevron-back" size={24} color={colors.text} />
+          </Pressable>
+          <Text style={type.title} accessibilityRole="header">
+            {mode === "create" ? "Create your account" : "Log in"}
+          </Text>
+          <Text style={[type.muted, { marginTop: 6 }]}>
+            {mode === "create" ? "Use your email and a password with at least 8 characters." : "Log in to your Recipeak account."}
+          </Text>
           <Text style={styles.label}>Email</Text>
           <TextInput
             style={styles.input}
@@ -123,42 +157,65 @@ export default function SignIn() {
             onSubmitEditing={submit}
           />
           {message && <Notice tone={message.tone}>{message.text}</Notice>}
-          <Button label={mode === "create" ? "Create account" : "Sign in"} onPress={submit} busy={busy} disabled={!email || !password} />
-          <Button
-            variant="secondary"
-            label={mode === "create" ? "I already have an account" : "Create a new account"}
-            onPress={() => {
-              set_mode(mode === "create" ? "sign-in" : "create");
-              set_message(null);
-            }}
+          <PillButton
+            label={busy ? "One moment…" : mode === "create" ? "Create account" : "Log in"}
+            variant="filled"
+            disabled={busy || !email || !password}
+            onPress={() => void submit()}
           />
-          {mode === "sign-in" && <Button variant="secondary" label="Forgot password" onPress={reset} />}
+          {mode === "sign-in" && (
+            <Pressable accessibilityRole="button" hitSlop={8} onPress={() => void reset()} style={styles.textLink}>
+              <Text style={styles.linkMuted}>
+                Forgot password? <Text style={styles.linkStrong}>Reset it</Text>
+              </Text>
+            </Pressable>
+          )}
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={mode === "create" ? "Log in instead" : "Create an account instead"}
+            hitSlop={8}
+            onPress={() => open_form(mode === "create" ? "sign-in" : "create")}
+            style={styles.textLink}
+          >
+            <Text style={styles.linkMuted}>
+              {mode === "create" ? "Already have an account? " : "New to Recipeak? "}
+              <Text style={styles.linkStrong}>{mode === "create" ? "Log in" : "Create an account"}</Text>
+            </Text>
+          </Pressable>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
 
-function ProviderButton(props: {
-  icon: "logo-google" | "logo-apple";
+/**
+ * Mindvalley's rounded buttons: "filled" is the main action (white in dark mode, near-black in light mode, so it
+ * always stands out), "outline" is the quieter choice.
+ */
+function PillButton(props: {
   label: string;
-  busy: boolean;
-  disabled: boolean;
+  variant: "filled" | "outline";
+  icon?: React.ReactNode;
+  disabled?: boolean;
   onPress: () => void;
 }) {
-  const { colors } = useTheme();
   const styles = useThemedStyles(create_styles);
+  const filled = props.variant === "filled";
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={props.label}
-      accessibilityState={{ disabled: props.disabled, busy: props.busy }}
+      accessibilityState={{ disabled: !!props.disabled }}
       disabled={props.disabled}
       onPress={props.onPress}
-      style={({ pressed }) => [styles.provider, (pressed || props.busy) && { opacity: 0.7 }]}
+      style={({ pressed }) => [
+        styles.pill,
+        filled ? styles.pillFilled : styles.pillOutline,
+        (pressed || props.disabled) && { opacity: props.disabled ? 0.5 : 0.8 },
+      ]}
     >
-      <Ionicons name={props.icon} size={20} color={colors.text} />
-      <Text style={styles.providerText}>{props.busy ? "Opening…" : props.label}</Text>
+      {props.icon}
+      <Text style={[styles.pillText, filled && styles.pillTextFilled]}>{props.label}</Text>
     </Pressable>
   );
 }
@@ -166,23 +223,29 @@ function ProviderButton(props: {
 const create_styles = (colors: Palette) =>
   StyleSheet.create({
     screen: { flex: 1, backgroundColor: colors.background },
-    content: { padding: 24, paddingTop: 48 },
-    provider: {
+    content: { padding: 24, paddingTop: 16 },
+    chooseContent: { flexGrow: 1, padding: 24, paddingTop: 48, justifyContent: "flex-end", gap: 4 },
+    intro: { flex: 1, justifyContent: "center", paddingBottom: 24 },
+    back: { width: 44, height: 44, justifyContent: "center", marginBottom: 8, marginLeft: -6 },
+    pill: {
       minHeight: 54,
       marginTop: 12,
-      borderRadius: 14,
-      borderWidth: 1,
-      borderColor: colors.border,
-      backgroundColor: colors.surface,
+      borderRadius: 27,
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "center",
       gap: 10,
+      paddingHorizontal: 20,
     },
-    providerText: { color: colors.text, fontSize: 16, fontWeight: "600" },
-    divider: { flexDirection: "row", alignItems: "center", gap: 12, marginTop: 24, marginBottom: 4 },
-    rule: { flex: 1, height: StyleSheet.hairlineWidth, backgroundColor: colors.border },
-    or: { color: colors.muted, fontSize: 14 },
+    pillFilled: { backgroundColor: colors.text },
+    pillOutline: { borderWidth: 1.5, borderColor: colors.text },
+    pillText: { color: colors.text, fontSize: 16, fontWeight: "600" },
+    pillTextFilled: { color: colors.background },
+    googleG: { width: 20, height: 20 },
+    newHere: { color: colors.muted, fontSize: 14, textAlign: "center", marginTop: 20 },
+    textLink: { alignSelf: "center", marginTop: 18, minHeight: 32, justifyContent: "center" },
+    linkMuted: { color: colors.muted, fontSize: 15 },
+    linkStrong: { color: colors.text, fontWeight: "600" },
     label: { color: colors.text, fontSize: 15, fontWeight: "600", marginTop: 16, marginBottom: 6 },
     input: {
       minHeight: 54,
