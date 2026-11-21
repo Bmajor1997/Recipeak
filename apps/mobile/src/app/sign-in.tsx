@@ -25,13 +25,13 @@ const APP_ICON = require("../../assets/icon.png");
 
 /**
  * Sign-in (approved 2026-11-21): Recipeak's photos drifting behind the app icon and "Every dish has a recipe.",
- * then Mindvalley-style pill buttons — Continue with Google and Create an account — and a Log in link. Log in and
- * Create an account open the email form. Sign in with Apple joins them on iPhone.
+ * then Mindvalley-style pill buttons — Continue with Google and Create account — and a Log in link. Log in and
+ * Create account open the email form. Sign in with Apple joins them on iPhone.
  */
 export default function SignIn() {
   const { type, colors } = useTheme();
   const styles = useThemedStyles(create_styles);
-  // The three choices first; Log in and Create an account open the email form.
+  // The three choices first; Log in and Create account open the email form.
   const [step, set_step] = useState<"choose" | "sign-in" | "create">("choose");
   const mode = step === "create" ? "create" : "sign-in";
   const [email, set_email] = useState("");
@@ -126,7 +126,7 @@ export default function SignIn() {
                 onPress={() => void continue_with("apple")}
               />
             )}
-            <PillButton label="Create an account" variant="accent" disabled={provider_busy !== null} onPress={() => open_form("create")} />
+            <PillButton label="Create account" variant="accent" disabled={provider_busy !== null} onPress={() => open_form("create")} />
             <Pressable
               accessibilityRole="button"
               accessibilityLabel="Log in"
@@ -220,14 +220,14 @@ export default function SignIn() {
           )}
           <Pressable
             accessibilityRole="button"
-            accessibilityLabel={mode === "create" ? "Log in instead" : "Create an account instead"}
+            accessibilityLabel={mode === "create" ? "Log in instead" : "Create account instead"}
             hitSlop={8}
             onPress={() => open_form(mode === "create" ? "sign-in" : "create")}
             style={styles.textLink}
           >
             <Text style={styles.linkMuted}>
               {mode === "create" ? "Already have an account? " : "New to Recipeak? "}
-              <Text style={styles.linkStrong}>{mode === "create" ? "Log in" : "Create an account"}</Text>
+              <Text style={styles.linkStrong}>{mode === "create" ? "Log in" : "Create account"}</Text>
             </Text>
           </Pressable>
         </ScrollView>
