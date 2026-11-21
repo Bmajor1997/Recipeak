@@ -1,5 +1,5 @@
 // One-time tips (approved 2026-11-19): a small bubble beside a feature people might miss, shown once on this phone.
-// Kept on the device, like the tour's answers. Settings > Help & privacy can show them again.
+// Kept on the device, like the tour's answers. Settings > Help can show them again.
 import type { KeyValueStorage } from "../saved/savedRecipes";
 
 /** The tips, in the order they appear: the Home photo wall, then the Snap button, then sharing after a first save. */

@@ -1,10 +1,11 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { router, useFocusEffect } from "expo-router";
-import { useCallback, useMemo, useState } from "react";
-import { FlatList, StyleSheet, Text, TextInput, useWindowDimensions, View } from "react-native";
+import { useCallback, useMemo, useRef, useState } from "react";
+import { FlatList, Pressable, Share, StyleSheet, Text, TextInput, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../../AppContext";
 import { useCamera } from "../../camera/CameraProvider";
+import { recipe_as_text } from "../../recipes/format";
 import { filter_saved, type SavedFilter, total_minutes } from "../../recipes/search";
 import { NO_IMAGE, type SavedRecipe } from "../../recipes/types";
 import { PhotoCard } from "../../ui/PhotoCard";
@@ -33,14 +34,42 @@ export default function SavedScreen() {
     }, [saved]),
   );
 
+  // Shares the text of every saved recipe (no photos), for example to keep a copy in notes or send to a friend.
+  const sharing = useRef(false);
+  async function share_all() {
+    if (!items?.length || sharing.current) return;
+    sharing.current = true;
+    try {
+      await Share.share({ title: "My Recipeak recipes", message: items.map((item) => recipe_as_text(item.recipe)).join("\n\n—\n\n") });
+    } catch {
+      // Closing the share sheet isn't a problem worth a message.
+    } finally {
+      sharing.current = false;
+    }
+  }
+
   const shown = useMemo(() => filter_saved(items ?? [], query, filter), [items, query, filter]);
   const cardWidth = (width - 20 * 2 - 12) / 2;
 
   const header = (
     <View style={{ paddingTop: insets.top + 16 }}>
-      <Text style={type.display} accessibilityRole="header">
-        Saved
-      </Text>
+      <View style={styles.titleRow}>
+        <Text style={type.display} accessibilityRole="header">
+          Saved
+        </Text>
+        {!!items?.length && (
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Share all saved recipes"
+            accessibilityHint="Shares the recipe text, without photos"
+            hitSlop={8}
+            onPress={() => void share_all()}
+            style={styles.shareButton}
+          >
+            <Ionicons name="share-outline" size={22} color={colors.accentInk} />
+          </Pressable>
+        )}
+      </View>
       {!!items?.length && (
         <>
           <View style={styles.search}>
@@ -118,6 +147,15 @@ export default function SavedScreen() {
 const create_styles = (colors: Palette) =>
   StyleSheet.create({
     screen: { flex: 1, backgroundColor: colors.background },
+    titleRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
+    shareButton: {
+      width: 44,
+      height: 44,
+      borderRadius: 22,
+      backgroundColor: colors.surface,
+      alignItems: "center",
+      justifyContent: "center",
+    },
     search: {
       marginTop: 16,
       minHeight: 50,

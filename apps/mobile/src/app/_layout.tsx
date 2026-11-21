@@ -15,7 +15,8 @@ import { PreferencesProvider, usePreferences } from "../settings/PreferencesProv
 import { TipsProvider } from "../tips/TipsProvider";
 import { theme_for, ThemeProvider, useTheme } from "../ui/theme";
 
-/** Light or dark: the person's choice in Settings, or the phone's own setting ("Match phone", the default). */
+/** Light or dark: the person's choice in Settings, or the phone's own setting ("Match phone", the default); and the
+ * button colour they chose (coral or blue). */
 function Themed({ children }: { children: ReactNode }) {
   const phone = useColorScheme();
   const { values } = usePreferences();
@@ -26,7 +27,7 @@ function Themed({ children }: { children: ReactNode }) {
     SystemUI.setBackgroundColorAsync(background).catch(() => {});
   }, [background]);
   return (
-    <ThemeProvider scheme={scheme}>
+    <ThemeProvider scheme={scheme} accent={values.accent}>
       <StatusBar style={scheme === "light" ? "dark" : "light"} />
       {children}
     </ThemeProvider>

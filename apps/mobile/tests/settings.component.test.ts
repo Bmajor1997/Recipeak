@@ -55,6 +55,7 @@ vi.mock("../src/auth/firebase", () => ({
     delete_sign_in: mocks.delete_sign_in,
   },
 }));
+vi.mock("expo-constants", () => ({ default: { expoConfig: { version: "0.1.0" } } }));
 vi.mock("../src/paywall/subscriptions", () => ({ subscriptions: { restore: mocks.restore } }));
 vi.mock("../src/saved/photoStore", () => ({ remove_photo: vi.fn(), keep_photo: vi.fn() }));
 vi.mock("react-native", () => ({
@@ -116,10 +117,11 @@ describe("Settings interactions", () => {
     const tree = await render(createElement(Settings));
     for (const [label, category] of [
       ["Account", "account"],
-      ["Preferences", "preferences"],
-      ["Saved recipes & storage", "library"],
-      ["Photo allowance", "usage"],
-      ["Help & privacy", "help"],
+      ["Premium", "usage"],
+      ["Appearance & photos", "preferences"],
+      ["Cocktails, meals & diet", "taste"],
+      ["Help", "help"],
+      ["Send feedback", "feedback"],
     ]) {
       await press(tree, label);
       expect(mocks.push).toHaveBeenLastCalledWith({ pathname: "/settings/[category]", params: { category } });
@@ -150,7 +152,7 @@ describe("Settings interactions", () => {
     });
     expect(mocks.set).toHaveBeenCalledWith(
       "mealsandmixers.preferences.v1.first",
-      JSON.stringify({ pausePhotoWall: true, saveCoverPhotos: true, appearance: "system" }),
+      JSON.stringify({ pausePhotoWall: true, saveCoverPhotos: true, appearance: "system", accent: "coral" }),
     );
     expect(tree.root.findByProps({ accessibilityLabel: "Pause photo wall" }).props.value).toBe(true);
     expect(text(tree)).toContain("Saved on this device.");
@@ -181,6 +183,7 @@ describe("Settings interactions", () => {
       pausePhotoWall: true,
       saveCoverPhotos: false,
       appearance: "system",
+      accent: "coral",
     });
     mocks.user = { uid: "second", email: "second@example.test" };
     await act(async () => {
@@ -190,6 +193,7 @@ describe("Settings interactions", () => {
       pausePhotoWall: false,
       saveCoverPhotos: true,
       appearance: "system",
+      accent: "coral",
     });
   });
   it("shows allowance errors and retries without showing a false zero", async () => {
@@ -197,10 +201,10 @@ describe("Settings interactions", () => {
       .mockRejectedValueOnce(new Error("offline"))
       .mockResolvedValue({ premium: false, free_photos_left: 2, free_photos_total: 3 });
     const tree = await render(createElement(SettingsDetails, { category: "usage" }));
-    expect(text(tree)).toContain("Couldn’t load your photo allowance");
+    expect(text(tree)).toContain("Couldn’t load your plan");
     expect(text(tree)).not.toContain("0 of");
-    await press(tree, "Refresh photo allowance");
-    expect(text(tree)).toContain("2 of 3 free photos left.");
+    await press(tree, "Refresh");
+    expect(text(tree)).toContain("Free plan: 2 of 3 free photos left.");
   });
   it("shows who is signed in and their plan, and arranges the account actions", async () => {
     const tree = await render(createElement(SettingsDetails, { category: "account" }));
@@ -209,19 +213,35 @@ describe("Settings interactions", () => {
     expect(text(tree)).toContain("Free · 2 of 3 photos left");
     await press(tree, "See Premium");
     expect(mocks.push).toHaveBeenCalledWith({ pathname: "/upgrade", params: { reason: "intro" } });
+  });
+  it("keeps plan actions on the Premium screen: See Premium and Restore for free accounts", async () => {
+    const tree = await render(createElement(SettingsDetails, { category: "usage" }));
     expect(text(tree)).not.toContain("Manage subscription");
+    await press(tree, "See Premium");
+    expect(mocks.push).toHaveBeenCalledWith({ pathname: "/upgrade", params: { reason: "intro" } });
     mocks.restore.mockResolvedValueOnce({ kind: "failed", message: "No subscription was found for this store account." });
     await press(tree, "Restore purchase");
     expect(text(tree)).toContain("No subscription was found");
   });
-  it("hides Change password for Google accounts and offers Manage subscription to subscribers", async () => {
+  it("offers Manage subscription to subscribers, and hides Change password for Google accounts", async () => {
     mocks.user = { uid: "first", email: "first@example.test", providers: ["google.com"] } as typeof mocks.user;
     mocks.allowance.mockResolvedValue({ premium: true, free_photos_left: null, free_photos_total: 3 });
-    const tree = await render(createElement(SettingsDetails, { category: "account" }));
-    expect(text(tree)).toContain("Signed in with Google");
-    expect(text(tree)).toContain("Premium");
-    expect(text(tree)).not.toContain("Change password");
-    expect(text(tree)).toContain("Manage subscription");
+    const premium = await render(createElement(SettingsDetails, { category: "usage" }));
+    expect(text(premium)).toContain("You have Premium");
+    expect(text(premium)).toContain("Manage subscription");
+    expect(text(premium)).not.toContain("See Premium");
+    const account = await render(createElement(SettingsDetails, { category: "account" }));
+    expect(text(account)).toContain("Signed in with Google");
+    expect(text(account)).not.toContain("Change password");
+  });
+  it("lets people choose blue or coral buttons", async () => {
+    const tree = await render(createElement(SettingsDetails, { category: "preferences" }));
+    await press(tree, "Blue");
+    expect(mocks.set).toHaveBeenCalledWith(
+      "mealsandmixers.preferences.v1.first",
+      JSON.stringify({ pausePhotoWall: false, saveCoverPhotos: true, appearance: "system", accent: "blue" }),
+    );
+    expect((tree.root.findByProps({ accessibilityLabel: "Blue" }).props.accessibilityState as { checked: boolean }).checked).toBe(true);
   });
   it("confirms sign-out, lets the user cancel, and keeps failed requests retryable", async () => {
     const tree = await render(createElement(SettingsDetails, { category: "account" }));

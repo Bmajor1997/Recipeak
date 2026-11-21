@@ -1,19 +1,15 @@
-# Settings in Meals & Mixers
+# Settings in Recipeak
 
-The Settings tab adapts Votic's grouped settings navigation to Meals & Mixers. It uses the existing dark/grapefruit palette, Fraunces headings, shared buttons, Expo Router, Firebase sign-in methods, recipe store, and allowance API.
+The Settings tab adapts Votic's grouped settings navigation. Since 2026-11-20 it has four groups:
 
-## Included
-
-| Votic area | Meals & Mixers behavior |
+| Group | Rows |
 | --- | --- |
-| Account & Membership | Signed-in email, password-reset request, confirmed sign-out. Sign-out keeps the account's recipes on the device for its next sign-in and clears the current recipe. |
-| Appearance | Match phone (default), Light or Dark. Every screen follows it except the camera, which always stays dark. |
-| Accessibility | Pause the Home photo wall. The phone's Reduce Motion preference always takes precedence. Text continues to follow the phone's font-size setting. |
-| Storage management | Choose whether newly saved recipes keep an offline cover photo. Existing saved photos remain until the corresponding recipe is removed. |
-| Library tools | Count saved recipes and offline photos, open Saved, share all saved recipe text through the system share sheet. Text sharing is not an importable backup. |
-| AI Credits & Usage | Read the existing server photo allowance, show paid access when reported, retry a failed request. Unavailable data is never shown as zero. Also explains the free plan's limit of 3 saved recipes. |
-| Feedback (added 2026-11-15) | Ported from Votic: Settings > Feedback opens Suggest a Feature and Report a Bug. Each form has a title (120 characters) and a description (5,000), sends privately to the server, and keeps the text if sending fails. See "Feedback" in docs/PROJECT-PLAN.md. |
-| Help / Privacy | Getting-started guidance, photo-processing explanation, device-storage disclosure, recipe and allergen limitations. |
+| Your account | **Account**: an account card (email, how you sign in, plan with See Premium), Change password (email accounts only), Sign out, and Delete account set apart at the bottom in red. **Premium**: the plan and free photos left, See Premium, Manage subscription (subscribers), Restore purchase, Refresh. |
+| Preferences | **Appearance & photos**: Match phone, Light or Dark; button colour Coral (default) or Blue; pause the Home photo wall; keep offline cover photos. **Cocktails, meals & diet**. |
+| Support | **Help** (how-to text and Show tips again), **Send feedback** (feature requests and bug reports, ported from Votic), Contact support (email), Rate Recipeak (once the app is on Google Play). |
+| About | Privacy policy and Terms of use (open the server's pages), then the app version and maker. |
+
+Saved recipes live only in the Saved tab, which has a Share button for all saved recipe text. The camera always keeps its own dark look and coral accent.
 
 Preferences are stored in AsyncStorage under a versioned key scoped to the Firebase user ID. They are local to the device. Changing sign-in remounts preference state so a late read/save from a prior account cannot populate the next account. Controls remain disabled during preference reads/writes. A failed write leaves the previous choice in place and allows retry. Failed/corrupt reads show a retry action rather than overwriting the stored value.
 
@@ -21,13 +17,10 @@ Saved recipes belong to the signed-in account (since 2026-11-15): each Firebase 
 
 ## Source areas intentionally omitted
 
-- Accent-colour choices: Meals & Mixers keeps its grapefruit accent. (Light and dark mode are included, see Preferences.)
 - Reading/listening, narration voices, pronunciations, document scans, drafts, Recently Deleted, document import/backup, onboarding walkthroughs, and reading activity: these are Votic document-reader features without corresponding Meals & Mixers models/services.
 - Votic personalization: the target app supports explicit recipe diet versions and US units; it does not have Votic's answer-style/purpose service.
-- Credit packs, restore purchases, store subscription management, and retention offers: no client purchase service is wired in Meals & Mixers yet. Settings only displays the allowance/paid-access state returned by the existing API.
-- Account deletion: no end-to-end deletion endpoint exists for Firebase identity plus backend usage/billing records. A Firebase-only deletion button would leave account data behind.
+- Credit packs and retention offers: Recipeak sells only the yearly and monthly plans.
 - Temporary-file cleanup/storage-byte estimates: no equivalent safe cleanup/measurement service exists. Settings reports actual saved recipe/photo counts instead.
-- Support email and privacy-policy/terms links: the target repository has no configured product contact or published policy destinations. Votic's addresses and policies must not be reused for a different product. The Help page identifies those remaining gaps.
 
 ## Validation
 

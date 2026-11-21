@@ -2,12 +2,12 @@
 // Screens read the current colours with useTheme(), and build their styles with useThemedStyles(create_styles).
 import { createContext, type ReactNode, useContext, useMemo } from "react";
 import { ActivityIndicator, Pressable, StyleSheet, Text, type TextStyle, View } from "react-native";
-import { DARK_COLORS, LIGHT_COLORS, type Palette, type Scheme } from "./palette";
+import { type AccentColor, DARK_COLORS, LIGHT_COLORS, palette_for, type Palette, type Scheme } from "./palette";
 
 /** Serif display font for titles (Fraunces, loaded in the root layout). Body text stays in the phone's own font. */
 export const fonts = { display: "Fraunces_600SemiBold", displayMedium: "Fraunces_500Medium" };
 
-export { DARK_COLORS, LIGHT_COLORS, type Palette, type Scheme };
+export { type AccentColor, DARK_COLORS, LIGHT_COLORS, type Palette, type Scheme };
 
 export function create_type(colors: Palette) {
   return StyleSheet.create({
@@ -24,19 +24,27 @@ export function create_type(colors: Palette) {
 export type Theme = { scheme: Scheme; colors: Palette; type: ReturnType<typeof create_type> };
 
 const DARK_THEME: Theme = { scheme: "dark", colors: DARK_COLORS, type: create_type(DARK_COLORS) };
-const LIGHT_THEME: Theme = { scheme: "light", colors: LIGHT_COLORS, type: create_type(LIGHT_COLORS) };
+// One theme object per look and accent, so screens only restyle when one of them changes.
+const THEMES = new Map<string, Theme>();
 
 /** The camera is always dark, like every phone camera, whatever the app's theme is. */
 export const CAMERA_THEME = DARK_THEME;
 
-export function theme_for(scheme: Scheme): Theme {
-  return scheme === "light" ? LIGHT_THEME : DARK_THEME;
+export function theme_for(scheme: Scheme, accent: AccentColor = "coral"): Theme {
+  const key = `${scheme}:${accent}`;
+  let theme = THEMES.get(key);
+  if (!theme) {
+    const colors = palette_for(scheme, accent);
+    theme = { scheme, colors, type: create_type(colors) };
+    THEMES.set(key, theme);
+  }
+  return theme;
 }
 
 const ThemeContext = createContext<Theme>(DARK_THEME);
 
-export function ThemeProvider({ scheme, children }: { scheme: Scheme; children: ReactNode }) {
-  return <ThemeContext.Provider value={theme_for(scheme)}>{children}</ThemeContext.Provider>;
+export function ThemeProvider({ scheme, accent = "coral", children }: { scheme: Scheme; accent?: AccentColor; children: ReactNode }) {
+  return <ThemeContext.Provider value={theme_for(scheme, accent)}>{children}</ThemeContext.Provider>;
 }
 
 export function useTheme(): Theme {
