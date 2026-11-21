@@ -12,3 +12,10 @@ export function legal_page_urls(base_url: string | undefined): { privacy: string
 export const STORE_URL: string | null = null;
 
 export const support_mail_url = () => `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent("Recipeak support")}`;
+
+/** Where subscribers change or cancel their plan: the store's own subscription page. */
+export function manage_subscription_url(platform: string): string {
+  return platform === "ios"
+    ? "https://apps.apple.com/account/subscriptions"
+    : "https://play.google.com/store/account/subscriptions?package=com.mealsandmixers.app";
+}

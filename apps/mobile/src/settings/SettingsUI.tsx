@@ -58,14 +58,16 @@ export function SettingsScreen({
     </ScrollView>
   );
 }
-export function Group({ title, children }: { title: string; children: ReactNode }) {
+export function Group({ title, children }: { title?: string; children: ReactNode }) {
   const { type } = useTheme();
   const styles = useThemedStyles(create_styles);
   return (
     <View style={styles.group}>
-      <Text accessibilityRole="header" style={type.label}>
-        {title}
-      </Text>
+      {title && (
+        <Text accessibilityRole="header" style={type.label}>
+          {title}
+        </Text>
+      )}
       <View style={styles.card}>{children}</View>
     </View>
   );
@@ -74,11 +76,14 @@ export function Row({
   label,
   detail,
   icon,
+  trailing = "chevron-forward",
   onPress,
 }: {
   label: string;
   detail: string;
   icon: keyof typeof Ionicons.glyphMap;
+  /** The small mark on the right: a chevron for screens in the app, open-outline for pages outside it. */
+  trailing?: keyof typeof Ionicons.glyphMap;
   onPress: () => void;
 }) {
   const { colors, type } = useTheme();
@@ -96,7 +101,7 @@ export function Row({
         <Text style={styles.label}>{label}</Text>
         <Text style={type.muted}>{detail}</Text>
       </View>
-      <Ionicons name="chevron-forward" size={20} color={colors.muted} accessible={false} />
+      <Ionicons name={trailing} size={20} color={colors.muted} accessible={false} />
     </Pressable>
   );
 }
