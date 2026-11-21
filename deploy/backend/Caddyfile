@@ -1,0 +1,5 @@
+# Set RECIPEAK_BACKEND_HOST in the Caddy service environment to a hostname whose DNS points to this server.
+# vm-bootstrap.sh writes the real file with the server's own address.
+{$RECIPEAK_BACKEND_HOST} {
+    reverse_proxy 127.0.0.1:8787
+}

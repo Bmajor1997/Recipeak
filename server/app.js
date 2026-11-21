@@ -141,8 +141,31 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
   async function delete_account(user) {
     const signed_in = typeof user.auth_time === "number" ? user.auth_time : 0;
     if (Date.now() / 1000 - signed_in > RECENT_SIGN_IN_SECONDS)
-      throw new HttpError(401, "Enter your password again to delete your account.", { code: "RECENT_SIGN_IN_REQUIRED" });
+      throw new HttpError(401, "Confirm your sign-in again to delete your account.", { code: "RECENT_SIGN_IN_REQUIRED" });
+    // Like Votic, the RevenueCat billing profile goes too. The store subscription itself is managed in Google Play or
+    // the App Store, which the app explains before deleting. Done first, so a failure leaves everything retryable.
+    if (env.REVENUECAT_SECRET_API_KEY) await delete_billing_profile(user.uid);
     return store.delete_account(user.uid);
+  }
+
+  async function delete_billing_profile(uid) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 8000);
+    try {
+      const response = await fetch_impl(`https://api.revenuecat.com/v1/subscribers/${encodeURIComponent(uid)}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${env.REVENUECAT_SECRET_API_KEY}` },
+        signal: controller.signal,
+        redirect: "error",
+      });
+      // An already-removed profile is fine, so a retry after a partial failure still finishes.
+      if (!response.ok && response.status !== 404) throw new Error("RevenueCat refused");
+      await response.body?.cancel?.().catch(() => {});
+    } catch {
+      throw new HttpError(503, "Couldn't finish deleting your billing profile. Please try again in a moment.");
+    } finally {
+      clearTimeout(timer);
+    }
   }
 
   const routes = {

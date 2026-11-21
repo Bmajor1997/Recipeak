@@ -287,3 +287,40 @@ test("the privacy policy and terms are public pages with a strict content policy
   assert.equal((await fetch(s.base + "/legal/legal.css")).status, 200);
   assert.equal((await fetch(s.base + "/legal/../app.js")).status, 404);
 });
+
+test("deleting an account also removes its RevenueCat billing profile, and stays retryable if that fails", async (t) => {
+  const store = create_usage_store({});
+  const calls = [];
+  let status = 503;
+  const fetch_impl = async (url, options) => {
+    calls.push({ url, method: options.method, auth: options.headers.Authorization });
+    return { ok: status < 400, status, body: null };
+  };
+  const authorize = async () => ({ uid: "alice", auth_time: Math.floor(Date.now() / 1000) });
+  const handle = create_app({ env: { OPENAI_API_KEY: "sk-test-key", REVENUECAT_SECRET_API_KEY: "sk_rc_test" }, store, authorize, premium: async () => false, fetch_impl, log: { warn() {} } });
+  const server = createServer(handle);
+  await new Promise((r) => server.listen(0, "127.0.0.1", r));
+  t.after(() => new Promise((r) => server.close(r)));
+  const remove = () => fetch(`http://127.0.0.1:${server.address().port}/api/account/delete`, {
+    method: "POST", headers: { Authorization: "Bearer x", "Content-Type": "application/json" }, body: "{}",
+  });
+  const failed = await remove();
+  assert.equal(failed.status, 503);
+  assert.equal(store.account_deleted("alice"), false, "nothing is marked deleted until billing data is gone");
+  status = 404; // already gone counts as done
+  assert.equal((await remove()).status, 200);
+  assert.equal(store.account_deleted("alice"), true);
+  assert.deepEqual(calls[0], { url: "https://api.revenuecat.com/v1/subscribers/alice", method: "DELETE", auth: "Bearer sk_rc_test" });
+});
+
+test("listed beta testers get Premium without paying; everyone else is checked with RevenueCat", async () => {
+  const { with_premium_testers } = await import("../server/main.js");
+  const checked = [];
+  const paid = async (uid) => { checked.push(uid); return uid === "subscriber"; };
+  const premium = with_premium_testers(paid, " tester-1 , tester-2,");
+  assert.equal(await premium("tester-2"), true);
+  assert.equal(await premium("subscriber"), true);
+  assert.equal(await premium("someone"), false);
+  assert.deepEqual(checked, ["subscriber", "someone"]);
+  assert.equal(with_premium_testers(paid, ""), paid, "no list, no change");
+});

@@ -15,8 +15,8 @@ function memory_storage(initial: Record<string, string> = {}) {
 describe("delete_account", () => {
   it("checks the password, then deletes server data, the sign-in and this phone's copy, in that order", async () => {
     const order: string[] = [];
-    await delete_account("secret", {
-      confirm_password: async (p) => void order.push(`password:${p}`),
+    await delete_account({
+      confirm: async () => void order.push("password:secret"),
       delete_server_data: async () => void order.push("server"),
       delete_sign_in: async () => void order.push("sign-in"),
       clear_device: async () => void order.push("device"),
@@ -27,8 +27,8 @@ describe("delete_account", () => {
   it("stops before deleting anything when the password is wrong", async () => {
     const order: string[] = [];
     const wrong = Object.assign(new Error("bad"), { code: "auth/wrong-password" });
-    const attempt = delete_account("nope", {
-      confirm_password: async () => {
+    const attempt = delete_account({
+      confirm: async () => {
         throw wrong;
       },
       delete_server_data: async () => void order.push("server"),

@@ -1,10 +1,12 @@
 // The paywall, shown after the 3 free photos, when a free account tries to save a 4th recipe, or from "See Premium" in
 // the first-launch tour (design "A · Plan picker", approved 2026-11-15; art: the outline place setting with a martini, approved 2026-11-20,
 // drawn straight on the background with no card behind it).
-// Buying is not connected yet: RevenueCat and the Google Play products come in phase 3 (docs/PROJECT-PLAN.md).
+// Buying goes through RevenueCat (subscriptions.ts), like Votic. The store's own prices replace the built-in ones as
+// soon as the store answers; until RevenueCat and the Google Play products are set up, the buttons explain that
+// subscriptions aren't open yet.
 import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
-import { Image, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import { useEffect, useState } from "react";
+import { Image, Platform, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   DEFAULT_PLAN,
@@ -14,14 +16,19 @@ import {
   type PlanId,
   paywall_eyebrow,
   plan_detail,
+  purchase_label,
+  store_plan_detail,
+  store_trial_terms,
   trial_terms,
   yearly_saving_percent,
 } from "./plans";
+import type { PurchaseOutcome, StorePlan } from "./subscriptionService";
+import { subscriptions } from "./subscriptions";
+import { useApp } from "../AppContext";
 import { Button, Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
 
 const art = require("../../assets/paywall-art.png");
 const PLAN_ORDER: PlanId[] = ["yearly", "monthly"];
-const NOT_YET = "Subscriptions aren't open yet. Your saved recipes are still here, and we'll let you know when you can subscribe.";
 
 export function Paywall({ reason, onClose }: { reason: PaywallReason; onClose: () => void }) {
   const { colors, type } = useTheme();
@@ -30,7 +37,36 @@ export function Paywall({ reason, onClose }: { reason: PaywallReason; onClose: (
   // Exact sizes: Android otherwise sizes a bundled picture from its pixels and leaves a big gap around it.
   const art_width = Math.min(340, useWindowDimensions().width - 48);
   const [selected, set_selected] = useState<PlanId>(DEFAULT_PLAN);
-  const [notice, set_notice] = useState<string | null>(null);
+  const [notice, set_notice] = useState<{ text: string; tone: "muted" | "error" } | null>(null);
+  const [busy, set_busy] = useState(false);
+  const [premium, set_premium] = useState(false);
+  const { user } = useApp();
+  // The store's prices for this account, or none yet (not set up, Expo Go, offline, or still loading).
+  const [store_plans, set_store_plans] = useState<Partial<Record<PlanId, StorePlan>>>({});
+  useEffect(() => {
+    let live = true;
+    if (user)
+      void subscriptions.get_plans().then((plans) => {
+        if (live) set_store_plans(Object.fromEntries(plans.map((plan) => [plan.id, plan])));
+      });
+    return () => {
+      live = false;
+    };
+  }, [user]);
+  const store_plan = store_plans[selected];
+  const trial_days = store_plan ? store_plan.trial_days : FREE_TRIAL_DAYS;
+
+  async function run(step: () => Promise<PurchaseOutcome>) {
+    set_busy(true);
+    set_notice(null);
+    const outcome = await step();
+    set_busy(false);
+    if (outcome.kind === "failed") return set_notice({ text: outcome.message, tone: "error" });
+    if (outcome.kind === "purchased" && outcome.premium) {
+      set_premium(true);
+      set_notice({ text: "You're Premium. Unlimited photos, saves and diet versions are on.", tone: "muted" });
+    }
+  }
 
   return (
     <ScrollView
@@ -58,12 +94,16 @@ export function Paywall({ reason, onClose }: { reason: PaywallReason; onClose: (
       <View accessibilityRole="radiogroup" style={styles.plans}>
         {PLAN_ORDER.map((id) => {
           const isSelected = selected === id;
+          const detail = (plan: PlanId) => {
+            const sold = store_plans[plan];
+            return sold ? store_plan_detail(plan, sold.price) : plan_detail(plan);
+          };
           return (
             <Pressable
               key={id}
               accessibilityRole="radio"
               accessibilityState={{ checked: isSelected }}
-              accessibilityLabel={`${PLANS[id].title}, ${plan_detail(id)}${id === "yearly" ? `, save ${yearly_saving_percent()} percent` : ""}`}
+              accessibilityLabel={`${PLANS[id].title}, ${detail(id)}${id === "yearly" ? `, save ${yearly_saving_percent()} percent` : ""}`}
               onPress={() => set_selected(id)}
               style={[styles.plan, isSelected && styles.planSelected]}
             >
@@ -72,9 +112,9 @@ export function Paywall({ reason, onClose }: { reason: PaywallReason; onClose: (
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={styles.planTitle}>{PLANS[id].title}</Text>
-                <Text style={styles.planDetail}>{plan_detail(id)}</Text>
+                <Text style={styles.planDetail}>{detail(id)}</Text>
               </View>
-              {id === "yearly" && (
+              {id === "yearly" && !store_plans.yearly && (
                 <View style={styles.badge}>
                   <Text style={styles.badgeText}>{`SAVE ${yearly_saving_percent()}%`}</Text>
                 </View>
@@ -86,12 +126,26 @@ export function Paywall({ reason, onClose }: { reason: PaywallReason; onClose: (
 
       <View style={{ flexGrow: 1 }} />
 
-      <Button label={`Start ${FREE_TRIAL_DAYS}-day free trial`} onPress={() => set_notice(NOT_YET)} />
-      <Text style={styles.terms}>{trial_terms(selected)}</Text>
-      <Pressable accessibilityRole="button" hitSlop={8} onPress={() => set_notice(NOT_YET)} style={styles.restore}>
-        <Text style={styles.restoreText}>Restore purchase</Text>
-      </Pressable>
-      {notice && <Notice>{notice}</Notice>}
+      {premium ? (
+        <Button label="Done" onPress={onClose} />
+      ) : (
+        <>
+          <Button label={purchase_label(trial_days)} busy={busy} onPress={() => void run(() => subscriptions.purchase(selected))} />
+          <Text style={styles.terms}>
+            {store_plan ? store_trial_terms(selected, store_plan.price, store_plan.trial_days, Platform.OS) : trial_terms(selected)}
+          </Text>
+          <Pressable
+            accessibilityRole="button"
+            disabled={busy}
+            hitSlop={8}
+            onPress={() => void run(() => subscriptions.restore())}
+            style={styles.restore}
+          >
+            <Text style={styles.restoreText}>Restore purchase</Text>
+          </Pressable>
+        </>
+      )}
+      {notice && <Notice tone={notice.tone}>{notice.text}</Notice>}
     </ScrollView>
   );
 }

@@ -1,5 +1,5 @@
 // Deleting an account from Settings, as Apple and Google require for apps where people can create one.
-// Order matters: confirm the password, delete the server's data, then the sign-in itself, then this phone's copy.
+// Order matters: confirm it's really them (password, Google or Apple), delete the server's data, then the sign-in itself, then this phone's copy.
 // If a step fails, everything before it can safely run again on the next try.
 import { ratings_storage_name } from "../recipes/ratings";
 import { recent_storage_name } from "../recipes/recentlyViewed";
@@ -7,8 +7,8 @@ import { saved_storage_name, type KeyValueStorage } from "../saved/savedRecipes"
 import { preferences_storage_name } from "../settings/preferences";
 
 export type DeleteAccountSteps = {
-  /** Checks the password again. Throws if it's wrong. */
-  confirm_password: (password: string) => Promise<void>;
+  /** Confirms the account again (its password, or Google or Apple for accounts without one). Throws if that fails. */
+  confirm: () => Promise<void>;
   /** Removes feedback, ratings and usage links on the recipe server. */
   delete_server_data: () => Promise<void>;
   /** Removes the Firebase sign-in, so the email can't sign in again. */
@@ -17,9 +17,8 @@ export type DeleteAccountSteps = {
   clear_device: () => Promise<void>;
 };
 
-export async function delete_account(password: string, steps: DeleteAccountSteps): Promise<void> {
-  if (!password) throw new Error("Enter your password to delete your account.");
-  await steps.confirm_password(password);
+export async function delete_account(steps: DeleteAccountSteps): Promise<void> {
+  await steps.confirm();
   await steps.delete_server_data();
   await steps.delete_sign_in();
   await steps.clear_device();
@@ -45,6 +44,8 @@ export async function clear_account_device_data(storage: KeyValueStorage, uid: s
 /** Plain sentences for what can go wrong while deleting. */
 export function delete_account_problem(error: unknown): string {
   const code = (error as { code?: string })?.code ?? "";
+  if ((error as Error)?.name === "SignInCancelled") return "Confirm with your account to delete it.";
+  if (code.includes("user-mismatch")) return "That's a different account. Choose the account you're signed in with.";
   if (code.includes("wrong-password") || code.includes("invalid-credential")) return "That password isn't right. Try again.";
   if (code.includes("too-many-requests")) return "Too many tries. Wait a few minutes and try again.";
   if (code.includes("network")) return "Couldn't connect. Check your internet and try again.";

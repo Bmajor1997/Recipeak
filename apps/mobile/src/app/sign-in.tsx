@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useEffect, useState } from "react";
+import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useOnboarding } from "../onboarding/OnboardingProvider";
 import { firebase, firebaseConfigured, sign_in_problem, test_mode_available } from "../auth/firebase";
@@ -15,6 +16,26 @@ export default function SignIn() {
   const [password, set_password] = useState("");
   const [busy, set_busy] = useState(false);
   const [message, set_message] = useState<{ text: string; tone: "muted" | "error" } | null>(null);
+  const [provider_busy, set_provider_busy] = useState<"google" | "apple" | null>(null);
+  const [apple, set_apple] = useState(false);
+  useEffect(() => {
+    void firebase.apple_available().then(set_apple);
+  }, []);
+
+  // Google and Apple create the account the first time and sign in after that, so they work in both modes.
+  async function continue_with(provider: "google" | "apple") {
+    set_provider_busy(provider);
+    set_message(null);
+    try {
+      if (provider === "google") await firebase.sign_in_with_google();
+      else await firebase.sign_in_with_apple();
+    } catch (error) {
+      const text = sign_in_problem(error);
+      if (text) set_message({ text, tone: "error" });
+    } finally {
+      set_provider_busy(null);
+    }
+  }
 
   async function submit() {
     if (mode === "create" && password.length < 8) return set_message({ text: "Use a password with at least 8 characters.", tone: "error" });
@@ -54,6 +75,31 @@ export default function SignIn() {
             <Notice tone="error">{"Sign-in isn't set up in this build yet. Add the Firebase settings to apps/mobile/.env."}</Notice>
           )}
           {test_mode_available && <Button label="Continue in test mode" onPress={() => firebase.start_test_mode()} />}
+          {apple && (
+            <ProviderButton
+              icon="logo-apple"
+              label="Continue with Apple"
+              busy={provider_busy === "apple"}
+              disabled={provider_busy !== null}
+              onPress={() => void continue_with("apple")}
+            />
+          )}
+          {firebase.google_available && (
+            <ProviderButton
+              icon="logo-google"
+              label="Continue with Google"
+              busy={provider_busy === "google"}
+              disabled={provider_busy !== null}
+              onPress={() => void continue_with("google")}
+            />
+          )}
+          {(apple || firebase.google_available) && (
+            <View style={styles.divider} accessible={false}>
+              <View style={styles.rule} />
+              <Text style={styles.or}>or use your email</Text>
+              <View style={styles.rule} />
+            </View>
+          )}
           <Text style={styles.label}>Email</Text>
           <TextInput
             style={styles.input}
@@ -93,10 +139,50 @@ export default function SignIn() {
   );
 }
 
+function ProviderButton(props: {
+  icon: "logo-google" | "logo-apple";
+  label: string;
+  busy: boolean;
+  disabled: boolean;
+  onPress: () => void;
+}) {
+  const { colors } = useTheme();
+  const styles = useThemedStyles(create_styles);
+  return (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={props.label}
+      accessibilityState={{ disabled: props.disabled, busy: props.busy }}
+      disabled={props.disabled}
+      onPress={props.onPress}
+      style={({ pressed }) => [styles.provider, (pressed || props.busy) && { opacity: 0.7 }]}
+    >
+      <Ionicons name={props.icon} size={20} color={colors.text} />
+      <Text style={styles.providerText}>{props.busy ? "Opening…" : props.label}</Text>
+    </Pressable>
+  );
+}
+
 const create_styles = (colors: Palette) =>
   StyleSheet.create({
     screen: { flex: 1, backgroundColor: colors.background },
     content: { padding: 24, paddingTop: 48 },
+    provider: {
+      minHeight: 54,
+      marginTop: 12,
+      borderRadius: 14,
+      borderWidth: 1,
+      borderColor: colors.border,
+      backgroundColor: colors.surface,
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 10,
+    },
+    providerText: { color: colors.text, fontSize: 16, fontWeight: "600" },
+    divider: { flexDirection: "row", alignItems: "center", gap: 12, marginTop: 24, marginBottom: 4 },
+    rule: { flex: 1, height: StyleSheet.hairlineWidth, backgroundColor: colors.border },
+    or: { color: colors.muted, fontSize: 14 },
     label: { color: colors.text, fontSize: 15, fontWeight: "600", marginTop: 16, marginBottom: 6 },
     input: {
       minHeight: 54,
