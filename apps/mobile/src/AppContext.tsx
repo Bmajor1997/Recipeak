@@ -8,6 +8,7 @@ import { create_ratings, type Ratings } from "./recipes/ratings";
 import { create_recently_viewed, type RecentlyViewed } from "./recipes/recentlyViewed";
 import { keep_photo, remove_photo } from "./saved/photoStore";
 import { create_saved_recipes, SIGNED_OUT_SAVED, type SavedRecipes } from "./saved/savedRecipes";
+import { subscriptions } from "./paywall/subscriptions";
 
 /**
  * What the recipe sheet shows. While a photo is being read it is "loading"; if the photo couldn't be used it is a
@@ -81,6 +82,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     () => (uid ? create_saved_recipes(AsyncStorage, uid, { photos: { keep_photo, remove_photo } }) : SIGNED_OUT_SAVED),
     [uid],
   );
+  // Purchases belong to the signed-in account, so RevenueCat follows whoever is signed in.
+  useEffect(() => {
+    void (uid ? subscriptions.identify(uid) : subscriptions.reset());
+  }, [uid]);
   const recent = useMemo(() => (uid ? create_recently_viewed(AsyncStorage, uid) : null), [uid]);
   const ratings = useMemo(() => (uid ? create_ratings(AsyncStorage, uid, (input) => api.rate_recipe(input, uid)) : null), [uid, api]);
   // Ratings made while offline are sent the next time the app opens with this account.

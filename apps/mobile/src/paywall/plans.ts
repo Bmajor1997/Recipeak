@@ -61,3 +61,27 @@ export function trial_terms(id: PlanId): string {
   const plan = PLANS[id];
   return `Free for ${FREE_TRIAL_DAYS} days, then ${format_usd(plan.priceUsd)} / ${plan.period}. Cancel anytime in Google Play.`;
 }
+
+/** The store that bills the subscription, named in the fine print. */
+export function store_name(platform: string): string {
+  return platform === "ios" ? "the App Store" : "Google Play";
+}
+
+/** The plan line with the store's own localized price, once the store has answered. */
+export function store_plan_detail(id: PlanId, price: string): string {
+  return `${price} / ${PLANS[id].period}`;
+}
+
+/** The fine print with the store's price. Without a trial (already used, or none offered), it says so plainly. */
+export function store_trial_terms(id: PlanId, price: string, trial_days: number | null, platform: string): string {
+  const period = PLANS[id].period;
+  const cancel = `Cancel anytime in ${store_name(platform)}.`;
+  return trial_days
+    ? `Free for ${trial_days} days, then ${price} / ${period}. ${cancel}`
+    : `${price} / ${period}, renews automatically. ${cancel}`;
+}
+
+/** The main button: the trial's length when there is one, otherwise a plain "Subscribe". */
+export function purchase_label(trial_days: number | null): string {
+  return trial_days ? `Start ${trial_days}-day free trial` : "Subscribe";
+}

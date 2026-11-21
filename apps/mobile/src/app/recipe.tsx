@@ -42,6 +42,7 @@ import { useTips } from "../tips/TipsProvider";
 import { FocusedCover } from "../ui/FocusedCover";
 import { TipBubble } from "../ui/TipBubble";
 import { Button, Chip, fonts, Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
+import { useStoreReviewPrompt } from "../review/useStoreReviewPrompt";
 
 const heroArt = require("../../assets/hero.png");
 type Ready = Extract<CurrentRecipe, { status: "ready" }>;
@@ -243,6 +244,7 @@ function RecipeView({ current }: { current: Ready }) {
     }
   }
 
+  const after_save = useStoreReviewPrompt();
   async function toggle_save() {
     // One save or removal at a time: a double tap must not save twice or leave an extra photo behind.
     if (preferences.busy || saving.current) return;
@@ -259,6 +261,7 @@ function RecipeView({ current }: { current: Ready }) {
         const entry = await saved.save(kind, recipe, preferences.ready && preferences.values.saveCoverPhotos ? coverUri : null, { limit });
         set_current({ ...current, savedId: entry.id });
         set_just_saved(true);
+        after_save();
       }
     } catch (error) {
       if (error instanceof SavedLimitError) router.push({ pathname: "/upgrade", params: { reason: "saved" } });

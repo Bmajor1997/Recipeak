@@ -1,0 +1,90 @@
+name: Test APK for the emulator or a phone (not for Play)
+
+# Builds an installable Recipeak APK (JavaScript bundled, no Metro needed) on GitHub's computers, the same way as
+# Votic, so nothing has to be built on Windows. It includes everything Expo Go can't run: the app icon, the opening
+# screen, Google sign-in and RevenueCat purchases. Run it by hand from the Actions tab ("Run workflow"), then
+# download the APK from the run's Artifacts and drag it onto the emulator.
+#
+# The EXPO_PUBLIC_* values are public build settings that ship inside the app (Firebase web config, Google web
+# client ID, RevenueCat public SDK key). They come from the repository's Actions *variables* (Settings → Secrets and
+# variables → Actions → Variables), never from secrets, and secret keys never belong in the app.
+on:
+  workflow_dispatch:
+    inputs:
+      api_url:
+        description: "Recipe server address. The default is the server on this computer, as the Android emulator sees it."
+        required: true
+        default: "http://10.0.2.2:8787"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-test-apk-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: apps/mobile
+    env:
+      EXPO_NO_TELEMETRY: "1"
+      EAS_BUILD_PROFILE: preview
+      # Emulator and personal-phone APK only. Never upload this debug-signed file to Google Play.
+      RECIPEAK_LOCAL_DEBUG_SIGNING: "1"
+      EXPO_PUBLIC_API_BASE_URL: ${{ inputs.api_url }}
+      EXPO_PUBLIC_FIREBASE_API_KEY: ${{ vars.EXPO_PUBLIC_FIREBASE_API_KEY }}
+      EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ vars.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN }}
+      EXPO_PUBLIC_FIREBASE_PROJECT_ID: ${{ vars.EXPO_PUBLIC_FIREBASE_PROJECT_ID }}
+      EXPO_PUBLIC_FIREBASE_APP_ID: ${{ vars.EXPO_PUBLIC_FIREBASE_APP_ID }}
+      # Google sign-in: the Web client ID from Firebase's Google provider. The APK's SHA-1 (printed below) must be
+      # added to the Firebase Android app com.mealsandmixers.app.
+      EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID: ${{ vars.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID }}
+      EXPO_PUBLIC_REVENUECAT_ANDROID_API_KEY: ${{ vars.EXPO_PUBLIC_REVENUECAT_ANDROID_API_KEY }}
+      EXPO_PUBLIC_REVENUECAT_ENTITLEMENT_ID: ${{ vars.EXPO_PUBLIC_REVENUECAT_ENTITLEMENT_ID || 'premium' }}
+    steps:
+      - name: Get the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 24
+      - name: Set up Java
+        uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Say which settings are missing
+        run: |
+          for name in EXPO_PUBLIC_FIREBASE_API_KEY EXPO_PUBLIC_FIREBASE_PROJECT_ID EXPO_PUBLIC_FIREBASE_APP_ID EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID EXPO_PUBLIC_REVENUECAT_ANDROID_API_KEY; do
+            [ -n "${!name}" ] || echo "::warning::Repository variable $name is not set; that part of the app will say it isn't set up."
+          done
+      - name: Install app dependencies
+        run: npm ci --ignore-scripts
+      - name: Install and validate Android NDK
+        run: bash ../../security/install-android-ndk.sh
+      - name: Configure Maven Central mirror for Android builds
+        run: install -Dm644 ../../security/maven-central-mirror.init.gradle "${GRADLE_USER_HOME:-$HOME/.gradle}/init.d/recipeak-maven-central.gradle"
+      - name: Generate native Android project
+        run: npx expo prebuild --platform android --no-install
+      - name: Build release APK (emulator x86_64 + phone arm64)
+        working-directory: apps/mobile/android
+        run: ./gradlew :app:assembleRelease --no-daemon --max-workers=2 -PreactNativeArchitectures=x86_64,arm64-v8a
+        env:
+          NODE_ENV: production
+      - name: Print signing fingerprint (add the SHA-1 to Firebase for Google sign-in)
+        working-directory: apps/mobile/android
+        run: |
+          apksigner=$(find "$ANDROID_HOME"/build-tools -name apksigner | sort -V | tail -1)
+          "$apksigner" verify --print-certs app/build/outputs/apk/release/*.apk | grep -E "SHA-1|SHA-256"
+      - name: Upload APK
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: recipeak-test-apk-NOT-FOR-PLAY
+          path: apps/mobile/android/app/build/outputs/apk/release/*.apk
+          retention-days: 30

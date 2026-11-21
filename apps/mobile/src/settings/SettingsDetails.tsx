@@ -6,6 +6,7 @@ import { Linking, Modal, Pressable, ScrollView, Share, StyleSheet, Switch, Text,
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../AppContext";
 import { clear_account_device_data, delete_account, delete_account_problem } from "../auth/deleteAccount";
+import { confirm_method } from "../auth/confirmMethod";
 import { firebase } from "../auth/firebase";
 import { remove_photo } from "../saved/photoStore";
 import { FREE_SAVED_RECIPES } from "../paywall/plans";
@@ -16,7 +17,7 @@ import { FEEDBACK_KINDS, FEEDBACK_TEXT, type FeedbackKind } from "../feedback/fe
 import { DietPicker, InterestPicker } from "../onboarding/Choices";
 import { toggle_diet } from "../onboarding/onboarding";
 import { useOnboarding } from "../onboarding/OnboardingProvider";
-import { legal_page_urls, SUPPORT_EMAIL, support_mail_url } from "./legalLinks";
+import { legal_page_urls, STORE_URL, SUPPORT_EMAIL, support_mail_url } from "./legalLinks";
 import { usePreferences } from "./PreferencesProvider";
 import { useTips } from "../tips/TipsProvider";
 import { APPEARANCES, type Appearance } from "./preferences";
@@ -101,6 +102,8 @@ function Account() {
   const [deleting, set_deleting] = useState(false);
   const [password, set_password] = useState("");
   const [delete_error, set_delete_error] = useState<string | null>(null);
+  // Accounts made with Google or Apple have no password, so they confirm with that account instead.
+  const method = confirm_method(user);
   const [busy, set_busy] = useState(false);
   const [error, set_error] = useState<string | null>(null);
   const [notice, set_notice] = useState<string | null>(null);
@@ -140,8 +143,12 @@ function Account() {
     set_busy(true);
     set_delete_error(null);
     try {
-      await delete_account(password, {
-        confirm_password: (value) => firebase.confirm_password(value),
+      await delete_account({
+        confirm: async () => {
+          if (method !== "password") return firebase.confirm_with_provider(method);
+          if (!password) throw new Error("Enter your password to delete your account.");
+          await firebase.confirm_password(password);
+        },
         delete_server_data: () => api.delete_account(uid),
         delete_sign_in: () => firebase.delete_sign_in(),
         clear_device: () => clear_account_device_data(AsyncStorage, uid, remove_photo),
@@ -164,7 +171,9 @@ function Account() {
       </Text>
       {!confirm && error && <Notice tone="error">{error}</Notice>}
       {notice && <Notice>{notice}</Notice>}
-      <Button label="Reset password" variant="secondary" disabled={busy || !user?.email} onPress={() => void run("reset")} />
+      {method === "password" && (
+        <Button label="Reset password" variant="secondary" disabled={busy || !user?.email} onPress={() => void run("reset")} />
+      )}
       <Button
         label="Sign out"
         variant="secondary"
@@ -227,21 +236,36 @@ function Account() {
             <Text style={type.body}>
               Deleting your account doesn’t cancel a Premium subscription. Cancel it first in your App Store or Google Play subscriptions.
             </Text>
-            <Text style={type.label}>PASSWORD</Text>
-            <TextInput
-              style={styles.input}
-              value={password}
-              onChangeText={set_password}
-              secureTextEntry
-              autoComplete="current-password"
-              textContentType="password"
-              accessibilityLabel="Password"
-              accessibilityHint="Enter your password to confirm"
-              editable={!busy}
-            />
+            {method === "password" ? (
+              <>
+                <Text style={type.label}>PASSWORD</Text>
+                <TextInput
+                  style={styles.input}
+                  value={password}
+                  onChangeText={set_password}
+                  secureTextEntry
+                  autoComplete="current-password"
+                  textContentType="password"
+                  accessibilityLabel="Password"
+                  accessibilityHint="Enter your password to confirm"
+                  editable={!busy}
+                />
+              </>
+            ) : (
+              <Text style={type.body}>
+                {`To confirm, choose your ${method === "google" ? "Google" : "Apple"} account again when asked.`}
+              </Text>
+            )}
             {delete_error && <Notice tone="error">{delete_error}</Notice>}
             <Button label="Cancel" variant="secondary" disabled={busy} onPress={() => set_deleting(false)} />
-            <Button label="Delete account forever" busy={busy} disabled={!password} onPress={() => void run_delete()} />
+            <Button
+              label={
+                method === "password" ? "Delete account forever" : `Confirm with ${method === "google" ? "Google" : "Apple"} and delete`
+              }
+              busy={busy}
+              disabled={method === "password" && !password}
+              onPress={() => void run_delete()}
+            />
           </ScrollView>
         </View>
       </Modal>
@@ -535,6 +559,14 @@ function Help() {
           />
         )}
         <Row label="Contact support" detail={SUPPORT_EMAIL} icon="mail-outline" onPress={() => open_link(support_mail_url())} />
+        {STORE_URL && (
+          <Row
+            label="Rate Recipeak"
+            detail="Leave a review on Google Play"
+            icon="star-outline"
+            onPress={() => open_link(STORE_URL as string)}
+          />
+        )}
       </Group>
       {link_problem && <Notice tone="error">{link_problem}</Notice>}
       <Button

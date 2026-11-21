@@ -38,14 +38,16 @@
           "photosPermission": "Allow Recipeak to use a photo of a meal or a cocktail you choose, to find a recipe.",
           "microphonePermission": false
         }
-      ]
+      ],
+      "expo-apple-authentication"
     ],
     "experiments": {
       "typedRoutes": true
     },
     "ios": {
       "bundleIdentifier": "com.mealsandmixers.app",
-      "supportsTablet": false
+      "supportsTablet": false,
+      "usesAppleSignIn": true
     },
     "android": {
       "package": "com.mealsandmixers.app",

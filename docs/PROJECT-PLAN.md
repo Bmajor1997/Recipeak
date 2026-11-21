@@ -129,16 +129,18 @@ Ported from Votic on 2026-11-15. **Settings > Feedback** offers **Suggest a Feat
 
 ## 5. Build phases
 
+Added 2026-11-20 to match Votic: Continue with Google (and Sign in with Apple on iPhone), RevenueCat purchases in the app, the rate-the-app prompt, the Premium beta-tester list on the server, the Android build workflows and the Google Cloud deploy scripts.
+
 1. **Foundation (done):** the Expo app and the Node backend, built from Votic's patterns: server-side sign-in check, the 3-free-photo allowance, the OpenAI recipe call with a strict reply shape, and app screens for camera, recipe and Saved. Tests and CI for both.
 2. **Core loop on a real phone:** connect Firebase sign-in and the live OpenAI key, test with real photos, tune the prompt, and polish guesses, "not food" and error states.
-3. **Paid plan:** RevenueCat paywall after the 3 free photos, checked on the server. The paywall screen and prices are in the app (see "The paywall" above); still to do: the Google Play subscription products and trial, RevenueCat offerings, and connecting the buttons.
+3. **Paid plan:** RevenueCat paywall after the 3 free photos, checked on the server. The buttons are connected to RevenueCat (2026-11-20), and accounts can be deleted with their billing profile; still to do in the accounts: the Google Play subscription products and trial, the RevenueCat offering and keys.
 4. **Saving and sharing polish:** scale servings, share a recipe as text, account sync for Saved.
-5. **Android release:** put the backend online at a permanent address (the privacy policy URL for Play comes from it), test APK, Play internal testing, Play data-safety form, content rating. Privacy policy, terms and in-app account deletion are done (2026-11-19).
+5. **Android release:** put the backend online at a permanent address with `deploy/backend` (the privacy policy URL for Play comes from it), test APK and signed App Bundle (GitHub workflows, added 2026-11-20), Play internal testing, Play data-safety form, content rating. Privacy policy, terms and in-app account deletion are done (2026-11-19).
 6. **iPhone:** iOS build workflow, camera permission text, App Store review.
 
 ## 6. Open questions
 
 - **Paid plan:** whether paid use has a monthly photo limit. (Price, monthly and yearly were decided on 2026-11-15.)
-- **Recipes:** keep or drop the vegetarian som tam (soy sauce swap); whether cotija counts as not vegetarian, like Parmesan and Pecorino.
+- **Recipes:** keep or drop the vegetarian som tam (soy sauce swap).
 - **Starter photo library:** approve the about $8–12 cost of generating the 200 starter cover photos (`data/seed-dishes.json`).
 - **Free photos:** do the 3 free photos ever refresh (for example monthly), or are they 3 in total? Planned as 3 in total for now.

@@ -1,0 +1,33 @@
+[Unit]
+Description=Recipeak recipe server
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+Type=simple
+DynamicUser=yes
+WorkingDirectory=/opt/recipeak
+EnvironmentFile=/etc/recipeak/backend.env
+# These deployment settings win over the environment file: loopback only (Caddy serves HTTPS in front), and the
+# usage ledger and cover-photo library on the server's persistent disk.
+ExecStart=/usr/bin/env NODE_ENV=production HOST=127.0.0.1 PORT=8787 MM_AI_USAGE_DB=/var/lib/recipeak/usage.sqlite MM_IMAGE_DIR=/var/lib/recipeak/images /usr/bin/node /opt/recipeak/server/main.js
+Restart=on-failure
+RestartSec=5
+StateDirectory=recipeak
+StateDirectoryMode=0700
+UMask=0077
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+RestrictSUIDSGID=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target

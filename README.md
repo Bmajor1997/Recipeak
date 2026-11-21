@@ -45,6 +45,22 @@ npm start               # or: npm run android, for a development build on a phon
 npm test && npm run typecheck && npm run lint
 ```
 
+## Accounts, purchases and builds (the same setup as Votic)
+
+- **Sign-in:** email and password, Continue with Google, and Sign in with Apple on iPhone, all through Firebase.
+  Google needs the Web client ID in `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID` and each build's SHA-1 fingerprint on the
+  Firebase Android app `com.mealsandmixers.app`.
+- **Subscriptions:** RevenueCat (`react-native-purchases`). The app shows the store's prices and starts the purchase;
+  the server checks RevenueCat itself before giving Premium. Set `EXPO_PUBLIC_REVENUECAT_ANDROID_API_KEY` (goog_…)
+  in the app and `REVENUECAT_SECRET_API_KEY` on the server. The RevenueCat offering needs a yearly ($rc_annual) and a
+  monthly ($rc_monthly) package attached to the `premium` entitlement.
+- **Expo Go can't do Google sign-in or purchases** (they need native code). Use the test APK below for those.
+- **Test APK:** GitHub → Actions → "Test APK for the emulator or a phone" → Run workflow, then download the APK from
+  the run and drag it onto the emulator. It builds on GitHub's computers, so nothing is built on Windows.
+- **Google Play:** Actions → "Google Play App Bundle" builds the signed .aab after the upload-key secrets are added.
+- **Build settings** for both come from GitHub Actions *variables* with the same names as `apps/mobile/.env.example`.
+- **Server hosting:** see `deploy/backend/README.md`.
+
 ## What's in the repository
 
 - `assets/app-icon.png` — the front-facing app image (also used for the app icons).

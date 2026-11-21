@@ -21,9 +21,20 @@ export function configure(env) {
   } else throw new Error("Set FIREBASE_PROJECT_ID, or MM_DEV_ALLOW_UNAUTHENTICATED=1 for local development.");
 
   // Without a RevenueCat key (development only), everyone is a free user.
-  const premium = env.REVENUECAT_SECRET_API_KEY ? create_premium_authorizer(env) : async () => false;
+  const paid = env.REVENUECAT_SECRET_API_KEY ? create_premium_authorizer(env) : async () => false;
+  const premium = with_premium_testers(paid, env.MM_PREMIUM_TESTER_UIDS);
   const store = create_usage_store(env);
   return { authorize, premium, store, images: create_image_library({ env, store }), featured: curated_keys() };
+}
+
+/**
+ * Beta testers get Premium without paying, like Votic's beta allowlist: MM_PREMIUM_TESTER_UIDS lists their Firebase
+ * user IDs, separated by commas. Only the server decides this; nothing the phone sends can add someone.
+ */
+export function with_premium_testers(premium, list) {
+  const testers = new Set(String(list || "").split(",").map((uid) => uid.trim()).filter(Boolean));
+  if (!testers.size) return premium;
+  return async (uid) => testers.has(uid) || premium(uid);
 }
 
 if (import.meta.main) {
