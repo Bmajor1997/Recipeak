@@ -9,7 +9,7 @@ export type Palette = {
   scrim: string;
   text: string;
   muted: string;
-  /** Grapefruit for filled buttons, badges and selected chips (with accentText on top). */
+  /** Grapefruit (or blue, if chosen in Settings) for filled buttons, badges and selected chips (with accentText on top). */
   accent: string;
   accentText: string;
   /** Grapefruit for text and icons drawn straight on the page; darker in light mode so it stays readable. */
@@ -55,3 +55,22 @@ export const LIGHT_COLORS: Palette = {
   danger: "#B42318",
   border: "#E4DDD8",
 };
+
+/** The colour of buttons, links and highlights, chosen in Settings: Recipeak's coral (the default) or blue. */
+export type AccentColor = "coral" | "blue";
+export const ACCENT_COLORS: AccentColor[] = ["coral", "blue"];
+
+type AccentKeys = Pick<Palette, "accent" | "accentText" | "accentInk" | "accentTint">;
+
+// Blue keeps the same readable contrast as coral: dark text on the bright fill in dark mode, white text on the
+// deeper fill in light mode, and a darker blue for text and icons drawn straight on the light page.
+const BLUE: Record<Scheme, AccentKeys> = {
+  dark: { accent: "#6EA8FE", accentText: "#04132B", accentInk: "#6EA8FE", accentTint: "#111A2B" },
+  light: { accent: "#2563EB", accentText: "#FFFFFF", accentInk: "#1D4ED8", accentTint: "#EEF4FF" },
+};
+
+/** The full palette for a light or dark look with the chosen accent colour. */
+export function palette_for(scheme: Scheme, accent: AccentColor = "coral"): Palette {
+  const base = scheme === "light" ? LIGHT_COLORS : DARK_COLORS;
+  return accent === "blue" ? { ...base, ...BLUE[scheme] } : base;
+}

@@ -20,14 +20,24 @@ describe("settings persistence", () => {
   });
   it("survives restart and keeps accounts separate", async () => {
     const { storage } = memory();
-    await create_preferences(storage, "a").save({ pausePhotoWall: true, saveCoverPhotos: false, appearance: "system" });
-    expect(await create_preferences(storage, "a").load()).toEqual({ pausePhotoWall: true, saveCoverPhotos: false, appearance: "system" });
+    await create_preferences(storage, "a").save({ pausePhotoWall: true, saveCoverPhotos: false, appearance: "system", accent: "coral" });
+    expect(await create_preferences(storage, "a").load()).toEqual({
+      pausePhotoWall: true,
+      saveCoverPhotos: false,
+      appearance: "system",
+      accent: "coral",
+    });
     expect(await create_preferences(storage, "b").load()).toEqual(DEFAULT_PREFERENCES);
   });
   it("ignores unknown fields and defaults invalid individual values", async () => {
     const { storage, data } = memory();
     data.set("mealsandmixers.preferences.v1.a", JSON.stringify({ pausePhotoWall: "false", saveCoverPhotos: false, extra: 1 }));
-    expect(await create_preferences(storage, "a").load()).toEqual({ pausePhotoWall: false, saveCoverPhotos: false, appearance: "system" });
+    expect(await create_preferences(storage, "a").load()).toEqual({
+      pausePhotoWall: false,
+      saveCoverPhotos: false,
+      appearance: "system",
+      accent: "coral",
+    });
   });
   it("reports unreadable data instead of silently overwriting it", async () => {
     const { storage, data } = memory();
@@ -39,7 +49,7 @@ describe("settings persistence", () => {
   it("propagates storage failures and leaves the prior saved choice intact", async () => {
     const { storage } = memory();
     const store = create_preferences(storage, "a");
-    await store.save({ pausePhotoWall: true, saveCoverPhotos: true, appearance: "system" });
+    await store.save({ pausePhotoWall: true, saveCoverPhotos: true, appearance: "system", accent: "coral" });
     const failed = create_preferences(
       {
         ...storage,
@@ -49,8 +59,10 @@ describe("settings persistence", () => {
       },
       "a",
     );
-    await expect(failed.save({ pausePhotoWall: false, saveCoverPhotos: false, appearance: "system" })).rejects.toThrow("disk full");
-    expect(await store.load()).toEqual({ pausePhotoWall: true, saveCoverPhotos: true, appearance: "system" });
+    await expect(failed.save({ pausePhotoWall: false, saveCoverPhotos: false, appearance: "system", accent: "coral" })).rejects.toThrow(
+      "disk full",
+    );
+    expect(await store.load()).toEqual({ pausePhotoWall: true, saveCoverPhotos: true, appearance: "system", accent: "coral" });
     await expect(
       create_preferences(
         {
@@ -89,5 +101,32 @@ describe("legal links", () => {
     });
     expect(legal_page_urls(undefined)).toBeNull();
     expect(support_mail_url()).toBe("mailto:turelapps@gmail.com?subject=Recipeak%20support");
+  });
+});
+
+describe("button color", async () => {
+  const { palette_for, LIGHT_COLORS, DARK_COLORS } = await import("../src/ui/palette");
+  it("keeps coral by default and only changes the accent colours for blue", () => {
+    expect(palette_for("light")).toBe(LIGHT_COLORS);
+    expect(palette_for("dark", "coral")).toBe(DARK_COLORS);
+    const blue = palette_for("light", "blue");
+    expect(blue.accent).toBe("#2563EB");
+    expect(blue.accentText).toBe("#FFFFFF");
+    expect({ ...blue, accent: "", accentText: "", accentInk: "", accentTint: "" }).toEqual({
+      ...LIGHT_COLORS,
+      accent: "",
+      accentText: "",
+      accentInk: "",
+      accentTint: "",
+    });
+  });
+  it("falls back to coral when the saved choice is unreadable", async () => {
+    const data = new Map([["mealsandmixers.preferences.v1.a", JSON.stringify({ accent: "purple" })]]);
+    const storage = {
+      getItem: async (key: string) => data.get(key) ?? null,
+      setItem: async (key: string, value: string) => void data.set(key, value),
+      removeItem: async (key: string) => void data.delete(key),
+    };
+    expect((await create_preferences(storage, "a").load()).accent).toBe("coral");
   });
 });

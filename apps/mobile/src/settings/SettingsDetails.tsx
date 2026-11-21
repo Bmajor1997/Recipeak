@@ -2,7 +2,7 @@ import { router, useFocusEffect } from "expo-router";
 import { useCallback, useRef, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Linking, Modal, Platform, Pressable, ScrollView, Share, StyleSheet, Switch, Text, TextInput, View } from "react-native";
+import { Linking, Modal, Platform, Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../AppContext";
 import { clear_account_device_data, delete_account, delete_account_problem } from "../auth/deleteAccount";
@@ -10,18 +10,18 @@ import { confirm_method } from "../auth/confirmMethod";
 import { firebase } from "../auth/firebase";
 import { remove_photo } from "../saved/photoStore";
 import { FREE_SAVED_RECIPES } from "../paywall/plans";
-import { recipe_as_text } from "../recipes/format";
-import type { Allowance, SavedRecipe } from "../recipes/types";
+import type { Allowance } from "../recipes/types";
 import { Button, Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
 import { FEEDBACK_KINDS, FEEDBACK_TEXT, type FeedbackKind } from "../feedback/feedback";
 import { DietPicker, InterestPicker } from "../onboarding/Choices";
 import { toggle_diet } from "../onboarding/onboarding";
 import { useOnboarding } from "../onboarding/OnboardingProvider";
-import { legal_page_urls, manage_subscription_url, STORE_URL, SUPPORT_EMAIL, support_mail_url } from "./legalLinks";
+import { manage_subscription_url } from "./legalLinks";
 import { subscriptions } from "../paywall/subscriptions";
 import { usePreferences } from "./PreferencesProvider";
 import { useTips } from "../tips/TipsProvider";
 import { APPEARANCES, type Appearance } from "./preferences";
+import { ACCENT_COLORS, type AccentColor, palette_for } from "../ui/palette";
 import { CATEGORIES, type Category, Group, Row, SettingsScreen } from "./SettingsUI";
 
 /** How this account signs in, for the account card. */
@@ -46,8 +46,6 @@ export function SettingsDetails({ category }: { category: Category }) {
         <Preferences />
       ) : category === "taste" ? (
         <Taste />
-      ) : category === "library" ? (
-        <Library />
       ) : category === "usage" ? (
         <Usage />
       ) : category === "feedback" ? (
@@ -132,25 +130,6 @@ function Account() {
       };
     }, [api]),
   );
-  async function restore() {
-    if (pending.current) return;
-    pending.current = true;
-    set_busy(true);
-    set_error(null);
-    set_notice(null);
-    const outcome = await subscriptions.restore();
-    pending.current = false;
-    set_busy(false);
-    if (outcome.kind === "failed") set_error(outcome.message);
-    else if (outcome.kind === "purchased") {
-      set_notice("Premium is on for this account.");
-      api.allowance().then(set_plan, () => {});
-    }
-  }
-  const open_page = (url: string) => {
-    set_error(null);
-    Linking.openURL(url).catch(() => set_error("Couldn’t open that page. Check your connection and try again."));
-  };
   const [busy, set_busy] = useState(false);
   const [error, set_error] = useState<string | null>(null);
   const [notice, set_notice] = useState<string | null>(null);
@@ -238,8 +217,8 @@ function Account() {
       </View>
       {!confirm && error && <Notice tone="error">{error}</Notice>}
       {notice && <Notice>{notice}</Notice>}
-      <Group>
-        {method === "password" && (
+      {method === "password" && (
+        <Group>
           <Row
             label="Change password"
             detail="We’ll email you a link to set a new one"
@@ -248,18 +227,8 @@ function Account() {
               if (!busy && user?.email) void run("reset");
             }}
           />
-        )}
-        {plan?.premium && (
-          <Row
-            label="Manage subscription"
-            detail={`Change or cancel in ${Platform.OS === "ios" ? "the App Store" : "Google Play"}`}
-            icon="card-outline"
-            trailing="open-outline"
-            onPress={() => open_page(manage_subscription_url(Platform.OS))}
-          />
-        )}
-        <Row label="Restore purchase" detail="Bought Premium on another phone" icon="refresh-outline" onPress={() => void restore()} />
-      </Group>
+        </Group>
+      )}
       <Group>
         <Row
           label="Sign out"
@@ -393,6 +362,23 @@ function Preferences() {
           />
         ))}
       </View>
+      <Text accessibilityRole="header" style={type.label}>
+        BUTTON COLOR
+      </Text>
+      <View accessibilityRole="radiogroup" accessibilityLabel="Button color" style={styles.card}>
+        {ACCENT_COLORS.map((choice) => (
+          <AccentOption
+            key={choice}
+            choice={choice}
+            selected={state.values.accent === choice}
+            disabled={!state.ready || state.busy}
+            onPress={() => void state.update("accent", choice)}
+          />
+        ))}
+      </View>
+      <Text accessibilityRole="header" style={type.label}>
+        PHOTOS
+      </Text>
       <View style={styles.card}>
         <Toggle
           label="Pause photo wall"
@@ -410,9 +396,7 @@ function Preferences() {
         />
       </View>
       {state.busy ? <Notice>Saving preference…</Notice> : state.notice ? <Notice>{state.notice}</Notice> : null}
-      <Text style={type.muted}>
-        Both looks use Recipeak’s grapefruit accent. The camera always stays dark. Recipe measurements use US units.
-      </Text>
+      <Text style={type.muted}>The camera always stays dark. Recipe measurements use US units.</Text>
     </>
   );
 }
@@ -421,6 +405,49 @@ export const APPEARANCE_LABELS: Record<Appearance, { label: string; detail: stri
   light: { label: "Light", detail: "A light background, always" },
   dark: { label: "Dark", detail: "A dark background, always" },
 };
+
+export const ACCENT_LABELS: Record<AccentColor, { label: string; detail: string }> = {
+  coral: { label: "Coral", detail: "Recipeak’s own color" },
+  blue: { label: "Blue", detail: "Blue buttons and highlights" },
+};
+
+/** One button-color choice, with a swatch of that color so it can be seen before choosing. */
+function AccentOption({
+  choice,
+  selected,
+  disabled,
+  onPress,
+}: {
+  choice: AccentColor;
+  selected: boolean;
+  disabled: boolean;
+  onPress: () => void;
+}) {
+  const { colors, scheme, type } = useTheme();
+  const styles = useThemedStyles(create_styles);
+  const { label, detail } = ACCENT_LABELS[choice];
+  const swatch = palette_for(scheme, choice).accent;
+  return (
+    <Pressable
+      accessibilityRole="radio"
+      accessibilityLabel={label}
+      accessibilityHint={detail}
+      accessibilityState={{ checked: selected, disabled }}
+      disabled={disabled}
+      onPress={onPress}
+      style={({ pressed }) => [styles.toggle, pressed && { backgroundColor: colors.raised }, disabled && { opacity: 0.6 }]}
+    >
+      <View style={[styles.swatch, { backgroundColor: swatch }]} accessible={false} />
+      <View style={styles.copy}>
+        <Text style={type.body}>{label}</Text>
+        <Text style={type.muted}>{detail}</Text>
+      </View>
+      <View style={[styles.radio, selected && { backgroundColor: colors.accent, borderColor: colors.accent }]}>
+        {selected && <Ionicons name="checkmark" size={14} color={colors.accentText} />}
+      </View>
+    </Pressable>
+  );
+}
 
 function AppearanceOption({
   choice,
@@ -492,85 +519,15 @@ function Toggle({
   );
 }
 
-function Library() {
-  const { type } = useTheme();
-  const { saved } = useApp();
-  const [items, set_items] = useState<SavedRecipe[] | null>(null);
-  const [error, set_error] = useState<string | null>(null);
-  const [busy, set_busy] = useState(false);
-  const sharing = useRef(false);
-  const [attempt, set_attempt] = useState(0);
-  useFocusEffect(
-    useCallback(() => {
-      // Reading the retry token starts a fresh request when Refresh is pressed.
-      void attempt;
-      let live = true;
-      set_items(null);
-      set_error(null);
-      saved.list().then(
-        (list) => {
-          if (live) set_items(list);
-        },
-        () => {
-          if (live) set_error("Couldn’t read saved recipes. Try again.");
-        },
-      );
-      return () => {
-        live = false;
-      };
-    }, [saved, attempt]),
-  );
-  async function share() {
-    if (!items?.length || sharing.current) return;
-    sharing.current = true;
-    set_busy(true);
-    set_error(null);
-    try {
-      await Share.share({
-        title: "My Recipeak recipes",
-        message: items.map((item) => recipe_as_text(item.recipe)).join("\n\n—\n\n"),
-      });
-    } catch {
-      set_error("Couldn’t open sharing. Please try again.");
-    } finally {
-      sharing.current = false;
-      set_busy(false);
-    }
-  }
-  return (
-    <>
-      <Text style={type.body}>
-        {items ? `${items.length} saved ${items.length === 1 ? "recipe" : "recipes"}` : "Loading saved recipes…"}
-      </Text>
-      {items && <Text style={type.muted}>{items.filter((item) => item.photo_uri).length} with an offline cover photo.</Text>}
-      <Text style={type.muted}>
-        Your recipes and their offline cover photos belong to your account and are kept on this device. Other accounts on this phone can’t
-        see them. They aren’t synced or backed up yet, so they don’t follow you to another phone. Remove a recipe from its recipe screen to
-        remove its saved photo too.
-      </Text>
-      {error && <Notice tone="error">{error}</Notice>}
-      <Button label="Refresh saved recipes" variant="secondary" disabled={busy} onPress={() => set_attempt((n) => n + 1)} />
-      <Button label="Share saved recipe text" disabled={!items?.length} busy={busy} onPress={() => void share()} />
-      <Text style={type.muted}>Sharing includes recipe text only, without photos. It is not a restorable app backup.</Text>
-      <Group title="YOUR LIBRARY">
-        <Row
-          label="Manage saved recipes"
-          detail="Search, open, and remove recipes"
-          icon="bookmark-outline"
-          onPress={() => router.push("/(tabs)/saved")}
-        />
-      </Group>
-    </>
-  );
-}
-
 function Usage() {
   const { type } = useTheme();
   const { api } = useApp();
   const [value, set_value] = useState<Allowance | null>(null);
   const [error, set_error] = useState<string | null>(null);
+  const [notice, set_notice] = useState<string | null>(null);
   const [attempt, set_attempt] = useState(0);
   const [busy, set_busy] = useState(false);
+  const [restoring, set_restoring] = useState(false);
   useFocusEffect(
     useCallback(() => {
       // Reading the retry token starts a fresh request when Refresh is pressed.
@@ -586,7 +543,7 @@ function Usage() {
             if (live) set_value(next);
           },
           () => {
-            if (live) set_error("Couldn’t load your photo allowance. Check your connection and try again.");
+            if (live) set_error("Couldn’t load your plan. Check your connection and try again.");
           },
         )
         .finally(() => {
@@ -597,72 +554,75 @@ function Usage() {
       };
     }, [api, attempt]),
   );
+  async function restore() {
+    if (restoring) return;
+    set_restoring(true);
+    set_error(null);
+    set_notice(null);
+    const outcome = await subscriptions.restore();
+    set_restoring(false);
+    if (outcome.kind === "failed") set_error(outcome.message);
+    else if (outcome.kind === "purchased") {
+      set_notice("Premium is on for this account.");
+      set_attempt((n) => n + 1);
+    }
+  }
+  const open_page = (url: string) => {
+    set_error(null);
+    Linking.openURL(url).catch(() => set_error("Couldn’t open that page. Check your connection and try again."));
+  };
   return (
     <>
-      {busy && <Notice>Checking your photo allowance…</Notice>}
+      {busy && <Notice>Checking your plan…</Notice>}
       {value && (
         <Text style={type.body}>
           {value.premium
-            ? "Paid access is active."
+            ? "You have Premium: unlimited photos, every saved recipe, and diet versions of any dish or drink."
             : value.free_photos_left == null
-              ? "Free-photo balance is unavailable."
-              : `${value.free_photos_left} of ${value.free_photos_total} free photos left.`}
+              ? "Free plan. Your photo count is unavailable right now."
+              : `Free plan: ${value.free_photos_left} of ${value.free_photos_total} free photos left.`}
         </Text>
       )}
       {error && <Notice tone="error">{error}</Notice>}
+      {notice && <Notice>{notice}</Notice>}
+      {value && !value.premium && (
+        <Button label="See Premium" onPress={() => router.push({ pathname: "/upgrade", params: { reason: "intro" } })} />
+      )}
+      <Group>
+        {value?.premium && (
+          <Row
+            label="Manage subscription"
+            detail={`Change or cancel in ${Platform.OS === "ios" ? "the App Store" : "Google Play"}`}
+            icon="card-outline"
+            trailing="open-outline"
+            onPress={() => open_page(manage_subscription_url(Platform.OS))}
+          />
+        )}
+        <Row
+          label="Restore purchase"
+          detail={restoring ? "Checking with the store…" : "Bought Premium on another phone"}
+          icon="refresh-outline"
+          onPress={() => void restore()}
+        />
+        <Row label="Refresh" detail="Check your plan and photos again" icon="sync-outline" onPress={() => set_attempt((n) => n + 1)} />
+      </Group>
       <Text style={type.muted}>
         A photo counts when it returns a meal or drink. Failed requests and photos that aren’t food or drink don’t use a free photo. Opening
         a Home photo-wall recipe is free.
       </Text>
       <Text style={type.muted}>
-        {`The free plan also keeps up to ${FREE_SAVED_RECIPES} recipes in Saved, from photos or the Home photo wall. Saving another opens the paid plan.`}
+        {`The free plan also keeps up to ${FREE_SAVED_RECIPES} recipes in Saved, from photos or the Home photo wall. Saving another opens Premium.`}
       </Text>
-      <Button label="Refresh photo allowance" variant="secondary" disabled={busy} onPress={() => set_attempt((n) => n + 1)} />
-      <Text style={type.muted}>Purchasing and managing a paid plan in the app are not available yet.</Text>
     </>
   );
 }
 
 function Help() {
   const { type } = useTheme();
-  const pages = legal_page_urls(process.env.EXPO_PUBLIC_API_BASE_URL);
-  const [link_problem, set_link_problem] = useState<string | null>(null);
   const tips = useTips();
   const [tips_reset, set_tips_reset] = useState(false);
-  const open_link = (url: string) => {
-    set_link_problem(null);
-    Linking.openURL(url).catch(() => set_link_problem(`Couldn’t open that link. You can email ${SUPPORT_EMAIL}.`));
-  };
   return (
     <>
-      <Group title="PRIVACY & SUPPORT">
-        {pages && (
-          <Row
-            label="Privacy policy"
-            detail="What Recipeak keeps and why"
-            icon="shield-checkmark-outline"
-            onPress={() => open_link(pages.privacy)}
-          />
-        )}
-        {pages && (
-          <Row
-            label="Terms of use"
-            detail="The rules for using Recipeak"
-            icon="document-text-outline"
-            onPress={() => open_link(pages.terms)}
-          />
-        )}
-        <Row label="Contact support" detail={SUPPORT_EMAIL} icon="mail-outline" onPress={() => open_link(support_mail_url())} />
-        {STORE_URL && (
-          <Row
-            label="Rate Recipeak"
-            detail="Leave a review on Google Play"
-            icon="star-outline"
-            onPress={() => open_link(STORE_URL as string)}
-          />
-        )}
-      </Group>
-      {link_problem && <Notice tone="error">{link_problem}</Notice>}
       <Button
         label={tips_reset ? "Tips will show again" : "Show tips again"}
         variant="secondary"
@@ -689,9 +649,9 @@ function Help() {
         Your data
       </Text>
       <Text style={type.body}>
-        Firebase handles email sign-in. The recipe server tracks usage and costs to enforce limits. Each account’s saved recipes and offline
-        cover photos are kept separately on this device. Signing out keeps them for when you sign in again. Feedback you send is stored
-        privately on our server for up to a year.
+        Firebase handles sign-in, with email, Google or Apple. The recipe server tracks usage and costs to enforce limits. Each account’s
+        saved recipes and offline cover photos are kept separately on this device. Signing out keeps them for when you sign in again.
+        Feedback you send is stored privately on our server for up to a year.
       </Text>
       <Text accessibilityRole="header" style={type.heading}>
         Recipe guidance
@@ -701,10 +661,6 @@ function Help() {
         ingredients and labels when allergies matter. Leaving out an ingredient doesn’t remove traces of it from shared kitchens or packaged
         foods.
       </Text>
-      <Text accessibilityRole="header" style={type.heading}>
-        About
-      </Text>
-      <Text style={type.muted}>Recipeak · Early release · Made by Benjamin Major</Text>
     </>
   );
 }
@@ -729,6 +685,7 @@ const create_styles = (colors: Palette) =>
       alignItems: "center",
       justifyContent: "center",
     },
+    swatch: { width: 28, height: 28, borderRadius: 14 },
     overlay: { flex: 1, backgroundColor: colors.scrim, justifyContent: "center", paddingHorizontal: 20 },
     accountCard: {
       flexDirection: "row",

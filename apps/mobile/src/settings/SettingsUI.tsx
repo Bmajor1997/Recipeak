@@ -7,12 +7,11 @@ import { useTheme, useThemedStyles, type Palette, create_type } from "../ui/them
 
 export const CATEGORIES = {
   account: "Account",
-  preferences: "Preferences",
+  usage: "Premium",
+  preferences: "Appearance & photos",
   taste: "Cocktails, meals & diet",
-  library: "Saved recipes & storage",
-  usage: "Photo allowance",
-  help: "Help & privacy",
-  feedback: "Feedback",
+  help: "Help",
+  feedback: "Send feedback",
 } as const;
 export type Category = keyof typeof CATEGORIES;
 export const is_category = (value: unknown): value is Category => typeof value === "string" && Object.hasOwn(CATEGORIES, value);
