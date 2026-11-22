@@ -1,10 +1,10 @@
 @ honey-mustard-chicken-with-roasted-carrots | Honey Mustard Chicken with Roasted Carrots | 4 | 15 | 40 | - | Roasted chicken thighs brushed with honey mustard and served with tender carrots.
-- | | 4 bone-in, skin-on chicken thighs
+- 4 | | bone-in, skin-on chicken thighs
 - 1½ | lb | carrots, peeled and cut into 2-inch pieces
 - 1½ | tbsp | olive oil
 - 2 | tbsp | Dijon mustard
 - 1½ | tbsp | honey
-- | | 1 garlic clove, minced
+- 1 | | garlic clove, minced
 - ½ | tsp | dried thyme
 - ¾ | tsp | salt
 - ¼ | tsp | black pepper
@@ -21,9 +21,9 @@
 - 1 | tbsp | maple syrup
 - 1 | tsp | grated ginger
 - 3–5 | tbsp | warm water
-- | | 1 cucumber, cut into thin strips
+- 1 | | cucumber, cut into thin strips
 - 1 | tbsp | sesame seeds
-- | | 2 scallions, sliced
+- 2 | | scallions, sliced
 # Cook noodles according to package directions, drain and rinse briefly under cool water.
 # Whisk peanut butter, soy sauce, vinegar, sesame oil, maple syrup and ginger with enough warm water to make a pourable sauce.
 # Toss noodles with sauce; top with cucumber, sesame seeds and scallions.
@@ -35,30 +35,30 @@
 - ½ | tsp | salt, divided
 - 1½ | cups | corn kernels
 - 3 | cups | cooked, chilled rice
-- | | 2 scallions, sliced
+- 2 | | scallions, sliced
 - 1 | tbsp | lemon juice
 # Toss shrimp with half the oil, Cajun seasoning and half the salt. Cook in a large skillet over medium-high heat for 2–3 minutes per side, until opaque and cooked through. Transfer to a plate.
 # Add remaining oil, corn and rice to the skillet; cook, stirring, 4–5 minutes until piping hot. Season with remaining salt.
 # Return shrimp to the pan and warm through. Finish with scallions and lemon juice.
 
 @ miso-glazed-eggplant-rice-bowls | Miso-Glazed Eggplant Rice Bowls | 4 | 15 | 30 | wheat, soy | Roasted eggplant with a savory miso glaze, served over rice and scallions.
-- | | 2 medium eggplants, halved lengthwise
+- 2 | | medium eggplants, halved lengthwise
 - 2 | tbsp | neutral oil
 - 2 | tbsp | white miso
 - 1 | tbsp | maple syrup
 - 1 | tbsp | rice vinegar
 - 1 | tbsp | water
 - 3 | cups | cooked rice
-- | | 2 scallions, sliced
+- 2 | | scallions, sliced
 # Heat oven to 425°F. Score eggplant flesh in a shallow crosshatch, brush with oil and roast cut-side up for 25–30 minutes until soft.
 # Stir miso, maple syrup, vinegar and water together. Brush over eggplant and return to the oven for 3–5 minutes, watching so the glaze does not burn.
 # Serve eggplant over hot rice, topped with scallions.
 
 @ spinach-ricotta-stuffed-portobello-mushrooms | Spinach Ricotta Stuffed Portobello Mushrooms | 4 | 15 | 25 | milk | Portobello caps filled with spinach, ricotta and Parmesan, baked until golden.
-- | | 4 large portobello caps, stems removed
+- 4 | | large portobello caps, stems removed
 - 1 | tbsp | olive oil
 - 4 | cups | baby spinach
-- | | 1 garlic clove, minced
+- 1 | | garlic clove, minced
 - 1 | cup | ricotta
 - ¼ | cup | grated Parmesan
 - ½ | tsp | salt
@@ -71,10 +71,10 @@
 - 1 | cup | dry couscous
 - 1 | cup | boiling water
 - 1 | can | (15 oz) chickpeas, drained and rinsed
-- | | 1 cucumber, diced
+- 1 | | cucumber, diced
 - ¼ | cup | chopped parsley
 - 2 | tbsp | olive oil
-- | | 1 lemon, zested and juiced
+- 1 | | lemon, zested and juiced
 - ½ | tsp | salt
 - ¼ | tsp | pepper
 # Put couscous in a bowl, pour over boiling water, cover and rest 5 minutes. Fluff with a fork and cool slightly.
@@ -83,10 +83,10 @@
 
 @ ginger-beef-and-bell-pepper-stir-fry | Ginger Beef and Bell Pepper Stir-Fry | 4 | 20 | 10 | wheat, soy | Sliced beef and bell peppers in a ginger soy sauce, served over rice.
 - 1 | lb | flank steak, thinly sliced across the grain
-- | | 2 bell peppers, sliced
+- 2 | | bell peppers, sliced
 - 2 | tbsp | neutral oil, divided
 - 1 | tbsp | grated ginger
-- | | 2 garlic cloves, minced
+- 2 | | garlic cloves, minced
 - 3 | tbsp | soy sauce
 - 1 | tbsp | rice vinegar
 - 1 | tsp | brown sugar
@@ -99,9 +99,9 @@
 
 @ creamy-chicken-and-wild-rice-soup | Creamy Chicken and Wild Rice Soup | 4 | 15 | 45 | milk | A creamy soup of chicken, wild rice, carrots and celery with thyme.
 - 1 | tbsp | olive oil
-- | | 1 onion, diced
-- | | 2 carrots, diced
-- | | 2 celery stalks, diced
+- 1 | | onion, diced
+- 2 | | carrots, diced
+- 2 | | celery stalks, diced
 - ¾ | cup | uncooked wild-rice blend
 - 5 | cups | low-sodium chicken broth
 - 2 | cups | cooked shredded chicken
@@ -115,7 +115,7 @@
 @ mediterranean-baked-feta-beans | Mediterranean Baked Feta Beans | 4 | 10 | 25 | milk | Cannellini beans and tomatoes baked with feta, garlic and oregano.
 - 2 | cans | (15 oz each) cannellini beans, drained
 - 1 | can | (14.5 oz) diced tomatoes
-- | | 2 garlic cloves, minced
+- 2 | | garlic cloves, minced
 - 2 | tbsp | olive oil
 - 1 | tsp | dried oregano
 - ¼ | tsp | black pepper
@@ -127,10 +127,10 @@
 @ mushroom-barley-soup | Mushroom Barley Soup | 4 | 15 | 40 | - | A comforting soup of mushrooms, pearl barley and vegetables with thyme.
 - 1 | tbsp | olive oil
 - 12 | oz | mushrooms, sliced
-- | | 1 onion, diced
-- | | 2 carrots, diced
-- | | 2 celery stalks, diced
-- | | 2 garlic cloves, minced
+- 1 | | onion, diced
+- 2 | | carrots, diced
+- 2 | | celery stalks, diced
+- 2 | | garlic cloves, minced
 - ¾ | cup | pearl barley, rinsed
 - 6 | cups | vegetable broth
 - ½ | tsp | dried thyme
