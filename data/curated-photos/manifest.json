@@ -4237,6 +4237,41 @@
       ]
     },
     {
+      "file": "lemon-chickpea-couscous-salad.jpg",
+      "kind": "meal",
+      "names": [
+        "Lemon Chickpea Couscous Salad"
+      ]
+    },
+    {
+      "file": "ginger-beef-and-bell-pepper-stir-fry.jpg",
+      "kind": "meal",
+      "names": [
+        "Ginger Beef and Bell Pepper Stir-Fry"
+      ]
+    },
+    {
+      "file": "creamy-chicken-and-wild-rice-soup.jpg",
+      "kind": "meal",
+      "names": [
+        "Creamy Chicken and Wild Rice Soup"
+      ]
+    },
+    {
+      "file": "mediterranean-baked-feta-beans.jpg",
+      "kind": "meal",
+      "names": [
+        "Mediterranean Baked Feta Beans"
+      ]
+    },
+    {
+      "file": "mushroom-barley-soup.jpg",
+      "kind": "meal",
+      "names": [
+        "Mushroom Barley Soup"
+      ]
+    },
+    {
       "file": "pomegranate-rosemary-gin-fizz.jpg",
       "kind": "cocktail",
       "names": [
@@ -4269,6 +4304,41 @@
       "kind": "cocktail",
       "names": [
         "Raspberry Ginger Whiskey Smash"
+      ]
+    },
+    {
+      "file": "cucumber-melon-gin-cooler.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Cucumber Melon Gin Cooler"
+      ]
+    },
+    {
+      "file": "cherry-vanilla-bourbon-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Cherry Vanilla Bourbon Sour"
+      ]
+    },
+    {
+      "file": "passion-fruit-mint-rum-fizz.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Passion Fruit Mint Rum Fizz"
+      ]
+    },
+    {
+      "file": "blood-orange-basil-vodka-spritz.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Blood Orange Basil Vodka Spritz"
+      ]
+    },
+    {
+      "file": "mango-coconut-rum-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Mango Coconut Rum Sour"
       ]
     }
   ]

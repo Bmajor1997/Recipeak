@@ -17211,6 +17211,153 @@
     "make_ahead": "",
     "variations": []
   },
+  "lemon-chickpea-couscous-salad": {
+    "title": "Lemon Chickpea Couscous Salad",
+    "description": "Fluffy couscous tossed with chickpeas, cucumber, parsley and a bright lemon dressing.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 5,
+    "ingredients": [
+      { "amount": "1", "unit": "cup", "item": "dry couscous" },
+      { "amount": "1", "unit": "cup", "item": "boiling water" },
+      { "amount": "1", "unit": "can", "item": "(15 oz) chickpeas, drained and rinsed" },
+      { "amount": "1", "unit": "", "item": "cucumber, diced" },
+      { "amount": "1/4", "unit": "cup", "item": "chopped parsley" },
+      { "amount": "2", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "1", "unit": "", "item": "lemon, zested and juiced" },
+      { "amount": "1/2", "unit": "tsp", "item": "salt" },
+      { "amount": "1/4", "unit": "tsp", "item": "pepper" }
+    ],
+    "steps": [
+      "Put couscous in a bowl, pour over boiling water, cover and rest 5 minutes. Fluff with a fork and cool slightly.",
+      "Whisk oil, lemon zest and juice, salt and pepper. Toss with couscous, chickpeas, cucumber and parsley.",
+      "Serve immediately or refrigerate in a covered container."
+    ],
+    "allergens": ["wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "ginger-beef-and-bell-pepper-stir-fry": {
+    "title": "Ginger Beef and Bell Pepper Stir-Fry",
+    "description": "Tender strips of beef and colorful bell peppers in a gingery soy sauce, served over rice.",
+    "servings": 4,
+    "prep_minutes": 20,
+    "cook_minutes": 10,
+    "ingredients": [
+      { "amount": "1", "unit": "lb", "item": "flank steak, thinly sliced across the grain" },
+      { "amount": "2", "unit": "", "item": "bell peppers, sliced" },
+      { "amount": "2", "unit": "tbsp", "item": "neutral oil, divided" },
+      { "amount": "1", "unit": "tbsp", "item": "grated ginger" },
+      { "amount": "2", "unit": "", "item": "garlic cloves, minced" },
+      { "amount": "3", "unit": "tbsp", "item": "soy sauce" },
+      { "amount": "1", "unit": "tbsp", "item": "rice vinegar" },
+      { "amount": "1", "unit": "tsp", "item": "brown sugar" },
+      { "amount": "1", "unit": "tsp", "item": "cornstarch" },
+      { "amount": "3", "unit": "tbsp", "item": "water" },
+      { "amount": "3", "unit": "cups", "item": "cooked rice" }
+    ],
+    "steps": [
+      "Stir soy sauce, vinegar, sugar, cornstarch and water together. Heat 1 tbsp oil in a wide skillet; sear beef in batches until browned and cooked to preference. Transfer to a plate.",
+      "Add remaining oil and peppers; stir-fry 3–4 minutes. Add ginger and garlic for 30 seconds.",
+      "Return beef and any juices to the pan. Add sauce and simmer, stirring, until thickened and hot. Serve over rice."
+    ],
+    "allergens": ["soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "creamy-chicken-and-wild-rice-soup": {
+    "title": "Creamy Chicken and Wild Rice Soup",
+    "description": "A comforting soup of chicken, wild rice, vegetables and a splash of cream.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 55,
+    "ingredients": [
+      { "amount": "1", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "1", "unit": "", "item": "onion, diced" },
+      { "amount": "2", "unit": "", "item": "carrots, diced" },
+      { "amount": "2", "unit": "", "item": "celery stalks, diced" },
+      { "amount": "3/4", "unit": "cup", "item": "uncooked wild-rice blend" },
+      { "amount": "5", "unit": "cups", "item": "low-sodium chicken broth" },
+      { "amount": "2", "unit": "cups", "item": "cooked shredded chicken" },
+      { "amount": "1/2", "unit": "cup", "item": "heavy cream" },
+      { "amount": "1/2", "unit": "tsp", "item": "dried thyme" },
+      { "amount": "", "unit": "", "item": "salt and pepper" }
+    ],
+    "steps": [
+      "Cook onion, carrots and celery in oil for 5 minutes. Add rice, broth and thyme; simmer covered according to the rice package, about 40–50 minutes, until tender.",
+      "Stir in chicken and cream. Simmer gently until the chicken is heated to 165°F; add water if the soup is too thick.",
+      "Season with salt and pepper."
+    ],
+    "allergens": ["milk"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "mediterranean-baked-feta-beans": {
+    "title": "Mediterranean Baked Feta Beans",
+    "description": "Cannellini beans baked with tomatoes and oregano around a warm, golden block of feta.",
+    "servings": 4,
+    "prep_minutes": 10,
+    "cook_minutes": 25,
+    "ingredients": [
+      { "amount": "2", "unit": "cans", "item": "(15 oz each) cannellini beans, drained" },
+      { "amount": "1", "unit": "can", "item": "(14.5 oz) diced tomatoes" },
+      { "amount": "2", "unit": "", "item": "garlic cloves, minced" },
+      { "amount": "2", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "1", "unit": "tsp", "item": "dried oregano" },
+      { "amount": "1/4", "unit": "tsp", "item": "black pepper" },
+      { "amount": "8", "unit": "oz", "item": "block feta" }
+    ],
+    "steps": [
+      "Heat oven to 400°F. Mix beans, tomatoes, garlic, oil, oregano and pepper in a baking dish.",
+      "Nestle feta in the center. Bake 20–25 minutes until the beans bubble and the cheese is hot and lightly golden.",
+      "Break up the feta and spoon it over the beans. Taste before adding salt."
+    ],
+    "allergens": ["milk"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "mushroom-barley-soup": {
+    "title": "Mushroom Barley Soup",
+    "description": "A savory broth with tender pearl barley, browned mushrooms and vegetables.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 50,
+    "ingredients": [
+      { "amount": "1", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "12", "unit": "oz", "item": "mushrooms, sliced" },
+      { "amount": "1", "unit": "", "item": "onion, diced" },
+      { "amount": "2", "unit": "", "item": "carrots, diced" },
+      { "amount": "2", "unit": "", "item": "celery stalks, diced" },
+      { "amount": "2", "unit": "", "item": "garlic cloves, minced" },
+      { "amount": "3/4", "unit": "cup", "item": "pearl barley, rinsed" },
+      { "amount": "6", "unit": "cups", "item": "vegetable broth" },
+      { "amount": "1/2", "unit": "tsp", "item": "dried thyme" },
+      { "amount": "", "unit": "", "item": "salt and pepper" }
+    ],
+    "steps": [
+      "Brown mushrooms in oil in a pot for 6–8 minutes. Add onion, carrots, celery and garlic; cook 5 minutes.",
+      "Stir in barley, broth and thyme. Simmer partially covered for 35–45 minutes, until barley is tender, adding water if needed.",
+      "Season to taste."
+    ],
+    "allergens": [],
+    "cocktail": null,
+    "note": "Barley contains gluten. Check broth labels for allergens.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
   "pomegranate-rosemary-gin-fizz": {
     "title": "Pomegranate Rosemary Gin Fizz",
     "description": "Gin, pomegranate and lemon lengthened with soda and finished with rosemary.",
@@ -17360,6 +17507,159 @@
     "cocktail": {
       "glass": "rocks glass",
       "garnish": "raspberry",
+      "alcoholic": true,
+      "non_alcoholic_version": "Replace the spirit with an alcohol-free alternative or additional soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "cucumber-melon-gin-cooler": {
+    "title": "Cucumber Melon Gin Cooler",
+    "description": "Gin, honeydew and cucumber make a crisp, lightly sparkling cooler.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "gin" },
+      { "amount": "2", "unit": "oz", "item": "honeydew purée" },
+      { "amount": "3", "unit": "", "item": "cucumber slices" },
+      { "amount": "1/2", "unit": "oz", "item": "lime juice" },
+      { "amount": "1/4", "unit": "oz", "item": "simple syrup" },
+      { "amount": "1", "unit": "oz", "item": "soda water" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Muddle cucumber with syrup.",
+      "Shake with gin, melon, lime and ice.",
+      "Fine-strain into a tall glass over ice, top with soda and garnish with a cucumber ribbon."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "cucumber ribbon",
+      "alcoholic": true,
+      "non_alcoholic_version": "Replace the spirit with an alcohol-free alternative or additional soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "cherry-vanilla-bourbon-sour": {
+    "title": "Cherry Vanilla Bourbon Sour",
+    "description": "A cherry and vanilla bourbon sour balanced with fresh lemon.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "bourbon" },
+      { "amount": "1", "unit": "oz", "item": "unsweetened cherry juice" },
+      { "amount": "3/4", "unit": "oz", "item": "lemon juice" },
+      { "amount": "1/2", "unit": "oz", "item": "vanilla syrup" },
+      { "amount": "", "unit": "", "item": "ice" },
+      { "amount": "", "unit": "", "item": "cherry garnish" }
+    ],
+    "steps": [
+      "Shake bourbon, cherry juice, lemon and vanilla syrup with ice.",
+      "Strain into a rocks glass over fresh ice and garnish with a cherry."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "rocks glass",
+      "garnish": "cherry",
+      "alcoholic": true,
+      "non_alcoholic_version": "Replace the spirit with an alcohol-free alternative or additional soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "passion-fruit-mint-rum-fizz": {
+    "title": "Passion Fruit Mint Rum Fizz",
+    "description": "A sparkling white-rum drink with passion fruit, mint and lime.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "white rum" },
+      { "amount": "1", "unit": "oz", "item": "unsweetened passion-fruit purée" },
+      { "amount": "1/2", "unit": "oz", "item": "lime juice" },
+      { "amount": "1/2", "unit": "oz", "item": "simple syrup" },
+      { "amount": "4", "unit": "", "item": "mint leaves" },
+      { "amount": "2", "unit": "oz", "item": "soda water" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Gently press mint in a shaker.",
+      "Add rum, purée, lime, syrup and ice; shake and strain into a tall ice-filled glass.",
+      "Top with soda."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "mint",
+      "alcoholic": true,
+      "non_alcoholic_version": "Replace the spirit with an alcohol-free alternative or additional soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "blood-orange-basil-vodka-spritz": {
+    "title": "Blood Orange Basil Vodka Spritz",
+    "description": "A bright blood orange and basil vodka spritz topped with soda.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "vodka" },
+      { "amount": "2", "unit": "oz", "item": "blood orange juice" },
+      { "amount": "1/2", "unit": "oz", "item": "lemon juice" },
+      { "amount": "1/4", "unit": "oz", "item": "simple syrup" },
+      { "amount": "2", "unit": "", "item": "basil leaves" },
+      { "amount": "2", "unit": "oz", "item": "soda water" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Gently muddle basil with syrup.",
+      "Shake with vodka, citrus and ice; strain into an ice-filled wine glass.",
+      "Top with soda and garnish with basil."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "wine glass",
+      "garnish": "basil",
+      "alcoholic": true,
+      "non_alcoholic_version": "Replace the spirit with an alcohol-free alternative or additional soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "mango-coconut-rum-sour": {
+    "title": "Mango Coconut Rum Sour",
+    "description": "Coconut rum, mango and lime shaken into a fruity sour.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "coconut rum" },
+      { "amount": "1", "unit": "oz", "item": "mango purée" },
+      { "amount": "3/4", "unit": "oz", "item": "lime juice" },
+      { "amount": "1/4", "unit": "oz", "item": "simple syrup" },
+      { "amount": "", "unit": "", "item": "ice" },
+      { "amount": "", "unit": "", "item": "lime wedge" }
+    ],
+    "steps": ["Shake rum, mango, lime and syrup with ice.", "Strain into a rocks glass over fresh ice and garnish with lime."],
+    "allergens": [],
+    "cocktail": {
+      "glass": "rocks glass",
+      "garnish": "lime wedge",
       "alcoholic": true,
       "non_alcoholic_version": "Replace the spirit with an alcohol-free alternative or additional soda water."
     },

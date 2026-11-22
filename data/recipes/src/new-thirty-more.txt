@@ -67,6 +67,79 @@
 # Wilt spinach with garlic in remaining oil, then squeeze out excess liquid. Mix with ricotta, half the Parmesan, salt and pepper.
 # Fill caps and sprinkle with remaining Parmesan. Bake 12–15 minutes until hot and lightly browned.
 
+@ lemon-chickpea-couscous-salad | Lemon Chickpea Couscous Salad | 4 | 15 | 5 | wheat | Fluffy couscous tossed with chickpeas, cucumber, parsley and a bright lemon dressing.
+- 1 | cup | dry couscous
+- 1 | cup | boiling water
+- 1 | can | (15 oz) chickpeas, drained and rinsed
+- 1 |  | cucumber, diced
+- 1/4 | cup | chopped parsley
+- 2 | tbsp | olive oil
+- 1 |  | lemon, zested and juiced
+- 1/2 | tsp | salt
+- 1/4 | tsp | pepper
+# Put couscous in a bowl, pour over boiling water, cover and rest 5 minutes. Fluff with a fork and cool slightly.
+# Whisk oil, lemon zest and juice, salt and pepper. Toss with couscous, chickpeas, cucumber and parsley.
+# Serve immediately or refrigerate in a covered container.
+
+@ ginger-beef-and-bell-pepper-stir-fry | Ginger Beef and Bell Pepper Stir-Fry | 4 | 20 | 10 | soy, wheat | Tender strips of beef and colorful bell peppers in a gingery soy sauce, served over rice.
+- 1 | lb | flank steak, thinly sliced across the grain
+- 2 |  | bell peppers, sliced
+- 2 | tbsp | neutral oil, divided
+- 1 | tbsp | grated ginger
+- 2 |  | garlic cloves, minced
+- 3 | tbsp | soy sauce
+- 1 | tbsp | rice vinegar
+- 1 | tsp | brown sugar
+- 1 | tsp | cornstarch
+- 3 | tbsp | water
+- 3 | cups | cooked rice
+# Stir soy sauce, vinegar, sugar, cornstarch and water together. Heat 1 tbsp oil in a wide skillet; sear beef in batches until browned and cooked to preference. Transfer to a plate.
+# Add remaining oil and peppers; stir-fry 3–4 minutes. Add ginger and garlic for 30 seconds.
+# Return beef and any juices to the pan. Add sauce and simmer, stirring, until thickened and hot. Serve over rice.
+
+@ creamy-chicken-and-wild-rice-soup | Creamy Chicken and Wild Rice Soup | 4 | 15 | 55 | milk | A comforting soup of chicken, wild rice, vegetables and a splash of cream.
+- 1 | tbsp | olive oil
+- 1 |  | onion, diced
+- 2 |  | carrots, diced
+- 2 |  | celery stalks, diced
+- 3/4 | cup | uncooked wild-rice blend
+- 5 | cups | low-sodium chicken broth
+- 2 | cups | cooked shredded chicken
+- 1/2 | cup | heavy cream
+- 1/2 | tsp | dried thyme
+- | | salt and pepper
+# Cook onion, carrots and celery in oil for 5 minutes. Add rice, broth and thyme; simmer covered according to the rice package, about 40–50 minutes, until tender.
+# Stir in chicken and cream. Simmer gently until the chicken is heated to 165°F; add water if the soup is too thick.
+# Season with salt and pepper.
+
+@ mediterranean-baked-feta-beans | Mediterranean Baked Feta Beans | 4 | 10 | 25 | milk | Cannellini beans baked with tomatoes and oregano around a warm, golden block of feta.
+- 2 | cans | (15 oz each) cannellini beans, drained
+- 1 | can | (14.5 oz) diced tomatoes
+- 2 |  | garlic cloves, minced
+- 2 | tbsp | olive oil
+- 1 | tsp | dried oregano
+- 1/4 | tsp | black pepper
+- 8 | oz | block feta
+# Heat oven to 400°F. Mix beans, tomatoes, garlic, oil, oregano and pepper in a baking dish.
+# Nestle feta in the center. Bake 20–25 minutes until the beans bubble and the cheese is hot and lightly golden.
+# Break up the feta and spoon it over the beans. Taste before adding salt.
+
+@ mushroom-barley-soup | Mushroom Barley Soup | 4 | 15 | 50 | - | A savory broth with tender pearl barley, browned mushrooms and vegetables.
+- 1 | tbsp | olive oil
+- 12 | oz | mushrooms, sliced
+- 1 |  | onion, diced
+- 2 |  | carrots, diced
+- 2 |  | celery stalks, diced
+- 2 |  | garlic cloves, minced
+- 3/4 | cup | pearl barley, rinsed
+- 6 | cups | vegetable broth
+- 1/2 | tsp | dried thyme
+- | | salt and pepper
+# Brown mushrooms in oil in a pot for 6–8 minutes. Add onion, carrots, celery and garlic; cook 5 minutes.
+# Stir in barley, broth and thyme. Simmer partially covered for 35–45 minutes, until barley is tender, adding water if needed.
+# Season to taste.
+! Barley contains gluten. Check broth labels for allergens.
+
 @ pomegranate-rosemary-gin-fizz | Pomegranate Rosemary Gin Fizz | 1 | 5 | 0 | - | Gin, pomegranate and lemon lengthened with soda and finished with rosemary.
 - 1 1/2 | oz | gin
 - 2 | oz | unsweetened pomegranate juice
@@ -128,3 +201,64 @@ G highball glass | jalapeño slice | y | Replace the spirit with an alcohol-free
 # Shake with whiskey, lemon and ice; fine-strain into a rocks glass over fresh ice.
 # Garnish with a raspberry.
 G rocks glass | raspberry | y | Replace the spirit with an alcohol-free alternative or additional soda water.
+
+@ cucumber-melon-gin-cooler | Cucumber Melon Gin Cooler | 1 | 5 | 0 | - | Gin, honeydew and cucumber make a crisp, lightly sparkling cooler.
+- 1 1/2 | oz | gin
+- 2 | oz | honeydew purée
+- 3 |  | cucumber slices
+- 1/2 | oz | lime juice
+- 1/4 | oz | simple syrup
+- 1 | oz | soda water
+- | | ice
+# Muddle cucumber with syrup.
+# Shake with gin, melon, lime and ice.
+# Fine-strain into a tall glass over ice, top with soda and garnish with a cucumber ribbon.
+G highball glass | cucumber ribbon | y | Replace the spirit with an alcohol-free alternative or additional soda water.
+
+@ cherry-vanilla-bourbon-sour | Cherry Vanilla Bourbon Sour | 1 | 5 | 0 | - | A cherry and vanilla bourbon sour balanced with fresh lemon.
+- 1 1/2 | oz | bourbon
+- 1 | oz | unsweetened cherry juice
+- 3/4 | oz | lemon juice
+- 1/2 | oz | vanilla syrup
+- | | ice
+- | | cherry garnish
+# Shake bourbon, cherry juice, lemon and vanilla syrup with ice.
+# Strain into a rocks glass over fresh ice and garnish with a cherry.
+G rocks glass | cherry | y | Replace the spirit with an alcohol-free alternative or additional soda water.
+
+@ passion-fruit-mint-rum-fizz | Passion Fruit Mint Rum Fizz | 1 | 5 | 0 | - | A sparkling white-rum drink with passion fruit, mint and lime.
+- 1 1/2 | oz | white rum
+- 1 | oz | unsweetened passion-fruit purée
+- 1/2 | oz | lime juice
+- 1/2 | oz | simple syrup
+- 4 |  | mint leaves
+- 2 | oz | soda water
+- | | ice
+# Gently press mint in a shaker.
+# Add rum, purée, lime, syrup and ice; shake and strain into a tall ice-filled glass.
+# Top with soda.
+G highball glass | mint | y | Replace the spirit with an alcohol-free alternative or additional soda water.
+
+@ blood-orange-basil-vodka-spritz | Blood Orange Basil Vodka Spritz | 1 | 5 | 0 | - | A bright blood orange and basil vodka spritz topped with soda.
+- 1 1/2 | oz | vodka
+- 2 | oz | blood orange juice
+- 1/2 | oz | lemon juice
+- 1/4 | oz | simple syrup
+- 2 |  | basil leaves
+- 2 | oz | soda water
+- | | ice
+# Gently muddle basil with syrup.
+# Shake with vodka, citrus and ice; strain into an ice-filled wine glass.
+# Top with soda and garnish with basil.
+G wine glass | basil | y | Replace the spirit with an alcohol-free alternative or additional soda water.
+
+@ mango-coconut-rum-sour | Mango Coconut Rum Sour | 1 | 5 | 0 | - | Coconut rum, mango and lime shaken into a fruity sour.
+- 1 1/2 | oz | coconut rum
+- 1 | oz | mango purée
+- 3/4 | oz | lime juice
+- 1/4 | oz | simple syrup
+- | | ice
+- | | lime wedge
+# Shake rum, mango, lime and syrup with ice.
+# Strain into a rocks glass over fresh ice and garnish with lime.
+G rocks glass | lime wedge | y | Replace the spirit with an alcohol-free alternative or additional soda water.
