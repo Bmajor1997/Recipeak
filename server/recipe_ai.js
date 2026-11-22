@@ -150,7 +150,7 @@ ${ADDITION_RULES[addition]}`,
 // Words that show a version really added what it promised. Plant-based look-alikes ("vegan butter", "peanut butter",
 // "coconut milk") don't count; a reply that only says "add meat" or swaps nothing is rejected, never shown.
 const ADDED_MEAT =
-  /\b(?:chicken|beef|pork|lamb|veal|duck|turkey|bacon|pancetta|prosciutto|ham|sausages?|chorizo|salami|pepperoni|steak|brisket|ground (?:beef|pork|lamb|turkey|chicken)|fish|salmon|tuna|cod|halibut|tilapia|trout|mackerel|sardines?|anchov(?:y|ies)|shrimp|prawns?|crab|lobster|scallops?|clams?|mussels?|squid|calamari|octopus)\b/i;
+  /\b(?:chicken|beef|pork|lamb|mutton|goat(?!(?:['’]s)?\s+cheese)|veal|duck|turkey|bacon|pancetta|prosciutto|ham|sausages?|chorizo|salami|pepperoni|steak|brisket|ground (?:beef|pork|lamb|turkey|chicken)|fish|salmon|tuna|cod|haddock|catfish|halibut|tilapia|trout|mackerel|sardines?|anchov(?:y|ies)|shrimp|prawns?|crab|lobster|scallops?|clams?|mussels?|squid|calamari|octopus)\b/i;
 const ADDED_DAIRY_OR_EGG =
   /\b(?:butter|milk|cream|cheese|parmesan|pecorino|feta|ricotta|mozzarella|cheddar|goat cheese|halloumi|paneer|yogh?urt|ghee|cr[eè]me fra[iî]che|sour cream|eggs?|egg (?:yolks?|whites?))\b/i;
 const PLANT_LOOKALIKES =
