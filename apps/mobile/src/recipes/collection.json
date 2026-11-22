@@ -75,7 +75,7 @@
       { "amount": "1 1/2", "unit": "oz", "item": "citrus vodka" },
       { "amount": "3/4", "unit": "oz", "item": "Cointreau" },
       { "amount": "3/4", "unit": "oz", "item": "fresh lime juice" },
-      { "amount": "1", "unit": "oz", "item": "unsweetened cranberry juice cocktail" },
+      { "amount": "1", "unit": "oz", "item": "cranberry juice cocktail" },
       { "amount": "1", "unit": "", "item": "orange peel strip, for garnish" }
     ],
     "steps": [
@@ -2830,7 +2830,7 @@
       { "amount": "1", "unit": "oz", "item": "vegan dry vermouth (such as Dolin Dry)" },
       { "amount": "1", "unit": "oz", "item": "Campari" }
     ],
-    "steps": ["Stir everything with ice.", "Strain into a chilled coupe."],
+    "steps": ["Stir everything with ice.", "Strain into a chilled coupe, or over fresh ice in a rocks glass."],
     "allergens": [],
     "cocktail": { "glass": "coupe or rocks glass", "garnish": "lemon twist", "alcoholic": true, "non_alcoholic_version": null },
     "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",

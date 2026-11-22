@@ -260,7 +260,7 @@ G highball glass | salted rim and grapefruit wedge | y | Grapefruit juice topped
 - 1 | oz | vegan dry vermouth (such as Dolin Dry)
 - 1 | oz | Campari
 # Stir everything with ice.
-# Strain into a chilled coupe.
+# Strain into a chilled coupe, or over fresh ice in a rocks glass.
 G coupe or rocks glass | lemon twist | y | -
 
 @ zombie | Zombie | 1 | 5 | 0 | - | A potent tiki blend of rums, lime, grapefruit, cinnamon and falernum.
