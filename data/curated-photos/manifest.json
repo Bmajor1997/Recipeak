@@ -4062,6 +4062,41 @@
       ]
     },
     {
+      "file": "tomato-basil-baked-chicken-meatballs.jpg",
+      "kind": "meal",
+      "names": [
+        "Tomato-Basil Baked Chicken Meatballs"
+      ]
+    },
+    {
+      "file": "moroccan-spiced-carrot-and-lentil-stew.jpg",
+      "kind": "meal",
+      "names": [
+        "Moroccan-Spiced Carrot and Lentil Stew"
+      ]
+    },
+    {
+      "file": "teriyaki-salmon-rice-bowls.jpg",
+      "kind": "meal",
+      "names": [
+        "Teriyaki Salmon Rice Bowls"
+      ]
+    },
+    {
+      "file": "chicken-and-corn-enchilada-skillet.jpg",
+      "kind": "meal",
+      "names": [
+        "Chicken and Corn Enchilada Skillet"
+      ]
+    },
+    {
+      "file": "creamy-sun-dried-tomato-gnocchi.jpg",
+      "kind": "meal",
+      "names": [
+        "Creamy Sun-Dried Tomato Gnocchi"
+      ]
+    },
+    {
       "file": "blackberry-sage-bourbon-smash.jpg",
       "kind": "cocktail",
       "names": [
@@ -4129,6 +4164,41 @@
       "kind": "cocktail",
       "names": [
         "Blueberry Lemon Gin Collins"
+      ]
+    },
+    {
+      "file": "apple-cinnamon-whiskey-highball.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Apple Cinnamon Whiskey Highball"
+      ]
+    },
+    {
+      "file": "blood-orange-tequila-sparkler.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Blood Orange Tequila Sparkler"
+      ]
+    },
+    {
+      "file": "watermelon-mint-rum-cooler.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Watermelon Mint Rum Cooler"
+      ]
+    },
+    {
+      "file": "cranberry-orange-bourbon-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Cranberry Orange Bourbon Sour"
+      ]
+    },
+    {
+      "file": "coconut-pineapple-lime-cooler.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Coconut Pineapple Lime Cooler"
       ]
     }
   ]

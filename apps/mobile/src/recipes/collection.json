@@ -16487,6 +16487,153 @@
     "make_ahead": "",
     "variations": []
   },
+  "tomato-basil-baked-chicken-meatballs": {
+    "title": "Tomato-Basil Baked Chicken Meatballs",
+    "description": "Tomato-Basil Baked Chicken Meatballs: a home recipe with 1 lb ground chicken, ½ cup breadcrumbs, 1 egg.",
+    "servings": 4,
+    "prep_minutes": 20,
+    "cook_minutes": 25,
+    "ingredients": [
+      { "amount": "1", "unit": "lb", "item": "ground chicken" },
+      { "amount": "1/2", "unit": "cup", "item": "breadcrumbs" },
+      { "amount": "1", "unit": "", "item": "egg" },
+      { "amount": "1/4", "unit": "cup", "item": "grated Parmesan" },
+      { "amount": "1", "unit": "", "item": "garlic clove, minced" },
+      { "amount": "1/2", "unit": "tsp", "item": "salt" },
+      { "amount": "2", "unit": "cups", "item": "marinara sauce" },
+      { "amount": "1/4", "unit": "cup", "item": "torn basil" },
+      { "amount": "12", "unit": "oz", "item": "spaghetti" }
+    ],
+    "steps": [
+      "Heat oven to 400°F. Gently combine chicken, breadcrumbs, egg, Parmesan, garlic and salt. Shape into 16 meatballs and place on a lined tray.",
+      "Bake 18–22 minutes until the centers reach 165°F. Meanwhile cook spaghetti according to package directions and warm marinara.",
+      "Add meatballs to sauce, toss with basil and serve over pasta."
+    ],
+    "allergens": ["eggs", "milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "moroccan-spiced-carrot-and-lentil-stew": {
+    "title": "Moroccan-Spiced Carrot and Lentil Stew",
+    "description": "Moroccan-Spiced Carrot and Lentil Stew: a home recipe with 1 tbsp olive oil, 1 onion, diced, 3 carrots, sliced.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 30,
+    "ingredients": [
+      { "amount": "1", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "1", "unit": "", "item": "onion, diced" },
+      { "amount": "3", "unit": "", "item": "carrots, sliced" },
+      { "amount": "2", "unit": "", "item": "garlic cloves, minced" },
+      { "amount": "1", "unit": "tsp", "item": "cumin" },
+      { "amount": "1", "unit": "tsp", "item": "ground coriander" },
+      { "amount": "1", "unit": "cup", "item": "dried red lentils, rinsed" },
+      { "amount": "1", "unit": "can", "item": "(14.5 oz) diced tomatoes" },
+      { "amount": "4", "unit": "cups", "item": "vegetable broth" },
+      { "amount": "1", "unit": "tbsp", "item": "lemon juice" },
+      { "amount": "", "unit": "", "item": "salt and pepper" }
+    ],
+    "steps": [
+      "Cook onion and carrots in oil for 5 minutes. Add garlic, cumin and coriander and stir 30 seconds.",
+      "Add lentils, tomatoes and broth; simmer 20–25 minutes until lentils and carrots are tender. Add water if needed.",
+      "Stir in lemon juice and season to taste."
+    ],
+    "allergens": [],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "teriyaki-salmon-rice-bowls": {
+    "title": "Teriyaki Salmon Rice Bowls",
+    "description": "Teriyaki Salmon Rice Bowls: a home recipe with 4 salmon fillets (about 5 oz each), 3 tbsp soy sauce, 1 tbsp mirin.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 15,
+    "ingredients": [
+      { "amount": "4", "unit": "", "item": "salmon fillets (about 5 oz each)" },
+      { "amount": "3", "unit": "tbsp", "item": "soy sauce" },
+      { "amount": "1", "unit": "tbsp", "item": "mirin" },
+      { "amount": "1", "unit": "tbsp", "item": "brown sugar" },
+      { "amount": "1", "unit": "tsp", "item": "grated ginger" },
+      { "amount": "3", "unit": "cups", "item": "cooked rice" },
+      { "amount": "1", "unit": "", "item": "cucumber, sliced" },
+      { "amount": "1", "unit": "cup", "item": "shelled cooked edamame" },
+      { "amount": "1", "unit": "tsp", "item": "sesame seeds" }
+    ],
+    "steps": [
+      "Heat oven to 425°F. Mix soy sauce, mirin, sugar and ginger. Brush half over salmon on a lined tray; reserve the rest separately.",
+      "Bake 10–14 minutes until salmon reaches 145°F. Simmer the reserved sauce in a small pan for 2 minutes.",
+      "Serve salmon over rice with cucumber and edamame. Spoon on sauce and sprinkle with sesame."
+    ],
+    "allergens": ["fish", "sesame", "soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "chicken-and-corn-enchilada-skillet": {
+    "title": "Chicken and Corn Enchilada Skillet",
+    "description": "Chicken and Corn Enchilada Skillet: a home recipe with 2 cups cooked shredded chicken, 1 tbsp oil, 1 bell pepper, diced.",
+    "servings": 4,
+    "prep_minutes": 10,
+    "cook_minutes": 20,
+    "ingredients": [
+      { "amount": "2", "unit": "cups", "item": "cooked shredded chicken" },
+      { "amount": "1", "unit": "tbsp", "item": "oil" },
+      { "amount": "1", "unit": "", "item": "bell pepper, diced" },
+      { "amount": "1", "unit": "cup", "item": "corn" },
+      { "amount": "1", "unit": "can", "item": "(15 oz) black beans, drained" },
+      { "amount": "1 1/2", "unit": "cups", "item": "red enchilada sauce" },
+      { "amount": "6", "unit": "", "item": "small corn tortillas, cut into strips" },
+      { "amount": "1", "unit": "cup", "item": "shredded Monterey Jack" },
+      { "amount": "2", "unit": "tbsp", "item": "cilantro" }
+    ],
+    "steps": [
+      "Cook pepper in oil in an oven-safe skillet for 4 minutes. Add corn, beans, chicken and sauce; simmer 5 minutes until hot.",
+      "Fold in tortilla strips. Top with cheese, cover and cook on low 3–5 minutes until melted and the filling is heated through to 165°F.",
+      "Scatter cilantro over the top."
+    ],
+    "allergens": ["milk"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "creamy-sun-dried-tomato-gnocchi": {
+    "title": "Creamy Sun-Dried Tomato Gnocchi",
+    "description": "Creamy Sun-Dried Tomato Gnocchi: a home recipe with 1 lb shelf-stable potato gnocchi, 1 tbsp olive oil, 2 garlic cloves, minced.",
+    "servings": 4,
+    "prep_minutes": 10,
+    "cook_minutes": 20,
+    "ingredients": [
+      { "amount": "1", "unit": "lb", "item": "shelf-stable potato gnocchi" },
+      { "amount": "1", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "2", "unit": "", "item": "garlic cloves, minced" },
+      { "amount": "1/2", "unit": "cup", "item": "drained sun-dried tomatoes, chopped" },
+      { "amount": "3/4", "unit": "cup", "item": "heavy cream" },
+      { "amount": "1/2", "unit": "cup", "item": "vegetable broth" },
+      { "amount": "3", "unit": "cups", "item": "baby spinach" },
+      { "amount": "1/4", "unit": "cup", "item": "grated Parmesan" },
+      { "amount": "", "unit": "", "item": "salt and pepper" }
+    ],
+    "steps": [
+      "Cook gnocchi according to package directions and drain.",
+      "Cook garlic and sun-dried tomatoes in oil for 1 minute. Add cream and broth; simmer 3 minutes.",
+      "Stir in gnocchi and spinach until spinach wilts. Add Parmesan and season to taste."
+    ],
+    "allergens": ["eggs", "milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
   "blackberry-sage-bourbon-smash": {
     "title": "Blackberry Sage Bourbon Smash",
     "description": "Blackberry Sage Bourbon Smash: a home recipe with 2 oz bourbon, ¾ oz lemon juice, ½ oz simple syrup.",
@@ -16773,6 +16920,147 @@
       "garnish": "",
       "alcoholic": true,
       "non_alcoholic_version": "use an alcohol-free gin alternative."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "apple-cinnamon-whiskey-highball": {
+    "title": "Apple Cinnamon Whiskey Highball",
+    "description": "Apple Cinnamon Whiskey Highball: a home recipe with 1½ oz rye whiskey, 2 oz apple cider, ½ oz lemon juice.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "rye whiskey" },
+      { "amount": "2", "unit": "oz", "item": "apple cider" },
+      { "amount": "1/2", "unit": "oz", "item": "lemon juice" },
+      { "amount": "2", "unit": "oz", "item": "soda water" },
+      { "amount": "", "unit": "", "item": "a pinch of cinnamon" },
+      { "amount": "", "unit": "", "item": "ice" },
+      { "amount": "", "unit": "", "item": "apple slice" }
+    ],
+    "steps": ["Build whiskey, cider, lemon and cinnamon in a tall ice-filled glass.", "Top with soda, stir gently and garnish with apple."],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "apple slice",
+      "alcoholic": true,
+      "non_alcoholic_version": "replace whiskey with alcohol-free whiskey alternative or more cider."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "blood-orange-tequila-sparkler": {
+    "title": "Blood Orange Tequila Sparkler",
+    "description": "Blood Orange Tequila Sparkler: a home recipe with 1½ oz blanco tequila, 2 oz blood orange juice, ½ oz lime juice.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "blanco tequila" },
+      { "amount": "2", "unit": "oz", "item": "blood orange juice" },
+      { "amount": "1/2", "unit": "oz", "item": "lime juice" },
+      { "amount": "1/4", "unit": "oz", "item": "agave syrup" },
+      { "amount": "2", "unit": "oz", "item": "soda water" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": ["Shake tequila, citrus and agave with ice.", "Strain into an ice-filled glass and top with soda."],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "",
+      "alcoholic": true,
+      "non_alcoholic_version": "use alcohol-free tequila alternative."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "watermelon-mint-rum-cooler": {
+    "title": "Watermelon Mint Rum Cooler",
+    "description": "Watermelon Mint Rum Cooler: a home recipe with 1½ oz white rum, 3 oz strained fresh watermelon juice, ½ oz lime juice.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "white rum" },
+      { "amount": "3", "unit": "oz", "item": "strained fresh watermelon juice" },
+      { "amount": "1/2", "unit": "oz", "item": "lime juice" },
+      { "amount": "4", "unit": "", "item": "mint leaves" },
+      { "amount": "1", "unit": "oz", "item": "soda water" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Gently press mint in a shaker.",
+      "Add rum, watermelon, lime and ice; shake and strain into a tall glass over ice.",
+      "Top with soda."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "",
+      "alcoholic": true,
+      "non_alcoholic_version": "omit rum and add 1½ oz soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "cranberry-orange-bourbon-sour": {
+    "title": "Cranberry Orange Bourbon Sour",
+    "description": "Cranberry Orange Bourbon Sour: a home recipe with 1½ oz bourbon, 1 oz unsweetened cranberry juice, ½ oz orange juice.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "bourbon" },
+      { "amount": "1", "unit": "oz", "item": "unsweetened cranberry juice" },
+      { "amount": "1/2", "unit": "oz", "item": "orange juice" },
+      { "amount": "1/2", "unit": "oz", "item": "lemon juice" },
+      { "amount": "1/2", "unit": "oz", "item": "simple syrup" },
+      { "amount": "", "unit": "", "item": "ice" },
+      { "amount": "", "unit": "", "item": "orange peel" }
+    ],
+    "steps": ["Shake all liquid ingredients with ice and strain over fresh ice in a rocks glass.", "Garnish with orange peel."],
+    "allergens": [],
+    "cocktail": {
+      "glass": "rocks glass",
+      "garnish": "orange peel",
+      "alcoholic": true,
+      "non_alcoholic_version": "use alcohol-free whiskey alternative."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "coconut-pineapple-lime-cooler": {
+    "title": "Coconut Pineapple Lime Cooler",
+    "description": "Coconut Pineapple Lime Cooler: a home recipe with 1½ oz coconut rum, 2 oz pineapple juice, ½ oz lime juice.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "coconut rum" },
+      { "amount": "2", "unit": "oz", "item": "pineapple juice" },
+      { "amount": "1/2", "unit": "oz", "item": "lime juice" },
+      { "amount": "1", "unit": "oz", "item": "unsweetened coconut water" },
+      { "amount": "1", "unit": "oz", "item": "soda water" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": ["Shake rum, pineapple, lime and coconut water with ice.", "Strain into a tall glass over fresh ice; top with soda."],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "",
+      "alcoholic": true,
+      "non_alcoholic_version": "replace rum with 1½ oz coconut water."
     },
     "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
     "tips": [],

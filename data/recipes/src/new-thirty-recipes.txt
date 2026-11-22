@@ -138,6 +138,78 @@
 # Cook penne in salted water until al dente; reserve 1 cup pasta water, then drain.
 # Melt butter in a large skillet and crisp sage briefly. Toss in squash, pasta, Parmesan and enough pasta water to make a light sauce. Season with pepper.
 
+@ tomato-basil-baked-chicken-meatballs | Tomato-Basil Baked Chicken Meatballs | 4 | 20 | 25 | wheat, milk, eggs | Tomato-Basil Baked Chicken Meatballs: a home recipe with 1 lb ground chicken, ½ cup breadcrumbs, 1 egg.
+- 1 | lb | ground chicken
+- 1/2 | cup | breadcrumbs
+- 1 |  | egg
+- 1/4 | cup | grated Parmesan
+- 1 |  | garlic clove, minced
+- 1/2 | tsp | salt
+- 2 | cups | marinara sauce
+- 1/4 | cup | torn basil
+- 12 | oz | spaghetti
+# Heat oven to 400°F. Gently combine chicken, breadcrumbs, egg, Parmesan, garlic and salt. Shape into 16 meatballs and place on a lined tray.
+# Bake 18–22 minutes until the centers reach 165°F. Meanwhile cook spaghetti according to package directions and warm marinara.
+# Add meatballs to sauce, toss with basil and serve over pasta.
+
+@ moroccan-spiced-carrot-and-lentil-stew | Moroccan-Spiced Carrot and Lentil Stew | 4 | 15 | 30 | - | Moroccan-Spiced Carrot and Lentil Stew: a home recipe with 1 tbsp olive oil, 1 onion, diced, 3 carrots, sliced.
+- 1 | tbsp | olive oil
+- 1 |  | onion, diced
+- 3 |  | carrots, sliced
+- 2 |  | garlic cloves, minced
+- 1 | tsp | cumin
+- 1 | tsp | ground coriander
+- 1 | cup | dried red lentils, rinsed
+- 1 | can | (14.5 oz) diced tomatoes
+- 4 | cups | vegetable broth
+- 1 | tbsp | lemon juice
+- | | salt and pepper
+# Cook onion and carrots in oil for 5 minutes. Add garlic, cumin and coriander and stir 30 seconds.
+# Add lentils, tomatoes and broth; simmer 20–25 minutes until lentils and carrots are tender. Add water if needed.
+# Stir in lemon juice and season to taste.
+
+@ teriyaki-salmon-rice-bowls | Teriyaki Salmon Rice Bowls | 4 | 15 | 15 | fish, soy, wheat, sesame | Teriyaki Salmon Rice Bowls: a home recipe with 4 salmon fillets (about 5 oz each), 3 tbsp soy sauce, 1 tbsp mirin.
+- 4 |  | salmon fillets (about 5 oz each)
+- 3 | tbsp | soy sauce
+- 1 | tbsp | mirin
+- 1 | tbsp | brown sugar
+- 1 | tsp | grated ginger
+- 3 | cups | cooked rice
+- 1 |  | cucumber, sliced
+- 1 | cup | shelled cooked edamame
+- 1 | tsp | sesame seeds
+# Heat oven to 425°F. Mix soy sauce, mirin, sugar and ginger. Brush half over salmon on a lined tray; reserve the rest separately.
+# Bake 10–14 minutes until salmon reaches 145°F. Simmer the reserved sauce in a small pan for 2 minutes.
+# Serve salmon over rice with cucumber and edamame. Spoon on sauce and sprinkle with sesame.
+
+@ chicken-and-corn-enchilada-skillet | Chicken and Corn Enchilada Skillet | 4 | 10 | 20 | milk | Chicken and Corn Enchilada Skillet: a home recipe with 2 cups cooked shredded chicken, 1 tbsp oil, 1 bell pepper, diced.
+- 2 | cups | cooked shredded chicken
+- 1 | tbsp | oil
+- 1 |  | bell pepper, diced
+- 1 | cup | corn
+- 1 | can | (15 oz) black beans, drained
+- 1 1/2 | cups | red enchilada sauce
+- 6 |  | small corn tortillas, cut into strips
+- 1 | cup | shredded Monterey Jack
+- 2 | tbsp | cilantro
+# Cook pepper in oil in an oven-safe skillet for 4 minutes. Add corn, beans, chicken and sauce; simmer 5 minutes until hot.
+# Fold in tortilla strips. Top with cheese, cover and cook on low 3–5 minutes until melted and the filling is heated through to 165°F.
+# Scatter cilantro over the top.
+
+@ creamy-sun-dried-tomato-gnocchi | Creamy Sun-Dried Tomato Gnocchi | 4 | 10 | 20 | wheat, milk, eggs | Creamy Sun-Dried Tomato Gnocchi: a home recipe with 1 lb shelf-stable potato gnocchi, 1 tbsp olive oil, 2 garlic cloves, minced.
+- 1 | lb | shelf-stable potato gnocchi
+- 1 | tbsp | olive oil
+- 2 |  | garlic cloves, minced
+- 1/2 | cup | drained sun-dried tomatoes, chopped
+- 3/4 | cup | heavy cream
+- 1/2 | cup | vegetable broth
+- 3 | cups | baby spinach
+- 1/4 | cup | grated Parmesan
+- | | salt and pepper
+# Cook gnocchi according to package directions and drain.
+# Cook garlic and sun-dried tomatoes in oil for 1 minute. Add cream and broth; simmer 3 minutes.
+# Stir in gnocchi and spinach until spinach wilts. Add Parmesan and season to taste.
+
 @ blackberry-sage-bourbon-smash | Blackberry Sage Bourbon Smash | 1 | 5 | 0 | - | Blackberry Sage Bourbon Smash: a home recipe with 2 oz bourbon, ¾ oz lemon juice, ½ oz simple syrup.
 - 2 | oz | bourbon
 - 3/4 | oz | lemon juice
@@ -254,3 +326,61 @@ G highball glass | - | y | omit rum and add 1½ oz chilled hibiscus tea.
 # Muddle blueberries with syrup.
 # Shake with gin, lemon and ice; fine-strain into a tall glass of ice and top with soda.
 G highball glass | - | y | use an alcohol-free gin alternative.
+
+@ apple-cinnamon-whiskey-highball | Apple Cinnamon Whiskey Highball | 1 | 5 | 0 | - | Apple Cinnamon Whiskey Highball: a home recipe with 1½ oz rye whiskey, 2 oz apple cider, ½ oz lemon juice.
+- 1 1/2 | oz | rye whiskey
+- 2 | oz | apple cider
+- 1/2 | oz | lemon juice
+- 2 | oz | soda water
+- | | a pinch of cinnamon
+- | | ice
+- | | apple slice
+# Build whiskey, cider, lemon and cinnamon in a tall ice-filled glass.
+# Top with soda, stir gently and garnish with apple.
+G highball glass | apple slice | y | replace whiskey with alcohol-free whiskey alternative or more cider.
+
+@ blood-orange-tequila-sparkler | Blood Orange Tequila Sparkler | 1 | 5 | 0 | - | Blood Orange Tequila Sparkler: a home recipe with 1½ oz blanco tequila, 2 oz blood orange juice, ½ oz lime juice.
+- 1 1/2 | oz | blanco tequila
+- 2 | oz | blood orange juice
+- 1/2 | oz | lime juice
+- 1/4 | oz | agave syrup
+- 2 | oz | soda water
+- | | ice
+# Shake tequila, citrus and agave with ice.
+# Strain into an ice-filled glass and top with soda.
+G highball glass | - | y | use alcohol-free tequila alternative.
+
+@ watermelon-mint-rum-cooler | Watermelon Mint Rum Cooler | 1 | 5 | 0 | - | Watermelon Mint Rum Cooler: a home recipe with 1½ oz white rum, 3 oz strained fresh watermelon juice, ½ oz lime juice.
+- 1 1/2 | oz | white rum
+- 3 | oz | strained fresh watermelon juice
+- 1/2 | oz | lime juice
+- 4 |  | mint leaves
+- 1 | oz | soda water
+- | | ice
+# Gently press mint in a shaker.
+# Add rum, watermelon, lime and ice; shake and strain into a tall glass over ice.
+# Top with soda.
+G highball glass | - | y | omit rum and add 1½ oz soda water.
+
+@ cranberry-orange-bourbon-sour | Cranberry Orange Bourbon Sour | 1 | 5 | 0 | - | Cranberry Orange Bourbon Sour: a home recipe with 1½ oz bourbon, 1 oz unsweetened cranberry juice, ½ oz orange juice.
+- 1 1/2 | oz | bourbon
+- 1 | oz | unsweetened cranberry juice
+- 1/2 | oz | orange juice
+- 1/2 | oz | lemon juice
+- 1/2 | oz | simple syrup
+- | | ice
+- | | orange peel
+# Shake all liquid ingredients with ice and strain over fresh ice in a rocks glass.
+# Garnish with orange peel.
+G rocks glass | orange peel | y | use alcohol-free whiskey alternative.
+
+@ coconut-pineapple-lime-cooler | Coconut Pineapple Lime Cooler | 1 | 5 | 0 | - | Coconut Pineapple Lime Cooler: a home recipe with 1½ oz coconut rum, 2 oz pineapple juice, ½ oz lime juice.
+- 1 1/2 | oz | coconut rum
+- 2 | oz | pineapple juice
+- 1/2 | oz | lime juice
+- 1 | oz | unsweetened coconut water
+- 1 | oz | soda water
+- | | ice
+# Shake rum, pineapple, lime and coconut water with ice.
+# Strain into a tall glass over fresh ice; top with soda.
+G highball glass | - | y | replace rum with 1½ oz coconut water.
