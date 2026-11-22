@@ -18,6 +18,7 @@ import { subscriptions } from "./paywall/subscriptions";
 export type CurrentRecipe =
   | { status: "loading"; photo?: number }
   | { status: "problem"; message: string; source?: "photo" | "wall" }
+  | { status: "photo-choice"; kind: Kind; guesses: Guess[]; suggested: Recipe; matches: { id: string; name: string }[] }
   | {
       status: "ready";
       kind: Kind;
