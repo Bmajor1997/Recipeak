@@ -17066,5 +17066,306 @@
     "tips": [],
     "make_ahead": "",
     "variations": []
+  },
+  "honey-mustard-chicken-with-roasted-carrots": {
+    "title": "Honey Mustard Chicken with Roasted Carrots",
+    "description": "Golden chicken thighs roasted with sweet carrots and a tangy honey-mustard glaze.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 45,
+    "ingredients": [
+      { "amount": "4", "unit": "", "item": "bone-in, skin-on chicken thighs" },
+      { "amount": "1 1/2", "unit": "lb", "item": "carrots, peeled and cut into 2-inch pieces" },
+      { "amount": "1 1/2", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "2", "unit": "tbsp", "item": "Dijon mustard" },
+      { "amount": "1 1/2", "unit": "tbsp", "item": "honey" },
+      { "amount": "1", "unit": "", "item": "garlic clove, minced" },
+      { "amount": "1/2", "unit": "tsp", "item": "dried thyme" },
+      { "amount": "3/4", "unit": "tsp", "item": "salt" },
+      { "amount": "1/4", "unit": "tsp", "item": "black pepper" }
+    ],
+    "steps": [
+      "Heat oven to 425°F. Toss carrots with oil, half the salt and pepper; spread on a rimmed baking sheet.",
+      "Mix mustard, honey, garlic, thyme and remaining salt. Pat chicken dry, put skin-side up among carrots and brush with the mixture.",
+      "Roast 35–45 minutes, turning carrots halfway, until carrots are tender and chicken reaches 165°F. Rest chicken 5 minutes before serving."
+    ],
+    "allergens": [],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "peanut-sesame-noodles-with-cucumber": {
+    "title": "Peanut Sesame Noodles with Cucumber",
+    "description": "Tender noodles coated in a creamy peanut-sesame sauce, topped with crisp cucumber and scallions.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 10,
+    "ingredients": [
+      { "amount": "12", "unit": "oz", "item": "wheat noodles" },
+      { "amount": "1/3", "unit": "cup", "item": "smooth peanut butter" },
+      { "amount": "3", "unit": "tbsp", "item": "soy sauce" },
+      { "amount": "1", "unit": "tbsp", "item": "rice vinegar" },
+      { "amount": "1", "unit": "tbsp", "item": "toasted sesame oil" },
+      { "amount": "1", "unit": "tbsp", "item": "maple syrup" },
+      { "amount": "1", "unit": "tsp", "item": "grated ginger" },
+      { "amount": "3–5", "unit": "tbsp", "item": "warm water" },
+      { "amount": "1", "unit": "", "item": "cucumber, cut into thin strips" },
+      { "amount": "1", "unit": "tbsp", "item": "sesame seeds" },
+      { "amount": "2", "unit": "", "item": "scallions, sliced" }
+    ],
+    "steps": [
+      "Cook noodles according to package directions, drain and rinse briefly under cool water.",
+      "Whisk peanut butter, soy sauce, vinegar, sesame oil, maple syrup and ginger with enough warm water to make a pourable sauce.",
+      "Toss noodles with sauce; top with cucumber, sesame seeds and scallions."
+    ],
+    "allergens": ["peanuts", "sesame", "soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "cajun-shrimp-and-corn-rice-skillet": {
+    "title": "Cajun Shrimp and Corn Rice Skillet",
+    "description": "Cajun-spiced shrimp tossed with corn, scallions and warm rice in one skillet.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 20,
+    "ingredients": [
+      { "amount": "1", "unit": "lb", "item": "raw shrimp, peeled and deveined" },
+      { "amount": "2", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "2", "unit": "tsp", "item": "salt-free Cajun seasoning" },
+      { "amount": "1/2", "unit": "tsp", "item": "salt, divided" },
+      { "amount": "1 1/2", "unit": "cups", "item": "corn kernels" },
+      { "amount": "3", "unit": "cups", "item": "cooked, chilled rice" },
+      { "amount": "2", "unit": "", "item": "scallions, sliced" },
+      { "amount": "1", "unit": "tbsp", "item": "lemon juice" }
+    ],
+    "steps": [
+      "Toss shrimp with half the oil, Cajun seasoning and half the salt. Cook in a large skillet over medium-high heat for 2–3 minutes per side, until opaque and cooked through. Transfer to a plate.",
+      "Add remaining oil, corn and rice to the skillet; cook, stirring, 4–5 minutes until piping hot. Season with remaining salt.",
+      "Return shrimp to the pan and warm through. Finish with scallions and lemon juice."
+    ],
+    "allergens": ["shellfish"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "miso-glazed-eggplant-rice-bowls": {
+    "title": "Miso-Glazed Eggplant Rice Bowls",
+    "description": "Roasted eggplant brushed with a savory-sweet miso glaze, served with rice and scallions.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 30,
+    "ingredients": [
+      { "amount": "2", "unit": "", "item": "medium eggplants, halved lengthwise" },
+      { "amount": "2", "unit": "tbsp", "item": "neutral oil" },
+      { "amount": "2", "unit": "tbsp", "item": "white miso" },
+      { "amount": "1", "unit": "tbsp", "item": "maple syrup" },
+      { "amount": "1", "unit": "tbsp", "item": "rice vinegar" },
+      { "amount": "1", "unit": "tbsp", "item": "water" },
+      { "amount": "3", "unit": "cups", "item": "cooked rice" },
+      { "amount": "2", "unit": "", "item": "scallions, sliced" }
+    ],
+    "steps": [
+      "Heat oven to 425°F. Score eggplant flesh in a shallow crosshatch, brush with oil and roast cut-side up for 25–30 minutes until soft.",
+      "Stir miso, maple syrup, vinegar and water together. Brush over eggplant and return to the oven for 3–5 minutes, watching so the glaze does not burn.",
+      "Serve eggplant over hot rice, topped with scallions."
+    ],
+    "allergens": ["soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "spinach-ricotta-stuffed-portobello-mushrooms": {
+    "title": "Spinach Ricotta Stuffed Portobello Mushrooms",
+    "description": "Roasted portobello caps filled with creamy ricotta, spinach and Parmesan.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "ingredients": [
+      { "amount": "4", "unit": "", "item": "large portobello caps, stems removed" },
+      { "amount": "1", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "4", "unit": "cups", "item": "baby spinach" },
+      { "amount": "1", "unit": "", "item": "garlic clove, minced" },
+      { "amount": "1", "unit": "cup", "item": "ricotta" },
+      { "amount": "1/4", "unit": "cup", "item": "grated Parmesan" },
+      { "amount": "1/2", "unit": "tsp", "item": "salt" },
+      { "amount": "1/4", "unit": "tsp", "item": "pepper" }
+    ],
+    "steps": [
+      "Heat oven to 400°F. Brush mushroom caps with half the oil, place gill-side up on a lined tray and roast 8 minutes. Pour off any pooled liquid.",
+      "Wilt spinach with garlic in remaining oil, then squeeze out excess liquid. Mix with ricotta, half the Parmesan, salt and pepper.",
+      "Fill caps and sprinkle with remaining Parmesan. Bake 12–15 minutes until hot and lightly browned."
+    ],
+    "allergens": ["milk"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "pomegranate-rosemary-gin-fizz": {
+    "title": "Pomegranate Rosemary Gin Fizz",
+    "description": "Gin, pomegranate and lemon lengthened with soda and finished with rosemary.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "gin" },
+      { "amount": "2", "unit": "oz", "item": "unsweetened pomegranate juice" },
+      { "amount": "1/2", "unit": "oz", "item": "lemon juice" },
+      { "amount": "1/2", "unit": "oz", "item": "simple syrup" },
+      { "amount": "2", "unit": "oz", "item": "soda water" },
+      { "amount": "", "unit": "", "item": "rosemary sprig" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Shake gin, pomegranate, lemon and syrup with ice.",
+      "Strain into an ice-filled tall glass, top with soda and garnish with rosemary."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "rosemary sprig",
+      "alcoholic": true,
+      "non_alcoholic_version": "Replace the spirit with an alcohol-free alternative or additional soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "coconut-lemongrass-rum-cooler": {
+    "title": "Coconut Lemongrass Rum Cooler",
+    "description": "White rum, coconut water, lime and lemongrass topped with sparkling soda.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "white rum" },
+      { "amount": "2", "unit": "oz", "item": "coconut water" },
+      { "amount": "1/2", "unit": "oz", "item": "lime juice" },
+      { "amount": "1/2", "unit": "oz", "item": "lemongrass syrup" },
+      { "amount": "2", "unit": "oz", "item": "soda water" },
+      { "amount": "", "unit": "", "item": "ice" },
+      { "amount": "", "unit": "", "item": "lemongrass stalk for garnish" }
+    ],
+    "steps": [
+      "Shake rum, coconut water, lime and syrup with ice.",
+      "Strain into a tall glass over fresh ice, top with soda and garnish.",
+      "For syrup, simmer ½ cup water, ½ cup sugar and one bruised lemongrass stalk for 5 minutes; cool and strain."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "lemongrass stalk",
+      "alcoholic": true,
+      "non_alcoholic_version": "Replace the spirit with an alcohol-free alternative or additional soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "blackberry-lavender-vodka-lemonade": {
+    "title": "Blackberry Lavender Vodka Lemonade",
+    "description": "Vodka lemonade shaken with blackberries and floral lavender syrup.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "vodka" },
+      { "amount": "4", "unit": "", "item": "blackberries" },
+      { "amount": "3/4", "unit": "oz", "item": "lemon juice" },
+      { "amount": "1/2", "unit": "oz", "item": "lavender syrup" },
+      { "amount": "2", "unit": "oz", "item": "soda water" },
+      { "amount": "", "unit": "", "item": "ice" },
+      { "amount": "", "unit": "", "item": "blackberries for garnish" }
+    ],
+    "steps": [
+      "Muddle blackberries with syrup.",
+      "Shake with vodka, lemon and ice; fine-strain into a tall ice-filled glass, top with soda and garnish.",
+      "For syrup, steep ½ tsp culinary lavender in ½ cup hot simple syrup for 5 minutes; strain and cool."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "blackberries",
+      "alcoholic": true,
+      "non_alcoholic_version": "Replace the spirit with an alcohol-free alternative or additional soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "pineapple-jalapeno-tequila-highball": {
+    "title": "Pineapple Jalapeño Tequila Highball",
+    "description": "A sparkling tequila highball with pineapple, lime and a touch of jalapeño.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "blanco tequila" },
+      { "amount": "2", "unit": "oz", "item": "pineapple juice" },
+      { "amount": "1/2", "unit": "oz", "item": "lime juice" },
+      { "amount": "1–2", "unit": "", "item": "thin jalapeño slices" },
+      { "amount": "2", "unit": "oz", "item": "soda water" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Gently muddle jalapeño in a shaker.",
+      "Add tequila, pineapple, lime and ice; shake and strain into a tall glass over ice.",
+      "Top with soda and garnish with a fresh jalapeño slice."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "jalapeño slice",
+      "alcoholic": true,
+      "non_alcoholic_version": "Replace the spirit with an alcohol-free alternative or additional soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "raspberry-ginger-whiskey-smash": {
+    "title": "Raspberry Ginger Whiskey Smash",
+    "description": "A bright whiskey smash with raspberries, fresh lemon and ginger.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "whiskey" },
+      { "amount": "5", "unit": "", "item": "raspberries" },
+      { "amount": "3/4", "unit": "oz", "item": "lemon juice" },
+      { "amount": "1/2", "unit": "oz", "item": "ginger syrup" },
+      { "amount": "", "unit": "", "item": "ice" },
+      { "amount": "", "unit": "", "item": "raspberry garnish" }
+    ],
+    "steps": [
+      "Muddle raspberries with ginger syrup.",
+      "Shake with whiskey, lemon and ice; fine-strain into a rocks glass over fresh ice.",
+      "Garnish with a raspberry."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "rocks glass",
+      "garnish": "raspberry",
+      "alcoholic": true,
+      "non_alcoholic_version": "Replace the spirit with an alcohol-free alternative or additional soda water."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
   }
 }
