@@ -1368,6 +1368,68 @@
    ]
   }
  },
+ "apple-cinnamon-whiskey-highball": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Apple Cinnamon Whiskey Highball",
+   "description": "Rye whiskey with apple cider, lemon and a pinch of cinnamon, topped with soda.",
+   "servings": 1,
+   "prep_minutes": 5,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "rye whiskey"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "apple cider"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "lemon juice"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "soda water"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "a pinch of cinnamon"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "apple slice"
+    }
+   ],
+   "steps": [
+    "Build whiskey, cider, lemon and cinnamon in a tall ice-filled glass.",
+    "Top with soda, stir gently and garnish with apple."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "apple slice",
+    "alcoholic": true,
+    "non_alcoholic_version": "replace whiskey with alcohol-free whiskey alternative or more cider."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
  "apple-pie": {
   "kind": "meal",
   "recipe": {
@@ -1962,6 +2024,77 @@
     "non_alcoholic_version": "Pineapple, orange, grenadine and a splash of coconut water."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "baked-lemon-dill-cod": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Baked Lemon-Dill Cod",
+   "description": "Tender cod baked with lemon, dill and garlic butter, alongside roasted green beans. Light and on the table in under 30 minutes.",
+   "servings": 4,
+   "prep_minutes": 10,
+   "cook_minutes": 18,
+   "ingredients": [
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "cod fillets (about 6 oz each)"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "melted butter"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lemon, zested and juiced"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "chopped dill"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "garlic clove, minced"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "pepper"
+    },
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "green beans"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "olive oil"
+    }
+   ],
+   "steps": [
+    "Heat oven to 425°F. Toss green beans with oil and half the salt on a sheet pan; roast 5 minutes.",
+    "Mix butter, lemon zest, dill and garlic. Add cod to pan, season with remaining salt and pepper, and spoon butter mixture over it.",
+    "Bake 12–15 minutes until fish flakes and reaches 145°F. Finish with lemon juice."
+   ],
+   "allergens": [
+    "fish",
+    "milk"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
    "tips": [],
    "make_ahead": "",
    "variations": []
@@ -4555,6 +4688,69 @@
    "variations": []
   }
  },
+ "blackberry-sage-bourbon-smash": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Blackberry Sage Bourbon Smash",
+   "description": "Bourbon shaken with muddled blackberries, sage and lemon, served over ice. Jammy, herbal and bright.",
+   "servings": 1,
+   "prep_minutes": 5,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "bourbon"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "lemon juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "blackberries"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "sage leaves"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "blackberry and sage for garnish"
+    }
+   ],
+   "steps": [
+    "Muddle berries and sage gently with syrup in a shaker.",
+    "Add bourbon, lemon and ice; shake and double-strain over fresh ice in a rocks glass.",
+    "Garnish."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "rocks glass",
+    "garnish": "blackberry and sage",
+    "alcoholic": true,
+    "non_alcoholic_version": "use 2 oz alcohol-free whiskey alternative."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
  "blackthorn-cocktail": {
   "kind": "cocktail",
   "recipe": {
@@ -4637,6 +4833,63 @@
     "garnish": "orange peel",
     "alcoholic": true,
     "non_alcoholic_version": null
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "blood-orange-tequila-sparkler": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Blood Orange Tequila Sparkler",
+   "description": "Blanco tequila with blood orange, lime and a touch of agave, topped with soda.",
+   "servings": 1,
+   "prep_minutes": 5,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "blanco tequila"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "blood orange juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "lime juice"
+    },
+    {
+     "amount": "1/4",
+     "unit": "oz",
+     "item": "agave syrup"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "soda water"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Shake tequila, citrus and agave with ice.",
+    "Strain into an ice-filled glass and top with soda."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "",
+    "alcoholic": true,
+    "non_alcoholic_version": "use alcohol-free tequila alternative."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -5034,6 +5287,63 @@
   "variants": {
    "vegetarian": "same",
    "vegan": "same"
+  }
+ },
+ "blueberry-lemon-gin-collins": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Blueberry Lemon Gin Collins",
+   "description": "A Tom Collins with muddled blueberries: gin, lemon and soda in a tall glass.",
+   "servings": 1,
+   "prep_minutes": 5,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "gin"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "lemon juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "8",
+     "unit": "",
+     "item": "blueberries"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "soda water"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Muddle blueberries with syrup.",
+    "Shake with gin, lemon and ice; fine-strain into a tall glass of ice and top with soda."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "",
+    "alcoholic": true,
+    "non_alcoholic_version": "use an alcohol-free gin alternative."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
   }
  },
  "bobby-burns": {
@@ -6420,6 +6730,72 @@
    ],
    "allergens": [
     "eggs",
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "butternut-squash-and-sage-pasta": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Butternut Squash and Sage Pasta",
+   "description": "Caramelized roasted butternut squash tossed with penne, crispy sage brown butter and Parmesan. Autumn in a bowl.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 30,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "lb",
+     "item": "peeled butternut squash, cubed"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "12",
+     "unit": "oz",
+     "item": "penne"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "butter"
+    },
+    {
+     "amount": "8",
+     "unit": "",
+     "item": "sage leaves"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "grated Parmesan"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "black pepper"
+    }
+   ],
+   "steps": [
+    "Heat oven to 425°F. Toss squash with oil and salt; roast 25–30 minutes until tender and browned at the edges.",
+    "Cook penne in salted water until al dente; reserve 1 cup pasta water, then drain.",
+    "Melt butter in a large skillet and crisp sage briefly. Toss in squash, pasta, Parmesan and enough pasta water to make a light sauce. Season with pepper."
+   ],
+   "allergens": [
     "milk",
     "wheat"
    ],
@@ -8906,6 +9282,76 @@
    "allergens": [
     "milk",
     "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "chicken-and-corn-enchilada-skillet": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Chicken and Corn Enchilada Skillet",
+   "description": "All the flavor of enchiladas without the rolling: chicken, corn, black beans and tortilla strips simmered in red sauce under melted Monterey Jack.",
+   "servings": 4,
+   "prep_minutes": 10,
+   "cook_minutes": 20,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "cooked shredded chicken"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "oil"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "bell pepper, diced"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "corn"
+    },
+    {
+     "amount": "1",
+     "unit": "can",
+     "item": "(15 oz) black beans, drained"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "cups",
+     "item": "red enchilada sauce"
+    },
+    {
+     "amount": "6",
+     "unit": "",
+     "item": "small corn tortillas, cut into strips"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "shredded Monterey Jack"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "cilantro"
+    }
+   ],
+   "steps": [
+    "Cook pepper in oil in an oven-safe skillet for 4 minutes. Add corn, beans, chicken and sauce; simmer 5 minutes until hot.",
+    "Fold in tortilla strips. Top with cheese, cover and cook on low 3–5 minutes until melted and the filling is heated through to 165°F.",
+    "Scatter cilantro over the top."
+   ],
+   "allergens": [
+    "milk"
    ],
    "cocktail": null,
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -12008,6 +12454,133 @@
    "variations": []
   }
  },
+ "coconut-lime-shrimp-and-rice": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Coconut Lime Shrimp and Rice",
+   "description": "Garlicky seared shrimp with lime and cilantro over fragrant jasmine rice cooked in coconut milk.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 25,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "jasmine rice"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "canned coconut milk"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "water"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "peeled, deveined raw shrimp"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "neutral oil"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "garlic cloves, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lime, zested and juiced"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "chopped cilantro"
+    }
+   ],
+   "steps": [
+    "Rinse rice. Bring rice, coconut milk, water and salt to a boil; cover and cook on low 15 minutes. Rest covered 10 minutes, then fluff.",
+    "Heat oil in a skillet over medium-high. Cook shrimp 2–3 minutes per side until opaque and cooked through; add garlic for the final 30 seconds.",
+    "Toss shrimp with lime zest and juice. Serve over rice with cilantro."
+   ],
+   "allergens": [
+    "shellfish"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "coconut-pineapple-lime-cooler": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Coconut Pineapple Lime Cooler",
+   "description": "Coconut rum with pineapple, lime and coconut water, topped with soda. Tropical and light.",
+   "servings": 1,
+   "prep_minutes": 5,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "coconut rum"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "pineapple juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "lime juice"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "unsweetened coconut water"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "soda water"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Shake rum, pineapple, lime and coconut water with ice.",
+    "Strain into a tall glass over fresh ice; top with soda."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "",
+    "alcoholic": true,
+    "non_alcoholic_version": "replace rum with 1½ oz coconut water."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
  "coleslaw": {
   "kind": "meal",
   "recipe": {
@@ -13144,6 +13717,140 @@
    }
   }
  },
+ "cranberry-orange-bourbon-sour": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Cranberry Orange Bourbon Sour",
+   "description": "A bourbon sour with tart cranberry and orange, served over ice with an orange twist.",
+   "servings": 1,
+   "prep_minutes": 5,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "bourbon"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "unsweetened cranberry juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "orange juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "lemon juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "orange peel"
+    }
+   ],
+   "steps": [
+    "Shake all liquid ingredients with ice and strain over fresh ice in a rocks glass.",
+    "Garnish with orange peel."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "rocks glass",
+    "garnish": "orange peel",
+    "alcoholic": true,
+    "non_alcoholic_version": "use alcohol-free whiskey alternative."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "creamy-sun-dried-tomato-gnocchi": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Creamy Sun-Dried Tomato Gnocchi",
+   "description": "Pillowy gnocchi in a garlicky sun-dried tomato cream sauce with spinach and Parmesan. Ready in 20 minutes.",
+   "servings": 4,
+   "prep_minutes": 10,
+   "cook_minutes": 20,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "shelf-stable potato gnocchi"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "garlic cloves, minced"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "drained sun-dried tomatoes, chopped"
+    },
+    {
+     "amount": "3/4",
+     "unit": "cup",
+     "item": "heavy cream"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "vegetable broth"
+    },
+    {
+     "amount": "3",
+     "unit": "cups",
+     "item": "baby spinach"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "grated Parmesan"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "salt and pepper"
+    }
+   ],
+   "steps": [
+    "Cook gnocchi according to package directions and drain.",
+    "Cook garlic and sun-dried tomatoes in oil for 1 minute. Add cream and broth; simmer 3 minutes.",
+    "Stir in gnocchi and spinach until spinach wilts. Add Parmesan and season to taste."
+   ],
+   "allergens": [
+    "eggs",
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
  "creme-brulee": {
   "kind": "meal",
   "recipe": {
@@ -13407,6 +14114,64 @@
     "garnish": "lime wedge",
     "alcoholic": true,
     "non_alcoholic_version": "Cola with lime."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "cucumber-lime-vodka-cooler": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Cucumber Lime Vodka Cooler",
+   "description": "Vodka, lime and muddled cucumber topped with soda. Crisp and refreshing.",
+   "servings": 1,
+   "prep_minutes": 5,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "vodka"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "lime juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "cucumber slices"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "soda water"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Muddle cucumber and syrup in a shaker.",
+    "Add vodka, lime and ice; shake and strain into a tall ice-filled glass.",
+    "Top with soda and stir."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "cucumber",
+    "alcoholic": true,
+    "non_alcoholic_version": "replace vodka with cold water or alcohol-free vodka alternative."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -18493,6 +19258,165 @@
    ]
   }
  },
+ "ginger-soy-glazed-tofu-and-broccoli": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Ginger-Soy Glazed Tofu and Broccoli",
+   "description": "Golden pan-browned tofu and crisp-tender broccoli in a glossy ginger-soy glaze, served over rice.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 20,
+   "ingredients": [
+    {
+     "amount": "14",
+     "unit": "oz",
+     "item": "firm tofu, drained and cubed"
+    },
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "broccoli florets"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "neutral oil"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "soy sauce"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "maple syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "rice vinegar"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "grated ginger"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "cornstarch"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "water"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "toasted sesame oil"
+    },
+    {
+     "amount": "3",
+     "unit": "cups",
+     "item": "cooked rice"
+    }
+   ],
+   "steps": [
+    "Pat tofu dry. Brown in 1 tbsp oil in a large skillet, 8–10 minutes; transfer to a plate. Cook broccoli in remaining oil with a splash of water until crisp-tender, 5–6 minutes.",
+    "Mix soy sauce, maple syrup, vinegar, ginger, cornstarch and water. Return tofu to the skillet and add sauce; simmer 1–2 minutes until glossy.",
+    "Finish with sesame oil and serve over cooked rice."
+   ],
+   "allergens": [
+    "sesame",
+    "soy",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "gochujang-beef-lettuce-wraps": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Gochujang Beef Lettuce Wraps",
+   "description": "Sweet, spicy gochujang beef with ginger and garlic, spooned into butter lettuce cups with cool cucumber and scallions.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 15,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "ground beef"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "garlic cloves, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "grated ginger"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "tbsp",
+     "item": "gochujang"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "soy sauce"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "brown sugar"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "sesame oil"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "head butter lettuce, leaves separated"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "cucumber, thinly sliced"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "scallions, sliced"
+    }
+   ],
+   "steps": [
+    "Brown beef in a skillet, breaking it up; drain excess fat. Add garlic and ginger and cook 30 seconds.",
+    "Stir in gochujang, soy sauce, sugar and sesame oil; cook 2 minutes until coated.",
+    "Spoon into washed lettuce leaves and top with cucumber and scallions."
+   ],
+   "allergens": [
+    "sesame",
+    "soy",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
  "godfather": {
   "kind": "cocktail",
   "recipe": {
@@ -18861,6 +19785,65 @@
    "variations": [
     "Use reposado tequila for a warmer, oakier drink."
    ]
+  }
+ },
+ "grapefruit-rosemary-gin-spritz": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Grapefruit Rosemary Gin Spritz",
+   "description": "Gin with fresh grapefruit and rosemary syrup, lengthened with soda in a wine glass.",
+   "servings": 1,
+   "prep_minutes": 5,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "gin"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "grapefruit juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "rosemary syrup"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "soda water"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "rosemary sprig"
+    }
+   ],
+   "steps": [
+    "Shake gin, grapefruit juice and syrup with ice.",
+    "Strain into an ice-filled wine glass, top with soda and garnish with rosemary."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "wine glass",
+    "garnish": "rosemary sprig",
+    "alcoholic": true,
+    "non_alcoholic_version": "replace gin with alcohol-free gin alternative."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [
+    "Rosemary syrup: simmer equal parts sugar and water with a rosemary sprig; cool, strain and refrigerate."
+   ],
+   "make_ahead": "",
+   "variations": []
   }
  },
  "grasshopper": {
@@ -19666,6 +20649,83 @@
    "variations": []
   }
  },
+ "harissa-chickpea-and-sweet-potato-bowls": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Harissa Chickpea and Sweet Potato Bowls",
+   "description": "Sweet potatoes and chickpeas roasted with smoky harissa, served over couscous or rice with a lemony yogurt-tahini drizzle.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 30,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "medium sweet potatoes, cubed"
+    },
+    {
+     "amount": "1",
+     "unit": "can",
+     "item": "(15 oz) chickpeas, drained"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "tbsp",
+     "item": "harissa paste"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "cooked couscous or rice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "plain yogurt"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "tahini"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "lemon juice"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "water"
+    }
+   ],
+   "steps": [
+    "Heat oven to 425°F. Toss sweet potatoes and chickpeas with oil, harissa and salt. Roast 25–30 minutes, turning once, until potatoes are tender.",
+    "Mix yogurt, tahini, lemon juice and water into a pourable sauce.",
+    "Serve the roasted mixture over cooked rice or couscous and drizzle with sauce. Couscous contains wheat; use rice for a wheat-free version."
+   ],
+   "allergens": [
+    "milk",
+    "sesame",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
  "harvey-wallbanger": {
   "kind": "cocktail",
   "recipe": {
@@ -19758,6 +20818,62 @@
     "garnish": "grapefruit twist or lime wheel",
     "alcoholic": true,
     "non_alcoholic_version": "Shake grapefruit, lime and a little cherry syrup with ice."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "hibiscus-citrus-rum-punch": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Hibiscus Citrus Rum Punch",
+   "description": "Aged rum with tart hibiscus tea, orange and lime. Deep ruby and refreshing.",
+   "servings": 1,
+   "prep_minutes": 5,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "aged rum"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "chilled unsweetened hibiscus tea"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "orange juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "lime juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Shake all ingredients with ice and strain into a tall glass over fresh ice."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "",
+    "alcoholic": true,
+    "non_alcoholic_version": "omit rum and add 1½ oz chilled hibiscus tea."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -24798,6 +25914,69 @@
    "variations": []
   }
  },
+ "lemon-oregano-chicken-and-potatoes": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Lemon-Oregano Chicken and Potatoes",
+   "description": "Crisp-skinned chicken thighs roasted on a bed of garlicky potatoes with lemon and oregano. One pan, and the juices season everything.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 45,
+   "ingredients": [
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "bone-in chicken thighs"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "lb",
+     "item": "small potatoes, halved"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "garlic cloves, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lemon, juiced and zested"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "tsp",
+     "item": "dried oregano"
+    },
+    {
+     "amount": "3/4",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "black pepper"
+    }
+   ],
+   "steps": [
+    "Heat oven to 425°F. Toss potatoes with half the oil, garlic, oregano, salt and pepper. Spread in a roasting pan.",
+    "Rub chicken with remaining oil, lemon zest, salt and pepper; place skin-side up among potatoes. Roast 35–45 minutes, until the chicken reaches 165°F and the potatoes are tender. Turn potatoes once.",
+    "Rest chicken 5 minutes. Spoon lemon juice over the pan before serving."
+   ],
+   "allergens": [],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
  "lion-s-tail": {
   "kind": "cocktail",
   "recipe": {
@@ -25873,6 +27052,68 @@
     "garnish": "lemon peel",
     "alcoholic": true,
     "non_alcoholic_version": null
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "mango-chile-margarita": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Mango Chile Margarita",
+   "description": "A mango margarita with a gentle chile kick from tequila, lime and orange liqueur.",
+   "servings": 1,
+   "prep_minutes": 5,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "blanco tequila"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "mango purée"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "lime juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "orange liqueur"
+    },
+    {
+     "amount": "1/4",
+     "unit": "oz",
+     "item": "agave syrup"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "pinch chile powder"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Shake tequila, mango, lime, orange liqueur and agave with ice.",
+    "Strain into an ice-filled rocks glass and dust lightly with chile."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "rocks glass",
+    "garnish": "",
+    "alcoholic": true,
+    "non_alcoholic_version": "substitute alcohol-free tequila and orange alternatives, or use orange juice for the liqueur."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -29254,6 +30495,84 @@
    "variations": []
   }
  },
+ "moroccan-spiced-carrot-and-lentil-stew": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Moroccan-Spiced Carrot and Lentil Stew",
+   "description": "A hearty red lentil and carrot stew warmed with cumin and coriander, brightened with lemon. Naturally vegan.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 30,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "onion, diced"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "carrots, sliced"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "garlic cloves, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "cumin"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "ground coriander"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "dried red lentils, rinsed"
+    },
+    {
+     "amount": "1",
+     "unit": "can",
+     "item": "(14.5 oz) diced tomatoes"
+    },
+    {
+     "amount": "4",
+     "unit": "cups",
+     "item": "vegetable broth"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "lemon juice"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "salt and pepper"
+    }
+   ],
+   "steps": [
+    "Cook onion and carrots in oil for 5 minutes. Add garlic, cumin and coriander and stir 30 seconds.",
+    "Add lentils, tomatoes and broth; simmer 20–25 minutes until lentils and carrots are tender. Add water if needed.",
+    "Stir in lemon juice and season to taste."
+   ],
+   "allergens": [],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
  "moscow-mule": {
   "kind": "cocktail",
   "recipe": {
@@ -29510,6 +30829,72 @@
     "Any inexpensive, fruity red works well. Save the good bottle."
    ],
    "make_ahead": "Keep it warm on the lowest heat or in a slow cooker for up to 2 hours.",
+   "variations": []
+  }
+ },
+ "mushroom-and-spinach-orzo": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Mushroom and Spinach Orzo",
+   "description": "Browned mushrooms and garlic simmered with orzo in broth until creamy, then finished with spinach and Parmesan. A cozy one-pot dinner.",
+   "servings": 4,
+   "prep_minutes": 10,
+   "cook_minutes": 25,
+   "ingredients": [
+    {
+     "amount": "8",
+     "unit": "oz",
+     "item": "orzo"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "12",
+     "unit": "oz",
+     "item": "sliced mushrooms"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "garlic cloves, minced"
+    },
+    {
+     "amount": "2 1/2",
+     "unit": "cups",
+     "item": "vegetable broth"
+    },
+    {
+     "amount": "4",
+     "unit": "cups",
+     "item": "baby spinach"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "grated Parmesan"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "salt and pepper"
+    }
+   ],
+   "steps": [
+    "Brown mushrooms in oil in a wide pan over medium-high heat, 6–8 minutes. Add garlic and cook 30 seconds.",
+    "Stir in orzo and broth. Simmer uncovered, stirring frequently, 9–11 minutes until the orzo is tender; add a splash of water if needed.",
+    "Fold in spinach to wilt, then Parmesan. Season to taste."
+   ],
+   "allergens": [
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [],
+   "make_ahead": "",
    "variations": []
   }
  },
@@ -32027,6 +33412,131 @@
    }
   }
  },
+ "peach-thyme-vodka-lemonade": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Peach Thyme Vodka Lemonade",
+   "description": "Vodka, peach nectar and lemon with fresh thyme, finished with a splash of soda.",
+   "servings": 1,
+   "prep_minutes": 5,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "vodka"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "peach nectar"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "lemon juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "thyme sprigs"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "soda water"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Gently muddle one thyme sprig with syrup.",
+    "Shake with vodka, nectar, lemon and ice; strain over fresh ice.",
+    "Add soda and the second thyme sprig."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "thyme sprig",
+    "alcoholic": true,
+    "non_alcoholic_version": "omit vodka and add 1½ oz soda water."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "pear-cardamom-bourbon-fizz": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Pear Cardamom Bourbon Fizz",
+   "description": "Bourbon with pear nectar, lemon and a whisper of cardamom, topped with soda.",
+   "servings": 1,
+   "prep_minutes": 5,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "bourbon"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "pear nectar"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "lemon juice"
+    },
+    {
+     "amount": "1/4",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "tiny pinch ground cardamom"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "soda water"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Shake bourbon, nectar, lemon, syrup and cardamom with ice.",
+    "Strain into a tall glass over fresh ice and top with soda."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "",
+    "alcoholic": true,
+    "non_alcoholic_version": "use alcohol-free whiskey alternative."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
  "pearl-diver-cocktail": {
   "kind": "cocktail",
   "recipe": {
@@ -33014,6 +34524,63 @@
     "garnish": "pineapple wedge and mint",
     "alcoholic": true,
     "non_alcoholic_version": null
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "pineapple-ginger-rum-highball": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Pineapple Ginger Rum Highball",
+   "description": "White rum with pineapple and lime, topped with spicy ginger beer.",
+   "servings": 1,
+   "prep_minutes": 5,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "white rum"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "pineapple juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "lime juice"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "ginger beer"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "lime wedge"
+    }
+   ],
+   "steps": [
+    "Add rum, pineapple and lime to a tall glass of ice.",
+    "Top with ginger beer, stir gently and garnish."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "lime wedge",
+    "alcoholic": true,
+    "non_alcoholic_version": "replace rum with alcohol-free rum alternative."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -35081,6 +36648,74 @@
    "allergens": [
     "milk"
    ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "roasted-red-pepper-and-white-bean-soup": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Roasted Red Pepper and White Bean Soup",
+   "description": "A silky blended soup of roasted red peppers and cannellini beans with smoked paprika and a squeeze of lemon. Ready in 30 minutes.",
+   "servings": 4,
+   "prep_minutes": 10,
+   "cook_minutes": 20,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "onion, chopped"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "garlic cloves, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "jar",
+     "item": "(12 oz) roasted red peppers, drained"
+    },
+    {
+     "amount": "2",
+     "unit": "cans",
+     "item": "(15 oz each) cannellini beans, drained"
+    },
+    {
+     "amount": "3",
+     "unit": "cups",
+     "item": "vegetable broth"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "smoked paprika"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "lemon juice"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "salt and pepper"
+    }
+   ],
+   "steps": [
+    "Cook onion in oil over medium heat for 5 minutes. Add garlic and paprika for 30 seconds.",
+    "Add peppers, beans and broth. Simmer 12 minutes. Blend until smooth, working carefully with hot soup.",
+    "Stir in lemon juice; season and warm through."
+   ],
+   "allergens": [],
    "cocktail": null,
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
    "tips": [],
@@ -39139,6 +40774,63 @@
    "variations": []
   }
  },
+ "strawberry-basil-tequila-sour": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Strawberry Basil Tequila Sour",
+   "description": "Blanco tequila shaken with muddled strawberries, basil and lime. Fruity, fresh and tart.",
+   "servings": 1,
+   "prep_minutes": 5,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "blanco tequila"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "lime juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "strawberries"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "basil leaves"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Muddle strawberries and basil with syrup.",
+    "Add tequila, lime and ice; shake and fine-strain into a rocks glass over ice."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "rocks glass",
+    "garnish": "",
+    "alcoholic": true,
+    "non_alcoholic_version": "use an alcohol-free tequila alternative."
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
  "stuffed-bell-peppers": {
   "kind": "meal",
   "recipe": {
@@ -40168,6 +41860,79 @@
     "non_alcoholic_version": "Orange juice with grenadine poured in to sink."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "teriyaki-salmon-rice-bowls": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Teriyaki Salmon Rice Bowls",
+   "description": "Salmon glazed in homemade teriyaki over rice, with crunchy cucumber, edamame and toasted sesame seeds.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 15,
+   "ingredients": [
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "salmon fillets (about 5 oz each)"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "soy sauce"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "mirin"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "brown sugar"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "grated ginger"
+    },
+    {
+     "amount": "3",
+     "unit": "cups",
+     "item": "cooked rice"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "cucumber, sliced"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "shelled cooked edamame"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "sesame seeds"
+    }
+   ],
+   "steps": [
+    "Heat oven to 425°F. Mix soy sauce, mirin, sugar and ginger. Brush half over salmon on a lined tray; reserve the rest separately.",
+    "Bake 10–14 minutes until salmon reaches 145°F. Simmer the reserved sauce in a small pan for 2 minutes.",
+    "Serve salmon over rice with cucumber and edamame. Spoon on sauce and sprinkle with sesame."
+   ],
+   "allergens": [
+    "fish",
+    "sesame",
+    "soy",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
    "tips": [],
    "make_ahead": "",
    "variations": []
@@ -41298,6 +43063,78 @@
    "variations": []
   }
  },
+ "tomato-basil-baked-chicken-meatballs": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Tomato-Basil Baked Chicken Meatballs",
+   "description": "Tender Parmesan chicken meatballs baked, then simmered in marinara with fresh basil and served over spaghetti.",
+   "servings": 4,
+   "prep_minutes": 20,
+   "cook_minutes": 25,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "ground chicken"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "breadcrumbs"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "egg"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "grated Parmesan"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "garlic clove, minced"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "marinara sauce"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "torn basil"
+    },
+    {
+     "amount": "12",
+     "unit": "oz",
+     "item": "spaghetti"
+    }
+   ],
+   "steps": [
+    "Heat oven to 400°F. Gently combine chicken, breadcrumbs, egg, Parmesan, garlic and salt. Shape into 16 meatballs and place on a lined tray.",
+    "Bake 18–22 minutes until the centers reach 165°F. Meanwhile cook spaghetti according to package directions and warm marinara.",
+    "Add meatballs to sauce, toss with basil and serve over pasta."
+   ],
+   "allergens": [
+    "eggs",
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
  "tomato-soup": {
   "kind": "meal",
   "recipe": {
@@ -42108,6 +43945,71 @@
    ],
    "allergens": [
     "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "turkey-and-black-bean-stuffed-sweet-potatoes": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Turkey and Black Bean Stuffed Sweet Potatoes",
+   "description": "Roasted sweet potatoes split open and filled with cumin-spiced turkey, black beans and salsa, topped with cilantro and a spoon of yogurt.",
+   "servings": 4,
+   "prep_minutes": 10,
+   "cook_minutes": 50,
+   "ingredients": [
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "medium sweet potatoes"
+    },
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "ground turkey"
+    },
+    {
+     "amount": "1",
+     "unit": "can",
+     "item": "(15 oz) black beans, drained"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "tomato salsa"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "cumin"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "chopped cilantro"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "plain yogurt, optional"
+    }
+   ],
+   "steps": [
+    "Heat oven to 425°F. Pierce potatoes and bake on a tray 45–55 minutes until tender.",
+    "Brown turkey in a skillet until it reaches 165°F. Add beans, salsa, cumin and salt; simmer 5 minutes.",
+    "Split potatoes and fluff their centers. Fill with turkey mixture and top with cilantro and optional yogurt."
+   ],
+   "allergens": [
+    "milk"
    ],
    "cocktail": null,
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -43017,6 +44919,64 @@
     "garnish": "orange twist",
     "alcoholic": true,
     "non_alcoholic_version": null
+   },
+   "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "",
+   "variations": []
+  }
+ },
+ "watermelon-mint-rum-cooler": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Watermelon Mint Rum Cooler",
+   "description": "White rum with fresh watermelon juice, lime and mint, topped with soda. Pure summer.",
+   "servings": 1,
+   "prep_minutes": 5,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "white rum"
+    },
+    {
+     "amount": "3",
+     "unit": "oz",
+     "item": "strained fresh watermelon juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "lime juice"
+    },
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "mint leaves"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "soda water"
+    },
+    {
+     "amount": "",
+     "unit": "",
+     "item": "ice"
+    }
+   ],
+   "steps": [
+    "Gently press mint in a shaker.",
+    "Add rum, watermelon, lime and ice; shake and strain into a tall glass over ice.",
+    "Top with soda."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "",
+    "alcoholic": true,
+    "non_alcoholic_version": "omit rum and add 1½ oz soda water."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
