@@ -27,6 +27,7 @@ import { diets_for_kind, or_list } from "../onboarding/onboarding";
 import { useOnboarding } from "../onboarding/OnboardingProvider";
 import { FREE_SAVED_RECIPES } from "../paywall/plans";
 import { bundled_recipe, bundled_version } from "../recipes/bundled";
+import { NO_IMAGE } from "../recipes/types";
 import { COLLECTION } from "../recipes/collectionPhotos";
 import { bundled_diet_profile } from "../recipes/dietProfile";
 import { diet_profile } from "../recipes/diets";
@@ -52,8 +53,68 @@ type Ready = Extract<CurrentRecipe, { status: "ready" }>;
 export default function RecipeScreen() {
   const { current } = useApp();
   if (!current || current.status === "loading") return <Finding photo={current?.status === "loading" ? current.photo : undefined} />;
+  if (current.status === "photo-choice") return <PhotoChoice current={current} />;
   if (current.status === "problem") return <Problem message={current.message} source={current.source ?? "photo"} />;
   return <RecipeView current={current} />;
+}
+
+/** Choose a trusted bundled recipe before accepting an AI-generated suggestion. */
+function PhotoChoice({ current }: { current: Extract<CurrentRecipe, { status: "photo-choice" }> }) {
+  const { set_current } = useApp();
+  const { type } = useTheme();
+  const styles = useThemedStyles(create_styles);
+  const [busy, set_busy] = useState(false);
+  const [error, set_error] = useState<string | null>(null);
+  const open_suggestion = () => set_current({
+    status: "ready", kind: current.kind, recipe: current.suggested, guesses: current.guesses,
+    selected: 0, image: current.guesses[0]?.image ?? NO_IMAGE, localPhoto: null, savedId: null,
+  });
+  async function open_existing(id: string) {
+    if (busy) return;
+    set_busy(true);
+    set_error(null);
+    try {
+      const dish = COLLECTION.find((item) => item.id === id && item.kind === current.kind);
+      const recipe = dish && bundled_recipe(dish);
+      if (!dish || !recipe) throw new Error("The saved recipe could not be opened.");
+      set_current({
+        status: "ready", kind: current.kind, recipe, guesses: [{ name: dish.name, confidence: "high", image: NO_IMAGE }],
+        selected: 0, image: NO_IMAGE, localPhoto: null, savedId: null, picked: true, bundledId: dish.id,
+      });
+    } catch {
+      set_error("Couldn't open that collection recipe. You can still use the AI suggestion.");
+    } finally {
+      set_busy(false);
+    }
+  }
+  return (
+    <Sheet>
+      <ScrollView contentContainerStyle={[styles.body, { paddingTop: 90, paddingBottom: 40 }]}>
+        <Text style={type.title} accessibilityRole="header">Choose your recipe</Text>
+        {current.matches.length > 0 ? (
+          <>
+            <Text style={[type.body, { marginVertical: 14 }]}>We found these recipes in Recipeak's collection. Choose one to open it without another AI request.</Text>
+            {current.matches.map((match) => (
+              <View key={match.id} style={{ marginBottom: 10 }}>
+                <Button label={match.name} disabled={busy} onPress={() => void open_existing(match.id)} />
+              </View>
+            ))}
+          </>
+        ) : (
+          <Text style={[type.body, { marginVertical: 14 }]}>We couldn't find an exact recipe in the collection.</Text>
+        )}
+        <Text style={[type.body, { marginVertical: 12 }]}>
+          The photo analysis also prepared a representative AI recipe for {current.guesses[0]?.name ?? "this dish"}.
+          It may not match hidden ingredients or the original preparation.
+        </Text>
+        <Button label="Review AI recipe" variant="secondary" disabled={busy} onPress={open_suggestion} />
+        <Text style={[type.muted, { marginTop: 12 }]}>
+          Check all ingredients and allergens before cooking or serving. A photo cannot establish hidden allergens or cross-contact.
+        </Text>
+        {error && <Notice tone="error">{error}</Notice>}
+      </ScrollView>
+    </Sheet>
+  );
 }
 
 function Sheet({
