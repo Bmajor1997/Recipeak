@@ -12915,7 +12915,7 @@
     "prep_minutes": 1,
     "cook_minutes": 0,
     "ingredients": [
-      { "amount": "1", "unit": "bottle (12 oz)", "item": "vegan wheat-free lager (check the label), ice-cold" },
+      { "amount": "1", "unit": "bottle (12 oz)", "item": "vegan wheat-free lager (such as Miller High Life; check the label), ice-cold" },
       { "amount": "1 1/2", "unit": "oz", "item": "Aperol" },
       { "amount": "1/2", "unit": "oz", "item": "fresh lemon juice" }
     ],
