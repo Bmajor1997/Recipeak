@@ -5,6 +5,8 @@ import { createContext, type ReactNode, useCallback, useContext, useEffect, useM
 import { useApp } from "../AppContext";
 import { ApiError } from "../api/client";
 import { prepare_photo } from "../photos/prepare";
+import { bundled_photo_uri, bundled_recipe, find_bundled_dish } from "../recipes/bundled";
+import { NO_IMAGE } from "../recipes/types";
 import { CameraSheet, type Photo } from "./CameraSheet";
 
 type CameraState = {
@@ -63,16 +65,26 @@ export function CameraProvider({ children }: { children: ReactNode }) {
           set_current({ status: "problem", message: "That doesn't look like a meal or a drink. Try again, closer up and in good light." });
           return;
         }
-        set_current({
-          status: "ready",
-          kind: result.kind,
-          recipe: result.recipe,
-          guesses: result.guesses,
-          selected: 0,
-          image: result.guesses[0].image,
-          localPhoto: null,
-          savedId: null,
-        });
+        // A dish Recipeak already has opens straight away: a checked recipe and its photo, with no AI recipe.
+        const top = result.guesses[0];
+        const dish = find_bundled_dish(result.kind, top.name);
+        const recipe = dish && bundled_recipe(dish);
+        if (dish && recipe) {
+          set_current({
+            status: "ready",
+            kind: result.kind,
+            recipe,
+            guesses: result.guesses.map((g, i) => (i === 0 ? { ...g, name: dish.name } : g)),
+            selected: 0,
+            image: NO_IMAGE,
+            localPhoto: await bundled_photo_uri(dish),
+            savedId: null,
+            bundledId: dish.id,
+          });
+          return;
+        }
+        // Otherwise nothing more is made until the person says yes (recipe.tsx, AiOffer).
+        set_current({ status: "ai-offer", kind: result.kind, guesses: result.guesses });
       } catch (error) {
         if (error instanceof ApiError && error.needsUpgrade) {
           set_current(null);

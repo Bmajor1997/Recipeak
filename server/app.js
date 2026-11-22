@@ -7,7 +7,7 @@ import { readFileSync } from "node:fs";
 import { PremiumVerificationError } from "./premium_access.js";
 import {
   DEFAULT_MODEL, MAX_IMAGE_BYTES, PREMIUM_DIETS, addition_payload, adds_what_it_promised, identify_payload, parse_addition_request,
-  parse_image, parse_recipe_request, recipe_payload, validate_identification, validate_recipe,
+  parse_image, parse_recipe_request, recipe_payload, review_payload, validate_identification, validate_recipe, with_detected_allergens,
 } from "./recipe_ai.js";
 
 const SECURITY_HEADERS = {
@@ -56,6 +56,7 @@ const BODY_TIMEOUT_MS = 20_000;
 export function create_app({ env = {}, store, authorize, premium, images = null, featured = new Set(), fetch_impl = fetch, log = console }) {
   const model = env.OPENAI_MODEL || DEFAULT_MODEL;
   // Shared cover photos. Without a library (tests, or images turned off) every photo is "unavailable" and the app shows its own art.
+  const existing_photo = (kind, name) => (images ? images.peek({ kind, name }) : { status: "unavailable", url: null });
   const photo = (kind, name, user, recipe) =>
     images ? images.status({ kind, name, user_id: user.uid, details: recipe_details(recipe) }) : { status: "unavailable", url: null };
 
@@ -68,9 +69,9 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     let found;
     try { found = validate_identification(JSON.parse(text)); } catch (error) { store.release_photo(request_id); throw error; }
     if (found.kind === "not_food") store.release_photo(request_id);
-    // Every guess gets a cover photo: ready from the library, or started now in the background.
-    // The top match's recipe is known, so its glass, garnish and ingredients shape its photo if it's new.
-    const guesses = found.guesses.map((g, i) => ({ ...g, image: photo(found.kind, g.name, user, i === 0 ? found.recipe : null) }));
+    // Only names come back: the app looks them up in Recipeak's recipes. A photo already in the library is sent along,
+    // but nothing new is made: an AI recipe and photo are only made if the person says yes (POST /api/recipe).
+    const guesses = found.guesses.map((g) => ({ ...g, image: existing_photo(found.kind, g.name) }));
     return { ...found, guesses, free_photos_left: is_premium ? null : store.free_photos_left(user.uid), premium: is_premium };
   }
 
@@ -80,6 +81,7 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     const is_premium = await premium(user.uid);
     // Checked before anything is spent, so a free account is never charged a version it can't see.
     if (request.diet && PREMIUM_DIETS.includes(request.diet) && !is_premium) throw premium_versions();
+    if (!request.diet && !request.correction) return photo_recipe(user, request, is_premium);
     // A name typed after a photo couldn't be read stands in for that photo, so it uses a free photo (the unread
     // photo didn't). Other recipe requests are follow-ups to a photo that worked.
     const feature = request.correction ? "correction" : "recipe";
@@ -89,6 +91,48 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     try { recipe_reply = validate_recipe(JSON.parse(text)); } catch (error) { store.release_photo(request_id); throw error; }
     // A diet version shares the original dish's photo, so only the standard recipe may describe it.
     return { recipe: recipe_reply, image: photo(request.kind, request.name, user, request.diet ? null : recipe_reply) };
+  }
+
+  /**
+   * The standard recipe for a dish Recipeak doesn't have, made when the person agrees. It is written, then checked
+   * by a second careful read and the allergen word list, and kept: the next person who photographs the same dish gets
+   * it (and its photo) straight away, without another AI request.
+   */
+  async function photo_recipe(user, request, is_premium) {
+    const key = image_key(request.kind, request.name);
+    const cache_key = key ? `photo:${key}` : null;
+    let found = cache_key ? store.get_recipe(cache_key) : null;
+    if (!found) {
+      const job_key = cache_key ?? `${user.uid}:${request.name}`;
+      if (!making.has(job_key)) {
+        // Not tied to this person's connection: if they leave, the recipe still finishes and is kept for next time.
+        // Each AI call has the gateway's own time limit, and the app waits long enough for both (client.ts).
+        const job = (async () => {
+          const first = await call_openai({ fetch_impl, store, env, user_id: user.uid, feature: "recipe", premium: is_premium,
+            payload: recipe_payload(request, model) });
+          const draft = validate_recipe(JSON.parse(first.text));
+          // The check is part of the same request for the person: it doesn't use another free follow-up.
+          let checked;
+          try {
+            const second = await call_openai({ fetch_impl, store, env, user_id: user.uid, feature: "review", premium: is_premium,
+              payload: review_payload({ name: request.name, kind: request.kind, recipe: draft }, model) });
+            checked = validate_recipe(JSON.parse(second.text));
+          } catch (error) {
+            // A failed check still shows the draft (with the allergen word list applied), but never keeps it, so the
+            // next person gets a properly checked recipe.
+            log.warn?.("recipe check failed", error?.name ?? "error");
+            return with_detected_allergens(draft);
+          }
+          const final = with_detected_allergens(checked);
+          if (cache_key) store.set_recipe({ key: cache_key, kind: request.kind, name: request.name, recipe: final });
+          return final;
+        })().finally(() => making.delete(job_key));
+        making.set(job_key, job);
+      }
+      found = await making.get(job_key);
+    }
+    // The photo is made from the checked recipe, so its glass, garnish and ingredients match.
+    return { recipe: found, image: photo(request.kind, request.name, user, found) };
   }
 
   const premium_versions = () =>

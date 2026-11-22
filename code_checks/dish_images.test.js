@@ -134,7 +134,7 @@ test("only exact library file names can be read", (t) => {
   for (const name of ["secret.txt", "../secret.txt", `${key}.jpg/..`, `${key.toUpperCase()}.jpg`, ""]) assert.equal(images.read(name), null);
 });
 
-test("the server returns photos for every guess and serves the files publicly", async (t) => {
+test("a photo's guesses get the library photo if there is one, never a new one, and files are served publicly", async (t) => {
   const { images, dir } = library(t);
   const key = image_key("cocktail", "Margarita");
   writeFileSync(join(dir, `${key}.jpg`), JPEG);
@@ -159,7 +159,7 @@ test("the server returns photos for every guess and serves the files publicly", 
   const jpeg = `data:image/jpeg;base64,${Buffer.concat([Buffer.from([0xff, 0xd8, 0xff]), Buffer.alloc(40, 1)]).toString("base64")}`;
   const found = await (await fetch(`${base}/api/identify`, { method: "POST", headers: { Authorization: "Bearer x", "Content-Type": "application/json" }, body: JSON.stringify({ image: jpeg }) })).json();
   assert.deepEqual(found.guesses[0].image, { status: "ready", url: `/images/${key}.jpg` });
-  assert.equal(found.guesses[1].image.status, "pending");
+  assert.equal(found.guesses[1].image.status, "unavailable", "no new photo is made until the person asks for the recipe");
   await images.settled();
   const file = await fetch(`${base}${found.guesses[0].image.url}`);
   assert.equal(file.status, 200);

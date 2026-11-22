@@ -18,6 +18,8 @@ import { subscriptions } from "./paywall/subscriptions";
 export type CurrentRecipe =
   | { status: "loading"; photo?: number }
   | { status: "problem"; message: string; source?: "photo" | "wall" }
+  /** A photo of a dish Recipeak doesn't have: asks before making a recipe and photo with AI. */
+  | { status: "ai-offer"; kind: Kind; guesses: Guess[] }
   | {
       status: "ready";
       kind: Kind;
@@ -33,6 +35,8 @@ export type CurrentRecipe =
       bundledId?: string;
       /** The diet version it opened in on its own (from the person's diet in the tour or Settings), if any. */
       diet?: Diet;
+      /** Made with AI for a photo Recipeak didn't have, so the screen says so and asks the cook to check it. */
+      ai?: boolean;
     };
 
 type AppState = {

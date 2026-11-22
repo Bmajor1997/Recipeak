@@ -190,6 +190,7 @@ export default function HomeScreen() {
                     image: NO_IMAGE,
                     localPhoto: item.photo_uri,
                     savedId: item.id,
+                    ai: item.ai,
                   });
                   router.push("/recipe");
                 }}

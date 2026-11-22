@@ -33,8 +33,8 @@ export const NO_IMAGE: DishImage = { status: "unavailable", url: null };
 export type Guess = { name: string; confidence: "high" | "medium" | "low"; image: DishImage };
 
 export type Identification =
-  | { kind: "not_food"; guesses: []; recipe: null; free_photos_left: number | null; premium: boolean }
-  | { kind: Kind; guesses: Guess[]; recipe: Recipe; free_photos_left: number | null; premium: boolean };
+  | { kind: "not_food"; guesses: []; free_photos_left: number | null; premium: boolean }
+  | { kind: Kind; guesses: Guess[]; free_photos_left: number | null; premium: boolean };
 
 export type Allowance = { premium: boolean; free_photos_left: number | null; free_photos_total: number };
 
@@ -42,4 +42,12 @@ export const DIETS = ["vegetarian", "vegan", "gluten-free", "dairy-free", "nut-f
 export type Diet = (typeof DIETS)[number];
 
 /** photo_uri points at a photo kept privately on this phone, or null when the recipe has no photo. */
-export type SavedRecipe = { id: string; saved_at: string; kind: Kind; recipe: Recipe; photo_uri: string | null };
+export type SavedRecipe = {
+  id: string;
+  saved_at: string;
+  kind: Kind;
+  recipe: Recipe;
+  photo_uri: string | null;
+  /** Made with AI, so reopening it still shows the reminder to check ingredients and allergens. */
+  ai?: boolean;
+};

@@ -193,6 +193,13 @@ export function create_image_library({ env = {}, store, fetch_impl = fetch, dir 
      * Where this dish's photo stands. Starts creating it in the background if nobody has yet.
      * Returns { status: "ready", url } | { status: "pending", url: null } | { status: "unavailable", url: null }.
      */
+    /** Whether a dish already has a photo, without ever starting a new one. */
+    peek({ kind, name }) {
+      const key = image_key(kind, name);
+      if (!enabled || !key) return { status: "unavailable", url: null };
+      if (existsSync(join(dir, `${key}.jpg`))) return { status: "ready", url: url_for(key) };
+      return { status: in_flight.has(key) ? "pending" : "unavailable", url: null };
+    },
     status({ kind, name, user_id, details }) {
       const key = image_key(kind, name);
       if (!enabled || !key) return { status: "unavailable", url: null };

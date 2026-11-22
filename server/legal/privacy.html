@@ -27,7 +27,7 @@
 <p>To use Recipeak you sign in with an email address and password, with your Google account, or (on iPhone) with Sign in with Apple. Sign-in is handled by Google Firebase Authentication, which stores your email address and, if you use one, a protected form of your password. I never see your password. With Google or Apple, Recipeak receives only your name and email address from them, never your Google or Apple password.</p>
 
 <h3>Photos you send</h3>
-<p>When you take or choose a photo and tap Send, the photo goes to the Recipeak server and then to OpenAI, which identifies the dish or drink and writes a recipe. The server asks OpenAI not to store the request. The Recipeak server doesn't save your photo. Your photo isn't used as a recipe's cover picture; cover pictures come from a shared library of generic dish photos.</p>
+<p>When you take or choose a photo and tap Send, the photo goes to the Recipeak server and then to OpenAI, which identifies the dish or drink. If Recipeak already has that recipe, it opens on your phone. If not, Recipeak asks you first, and only if you agree does OpenAI write a recipe (and make a generic photo of the dish) from the dish's name. Recipes made this way are kept on the server, without your photo or anything that identifies you, so the next person who photographs the same dish gets them straight away. The server asks OpenAI not to store the request. The Recipeak server doesn't save your photo. Your photo isn't used as a recipe's cover picture; cover pictures come from a shared library of generic dish photos.</p>
 <p>Don't send photos of people or anything private. Recipeak only needs the food or drink.</p>
 
 <h3>Usage records</h3>

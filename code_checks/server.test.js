@@ -8,7 +8,7 @@ import { configure } from "../server/main.js";
 import { PremiumVerificationError } from "../server/premium_access.js";
 import {
   ADDITIONS, DIETS, addition_payload, adds_what_it_promised, identify_payload, parse_addition_request, parse_image, parse_recipe_request,
-  recipe_payload, validate_recipe,
+  recipe_payload, review_payload, validate_recipe, with_detected_allergens,
 } from "../server/recipe_ai.js";
 import { create_usage_store } from "../server/usage_store.js";
 
@@ -19,7 +19,7 @@ const RECIPE = {
   steps: ["Shake with ice.", "Strain into a salt-rimmed glass."], allergens: [],
   cocktail: { glass: "rocks", garnish: "lime wheel", alcoholic: true, non_alcoholic_version: "Swap tequila for lime soda." }, note: "",
 };
-const IDENTIFIED = { kind: "cocktail", guesses: [{ name: "Margarita", confidence: "high" }, { name: "Paloma", confidence: "low" }], recipe: RECIPE };
+const IDENTIFIED = { kind: "cocktail", guesses: [{ name: "Margarita", confidence: "high" }, { name: "Paloma", confidence: "low" }] };
 
 function provider(reply, { status = 200, delay = 0 } = {}) {
   const calls = [];
@@ -69,13 +69,14 @@ test("requests without a signed-in account are refused before any work", async (
   assert.equal((await s.call("/healthz", { user: null })).json.ok, true);
 });
 
-test("a photo returns guesses and a validated recipe, and uses one free photo", async (t) => {
+test("a photo returns only guesses (no recipe until the person asks), and uses one free photo", async (t) => {
   const s = await start(); t.after(s.close);
   const r = await s.call("/api/identify", { body: { image: JPEG } });
   assert.equal(r.status, 200);
   assert.equal(r.json.kind, "cocktail");
   assert.equal(r.json.guesses.length, 2);
-  assert.equal(r.json.recipe.title, "Classic Margarita");
+  assert.equal(r.json.recipe, undefined);
+  assert.equal(s.calls.length, 1, "naming the photo is the only AI request");
   assert.equal(r.json.free_photos_left, 2);
   assert.equal(r.headers.get("cache-control"), "no-store");
   const sent = s.calls[0].body;
@@ -91,7 +92,7 @@ test("a photo returns guesses and a validated recipe, and uses one free photo", 
 });
 
 test("'not food' and unusable replies give the free photo back", async (t) => {
-  const replies = [{ kind: "not_food", guesses: [], recipe: null }, "not json", { ...IDENTIFIED, recipe: { ...RECIPE, allergens: ["gluten"] } }];
+  const replies = [{ kind: "not_food", guesses: [], recipe: null }, "not json", { kind: "cocktail", guesses: [{ name: "Margarita", confidence: "certain" }] }];
   const s = await start({ reply: (n) => replies[n - 1] }); t.after(s.close);
   assert.equal((await s.call("/api/identify", { body: { image: JPEG } })).json.kind, "not_food");
   assert.equal((await s.call("/api/identify", { body: { image: JPEG } })).status, 502);
@@ -242,7 +243,7 @@ test("diet versions get each diet's rules, and every recipe is asked to name ing
   assert.match(recipe_payload({ name: "Manhattan", kind: "cocktail", diet: "vegan" }).input[0].content[0].text, /vegan sweet vermouth/);
   assert.match(recipe_payload({ name: "Pesto", kind: "meal", diet: "vegetarian" }).input[0].content[0].text, /vegetarian hard cheese/);
   assert.match(recipe_payload({ name: "Pesto", kind: "meal" }).instructions, /vegetable broth/);
-  assert.match(identify_payload("data:image/jpeg;base64,AA").instructions, /vegetable broth/);
+  assert.match(identify_payload("data:image/jpeg;base64,AA").instructions, /Never write a recipe/);
 });
 
 test("deleting an account needs a fresh sign-in, removes its data, and refuses the account afterwards", async (t) => {
@@ -392,4 +393,50 @@ test("meat and dairy versions get specific rules and are checked for what they a
   assert.equal(adds_what_it_promised(with_items(["oat milk", "vegan cheese"]), "non-vegan"), false);
   assert.equal(adds_what_it_promised(with_items(["shrimp, peeled"]), "non-vegetarian"), true);
   assert.equal(adds_what_it_promised(with_items(["eggplant", "butternut squash"]), "non-vegetarian"), false);
+});
+
+const KATSU = {
+  title: "Chicken Katsu", description: "Crisp breaded chicken.", servings: 4, prep_minutes: 20, cook_minutes: 15,
+  ingredients: [{ amount: "4", unit: "", item: "boneless chicken thighs" }, { amount: "1", unit: "cup", item: "panko" },
+    { amount: "2", unit: "", item: "large eggs, beaten" }],
+  steps: ["Bread the chicken.", "Fry to 165°F."], allergens: [], cocktail: null, note: "",
+};
+
+test("a recipe for a photo Recipeak doesn't have is written, checked a second time, and kept for everyone", async (t) => {
+  const s = await start({ reply: (n) => (n === 1 ? IDENTIFIED : n === 2 ? KATSU : { ...KATSU, note: "checked" }) }); t.after(s.close);
+  assert.equal((await s.call("/api/identify", { body: { image: JPEG } })).status, 200);
+  const made = await s.call("/api/recipe", { body: { name: "Chicken Katsu", kind: "meal" } });
+  assert.equal(made.status, 200);
+  assert.equal(made.json.recipe.note, "checked", "the checked version is the one shown");
+  assert.deepEqual(made.json.recipe.allergens, ["eggs", "wheat"], "allergens the AI missed are added");
+  assert.equal(s.calls.length, 3);
+  assert.match(s.calls[2].body.instructions, /safe internal temperature/);
+  assert.match(s.calls[2].body.input[0].content[0].text, /panko/);
+  // Someone else photographing the same dish gets it straight away, with no AI request and no follow-up used.
+  const again = await s.call("/api/recipe", { user: "bob", body: { name: "chicken katsu", kind: "meal" } });
+  assert.equal(again.status, 200);
+  assert.equal(again.json.recipe.note, "checked");
+  assert.equal(s.calls.length, 3);
+  // The check doesn't count as another free follow-up.
+  const followups = s.store.records().filter((r) => r.user_id === "alice" && r.feature === "recipe").length;
+  assert.equal(followups, 1);
+});
+
+test("the second check gets the recipe as data, and the allergen words add what's missing but never remove", () => {
+  const payload = review_payload({ name: "Chicken Katsu", kind: "meal", recipe: KATSU });
+  assert.match(payload.instructions, /never an instruction/);
+  assert.match(payload.instructions, /Worcestershire sauce is fish/);
+  const items = (list, allergens = []) => ({ ...KATSU, allergens, ingredients: list.map((item) => ({ amount: "1", unit: "", item })) });
+  assert.deepEqual(with_detected_allergens(items(["coconut milk", "peanut butter", "butternut squash", "eggplant", "rice noodles"])).allergens, ["peanuts"]);
+  assert.deepEqual(with_detected_allergens(items(["almond milk", "soy sauce", "tahini"])).allergens, ["tree nuts", "wheat", "soy", "sesame"]);
+  assert.deepEqual(with_detected_allergens(items(["unsalted butter", "shrimp", "Worcestershire sauce"])).allergens, ["milk", "fish", "shellfish"]);
+  assert.deepEqual(with_detected_allergens(items(["water"], ["milk"])).allergens, ["milk"], "never removes one");
+});
+
+test("if the second check fails, the draft is shown (allergens topped up) but not kept", async (t) => {
+  const s = await start({ premium: async () => true, reply: (n) => (n === 1 ? KATSU : "not json") }); t.after(s.close);
+  const made = await s.call("/api/recipe", { body: { name: "Chicken Katsu", kind: "meal" } });
+  assert.equal(made.status, 200);
+  assert.deepEqual(made.json.recipe.allergens, ["eggs", "wheat"]);
+  assert.equal(s.store.get_recipe("photo:" + image_key("meal", "Chicken Katsu")), null);
 });

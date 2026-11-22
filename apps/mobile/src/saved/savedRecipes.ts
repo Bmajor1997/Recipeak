@@ -68,7 +68,12 @@ export function create_saved_recipes(
   return {
     list: read,
     /** `limit` is the free plan's cap (leave it out for subscribers). Re-saving a recipe already in Saved is always allowed. */
-    async save(kind: Kind, recipe: Recipe, photoUri?: string | null, { limit }: { limit?: number } = {}): Promise<SavedRecipe> {
+    async save(
+      kind: Kind,
+      recipe: Recipe,
+      photoUri?: string | null,
+      { limit, ai }: { limit?: number; ai?: boolean } = {},
+    ): Promise<SavedRecipe> {
       const list = await read();
       // Saving the same recipe twice moves it to the top instead of making a copy.
       const replaced = list.filter((s) => s.recipe.title === recipe.title);
@@ -78,7 +83,7 @@ export function create_saved_recipes(
       const id = new_id();
       // A photo that isn't kept still lets the recipe save, just without its picture.
       const photo_uri = photoUri ? await photos.keep_photo(photoUri, id).catch(() => null) : null;
-      const entry: SavedRecipe = { id, saved_at: now().toISOString(), kind, recipe, photo_uri };
+      const entry: SavedRecipe = { id, saved_at: now().toISOString(), kind, recipe, photo_uri, ...(ai ? { ai: true } : {}) };
       await write([entry, ...others]);
       for (const old of replaced) if (old.photo_uri && old.photo_uri !== photo_uri) photos.remove_photo(old.photo_uri);
       return entry;
