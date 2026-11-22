@@ -2,6 +2,7 @@
 import { parse_allowance, parse_dish_image, parse_identification, parse_recipe } from "../recipes/parse";
 import type { FeedbackKind } from "../feedback/feedback";
 import type { ReportReason } from "../feedback/recipeReport";
+import type { Addition } from "../recipes/premiumVersions";
 import type { Allowance, Diet, DishImage, Identification, Kind, Recipe } from "../recipes/types";
 
 export class ApiError extends Error {
@@ -14,11 +15,11 @@ export class ApiError extends Error {
   }
   /** A free allowance is used up: show the upgrade screen. */
   get needsUpgrade() {
-    return this.code === "FREE_PHOTOS_USED" || this.code === "FREE_VERSIONS_USED";
+    return this.code === "FREE_PHOTOS_USED" || this.code === "FREE_VERSIONS_USED" || this.code === "PREMIUM_VERSIONS";
   }
   /** Which allowance ran out, so the paywall says the right thing. */
   get upgradeReason(): "photos" | "versions" {
-    return this.code === "FREE_VERSIONS_USED" ? "versions" : "photos";
+    return this.code === "FREE_VERSIONS_USED" || this.code === "PREMIUM_VERSIONS" ? "versions" : "photos";
   }
 }
 
@@ -99,6 +100,20 @@ export function create_api({ baseUrl, id_token, fetch_impl = fetch, timeoutMs = 
         image?: unknown;
       };
       return { recipe: parse_recipe(json?.recipe), image: parse_dish_image(json?.image) };
+    },
+    /**
+     * A meat or seafood ("non-vegetarian") or dairy or egg ("non-vegan") version of a vegetarian or vegan meal, made
+     * from the recipe on screen. Premium only: a free account gets the PREMIUM_VERSIONS upgrade error.
+     */
+    async recipe_addition(name: string, addition: Addition, base: Recipe): Promise<Recipe> {
+      const body = {
+        name,
+        kind: "meal",
+        addition,
+        base: { title: base.title, servings: base.servings, ingredients: base.ingredients, steps: base.steps },
+      };
+      const json = (await request("/api/recipe-addition", { method: "POST", body })) as { recipe?: unknown };
+      return parse_recipe(json?.recipe);
     },
     /** The shared recipe for a dish on the Home photo wall. Free: it uses no photo or recipe allowance. */
     async featured_recipe(name: string, kind: Kind): Promise<{ recipe: Recipe; image: DishImage }> {

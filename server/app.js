@@ -6,8 +6,8 @@ import { FeedbackError } from "./feedback.js";
 import { readFileSync } from "node:fs";
 import { PremiumVerificationError } from "./premium_access.js";
 import {
-  DEFAULT_MODEL, MAX_IMAGE_BYTES, identify_payload, parse_image, parse_recipe_request, recipe_payload,
-  validate_identification, validate_recipe,
+  DEFAULT_MODEL, MAX_IMAGE_BYTES, PREMIUM_DIETS, addition_payload, adds_what_it_promised, identify_payload, parse_addition_request,
+  parse_image, parse_recipe_request, recipe_payload, validate_identification, validate_recipe,
 } from "./recipe_ai.js";
 
 const SECURITY_HEADERS = {
@@ -78,6 +78,8 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     const request = parse_recipe_request(body);
     if (!request) throw new HttpError(400, "Choose a dish or drink name, and a supported diet if any.");
     const is_premium = await premium(user.uid);
+    // Checked before anything is spent, so a free account is never charged a version it can't see.
+    if (request.diet && PREMIUM_DIETS.includes(request.diet) && !is_premium) throw premium_versions();
     // A name typed after a photo couldn't be read stands in for that photo, so it uses a free photo (the unread
     // photo didn't). Other recipe requests are follow-ups to a photo that worked.
     const feature = request.correction ? "correction" : "recipe";
@@ -87,6 +89,22 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     try { recipe_reply = validate_recipe(JSON.parse(text)); } catch (error) { store.release_photo(request_id); throw error; }
     // A diet version shares the original dish's photo, so only the standard recipe may describe it.
     return { recipe: recipe_reply, image: photo(request.kind, request.name, user, request.diet ? null : recipe_reply) };
+  }
+
+  const premium_versions = () =>
+    new AiLimitError("Vegetarian, vegan, and meat or dairy versions are part of Premium.", "PREMIUM_VERSIONS");
+
+  // "Make it non-vegetarian" or "Make it non-vegan" for a dish that is already vegetarian or vegan: the recipe on
+  // screen with meat or seafood, or dairy or eggs, added properly. Premium only.
+  async function addition(user, body, signal) {
+    const request = parse_addition_request(body);
+    if (!request) throw new HttpError(400, "Choose a vegetarian or vegan meal to change.");
+    if (!(await premium(user.uid))) throw premium_versions();
+    const { text } = await call_openai({ fetch_impl, store, env, user_id: user.uid, feature: "addition", premium: true,
+      payload: addition_payload(request, model), signal });
+    const made = validate_recipe(JSON.parse(text));
+    if (!adds_what_it_promised(made, request.addition)) throw new SyntaxError("The version didn't add what it promised");
+    return { recipe: made };
   }
 
   // Recipes for the dishes on the Home photo wall. Each one is made once, saved, and shared by everyone,
@@ -173,6 +191,7 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     "POST /api/identify": { handler: identify, max_body: MAX_IDENTIFY_BODY },
     "POST /api/recipe": { handler: recipe, max_body: 2048 },
     "POST /api/featured-recipe": { handler: featured_recipe, max_body: 2048 },
+    "POST /api/recipe-addition": { handler: addition, max_body: 65_536 },
     "GET /api/explore": { handler: async () => ({ dishes: curated_catalog() }), max_body: 0 },
     "GET /api/allowance": { handler: allowance, max_body: 0 },
     "GET /api/dish-image": { handler: dish_image, max_body: 0 },

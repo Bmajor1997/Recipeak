@@ -577,7 +577,7 @@ function Usage() {
       {value && (
         <Text style={type.body}>
           {value.premium
-            ? "You have Premium: unlimited photos, every saved recipe, and diet versions of any dish or drink."
+            ? "You have Premium: unlimited photos, every saved recipe, and vegetarian, vegan, or meat and dairy versions of any dish."
             : value.free_photos_left == null
               ? "Free plan. Your photo count is unavailable right now."
               : `Free plan: ${value.free_photos_left} of ${value.free_photos_total} free photos left.`}
