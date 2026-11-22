@@ -14,6 +14,8 @@ export const REPORT_REASONS: { value: ReportReason; label: string }[] = [
 ];
 
 export const MAX_REPORT_DETAILS = 2000;
+// Feedback descriptions are limited to 5,000 characters by server/feedback.js.
+const MAX_REPORT_DESCRIPTION = 5000;
 const MAX_TITLE = 120;
 
 export type RecipeReportInput = {
@@ -22,10 +24,11 @@ export type RecipeReportInput = {
   kind: "meal" | "cocktail";
   diet?: string | null;
   details: string;
+  recipe?: { title: string; ingredients: { amount: string; unit: string; item: string }[]; steps: string[]; allergens: string[] };
 };
 
 /** The title and description the dashboard shows for one report. */
-export function report_text({ reason, dish, kind, diet, details }: RecipeReportInput): { title: string; description: string } {
+export function report_text({ reason, dish, kind, diet, details, recipe }: RecipeReportInput): { title: string; description: string } {
   const prefix = "Recipe report: ";
   const name = dish.trim() || "Untitled recipe";
   const title = (prefix + name).length > MAX_TITLE ? `${(prefix + name).slice(0, MAX_TITLE - 1)}…` : prefix + name;
