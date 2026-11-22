@@ -375,6 +375,10 @@ test("meat and dairy versions get specific rules and are checked for what they a
     assert.equal(adds_what_it_promised(with_items([protein]), "non-vegetarian"), true, protein);
   assert.equal(adds_what_it_promised(with_items(["goat cheese"]), "non-vegetarian"), false);
   assert.equal(adds_what_it_promised(with_items(["goat cheese"]), "non-vegan"), true);
+  for (const cheese of ["goat's cheese", "goat’s cheese"]) {
+    assert.equal(adds_what_it_promised(with_items([cheese]), "non-vegetarian"), false, cheese);
+    assert.equal(adds_what_it_promised(with_items([cheese]), "non-vegan"), true, cheese);
+  }
   assert.equal(adds_what_it_promised(with_items(["vegan chicken", "plant-based beef"]), "non-vegetarian"), false);
   assert.deepEqual(ADDITIONS, ["non-vegetarian", "non-vegan"]);
   const request = parse_addition_request({ name: "Salad", kind: "meal", addition: "non-vegan", base: VEG_BASE });

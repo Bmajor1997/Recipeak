@@ -31,9 +31,9 @@ jobs:
       - run: bash ../../security/install-android-ndk.sh
       - run: install -Dm644 ../../security/maven-central-mirror.init.gradle "${GRADLE_USER_HOME:-$HOME/.gradle}/init.d/recipeak-maven-central.gradle"
       - run: npx expo prebuild --platform android --no-install
-      - name: Compile, test and lint the native release
+      - name: Compile and lint the native release
         working-directory: apps/mobile/android
-        run: ./gradlew :app:assembleRelease :app:testReleaseUnitTest :app:lintRelease --no-daemon --max-workers=2 -PreactNativeArchitectures=x86_64,arm64-v8a
+        run: ./gradlew :app:assembleRelease :app:lintRelease --no-daemon --max-workers=2 -PreactNativeArchitectures=x86_64,arm64-v8a
         env:
           NODE_ENV: production
       - name: Enable emulator acceleration

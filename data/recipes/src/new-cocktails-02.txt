@@ -67,7 +67,7 @@ V Serve it long over ice with a splash of soda for a lighter aperitif.
 @@ vegan = same
 
 @ spaghett | Spaghett | 1 | 1 | 0 | - | A cult bar favorite: a cold bottle of light American lager, spiked with Aperol and fresh lemon right in the bottle. Bitter, bubbly and refreshing.
-- 1 | bottle (12 oz) | vegan wheat-free lager (check the label), ice-cold
+- 1 | bottle (12 oz) | vegan wheat-free lager (such as Miller High Life; check the label), ice-cold
 - 1 1/2 | oz | Aperol
 - 1/2 | oz | fresh lemon juice
 # Drink or pour off about 2 oz of the beer to make room.
