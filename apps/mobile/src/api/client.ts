@@ -1,6 +1,7 @@
 // Talks to the Recipeak backend. The OpenAI key never reaches the phone: only the user's Firebase ID token is sent.
 import { parse_allowance, parse_dish_image, parse_identification, parse_recipe } from "../recipes/parse";
 import type { FeedbackKind } from "../feedback/feedback";
+import type { ReportReason } from "../feedback/recipeReport";
 import type { Allowance, Diet, DishImage, Identification, Kind, Recipe } from "../recipes/types";
 
 export class ApiError extends Error {
@@ -132,10 +133,23 @@ export function create_api({ baseUrl, id_token, fetch_impl = fetch, timeoutMs = 
       await request("/api/account/delete", { method: "POST", body: {}, expected_uid });
     },
     /** Sends a feature request or bug report. Sending again with the same request_id never saves it twice. */
-    async send_feedback(input: { kind: FeedbackKind; title: string; description: string; request_id: string }): Promise<string> {
+    async send_feedback(input: {
+      kind: FeedbackKind;
+      title: string;
+      description: string;
+      request_id: string;
+      /** Set only by "Report this recipe": why the recipe was reported. */
+      report?: ReportReason;
+    }): Promise<string> {
       const json = (await request("/api/feedback", {
         method: "POST",
-        body: { category: input.kind, title: input.title, description: input.description, requestId: input.request_id },
+        body: {
+          category: input.kind,
+          title: input.title,
+          description: input.description,
+          requestId: input.request_id,
+          ...(input.report ? { report: input.report } : {}),
+        },
       })) as { id?: unknown };
       if (typeof json?.id !== "string") throw new ApiError("Couldn't confirm your feedback was received. Please try again.", 0);
       return json.id;

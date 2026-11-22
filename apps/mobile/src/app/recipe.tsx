@@ -32,6 +32,7 @@ import { bundled_diet_profile } from "../recipes/dietProfile";
 import { diet_profile } from "../recipes/diets";
 import { format_ingredient, format_minutes, recipe_as_text } from "../recipes/format";
 import { scale_amount } from "../recipes/scale";
+import { ReportRecipe } from "../recipes/ReportRecipe";
 import { RateRecipe } from "../recipes/RateRecipe";
 import { DIETS, type Diet, type Guess, type Kind } from "../recipes/types";
 import { useDishImage } from "../recipes/useDishImage";
@@ -525,6 +526,10 @@ function RecipeView({ current }: { current: Ready }) {
             This is a representative recipe for this {kind === "cocktail" ? "drink" : "dish"}, not the exact recipe from the restaurant or
             bar.
           </Text>
+
+          <View style={{ marginTop: 16 }}>
+            <ReportRecipe key={`${kind}|${dishName}|${diet ?? ""}`} kind={kind} dish={dishName} diet={diet} />
+          </View>
         </View>
       </ScrollView>
     </Sheet>

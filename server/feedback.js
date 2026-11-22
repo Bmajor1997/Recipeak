@@ -23,6 +23,18 @@ export class FeedbackError extends Error {
     this.status = status;
   }
 }
+/**
+ * Why someone reported a recipe from its own page ("Report this recipe"). Reports arrive as bug reports; offensive or
+ * unsafe ones are flagged for safety review, as Google Play requires for AI-made content.
+ */
+export const REPORT_REASONS = [
+  "offensive",
+  "unsafe",
+  "wrong_dish",
+  "inaccurate",
+  "other",
+];
+const SAFETY_REASONS = new Set(["offensive", "unsafe"]);
 const fail = (message) => {
   throw new FeedbackError(400, message);
 };
@@ -46,7 +58,10 @@ export function validate_feedback(body) {
     typeof body !== "object" ||
     Array.isArray(body) ||
     Object.keys(body).some(
-      (key) => !["category", "requestId", ...Object.keys(fields)].includes(key),
+      (key) =>
+        !["category", "requestId", "report", ...Object.keys(fields)].includes(
+          key,
+        ),
     )
   )
     fail("Invalid feedback fields.");
@@ -58,6 +73,11 @@ export function validate_feedback(body) {
   )
     fail("Invalid submission reference.");
   const result = { category: body.category, requestId: body.requestId };
+  if (body.report !== undefined) {
+    if (body.category !== "bug" || !REPORT_REASONS.includes(body.report))
+      fail("Choose why you're reporting this recipe.");
+    result.report = body.report;
+  }
   for (const [key, max] of Object.entries(fields))
     result[key] = validate_text(body[key], key, max);
   if (!result.title || !result.description)
@@ -83,6 +103,8 @@ const signature = (body) =>
   digest(
     JSON.stringify([
       body.category,
+      // Only recipe reports carry a reason, so other submissions keep the fingerprints they always had.
+      ...(body.report ? [body.report] : []),
       ...Object.keys(fields).map((key) =>
         body.category === "bug"
           ? body[key].normalize("NFKC").replace(/\s+/gu, " ").trim()
@@ -345,6 +367,11 @@ export function create_feedback_store(
           matches.length === 1
             ? matches[0].group_id
             : new_group(body.category, timestamp);
+        if (SAFETY_REASONS.has(body.report))
+          db.prepare(
+            `UPDATE feedback_groups SET safety_flag=1,
+            severity=CASE WHEN severity IN ('Unassessed','Low','Medium') THEN 'High' ELSE severity END WHERE id=?`,
+          ).run(group_id);
         const id = randomUUID();
         db.prepare(
           `INSERT INTO feedback_submissions(id,request_id,user_id,group_id,category,title,description,steps,expected,actual,fingerprint,created_at,updated_at)
