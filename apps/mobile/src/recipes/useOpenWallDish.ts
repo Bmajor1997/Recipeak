@@ -1,6 +1,7 @@
 import { router } from "expo-router";
 import { useCallback } from "react";
 import { useApp } from "../AppContext";
+import { useCamera } from "../camera/CameraProvider";
 import { ApiError } from "../api/client";
 import { automatic_diet, diets_for_kind } from "../onboarding/onboarding";
 import { useOnboarding } from "../onboarding/OnboardingProvider";
@@ -15,6 +16,10 @@ import { NO_IMAGE, type Kind } from "./types";
 export function useOpenWallDish() {
   const { api, set_current, recent } = useApp();
   const diets = useOnboarding().values.diets;
+  // null means a subscriber (unlimited photos). Vegetarian and vegan versions are Premium, so only subscribers
+  // open in their diet's version on their own; everyone else sees the standard recipe and its "Make it…" options.
+  const { photosLeft } = useCamera();
+  const subscriber = photosLeft === null;
   return useCallback(
     async (dish: { name: string; kind: Kind }) => {
       const bundled = find_bundled_dish(dish.kind, dish.name);
@@ -22,9 +27,9 @@ export function useOpenWallDish() {
       router.push("/recipe");
       if (bundled) void recent?.add(bundled.id).catch(() => {});
       const regular = bundled && bundled_recipe(bundled);
-      // A person who eats vegetarian or vegan sees that version straight away: it is built in, so it costs nothing.
+      // A subscriber who eats vegetarian or vegan sees that version straight away: it is built in, so it costs nothing.
       // When the dish already fits, the regular recipe opens as it is.
-      const auto = bundled ? automatic_diet(diets_for_kind(diets, dish.kind)) : null;
+      const auto = bundled && subscriber ? automatic_diet(diets_for_kind(diets, dish.kind)) : null;
       const version = bundled && auto ? bundled_version(bundled.id, auto) : null;
       const recipe = version && !version.already ? version.recipe : regular;
       if (bundled && recipe) {
@@ -65,6 +70,6 @@ export function useOpenWallDish() {
         });
       }
     },
-    [api, set_current, recent, diets],
+    [api, set_current, recent, diets, subscriber],
   );
 }

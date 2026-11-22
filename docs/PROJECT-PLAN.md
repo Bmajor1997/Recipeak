@@ -107,6 +107,10 @@ Approved on 2026-11-15 from three options (plan picker, Free vs Pro table, photo
 
 The prices live in one place, `apps/mobile/src/paywall/plans.ts`. Until RevenueCat is connected, the buttons explain that subscriptions aren't open yet. Once it is, the store's own prices are shown, so the Play Console products must use these same prices.
 
+**What's free and what's Premium (2026-11-22).** Free: 3 photos, 3 saved recipes, standard recipes, every diet label ("Already vegan"), the other diets (gluten-free, dairy-free, nut-free, low-carb, non-alcoholic, within the free follow-ups per photo), "try another match", sharing, ratings, allergens and "Report this recipe". Premium adds unlimited photos and saves, vegetarian and vegan versions (bundled or made by the server), and the reverse versions below. A free tap on a Premium version opens the paywall; the server refuses them too (`PREMIUM_VERSIONS`, before any AI cost), and bundled dishes only open in a person's diet automatically for subscribers.
+
+**Make it non-vegetarian / non-vegan (2026-11-22).** A meal that is already vegetarian gets a "non-vegetarian" option; a vegan meal gets "non-vegetarian" and "non-vegan". `POST /api/recipe-addition` sends the recipe on screen; the server picks the one protein (or the dairy or eggs) that suits the dish, with exact amounts, steps, safe internal temperatures, the addition in the title and a note on why it pairs well. Replies that don't really add meat or seafood (or that add meat to a "non-vegan" version) are rejected. Tapping the option again goes back to the original. Drinks don't get these options.
+
 ### Feedback
 
 Ported from Votic on 2026-11-15. **Settings > Feedback** offers **Suggest a Feature** and **Report a Bug**. Each is a short form (a title and a description) that goes privately to the team:

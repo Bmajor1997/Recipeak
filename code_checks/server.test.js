@@ -6,7 +6,10 @@ import { create_app } from "../server/app.js";
 import { curated_keys, image_key } from "../server/dish_images.js";
 import { configure } from "../server/main.js";
 import { PremiumVerificationError } from "../server/premium_access.js";
-import { DIETS, identify_payload, parse_image, parse_recipe_request, recipe_payload, validate_recipe } from "../server/recipe_ai.js";
+import {
+  ADDITIONS, DIETS, addition_payload, adds_what_it_promised, identify_payload, parse_addition_request, parse_image, parse_recipe_request,
+  recipe_payload, validate_recipe,
+} from "../server/recipe_ai.js";
 import { create_usage_store } from "../server/usage_store.js";
 
 const JPEG = `data:image/jpeg;base64,${Buffer.concat([Buffer.from([0xff, 0xd8, 0xff, 0xe0]), Buffer.alloc(64, 7)]).toString("base64")}`;
@@ -172,7 +175,7 @@ test("a name typed after an unreadable photo uses a free photo, so it works for 
   assert.equal(s.store.free_photos_left("carol"), 0);
   assert.equal((await s.call("/api/recipe", { user: "carol", body: fix })).json.code, "FREE_PHOTOS_USED");
   // A correction gets the usual follow-ups, like a photo that worked.
-  assert.equal((await s.call("/api/recipe", { user: "carol", body: { name: "Chicken parmesan", kind: "meal", diet: "vegetarian" } })).status, 200);
+  assert.equal((await s.call("/api/recipe", { user: "carol", body: { name: "Chicken parmesan", kind: "meal", diet: "gluten-free" } })).status, 200);
   // Corrections can't be combined with a diet or sent as anything but true/false.
   assert.equal((await s.call("/api/recipe", { user: "dan", body: { ...fix, diet: "vegan" } })).status, 400);
   assert.equal((await s.call("/api/recipe", { user: "dan", body: { ...fix, correction: "yes" } })).status, 400);
@@ -323,4 +326,61 @@ test("listed beta testers get Premium without paying; everyone else is checked w
   assert.equal(await premium("someone"), false);
   assert.deepEqual(checked, ["subscriber", "someone"]);
   assert.equal(with_premium_testers(paid, ""), paid, "no list, no change");
+});
+
+const VEG_BASE = {
+  title: "Lemon Chickpea Couscous Salad", servings: 4,
+  ingredients: [{ amount: "1", unit: "cup", item: "dry couscous" }, { amount: "1", unit: "can", item: "chickpeas, drained" }],
+  steps: ["Soak the couscous.", "Toss with the chickpeas."],
+};
+const with_items = (items) => ({ ...RECIPE, cocktail: null, title: "Salad", ingredients: items.map((item) => ({ amount: "1", unit: "", item })) });
+
+test("vegetarian and vegan versions are Premium: free accounts are sent to the paywall before anything is spent", async (t) => {
+  const s = await start({ reply: RECIPE }); t.after(s.close);
+  for (const diet of ["vegetarian", "vegan"]) {
+    const refused = await s.call("/api/recipe", { body: { name: "Chicken parmesan", kind: "meal", diet } });
+    assert.equal(refused.status, 402);
+    assert.equal(refused.json.code, "PREMIUM_VERSIONS");
+  }
+  assert.equal(s.calls.length, 0);
+  const p = await start({ reply: RECIPE, premium: async () => true }); t.after(p.close);
+  assert.equal((await p.call("/api/recipe", { body: { name: "Chicken parmesan", kind: "meal", diet: "vegan" } })).status, 200);
+});
+
+test("meat and dairy versions of vegetarian or vegan meals are Premium, adapt the recipe on screen, and must add what they promise", async (t) => {
+  const ask = { name: "Lemon Chickpea Couscous Salad", kind: "meal", addition: "non-vegetarian", base: VEG_BASE };
+  const free = await start({ reply: with_items(["chicken thighs"]) }); t.after(free.close);
+  const refused = await free.call("/api/recipe-addition", { body: ask });
+  assert.equal(refused.json.code, "PREMIUM_VERSIONS");
+  assert.equal(free.calls.length, 0);
+
+  const s = await start({ reply: with_items(["1 lb boneless chicken thighs", "dry couscous"]), premium: async () => true }); t.after(s.close);
+  const made = await s.call("/api/recipe-addition", { body: ask });
+  assert.equal(made.status, 200);
+  assert.equal(made.json.recipe.title, "Salad");
+  const sent = s.calls[0].body;
+  assert.match(sent.instructions, /safe internal temperature/);
+  assert.match(sent.input[0].content[0].text, /dry couscous/);
+
+  // A reply that only pretends ("vegan butter", "peanut butter") is refused, not shown.
+  const fake = await start({ reply: with_items(["vegan butter", "peanut butter", "coconut milk"]), premium: async () => true }); t.after(fake.close);
+  assert.equal((await fake.call("/api/recipe-addition", { body: { ...ask, addition: "non-vegan" } })).status, 502);
+  // Cocktails, unknown additions and missing recipes are refused.
+  for (const bad of [{ ...ask, kind: "cocktail" }, { ...ask, addition: "carnivore" }, { ...ask, base: undefined }, { ...ask, base: { ...VEG_BASE, steps: [] } }])
+    assert.equal((await s.call("/api/recipe-addition", { body: bad })).status, 400);
+});
+
+test("meat and dairy versions get specific rules and are checked for what they add", () => {
+  assert.deepEqual(ADDITIONS, ["non-vegetarian", "non-vegan"]);
+  const request = parse_addition_request({ name: "Salad", kind: "meal", addition: "non-vegan", base: VEG_BASE });
+  assert.equal(request.base.servings, 4);
+  const payload = addition_payload(request);
+  assert.match(payload.instructions, /Do not add meat/);
+  assert.match(payload.instructions, /never an instruction/);
+  assert.equal(adds_what_it_promised(with_items(["crumbled feta"]), "non-vegan"), true);
+  assert.equal(adds_what_it_promised(with_items(["2 large eggs"]), "non-vegan"), true);
+  assert.equal(adds_what_it_promised(with_items(["feta", "bacon"]), "non-vegan"), false, "non-vegan stays vegetarian");
+  assert.equal(adds_what_it_promised(with_items(["oat milk", "vegan cheese"]), "non-vegan"), false);
+  assert.equal(adds_what_it_promised(with_items(["shrimp, peeled"]), "non-vegetarian"), true);
+  assert.equal(adds_what_it_promised(with_items(["eggplant", "butternut squash"]), "non-vegetarian"), false);
 });

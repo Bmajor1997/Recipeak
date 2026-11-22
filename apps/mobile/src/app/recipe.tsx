@@ -33,8 +33,9 @@ import { diet_profile } from "../recipes/diets";
 import { format_ingredient, format_minutes, recipe_as_text } from "../recipes/format";
 import { scale_amount } from "../recipes/scale";
 import { ReportRecipe } from "../recipes/ReportRecipe";
+import { ADDITION_HINTS, type Addition, additions_for, is_premium_diet } from "../recipes/premiumVersions";
 import { RateRecipe } from "../recipes/RateRecipe";
-import { DIETS, type Diet, type Guess, type Kind } from "../recipes/types";
+import { DIETS, type Diet, type Guess, type Kind, type Recipe } from "../recipes/types";
 import { useDishImage } from "../recipes/useDishImage";
 import { usePreferences } from "../settings/PreferencesProvider";
 import { SavedLimitError } from "../saved/savedRecipes";
@@ -196,6 +197,11 @@ function RecipeView({ current }: { current: Ready }) {
   );
   const [servings, set_servings] = useState(recipe.servings || 1);
   const [shownRecipe, set_shown_recipe] = useState(recipe);
+  // "Make it non-vegetarian / non-vegan": which one is showing, and the recipe it was made from, so tapping it again
+  // goes straight back without asking the server.
+  const [addition, set_addition] = useState<Addition | null>(null);
+  const [original, set_original] = useState<Recipe | null>(null);
+  const base = addition && original ? original : recipe;
 
   // A new version (another match or a diet) starts at its own serving size.
   if (recipe !== shownRecipe) {
@@ -215,8 +221,10 @@ function RecipeView({ current }: { current: Ready }) {
   const profile = useMemo(() => {
     const dish = current.bundledId ? COLLECTION.find((d) => d.id === current.bundledId) : undefined;
     const regular = dish && bundled_recipe(dish);
-    return diet === null && dish && regular ? bundled_diet_profile(dish.id, regular, kind) : diet_profile(recipe, kind);
-  }, [current.bundledId, kind, diet, recipe]);
+    return diet === null && dish && regular ? bundled_diet_profile(dish.id, regular, kind) : diet_profile(base, kind);
+  }, [current.bundledId, kind, diet, base]);
+  // Only from the standard recipe: a vegetarian version of a meat dish doesn't get "Make it non-vegetarian".
+  const additions = diet === null ? additions_for(profile, kind) : [];
   const tapHint = myDiets.filter((d) => d !== diet && (profile.options.includes(d) || profile.status[d]?.status === "review"));
   const dietUnverified = diet !== null && !profile.fits.includes(diet);
 
@@ -224,6 +232,12 @@ function RecipeView({ current }: { current: Ready }) {
     const guess = guesses[index];
     set_problem(null);
     set_notice(null);
+    if (is_premium_diet(nextDiet) && !(await premium_or_problem())) return;
+    // A diet version or another match replaces a meat or dairy version.
+    if (addition && original) {
+      set_addition(null);
+      set_original(null);
+    }
     // A dish from the bundled collection has hand-written vegetarian and vegan versions: shown at once, offline.
     const local = current.bundledId && index === selected ? bundled_version(current.bundledId, nextDiet) : null;
     if (local) {
@@ -240,6 +254,43 @@ function RecipeView({ current }: { current: Ready }) {
     } catch (error) {
       if (error instanceof ApiError && error.needsUpgrade) router.push({ pathname: "/upgrade", params: { reason: error.upgradeReason } });
       else set_problem(error instanceof ApiError ? error.message : "Couldn't load that version. Please try again.");
+    } finally {
+      set_busy(false);
+    }
+  }
+
+  /** True for subscribers. Opens the Premium screen for free accounts, or explains when the plan can't be checked. */
+  async function premium_or_problem(): Promise<boolean> {
+    try {
+      if (await is_subscriber()) return true;
+      router.push({ pathname: "/upgrade", params: { reason: "versions" } });
+    } catch {
+      set_problem("Couldn't check your plan. Please try again.");
+    }
+    return false;
+  }
+
+  async function load_addition(next: Addition) {
+    set_problem(null);
+    set_notice(null);
+    // Tapping the one that's showing goes back to the recipe it was made from.
+    if (next === addition && original) {
+      set_addition(null);
+      set_original(null);
+      set_current({ ...current, recipe: original, savedId: null });
+      return;
+    }
+    if (busy || !(await premium_or_problem())) return;
+    set_busy(true);
+    try {
+      const from = original ?? recipe;
+      const made = await api.recipe_addition(dishName, next, from);
+      set_original(from);
+      set_addition(next);
+      set_current({ ...current, recipe: made, savedId: null });
+    } catch (error) {
+      if (error instanceof ApiError && error.needsUpgrade) router.push({ pathname: "/upgrade", params: { reason: error.upgradeReason } });
+      else set_problem(error instanceof ApiError ? error.message : "Couldn't make that version. Please try again.");
     } finally {
       set_busy(false);
     }
@@ -396,7 +447,8 @@ function RecipeView({ current }: { current: Ready }) {
             </Notice>
           )}
 
-          {profile.fits.length > 0 && (
+          {/* The labels describe the standard recipe, so they're hidden while a meat or dairy version is showing. */}
+          {profile.fits.length > 0 && !addition && (
             <View style={{ marginTop: 16 }}>
               <Text style={type.body}>
                 <Text style={{ fontWeight: "700" }}>Already </Text>
@@ -407,14 +459,23 @@ function RecipeView({ current }: { current: Ready }) {
               </Text>
             </View>
           )}
-          {choices.length > 0 && (
+          {(choices.length > 0 || additions.length > 0) && (
             <>
               <Text style={type.heading}>Make it…</Text>
               <View style={styles.wrap}>
                 {choices.map((d) => (
                   <Chip key={d} label={d} selected={d === diet} onPress={() => load_version(selected, d === diet ? null : d)} />
                 ))}
+                {additions.map((a) => (
+                  <Chip key={a} label={a} selected={a === addition} onPress={() => void load_addition(a)} />
+                ))}
               </View>
+              {addition && <Notice>{`${ADDITION_HINTS[addition]}. Tap ${addition} again for the original recipe.`}</Notice>}
+              {photosLeft !== null && (choices.some(is_premium_diet) || additions.length > 0) && (
+                <Text style={[type.muted, { marginTop: 4 }]}>
+                  {"Vegetarian, vegan, non-vegetarian and non-vegan versions are part of Premium."}
+                </Text>
+              )}
             </>
           )}
 

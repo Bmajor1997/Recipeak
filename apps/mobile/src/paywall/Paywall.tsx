@@ -64,7 +64,7 @@ export function Paywall({ reason, onClose }: { reason: PaywallReason; onClose: (
     if (outcome.kind === "failed") return set_notice({ text: outcome.message, tone: "error" });
     if (outcome.kind === "purchased" && outcome.premium) {
       set_premium(true);
-      set_notice({ text: "You're Premium. Unlimited photos, saves and diet versions are on.", tone: "muted" });
+      set_notice({ text: "You're Premium. Unlimited photos, saves and recipe versions are on.", tone: "muted" });
     }
   }
 
@@ -88,7 +88,7 @@ export function Paywall({ reason, onClose }: { reason: PaywallReason; onClose: (
         Keep snapping. Keep cooking.
       </Text>
       <Text style={[type.muted, { marginTop: 8, fontSize: 15, lineHeight: 22 }]}>
-        Unlimited photos, every saved recipe, and diet versions of any dish or drink.
+        Unlimited photos, every saved recipe, and vegetarian, vegan, or meat and dairy versions of any dish.
       </Text>
 
       <View accessibilityRole="radiogroup" style={styles.plans}>
