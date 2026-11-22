@@ -13,7 +13,7 @@ const RECIPE = {
   ingredients: [{ amount: "1", unit: "oz", item: "lime juice" }], steps: ["Shake."], allergens: [],
   cocktail: { glass: "rocks", garnish: "lime", alcoholic: true, non_alcoholic_version: null }, note: "",
 };
-const IDENTIFIED = { kind: "cocktail", guesses: [{ name: "Margarita", confidence: "high" }], recipe: RECIPE };
+const IDENTIFIED = { kind: "cocktail", guesses: [{ name: "Margarita", confidence: "high" }] };
 const RATING = { kind: "meal", dish: "Soup", stars: 3, made: true, tags: [], note: "" };
 
 async function start_test_server({ reply = IDENTIFIED, premium = async () => false, env = {}, delay = 0 } = {}) {
@@ -115,14 +115,16 @@ test("unsupported, mismatched, truncated and oversized photo data is rejected", 
 });
 
 // Invalid AI replies cannot be returned as recipes or consume the user's free photo.
-test("incomplete AI recipes are rejected and their photo allowance is restored", async (t) => {
+test("incomplete AI recipes are rejected, and an unusable photo reply gives the free photo back", async (t) => {
   for (const bad of [{ ...RECIPE, ingredients: [] }, { ...RECIPE, steps: null }, { ...RECIPE, allergens: ["unknown-allergen"] },
     { ...RECIPE, ingredients: [{ amount: "1", unit: "cup", item: " " }] }, { ...RECIPE, steps: [" "] }]) {
     assert.throws(() => validate_recipe(bad));
-    const s = await start_test_server({ reply: { ...IDENTIFIED, recipe: bad } }); t.after(s.close);
-    const result = await s.call("/api/identify", { body: { image: JPEG } });
+    const s = await start_test_server({ reply: bad, premium: async () => true }); t.after(s.close);
+    const result = await s.call("/api/recipe", { body: { name: "Margarita", kind: "cocktail" } });
     assert.equal(result.status, 502);
-    assert.equal((await s.call("/api/allowance")).json.free_photos_left, 3);
     assert.ok(!JSON.stringify(result.json).includes("sk-test-key"));
   }
+  const s = await start_test_server({ reply: { kind: "cocktail", guesses: [{ name: " ", confidence: "high" }] } }); t.after(s.close);
+  assert.equal((await s.call("/api/identify", { body: { image: JPEG } })).status, 502);
+  assert.equal((await s.call("/api/allowance")).json.free_photos_left, 3);
 });

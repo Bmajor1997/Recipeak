@@ -33,8 +33,8 @@ export const NO_IMAGE: DishImage = { status: "unavailable", url: null };
 export type Guess = { name: string; confidence: "high" | "medium" | "low"; image: DishImage };
 
 export type Identification =
-  | { kind: "not_food"; guesses: []; recipe: null; free_photos_left: number | null; premium: boolean }
-  | { kind: Kind; guesses: Guess[]; recipe: Recipe; free_photos_left: number | null; premium: boolean };
+  | { kind: "not_food"; guesses: []; free_photos_left: number | null; premium: boolean }
+  | { kind: Kind; guesses: Guess[]; free_photos_left: number | null; premium: boolean };
 
 export type Allowance = { premium: boolean; free_photos_left: number | null; free_photos_total: number };
 

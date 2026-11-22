@@ -26,8 +26,7 @@ import { useCamera } from "../camera/CameraProvider";
 import { diets_for_kind, or_list } from "../onboarding/onboarding";
 import { useOnboarding } from "../onboarding/OnboardingProvider";
 import { FREE_SAVED_RECIPES } from "../paywall/plans";
-import { bundled_recipe, bundled_version } from "../recipes/bundled";
-import { NO_IMAGE } from "../recipes/types";
+import { bundled_photo_uri, bundled_recipe, bundled_version, find_bundled_dish } from "../recipes/bundled";
 import { COLLECTION } from "../recipes/collectionPhotos";
 import { bundled_diet_profile } from "../recipes/dietProfile";
 import { diet_profile } from "../recipes/diets";
@@ -36,7 +35,7 @@ import { scale_amount } from "../recipes/scale";
 import { ReportRecipe } from "../recipes/ReportRecipe";
 import { ADDITION_HINTS, type Addition, additions_for, is_premium_diet } from "../recipes/premiumVersions";
 import { RateRecipe } from "../recipes/RateRecipe";
-import { DIETS, type Diet, type Guess, type Kind, type Recipe } from "../recipes/types";
+import { DIETS, type Diet, type Guess, type Kind, NO_IMAGE, type Recipe } from "../recipes/types";
 import { useDishImage } from "../recipes/useDishImage";
 import { usePreferences } from "../settings/PreferencesProvider";
 import { SavedLimitError } from "../saved/savedRecipes";
@@ -53,65 +52,72 @@ type Ready = Extract<CurrentRecipe, { status: "ready" }>;
 export default function RecipeScreen() {
   const { current } = useApp();
   if (!current || current.status === "loading") return <Finding photo={current?.status === "loading" ? current.photo : undefined} />;
-  if (current.status === "photo-choice") return <PhotoChoice current={current} />;
+  if (current.status === "ai-offer") return <AiOffer current={current} />;
   if (current.status === "problem") return <Problem message={current.message} source={current.source ?? "photo"} />;
   return <RecipeView current={current} />;
 }
 
-/** Choose a trusted bundled recipe before accepting an AI-generated suggestion. */
-function PhotoChoice({ current }: { current: Extract<CurrentRecipe, { status: "photo-choice" }> }) {
-  const { set_current } = useApp();
+/**
+ * A photo of a dish Recipeak doesn't have. Nothing more is made unless the person says yes: then the server writes a
+ * recipe, checks it a second time, makes its photo, and keeps both, so the next person gets them straight away.
+ */
+function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-offer" }> }) {
+  const { api, set_current } = useApp();
   const { type } = useTheme();
   const styles = useThemedStyles(create_styles);
   const [busy, set_busy] = useState(false);
-  const [error, set_error] = useState<string | null>(null);
-  const open_suggestion = () => set_current({
-    status: "ready", kind: current.kind, recipe: current.suggested, guesses: current.guesses,
-    selected: 0, image: current.guesses[0]?.image ?? NO_IMAGE, localPhoto: null, savedId: null,
-  });
-  async function open_existing(id: string) {
+  const [problem, set_problem] = useState<string | null>(null);
+  const name = current.guesses[0].name;
+  const what = current.kind === "cocktail" ? "drink" : "meal";
+
+  async function make() {
     if (busy) return;
     set_busy(true);
-    set_error(null);
+    set_problem(null);
     try {
-      const dish = COLLECTION.find((item) => item.id === id && item.kind === current.kind);
-      const recipe = dish && bundled_recipe(dish);
-      if (!dish || !recipe) throw new Error("The saved recipe could not be opened.");
+      const made = await api.recipe(name, current.kind);
       set_current({
-        status: "ready", kind: current.kind, recipe, guesses: [{ name: dish.name, confidence: "high", image: NO_IMAGE }],
-        selected: 0, image: NO_IMAGE, localPhoto: null, savedId: null, picked: true, bundledId: dish.id,
+        status: "ready",
+        kind: current.kind,
+        recipe: made.recipe,
+        guesses: current.guesses,
+        selected: 0,
+        image: made.image,
+        localPhoto: null,
+        savedId: null,
+        ai: true,
       });
-    } catch {
-      set_error("Couldn't open that collection recipe. You can still use the AI suggestion.");
+    } catch (error) {
+      if (error instanceof ApiError && error.needsUpgrade) {
+        router.push({ pathname: "/upgrade", params: { reason: error.upgradeReason } });
+      } else {
+        set_problem(error instanceof ApiError ? error.message : "Couldn't make that recipe. Please try again.");
+      }
     } finally {
       set_busy(false);
     }
   }
+
+  function not_now() {
+    set_current(null);
+    router.back();
+  }
+
   return (
     <Sheet>
-      <ScrollView contentContainerStyle={[styles.body, { paddingTop: 90, paddingBottom: 40 }]}>
-        <Text style={type.title} accessibilityRole="header">Choose your recipe</Text>
-        {current.matches.length > 0 ? (
-          <>
-            <Text style={[type.body, { marginVertical: 14 }]}>We found these recipes in Recipeak's collection. Choose one to open it without another AI request.</Text>
-            {current.matches.map((match) => (
-              <View key={match.id} style={{ marginBottom: 10 }}>
-                <Button label={match.name} disabled={busy} onPress={() => void open_existing(match.id)} />
-              </View>
-            ))}
-          </>
-        ) : (
-          <Text style={[type.body, { marginVertical: 14 }]}>We couldn't find an exact recipe in the collection.</Text>
-        )}
-        <Text style={[type.body, { marginVertical: 12 }]}>
-          The photo analysis also prepared a representative AI recipe for {current.guesses[0]?.name ?? "this dish"}.
-          It may not match hidden ingredients or the original preparation.
+      <ScrollView contentContainerStyle={[styles.body, { paddingTop: 90, paddingBottom: 40, gap: 14 }]}>
+        <Text style={type.title} accessibilityRole="header">
+          {`We don't have this ${what} yet`}
         </Text>
-        <Button label="Review AI recipe" variant="secondary" disabled={busy} onPress={open_suggestion} />
-        <Text style={[type.muted, { marginTop: 12 }]}>
-          Check all ingredients and allergens before cooking or serving. A photo cannot establish hidden allergens or cross-contact.
-        </Text>
-        {error && <Notice tone="error">{error}</Notice>}
+        <Text style={type.body}>{`It looks like ${name}, but Recipeak doesn't have a recipe for it.`}</Text>
+        <Text style={type.body}>Would you like Recipeak to make a recipe and a photo for it with AI?</Text>
+        <Notice>
+          AI recipes are our best effort, checked twice before you see them. Still, check every ingredient and allergen before you cook or
+          serve it, especially for anyone with a food allergy.
+        </Notice>
+        {problem && <Notice tone="error">{problem}</Notice>}
+        <Button label="Make AI recipe and photo" busy={busy} onPress={() => void make()} />
+        <Button label="Not now" variant="secondary" disabled={busy} onPress={not_now} />
       </ScrollView>
     </Sheet>
   );
@@ -262,6 +268,7 @@ function RecipeView({ current }: { current: Ready }) {
   // goes straight back without asking the server.
   const [addition, set_addition] = useState<Addition | null>(null);
   const [original, set_original] = useState<Recipe | null>(null);
+  const [original_ai, set_original_ai] = useState<boolean | undefined>(undefined);
   const base = addition && original ? original : recipe;
 
   // A new version (another match or a diet) starts at its own serving size.
@@ -304,6 +311,26 @@ function RecipeView({ current }: { current: Ready }) {
       set_current({ ...current, recipe: local.recipe, savedId: null });
       return;
     }
+    // Another guess that Recipeak already has opens its own checked recipe, with no AI request.
+    const other = index !== selected && !nextDiet && guess ? find_bundled_dish(kind, guess.name) : null;
+    const other_recipe = other && bundled_recipe(other);
+    if (other && other_recipe) {
+      set_addition(null);
+      set_original(null);
+      set_diet(null);
+      const photo = await bundled_photo_uri(other);
+      set_current({
+        ...current,
+        recipe: other_recipe,
+        selected: index,
+        image: NO_IMAGE,
+        localPhoto: photo,
+        savedId: null,
+        bundledId: other.id,
+        ai: false,
+      });
+      return;
+    }
     set_busy(true);
     try {
       const next = await api.recipe(guess?.name ?? recipe.title, kind, nextDiet ?? undefined);
@@ -311,7 +338,17 @@ function RecipeView({ current }: { current: Ready }) {
       set_addition(null);
       set_original(null);
       set_diet(nextDiet);
-      set_current({ ...current, recipe: next.recipe, selected: index, image: next.image, localPhoto: null, savedId: null });
+      // Anything the server writes is made with AI, and a different guess is no longer the bundled dish.
+      set_current({
+        ...current,
+        recipe: next.recipe,
+        selected: index,
+        image: next.image,
+        localPhoto: null,
+        savedId: null,
+        ai: true,
+        ...(index !== selected ? { bundledId: undefined } : {}),
+      });
     } catch (error) {
       if (error instanceof ApiError && error.needsUpgrade) router.push({ pathname: "/upgrade", params: { reason: error.upgradeReason } });
       else set_problem(error instanceof ApiError ? error.message : "Couldn't load that version. Please try again.");
@@ -338,7 +375,7 @@ function RecipeView({ current }: { current: Ready }) {
     if (next === addition && original) {
       set_addition(null);
       set_original(null);
-      set_current({ ...current, recipe: original, savedId: null });
+      set_current({ ...current, recipe: original, savedId: null, ai: original_ai });
       return;
     }
     if (busy || !(await premium_or_problem())) return;
@@ -347,8 +384,9 @@ function RecipeView({ current }: { current: Ready }) {
       const from = original ?? recipe;
       const made = await api.recipe_addition(dishName, next, from);
       set_original(from);
+      set_original_ai(current.ai);
       set_addition(next);
-      set_current({ ...current, recipe: made, savedId: null });
+      set_current({ ...current, recipe: made, savedId: null, ai: true });
     } catch (error) {
       if (error instanceof ApiError && error.needsUpgrade) router.push({ pathname: "/upgrade", params: { reason: error.upgradeReason } });
       else set_problem(error instanceof ApiError ? error.message : "Couldn't make that version. Please try again.");
@@ -644,6 +682,14 @@ function RecipeView({ current }: { current: Ready }) {
             <Button label="Share recipe" variant="secondary" onPress={share_recipe} />
           </View>
 
+          {current.ai && (
+            <View style={{ marginTop: 16 }}>
+              <Notice>
+                Made with AI. Check every ingredient and allergen before you cook or serve it. Something wrong? Use &quot;Report this
+                recipe&quot; below.
+              </Notice>
+            </View>
+          )}
           <Text style={[type.muted, { marginTop: 16 }]}>
             This is a representative recipe for this {kind === "cocktail" ? "drink" : "dish"}, not the exact recipe from the restaurant or
             bar.

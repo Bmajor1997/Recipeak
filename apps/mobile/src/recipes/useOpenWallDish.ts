@@ -61,6 +61,8 @@ export function useOpenWallDish() {
           localPhoto: null,
           savedId: null,
           picked: true,
+          // Not in the bundled collection, so the server wrote it with AI.
+          ai: true,
         });
       } catch (error) {
         set_current({
