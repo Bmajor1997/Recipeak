@@ -12955,7 +12955,7 @@
     {
      "amount": "1",
      "unit": "oz",
-     "item": "unsweetened cranberry juice cocktail"
+     "item": "cranberry juice cocktail"
     },
     {
      "amount": "1",
@@ -32381,7 +32381,7 @@
    ],
    "steps": [
     "Stir everything with ice.",
-    "Strain into a chilled coupe."
+    "Strain into a chilled coupe, or over fresh ice in a rocks glass."
    ],
    "allergens": [],
    "cocktail": {
