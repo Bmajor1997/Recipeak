@@ -149,3 +149,34 @@ test("the dashboard page is served with a strict content policy, and its config 
   assert.equal((await s.get("/admin/../server/main.js")).status, 404);
   assert.deepEqual(await (await s.get("/admin/feedback-config")).json(), { apiKey: "public-web-key" });
 });
+
+test("recipe reports are bug reports; offensive or unsafe ones are flagged for safety review", () =>
+  with_store((f) => {
+    const report = (reason, extra = {}) =>
+      body({ category: "bug", title: "Recipe report: Mojito", description: `Reason: ${reason}`, report: reason, ...extra });
+    for (const bad of [report("spam"), body({ report: "offensive" }), report(7)]) assert.throws(() => validate_feedback(bad));
+    f.create("a", report("inaccurate"));
+    f.create("b", report("unsafe", { title: "Recipe report: Fugu" }));
+    const bugs = f.dashboard().bugs;
+    const by_title = Object.fromEntries(bugs.map((g) => [g.title, g]));
+    assert.equal(by_title["Recipe report: Mojito"].safety_flag, 0);
+    assert.equal(by_title["Recipe report: Mojito"].severity, "Unassessed");
+    assert.equal(by_title["Recipe report: Fugu"].safety_flag, 1);
+    assert.equal(by_title["Recipe report: Fugu"].severity, "High");
+    // The same words with a different reason are a different report.
+    f.create("c", report("offensive"));
+    assert.equal(f.dashboard().bugs.length, 3);
+  }));
+
+test("the feedback route accepts a recipe report", async () => {
+  const app = await start();
+  try {
+    const sent = await app.post("/api/feedback", body({ category: "bug", title: "Recipe report: Daiquiri", description: "Reason: wrong dish", report: "wrong_dish" }));
+    assert.equal(sent.status, 200);
+    assert.equal(typeof sent.json.id, "string");
+    const refused = await app.post("/api/feedback", body({ category: "feature", report: "other" }));
+    assert.equal(refused.status, 400);
+  } finally {
+    await app.close();
+  }
+});

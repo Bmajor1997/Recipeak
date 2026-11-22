@@ -113,6 +113,7 @@ Ported from Votic on 2026-11-15. **Settings > Feedback** offers **Suggest a Feat
 
 - **Server** (`server/feedback.js`, Votic's `app_parts/feedback.js`): `POST /api/feedback` for signed-in accounts. Strict validation, a submission reference so a retry is never saved twice, 10 reports per account per day, identical reports grouped together, and everything removed after a year. Reports live in the private usage ledger.
 - **Dashboard** at `/admin/feedback` (Votic's `admin/`): sign in with a Firebase account whose user ID is listed in `MM_FEEDBACK_ADMIN_UIDS` (it also needs `FIREBASE_WEB_API_KEY`). It shows totals, the most requested features and most reported bugs, unresolved serious bugs first, search, and status and severity, merge and separate. Every request is checked by the server; the page keeps the sign-in in memory only.
+- **Report this recipe (2026-11-22).** The bottom of every recipe has a "Report this recipe" link (Google Play requires in-app reporting for AI-made content). The person picks a reason (offensive, unsafe, not the dish in the photo, wrong ingredients or allergens, something else) and can add details. It is sent as a bug report titled "Recipe report: <dish>" with a `report` reason; offensive and unsafe reports are flagged for safety review and marked High on the dashboard.
 - Not ported (Votic-only for now): the Google Play rating link (there's no store listing yet) and automatic diagnostic reports.
 
 ## 4. Privacy and safety
