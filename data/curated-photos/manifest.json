@@ -4027,6 +4027,41 @@
       ]
     },
     {
+      "file": "roasted-red-pepper-and-white-bean-soup.jpg",
+      "kind": "meal",
+      "names": [
+        "Roasted Red Pepper and White Bean Soup"
+      ]
+    },
+    {
+      "file": "gochujang-beef-lettuce-wraps.jpg",
+      "kind": "meal",
+      "names": [
+        "Gochujang Beef Lettuce Wraps"
+      ]
+    },
+    {
+      "file": "baked-lemon-dill-cod.jpg",
+      "kind": "meal",
+      "names": [
+        "Baked Lemon-Dill Cod"
+      ]
+    },
+    {
+      "file": "turkey-and-black-bean-stuffed-sweet-potatoes.jpg",
+      "kind": "meal",
+      "names": [
+        "Turkey and Black Bean Stuffed Sweet Potatoes"
+      ]
+    },
+    {
+      "file": "butternut-squash-and-sage-pasta.jpg",
+      "kind": "meal",
+      "names": [
+        "Butternut Squash and Sage Pasta"
+      ]
+    },
+    {
       "file": "blackberry-sage-bourbon-smash.jpg",
       "kind": "cocktail",
       "names": [
@@ -4059,6 +4094,41 @@
       "kind": "cocktail",
       "names": [
         "Strawberry Basil Tequila Sour"
+      ]
+    },
+    {
+      "file": "pear-cardamom-bourbon-fizz.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Pear Cardamom Bourbon Fizz"
+      ]
+    },
+    {
+      "file": "peach-thyme-vodka-lemonade.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Peach Thyme Vodka Lemonade"
+      ]
+    },
+    {
+      "file": "mango-chile-margarita.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Mango Chile Margarita"
+      ]
+    },
+    {
+      "file": "hibiscus-citrus-rum-punch.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Hibiscus Citrus Rum Punch"
+      ]
+    },
+    {
+      "file": "blueberry-lemon-gin-collins.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Blueberry Lemon Gin Collins"
       ]
     }
   ]

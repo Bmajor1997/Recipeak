@@ -69,6 +69,75 @@
 # Heat oil in a skillet over medium-high. Cook shrimp 2–3 minutes per side until opaque and cooked through; add garlic for the final 30 seconds.
 # Toss shrimp with lime zest and juice. Serve over rice with cilantro.
 
+@ roasted-red-pepper-and-white-bean-soup | Roasted Red Pepper and White Bean Soup | 4 | 10 | 20 | - | Roasted Red Pepper and White Bean Soup: a home recipe with 1 tbsp olive oil, 1 onion, chopped, 2 garlic cloves, minced.
+- 1 | tbsp | olive oil
+- 1 |  | onion, chopped
+- 2 |  | garlic cloves, minced
+- 1 | jar | (12 oz) roasted red peppers, drained
+- 2 | cans | (15 oz each) cannellini beans, drained
+- 3 | cups | vegetable broth
+- 1/2 | tsp | smoked paprika
+- 1 | tbsp | lemon juice
+- | | salt and pepper
+# Cook onion in oil over medium heat for 5 minutes. Add garlic and paprika for 30 seconds.
+# Add peppers, beans and broth. Simmer 12 minutes. Blend until smooth, working carefully with hot soup.
+# Stir in lemon juice; season and warm through.
+
+@ gochujang-beef-lettuce-wraps | Gochujang Beef Lettuce Wraps | 4 | 15 | 15 | soy, wheat, sesame | Gochujang Beef Lettuce Wraps: a home recipe with 1 lb ground beef, 2 garlic cloves, minced, 1 tbsp grated ginger.
+- 1 | lb | ground beef
+- 2 |  | garlic cloves, minced
+- 1 | tbsp | grated ginger
+- 1 1/2 | tbsp | gochujang
+- 2 | tbsp | soy sauce
+- 1 | tbsp | brown sugar
+- 1 | tsp | sesame oil
+- 1 |  | head butter lettuce, leaves separated
+- 1 |  | cucumber, thinly sliced
+- 2 |  | scallions, sliced
+# Brown beef in a skillet, breaking it up; drain excess fat. Add garlic and ginger and cook 30 seconds.
+# Stir in gochujang, soy sauce, sugar and sesame oil; cook 2 minutes until coated.
+# Spoon into washed lettuce leaves and top with cucumber and scallions.
+
+@ baked-lemon-dill-cod | Baked Lemon-Dill Cod | 4 | 10 | 18 | fish, milk | Baked Lemon-Dill Cod: a home recipe with 4 cod fillets (about 6 oz each), 2 tbsp melted butter, 1 lemon, zested and juiced.
+- 4 |  | cod fillets (about 6 oz each)
+- 2 | tbsp | melted butter
+- 1 |  | lemon, zested and juiced
+- 2 | tbsp | chopped dill
+- 1 |  | garlic clove, minced
+- 1/2 | tsp | salt
+- 1/4 | tsp | pepper
+- 1 | lb | green beans
+- 1 | tbsp | olive oil
+# Heat oven to 425°F. Toss green beans with oil and half the salt on a sheet pan; roast 5 minutes.
+# Mix butter, lemon zest, dill and garlic. Add cod to pan, season with remaining salt and pepper, and spoon butter mixture over it.
+# Bake 12–15 minutes until fish flakes and reaches 145°F. Finish with lemon juice.
+
+@ turkey-and-black-bean-stuffed-sweet-potatoes | Turkey and Black Bean Stuffed Sweet Potatoes | 4 | 10 | 50 | milk | Turkey and Black Bean Stuffed Sweet Potatoes: a home recipe with 4 medium sweet potatoes, 1 lb ground turkey, 1 can (15 oz) black beans, drained.
+- 4 |  | medium sweet potatoes
+- 1 | lb | ground turkey
+- 1 | can | (15 oz) black beans, drained
+- 1 | cup | tomato salsa
+- 1 | tsp | cumin
+- 1/2 | tsp | salt
+- 1/4 | cup | chopped cilantro
+- 1/2 | cup | plain yogurt, optional
+# Heat oven to 425°F. Pierce potatoes and bake on a tray 45–55 minutes until tender.
+# Brown turkey in a skillet until it reaches 165°F. Add beans, salsa, cumin and salt; simmer 5 minutes.
+# Split potatoes and fluff their centers. Fill with turkey mixture and top with cilantro and optional yogurt.
+
+@ butternut-squash-and-sage-pasta | Butternut Squash and Sage Pasta | 4 | 15 | 30 | wheat, milk | Butternut Squash and Sage Pasta: a home recipe with 1½ lb peeled butternut squash, cubed, 2 tbsp olive oil, ½ tsp salt.
+- 1 1/2 | lb | peeled butternut squash, cubed
+- 2 | tbsp | olive oil
+- 1/2 | tsp | salt
+- 12 | oz | penne
+- 2 | tbsp | butter
+- 8 |  | sage leaves
+- 1/3 | cup | grated Parmesan
+- | | black pepper
+# Heat oven to 425°F. Toss squash with oil and salt; roast 25–30 minutes until tender and browned at the edges.
+# Cook penne in salted water until al dente; reserve 1 cup pasta water, then drain.
+# Melt butter in a large skillet and crisp sage briefly. Toss in squash, pasta, Parmesan and enough pasta water to make a light sauce. Season with pepper.
+
 @ blackberry-sage-bourbon-smash | Blackberry Sage Bourbon Smash | 1 | 5 | 0 | - | Blackberry Sage Bourbon Smash: a home recipe with 2 oz bourbon, ¾ oz lemon juice, ½ oz simple syrup.
 - 2 | oz | bourbon
 - 3/4 | oz | lemon juice
@@ -127,3 +196,61 @@ G highball glass | lime wedge | y | replace rum with alcohol-free rum alternativ
 # Muddle strawberries and basil with syrup.
 # Add tequila, lime and ice; shake and fine-strain into a rocks glass over ice.
 G rocks glass | - | y | use an alcohol-free tequila alternative.
+
+@ pear-cardamom-bourbon-fizz | Pear Cardamom Bourbon Fizz | 1 | 5 | 0 | - | Pear Cardamom Bourbon Fizz: a home recipe with 1½ oz bourbon, 2 oz pear nectar, ½ oz lemon juice.
+- 1 1/2 | oz | bourbon
+- 2 | oz | pear nectar
+- 1/2 | oz | lemon juice
+- 1/4 | oz | simple syrup
+- | | tiny pinch ground cardamom
+- 2 | oz | soda water
+- | | ice
+# Shake bourbon, nectar, lemon, syrup and cardamom with ice.
+# Strain into a tall glass over fresh ice and top with soda.
+G highball glass | - | y | use alcohol-free whiskey alternative.
+
+@ peach-thyme-vodka-lemonade | Peach Thyme Vodka Lemonade | 1 | 5 | 0 | - | Peach Thyme Vodka Lemonade: a home recipe with 1½ oz vodka, 2 oz peach nectar, ¾ oz lemon juice.
+- 1 1/2 | oz | vodka
+- 2 | oz | peach nectar
+- 3/4 | oz | lemon juice
+- 1/2 | oz | simple syrup
+- 2 |  | thyme sprigs
+- 1 | oz | soda water
+- | | ice
+# Gently muddle one thyme sprig with syrup.
+# Shake with vodka, nectar, lemon and ice; strain over fresh ice.
+# Add soda and the second thyme sprig.
+G highball glass | thyme sprig | y | omit vodka and add 1½ oz soda water.
+
+@ mango-chile-margarita | Mango Chile Margarita | 1 | 5 | 0 | - | Mango Chile Margarita: a home recipe with 1½ oz blanco tequila, 1 oz mango purée, ¾ oz lime juice.
+- 1 1/2 | oz | blanco tequila
+- 1 | oz | mango purée
+- 3/4 | oz | lime juice
+- 1/2 | oz | orange liqueur
+- 1/4 | oz | agave syrup
+- | | pinch chile powder
+- | | ice
+# Shake tequila, mango, lime, orange liqueur and agave with ice.
+# Strain into an ice-filled rocks glass and dust lightly with chile.
+G rocks glass | - | y | substitute alcohol-free tequila and orange alternatives, or use orange juice for the liqueur.
+
+@ hibiscus-citrus-rum-punch | Hibiscus Citrus Rum Punch | 1 | 5 | 0 | - | Hibiscus Citrus Rum Punch: a home recipe with 1½ oz aged rum, 2 oz chilled unsweetened hibiscus tea, 1 oz orange juice.
+- 1 1/2 | oz | aged rum
+- 2 | oz | chilled unsweetened hibiscus tea
+- 1 | oz | orange juice
+- 1/2 | oz | lime juice
+- 1/2 | oz | simple syrup
+- | | ice
+# Shake all ingredients with ice and strain into a tall glass over fresh ice.
+G highball glass | - | y | omit rum and add 1½ oz chilled hibiscus tea.
+
+@ blueberry-lemon-gin-collins | Blueberry Lemon Gin Collins | 1 | 5 | 0 | - | Blueberry Lemon Gin Collins: a home recipe with 1½ oz gin, ¾ oz lemon juice, ½ oz simple syrup.
+- 1 1/2 | oz | gin
+- 3/4 | oz | lemon juice
+- 1/2 | oz | simple syrup
+- 8 |  | blueberries
+- 2 | oz | soda water
+- | | ice
+# Muddle blueberries with syrup.
+# Shake with gin, lemon and ice; fine-strain into a tall glass of ice and top with soda.
+G highball glass | - | y | use an alcohol-free gin alternative.
