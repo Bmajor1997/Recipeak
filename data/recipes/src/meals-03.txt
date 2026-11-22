@@ -651,7 +651,7 @@
 
 @ bratwurst-with-sauerkraut | Bratwurst with Sauerkraut | 4 | 10 | 30 | milk | Beer-simmered then seared bratwurst over warm sauerkraut with mustard.
 - 4 | | bratwurst sausages
-- 1 | bottle (12 oz) | beer
+- 1 | bottle (12 oz) | wheat-free beer (check the label)
 - 1 | | onion, sliced
 - 1 | tbsp | butter or oil
 - 2 | cups | sauerkraut, drained

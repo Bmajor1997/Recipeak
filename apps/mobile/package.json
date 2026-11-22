@@ -38,6 +38,7 @@
   "devDependencies": {
     "@types/node": "^24.19.2",
     "@types/react": "~19.3.0",
+    "@vitest/coverage-v8": "5.1.0",
     "eslint": "^9.39.5",
     "eslint-config-expo": "~58.0.4",
     "minimatch": "file:vendor/minimatch-compat",
@@ -53,7 +54,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --max-warnings=0",
     "format:check": "prettier --check .",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "private": true,
   "overrides": {

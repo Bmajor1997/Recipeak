@@ -1,4 +1,4 @@
-@ bigos | Bigos (Polish Hunter's Stew) | 8 | 30 | 150 | - | Poland's slow-cooked hunter's stew: sauerkraut and fresh cabbage braised with smoked kielbasa, pork, wild mushrooms, prunes and red wine until rich, tangy and deeply savory.
+@ bigos | Bigos (Polish Hunter's Stew) | 8 | 30 | 150 | wheat | Poland's slow-cooked hunter's stew: sauerkraut and fresh cabbage braised with smoked kielbasa, pork, wild mushrooms, prunes and red wine until rich, tangy and deeply savory.
 - 1 | oz | dried porcini mushrooms
 - 1 | cup | boiling water, for the mushrooms
 - 6 | oz | thick-cut smoked bacon, diced
@@ -28,7 +28,7 @@ T Taste the sauerkraut first. If it's very sour, rinse it once before using.
 T The dried porcini and prunes give bigos its deep, smoky-sweet flavor; don't leave them out.
 S Keeps 5 days in the fridge and freezes for 3 months; the flavor improves each time it's reheated.
 V Add leftover roast meats such as beef, venison or duck, as hunters once did.
-@@ vegetarian | Vegetarian Bigos | 30 | 90 | soy | The same tangy sauerkraut and cabbage stew, made smoky with smoked paprika and rich with plenty of fresh and dried mushrooms.
+@@ vegetarian | Vegetarian Bigos | 30 | 90 | soy, wheat | The same tangy sauerkraut and cabbage stew, made smoky with smoked paprika and rich with plenty of fresh and dried mushrooms.
 ~ thick-cut smoked bacon, diced => olive oil
 ~ pork shoulder, cut into bite-size pieces => cremini mushrooms, quartered
 ~ smoked kielbasa, sliced into rounds => smoked tofu, cubed, and 2 tsp smoked paprika
@@ -89,7 +89,7 @@ V Add 1/2 tsp hot paprika for a spicier version.
 ~ Temper the sour cream with hot sauce first so it doesn't split. => Cashew cream won't split, but stir it in at the end so it stays silky.
 ~ stir in the sour cream when reheating. Nokedli can be made a day ahead and warmed in butter. => stir in the cashew cream when reheating. Nokedli can be made a day ahead and warmed in olive oil.
 
-@ chicken-yassa | Chicken Yassa | 6 | 20 | 75 | - | Senegal's beloved braise: chicken marinated in lemon, mustard and garlic, grilled, then simmered with a mountain of slowly caramelized onions, olives and a whole hot pepper.
+@ chicken-yassa | Chicken Yassa | 6 | 20 | 75 | peanuts | Senegal's beloved braise: chicken marinated in lemon, mustard and garlic, grilled, then simmered with a mountain of slowly caramelized onions, olives and a whole hot pepper.
 - 3 | lb | bone-in chicken thighs and legs
 - 4 | | lemons, juiced
 - 3 | tbsp | Dijon mustard, divided
@@ -114,7 +114,7 @@ T Grilling the chicken first adds a smoky char, the way it's done in Senegal.
 T Keep the chili whole for flavor and gentle heat; break it open if you like it fiery.
 S Marinate up to a day ahead. The finished dish keeps 4 days and tastes even better reheated.
 V Yassa poisson: use thick fish steaks and simmer only 10 minutes.
-@@ vegetarian | Tofu and Chickpea Yassa | 20 | 50 | soy | Grilled tofu and chickpeas simmered in the same lemony mustard sauce with sweet caramelized onions and olives.
+@@ vegetarian | Tofu and Chickpea Yassa | 20 | 50 | soy, peanuts | Grilled tofu and chickpeas simmered in the same lemony mustard sauce with sweet caramelized onions and olives.
 ~ bone-in chicken thighs and legs => extra-firm tofu, pressed and cut into thick slabs, plus 1 can (15 oz) chickpeas, drained
 ~ stock cube => vegetable stock cube
 ~ Toss the chicken and onions in it and marinate at least 3 hours, or overnight. => Toss the tofu and onions in it and marinate at least 1 hour, or overnight.
@@ -124,7 +124,7 @@ V Yassa poisson: use thick fish steaks and simmer only 10 minutes.
 ~ Grilling the chicken first adds a smoky char, the way it's done in Senegal. => Grilling the tofu first adds a smoky char and helps it hold together.
 @@ vegan = vegetarian
 
-@ finnish-salmon-soup | Lohikeitto (Finnish Salmon Soup) | 4 | 15 | 30 | fish, milk | Finland's comforting salmon soup: tender chunks of salmon, potatoes, carrot and leek in a light, creamy broth, scented with allspice and lots of fresh dill.
+@ finnish-salmon-soup | Lohikeitto (Finnish Salmon Soup) | 4 | 15 | 30 | fish, milk, wheat | Finland's comforting salmon soup: tender chunks of salmon, potatoes, carrot and leek in a light, creamy broth, scented with allspice and lots of fresh dill.
 - 1 | lb | skinless salmon fillet, cut into 1-inch chunks
 - 2 | tbsp | butter
 - 1 | | leek, white and light green parts, sliced
@@ -146,14 +146,14 @@ T Fresh dill is essential; dried dill doesn't come close.
 T Use the salmon skin and trimmings to make a quick stock for extra flavor.
 S Best eaten fresh. Leftovers keep 2 days; reheat gently without boiling.
 V Lighter: use half whole milk and half cream.
-@@ vegetarian | Creamy Dill Soup with Smoked Tofu | 15 | 25 | milk, soy | The same leek, potato and dill soup with allspice and cream, with smoked tofu in place of salmon.
+@@ vegetarian | Creamy Dill Soup with Smoked Tofu | 15 | 25 | milk, soy, wheat | The same leek, potato and dill soup with allspice and cream, with smoked tofu in place of salmon.
 ~ skinless salmon fillet, cut into 1-inch chunks => smoked tofu, cut into 1-inch cubes
 ~ fish or vegetable stock => vegetable stock
 ~ Add the cream, salmon and most of the dill. => Add the cream, smoked tofu and most of the dill.
 ~ Cook very gently for 4 to 5 minutes, without boiling, until the salmon just turns opaque. => Cook very gently for 4 to 5 minutes, without boiling, until warmed through.
 ~ Add the salmon at the end and keep the soup below a boil, so the fish stays tender and the cream doesn't split. => Keep the soup below a boil once the cream goes in so it doesn't split.
 ~ Use the salmon skin and trimmings to make a quick stock for extra flavor. => Smoked tofu gives the gentle smoky depth that salmon brings.
-@@ vegan | Vegan Creamy Dill Soup with Smoked Tofu | 15 | 25 | soy | Leek, potato and smoked tofu in a dill and allspice broth made creamy with oat cream.
+@@ vegan | Vegan Creamy Dill Soup with Smoked Tofu | 15 | 25 | soy, wheat | Leek, potato and smoked tofu in a dill and allspice broth made creamy with oat cream.
 ~ skinless salmon fillet, cut into 1-inch chunks => smoked tofu, cut into 1-inch cubes
 ~ fish or vegetable stock => vegetable stock
 ~ butter => olive oil

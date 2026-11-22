@@ -6,6 +6,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -15,6 +16,32 @@ spec.loader.exec_module(allergens)
 
 
 class AllergenReviewTests(unittest.TestCase):
+    def test_explicit_substitutes_do_not_hide_separate_allergens(self):
+        recipe = {"ingredients": [{"item": "vegan butter and milk", "unit": ""}, {"item": "coconut milk", "unit": ""}], "allergens": []}
+        flags = allergens.find_flags({"soup": {"recipe": recipe}})
+        self.assertEqual(len(flags), 1)
+        self.assertIn("missing milk", flags[0])
+        recipe["ingredients"] = [{"item": "coconut milk and peanut butter", "unit": ""}]
+        flags = allergens.find_flags({"soup": {"recipe": recipe}})
+        self.assertFalse(any("missing milk" in flag for flag in flags))
+        self.assertTrue(any("missing peanuts" in flag for flag in flags))
+
+    def test_garnishes_are_checked(self):
+        recipe = {"ingredients": [], "allergens": [], "cocktail": {"garnish": "sesame seeds"}}
+        self.assertIn("missing sesame", allergens.find_flags({"drink": {"recipe": recipe}})[0])
+
+    def test_review_is_scoped_to_exact_ingredients_and_expires(self):
+        recipes = {"soup": {"recipe": {"ingredients": [{"item": "butter", "unit": "tbsp"}], "allergens": []}}}
+        findings = allergens.find_findings(recipes)
+        exception = {"id": findings[0]["id"], "reason": "Reviewed example", "reviewed_by": "test reviewer", "expires": "2026-12-01"}
+        self.assertEqual(allergens.unreviewed_findings(findings, [exception], date(2026, 11, 22)), [])
+        self.assertEqual(allergens.unreviewed_findings(findings, [exception], date(2026, 12, 2)), findings)
+        recipes["soup"]["recipe"]["ingredients"][0]["item"] = "butter and cream"
+        changed = allergens.find_findings(recipes)
+        self.assertEqual(allergens.unreviewed_findings(changed, [exception], date(2026, 11, 22)), changed)
+        with self.assertRaises(ValueError):
+            allergens.unreviewed_findings(findings, [{"id": exception["id"]}])
+
     def test_reports_missing_allergens_in_original_and_diet_version(self):
         recipes = {"soup": {"recipe": {"ingredients": [{"item": "butter", "unit": "tbsp"}], "allergens": []},
                            "variants": {"vegan": {"ingredients": [{"item": "cashews", "unit": "cup"}], "allergens": []},

@@ -177,7 +177,7 @@ V Use ground chicken or turkey instead of pork.
 ~ The pork topping and sauce => The mushroom topping and sauce
 @@ vegan = vegetarian
 
-@ momos | Momos (Himalayan Dumplings) | 6 | 75 | 15 | wheat, sesame | Juicy steamed dumplings from Nepal and Tibet, filled with spiced chicken, onion, ginger and cilantro, and served with a smoky roasted tomato and sesame achar.
+@ momos | Momos (Himalayan Dumplings) | 6 | 75 | 15 | wheat, sesame, milk | Juicy steamed dumplings from Nepal and Tibet, filled with spiced chicken, onion, ginger and cilantro, and served with a smoky roasted tomato and sesame achar.
 - 2 | cups | all-purpose flour
 - 3/4 | cup | water, for the dough
 - 1 | lb | ground chicken thigh

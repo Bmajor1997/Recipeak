@@ -13,7 +13,7 @@ const REQUIRED_NAMES = [
 
 module.exports = defineConfig([
   expoConfig,
-  { ignores: ["dist/*", ".expo/*", "android/*", "ios/*"] },
+  { ignores: ["dist/*", ".expo/*", "android/*", "ios/*", "coverage/**"] },
   {
     // House rule: every function and method we name is snake_case. React components are PascalCase, and names
     // fixed by React or a library (REQUIRED_NAMES above) keep their own case.

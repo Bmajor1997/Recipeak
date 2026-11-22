@@ -12,5 +12,20 @@ export default defineConfig({
       },
     },
   ],
-  test: { include: ["tests/**/*.test.ts"], environment: "node" },
+  test: {
+    include: ["tests/**/*.test.ts"],
+    environment: "node",
+    coverage: {
+      provider: "v8",
+      include: [
+        "src/api/client.ts",
+        "src/recipes/parse.ts",
+        "src/recipes/diets.ts",
+        "src/recipes/premiumVersions.ts",
+        "src/paywall/subscriptionService.ts",
+      ],
+      reporter: ["text", "json-summary", "lcov"],
+      thresholds: { lines: 80, statements: 80, functions: 80, branches: 75 },
+    },
+  },
 });

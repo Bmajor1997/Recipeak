@@ -1478,7 +1478,7 @@
       "Add the tomatoes, sugar and 1/2 tsp salt. Simmer 15 minutes, stirring now and then, until thick and the oil starts to pool at the edges. For a smooth restaurant-style sauce, blend it now.",
       "Stir in the cream and fenugreek, then add the chicken and any juices. Simmer 8 to 10 minutes until the chicken is cooked through (165°F) and tender. Taste and adjust the salt. Top with cilantro and serve with rice and naan."
     ],
-    "allergens": ["milk"],
+    "allergens": ["milk", "wheat"],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [
@@ -4793,7 +4793,7 @@
       "Fry again at 375°F for 3 to 4 minutes until golden and crisp.",
       "Drain and toss with salt."
     ],
-    "allergens": [],
+    "allergens": ["peanuts"],
     "cocktail": null,
     "note": "If you fry in peanut oil, highly refined peanut oil is usually not considered an allergen, but check with anyone who has a peanut allergy.",
     "tips": [],
@@ -7629,7 +7629,7 @@
     "cook_minutes": 30,
     "ingredients": [
       { "amount": "4", "unit": "", "item": "bratwurst sausages" },
-      { "amount": "1", "unit": "bottle (12 oz)", "item": "beer" },
+      { "amount": "1", "unit": "bottle (12 oz)", "item": "wheat-free beer (check the label)" },
       { "amount": "1", "unit": "", "item": "onion, sliced" },
       { "amount": "1", "unit": "tbsp", "item": "butter or oil" },
       { "amount": "2", "unit": "cups", "item": "sauerkraut, drained" },
@@ -9427,7 +9427,7 @@
       { "amount": "2", "unit": "", "item": "red chiles" },
       { "amount": "2", "unit": "tbsp", "item": "kecap manis" },
       { "amount": "1", "unit": "tbsp", "item": "lime juice" },
-      { "amount": "", "unit": "", "item": "prawn crackers (optional)" }
+      { "amount": "", "unit": "", "item": "wheat-free prawn crackers (check the label; optional)" }
     ],
     "steps": [
       "Blend the peanuts, garlic, chiles, kecap manis, lime juice and about 1 cup water into a thick sauce. Season with salt.",
@@ -11688,7 +11688,7 @@
       "Put a spoon of filling in the center and pleat the edges together into a round purse, twisting the top to seal.",
       "Steam on oiled racks for 10 to 12 minutes, until the wrappers are glossy and the filling is cooked through. Serve hot with the achar."
     ],
-    "allergens": ["sesame", "wheat"],
+    "allergens": ["milk", "sesame", "wheat"],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [
@@ -11941,7 +11941,7 @@
       "Cover and simmer very gently for 2 hours, stirring now and then and adding a splash of water if it gets dry. It should be thick, glossy and brown.",
       "Taste and balance: add a splash of sauerkraut juice if it's too sweet, or a pinch of sugar if too sour. Serve with rye bread or potatoes."
     ],
-    "allergens": [],
+    "allergens": ["wheat"],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [
@@ -12023,7 +12023,7 @@
       "Add the marinade, remaining mustard, chili, bay leaf, stock cube and water. Nestle in the chicken.",
       "Cover and simmer gently for 30 minutes, until the chicken is tender. Add the olives for the last 5 minutes. Serve over rice with plenty of onion sauce."
     ],
-    "allergens": [],
+    "allergens": ["peanuts"],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [
@@ -12060,7 +12060,7 @@
       "Turn the heat to low. Add the cream, salmon and most of the dill.",
       "Cook very gently for 4 to 5 minutes, without boiling, until the salmon just turns opaque. Season with pepper and serve with the rest of the dill and rye bread."
     ],
-    "allergens": ["fish", "milk"],
+    "allergens": ["fish", "milk", "wheat"],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
     "tips": [
@@ -12915,7 +12915,7 @@
     "prep_minutes": 1,
     "cook_minutes": 0,
     "ingredients": [
-      { "amount": "1", "unit": "bottle (12 oz)", "item": "vegan light lager (such as Miller High Life), ice-cold" },
+      { "amount": "1", "unit": "bottle (12 oz)", "item": "vegan wheat-free lager (such as Miller High Life; check the label), ice-cold" },
       { "amount": "1 1/2", "unit": "oz", "item": "Aperol" },
       { "amount": "1/2", "unit": "oz", "item": "fresh lemon juice" }
     ],

@@ -2,6 +2,8 @@
 import json
 import re
 import sys
+import hashlib
+from datetime import date
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 RULES = {
@@ -15,30 +17,75 @@ RULES = {
     "tree nuts": r"\b(almonds?|walnuts?|pecans?|cashews?|pistachios?|pine nuts|hazelnuts?|macadamias?|brazil nuts?|orgeat|amaretto|noyaux|frangelico|nutella|praline|marzipan)\b",
     "sesame": r"\b(sesame|tahini)\b",
 }
-def find_flags(recipes):
+SAFE_WORDS = {
+    "milk": r"\b(?:(?:coconut|oat|soy|almond|cashew|rice) (?:milk|cream|yogurt)|(?:peanut|almond|cashew|cocoa) butter|butter lettuce|cream sherry)\b",
+    "wheat": r"\b(?:corn tortillas?|taco shells|tortilla (?:chips|strips)|(?:thin |flat )?rice (?:vermicelli|noodles|flour)|chickpea flour|ginger beer|root beer)\b",
+    "fish": r"\b(?:kombu|mushroom) dashi\b",
+}
+QUALIFIERS = {
+    "milk": r"(?:vegan|dairy-free|non-dairy|plant-based)",
+    "eggs": r"(?:vegan|egg-free|plant-based)",
+    "wheat": r"(?:gluten-free|wheat-free)",
+    "tree nuts": r"nut-free",
+    "fish": r"(?:vegan|vegetarian|fish-free|plant-based)",
+}
+
+def allergen_text(text, allergen):
+    """Remove explicit substitutes for this allergen only; never mask a following 'and' ingredient."""
+    text = text.lower()
+    qualifier = QUALIFIERS.get(allergen)
+    if qualifier:
+        text = re.sub(r"\b" + qualifier + r"(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}", " ", text)
+    return re.sub(SAFE_WORDS.get(allergen, r"(?!)"), " ", text)
+
+def find_findings(recipes):
     """Keyword-based review suggestions; a flag is not proof of an allergen."""
     flags = []
     for stem, entry in sorted(recipes.items()):
         versions = [("standard", entry["recipe"])]
         versions += [(name, recipe) for name, recipe in entry.get("variants", {}).items() if isinstance(recipe, dict)]
         for name, recipe in versions:
-            text = " ".join(i["item"] + " " + i["unit"] for i in recipe["ingredients"]).lower()
+            lines = [i["item"] + " " + i["unit"] for i in recipe["ingredients"]]
+            if isinstance(recipe.get("cocktail"), dict) and recipe["cocktail"].get("garnish"):
+                lines.append(recipe["cocktail"]["garnish"])
             for allergen, pattern in RULES.items():
-                match = re.search(pattern, text)
+                match = re.search(pattern, " ; ".join(allergen_text(line, allergen) for line in lines))
                 if allergen not in recipe["allergens"] and match:
-                    flags.append(f"{stem} ({name}): missing {allergen}? ({match.group(0)})")
+                    fingerprint = hashlib.sha256(json.dumps([stem, name, allergen, lines], ensure_ascii=False).encode()).hexdigest()
+                    flags.append({"id": fingerprint, "recipe": stem, "version": name, "allergen": allergen,
+                                  "message": f"{stem} ({name}): missing {allergen}? ({match.group(0)})"})
     return flags
 
+def find_flags(recipes):
+    return [finding["message"] for finding in find_findings(recipes)]
+
+def unreviewed_findings(findings, exceptions, today=None):
+    today = today or date.today()
+    if not isinstance(exceptions, list):
+        raise ValueError("Allergen exceptions must be a list of individually reviewed findings.")
+    reviewed = set()
+    for item in exceptions:
+        if not all(isinstance(item.get(key), str) and item[key].strip() for key in ("id", "reason", "reviewed_by", "expires")):
+            raise ValueError("Every exception needs an id, reason, reviewer and expiry.")
+        if item["id"] in reviewed:
+            raise ValueError("Duplicate allergen exception.")
+        if date.fromisoformat(item["expires"]) >= today:
+            reviewed.add(item["id"])
+    return [finding for finding in findings if finding["id"] not in reviewed]
 
 def main():
     recipes = json.loads((ROOT / "data/recipes/recipes.json").read_text(encoding="utf-8"))
-    flags = find_flags(recipes)
+    findings = find_findings(recipes)
+    exception_file = ROOT / "data/recipes/allergen-review.json"
+    exceptions = json.loads(exception_file.read_text(encoding="utf-8")) if exception_file.exists() else []
+    outstanding = unreviewed_findings(findings, exceptions)
     print("# Possible allergen issues for human review\n")
     print("Keyword matches may be false positives and cannot establish allergy safety. Check ingredients and product labels.\n")
-    print(f"{len(flags)} possible issues found across standard recipes and written diet versions.\n")
-    for flag in flags:
-        print(f"- {flag}")
-    return 0
+    print(f"{len(findings)} possible issues; {len(outstanding)} require review.\n")
+    for finding in findings:
+        state = "UNREVIEWED" if finding in outstanding else "Reviewed exception"
+        print(f"- **{state}**: {finding['message']} (`{finding['id']}`)")
+    return 1 if outstanding else 0
 
 
 if __name__ == "__main__":

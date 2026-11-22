@@ -1600,7 +1600,7 @@
         "Cover and simmer very gently for 1 hour, stirring now and then and adding a splash of water if it gets dry. It should be thick, glossy and brown.",
         "Taste and balance: add a splash of sauerkraut juice if it's too sweet, or a pinch of sugar if too sour. Serve with rye bread or potatoes."
       ],
-      "allergens": ["soy"],
+      "allergens": ["soy", "wheat"],
       "cocktail": null,
       "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
       "tips": [
@@ -1645,7 +1645,7 @@
         "Cover and simmer very gently for 1 hour, stirring now and then and adding a splash of water if it gets dry. It should be thick, glossy and brown.",
         "Taste and balance: add a splash of sauerkraut juice if it's too sweet, or a pinch of sugar if too sour. Serve with rye bread or potatoes."
       ],
-      "allergens": ["soy"],
+      "allergens": ["soy", "wheat"],
       "cocktail": null,
       "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
       "tips": [
@@ -1773,7 +1773,7 @@
         "Add the marinade, remaining mustard, chili, bay leaf, vegetable stock cube and water. Nestle in the tofu and add the chickpeas.",
         "Cover and simmer gently for 15 minutes so the tofu soaks up the sauce. Add the olives for the last 5 minutes. Serve over rice with plenty of onion sauce."
       ],
-      "allergens": ["soy"],
+      "allergens": ["peanuts", "soy"],
       "cocktail": null,
       "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
       "tips": [
@@ -1813,7 +1813,7 @@
         "Add the marinade, remaining mustard, chili, bay leaf, vegetable stock cube and water. Nestle in the tofu and add the chickpeas.",
         "Cover and simmer gently for 15 minutes so the tofu soaks up the sauce. Add the olives for the last 5 minutes. Serve over rice with plenty of onion sauce."
       ],
-      "allergens": ["soy"],
+      "allergens": ["peanuts", "soy"],
       "cocktail": null,
       "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
       "tips": [
@@ -1852,7 +1852,7 @@
         "Turn the heat to low. Add the cream, smoked tofu and most of the dill.",
         "Cook very gently for 4 to 5 minutes, without boiling, until warmed through. Season with pepper and serve with the rest of the dill and rye bread."
       ],
-      "allergens": ["milk", "soy"],
+      "allergens": ["milk", "soy", "wheat"],
       "cocktail": null,
       "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
       "tips": [
@@ -1889,7 +1889,7 @@
         "Turn the heat to low. Add the oat cream, smoked tofu and most of the dill.",
         "Cook very gently for 4 to 5 minutes, until warmed through. Season with pepper and serve with the rest of the dill and rye bread."
       ],
-      "allergens": ["soy"],
+      "allergens": ["soy", "wheat"],
       "cocktail": null,
       "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
       "tips": [

@@ -11,7 +11,8 @@
     "start": "node server/main.js",
     "dev": "node --env-file=.env.backend.local server/main.js",
     "test": "node --test --test-isolation=none \"code_checks/**/*.test.js\"",
-    "lint": "npx --yes eslint@9.39.5 . --max-warnings=0"
+    "lint": "npx --yes eslint@9.39.5 . --max-warnings=0",
+    "test:coverage": "node --test --test-isolation=none --experimental-test-coverage --test-coverage-include=\"server/**/*.js\" --test-coverage-lines=90 --test-coverage-branches=80 --test-coverage-functions=85 \"code_checks/**/*.test.js\""
   },
   "dependencies": {
     "jose": "6.2.17"

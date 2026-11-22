@@ -3979,7 +3979,9 @@
     "Cover and simmer very gently for 2 hours, stirring now and then and adding a splash of water if it gets dry. It should be thick, glossy and brown.",
     "Taste and balance: add a splash of sauerkraut juice if it's too sweet, or a pinch of sugar if too sour. Serve with rye bread or potatoes."
    ],
-   "allergens": [],
+   "allergens": [
+    "wheat"
+   ],
    "cocktail": null,
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
    "tips": [
@@ -4100,7 +4102,8 @@
      "Taste and balance: add a splash of sauerkraut juice if it's too sweet, or a pinch of sugar if too sour. Serve with rye bread or potatoes."
     ],
     "allergens": [
-     "soy"
+     "soy",
+     "wheat"
     ],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -4219,7 +4222,8 @@
      "Taste and balance: add a splash of sauerkraut juice if it's too sweet, or a pinch of sugar if too sour. Serve with rye bread or potatoes."
     ],
     "allergens": [
-     "soy"
+     "soy",
+     "wheat"
     ],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -6101,7 +6105,7 @@
     {
      "amount": "1",
      "unit": "bottle (12 oz)",
-     "item": "beer"
+     "item": "wheat-free beer (check the label)"
     },
     {
      "amount": "1",
@@ -11231,7 +11235,8 @@
     "Stir in the cream and fenugreek, then add the chicken and any juices. Simmer 8 to 10 minutes until the chicken is cooked through (165°F) and tender. Taste and adjust the salt. Top with cilantro and serve with rice and naan."
    ],
    "allergens": [
-    "milk"
+    "milk",
+    "wheat"
    ],
    "cocktail": null,
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -11427,7 +11432,9 @@
     "Add the marinade, remaining mustard, chili, bay leaf, stock cube and water. Nestle in the chicken.",
     "Cover and simmer gently for 30 minutes, until the chicken is tender. Add the olives for the last 5 minutes. Serve over rice with plenty of onion sauce."
    ],
-   "allergens": [],
+   "allergens": [
+    "peanuts"
+   ],
    "cocktail": null,
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
    "tips": [
@@ -11527,6 +11534,7 @@
      "Cover and simmer gently for 15 minutes so the tofu soaks up the sauce. Add the olives for the last 5 minutes. Serve over rice with plenty of onion sauce."
     ],
     "allergens": [
+     "peanuts",
      "soy"
     ],
     "cocktail": null,
@@ -11625,6 +11633,7 @@
      "Cover and simmer gently for 15 minutes so the tofu soaks up the sauce. Add the olives for the last 5 minutes. Serve over rice with plenty of onion sauce."
     ],
     "allergens": [
+     "peanuts",
      "soy"
     ],
     "cocktail": null,
@@ -18044,7 +18053,8 @@
    ],
    "allergens": [
     "fish",
-    "milk"
+    "milk",
+    "wheat"
    ],
    "cocktail": null,
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -18135,7 +18145,8 @@
     ],
     "allergens": [
      "milk",
-     "soy"
+     "soy",
+     "wheat"
     ],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -18222,7 +18233,8 @@
      "Cook very gently for 4 to 5 minutes, until warmed through. Season with pepper and serve with the rest of the dill and rye bread."
     ],
     "allergens": [
-     "soy"
+     "soy",
+     "wheat"
     ],
     "cocktail": null,
     "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
@@ -18912,7 +18924,9 @@
     "Fry again at 375°F for 3 to 4 minutes until golden and crisp.",
     "Drain and toss with salt."
    ],
-   "allergens": [],
+   "allergens": [
+    "peanuts"
+   ],
    "cocktail": null,
    "note": "If you fry in peanut oil, highly refined peanut oil is usually not considered an allergen, but check with anyone who has a peanut allergy.",
    "tips": [],
@@ -23404,7 +23418,7 @@
     {
      "amount": "",
      "unit": "",
-     "item": "prawn crackers (optional)"
+     "item": "wheat-free prawn crackers (check the label; optional)"
     }
    ],
    "steps": [
@@ -31117,6 +31131,7 @@
     "Steam on oiled racks for 10 to 12 minutes, until the wrappers are glossy and the filling is cooked through. Serve hot with the achar."
    ],
    "allergens": [
+    "milk",
     "sesame",
     "wheat"
    ],
@@ -42017,7 +42032,7 @@
     {
      "amount": "1",
      "unit": "bottle (12 oz)",
-     "item": "vegan light lager (such as Miller High Life), ice-cold"
+     "item": "vegan wheat-free lager (such as Miller High Life; check the label), ice-cold"
     },
     {
      "amount": "1 1/2",

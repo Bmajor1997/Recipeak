@@ -233,14 +233,11 @@ function RecipeView({ current }: { current: Ready }) {
     set_problem(null);
     set_notice(null);
     if (is_premium_diet(nextDiet) && !(await premium_or_problem())) return;
-    // A diet version or another match replaces a meat or dairy version.
-    if (addition && original) {
-      set_addition(null);
-      set_original(null);
-    }
     // A dish from the bundled collection has hand-written vegetarian and vegan versions: shown at once, offline.
     const local = current.bundledId && index === selected ? bundled_version(current.bundledId, nextDiet) : null;
     if (local) {
+      set_addition(null);
+      set_original(null);
       set_diet(nextDiet);
       if (local.already && nextDiet) set_notice(`This recipe is already ${nextDiet}.`);
       set_current({ ...current, recipe: local.recipe, savedId: null });
@@ -249,6 +246,9 @@ function RecipeView({ current }: { current: Ready }) {
     set_busy(true);
     try {
       const next = await api.recipe(guess?.name ?? recipe.title, kind, nextDiet ?? undefined);
+      // Keep the original and its undo action until the replacement has actually arrived.
+      set_addition(null);
+      set_original(null);
       set_diet(nextDiet);
       set_current({ ...current, recipe: next.recipe, selected: index, image: next.image, localPhoto: null, savedId: null });
     } catch (error) {
