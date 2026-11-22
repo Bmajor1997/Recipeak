@@ -16196,5 +16196,298 @@
     ],
     "make_ahead": "Refrigerate for up to 5 days, or freeze whole or in slices for up to 2 months.",
     "variations": ["Top with strawberry or cherry sauce just before serving."]
+  },
+  "lemon-oregano-chicken-and-potatoes": {
+    "title": "Lemon-Oregano Chicken and Potatoes",
+    "description": "Lemon-Oregano Chicken and Potatoes: a home recipe with 4 bone-in chicken thighs, 1½ lb small potatoes, halved, 2 tbsp olive oil.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 45,
+    "ingredients": [
+      { "amount": "4", "unit": "", "item": "bone-in chicken thighs" },
+      { "amount": "1 1/2", "unit": "lb", "item": "small potatoes, halved" },
+      { "amount": "2", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "3", "unit": "", "item": "garlic cloves, minced" },
+      { "amount": "1", "unit": "", "item": "lemon, juiced and zested" },
+      { "amount": "1 1/2", "unit": "tsp", "item": "dried oregano" },
+      { "amount": "3/4", "unit": "tsp", "item": "salt" },
+      { "amount": "1/2", "unit": "tsp", "item": "black pepper" }
+    ],
+    "steps": [
+      "Heat oven to 425°F. Toss potatoes with half the oil, garlic, oregano, salt and pepper. Spread in a roasting pan.",
+      "Rub chicken with remaining oil, lemon zest, salt and pepper; place skin-side up among potatoes. Roast 35–45 minutes, until the chicken reaches 165°F and the potatoes are tender. Turn potatoes once.",
+      "Rest chicken 5 minutes. Spoon lemon juice over the pan before serving."
+    ],
+    "allergens": [],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "mushroom-and-spinach-orzo": {
+    "title": "Mushroom and Spinach Orzo",
+    "description": "Mushroom and Spinach Orzo: a home recipe with 8 oz orzo, 1 tbsp olive oil, 12 oz sliced mushrooms.",
+    "servings": 4,
+    "prep_minutes": 10,
+    "cook_minutes": 25,
+    "ingredients": [
+      { "amount": "8", "unit": "oz", "item": "orzo" },
+      { "amount": "1", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "12", "unit": "oz", "item": "sliced mushrooms" },
+      { "amount": "2", "unit": "", "item": "garlic cloves, minced" },
+      { "amount": "2 1/2", "unit": "cups", "item": "vegetable broth" },
+      { "amount": "4", "unit": "cups", "item": "baby spinach" },
+      { "amount": "1/3", "unit": "cup", "item": "grated Parmesan" },
+      { "amount": "", "unit": "", "item": "salt and pepper" }
+    ],
+    "steps": [
+      "Brown mushrooms in oil in a wide pan over medium-high heat, 6–8 minutes. Add garlic and cook 30 seconds.",
+      "Stir in orzo and broth. Simmer uncovered, stirring frequently, 9–11 minutes until the orzo is tender; add a splash of water if needed.",
+      "Fold in spinach to wilt, then Parmesan. Season to taste."
+    ],
+    "allergens": ["milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "harissa-chickpea-and-sweet-potato-bowls": {
+    "title": "Harissa Chickpea and Sweet Potato Bowls",
+    "description": "Harissa Chickpea and Sweet Potato Bowls: a home recipe with 2 medium sweet potatoes, cubed, 1 can (15 oz) chickpeas, drained, 2 tbsp olive oil.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 30,
+    "ingredients": [
+      { "amount": "2", "unit": "", "item": "medium sweet potatoes, cubed" },
+      { "amount": "1", "unit": "can", "item": "(15 oz) chickpeas, drained" },
+      { "amount": "2", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "1 1/2", "unit": "tbsp", "item": "harissa paste" },
+      { "amount": "1/2", "unit": "tsp", "item": "salt" },
+      { "amount": "2", "unit": "cups", "item": "cooked couscous or rice" },
+      { "amount": "1/2", "unit": "cup", "item": "plain yogurt" },
+      { "amount": "1", "unit": "tbsp", "item": "tahini" },
+      { "amount": "1", "unit": "tbsp", "item": "lemon juice" },
+      { "amount": "2", "unit": "tbsp", "item": "water" }
+    ],
+    "steps": [
+      "Heat oven to 425°F. Toss sweet potatoes and chickpeas with oil, harissa and salt. Roast 25–30 minutes, turning once, until potatoes are tender.",
+      "Mix yogurt, tahini, lemon juice and water into a pourable sauce.",
+      "Serve the roasted mixture over cooked rice or couscous and drizzle with sauce. Couscous contains wheat; use rice for a wheat-free version."
+    ],
+    "allergens": ["milk", "sesame", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "ginger-soy-glazed-tofu-and-broccoli": {
+    "title": "Ginger-Soy Glazed Tofu and Broccoli",
+    "description": "Ginger-Soy Glazed Tofu and Broccoli: a home recipe with 14 oz firm tofu, drained and cubed, 1 lb broccoli florets, 2 tbsp neutral oil.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 20,
+    "ingredients": [
+      { "amount": "14", "unit": "oz", "item": "firm tofu, drained and cubed" },
+      { "amount": "1", "unit": "lb", "item": "broccoli florets" },
+      { "amount": "2", "unit": "tbsp", "item": "neutral oil" },
+      { "amount": "3", "unit": "tbsp", "item": "soy sauce" },
+      { "amount": "1", "unit": "tbsp", "item": "maple syrup" },
+      { "amount": "1", "unit": "tbsp", "item": "rice vinegar" },
+      { "amount": "1", "unit": "tbsp", "item": "grated ginger" },
+      { "amount": "1", "unit": "tsp", "item": "cornstarch" },
+      { "amount": "2", "unit": "tbsp", "item": "water" },
+      { "amount": "1", "unit": "tsp", "item": "toasted sesame oil" },
+      { "amount": "3", "unit": "cups", "item": "cooked rice" }
+    ],
+    "steps": [
+      "Pat tofu dry. Brown in 1 tbsp oil in a large skillet, 8–10 minutes; transfer to a plate. Cook broccoli in remaining oil with a splash of water until crisp-tender, 5–6 minutes.",
+      "Mix soy sauce, maple syrup, vinegar, ginger, cornstarch and water. Return tofu to the skillet and add sauce; simmer 1–2 minutes until glossy.",
+      "Finish with sesame oil and serve over cooked rice."
+    ],
+    "allergens": ["sesame", "soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "coconut-lime-shrimp-and-rice": {
+    "title": "Coconut Lime Shrimp and Rice",
+    "description": "Coconut Lime Shrimp and Rice: a home recipe with 1 cup jasmine rice, 1 cup canned coconut milk, 1 cup water.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "ingredients": [
+      { "amount": "1", "unit": "cup", "item": "jasmine rice" },
+      { "amount": "1", "unit": "cup", "item": "canned coconut milk" },
+      { "amount": "1", "unit": "cup", "item": "water" },
+      { "amount": "1/2", "unit": "tsp", "item": "salt" },
+      { "amount": "1", "unit": "lb", "item": "peeled, deveined raw shrimp" },
+      { "amount": "1", "unit": "tbsp", "item": "neutral oil" },
+      { "amount": "2", "unit": "", "item": "garlic cloves, minced" },
+      { "amount": "1", "unit": "", "item": "lime, zested and juiced" },
+      { "amount": "2", "unit": "tbsp", "item": "chopped cilantro" }
+    ],
+    "steps": [
+      "Rinse rice. Bring rice, coconut milk, water and salt to a boil; cover and cook on low 15 minutes. Rest covered 10 minutes, then fluff.",
+      "Heat oil in a skillet over medium-high. Cook shrimp 2–3 minutes per side until opaque and cooked through; add garlic for the final 30 seconds.",
+      "Toss shrimp with lime zest and juice. Serve over rice with cilantro."
+    ],
+    "allergens": ["shellfish"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "blackberry-sage-bourbon-smash": {
+    "title": "Blackberry Sage Bourbon Smash",
+    "description": "Blackberry Sage Bourbon Smash: a home recipe with 2 oz bourbon, ¾ oz lemon juice, ½ oz simple syrup.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "2", "unit": "oz", "item": "bourbon" },
+      { "amount": "3/4", "unit": "oz", "item": "lemon juice" },
+      { "amount": "1/2", "unit": "oz", "item": "simple syrup" },
+      { "amount": "4", "unit": "", "item": "blackberries" },
+      { "amount": "2", "unit": "", "item": "sage leaves" },
+      { "amount": "", "unit": "", "item": "ice" },
+      { "amount": "", "unit": "", "item": "blackberry and sage for garnish" }
+    ],
+    "steps": [
+      "Muddle berries and sage gently with syrup in a shaker.",
+      "Add bourbon, lemon and ice; shake and double-strain over fresh ice in a rocks glass.",
+      "Garnish."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "rocks glass",
+      "garnish": "blackberry and sage",
+      "alcoholic": true,
+      "non_alcoholic_version": "use 2 oz alcohol-free whiskey alternative."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "cucumber-lime-vodka-cooler": {
+    "title": "Cucumber Lime Vodka Cooler",
+    "description": "Cucumber Lime Vodka Cooler: a home recipe with 1½ oz vodka, ¾ oz lime juice, ½ oz simple syrup.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "vodka" },
+      { "amount": "3/4", "unit": "oz", "item": "lime juice" },
+      { "amount": "1/2", "unit": "oz", "item": "simple syrup" },
+      { "amount": "4", "unit": "", "item": "cucumber slices" },
+      { "amount": "2", "unit": "oz", "item": "soda water" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": [
+      "Muddle cucumber and syrup in a shaker.",
+      "Add vodka, lime and ice; shake and strain into a tall ice-filled glass.",
+      "Top with soda and stir."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "cucumber",
+      "alcoholic": true,
+      "non_alcoholic_version": "replace vodka with cold water or alcohol-free vodka alternative."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "grapefruit-rosemary-gin-spritz": {
+    "title": "Grapefruit Rosemary Gin Spritz",
+    "description": "Grapefruit Rosemary Gin Spritz: a home recipe with 1½ oz gin, 2 oz grapefruit juice, ½ oz rosemary syrup.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "gin" },
+      { "amount": "2", "unit": "oz", "item": "grapefruit juice" },
+      { "amount": "1/2", "unit": "oz", "item": "rosemary syrup" },
+      { "amount": "2", "unit": "oz", "item": "soda water" },
+      { "amount": "", "unit": "", "item": "ice" },
+      { "amount": "", "unit": "", "item": "rosemary sprig" }
+    ],
+    "steps": [
+      "Shake gin, grapefruit juice and syrup with ice.",
+      "Strain into an ice-filled wine glass, top with soda and garnish with rosemary."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "wine glass",
+      "garnish": "rosemary sprig",
+      "alcoholic": true,
+      "non_alcoholic_version": "replace gin with alcohol-free gin alternative."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": ["Rosemary syrup: simmer equal parts sugar and water with a rosemary sprig; cool, strain and refrigerate."],
+    "make_ahead": "",
+    "variations": []
+  },
+  "pineapple-ginger-rum-highball": {
+    "title": "Pineapple Ginger Rum Highball",
+    "description": "Pineapple Ginger Rum Highball: a home recipe with 1½ oz white rum, 2 oz pineapple juice, ½ oz lime juice.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "white rum" },
+      { "amount": "2", "unit": "oz", "item": "pineapple juice" },
+      { "amount": "1/2", "unit": "oz", "item": "lime juice" },
+      { "amount": "2", "unit": "oz", "item": "ginger beer" },
+      { "amount": "", "unit": "", "item": "ice" },
+      { "amount": "", "unit": "", "item": "lime wedge" }
+    ],
+    "steps": ["Add rum, pineapple and lime to a tall glass of ice.", "Top with ginger beer, stir gently and garnish."],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "lime wedge",
+      "alcoholic": true,
+      "non_alcoholic_version": "replace rum with alcohol-free rum alternative."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
+  },
+  "strawberry-basil-tequila-sour": {
+    "title": "Strawberry Basil Tequila Sour",
+    "description": "Strawberry Basil Tequila Sour: a home recipe with 1½ oz blanco tequila, ¾ oz lime juice, ½ oz simple syrup.",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "blanco tequila" },
+      { "amount": "3/4", "unit": "oz", "item": "lime juice" },
+      { "amount": "1/2", "unit": "oz", "item": "simple syrup" },
+      { "amount": "2", "unit": "", "item": "strawberries" },
+      { "amount": "2", "unit": "", "item": "basil leaves" },
+      { "amount": "", "unit": "", "item": "ice" }
+    ],
+    "steps": ["Muddle strawberries and basil with syrup.", "Add tequila, lime and ice; shake and fine-strain into a rocks glass over ice."],
+    "allergens": [],
+    "cocktail": {
+      "glass": "rocks glass",
+      "garnish": "",
+      "alcoholic": true,
+      "non_alcoholic_version": "use an alcohol-free tequila alternative."
+    },
+    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "",
+    "variations": []
   }
 }

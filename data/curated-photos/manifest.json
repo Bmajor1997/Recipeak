@@ -3990,6 +3990,76 @@
       "names": [
         "New York Cheesecake"
       ]
+    },
+    {
+      "file": "lemon-oregano-chicken-and-potatoes.jpg",
+      "kind": "meal",
+      "names": [
+        "Lemon-Oregano Chicken and Potatoes"
+      ]
+    },
+    {
+      "file": "mushroom-and-spinach-orzo.jpg",
+      "kind": "meal",
+      "names": [
+        "Mushroom and Spinach Orzo"
+      ]
+    },
+    {
+      "file": "harissa-chickpea-and-sweet-potato-bowls.jpg",
+      "kind": "meal",
+      "names": [
+        "Harissa Chickpea and Sweet Potato Bowls"
+      ]
+    },
+    {
+      "file": "ginger-soy-glazed-tofu-and-broccoli.jpg",
+      "kind": "meal",
+      "names": [
+        "Ginger-Soy Glazed Tofu and Broccoli"
+      ]
+    },
+    {
+      "file": "coconut-lime-shrimp-and-rice.jpg",
+      "kind": "meal",
+      "names": [
+        "Coconut Lime Shrimp and Rice"
+      ]
+    },
+    {
+      "file": "blackberry-sage-bourbon-smash.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Blackberry Sage Bourbon Smash"
+      ]
+    },
+    {
+      "file": "cucumber-lime-vodka-cooler.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Cucumber Lime Vodka Cooler"
+      ]
+    },
+    {
+      "file": "grapefruit-rosemary-gin-spritz.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Grapefruit Rosemary Gin Spritz"
+      ]
+    },
+    {
+      "file": "pineapple-ginger-rum-highball.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Pineapple Ginger Rum Highball"
+      ]
+    },
+    {
+      "file": "strawberry-basil-tequila-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Strawberry Basil Tequila Sour"
+      ]
     }
   ]
 }
