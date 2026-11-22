@@ -7,20 +7,12 @@ name: Meals and Mixers Code Quality & Security Checks
 # Harden-Runner is currently skipped while this repository is private.
 
 on:
-  push:
-  pull_request:
+  workflow_call:
   workflow_dispatch:
-  schedule:
-    # Weekly, so newly published advisories and secret rules are caught even when the code has not changed.
-    - cron: "41 14 * * 1"
 
 permissions:
   contents: read
 
-concurrency:
-  # A newer push to the same branch or pull request cancels the older, now-irrelevant run.
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
 
 jobs:
   # Warns when a pull request introduces vulnerable or disallowed dependencies.
@@ -105,15 +97,13 @@ jobs:
       - name: Get the code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          fetch-depth: 0
           persist-credentials: false
+          fetch-depth: 0
       - name: Set up Node.js
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: 24
-      - name: Test the security tooling itself
-        # The backend tests run in the App and Server Checks workflow, after its dependencies are installed.
-        run: node --test code_checks/security_tools.test.js
+      # Security-tool regression tests run once in the backend suite.
 
       - name: Install app dependencies
         if: hashFiles('package-lock.json') != ''

@@ -371,6 +371,11 @@ test("meat and dairy versions of vegetarian or vegan meals are Premium, adapt th
 });
 
 test("meat and dairy versions get specific rules and are checked for what they add", () => {
+  for (const protein of ["haddock fillets", "goat shoulder, cubed", "mutton", "catfish"])
+    assert.equal(adds_what_it_promised(with_items([protein]), "non-vegetarian"), true, protein);
+  assert.equal(adds_what_it_promised(with_items(["goat cheese"]), "non-vegetarian"), false);
+  assert.equal(adds_what_it_promised(with_items(["goat cheese"]), "non-vegan"), true);
+  assert.equal(adds_what_it_promised(with_items(["vegan chicken", "plant-based beef"]), "non-vegetarian"), false);
   assert.deepEqual(ADDITIONS, ["non-vegetarian", "non-vegan"]);
   const request = parse_addition_request({ name: "Salad", kind: "meal", addition: "non-vegan", base: VEG_BASE });
   assert.equal(request.base.servings, 4);

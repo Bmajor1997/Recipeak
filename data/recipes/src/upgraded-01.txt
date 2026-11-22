@@ -49,7 +49,7 @@ V Hugo-style: replace the Aperol with 3/4 oz elderflower liqueur and add a few m
 V Lighter: use 2 oz prosecco and 2 oz soda.
 G large wine glass | orange half-wheel | y | Use 2 oz non-alcoholic orange bitter aperitivo, top with alcohol-free sparkling wine and a splash of soda.
 
-@ chicken-tikka-masala | Chicken Tikka Masala | 4 | 25 | 40 | milk | Smoky, yogurt-marinated chicken charred under the broiler, then simmered in a silky, gently spiced tomato and cream masala.
+@ chicken-tikka-masala | Chicken Tikka Masala | 4 | 25 | 40 | milk, wheat | Smoky, yogurt-marinated chicken charred under the broiler, then simmered in a silky, gently spiced tomato and cream masala.
 - 2 | lb | boneless, skinless chicken thighs, cut into 1 1/2 inch pieces
 - 3/4 | cup | whole-milk plain yogurt
 - 1 | tbsp | lemon juice

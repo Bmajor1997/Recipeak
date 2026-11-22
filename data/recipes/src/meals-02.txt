@@ -401,7 +401,7 @@
 # Add the potatoes and bay leaf and simmer 15 minutes until tender.
 # Add the clams and cream and heat through without boiling. Season and serve with crackers.
 
-@ french-fries | French Fries | 4 | 20 | 20 | - | Golden, crisp double-fried potatoes.
+@ french-fries | French Fries | 4 | 20 | 20 | peanuts | Golden, crisp double-fried potatoes.
 - 2 | lb | russet potatoes
 - | | peanut or vegetable oil, for frying
 - 1 | tsp | fine salt
