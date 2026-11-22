@@ -42,4 +42,12 @@ export const DIETS = ["vegetarian", "vegan", "gluten-free", "dairy-free", "nut-f
 export type Diet = (typeof DIETS)[number];
 
 /** photo_uri points at a photo kept privately on this phone, or null when the recipe has no photo. */
-export type SavedRecipe = { id: string; saved_at: string; kind: Kind; recipe: Recipe; photo_uri: string | null };
+export type SavedRecipe = {
+  id: string;
+  saved_at: string;
+  kind: Kind;
+  recipe: Recipe;
+  photo_uri: string | null;
+  /** Made with AI, so reopening it still shows the reminder to check ingredients and allergens. */
+  ai?: boolean;
+};

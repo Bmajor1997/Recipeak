@@ -67,7 +67,11 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
   const styles = useThemedStyles(create_styles);
   const [busy, set_busy] = useState(false);
   const [problem, set_problem] = useState<string | null>(null);
-  const name = current.guesses[0].name;
+  // The other guesses: ones Recipeak has open their own recipe; the rest can be chosen for the AI recipe instead.
+  const in_library = current.guesses.map((g) => find_bundled_dish(current.kind, g.name));
+  const unknown = current.guesses.map((_, i) => i).filter((i) => !in_library[i]);
+  const [target, set_target] = useState(unknown[0] ?? 0);
+  const name = current.guesses[target].name;
   const what = current.kind === "cocktail" ? "drink" : "meal";
 
   async function make() {
@@ -81,7 +85,7 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
         kind: current.kind,
         recipe: made.recipe,
         guesses: current.guesses,
-        selected: 0,
+        selected: target,
         image: made.image,
         localPhoto: null,
         savedId: null,
@@ -98,6 +102,23 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
     }
   }
 
+  async function open_library(index: number) {
+    const dish = in_library[index];
+    const recipe = dish && bundled_recipe(dish);
+    if (!dish || !recipe || busy) return;
+    set_current({
+      status: "ready",
+      kind: current.kind,
+      recipe,
+      guesses: current.guesses,
+      selected: index,
+      image: NO_IMAGE,
+      localPhoto: await bundled_photo_uri(dish),
+      savedId: null,
+      bundledId: dish.id,
+    });
+  }
+
   function not_now() {
     set_current(null);
     router.back();
@@ -109,15 +130,46 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
         <Text style={type.title} accessibilityRole="header">
           {`We don't have this ${what} yet`}
         </Text>
-        <Text style={type.body}>{`It looks like ${name}, but Recipeak doesn't have a recipe for it.`}</Text>
-        <Text style={type.body}>Would you like Recipeak to make a recipe and a photo for it with AI?</Text>
-        <Notice>
-          AI recipes are our best effort, checked twice before you see them. Still, check every ingredient and allergen before you cook or
-          serve it, especially for anyone with a food allergy.
-        </Notice>
-        {problem && <Notice tone="error">{problem}</Notice>}
-        <Button label="Make AI recipe and photo" busy={busy} onPress={() => void make()} />
+        <Text style={type.body}>{`It looks like ${current.guesses[0].name}, but Recipeak doesn't have a recipe for it.`}</Text>
+        {in_library.some(Boolean) && (
+          <>
+            <Text style={type.body}>Could it be one of these? Recipeak has them:</Text>
+            {in_library.map((dish, i) =>
+              dish ? (
+                <Button
+                  key={dish.id}
+                  label={`Open ${dish.name}`}
+                  variant="secondary"
+                  disabled={busy}
+                  onPress={() => void open_library(i)}
+                />
+              ) : null,
+            )}
+          </>
+        )}
+        {unknown.length > 1 && (
+          <>
+            <Text style={type.body}>Which one should Recipeak make?</Text>
+            <View style={styles.wrap}>
+              {unknown.map((i) => (
+                <Chip key={i} label={current.guesses[i].name} selected={i === target} onPress={() => set_target(i)} />
+              ))}
+            </View>
+          </>
+        )}
+        {unknown.length > 0 && (
+          <>
+            <Text style={type.body}>{`Would you like Recipeak to make a recipe and a photo for ${name} with AI?`}</Text>
+            <Notice>
+              AI recipes are our best effort, checked twice before you see them. Still, check every ingredient and allergen before you cook
+              or serve it, especially for anyone with a food allergy.
+            </Notice>
+            {problem && <Notice tone="error">{problem}</Notice>}
+            <Button label="Make AI recipe and photo" busy={busy} onPress={() => void make()} />
+          </>
+        )}
         <Button label="Not now" variant="secondary" disabled={busy} onPress={not_now} />
+        <ManualCorrection initialKind={current.kind} />
       </ScrollView>
     </Sheet>
   );
@@ -409,7 +461,10 @@ function RecipeView({ current }: { current: Ready }) {
         // Saved with its cover photo, downloaded to the phone so Saved works offline. Free accounts keep up to 3
         // recipes, however they found them (a photo or the Home wall); photosLeft is null only for subscribers.
         const limit = (await is_subscriber()) ? undefined : FREE_SAVED_RECIPES;
-        const entry = await saved.save(kind, recipe, preferences.ready && preferences.values.saveCoverPhotos ? coverUri : null, { limit });
+        const entry = await saved.save(kind, recipe, preferences.ready && preferences.values.saveCoverPhotos ? coverUri : null, {
+          limit,
+          ai: current.ai,
+        });
         set_current({ ...current, savedId: entry.id });
         set_just_saved(true);
         after_save();
@@ -723,6 +778,24 @@ function ManualCorrection({ initialKind, correction = false }: { initialKind: Ki
     set_busy(true);
     set_error(null);
     try {
+      // A dish Recipeak has opens its own recipe, with no AI request (and no free photo used).
+      const dish = find_bundled_dish(kind, clean);
+      const library = dish && bundled_recipe(dish);
+      if (dish && library) {
+        set_current({
+          status: "ready",
+          kind,
+          recipe: library,
+          guesses: [{ name: dish.name, confidence: "high", image: NO_IMAGE }],
+          selected: 0,
+          image: NO_IMAGE,
+          localPhoto: await bundled_photo_uri(dish),
+          savedId: null,
+          bundledId: dish.id,
+        });
+        set_expanded(false);
+        return;
+      }
       const result = await api.recipe(clean, kind, undefined, { correction });
       if (correction) refresh_allowance();
       set_current({
@@ -734,6 +807,7 @@ function ManualCorrection({ initialKind, correction = false }: { initialKind: Ki
         image: result.image,
         localPhoto: null,
         savedId: null,
+        ai: true,
       });
       set_expanded(false);
     } catch (problem) {

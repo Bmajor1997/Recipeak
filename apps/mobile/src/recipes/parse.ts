@@ -115,6 +115,7 @@ export function parse_saved_list(v: unknown): SavedRecipe[] {
           kind: item.kind as Kind,
           recipe: parse_recipe(item.recipe),
           photo_uri: photo,
+          ...(item.ai === true ? { ai: true } : {}),
         },
       ];
     } catch {

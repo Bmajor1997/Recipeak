@@ -30,13 +30,19 @@ type Deps = {
   timeoutMs?: number;
 };
 
+/** Long enough for a new recipe's two AI requests (write, then check), each limited to 60 seconds on the server. */
+export const RECIPE_TIMEOUT_MS = 150_000;
+
 export function create_api({ baseUrl, id_token, fetch_impl = fetch, timeoutMs = 75_000 }: Deps) {
-  async function request(path: string, init: { method: "GET" | "POST"; body?: unknown; expected_uid?: string }): Promise<unknown> {
+  async function request(
+    path: string,
+    init: { method: "GET" | "POST"; body?: unknown; expected_uid?: string; timeout_ms?: number },
+  ): Promise<unknown> {
     if (!baseUrl) throw new ApiError("This build isn't connected to the recipe server yet.", 0);
     const token = await id_token(init.expected_uid);
     if (!token) throw new ApiError("Please sign in again.", 401);
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    const timer = setTimeout(() => controller.abort(), init.timeout_ms ?? timeoutMs);
     try {
       const response = await fetch_impl(baseUrl.replace(/\/$/, "") + path, {
         method: init.method,
@@ -95,7 +101,9 @@ export function create_api({ baseUrl, id_token, fetch_impl = fetch, timeoutMs = 
       { correction = false }: { correction?: boolean } = {},
     ): Promise<{ recipe: Recipe; image: DishImage }> {
       const body = { name, kind, ...(diet ? { diet } : {}), ...(correction ? { correction: true } : {}) };
-      const json = (await request("/api/recipe", { method: "POST", body })) as {
+      // A new recipe for a dish Recipeak doesn't have is written and then checked by a second AI request, each with
+      // the server's own 60-second limit, so this waits long enough for both.
+      const json = (await request("/api/recipe", { method: "POST", body, timeout_ms: RECIPE_TIMEOUT_MS })) as {
         recipe?: unknown;
         image?: unknown;
       };

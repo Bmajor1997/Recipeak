@@ -81,7 +81,7 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     const is_premium = await premium(user.uid);
     // Checked before anything is spent, so a free account is never charged a version it can't see.
     if (request.diet && PREMIUM_DIETS.includes(request.diet) && !is_premium) throw premium_versions();
-    if (!request.diet && !request.correction) return photo_recipe(user, request, is_premium, signal);
+    if (!request.diet && !request.correction) return photo_recipe(user, request, is_premium);
     // A name typed after a photo couldn't be read stands in for that photo, so it uses a free photo (the unread
     // photo didn't). Other recipe requests are follow-ups to a photo that worked.
     const feature = request.correction ? "correction" : "recipe";
@@ -98,23 +98,34 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
    * by a second careful read and the allergen word list, and kept: the next person who photographs the same dish gets
    * it (and its photo) straight away, without another AI request.
    */
-  async function photo_recipe(user, request, is_premium, signal) {
+  async function photo_recipe(user, request, is_premium) {
     const key = image_key(request.kind, request.name);
     const cache_key = key ? `photo:${key}` : null;
     let found = cache_key ? store.get_recipe(cache_key) : null;
     if (!found) {
       const job_key = cache_key ?? `${user.uid}:${request.name}`;
       if (!making.has(job_key)) {
+        // Not tied to this person's connection: if they leave, the recipe still finishes and is kept for next time.
+        // Each AI call has the gateway's own time limit, and the app waits long enough for both (client.ts).
         const job = (async () => {
           const first = await call_openai({ fetch_impl, store, env, user_id: user.uid, feature: "recipe", premium: is_premium,
-            payload: recipe_payload(request, model), signal });
+            payload: recipe_payload(request, model) });
           const draft = validate_recipe(JSON.parse(first.text));
           // The check is part of the same request for the person: it doesn't use another free follow-up.
-          const second = await call_openai({ fetch_impl, store, env, user_id: user.uid, feature: "review", premium: is_premium,
-            payload: review_payload({ name: request.name, kind: request.kind, recipe: draft }, model), signal });
-          const checked = with_detected_allergens(validate_recipe(JSON.parse(second.text)));
-          if (cache_key) store.set_recipe({ key: cache_key, kind: request.kind, name: request.name, recipe: checked });
-          return checked;
+          let checked;
+          try {
+            const second = await call_openai({ fetch_impl, store, env, user_id: user.uid, feature: "review", premium: is_premium,
+              payload: review_payload({ name: request.name, kind: request.kind, recipe: draft }, model) });
+            checked = validate_recipe(JSON.parse(second.text));
+          } catch (error) {
+            // A failed check still shows the draft (with the allergen word list applied), but never keeps it, so the
+            // next person gets a properly checked recipe.
+            log.warn?.("recipe check failed", error?.name ?? "error");
+            return with_detected_allergens(draft);
+          }
+          const final = with_detected_allergens(checked);
+          if (cache_key) store.set_recipe({ key: cache_key, kind: request.kind, name: request.name, recipe: final });
+          return final;
         })().finally(() => making.delete(job_key));
         making.set(job_key, job);
       }

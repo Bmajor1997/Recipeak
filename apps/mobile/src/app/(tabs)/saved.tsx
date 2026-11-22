@@ -135,6 +135,7 @@ export default function SavedScreen() {
               image: NO_IMAGE,
               localPhoto: item.photo_uri,
               savedId: item.id,
+              ai: item.ai,
             });
             router.push("/recipe");
           }}

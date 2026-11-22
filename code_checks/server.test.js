@@ -432,3 +432,11 @@ test("the second check gets the recipe as data, and the allergen words add what'
   assert.deepEqual(with_detected_allergens(items(["unsalted butter", "shrimp", "Worcestershire sauce"])).allergens, ["milk", "fish", "shellfish"]);
   assert.deepEqual(with_detected_allergens(items(["water"], ["milk"])).allergens, ["milk"], "never removes one");
 });
+
+test("if the second check fails, the draft is shown (allergens topped up) but not kept", async (t) => {
+  const s = await start({ premium: async () => true, reply: (n) => (n === 1 ? KATSU : "not json") }); t.after(s.close);
+  const made = await s.call("/api/recipe", { body: { name: "Chicken Katsu", kind: "meal" } });
+  assert.equal(made.status, 200);
+  assert.deepEqual(made.json.recipe.allergens, ["eggs", "wheat"]);
+  assert.equal(s.store.get_recipe("photo:" + image_key("meal", "Chicken Katsu")), null);
+});
