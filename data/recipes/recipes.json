@@ -4651,9 +4651,9 @@
      "item": "vodka"
     },
     {
-     "amount": "",
+     "amount": "4",
      "unit": "",
-     "item": "4 blackberries"
+     "item": "blackberries"
     },
     {
      "amount": "¾",
@@ -4688,10 +4688,10 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "glass",
-    "garnish": "",
+    "glass": "Collins glass",
+    "garnish": "blackberries",
     "alcoholic": true,
-    "non_alcoholic_version": "Replace the spirit with a suitable alcohol-free alternative or extra soda; flavor will differ."
+    "non_alcoholic_version": "Muddle the blackberries with the syrup, shake with lemon and ice, strain over ice and top with extra soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -4933,9 +4933,9 @@
      "item": "simple syrup"
     },
     {
-     "amount": "",
+     "amount": "2",
      "unit": "",
-     "item": "2 basil leaves"
+     "item": "basil leaves"
     },
     {
      "amount": "2",
@@ -4955,10 +4955,10 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "glass",
-    "garnish": "",
+    "glass": "wine glass",
+    "garnish": "basil leaf",
     "alcoholic": true,
-    "non_alcoholic_version": "Replace the spirit with a suitable alcohol-free alternative or extra soda; flavor will differ."
+    "non_alcoholic_version": "Muddle the basil with syrup, shake with the citrus, strain over ice and top with extra soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -5487,9 +5487,9 @@
      "item": "whiskey"
     },
     {
-     "amount": "",
+     "amount": "8",
      "unit": "",
-     "item": "8 blueberries"
+     "item": "blueberries"
     },
     {
      "amount": "¾",
@@ -5502,9 +5502,9 @@
      "item": "simple syrup"
     },
     {
-     "amount": "",
+     "amount": "2",
      "unit": "",
-     "item": "2 sage leaves"
+     "item": "sage leaves"
     },
     {
      "amount": "",
@@ -5518,10 +5518,10 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "glass",
-    "garnish": "",
+    "glass": "rocks glass",
+    "garnish": "sage leaf",
     "alcoholic": true,
-    "non_alcoholic_version": "Replace the spirit with a suitable alcohol-free alternative or extra soda; flavor will differ."
+    "non_alcoholic_version": "Muddle the blueberries and sage with syrup, shake with lemon and ice and strain over ice with a splash of soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -7453,9 +7453,9 @@
      "item": "cooked, chilled rice"
     },
     {
-     "amount": "",
+     "amount": "2",
      "unit": "",
-     "item": "2 scallions, sliced"
+     "item": "scallions, sliced"
     },
     {
      "amount": "1",
@@ -9397,10 +9397,10 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "glass",
-    "garnish": "",
+    "glass": "rocks glass",
+    "garnish": "cherry",
     "alcoholic": true,
-    "non_alcoholic_version": "Replace the spirit with a suitable alcohol-free alternative or extra soda; flavor will differ."
+    "non_alcoholic_version": "Shake the cherry juice, lemon and vanilla syrup with ice and strain over ice with a splash of soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -9695,9 +9695,9 @@
      "item": "cooked shredded chicken"
     },
     {
-     "amount": "",
+     "amount": "2",
      "unit": "",
-     "item": "2 scallions, thinly sliced"
+     "item": "scallions, thinly sliced"
     },
     {
      "amount": "",
@@ -12864,10 +12864,10 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "glass",
-    "garnish": "",
+    "glass": "Collins glass",
+    "garnish": "lemongrass stalk and lime wheel",
     "alcoholic": true,
-    "non_alcoholic_version": "Replace the spirit with a suitable alcohol-free alternative or extra soda; flavor will differ."
+    "non_alcoholic_version": "Shake the coconut water, lime and lemongrass syrup with ice, strain over ice and top with extra soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -14215,19 +14215,19 @@
      "item": "olive oil"
     },
     {
-     "amount": "",
+     "amount": "1",
      "unit": "",
-     "item": "1 onion, diced"
+     "item": "onion, diced"
     },
     {
-     "amount": "",
+     "amount": "2",
      "unit": "",
-     "item": "2 carrots, diced"
+     "item": "carrots, diced"
     },
     {
-     "amount": "",
+     "amount": "2",
      "unit": "",
-     "item": "2 celery stalks, diced"
+     "item": "celery stalks, diced"
     },
     {
      "amount": "¾",
@@ -14501,9 +14501,9 @@
    "cook_minutes": 15,
    "ingredients": [
     {
-     "amount": "",
+     "amount": "4",
      "unit": "",
-     "item": "4 firm white-fish fillets (about 5 oz each)"
+     "item": "firm white-fish fillets (about 5 oz each)"
     },
     {
      "amount": "¼",
@@ -14511,9 +14511,9 @@
      "item": "flour"
     },
     {
-     "amount": "",
+     "amount": "1",
      "unit": "",
-     "item": "1 egg, beaten"
+     "item": "egg, beaten"
     },
     {
      "amount": "½",
@@ -14536,19 +14536,19 @@
      "item": "oil"
     },
     {
-     "amount": "",
+     "amount": "1",
      "unit": "",
-     "item": "1 ripe mango, diced"
+     "item": "ripe mango, diced"
     },
     {
-     "amount": "",
+     "amount": "¼",
      "unit": "",
-     "item": "¼ red onion, finely diced"
+     "item": "red onion, finely diced"
     },
     {
-     "amount": "",
+     "amount": "1",
      "unit": "",
-     "item": "1 lime, juiced"
+     "item": "lime, juiced"
     },
     {
      "amount": "2",
@@ -14777,9 +14777,9 @@
      "item": "honeydew purée"
     },
     {
-     "amount": "",
+     "amount": "3",
      "unit": "",
-     "item": "3 cucumber slices"
+     "item": "cucumber slices"
     },
     {
      "amount": "½",
@@ -14809,10 +14809,10 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "glass",
-    "garnish": "",
+    "glass": "Collins glass",
+    "garnish": "cucumber ribbon",
     "alcoholic": true,
-    "non_alcoholic_version": "Replace the spirit with a suitable alcohol-free alternative or extra soda; flavor will differ."
+    "non_alcoholic_version": "Muddle the cucumber with syrup, shake with honeydew and lime, strain over ice and top with extra soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -19914,9 +19914,9 @@
      "item": "flank steak, thinly sliced across the grain"
     },
     {
-     "amount": "",
+     "amount": "2",
      "unit": "",
-     "item": "2 bell peppers, sliced"
+     "item": "bell peppers, sliced"
     },
     {
      "amount": "2",
@@ -19929,9 +19929,9 @@
      "item": "grated ginger"
     },
     {
-     "amount": "",
+     "amount": "2",
      "unit": "",
-     "item": "2 garlic cloves, minced"
+     "item": "garlic cloves, minced"
     },
     {
      "amount": "3",
@@ -20598,9 +20598,9 @@
      "item": "simple syrup"
     },
     {
-     "amount": "",
+     "amount": "1",
      "unit": "",
-     "item": "1 thyme sprig"
+     "item": "thyme sprig"
     },
     {
      "amount": "2",
@@ -20620,10 +20620,10 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "glass",
-    "garnish": "",
+    "glass": "Collins glass",
+    "garnish": "thyme sprig",
     "alcoholic": true,
-    "non_alcoholic_version": "Replace the spirit with a suitable alcohol-free alternative or extra soda; flavor will differ."
+    "non_alcoholic_version": "Press the thyme with syrup, shake with grapefruit and lime, strain over ice and top with extra soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -21521,9 +21521,9 @@
    "cook_minutes": 12,
    "ingredients": [
     {
-     "amount": "",
+     "amount": "4",
      "unit": "",
-     "item": "4 salmon fillets (about 5 oz each)"
+     "item": "salmon fillets (about 5 oz each)"
     },
     {
      "amount": "1½",
@@ -21546,9 +21546,9 @@
      "item": "plain yogurt"
     },
     {
-     "amount": "",
+     "amount": "½",
      "unit": "",
-     "item": "½ cucumber, finely diced"
+     "item": "cucumber, finely diced"
     },
     {
      "amount": "1",
@@ -21742,9 +21742,9 @@
    "cook_minutes": 40,
    "ingredients": [
     {
-     "amount": "",
+     "amount": "4",
      "unit": "",
-     "item": "4 bone-in, skin-on chicken thighs"
+     "item": "bone-in, skin-on chicken thighs"
     },
     {
      "amount": "1½",
@@ -21767,9 +21767,9 @@
      "item": "honey"
     },
     {
-     "amount": "",
+     "amount": "1",
      "unit": "",
-     "item": "1 garlic clove, minced"
+     "item": "garlic clove, minced"
     },
     {
      "amount": "½",
@@ -26811,9 +26811,9 @@
      "item": "(15 oz) chickpeas, drained and rinsed"
     },
     {
-     "amount": "",
+     "amount": "1",
      "unit": "",
-     "item": "1 cucumber, diced"
+     "item": "cucumber, diced"
     },
     {
      "amount": "¼",
@@ -26826,9 +26826,9 @@
      "item": "olive oil"
     },
     {
-     "amount": "",
+     "amount": "1",
      "unit": "",
-     "item": "1 lemon, zested and juiced"
+     "item": "lemon, zested and juiced"
     },
     {
      "amount": "½",
@@ -28156,10 +28156,10 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "glass",
-    "garnish": "",
+    "glass": "rocks glass",
+    "garnish": "lime wedge",
     "alcoholic": true,
-    "non_alcoholic_version": "Replace the spirit with a suitable alcohol-free alternative or extra soda; flavor will differ."
+    "non_alcoholic_version": "Shake the mango, lime and syrup with 1 oz coconut water and ice, and strain over ice."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -29500,9 +29500,9 @@
      "item": "(14.5 oz) diced tomatoes"
     },
     {
-     "amount": "",
+     "amount": "2",
      "unit": "",
-     "item": "2 garlic cloves, minced"
+     "item": "garlic cloves, minced"
     },
     {
      "amount": "2",
@@ -30155,9 +30155,9 @@
    "cook_minutes": 30,
    "ingredients": [
     {
-     "amount": "",
+     "amount": "2",
      "unit": "",
-     "item": "2 medium eggplants, halved lengthwise"
+     "item": "medium eggplants, halved lengthwise"
     },
     {
      "amount": "2",
@@ -30190,9 +30190,9 @@
      "item": "cooked rice"
     },
     {
-     "amount": "",
+     "amount": "2",
      "unit": "",
-     "item": "2 scallions, sliced"
+     "item": "scallions, sliced"
     }
    ],
    "steps": [
@@ -32090,24 +32090,24 @@
      "item": "mushrooms, sliced"
     },
     {
-     "amount": "",
+     "amount": "1",
      "unit": "",
-     "item": "1 onion, diced"
+     "item": "onion, diced"
     },
     {
-     "amount": "",
+     "amount": "2",
      "unit": "",
-     "item": "2 carrots, diced"
+     "item": "carrots, diced"
     },
     {
-     "amount": "",
+     "amount": "2",
      "unit": "",
-     "item": "2 celery stalks, diced"
+     "item": "celery stalks, diced"
     },
     {
-     "amount": "",
+     "amount": "2",
      "unit": "",
-     "item": "2 garlic cloves, minced"
+     "item": "garlic cloves, minced"
     },
     {
      "amount": "¾",
@@ -34530,9 +34530,9 @@
      "item": "simple syrup"
     },
     {
-     "amount": "",
+     "amount": "4",
      "unit": "",
-     "item": "4 mint leaves"
+     "item": "mint leaves"
     },
     {
      "amount": "2",
@@ -34552,10 +34552,10 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "glass",
-    "garnish": "",
+    "glass": "Collins glass",
+    "garnish": "mint sprig",
     "alcoholic": true,
-    "non_alcoholic_version": "Replace the spirit with a suitable alcohol-free alternative or extra soda; flavor will differ."
+    "non_alcoholic_version": "Press the mint, shake with passion fruit, lime and syrup, strain over ice and top with extra soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -34740,14 +34740,14 @@
      "item": "olive oil"
     },
     {
-     "amount": "",
+     "amount": "3",
      "unit": "",
-     "item": "3 garlic cloves, sliced"
+     "item": "garlic cloves, sliced"
     },
     {
-     "amount": "",
+     "amount": "3",
      "unit": "",
-     "item": "3 anchovy fillets"
+     "item": "anchovy fillets"
     },
     {
      "amount": "¼",
@@ -34904,9 +34904,9 @@
      "item": "warm water"
     },
     {
-     "amount": "",
+     "amount": "1",
      "unit": "",
-     "item": "1 cucumber, cut into thin strips"
+     "item": "cucumber, cut into thin strips"
     },
     {
      "amount": "1",
@@ -34914,9 +34914,9 @@
      "item": "sesame seeds"
     },
     {
-     "amount": "",
+     "amount": "2",
      "unit": "",
-     "item": "2 scallions, sliced"
+     "item": "scallions, sliced"
     }
    ],
    "steps": [
@@ -35029,9 +35029,9 @@
      "item": "simple syrup"
     },
     {
-     "amount": "",
+     "amount": "1",
      "unit": "",
-     "item": "1 rosemary sprig"
+     "item": "rosemary sprig"
     },
     {
      "amount": "2",
@@ -35051,10 +35051,10 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "glass",
-    "garnish": "",
+    "glass": "highball glass",
+    "garnish": "rosemary sprig",
     "alcoholic": true,
-    "non_alcoholic_version": "Replace the spirit with a suitable alcohol-free alternative or extra soda; flavor will differ."
+    "non_alcoholic_version": "Press the rosemary with syrup, shake with pear nectar and lemon, strain over ice and top with extra soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -36138,9 +36138,9 @@
      "item": "lime juice"
     },
     {
-     "amount": "",
+     "amount": "1–2",
      "unit": "",
-     "item": "1–2 thin jalapeño slices"
+     "item": "thin jalapeño slices"
     },
     {
      "amount": "2",
@@ -36160,10 +36160,10 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "glass",
-    "garnish": "",
+    "glass": "highball glass",
+    "garnish": "jalapeño slice",
     "alcoholic": true,
-    "non_alcoholic_version": "Replace the spirit with a suitable alcohol-free alternative or extra soda; flavor will differ."
+    "non_alcoholic_version": "Muddle the jalapeño, shake with pineapple and lime, strain over ice and top with extra soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -36492,10 +36492,10 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "glass",
-    "garnish": "",
+    "glass": "Collins glass",
+    "garnish": "lime wedge",
     "alcoholic": true,
-    "non_alcoholic_version": "Replace the spirit with a suitable alcohol-free alternative or extra soda; flavor will differ."
+    "non_alcoholic_version": "Shake the pomegranate, lime and agave with ice, strain over ice and top with extra soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -36554,10 +36554,10 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "glass",
-    "garnish": "",
+    "glass": "Collins glass",
+    "garnish": "rosemary sprig",
     "alcoholic": true,
-    "non_alcoholic_version": "Replace the spirit with a suitable alcohol-free alternative or extra soda; flavor will differ."
+    "non_alcoholic_version": "Shake the pomegranate juice, lemon and syrup with ice, strain over ice and top with extra soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -38068,9 +38068,9 @@
      "item": "whiskey"
     },
     {
-     "amount": "",
+     "amount": "5",
      "unit": "",
-     "item": "5 raspberries"
+     "item": "raspberries"
     },
     {
      "amount": "¾",
@@ -38100,10 +38100,10 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "glass",
-    "garnish": "",
+    "glass": "rocks glass",
+    "garnish": "raspberry",
     "alcoholic": true,
-    "non_alcoholic_version": "Replace the spirit with a suitable alcohol-free alternative or extra soda; flavor will differ."
+    "non_alcoholic_version": "Muddle the raspberries with ginger syrup, shake with lemon and ice and strain over ice with a splash of soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
@@ -38430,9 +38430,9 @@
    "cook_minutes": 25,
    "ingredients": [
     {
-     "amount": "",
+     "amount": "1",
      "unit": "",
-     "item": "1 large cauliflower, cut into florets"
+     "item": "large cauliflower, cut into florets"
     },
     {
      "amount": "2",
@@ -38460,14 +38460,14 @@
      "item": "sour cream"
     },
     {
-     "amount": "",
+     "amount": "1",
      "unit": "",
-     "item": "1 lime, juiced"
+     "item": "lime, juiced"
     },
     {
-     "amount": "",
+     "amount": "8",
      "unit": "",
-     "item": "8 small corn tortillas"
+     "item": "small corn tortillas"
     },
     {
      "amount": "¼",
@@ -42281,9 +42281,9 @@
    "cook_minutes": 25,
    "ingredients": [
     {
-     "amount": "",
+     "amount": "4",
      "unit": "",
-     "item": "4 large portobello caps, stems removed"
+     "item": "large portobello caps, stems removed"
     },
     {
      "amount": "1",
@@ -42296,9 +42296,9 @@
      "item": "baby spinach"
     },
     {
-     "amount": "",
+     "amount": "1",
      "unit": "",
-     "item": "1 garlic clove, minced"
+     "item": "garlic clove, minced"
     },
     {
      "amount": "1",
@@ -42746,9 +42746,9 @@
      "item": "bourbon"
     },
     {
-     "amount": "",
+     "amount": "2",
      "unit": "",
-     "item": "2 strawberries, hulled"
+     "item": "strawberries, hulled"
     },
     {
      "amount": "½",
@@ -42778,10 +42778,10 @@
    ],
    "allergens": [],
    "cocktail": {
-    "glass": "glass",
-    "garnish": "",
+    "glass": "Collins glass",
+    "garnish": "strawberry",
     "alcoholic": true,
-    "non_alcoholic_version": "Replace the spirit with a suitable alcohol-free alternative or extra soda; flavor will differ."
+    "non_alcoholic_version": "Muddle the strawberries with ginger syrup, shake with lemon, strain over ice and top with extra soda."
    },
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
