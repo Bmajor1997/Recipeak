@@ -5,6 +5,7 @@ import { createContext, type ReactNode, useCallback, useContext, useEffect, useM
 import { useApp } from "../AppContext";
 import { ApiError } from "../api/client";
 import { prepare_photo } from "../photos/prepare";
+import { match_photo_guesses } from "../recipes/photoMatch";
 import { CameraSheet, type Photo } from "./CameraSheet";
 
 type CameraState = {
@@ -63,16 +64,18 @@ export function CameraProvider({ children }: { children: ReactNode }) {
           set_current({ status: "problem", message: "That doesn't look like a meal or a drink. Try again, closer up and in good light." });
           return;
         }
+        // Ask the person to choose an existing recipe or review the AI suggestion.
+        // The photo identification request has already consumed its normal allowance;
+        // choosing an option below must not make another identification request.
+        const matches = match_photo_guesses(result.kind, result.guesses);
         set_current({
-          status: "ready",
+          status: "photo-choice",
           kind: result.kind,
-          recipe: result.recipe,
           guesses: result.guesses,
-          selected: 0,
-          image: result.guesses[0].image,
-          localPhoto: null,
-          savedId: null,
+          suggested: result.recipe,
+          matches: matches.map(({ dish }) => ({ id: dish.id, name: dish.name })),
         });
+
       } catch (error) {
         if (error instanceof ApiError && error.needsUpgrade) {
           set_current(null);
