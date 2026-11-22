@@ -38,5 +38,17 @@ export function report_text({ reason, dish, kind, diet, details, recipe }: Recip
     `Recipe: ${name} (${kind === "cocktail" ? "drink" : "meal"}${diet ? `, ${diet} version` : ""})`,
     `Details: ${details.trim().slice(0, MAX_REPORT_DETAILS) || "None given"}`,
   ];
-  return { title, description: lines.join("\n") };
+  if (recipe) {
+    lines.push("Displayed recipe snapshot:", `Title: ${recipe.title}`);
+    lines.push("Ingredients:", ...recipe.ingredients.map((item) => `- ${[item.amount, item.unit, item.item].filter(Boolean).join(" ")}`));
+    lines.push("Instructions:", ...recipe.steps.map((step, index) => `${index + 1}. ${step}`));
+    lines.push(`Listed allergens: ${recipe.allergens.join(", ") || "None listed"}`);
+  }
+  const description = lines.join("\n");
+  return {
+    title,
+    description: description.length <= MAX_REPORT_DESCRIPTION
+      ? description
+      : `${description.slice(0, MAX_REPORT_DESCRIPTION - 24)}\n[Snapshot truncated]`,
+  };
 }
