@@ -16,6 +16,8 @@ module.exports = ({ config }) => {
       ...(process.env.EAS_PROJECT_ID ? { eas: { ...config.extra?.eas, projectId: process.env.EAS_PROJECT_ID } } : {}),
     },
     plugins: [
+      // Mods execute in reverse registration order; repair the completed splash styles last.
+      "./plugins/withAndroidCompatibility",
       ...(config.plugins ?? []),
       "./plugins/withUploadSigning",
       "./plugins/withPreviewCleartext",
