@@ -284,6 +284,21 @@ describe("correcting the dish after choosing a version", () => {
   });
 });
 
+describe("a recipe opened from Saved", () => {
+  it("switches to its written version and back, however often, without losing the original", async () => {
+    // As saved_as_current opens it: no matches, so the dish is known by its recipe.
+    await open(ready(GIMLET, "cocktail", { guesses: [], savedId: "s1" }));
+    for (let round = 0; round < 2; round++) {
+      await press("non-alcoholic");
+      expect(text()).toContain("Gimlet (non-alcoholic)");
+      await press("non-alcoholic");
+      expect(text()).toContain('"gin"');
+      expect(text()).not.toContain("Gimlet (non-alcoholic)");
+    }
+    expect(mocks.recipe).not.toHaveBeenCalled();
+  });
+});
+
 describe("a typed dish name Recipeak doesn't have", () => {
   async function type_name(name: string) {
     await press("Not the right dish? Enter its name");

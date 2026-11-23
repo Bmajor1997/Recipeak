@@ -356,8 +356,10 @@ function RecipeView({ current }: { current: Ready }) {
     set_servings(recipe.servings || 1);
   }
   // Another dish (a typed correction or another match) starts with its own versions: nothing chosen or remembered
-  // for the last dish carries over to it.
-  const dish_identity = `${kind}|${dishName}|${current.bundledId ?? ""}`;
+  // for the last dish carries over to it. The name comes from the match, or (a recipe opened from Saved has none) from
+  // the standard recipe, never from the version on screen, whose title changes ("Gimlet (non-alcoholic)").
+  const stable_name = guesses[selected]?.name ?? (standard?.recipe ?? base).title;
+  const dish_identity = `${kind}|${stable_name}|${current.bundledId ?? ""}`;
   const [shown_dish, set_shown_dish] = useState(dish_identity);
   if (dish_identity !== shown_dish) {
     set_shown_dish(dish_identity);
