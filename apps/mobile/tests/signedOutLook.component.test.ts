@@ -23,11 +23,13 @@ vi.mock("../src/AppContext", () => ({ useApp: () => ({ user: mocks.user }) }));
 
 const { PreferencesProvider, usePreferences } = await import("../src/settings/PreferencesProvider");
 type State = ReturnType<typeof usePreferences>;
-let state: State | null = null;
+const report = vi.fn<(state: State) => void>();
 const Probe = () => {
-  state = usePreferences();
+  report(usePreferences());
   return null;
 };
+/** What the screens see now. */
+const latest = (): State => report.mock.lastCall![0];
 let tree: Rendered | undefined;
 const app = () => createElement(PreferencesProvider, null, createElement(Probe));
 const render = async () => {
@@ -52,15 +54,15 @@ it("keeps the account's dark look and button colour on the start and sign-in scr
   mocks.user = { uid: "alice" };
   await render();
   await act(async () => {
-    await state!.update("appearance", "dark");
+    await latest().update("appearance", "dark");
   });
   await act(async () => {
-    await state!.update("accent", "blue");
+    await latest().update("accent", "blue");
   });
   // Signing out: nobody is signed in, so these are the values the sign-in screen is drawn with.
   mocks.user = null;
   await rerender();
-  expect(state!.values).toMatchObject({ appearance: "dark", accent: "blue" });
+  expect(latest().values).toMatchObject({ appearance: "dark", accent: "blue" });
 });
 
 it("opens signed out in the last account's light look, even if the phone is dark", async () => {
@@ -71,12 +73,12 @@ it("opens signed out in the last account's light look, even if the phone is dark
   // The app opens again with nobody signed in.
   mocks.user = null;
   await render();
-  expect(state!.values.appearance).toBe("light");
+  expect(latest().values.appearance).toBe("light");
 });
 
 it("follows the phone on a first launch, before any account has chosen", async () => {
   await render();
-  expect(state!.values.appearance).toBe("system");
+  expect(latest().values.appearance).toBe("system");
 });
 
 it("never overrides an account's own look with the device's", async () => {
@@ -84,5 +86,5 @@ it("never overrides an account's own look with the device's", async () => {
   mocks.storage.set("mealsandmixers.preferences.v1.carol", JSON.stringify({ appearance: "light", accent: "coral" }));
   mocks.user = { uid: "carol" };
   await render();
-  expect(state!.values.appearance).toBe("light");
+  expect(latest().values.appearance).toBe("light");
 });

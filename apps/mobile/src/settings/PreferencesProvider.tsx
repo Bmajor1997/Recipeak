@@ -36,17 +36,6 @@ function AccountPreferences({ uid, children }: { uid: string | null; children: R
       alive.current = false;
     };
   }, []);
-  // The look the last account chose: used while signed out (the start and sign-in screens) and while this account's
-  // own preferences load, so the app doesn't switch between light and dark on the way in or out.
-  useEffect(() => {
-    let live = true;
-    void device_look.load().then((look) => {
-      if (live && look) set_values((current) => (current === DEFAULTS_SHOWN ? { ...current, ...look } : current));
-    });
-    return () => {
-      live = false;
-    };
-  }, []);
   useEffect(() => {
     let live = true;
     if (!store) return;
@@ -66,6 +55,18 @@ function AccountPreferences({ uid, children }: { uid: string | null; children: R
       live = false;
     };
   }, [store, attempt]);
+  // The look the last account chose: used while signed out (the start and sign-in screens) and while this account's
+  // own preferences load, so the app doesn't switch between light and dark on the way in or out. Read after the
+  // account's own preferences are asked for, which always win.
+  useEffect(() => {
+    let live = true;
+    void device_look.load().then((look) => {
+      if (live && look) set_values((current) => (current === DEFAULTS_SHOWN ? { ...current, ...look } : current));
+    });
+    return () => {
+      live = false;
+    };
+  }, []);
   const reload = useCallback(() => {
     set_ready(false);
     set_error(null);
