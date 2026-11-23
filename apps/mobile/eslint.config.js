@@ -8,7 +8,7 @@ const REQUIRED_NAMES = [
   "^on[A-Z]", // React and React Native event props (onPress, onChange, onPanResponderMove…)
   "^tabBar[A-Z]", // Expo Router tab options
   "^(getItem|setItem|removeItem)$", // AsyncStorage's storage interface
-  "^(getReactNativePersistence|toJSON|findAllByType|findAllByProps|findByProps)$", // Firebase and react-test-renderer APIs
+  "^(getReactNativePersistence|toJSON|findAllByType|findAllByProps|findByProps|createNodeMock|addListener)$", // Firebase, React Native and react-test-renderer APIs
 ].join("|");
 
 module.exports = defineConfig([

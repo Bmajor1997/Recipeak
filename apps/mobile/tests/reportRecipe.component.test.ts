@@ -7,18 +7,23 @@ import { AppProvider } from "../src/AppContext";
 import { ReportRecipe } from "../src/recipes/ReportRecipe";
 
 type Instance = {
+  findByProps: (p: Record<string, unknown>) => Instance;
   type: unknown;
   props: Record<string, unknown>;
-  findByProps: (p: Record<string, unknown>) => Instance;
   findAllByType: (t: unknown) => Instance[];
 };
 type Rendered = { root: Instance; toJSON: () => unknown; unmount: () => void };
 const { act, create } = createRequire(import.meta.url)("react-test-renderer") as {
   act: (fn: () => void | Promise<void>) => Promise<void>;
-  create: (node: ReactElement) => Rendered;
+  create: (node: ReactElement, options?: { createNodeMock?: (element: { type: unknown }) => unknown }) => Rendered;
 };
 Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true });
-const send = vi.hoisted(() => vi.fn());
+const { send, keyboard, scroll_to_end } = vi.hoisted(() => ({
+  send: vi.fn(),
+  // The keyboard's listeners, so the test can open and close it like Android does.
+  keyboard: new Map<string, (event: { endCoordinates: { height: number } }) => void>(),
+  scroll_to_end: vi.fn(),
+}));
 vi.mock("../src/AppContext", async () => {
   const { createContext: create_context, useContext } = await import("react");
   const Context = create_context<unknown>(null);
@@ -33,8 +38,13 @@ vi.mock("react-native", () => ({
   ScrollView: "ScrollView",
   TextInput: "TextInput",
   Modal: "Modal",
-  KeyboardAvoidingView: "KeyboardAvoidingView",
   Platform: { OS: "android" },
+  Keyboard: {
+    addListener: (name: string, listener: (event: { endCoordinates: { height: number } }) => void) => {
+      keyboard.set(name, listener);
+      return { remove: () => keyboard.delete(name) };
+    },
+  },
   useWindowDimensions: () => ({ width: 320, height: 568 }),
 }));
 vi.mock("react-native-safe-area-context", () => ({ useSafeAreaInsets: () => ({ top: 20, bottom: 10 }) }));
@@ -55,7 +65,7 @@ const tap = async (props: Record<string, unknown>) => {
   });
 };
 
-it("opens in a keyboard-aware sheet, checks for a reason, sends once, and cancels without sending", async () => {
+it("opens in a sheet that stays above the keyboard, checks for a reason, sends once, and cancels without sending", async () => {
   send.mockResolvedValue("id-1");
   await act(async () => {
     tree = create(
@@ -64,13 +74,26 @@ it("opens in a keyboard-aware sheet, checks for a reason, sends once, and cancel
         { value: { api: { send_feedback: send } } },
         createElement(ReportRecipe, { kind: "cocktail", dish: "Gimlet" }),
       ),
+      // The sheet's scroll view, so it can be asked to scroll the details box into view.
+      { createNodeMock: (element: { type: unknown }) => (element.type === "ScrollView" ? { scrollToEnd: scroll_to_end } : null) },
     );
   });
   expect(tree!.root.findAllByType("Modal")).toHaveLength(0);
   await tap({ accessibilityLabel: "Report this recipe" });
   const [sheet] = tree!.root.findAllByType("Modal");
   expect(sheet.props.visible).toBe(true);
-  expect(sheet.findAllByType("KeyboardAvoidingView")).toHaveLength(1);
+  // The keyboard opens for the details box: the sheet moves up by its height, fits above it, and scrolls the box and
+  // Send report into view (Android, 568-high phone, 300 of it keyboard).
+  await act(async () => (tree!.root.findByProps({ accessibilityLabel: "Details (optional)" }).props.onFocus as () => void)());
+  await act(async () => keyboard.get("keyboardDidShow")!({ endCoordinates: { height: 300 } }));
+  const moved = tree!.root.findByProps({ testID: "report-sheet" });
+  expect(moved.props.style).toMatchObject({ marginBottom: 300 });
+  const panel = moved.findByProps({ accessibilityViewIsModal: true });
+  expect((panel.props.style as { maxHeight: number }).maxHeight).toBeCloseTo(568 * 0.9 - 20 - 300);
+  expect(scroll_to_end).toHaveBeenCalled();
+  // Closing the keyboard puts the sheet back.
+  await act(async () => keyboard.get("keyboardDidHide")!({ endCoordinates: { height: 0 } }));
+  expect(tree!.root.findByProps({ testID: "report-sheet" }).props.style).toMatchObject({ marginBottom: 0 });
   expect(sheet.findAllByType("ScrollView")[0].props.keyboardShouldPersistTaps).toBe("handled");
   // Cancel closes it and sends nothing.
   await tap({ label: "Cancel" });
