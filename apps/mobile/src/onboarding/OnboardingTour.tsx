@@ -3,7 +3,6 @@
 // shows it in place of the app until it is finished, so nothing else (and no navigation) can open before it.
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useCameraPermissions } from "expo-camera";
-import { LinearGradient } from "expo-linear-gradient";
 import { type ReactNode, useState } from "react";
 import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -16,36 +15,18 @@ import { bundled_recipe } from "../recipes/bundled";
 import type { CollectionDish } from "../recipes/collectionPhotos";
 import { format_ingredient } from "../recipes/format";
 import { find_collection_dish } from "../recipes/shelves";
+import { PillButton } from "../ui/PillButton";
+import { SignInWall } from "../ui/SignInWall";
 import { Button, fonts, useTheme, useThemedStyles, type Palette } from "../ui/theme";
 
 const icon = require("../../assets/icon.png");
 const STEPS = 5;
-const WALL = [
-  "margarita",
-  "pho",
-  "negroni",
-  "pasta-alla-norma",
-  "espresso-martini",
-  "nasi-lemak",
-  "mai-tai",
-  "tortilla-espanola",
-  "mojito",
-  "ramen",
-  "aperol-spritz",
-  "paella",
-];
 const SAMPLES: { id: string; label: string }[] = [
   { id: "margarita", label: "Cocktail" },
   { id: "pho", label: "Meal" },
   { id: "pasta-alla-norma", label: "Meal" },
 ];
 const dish = (id: string) => find_collection_dish(id);
-
-/** "#0F0F10" at 35% → "rgba(15, 15, 16, 0.35)", for the fade over the welcome photos in either theme. */
-function with_alpha(hex: string, alpha: number): string {
-  const n = parseInt(hex.slice(1, 7), 16);
-  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`;
-}
 
 export function OnboardingTour() {
   const [step, set_step] = useState(0);
@@ -81,40 +62,30 @@ export function OnboardingTour() {
   );
 }
 
+/**
+ * The one start screen (the sign-in design approved 2026-11-21): Recipeak's photos drifting behind the app icon and
+ * "Every dish has a recipe.", then Get started (the tour) or I already have an account (straight to Log in).
+ */
 function Welcome({ onStart, onHaveAccount }: { onStart: () => void; onHaveAccount: () => void }) {
-  const { colors, type } = useTheme();
   const styles = useThemedStyles(create_styles);
   const insets = useSafeAreaInsets();
-  const { width } = useWindowDimensions();
-  const tile = Math.round((width + 60 - 16) / 3);
-  const photos = WALL.flatMap((id) => dish(id) ?? []);
+  const { height } = useWindowDimensions();
   return (
     <View style={styles.screen}>
-      <View style={[styles.wall, { width: width + 60 }]} accessible={false} importantForAccessibility="no-hide-descendants">
-        {photos.map((d) => (
-          <Image key={d.id} source={d.source} style={{ width: tile, height: tile * 1.25, borderRadius: 14 }} resizeMode="cover" />
-        ))}
-      </View>
-      <LinearGradient
-        colors={[with_alpha(colors.background, 0.35), with_alpha(colors.background, 0.75), colors.background]}
-        locations={[0, 0.4, 0.7]}
-        style={StyleSheet.absoluteFill}
-      />
-      <View style={[styles.welcome, { paddingBottom: insets.bottom + 32 }]}>
-        <Image source={icon} style={styles.logo} accessibilityLabel="Recipeak logo" />
-        <Text style={styles.brand} accessibilityRole="header">
-          Recipeak
+      <SignInWall height={Math.round(height * 0.62)} />
+      <ScrollView contentContainerStyle={[styles.welcome, { paddingTop: Math.round(height * 0.36), paddingBottom: insets.bottom + 24 }]}>
+        <Image source={icon} style={styles.logo} accessibilityLabel="Recipeak" />
+        <Text style={styles.headline} accessibilityRole="header">
+          Every dish has a <Text style={styles.headlineAccent}>recipe</Text>.
         </Text>
-        <Text style={[type.body, { fontSize: 20, lineHeight: 28, textAlign: "center" }]}>
-          Snap any meal or cocktail.{"\n"}Get the recipe.
-        </Text>
-        <View style={{ alignSelf: "stretch", marginTop: 4 }}>
-          <Button label="Get started" onPress={onStart} />
-        </View>
+        <Text style={styles.subtitle}>Recipes from any meal or drink you photograph.</Text>
+        <PillButton label="Get started" variant="accent" hint="A quick tour, then create your account" onPress={onStart} />
         <Pressable accessibilityRole="button" onPress={onHaveAccount} style={styles.link}>
           <Text style={styles.linkText}>I already have an account</Text>
         </Pressable>
-      </View>
+        <View style={{ flexGrow: 1, minHeight: 16 }} />
+        <Text style={styles.reassure}>{`${FREE_PHOTOS} free photos. No card needed.`}</Text>
+      </ScrollView>
     </View>
   );
 }
@@ -376,18 +347,12 @@ function Perk({ lead, title, detail }: { lead: ReactNode; title: string; detail:
 const create_styles = (colors: Palette) =>
   StyleSheet.create({
     screen: { flex: 1, backgroundColor: colors.background },
-    wall: {
-      position: "absolute",
-      top: -20,
-      left: -30,
-      flexDirection: "row",
-      flexWrap: "wrap",
-      gap: 8,
-      transform: [{ rotate: "-6deg" }],
-    },
-    welcome: { flex: 1, justifyContent: "flex-end", alignItems: "center", gap: 16, paddingHorizontal: 28 },
-    logo: { width: 88, height: 88, borderRadius: 22 },
-    brand: { color: colors.text, fontFamily: fonts.display, fontSize: 44, lineHeight: 50 },
+    welcome: { flexGrow: 1, paddingHorizontal: 24 },
+    logo: { width: 84, height: 84, borderRadius: 42, alignSelf: "center" },
+    headline: { color: colors.text, fontFamily: fonts.display, fontSize: 32, lineHeight: 40, textAlign: "center", marginTop: 20 },
+    headlineAccent: { color: colors.accentInk },
+    subtitle: { color: colors.muted, fontSize: 15, lineHeight: 21, textAlign: "center", marginTop: 8, marginBottom: 8 },
+    reassure: { color: colors.muted, fontSize: 13, textAlign: "center" },
     link: { minHeight: 48, justifyContent: "center", alignItems: "center", alignSelf: "center", paddingHorizontal: 12 },
     linkText: { color: colors.accentInk, fontSize: 16, fontWeight: "600" },
     top: { flexDirection: "row", alignItems: "center", gap: 16, paddingHorizontal: 24 },
