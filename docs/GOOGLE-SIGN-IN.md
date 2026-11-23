@@ -32,6 +32,10 @@ too):
 The preview and production fingerprints are different, so registering one doesn't make the other work. Builds from
 Google Play (internal testing included) are signed with Play's app signing key, not the upload key.
 
+The Android app must exist in Firebase first (Project settings → Add app → Android, package `com.mealsandmixers.app`).
+It was registered on 2026-11-23, along with the test APK's SHA-1, Google being enabled under Sign-in method, and the
+`EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID` Actions variable. Before that, the project had only a web app and email sign-in.
+
 Add each one in Firebase console → **Project settings → Your apps → Android app `com.mealsandmixers.app` → Add
 fingerprint**. After adding fingerprints, download nothing. The app uses the Web client ID, not `google-services.json`.
 
