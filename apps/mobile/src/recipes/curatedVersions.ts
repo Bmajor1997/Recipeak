@@ -65,10 +65,15 @@ function as_ingredient(text: string, fallback: Ingredient): Ingredient {
 /** Takes an alcoholic word out of a step, with the words around it that only belong to it. */
 function without_word(step: string, word: string): string {
   const w = escape(word);
+  // These patterns use escaped alcohol terms from ALCOHOL or the fixed removal list.
   return step
+    // nosemgrep: javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
     .replace(new RegExp(`,? (?:then |and )?(?:add|stir in|pour in|top with|float) (?:the )?${w}\\b`, "gi"), "")
+    // nosemgrep: javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
     .replace(new RegExp(`\\b(?:the )?${w}(?:,| and) `, "gi"), "")
+    // nosemgrep: javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
     .replace(new RegExp(`(?:,| and) (?:the )?${w}\\b`, "gi"), "")
+    // nosemgrep: javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
     .replace(new RegExp(`\\b(?:the )?${w}\\b(?!-)`, "gi"), "");
 }
 
