@@ -355,6 +355,17 @@ function RecipeView({ current }: { current: Ready }) {
     set_shown_recipe(recipe);
     set_servings(recipe.servings || 1);
   }
+  // Another dish (a typed correction or another match) starts with its own versions: nothing chosen or remembered
+  // for the last dish carries over to it.
+  const dish_identity = `${kind}|${dishName}|${current.bundledId ?? ""}`;
+  const [shown_dish, set_shown_dish] = useState(dish_identity);
+  if (dish_identity !== shown_dish) {
+    set_shown_dish(dish_identity);
+    set_standard(null);
+    set_addition(null);
+    set_original(null);
+    set_diet(current.diet ?? null);
+  }
 
   // Every recipe opened here (bundled or made with AI) goes into this account's Recently viewed, as its standard recipe.
   const { recent } = useApp();

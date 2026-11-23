@@ -21,6 +21,8 @@ Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true });
 
 const mocks = vi.hoisted(() => ({
   recipe: vi.fn(),
+  find_bundled_dish: vi.fn(),
+  bundled_recipe: vi.fn(),
   bundled_version: vi.fn(),
   allowance: vi.fn(),
   push: vi.fn(),
@@ -61,9 +63,9 @@ vi.mock("../src/onboarding/OnboardingProvider", () => ({ useOnboarding: () => ({
 vi.mock("../src/settings/PreferencesProvider", () => ({ usePreferences: () => ({ busy: false, error: null, values: {} }) }));
 vi.mock("../src/recipes/collectionPhotos", () => ({ COLLECTION: [] }));
 vi.mock("../src/recipes/bundled", () => ({
-  bundled_recipe: () => null,
+  bundled_recipe: (dish: unknown) => mocks.bundled_recipe(dish),
   bundled_version: (id: string, diet: string | null) => mocks.bundled_version(id, diet),
-  find_bundled_dish: () => null,
+  find_bundled_dish: (kind: string, name: string) => mocks.find_bundled_dish(kind, name),
   bundled_photo_uri: async () => null,
 }));
 vi.mock("../src/recipes/useDishImage", () => ({ useDishImage: () => ({ uri: null, pending: false }) }));
@@ -155,6 +157,8 @@ beforeEach(() => {
   mocks.camera.photosLeft = 3;
   mocks.add_recent.mockResolvedValue(undefined);
   mocks.bundled_version.mockReturnValue(null);
+  mocks.find_bundled_dish.mockReturnValue(null);
+  mocks.bundled_recipe.mockReturnValue(null);
   mocks.allowance.mockResolvedValue({ premium: false, free_photos_left: 3, free_photos_total: 3 });
   mocks.recipe.mockImplementation(async (name: string) => ({
     recipe: { ...PASTA, title: `${name} (from the server)` },
@@ -239,6 +243,43 @@ describe("a dish that opened in the person's diet version", () => {
       await press("vegan"); // and the vegan version again
       expect(text()).toContain("Vegan pasta bake");
     }
+    expect(mocks.recipe).not.toHaveBeenCalled();
+  });
+});
+
+describe("correcting the dish after choosing a version", () => {
+  it("starts the new dish fresh, so its version chip never brings back the last dish's recipe", async () => {
+    const mule: Recipe = {
+      ...GIMLET,
+      title: "Moscow Mule",
+      description: "Vodka, lime and ginger beer.",
+      ingredients: [
+        { amount: "2", unit: "oz", item: "vodka" },
+        { amount: "1/2", unit: "oz", item: "fresh lime juice" },
+        { amount: "4", unit: "oz", item: "ginger beer" },
+      ],
+      steps: ["Fill a copper mug with ice.", "Add the vodka and lime juice and top with ginger beer."],
+      cocktail: { ...GIMLET.cocktail!, non_alcoholic_version: "Use extra lime and ginger beer and skip the vodka." },
+    };
+    mocks.find_bundled_dish.mockImplementation((_kind: string, name: string) =>
+      /mule/i.test(name) ? { id: "moscow-mule", name: "Moscow Mule", kind: "cocktail", aliases: [], source: 1 } : null,
+    );
+    mocks.bundled_recipe.mockImplementation((dish: { id: string }) => (dish.id === "moscow-mule" ? mule : null));
+    await open(ready(GIMLET, "cocktail", { bundledId: "gimlet" }));
+    await press("non-alcoholic");
+    expect(text()).toContain("Gimlet (non-alcoholic)");
+    // "Not the right dish?": it was a Moscow Mule, which Recipeak has.
+    await press("Not the right dish? Enter its name");
+    await act(async () => {
+      (tree!.root.findByProps({ accessibilityLabel: "Dish or cocktail name" }).props.onChangeText as (v: string) => void)("Moscow Mule");
+    });
+    await press("Cocktail");
+    await press("Find recipe");
+    expect(text()).toContain("Moscow Mule");
+    expect(text()).not.toContain("Gimlet");
+    await press("non-alcoholic");
+    expect(text()).toContain("Moscow Mule (non-alcoholic)");
+    expect(text()).not.toContain("Gimlet");
     expect(mocks.recipe).not.toHaveBeenCalled();
   });
 });

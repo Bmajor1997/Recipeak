@@ -14,13 +14,21 @@ const CHANGE = /^(?:replace|use|swap|skip|omit|leave out|substitute|same)\b/i;
 
 // Alcoholic drinks named in an ingredient or a step.
 const ALCOHOL =
-  /\b(?:vodka|gin|rum|tequila|mezcal|whiske?y|bourbon|rye|scotch|brandy|cognac|vermouth|liqueurs?|campari|aperol|prosecco|champagne|cava|wine|beers?|absinthe|amaro|sake|pisco|cacha[cç]a|spirits?|bitters|cointreau|triple sec|cura[cç]ao|kahl[uú]a|chartreuse|amaretto|irish cream|lillet|sherry|port|soju|hard cider|aperitivo|aperitif|schnapps|grappa|ouzo|limoncello|frangelico|baileys|pastis|sambuca|lager|ale|stout|pilsner|cerveza|liquor|alcohol)\b(?!-)/gi;
+  /\b(?:vodka|gin|rum|tequila|mezcal|whiske?y|bourbon|rye|scotch|brandy|cognac|vermouth|liqueurs?|campari|aperol|prosecco|champagne|cava|wine|beers?|absinthe|amaro|sake|pisco|cacha[cç]a|spirits?|bitters|cointreau|triple sec|cura[cç]ao|kahl[uú]a|chartreuse|amaretto|irish cream|lillet|sherry|port|soju|hard cider|aperitivo|aperitif|schnapps|grappa|ouzo|limoncello|frangelico|baileys|pastis|sambuca|lager|ale|stout|pilsner|cerveza|liquor|alcohol|brandied|spiked|boozy|[a-z]+-soaked)\b(?!-)/gi;
 // Words that look alcoholic here but aren't.
 const NOT_ALCOHOL =
   /\b(?:alcohol-free|non-alcoholic|zero-proof)(?: (?!and\b|or\b|with\b)[a-z'-]+){0,4}|\b(?:ginger|root|birch) beers?\b|\bginger ales?\b|\bwine glass(?:es)?\b|\b(?:wine|sherry|cider|rice) vinegar\b|\bfor no alcohol at all\b|\bwithout alcohol\b/gi;
 const plain = (text: string) => text.replace(NOT_ALCOHOL, " ");
 const alcohol_words = (text: string) => [...plain(text).matchAll(ALCOHOL)].map((m) => m[0].toLowerCase());
 const has_alcohol = (text: string) => alcohol_words(text).length > 0;
+/** A garnish without its alcohol: "brandied cherry" → "cherry". Nothing is left when the garnish was only alcohol. */
+const garnish_without_alcohol = (garnish: string) =>
+  has_alcohol(garnish)
+    ? plain(garnish)
+        .replace(ALCOHOL, "")
+        .replace(/\s{2,}/g, " ")
+        .replace(/^[\s,]+|[\s,]+$/g, "")
+    : garnish;
 const escape = (word: string) => word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 // A step that reads badly once a word is taken out ("then add .", "in first, then .").
 const BROKEN =
@@ -122,7 +130,8 @@ export function curated_non_alcoholic(recipe: Recipe): Recipe | null {
   const base = {
     ...recipe,
     title: `${recipe.title} (non-alcoholic)`,
-    cocktail: { ...cocktail, alcoholic: false, non_alcoholic_version: null },
+    // The garnish goes without its alcohol too, whether the version is built or shown as written.
+    cocktail: { ...cocktail, garnish: garnish_without_alcohol(cocktail.garnish), alcoholic: false, non_alcoholic_version: null },
     note: "Recipeak's own alcohol-free version of this drink. Check the labels of any alcohol-free spirits you use.",
     allergens: allergens_in(written, recipe.allergens),
     tips: [],

@@ -9,7 +9,7 @@ import { camera_area } from "../src/camera/cameraOptions";
 
 // Checked independently of curatedVersions.ts: any of these left in a version would be alcohol.
 const ALCOHOL =
-  /\b(?:vodka|gin|rum|tequila|mezcal|whiske?y|bourbon|rye|scotch|brandy|cognac|vermouth|liqueur|campari|aperol|prosecco|champagne|wine|beer|lager|absinthe|amaro|sake|pisco|cacha[cç]a|bitters|cointreau|triple sec|kahl[uú]a|amaretto|irish cream|sherry|spirit)\b/i;
+  /\b(?:vodka|gin|rum|tequila|mezcal|whiske?y|bourbon|rye|scotch|brandy|cognac|vermouth|liqueur|campari|aperol|prosecco|champagne|wine|beer|lager|absinthe|amaro|sake|pisco|cacha[cç]a|bitters|cointreau|triple sec|kahl[uú]a|amaretto|irish cream|sherry|spirit|brandied)\b/i;
 const OK = /\b(?:alcohol-free|non-alcoholic)(?: [a-z'-]+){0,4}|\b(?:ginger|root) beer\b|\bwine glass\b|\bwithout alcohol\b/gi;
 const alcoholic = (text: string) => ALCOHOL.test(text.replace(OK, " "));
 
@@ -37,7 +37,8 @@ describe("written non-alcoholic versions", () => {
       const version = curated_non_alcoholic(regular)!;
       // The first step is the written change itself ("skip the vodka"); everything after it must be alcohol-free.
       const rest = version.ingredients.length ? version.steps.slice(1) : [];
-      for (const text of [...version.ingredients.map((i) => i.item), ...rest])
+      // The garnish too, also for a version shown as written.
+      for (const text of [...version.ingredients.map((i) => i.item), ...rest, version.cocktail!.garnish])
         expect(alcoholic(text), `${regular.title}: ${text}`).toBe(false);
     }
   });
@@ -54,6 +55,8 @@ describe("written non-alcoholic versions", () => {
         .join(" "),
     ).not.toMatch(/bourbon|rum/);
     expect(by("Eggnog").steps.join(" ")).toContain("Cool and stir in the vanilla.");
+    // A brandied cherry garnish becomes a plain cherry.
+    expect(by("Mary Pickford").cocktail!.garnish).toBe("cherry");
     // "Use alcohol-free sparkling wine" for a drink with Champagne and bitters can't be matched safely: shown as written.
     expect(by("Champagne Cocktail")).toMatchObject({ ingredients: [], steps: ["Use alcohol-free sparkling wine."] });
   });
