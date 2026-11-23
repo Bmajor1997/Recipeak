@@ -136,7 +136,8 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
 
   return (
     <Sheet>
-      <ScrollView contentContainerStyle={[styles.body, { paddingTop: 90, paddingBottom: 40, gap: 14 }]}>
+      {/* "handled": with the keyboard up for the name box, a tap on a button works first time (see RecipeView). */}
+      <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={[styles.body, { paddingTop: 90, paddingBottom: 40, gap: 14 }]}>
         <Text style={type.title} accessibilityRole="header">
           {`We don't have this ${what} yet`}
         </Text>
@@ -621,7 +622,9 @@ function RecipeView({ current }: { current: Ready }) {
         ) : null
       }
     >
-      <ScrollView contentContainerStyle={{ paddingBottom: 110 + insets.bottom }}>
+      {/* "handled": with the keyboard up (the name box, or the report sheet, whose touches pass through this screen), a
+          tap on a button works first time instead of only closing the keyboard. */}
+      <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: 110 + insets.bottom }}>
         {/* Cover photo from the shared library; the app's art shows while it's being created. */}
         <View style={[styles.cover, { width, height: coverHeight }]}>
           {coverUri ? (

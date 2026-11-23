@@ -11,6 +11,7 @@ type Instance = {
   props: Record<string, unknown>;
   findByProps: (props: Record<string, unknown>) => Instance;
   findAllByProps: (props: Record<string, unknown>) => Instance[];
+  findAllByType: (type: unknown) => Instance[];
 };
 type Rendered = { root: Instance; toJSON: () => unknown; unmount: () => void };
 const { act, create } = createRequire(import.meta.url)("react-test-renderer") as {
@@ -341,6 +342,26 @@ describe("a typed dish name Recipeak doesn't have", () => {
     await press("Make AI recipe and photo");
     expect(mocks.recipe).toHaveBeenCalledWith("Ube cheesecake", "meal", undefined, { correction: true });
     expect(mocks.refresh_allowance).toHaveBeenCalled();
+  });
+});
+
+describe("buttons with the keyboard open", () => {
+  // A ScrollView that closes the keyboard on any tap takes the first tap from a button (also one in the report sheet,
+  // whose touches pass through this screen), so it had to be tapped twice. Every scroll view here lets taps through.
+  it("lets the first tap reach a button on the recipe and on the question screen", async () => {
+    await open(ready(PASTA, "meal"));
+    const recipe_scrolls = tree!.root.findAllByType("ScrollView");
+    expect(recipe_scrolls.length).toBeGreaterThan(0);
+    for (const scroll of recipe_scrolls) expect(scroll.props.keyboardShouldPersistTaps).toBe("handled");
+    await act(async () => tree?.unmount());
+    await open({
+      status: "ai-offer",
+      kind: "meal",
+      guesses: [{ name: "Ube cheesecake", confidence: "high", image: { status: "unavailable", url: null } }],
+    });
+    const offer_scrolls = tree!.root.findAllByType("ScrollView");
+    expect(offer_scrolls.length).toBeGreaterThan(0);
+    for (const scroll of offer_scrolls) expect(scroll.props.keyboardShouldPersistTaps).toBe("handled");
   });
 });
 
