@@ -59,7 +59,9 @@ export function parse_recipe(v: unknown): Recipe {
     make_ahead: v.make_ahead === undefined ? "" : str(v.make_ahead),
     variations: v.variations === undefined ? [] : list(v.variations, 6, (s) => str(s, 300)),
   };
-  if (!recipe.title || !recipe.ingredients.length || !recipe.steps.length) throw new Error("Invalid recipe");
+  // Only a written alcohol-free drink (curatedVersions.ts) may list everything in its method instead of ingredients.
+  const written_drink = recipe.cocktail !== null && !recipe.cocktail.alcoholic;
+  if (!recipe.title || (!recipe.ingredients.length && !written_drink) || !recipe.steps.length) throw new Error("Invalid recipe");
   return recipe;
 }
 

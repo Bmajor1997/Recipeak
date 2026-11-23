@@ -390,10 +390,15 @@ function RecipeView({ current }: { current: Ready }) {
     set_problem(null);
     set_notice(null);
     if (is_premium_diet(nextDiet) && !(await premium_or_problem())) return;
-    const standard_now = standard ?? { recipe: base, ai: addition ? original_ai : current.ai };
+    // The standard recipe: the one kept from before, the regular recipe on screen, or, when the dish opened in a diet
+    // version on its own, the bundled dish's regular recipe. Never a diet version.
+    const regular = current.bundledId ? bundled_version(current.bundledId, null)?.recipe : undefined;
+    const standard_now =
+      standard ??
+      (diet === null ? { recipe: base, ai: addition ? original_ai : current.ai } : regular ? { recipe: regular, ai: current.ai } : null);
     // Remembers the standard recipe the first time a diet version replaces it.
     const keep_standard = () => {
-      if (same && !standard) set_standard(standard_now);
+      if (same && !standard && standard_now) set_standard(standard_now);
     };
     // Back to the standard recipe this was opened with: it's already here.
     if (same && nextDiet === null && standard) {
@@ -416,14 +421,14 @@ function RecipeView({ current }: { current: Ready }) {
       return;
     }
     // A version the recipe already carries (the written non-alcoholic one) is used as it is, with no AI request.
-    const written = same && nextDiet ? curated_version(standard_now.recipe, nextDiet) : null;
+    const written = same && nextDiet && standard_now ? curated_version(standard_now.recipe, nextDiet) : null;
     if (written && nextDiet) {
       keep_standard();
       set_addition(null);
       set_original(null);
       set_diet(nextDiet);
       set_notice(`Recipeak's own ${nextDiet} version of this recipe. Tap ${nextDiet} again for the original.`);
-      set_current({ ...current, recipe: written, savedId: null, ai: standard_now.ai });
+      set_current({ ...current, recipe: written, savedId: null, ai: standard_now?.ai });
       return;
     }
     // Another guess that Recipeak already has opens its own checked recipe, with no AI request.

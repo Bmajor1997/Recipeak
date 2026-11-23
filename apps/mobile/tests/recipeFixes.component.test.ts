@@ -21,6 +21,7 @@ Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true });
 
 const mocks = vi.hoisted(() => ({
   recipe: vi.fn(),
+  bundled_version: vi.fn(),
   allowance: vi.fn(),
   push: vi.fn(),
   back: vi.fn(),
@@ -61,7 +62,7 @@ vi.mock("../src/settings/PreferencesProvider", () => ({ usePreferences: () => ({
 vi.mock("../src/recipes/collectionPhotos", () => ({ COLLECTION: [] }));
 vi.mock("../src/recipes/bundled", () => ({
   bundled_recipe: () => null,
-  bundled_version: () => null,
+  bundled_version: (id: string, diet: string | null) => mocks.bundled_version(id, diet),
   find_bundled_dish: () => null,
   bundled_photo_uri: async () => null,
 }));
@@ -153,6 +154,7 @@ beforeEach(() => {
   vi.resetAllMocks();
   mocks.camera.photosLeft = 3;
   mocks.add_recent.mockResolvedValue(undefined);
+  mocks.bundled_version.mockReturnValue(null);
   mocks.allowance.mockResolvedValue({ premium: false, free_photos_left: 3, free_photos_total: 3 });
   mocks.recipe.mockImplementation(async (name: string) => ({
     recipe: { ...PASTA, title: `${name} (from the server)` },
@@ -218,6 +220,26 @@ describe("a written non-alcoholic version", () => {
     expect(mocks.recipe).not.toHaveBeenCalled();
     expect(text()).toContain("alcohol-free gin alternative");
     expect(text()).not.toContain('"gin"');
+  });
+});
+
+describe("a dish that opened in the person's diet version", () => {
+  it("switches back to the regular recipe every time, never to the diet version it opened in", async () => {
+    mocks.camera.photosLeft = null; // a subscriber, so vegan opens on its own
+    const vegan = { ...PASTA, title: "Vegan pasta bake", ingredients: [{ amount: "12", unit: "oz", item: "penne pasta" }] };
+    mocks.bundled_version.mockImplementation((_id: string, diet: string | null) =>
+      diet === null ? { recipe: PASTA, already: false } : diet === "vegan" ? { recipe: vegan, already: false } : null,
+    );
+    await open(ready(vegan, "meal", { picked: true, bundledId: "pasta-bake", diet: "vegan" }));
+    expect(text()).toContain("Vegan pasta bake");
+    for (let round = 0; round < 2; round++) {
+      await press("vegan"); // back to the regular recipe
+      expect(text()).toContain("Chicken pasta bake");
+      expect(text()).not.toContain("Vegan pasta bake");
+      await press("vegan"); // and the vegan version again
+      expect(text()).toContain("Vegan pasta bake");
+    }
+    expect(mocks.recipe).not.toHaveBeenCalled();
   });
 });
 

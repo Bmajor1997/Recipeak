@@ -1,6 +1,7 @@
 // Saved recipes keep the right cover photo through saving, the phone's storage, reopening the app and the card.
 import { describe, expect, it, vi } from "vitest";
 import { find_bundled_dish } from "../src/recipes/bundled";
+import { curated_non_alcoholic } from "../src/recipes/curatedVersions";
 import { create_saved_recipes } from "../src/saved/savedRecipes";
 import { saved_as_current, saved_cover } from "../src/saved/savedCover";
 import type { Recipe } from "../src/recipes/types";
@@ -81,5 +82,24 @@ describe("saved recipe covers", () => {
       fallback_uri: null,
     });
     expect((await saved_as_current(item)).image).toEqual({ status: "ready", url: "/images/ube.jpg" });
+  });
+
+  it("a saved written non-alcoholic version survives reading Saved again", async () => {
+    const storage = memory();
+    const regular = {
+      ...gimlet_recipe,
+      ingredients: [{ amount: "2", unit: "oz", item: "gin" }],
+      cocktail: {
+        glass: "coupe",
+        garnish: "lime wheel",
+        alcoholic: true,
+        non_alcoholic_version: "Shake lime juice, syrup and a few cucumber slices and top with tonic water.",
+      },
+    };
+    const version = curated_non_alcoholic(regular)!;
+    expect(version.ingredients).toEqual([]);
+    await create_saved_recipes(storage, "alice").save("cocktail", version, null, { bundled_id: gimlet.id });
+    const list = await create_saved_recipes(storage, "alice").list();
+    expect(list.map((s) => s.recipe.title)).toEqual(["Gimlet (non-alcoholic)"]);
   });
 });
