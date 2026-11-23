@@ -20,3 +20,37 @@ export const SHEET_CLOSE_MS = 220;
 const DISMISS_DISTANCE = 120;
 const DISMISS_VELOCITY = 1.1;
 export const should_dismiss = (dy: number, vy: number) => dy > DISMISS_DISTANCE || vy > DISMISS_VELOCITY;
+
+/** How long the preview may take to start before the sheet says the camera isn't responding. */
+export const CAMERA_START_TIMEOUT_MS = 10_000;
+
+/**
+ * What the camera area shows. A preview that never starts (no camera, one in use by another app, or a failed start)
+ * says so with a way out, instead of staying black; a camera released while the app was in the background is
+ * started again when the app comes back.
+ */
+export type CameraArea =
+  | "checking" // permission still being read
+  | "ask" // can ask for camera access
+  | "settings" // access was refused for good: only the phone's Settings can allow it
+  | "paused" // the app is in the background, so the camera is let go
+  | "starting"
+  | "preview"
+  | "photo" // the photo just taken, to check
+  | "unavailable";
+
+export function camera_area(state: {
+  permission: { granted: boolean; canAskAgain: boolean } | null;
+  taken: boolean;
+  active: boolean;
+  ready: boolean;
+  failed: boolean;
+  timed_out: boolean;
+}): CameraArea {
+  if (state.taken) return "photo";
+  if (!state.permission) return "checking";
+  if (!state.permission.granted) return state.permission.canAskAgain ? "ask" : "settings";
+  if (!state.active) return "paused";
+  if (state.failed || (state.timed_out && !state.ready)) return "unavailable";
+  return state.ready ? "preview" : "starting";
+}

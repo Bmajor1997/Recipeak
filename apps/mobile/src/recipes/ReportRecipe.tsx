@@ -1,8 +1,10 @@
 // "Report this recipe" at the bottom of the recipe screen: pick a reason, add details if you like, and send.
+// The form opens in a sheet over the recipe, so it is in view at once (also with the keyboard up on a small phone).
 // The report goes privately to the Recipeak team's feedback dashboard (see feedback/recipeReport.ts).
 import { Ionicons } from "@expo/vector-icons";
 import { useRef, useState } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, Text, TextInput, useWindowDimensions, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../AppContext";
 import { ApiError } from "../api/client";
 import { new_request_id } from "../feedback/feedback";
@@ -21,23 +23,30 @@ export function ReportRecipe({ kind, dish, diet }: { kind: Kind; dish: string; d
   const [problem, set_problem] = useState<string | null>(null);
   // One reference per report, so a retry after a dropped connection is never saved twice.
   const request_id = useRef(new_request_id());
+  const insets = useSafeAreaInsets();
+  const { height } = useWindowDimensions();
 
   if (sent) return <Notice>Thanks for telling us. The Recipeak team will review this recipe.</Notice>;
 
-  if (!open)
-    return (
-      <Pressable
-        accessibilityRole="button"
-        accessibilityLabel="Report this recipe"
-        accessibilityHint="Tell the Recipeak team if this recipe is offensive, unsafe or wrong"
-        onPress={() => set_open(true)}
-        hitSlop={8}
-        style={{ flexDirection: "row", alignItems: "center", gap: 8, minHeight: 48, alignSelf: "flex-start" }}
-      >
-        <Ionicons name="flag-outline" size={20} color={colors.muted} accessible={false} />
-        <Text style={[type.body, { color: colors.muted, textDecorationLine: "underline" }]}>Report this recipe</Text>
-      </Pressable>
-    );
+  const link = (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel="Report this recipe"
+      accessibilityHint="Tell the Recipeak team if this recipe is offensive, unsafe or wrong"
+      onPress={() => set_open(true)}
+      hitSlop={8}
+      style={{ flexDirection: "row", alignItems: "center", gap: 8, minHeight: 48, alignSelf: "flex-start" }}
+    >
+      <Ionicons name="flag-outline" size={20} color={colors.muted} accessible={false} />
+      <Text style={[type.body, { color: colors.muted, textDecorationLine: "underline" }]}>Report this recipe</Text>
+    </Pressable>
+  );
+  if (!open) return link;
+
+  // Closing keeps the answers, like Cancel did before; nothing is sent.
+  const close = () => {
+    if (!busy) set_open(false);
+  };
 
   function change(update: () => void) {
     update();
@@ -67,59 +76,82 @@ export function ReportRecipe({ kind, dish, diet }: { kind: Kind; dish: string; d
   }
 
   return (
-    <View style={{ gap: 12 }}>
-      <Text style={type.heading} accessibilityRole="header">
-        Report this recipe
-      </Text>
-      <Text style={type.muted}>Your report is private and goes only to the Recipeak team.</Text>
-      <View accessibilityRole="radiogroup" accessibilityLabel="Why are you reporting this recipe?" style={{ gap: 4 }}>
-        {REPORT_REASONS.map((option) => {
-          const checked = reason === option.value;
-          return (
-            <Pressable
-              key={option.value}
-              accessibilityRole="radio"
-              accessibilityLabel={option.label}
-              accessibilityState={{ checked }}
-              onPress={() => change(() => set_reason(option.value))}
-              style={{ flexDirection: "row", alignItems: "center", gap: 12, minHeight: 48 }}
+    <>
+      {link}
+      <Modal transparent visible animationType="slide" statusBarTranslucent onRequestClose={close}>
+        <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.55)" }}>
+          <Pressable style={{ flex: 1 }} onPress={close} accessibilityRole="button" accessibilityLabel="Close report" />
+          <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
+            <View
+              accessibilityViewIsModal
+              style={{
+                maxHeight: height * 0.9 - insets.top,
+                backgroundColor: colors.background,
+                borderTopLeftRadius: 24,
+                borderTopRightRadius: 24,
+              }}
             >
-              <Ionicons
-                name={checked ? "radio-button-on" : "radio-button-off"}
-                size={24}
-                color={checked ? colors.accentInk : colors.muted}
-                accessible={false}
-              />
-              <Text style={[type.body, { flex: 1 }]}>{option.label}</Text>
-            </Pressable>
-          );
-        })}
-      </View>
-      <TextInput
-        accessibilityLabel="Details (optional)"
-        accessibilityHint={`Up to ${MAX_REPORT_DETAILS} characters`}
-        placeholder="Details (optional)"
-        placeholderTextColor={colors.muted}
-        value={details}
-        maxLength={MAX_REPORT_DETAILS}
-        editable={!busy}
-        multiline
-        textAlignVertical="top"
-        onChangeText={(value) => change(() => set_details(value))}
-        style={{
-          minHeight: 100,
-          borderWidth: 1,
-          borderRadius: 14,
-          padding: 14,
-          fontSize: 16,
-          color: colors.text,
-          borderColor: colors.border,
-          backgroundColor: colors.surface,
-        }}
-      />
-      {problem ? <Notice tone="error">{problem}</Notice> : null}
-      <Button label="Send report" busy={busy} onPress={() => void send()} />
-      <Button label="Cancel" variant="secondary" disabled={busy} onPress={() => set_open(false)} />
-    </View>
+              <ScrollView
+                keyboardShouldPersistTaps="handled"
+                contentContainerStyle={{ gap: 12, padding: 20, paddingBottom: insets.bottom + 20 }}
+              >
+                <Text style={type.heading} accessibilityRole="header">
+                  Report this recipe
+                </Text>
+                <Text style={type.muted}>Your report is private and goes only to the Recipeak team.</Text>
+                <View accessibilityRole="radiogroup" accessibilityLabel="Why are you reporting this recipe?" style={{ gap: 4 }}>
+                  {REPORT_REASONS.map((option) => {
+                    const checked = reason === option.value;
+                    return (
+                      <Pressable
+                        key={option.value}
+                        accessibilityRole="radio"
+                        accessibilityLabel={option.label}
+                        accessibilityState={{ checked }}
+                        onPress={() => change(() => set_reason(option.value))}
+                        style={{ flexDirection: "row", alignItems: "center", gap: 12, minHeight: 48 }}
+                      >
+                        <Ionicons
+                          name={checked ? "radio-button-on" : "radio-button-off"}
+                          size={24}
+                          color={checked ? colors.accentInk : colors.muted}
+                          accessible={false}
+                        />
+                        <Text style={[type.body, { flex: 1 }]}>{option.label}</Text>
+                      </Pressable>
+                    );
+                  })}
+                </View>
+                <TextInput
+                  accessibilityLabel="Details (optional)"
+                  accessibilityHint={`Up to ${MAX_REPORT_DETAILS} characters`}
+                  placeholder="Details (optional)"
+                  placeholderTextColor={colors.muted}
+                  value={details}
+                  maxLength={MAX_REPORT_DETAILS}
+                  editable={!busy}
+                  multiline
+                  textAlignVertical="top"
+                  onChangeText={(value) => change(() => set_details(value))}
+                  style={{
+                    minHeight: 100,
+                    borderWidth: 1,
+                    borderRadius: 14,
+                    padding: 14,
+                    fontSize: 16,
+                    color: colors.text,
+                    borderColor: colors.border,
+                    backgroundColor: colors.surface,
+                  }}
+                />
+                {problem ? <Notice tone="error">{problem}</Notice> : null}
+                <Button label="Send report" busy={busy} onPress={() => void send()} />
+                <Button label="Cancel" variant="secondary" disabled={busy} onPress={close} />
+              </ScrollView>
+            </View>
+          </KeyboardAvoidingView>
+        </View>
+      </Modal>
+    </>
   );
 }

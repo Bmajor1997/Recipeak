@@ -36,20 +36,71 @@ describe("Home shelves", () => {
 });
 
 describe("recently viewed", () => {
-  it("keeps the newest first, without repeats, per account", async () => {
+  const memory = () => {
     const data = new Map<string, string>();
-    const storage = {
+    return {
+      data,
       getItem: async (k: string) => data.get(k) ?? null,
       setItem: async (k: string, v: string) => void data.set(k, v),
       removeItem: async (k: string) => void data.delete(k),
     };
+  };
+  const bundled = (id: string) => ({ type: "bundled" as const, id });
+  const ai_recipe = {
+    title: "Ube cheesecake",
+    description: "Purple yam cheesecake.",
+    servings: 8,
+    prep_minutes: 30,
+    cook_minutes: 60,
+    ingredients: [{ amount: "1", unit: "cup", item: "ube halaya" }],
+    steps: ["Bake."],
+    allergens: ["milk", "eggs", "wheat"],
+    cocktail: null,
+    note: "",
+  };
+
+  it("keeps the newest first, without repeats, per account", async () => {
+    const storage = memory();
     const alice = create_recently_viewed(storage, "alice");
-    await alice.add("pho");
-    await alice.add("mojito");
-    await alice.add("pho");
-    expect(await alice.list()).toEqual(["pho", "mojito"]);
+    await alice.add(bundled("pho"));
+    await alice.add(bundled("mojito"));
+    await alice.add(bundled("pho"));
+    expect(await alice.list()).toEqual([bundled("pho"), bundled("mojito")]);
     expect(await create_recently_viewed(storage, "bob").list()).toEqual([]);
-    for (let i = 0; i < 20; i++) await alice.add(`dish-${i}`);
+    for (let i = 0; i < 20; i++) await alice.add(bundled(`dish-${i}`));
     expect((await alice.list()).length).toBe(12);
+  });
+
+  it("keeps AI recipes whole with their library photo, after a restart, deduplicated by dish name", async () => {
+    const storage = memory();
+    const first = create_recently_viewed(storage, "alice");
+    await first.add({ type: "generated", kind: "meal", name: "Ube Cheesecake", recipe: ai_recipe, image_url: "/images/abc123.jpg" });
+    await first.add(bundled("pho"));
+    await first.add({ type: "generated", kind: "meal", name: "ube cheesecake", recipe: ai_recipe, image_url: "/images/abc123.jpg" });
+    // A new instance stands in for the app opening again.
+    const after_restart = await create_recently_viewed(storage, "alice").list();
+    expect(after_restart).toHaveLength(2);
+    expect(after_restart[0]).toMatchObject({ type: "generated", name: "ube cheesecake", image_url: "/images/abc123.jpg" });
+    expect(after_restart[0].type === "generated" && after_restart[0].recipe.title).toBe("Ube cheesecake");
+    expect(after_restart[1]).toEqual(bundled("pho"));
+    expect(await create_recently_viewed(storage, "bob").list()).toEqual([]);
+  });
+
+  it("moves the old list of dish ids over, and ignores damaged or unsafe entries", async () => {
+    const storage = memory();
+    storage.data.set("mealsandmixers.recent.v1.alice", JSON.stringify(["pho", "mojito"]));
+    const alice = create_recently_viewed(storage, "alice");
+    expect(await alice.list()).toEqual([bundled("pho"), bundled("mojito")]);
+    await alice.add(bundled("negroni"));
+    expect(storage.data.has("mealsandmixers.recent.v1.alice")).toBe(false);
+    expect(await alice.list()).toEqual([bundled("negroni"), bundled("pho"), bundled("mojito")]);
+    storage.data.set(
+      "mealsandmixers.recent.v2.alice",
+      JSON.stringify([
+        { type: "generated", kind: "meal", name: "X", recipe: { nope: true } },
+        { type: "generated", kind: "meal", name: "Y", recipe: ai_recipe, image_url: "https://evil.example/x.jpg" },
+      ]),
+    );
+    expect(await alice.list()).toEqual([{ type: "generated", kind: "meal", name: "Y", recipe: expect.anything(), image_url: null }]);
   });
 });

@@ -4,7 +4,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import * as Sharing from "expo-sharing";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
   ActivityIndicator,
@@ -33,6 +33,8 @@ import { diet_profile } from "../recipes/diets";
 import { format_ingredient, format_minutes, recipe_as_text } from "../recipes/format";
 import { scale_amount } from "../recipes/scale";
 import { ReportRecipe } from "../recipes/ReportRecipe";
+import { curated_version } from "../recipes/curatedVersions";
+import { record_viewed } from "../recipes/recentItems";
 import { ADDITION_HINTS, type Addition, additions_for, is_premium_diet } from "../recipes/premiumVersions";
 import { RateRecipe } from "../recipes/RateRecipe";
 import { DIETS, type Diet, type Guess, type Kind, NO_IMAGE, type Recipe } from "../recipes/types";
@@ -63,9 +65,12 @@ export default function RecipeScreen() {
  */
 function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-offer" }> }) {
   const { api, set_current } = useApp();
+  const { photosLeft, refresh_allowance } = useCamera();
   const { type } = useTheme();
   const styles = useThemedStyles(create_styles);
   const [busy, set_busy] = useState(false);
+  // Set at once (state waits for the next render), so a second tap can never send a second request.
+  const making = useRef(false);
   const [problem, set_problem] = useState<string | null>(null);
   // The other guesses: ones Recipeak has open their own recipe; the rest can be chosen for the AI recipe instead.
   const in_library = current.guesses.map((g) => find_bundled_dish(current.kind, g.name));
@@ -75,11 +80,12 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
   const what = current.kind === "cocktail" ? "drink" : "meal";
 
   async function make() {
-    if (busy) return;
+    if (making.current) return;
+    making.current = true;
     set_busy(true);
     set_problem(null);
     try {
-      const made = await api.recipe(name, current.kind);
+      const made = await api.recipe(name, current.kind, undefined, { correction: Boolean(current.correction) });
       set_current({
         status: "ready",
         kind: current.kind,
@@ -98,7 +104,9 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
         set_problem(error instanceof ApiError ? error.message : "Couldn't make that recipe. Please try again.");
       }
     } finally {
+      making.current = false;
       set_busy(false);
+      if (current.correction) refresh_allowance();
     }
   }
 
@@ -119,7 +127,9 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
     });
   }
 
+  // No request is sent and nothing is used: back to the recipe or screen the name was typed on, or closed.
   function not_now() {
+    if (current.previous) return set_current(current.previous);
     set_current(null);
     router.back();
   }
@@ -130,7 +140,11 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
         <Text style={type.title} accessibilityRole="header">
           {`We don't have this ${what} yet`}
         </Text>
-        <Text style={type.body}>{`It looks like ${current.guesses[0].name}, but Recipeak doesn't have a recipe for it.`}</Text>
+        <Text style={type.body}>
+          {current.typed
+            ? `Recipeak doesn't have a recipe for ${current.guesses[0].name} yet.`
+            : `It looks like ${current.guesses[0].name}, but Recipeak doesn't have a recipe for it.`}
+        </Text>
         {in_library.some(Boolean) && (
           <>
             <Text style={type.body}>Could it be one of these? Recipeak has them:</Text>
@@ -160,6 +174,9 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
         {unknown.length > 0 && (
           <>
             <Text style={type.body}>{`Would you like Recipeak to make a recipe and a photo for ${name} with AI?`}</Text>
+            <Text style={type.muted}>
+              {`Recipeak will write the recipe, check it a second time, and make a photo of the ${what}. It can take up to a minute. ${ai_allowance_text(photosLeft, Boolean(current.correction))}`}
+            </Text>
             <Notice>
               AI recipes are our best effort, checked twice before you see them. Still, check every ingredient and allergen before you cook
               or serve it, especially for anyone with a food allergy.
@@ -173,6 +190,14 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
       </ScrollView>
     </Sheet>
   );
+}
+
+/** What making an AI recipe uses, said before anything starts. photosLeft is null for subscribers. */
+export function ai_allowance_text(photosLeft: number | null | undefined, correction: boolean): string {
+  if (photosLeft === null) return "It's included with Premium.";
+  if (correction)
+    return typeof photosLeft === "number" ? `It uses 1 of your free photos (${photosLeft} left).` : "It uses 1 of your free photos.";
+  return "It counts as one of the extra recipes that come with each photo.";
 }
 
 function Sheet({
@@ -322,12 +347,22 @@ function RecipeView({ current }: { current: Ready }) {
   const [original, set_original] = useState<Recipe | null>(null);
   const [original_ai, set_original_ai] = useState<boolean | undefined>(undefined);
   const base = addition && original ? original : recipe;
+  // The standard recipe that was on screen before a diet version, so switching back never asks the server again.
+  const [standard, set_standard] = useState<{ recipe: Recipe; ai?: boolean } | null>(null);
 
   // A new version (another match or a diet) starts at its own serving size.
   if (recipe !== shownRecipe) {
     set_shown_recipe(recipe);
     set_servings(recipe.servings || 1);
   }
+
+  // Every recipe opened here (bundled or made with AI) goes into this account's Recently viewed, as its standard recipe.
+  const { recent } = useApp();
+  // A bundled dish is kept by its id, whatever version shows; a recipe made with AI only as its standard recipe.
+  const record = Boolean(current.bundledId) || (diet === null && !addition);
+  useEffect(() => {
+    if (record) record_viewed(recent, current, dishName);
+  }, [recent, current, dishName, record]);
 
   const cover = useDishImage(api, kind, dishName, current.image, { lookUp: !current.localPhoto && current.image.status === "unavailable" });
   const coverUri = current.localPhoto ?? cover.uri;
@@ -349,13 +384,30 @@ function RecipeView({ current }: { current: Ready }) {
   const dietUnverified = diet !== null && !profile.fits.includes(diet);
 
   async function load_version(index: number, nextDiet: Diet | null) {
+    if (busy) return;
     const guess = guesses[index];
+    const same = index === selected;
     set_problem(null);
     set_notice(null);
     if (is_premium_diet(nextDiet) && !(await premium_or_problem())) return;
+    const standard_now = standard ?? { recipe: base, ai: addition ? original_ai : current.ai };
+    // Remembers the standard recipe the first time a diet version replaces it.
+    const keep_standard = () => {
+      if (same && !standard) set_standard(standard_now);
+    };
+    // Back to the standard recipe this was opened with: it's already here.
+    if (same && nextDiet === null && standard) {
+      set_addition(null);
+      set_original(null);
+      set_diet(null);
+      set_standard(null);
+      set_current({ ...current, recipe: standard.recipe, ai: standard.ai, savedId: null });
+      return;
+    }
     // A dish from the bundled collection has hand-written vegetarian and vegan versions: shown at once, offline.
-    const local = current.bundledId && index === selected ? bundled_version(current.bundledId, nextDiet) : null;
+    const local = current.bundledId && same ? bundled_version(current.bundledId, nextDiet) : null;
     if (local) {
+      keep_standard();
       set_addition(null);
       set_original(null);
       set_diet(nextDiet);
@@ -363,13 +415,25 @@ function RecipeView({ current }: { current: Ready }) {
       set_current({ ...current, recipe: local.recipe, savedId: null });
       return;
     }
+    // A version the recipe already carries (the written non-alcoholic one) is used as it is, with no AI request.
+    const written = same && nextDiet ? curated_version(standard_now.recipe, nextDiet) : null;
+    if (written && nextDiet) {
+      keep_standard();
+      set_addition(null);
+      set_original(null);
+      set_diet(nextDiet);
+      set_notice(`Recipeak's own ${nextDiet} version of this recipe. Tap ${nextDiet} again for the original.`);
+      set_current({ ...current, recipe: written, savedId: null, ai: standard_now.ai });
+      return;
+    }
     // Another guess that Recipeak already has opens its own checked recipe, with no AI request.
-    const other = index !== selected && !nextDiet && guess ? find_bundled_dish(kind, guess.name) : null;
+    const other = !same && !nextDiet && guess ? find_bundled_dish(kind, guess.name) : null;
     const other_recipe = other && bundled_recipe(other);
     if (other && other_recipe) {
       set_addition(null);
       set_original(null);
       set_diet(null);
+      set_standard(null);
       const photo = await bundled_photo_uri(other);
       set_current({
         ...current,
@@ -387,6 +451,8 @@ function RecipeView({ current }: { current: Ready }) {
     try {
       const next = await api.recipe(guess?.name ?? recipe.title, kind, nextDiet ?? undefined);
       // Keep the original and its undo action until the replacement has actually arrived.
+      if (same && nextDiet) keep_standard();
+      else set_standard(null);
       set_addition(null);
       set_original(null);
       set_diet(nextDiet);
@@ -464,6 +530,9 @@ function RecipeView({ current }: { current: Ready }) {
         const entry = await saved.save(kind, recipe, preferences.ready && preferences.values.saveCoverPhotos ? coverUri : null, {
           limit,
           ai: current.ai,
+          // The bundled photo, or the library photo's path, so the cover can always be found again.
+          bundled_id: current.bundledId,
+          image_url: current.image.status === "ready" ? current.image.url : null,
         });
         set_current({ ...current, savedId: entry.id });
         set_just_saved(true);
@@ -652,6 +721,7 @@ function RecipeView({ current }: { current: Ready }) {
           <Text style={type.heading} accessibilityRole="header">
             Ingredients
           </Text>
+          {recipe.ingredients.length === 0 && <Text style={type.body}>Everything you need is in the method below.</Text>}
           {recipe.ingredients.map((ingredient, i) => {
             const scaled = scale_amount(ingredient.amount, factor);
             const amount = [scaled, ingredient.unit].filter((p) => p.trim()).join(" ");
@@ -764,8 +834,7 @@ function RecipeView({ current }: { current: Ready }) {
  * stands in for that photo and uses a free photo; on a recipe, it's a follow-up to the photo that worked.
  */
 function ManualCorrection({ initialKind, correction = false }: { initialKind: Kind; correction?: boolean }) {
-  const { api, set_current } = useApp();
-  const { refresh_allowance } = useCamera();
+  const { set_current, current } = useApp();
   const { colors, type } = useTheme();
   const [expanded, set_expanded] = useState(false);
   const [name, set_name] = useState("");
@@ -796,24 +865,18 @@ function ManualCorrection({ initialKind, correction = false }: { initialKind: Ki
         set_expanded(false);
         return;
       }
-      const result = await api.recipe(clean, kind, undefined, { correction });
-      if (correction) refresh_allowance();
+      // Anything else asks first, like a photo of a dish Recipeak doesn't have: nothing is made or used until "yes".
       set_current({
-        status: "ready",
+        status: "ai-offer",
         kind,
-        recipe: result.recipe,
-        guesses: [{ name: clean, confidence: "high", image: result.image }],
-        selected: 0,
-        image: result.image,
-        localPhoto: null,
-        savedId: null,
-        ai: true,
+        guesses: [{ name: clean, confidence: "high", image: NO_IMAGE }],
+        typed: true,
+        correction,
+        previous: current,
       });
       set_expanded(false);
-    } catch (problem) {
-      if (problem instanceof ApiError && problem.needsUpgrade)
-        router.push({ pathname: "/upgrade", params: { reason: problem.upgradeReason } });
-      else set_error(problem instanceof ApiError ? problem.message : "Couldn't find that recipe. Please try again.");
+    } catch {
+      set_error("Couldn't find that recipe. Please try again.");
     } finally {
       set_busy(false);
     }

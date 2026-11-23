@@ -1,32 +1,22 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
-import {
-  Image,
-  KeyboardAvoidingView,
-  Linking,
-  Platform,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  useWindowDimensions,
-  View,
-} from "react-native";
+import { Image, KeyboardAvoidingView, Linking, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { firebase, firebaseConfigured, sign_in_problem, test_mode_available } from "../auth/firebase";
 import { legal_page_urls } from "../settings/legalLinks";
-import { SignInWall } from "../ui/SignInWall";
-import { fonts, Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
+import { useOnboarding } from "../onboarding/OnboardingProvider";
+import { FREE_PHOTOS } from "../paywall/plans";
+import { PillButton } from "../ui/PillButton";
+import { StartScreen } from "../ui/StartScreen";
+import { Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
 
 // Google's own four-colour "G", as its sign-in branding guidelines ask for.
 const GOOGLE_G = require("../../assets/google-g.png");
-const APP_ICON = require("../../assets/icon.png");
 
 /**
- * Sign-in (approved 2026-11-21): Recipeak's photos drifting behind the app icon and "Every dish has a recipe.",
- * then Mindvalley-style pill buttons — Continue with Google and Create account — and a Log in link. Log in and
- * Create account open the email form. Sign in with Apple joins them on iPhone.
+ * Sign-in, on Recipeak's one start screen (StartScreen: the drifting photos and "Every dish has a recipe."): pill
+ * buttons — Continue with Google and Create account — and a Log in link, or Log in first for someone returning.
+ * Log in and Create account open the email form. Sign in with Apple joins them on iPhone. Signing out lands here.
  */
 export default function SignIn() {
   const { type, colors } = useTheme();
@@ -83,7 +73,8 @@ export default function SignIn() {
     set_message({ text: "If there's an account for that email, a reset link is on its way.", tone: "muted" });
   }
 
-  const { height } = useWindowDimensions();
+  // Someone who chose "I already have an account", or who signed out, is offered Log in first.
+  const returning = useOnboarding().values.entry === "sign-in";
   const pages = legal_page_urls(process.env.EXPO_PUBLIC_API_BASE_URL);
   const open_form = (next: "sign-in" | "create") => {
     set_step(next);
@@ -92,56 +83,11 @@ export default function SignIn() {
 
   if (step === "choose")
     return (
-      <View style={styles.screen}>
-        <SignInWall height={Math.round(height * 0.62)} />
-        <SafeAreaView style={{ flex: 1 }} edges={["bottom"]}>
-          <ScrollView contentContainerStyle={[styles.chooseContent, { paddingTop: Math.round(height * 0.36) }]}>
-            <Image source={APP_ICON} style={styles.icon} accessibilityLabel="Recipeak" />
-            <Text style={styles.headline} accessibilityRole="header">
-              Every dish has a <Text style={styles.headlineAccent}>recipe</Text>.
-            </Text>
-            <Text style={styles.subtitle}>Recipes from any meal or drink you photograph.</Text>
-            {!firebaseConfigured && (
-              <Notice tone="error">{"Sign-in isn't set up in this build yet. Add the Firebase settings to apps/mobile/.env."}</Notice>
-            )}
-            {message && <Notice tone={message.tone}>{message.text}</Notice>}
-            {test_mode_available && (
-              <PillButton label="Continue in test mode" variant="outline" onPress={() => firebase.start_test_mode()} />
-            )}
-            {Platform.OS !== "web" && (
-              <PillButton
-                label={provider_busy === "google" ? "Opening…" : "Continue with Google"}
-                variant="filled"
-                icon={<Image source={GOOGLE_G} style={styles.googleG} accessible={false} />}
-                disabled={provider_busy !== null}
-                onPress={() => void continue_with("google")}
-              />
-            )}
-            {apple && (
-              <PillButton
-                label={provider_busy === "apple" ? "Opening…" : "Continue with Apple"}
-                variant="outline"
-                icon={<Ionicons name="logo-apple" size={20} color={colors.text} />}
-                disabled={provider_busy !== null}
-                onPress={() => void continue_with("apple")}
-              />
-            )}
-            <PillButton label="Create account" variant="accent" disabled={provider_busy !== null} onPress={() => open_form("create")} />
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel="Log in"
-              accessibilityHint="For people who already have an account"
-              hitSlop={8}
-              disabled={provider_busy !== null}
-              onPress={() => open_form("sign-in")}
-              style={styles.textLink}
-            >
-              <Text style={styles.linkMuted}>
-                Already have an account? <Text style={styles.linkStrong}>Log in</Text>
-              </Text>
-            </Pressable>
-            <View style={{ flexGrow: 1, minHeight: 24 }} />
-            <Text style={styles.reassure}>3 free photos. No card needed.</Text>
+      <StartScreen
+        subtitle={returning ? "Welcome back. Log in to see your saved recipes." : "Recipes from any meal or drink you photograph."}
+        footer={
+          <>
+            <Text style={styles.reassure}>{`${FREE_PHOTOS} free photos. No card needed.`}</Text>
             {pages && (
               <Text style={styles.legal}>
                 {"By continuing, you agree to the "}
@@ -155,9 +101,53 @@ export default function SignIn() {
                 .
               </Text>
             )}
-          </ScrollView>
-        </SafeAreaView>
-      </View>
+          </>
+        }
+      >
+        {!firebaseConfigured && (
+          <Notice tone="error">{"Sign-in isn't set up in this build yet. Add the Firebase settings to apps/mobile/.env."}</Notice>
+        )}
+        {message && <Notice tone={message.tone}>{message.text}</Notice>}
+        {test_mode_available && <PillButton label="Continue in test mode" variant="outline" onPress={() => firebase.start_test_mode()} />}
+        {Platform.OS !== "web" && (
+          <PillButton
+            label={provider_busy === "google" ? "Opening…" : "Continue with Google"}
+            variant="filled"
+            icon={<Image source={GOOGLE_G} style={styles.googleG} accessible={false} />}
+            disabled={provider_busy !== null}
+            onPress={() => void continue_with("google")}
+          />
+        )}
+        {apple && (
+          <PillButton
+            label={provider_busy === "apple" ? "Opening…" : "Continue with Apple"}
+            variant="outline"
+            icon={<Ionicons name="logo-apple" size={20} color={colors.text} />}
+            disabled={provider_busy !== null}
+            onPress={() => void continue_with("apple")}
+          />
+        )}
+        <PillButton
+          label={returning ? "Log in with email" : "Create account"}
+          variant="accent"
+          disabled={provider_busy !== null}
+          onPress={() => open_form(returning ? "sign-in" : "create")}
+        />
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={returning ? "Create account" : "Log in"}
+          accessibilityHint={returning ? "For people who are new to Recipeak" : "For people who already have an account"}
+          hitSlop={8}
+          disabled={provider_busy !== null}
+          onPress={() => open_form(returning ? "create" : "sign-in")}
+          style={styles.textLink}
+        >
+          <Text style={styles.linkMuted}>
+            {returning ? "New to Recipeak? " : "Already have an account? "}
+            <Text style={styles.linkStrong}>{returning ? "Create account" : "Log in"}</Text>
+          </Text>
+        </Pressable>
+      </StartScreen>
     );
 
   return (
@@ -236,75 +226,14 @@ export default function SignIn() {
   );
 }
 
-/**
- * Mindvalley's rounded buttons: "filled" is white in dark mode and near-black in light mode (Google asks for a
- * white or black button), "accent" is Recipeak's coral, and "outline" is the quieter choice.
- */
-function PillButton(props: {
-  label: string;
-  variant: "filled" | "accent" | "outline";
-  icon?: React.ReactNode;
-  disabled?: boolean;
-  onPress: () => void;
-}) {
-  const styles = useThemedStyles(create_styles);
-  const filled = props.variant === "filled";
-  const accent = props.variant === "accent";
-  return (
-    <Pressable
-      accessibilityRole="button"
-      accessibilityLabel={props.label}
-      accessibilityState={{ disabled: !!props.disabled }}
-      disabled={props.disabled}
-      onPress={props.onPress}
-      style={({ pressed }) => [
-        styles.pill,
-        filled ? styles.pillFilled : accent ? styles.pillAccent : styles.pillOutline,
-        (pressed || props.disabled) && { opacity: props.disabled ? 0.5 : 0.8 },
-      ]}
-    >
-      {props.icon}
-      <Text style={[styles.pillText, filled && styles.pillTextFilled, accent && styles.pillTextAccent]}>{props.label}</Text>
-    </Pressable>
-  );
-}
-
 const create_styles = (colors: Palette) =>
   StyleSheet.create({
     screen: { flex: 1, backgroundColor: colors.background },
     content: { padding: 24, paddingTop: 16 },
-    chooseContent: { flexGrow: 1, paddingHorizontal: 24, paddingBottom: 16 },
-    icon: { width: 84, height: 84, borderRadius: 42, alignSelf: "center" },
-    headline: {
-      color: colors.text,
-      fontFamily: fonts.display,
-      fontSize: 32,
-      lineHeight: 40,
-      textAlign: "center",
-      marginTop: 20,
-    },
-    headlineAccent: { color: colors.accentInk },
-    subtitle: { color: colors.muted, fontSize: 15, lineHeight: 21, textAlign: "center", marginTop: 8, marginBottom: 16 },
     reassure: { color: colors.muted, fontSize: 13, textAlign: "center" },
     legal: { color: colors.muted, fontSize: 12, lineHeight: 18, textAlign: "center", marginTop: 12 },
     legalLink: { color: colors.text, fontWeight: "600" },
     back: { width: 44, height: 44, justifyContent: "center", marginBottom: 8, marginLeft: -6 },
-    pill: {
-      minHeight: 54,
-      marginTop: 12,
-      borderRadius: 27,
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: 10,
-      paddingHorizontal: 20,
-    },
-    pillFilled: { backgroundColor: colors.text },
-    pillAccent: { backgroundColor: colors.accent },
-    pillTextAccent: { color: colors.accentText },
-    pillOutline: { borderWidth: 1.5, borderColor: colors.text },
-    pillText: { color: colors.text, fontSize: 16, fontWeight: "600" },
-    pillTextFilled: { color: colors.background },
     googleG: { width: 20, height: 20 },
     textLink: { alignSelf: "center", marginTop: 18, minHeight: 32, justifyContent: "center" },
     linkMuted: { color: colors.muted, fontSize: 15 },

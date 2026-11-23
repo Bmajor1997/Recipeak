@@ -49,7 +49,7 @@ npm test && npm run typecheck && npm run lint
 
 - **Sign-in:** email and password, Continue with Google, and Sign in with Apple on iPhone, all through Firebase.
   Google needs the Web client ID in `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID` and each build's SHA-1 fingerprint on the
-  Firebase Android app `com.mealsandmixers.app`.
+  Firebase Android app `com.mealsandmixers.app`: test APKs and Play builds use different keys (see docs/GOOGLE-SIGN-IN.md).
 - **Subscriptions:** RevenueCat (`react-native-purchases`). The app shows the store's prices and starts the purchase;
   the server checks RevenueCat itself before giving Premium. Set `EXPO_PUBLIC_REVENUECAT_ANDROID_API_KEY` (goog_…)
   in the app and `REVENUECAT_SECRET_API_KEY` on the server. The RevenueCat offering needs a yearly ($rc_annual) and a

@@ -2,7 +2,7 @@
 // Order matters: confirm it's really them (password, Google or Apple), delete the server's data, then the sign-in itself, then this phone's copy.
 // If a step fails, everything before it can safely run again on the next try.
 import { ratings_storage_name } from "../recipes/ratings";
-import { recent_storage_name } from "../recipes/recentlyViewed";
+import { recent_storage_names } from "../recipes/recentlyViewed";
 import { saved_storage_name, type KeyValueStorage } from "../saved/savedRecipes";
 import { preferences_storage_name } from "../settings/preferences";
 
@@ -37,7 +37,7 @@ export async function clear_account_device_data(storage: KeyValueStorage, uid: s
   } catch {
     // An unreadable list still gets removed below.
   }
-  for (const name of [saved_name, ratings_storage_name(uid), recent_storage_name(uid), preferences_storage_name(uid)])
+  for (const name of [saved_name, ratings_storage_name(uid), ...recent_storage_names(uid), preferences_storage_name(uid)])
     await storage.removeItem(name);
 }
 

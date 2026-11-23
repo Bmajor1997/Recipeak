@@ -152,7 +152,31 @@ test("bad uploads are rejected without calling OpenAI", async (t) => {
   assert.equal(s.calls.length, 0);
 });
 
-test("follow-up recipes (other guesses, diet versions) need a counted photo and are capped for free users", async (t) => {
+test("free diet versions of library dishes work for a new account with no photos, and are made once for everyone", async (t) => {
+  const s = await start({ reply: RECIPE, featured: curated_keys() }); t.after(s.close);
+  for (const diet of ["low-carb", "non-alcoholic"]) {
+    const made = await s.call("/api/recipe", { user: "newbie", body: { name: "Gimlet", kind: "cocktail", diet } });
+    assert.equal(made.status, 200, `${diet} is free with zero photos`);
+  }
+  assert.equal(s.calls.length, 2);
+  // Another account asking for the same version gets the kept one: no AI request.
+  assert.equal((await s.call("/api/recipe", { user: "other", body: { name: "gimlet", kind: "cocktail", diet: "low-carb" } })).status, 200);
+  assert.equal(s.calls.length, 2);
+  // They use no free photo and no follow-up, so photo recognition limits are untouched.
+  assert.equal(s.store.free_photos_left("newbie"), 3);
+  assert.deepEqual(s.store.records().filter((r) => r.user_id === "newbie").map((r) => r.feature), ["diet", "diet"]);
+  // Vegetarian and vegan stay Premium even for library dishes, before anything is spent.
+  for (const diet of ["vegetarian", "vegan"]) {
+    const refused = await s.call("/api/recipe", { user: "newbie", body: { name: "Margarita", kind: "cocktail", diet } });
+    assert.equal(refused.json.code, "PREMIUM_VERSIONS");
+  }
+  assert.equal(s.calls.length, 2);
+  // A name the library doesn't have is still a follow-up to a photo: a diet request can't stand in for one.
+  const unknown = await s.call("/api/recipe", { user: "newbie", body: { name: "Imaginary Test Dish Gamma", kind: "meal", diet: "low-carb" } });
+  assert.equal(unknown.json.code, "FREE_VERSIONS_USED");
+});
+
+test("follow-up recipes (other guesses, diet versions of new dishes) need a counted photo and are capped for free users", async (t) => {
   const s = await start({ reply: (n) => (n === 1 ? IDENTIFIED : RECIPE) }); t.after(s.close);
   const ask = { name: "Paloma", kind: "cocktail", diet: "non-alcoholic" };
   // bob has never taken a photo, so no free follow-ups.

@@ -72,7 +72,7 @@ export function create_saved_recipes(
       kind: Kind,
       recipe: Recipe,
       photoUri?: string | null,
-      { limit, ai }: { limit?: number; ai?: boolean } = {},
+      { limit, ai, bundled_id, image_url }: { limit?: number; ai?: boolean; bundled_id?: string; image_url?: string | null } = {},
     ): Promise<SavedRecipe> {
       const list = await read();
       // Saving the same recipe twice moves it to the top instead of making a copy.
@@ -82,8 +82,18 @@ export function create_saved_recipes(
       if (others.length >= MAX_SAVED) throw new Error(`You can save up to ${MAX_SAVED} recipes. Remove some to save more.`);
       const id = new_id();
       // A photo that isn't kept still lets the recipe save, just without its picture.
-      const photo_uri = photoUri ? await photos.keep_photo(photoUri, id).catch(() => null) : null;
-      const entry: SavedRecipe = { id, saved_at: now().toISOString(), kind, recipe, photo_uri, ...(ai ? { ai: true } : {}) };
+      // A bundled dish's photo ships with the app, so it's shown from there instead of a copy that could go missing.
+      const photo_uri = photoUri && !bundled_id ? await photos.keep_photo(photoUri, id).catch(() => null) : null;
+      const entry: SavedRecipe = {
+        id,
+        saved_at: now().toISOString(),
+        kind,
+        recipe,
+        photo_uri,
+        ...(ai ? { ai: true } : {}),
+        ...(bundled_id ? { bundled_id } : {}),
+        ...(image_url ? { image_url } : {}),
+      };
       await write([entry, ...others]);
       for (const old of replaced) if (old.photo_uri && old.photo_uri !== photo_uri) photos.remove_photo(old.photo_uri);
       return entry;

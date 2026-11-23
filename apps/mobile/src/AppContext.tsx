@@ -18,8 +18,12 @@ import { subscriptions } from "./paywall/subscriptions";
 export type CurrentRecipe =
   | { status: "loading"; photo?: number }
   | { status: "problem"; message: string; source?: "photo" | "wall" }
-  /** A photo of a dish Recipeak doesn't have: asks before making a recipe and photo with AI. */
-  | { status: "ai-offer"; kind: Kind; guesses: Guess[] }
+  /**
+   * A dish Recipeak doesn't have, from a photo or a typed name: asks before making a recipe and photo with AI.
+   * `typed` is a name typed in; `correction` means it stands in for a photo that couldn't be read (it uses a free
+   * photo); `previous` is the screen to go back to if the person says no.
+   */
+  | { status: "ai-offer"; kind: Kind; guesses: Guess[]; typed?: boolean; correction?: boolean; previous?: CurrentRecipe | null }
   | {
       status: "ready";
       kind: Kind;
