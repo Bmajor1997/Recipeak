@@ -270,6 +270,12 @@ export function diet_profile(
   if (status.vegetarian?.status === "none" && status.vegan?.status === "option" && !hand_versions.includes("vegan"))
     status.vegan = { ...status.vegetarian };
   for (const [diet, o] of Object.entries(overrides) as [Diet, DietOverride][]) if (status[diet]) status[diet] = o;
+  // A drink written only as a method (a hand-written alcohol-free version, curatedVersions.ts) has no ingredient list
+  // to check, so no diet is claimed for it: each one needs a person to check, and can still be asked for.
+  if (!recipe.ingredients.length)
+    for (const diet of DIETS)
+      if (diet !== "non-alcoholic" && status[diet])
+        status[diet] = { status: "review", why: "written as a method, without an ingredient list" };
   // A changed dish may still be useful: let people request an adaptation even if a defining ingredient changes.
   for (const diet of ["vegetarian", "vegan", "dairy-free", "nut-free"] as Diet[]) {
     if (status[diet]?.status === "none") status[diet] = { status: "option", why: "requires a substitution" };

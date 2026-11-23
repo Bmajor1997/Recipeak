@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import recipes from "../src/recipes/collection.json";
 import { COLLECTION } from "../src/recipes/collectionPhotos";
 import { curated_non_alcoholic, curated_version } from "../src/recipes/curatedVersions";
+import { diet_profile } from "../src/recipes/diets";
 import { parse_recipe } from "../src/recipes/parse";
 import { camera_area } from "../src/camera/cameraOptions";
 
@@ -73,6 +74,21 @@ describe("written non-alcoholic versions", () => {
     // Only an alcohol-free drink may have no ingredient list.
     expect(() => parse_recipe({ ...na, cocktail: { ...na.cocktail!, alcoholic: true } })).toThrow();
     expect(() => parse_recipe({ ...na, cocktail: null })).toThrow();
+  });
+
+  it("claims no diet for a version written only as a method, so orgeat, cream or egg white can't hide", () => {
+    const method_only = written.map((r) => curated_non_alcoholic(r)!).filter((v) => !v.ingredients.length);
+    expect(method_only.length).toBeGreaterThan(100);
+    for (const version of method_only) {
+      const profile = diet_profile(version, "cocktail");
+      expect(profile.fits, version.title).toEqual(["non-alcoholic"]);
+      // Every other diet is shown as needing a check, not dropped, so it can still be asked for.
+      for (const diet of ["vegan", "dairy-free", "nut-free"] as const) expect(profile.status[diet]?.status).toBe("review");
+    }
+    for (const title of ["Mai Tai", "White Russian", "Whiskey Sour"]) {
+      const version = curated_non_alcoholic(written.find((r) => r.title === title)!)!;
+      expect(diet_profile(version, "cocktail").fits, title).toEqual(["non-alcoholic"]);
+    }
   });
 
   it("isn't offered for drinks without a written version, or for other diets", () => {
