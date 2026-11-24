@@ -375,6 +375,33 @@ describe("a typed dish name Recipeak doesn't have", () => {
   });
 });
 
+describe("typing another name on the question screen", () => {
+  const guess = (name: string) => ({ name, confidence: "high" as const, image: { status: "unavailable" as const, url: null } });
+  async function retype(name: string) {
+    await press("Not the right dish? Enter its name");
+    await act(async () => {
+      (tree!.root.findByProps({ accessibilityLabel: "Dish or cocktail name" }).props.onChangeText as (v: string) => void)(name);
+    });
+    await press("Find recipe");
+  }
+
+  it("asks about the new name, even after the third match was chosen", async () => {
+    await open({ status: "ai-offer", kind: "meal", guesses: [guess("Ube tart"), guess("Ube pie"), guess("Ube cheesecake")] });
+    await press("Ube cheesecake");
+    await retype("Taro cake");
+    expect(text()).toContain("Recipeak doesn't have a recipe for Taro cake yet.");
+  });
+
+  it("still stands in for the unreadable photo, so yes uses a free photo", async () => {
+    await open({ status: "problem", message: "That photo couldn't be read.", source: "photo" });
+    await retype("Ube cheesecake");
+    await retype("Ube tart");
+    expect(text()).toContain("It uses 1 of your free photos (3 left).");
+    await press("Make AI recipe and photo");
+    expect(mocks.recipe).toHaveBeenCalledWith("Ube tart", "meal", undefined, { correction: true });
+  });
+});
+
 describe("buttons with the keyboard open", () => {
   // A ScrollView that closes the keyboard on any tap takes the first tap from a button (also one in the report sheet,
   // whose touches pass through this screen), so it had to be tapped twice. Every scroll view here lets taps through.

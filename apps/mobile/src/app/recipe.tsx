@@ -66,7 +66,10 @@ export default function RecipeScreen() {
           <RecipeView current={ready} />
         </View>
       )}
-      {current?.status === "ai-offer" && <AiOffer current={current} />}
+      {current?.status === "ai-offer" && (
+        // A new set of names (a typed correction) is a new question, so nothing chosen for the last one carries over.
+        <AiOffer key={`${current.kind}|${current.guesses.map((g) => g.name).join("|")}`} current={current} />
+      )}
       {current?.status === "problem" && <Problem message={current.message} source={current.source ?? "photo"} />}
       {(!current || current.status === "loading") && <Finding photo={current?.status === "loading" ? current.photo : undefined} />}
     </>
@@ -201,7 +204,8 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
           </>
         )}
         <Button label="Not now" variant="secondary" disabled={busy} onPress={not_now} />
-        <ManualCorrection initialKind={current.kind} />
+        {/* Still in place of an unreadable photo, when that's what this question came from. */}
+        <ManualCorrection initialKind={current.kind} correction={current.correction === true} />
       </ScrollView>
     </Sheet>
   );
