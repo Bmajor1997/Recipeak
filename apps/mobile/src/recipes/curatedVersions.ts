@@ -14,7 +14,7 @@ const CHANGE = /^(?:replace|use|swap|skip|omit|leave out|substitute|same)\b/i;
 
 // Alcoholic drinks named in an ingredient or a step.
 const ALCOHOL =
-  /\b(?:vodka|gin|rum|tequila|mezcal|whiske?y|bourbon|rye|scotch|brandy|cognac|vermouth|liqueurs?|campari|aperol|prosecco|champagne|cava|wine|beers?|absinthe|amaro|sake|pisco|cacha[cç]a|spirits?|bitters|cointreau|triple sec|cura[cç]ao|kahl[uú]a|chartreuse|amaretto|irish cream|lillet|sherry|port|soju|hard cider|aperitivo|aperitif|schnapps|grappa|ouzo|limoncello|frangelico|baileys|pastis|sambuca|lager|ale|stout|pilsner|cerveza|liquor|alcohol|brandied|spiked|boozy|[a-z]+-soaked)\b(?!-)/gi;
+  /\b(?:vodka|gin|rum|tequila|mezcal|whiske?y|bourbon|rye|scotch|brandy|cognac|vermouth|liqueurs?|campari|aperol|prosecco|champagne|cava|wine|beers?|absinthe|amaro|sake|pisco|cacha[cç]a|spirits?|bitters|cointreau|triple sec|cura[cç]ao|kahl[uú]a|chartreuse|amaretto|irish cream|lillet|sherry|port|soju|hard cider|aperitivo|aperitif|schnapps|grappa|ouzo|limoncello|frangelico|baileys|pastis|sambuca|lager|ale|stout|pilsner|cerveza|liquor|alcohol|brandied|spiked|boozy|[a-z]+-soaked|rhum|allspice dram|applejack|aqua?vit|akvavit|b[ée]n[ée]dictine|calvados|armagnac|chambord|cr[eè]me de [a-zûèé]+|cynar|drambuie|dubonnet|falernum|fernet(?:-branca)?|galliano|grand marnier|guinness|single malt|j[äa]germeister|pimm'?s|southern comfort|st[- ]germain|midori|genever|jenever|kirsch(?:wasser)?|slivovitz|eau de vie|marsala|madeira|punt e mes|averna|montenegro|ramazzotti|strega|disaronno|licor 43|heering|sloe|mead|shochu|baijiu|sotol)\b(?!-)/gi;
 // Words that look alcoholic here but aren't.
 const NOT_ALCOHOL =
   /\b(?:alcohol-free|non-alcoholic|zero-proof)(?: (?!and\b|or\b|with\b)[a-z'-]+){0,4}|\b(?:ginger|root|birch) beers?\b|\bginger ales?\b|\bwine glass(?:es)?\b|\b(?:wine|sherry|cider|rice) vinegar\b|\bfor no alcohol at all\b|\bwithout alcohol\b/gi;
@@ -138,7 +138,21 @@ const naming_words = (text: string) =>
     .toLowerCase()
     .split(/[^a-z]+/)
     .filter((w) => w.length > 2 && !DESCRIBING.has(w));
-const matches = (ingredient: Ingredient, thing: string) => naming_words(thing).some((w) => ingredient.item.toLowerCase().includes(w));
+/** How many of the thing's naming words are whole words of the ingredient ("water" isn't in "watermelon"). */
+const shared_words = (ingredient: Ingredient, thing: string) => {
+  const words = new Set(ingredient.item.toLowerCase().split(/[^a-z]+/));
+  return naming_words(thing).filter((w) => words.has(w)).length;
+};
+/** The non-alcoholic ingredient that best matches what a change names, or -1. */
+const best_match = (list: Ingredient[], thing: string, skip: (i: Ingredient) => boolean = () => false) => {
+  let best = -1;
+  let score = 0;
+  list.forEach((i, n) => {
+    const s = has_alcohol(i.item) || skip(i) ? 0 : shared_words(i, thing);
+    if (s > score) [best, score] = [n, s];
+  });
+  return best;
+};
 
 /**
  * The parts of a written change that aren't about alcohol, applied to the ingredients and steps too: "hot apple cider
@@ -157,7 +171,7 @@ function with_other_changes(written: string, ingredients: Ingredient[], steps: s
     const instead = /^(?:use |with )?(.+?) instead of (?:the )?(.+)$/.exec(clause);
     if (instead) {
       const [, now, before] = instead;
-      const at = list.findIndex((i) => !has_alcohol(i.item) && matches(i, before));
+      const at = best_match(list, before);
       if (at < 0) continue;
       const old = list[at].item;
       list = list.map((i, n) => (n === at ? { ...i, item: now.trim() } : i));
@@ -171,17 +185,19 @@ function with_other_changes(written: string, ingredients: Ingredient[], steps: s
     );
     if (added && !has_alcohol(added[2])) {
       const [, amount, thing] = added;
-      const at = list.findIndex((i) => !has_alcohol(i.item) && matches(i, thing));
-      if (at >= 0) {
-        const more = amount ? `plus ${amount.trim()} more` : "a little extra";
-        list = list.map((i, n) => (n === at ? { ...i, item: `${i.item} (${more})` } : i));
-      } else list.push(as_ingredient(`${amount ?? ""}${thing}`, { amount: "", unit: "", item: thing }));
+      const at = best_match(list, thing);
+      // An added amount is its own line, so it scales with the servings like the rest of the recipe.
+      if (at >= 0 && amount) {
+        const more = as_ingredient(`${amount}${list[at].item} (more)`, list[at]);
+        list = [...list.slice(0, at + 1), more, ...list.slice(at + 1)];
+      } else if (at >= 0) list = list.map((i, n) => (n === at ? { ...i, item: `${i.item} (a little extra)` } : i));
+      else list.push(as_ingredient(`${amount ?? ""}${thing}`, { amount: "", unit: "", item: thing }));
       continue;
     }
     const extra = /\b(?:extra|more) (.+)$/.exec(clause);
     if (extra)
       for (const thing of extra[1].split(/ and | or /).slice(0, 2)) {
-        const at = list.findIndex((i) => !has_alcohol(i.item) && matches(i, thing) && !i.item.includes("("));
+        const at = best_match(list, thing, (i) => i.item.includes("("));
         if (at >= 0) list = list.map((i, n) => (n === at ? { ...i, item: `${i.item} (extra)` } : i));
       }
   }
@@ -221,7 +237,8 @@ export function curated_non_alcoholic(recipe: Recipe): Recipe | null {
   // that could contradict it, except what it points back to ("the same spices") and doesn't name.
   const lower = written.toLowerCase();
   const own_amounts = /[\d½¼¾⅓⅔]\s*(?:oz|ml|cups?|tbsp|tsp)\b/i.test(written);
-  const named = (i: Ingredient) => naming_words(i.item).some((w) => lower.includes(w));
+  const written_words = new Set(lower.split(/[^a-z]+/));
+  const named = (i: Ingredient) => naming_words(i.item).some((w) => written_words.has(w));
   const kept = recipe.ingredients
     .filter((i) => !has_alcohol(i.item) && (!own_amounts || (/\bsame\b/.test(lower) && !named(i))))
     .map((i) => [i.amount, i.unit, i.item].filter(Boolean).join(" "));

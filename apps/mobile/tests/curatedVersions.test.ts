@@ -10,7 +10,7 @@ import shared_words from "../../../data/allergen-word-cases.json";
 
 // Checked independently of curatedVersions.ts: any of these left in a version would be alcohol.
 const ALCOHOL =
-  /\b(?:vodka|gin|rum|tequila|mezcal|whiske?y|bourbon|rye|scotch|brandy|cognac|vermouth|liqueur|campari|aperol|prosecco|champagne|wine|beer|lager|absinthe|amaro|sake|pisco|cacha[cç]a|bitters|cointreau|triple sec|kahl[uú]a|amaretto|irish cream|sherry|spirit|brandied)\b/i;
+  /\b(?:vodka|gin|rum|tequila|mezcal|whiske?y|bourbon|rye|scotch|brandy|cognac|vermouth|liqueur|campari|aperol|prosecco|champagne|wine|beer|lager|absinthe|amaro|sake|pisco|cacha[cç]a|bitters|cointreau|triple sec|kahl[uú]a|amaretto|irish cream|sherry|spirit|brandied|rhum|allspice dram|applejack|aquavit|b[ée]n[ée]dictine|calvados|chambord|cr[eè]me de [a-zûèé]+|cynar|drambuie|dubonnet|falernum|fernet|galliano|grand marnier|guinness|single malt|j[äa]germeister|pimm'?s|southern comfort)\b/i;
 const OK = /\b(?:alcohol-free|non-alcoholic)(?: [a-z'-]+){0,4}|\b(?:ginger|root) beer\b|\bwine glass\b|\bwithout alcohol\b/gi;
 const alcoholic = (text: string) => ALCOHOL.test(text.replace(OK, " "));
 
@@ -160,6 +160,9 @@ describe("written versions that lean on the original", () => {
     const mulled = curated_non_alcoholic(recipe_of("mulled-wine"))!.steps;
     expect(mulled[1]).toMatch(/cinnamon sticks.*cloves.*star anise/);
     expect(mulled[1]).not.toMatch(/orange|wine/i);
+    // Liqueurs the word list once missed are never carried over (Brandy Alexander, Penicillin, B-52).
+    for (const id of ["brandy-alexander", "penicillin", "b-52"])
+      expect(curated_non_alcoholic(recipe_of(id))!.steps.join(" ")).not.toMatch(/crème de cacao|single malt|grand marnier/i);
     // Never alcohol in what's carried over, for every drink shown as written.
     for (const r of cocktails.filter((c) => c.cocktail?.alcoholic && c.cocktail.non_alcoholic_version)) {
       const v = curated_non_alcoholic(r)!;
@@ -173,11 +176,19 @@ describe("written versions that lean on the original", () => {
     expect(toddy.ingredients.map((i) => i.item).join(" ")).not.toMatch(/water/);
     expect(toddy.steps.slice(1).join(" ")).toContain("pour in the hot apple cider");
     const mojito = curated_non_alcoholic(recipe_of("mojito"))!;
-    expect(mojito.ingredients.map((i) => i.item)).toEqual(
-      expect.arrayContaining(["fresh lime juice (plus 1/2 oz more)", "chilled soda water (extra)"]),
+    // An added amount is its own line, so it scales with the servings.
+    expect(mojito.ingredients).toEqual(
+      expect.arrayContaining([
+        { amount: "1/2", unit: "oz", item: "fresh lime juice (more)" },
+        expect.objectContaining({ item: "chilled soda water (extra)" }),
+      ]),
     );
     const punch = curated_non_alcoholic(recipe_of("hibiscus-citrus-rum-punch"))!;
-    expect(punch.ingredients[0].item).toBe("chilled unsweetened hibiscus tea (plus 1½ oz more)");
+    expect(punch.ingredients[1]).toEqual({ amount: "1½", unit: "oz", item: "chilled unsweetened hibiscus tea (more)" });
+    // "Add soda water" is the soda, not the watermelon juice.
+    const cooler = curated_non_alcoholic(recipe_of("watermelon-mint-rum-cooler"))!;
+    expect(cooler.ingredients.map((i) => i.item)).toContain("soda water (more)");
+    expect(cooler.ingredients.map((i) => i.item)).not.toContain("strained fresh watermelon juice (more)");
     const coffee = curated_non_alcoholic(recipe_of("irish-coffee"))!;
     expect(coffee.ingredients.map((i) => i.item)).toContain("drop of vanilla");
   });
