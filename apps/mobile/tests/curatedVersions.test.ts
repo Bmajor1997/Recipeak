@@ -6,6 +6,7 @@ import { curated_non_alcoholic, curated_version } from "../src/recipes/curatedVe
 import { diet_profile } from "../src/recipes/diets";
 import { parse_recipe } from "../src/recipes/parse";
 import { camera_area } from "../src/camera/cameraOptions";
+import shared_words from "../../../data/allergen-word-cases.json";
 
 // Checked independently of curatedVersions.ts: any of these left in a version would be alcohol.
 const ALCOHOL =
@@ -107,6 +108,32 @@ describe("written non-alcoholic versions", () => {
     const plain = written[0];
     expect(curated_non_alcoholic({ ...plain, cocktail: { ...plain.cocktail!, non_alcoholic_version: null } })).toBeNull();
     expect(curated_version(plain, "low-carb")).toBeNull();
+  });
+});
+
+describe("allergen words in a written version", () => {
+  const gimlet = parse_recipe((recipes as Record<string, unknown>).gimlet);
+  const found = (text: string) =>
+    curated_non_alcoholic({
+      ...gimlet,
+      allergens: [],
+      cocktail: { ...gimlet.cocktail!, non_alcoholic_version: `Shake lime, ${text} and syrup.` },
+    })!.allergens;
+
+  it("reads every shared case the same way as the server", () => {
+    for (const { text, has = [], not = [] } of shared_words.cases as { text: string; has?: string[]; not?: string[] }[]) {
+      for (const allergen of has) expect(found(text), `${text} contains ${allergen}`).toContain(allergen);
+      for (const allergen of not) expect(found(text), `${text} is not ${allergen}`).not.toContain(allergen);
+    }
+  });
+
+  it("doesn't call a ginger beer drink wheat, as the regular Moscow Mule isn't", () => {
+    const cocktails = COLLECTION.filter((d) => d.kind === "cocktail").map((d) => parse_recipe((recipes as Record<string, unknown>)[d.id]));
+    const ginger = cocktails.filter(
+      (r) => /ginger (?:beer|ale)/i.test(r.cocktail?.non_alcoholic_version ?? "") && !r.allergens.includes("wheat"),
+    );
+    expect(ginger.map((r) => r.title)).toEqual(expect.arrayContaining(["Moscow Mule", "Dark 'n' Stormy"]));
+    for (const regular of ginger) expect(curated_non_alcoholic(regular)!.allergens, regular.title).not.toContain("wheat");
   });
 });
 

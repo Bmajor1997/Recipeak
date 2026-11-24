@@ -8,7 +8,7 @@ import { photos_left_text, useCamera } from "../../camera/CameraProvider";
 import { COLLECTION, type CollectionDish } from "../../recipes/collectionPhotos";
 import { dish_minutes, explore_collage, home_shelves, local_day, type Pairing, tonights_pick } from "../../recipes/shelves";
 import { type SavedRecipe } from "../../recipes/types";
-import { generated_as_current, type ViewedItem, viewed_items } from "../../recipes/recentItems";
+import { generated_as_current, saved_photo_of, type ViewedItem, viewed_items } from "../../recipes/recentItems";
 import { useOpenWallDish } from "../../recipes/useOpenWallDish";
 import { useOnboarding } from "../../onboarding/OnboardingProvider";
 import { greeting } from "../../ui/greeting";
@@ -17,13 +17,17 @@ import { SavedCard } from "../../saved/SavedCard";
 import { useTheme, useThemedStyles, type Palette } from "../../ui/theme";
 import { PhotoWall } from "../../ui/PhotoWall";
 
-/** A recently viewed recipe's small photo: the bundled one, or the library photo of a recipe made with AI. */
-function RecentPhoto({ item, style }: { item: ViewedItem; style: object }) {
+/**
+ * A recently viewed recipe's small photo: the bundled one, or for a recipe made with AI its copy in Saved (the same
+ * cover Saved shows), then its library photo.
+ */
+function RecentPhoto({ item, saved_photo, style }: { item: ViewedItem; saved_photo: string | null; style: object }) {
   const { api } = useApp();
-  const [failed, set_failed] = useState(false);
-  const uri = item.entry?.image_url ? api.image_uri(item.entry.image_url) : null;
+  const [failed, set_failed] = useState<string | null>(null);
+  const library = item.entry?.image_url ? api.image_uri(item.entry.image_url) : null;
+  const uri = [saved_photo, library].find((u) => u && u !== failed) ?? null;
   if (item.dish) return <Image source={item.dish.source} style={style} accessible={false} />;
-  if (uri && !failed) return <Image source={{ uri }} style={style} accessible={false} onError={() => set_failed(true)} />;
+  if (uri) return <Image source={{ uri }} style={style} accessible={false} onError={() => set_failed(uri)} />;
   return <Image source={HERO_ART} style={[style, { opacity: 0.85 }]} resizeMode="contain" accessible={false} />;
 }
 
@@ -44,7 +48,8 @@ export default function HomeScreen() {
   const [viewed, set_viewed] = useState<ViewedItem[]>([]);
   const { photosLeft, refresh_allowance } = useCamera();
   const insets = useSafeAreaInsets();
-  const [recent, set_recent] = useState<SavedRecipe[]>([]);
+  const [all_saved, set_all_saved] = useState<SavedRecipe[]>([]);
+  const recent = all_saved.slice(0, 8);
 
   useFocusEffect(
     useCallback(() => {
@@ -53,10 +58,7 @@ export default function HomeScreen() {
         (entries) => set_viewed(viewed_items(entries).slice(0, 8)),
         () => set_viewed([]),
       );
-      saved.list().then(
-        (list) => set_recent(list.slice(0, 8)),
-        () => set_recent([]),
-      );
+      saved.list().then(set_all_saved, () => set_all_saved([]));
     }, [saved, refresh_allowance, recently_viewed]),
   );
 
@@ -128,7 +130,7 @@ export default function HomeScreen() {
                 }}
                 style={({ pressed }) => [styles.recentChip, pressed && { opacity: 0.7 }]}
               >
-                <RecentPhoto item={item} style={styles.recentPhoto} />
+                <RecentPhoto item={item} saved_photo={saved_photo_of(item, all_saved)} style={styles.recentPhoto} />
                 <Text style={[type.body, { maxWidth: 140 }]} numberOfLines={1}>
                   {item.name}
                 </Text>

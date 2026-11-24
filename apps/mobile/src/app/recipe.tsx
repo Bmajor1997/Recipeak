@@ -392,6 +392,23 @@ function RecipeView({ current }: { current: Ready }) {
     if (record) record_viewed(recent, current, dishName);
   }, [recent, current, dishName, record]);
 
+  // "Saved" shows for a recipe already in Saved however it was opened (Explore, Recently viewed, or switching back from
+  // a version), with its kept cover when the screen has none, so saving it again never replaces that cover.
+  useEffect(() => {
+    if (current.savedId) return;
+    let live = true;
+    saved
+      .list()
+      .then((list) => {
+        const match = list.find((s) => s.kind === kind && s.recipe.title === recipe.title);
+        if (live && match) set_current({ ...current, savedId: match.id, localPhoto: current.localPhoto ?? match.photo_uri ?? null });
+      })
+      .catch(() => {});
+    return () => {
+      live = false;
+    };
+  }, [saved, current, kind, recipe.title, set_current]);
+
   const cover = useDishImage(api, kind, dishName, current.image, { lookUp: !current.localPhoto && current.image.status === "unavailable" });
   const coverUri = current.localPhoto ?? cover.uri;
   const factor = servings / (recipe.servings || 1);
@@ -589,7 +606,12 @@ function RecipeView({ current }: { current: Ready }) {
     return (await api.allowance()).premium;
   }
 
-  const choices = DIETS.filter((d) => profile.options.includes(d) || profile.status[d]?.status === "review" || d === diet);
+  // A written version shown as a sentence (no ingredient list) can't be checked for other diets, so it offers only the
+  // way back to the original rather than versions of a drink that may already fit them.
+  const sentence_only = diet !== null && recipe.ingredients.length === 0;
+  const choices = sentence_only
+    ? [diet]
+    : DIETS.filter((d) => profile.options.includes(d) || profile.status[d]?.status === "review" || d === diet);
 
   const footer = (
     <View style={[styles.bottomBar, { paddingBottom: insets.bottom + 12 }]}>

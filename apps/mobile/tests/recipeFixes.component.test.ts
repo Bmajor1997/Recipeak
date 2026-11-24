@@ -30,6 +30,7 @@ const mocks = vi.hoisted(() => ({
   back: vi.fn(),
   add_recent: vi.fn(),
   refresh_allowance: vi.fn(),
+  saved_list: [] as { id: string; kind: string; recipe: Recipe; photo_uri: string | null }[],
   camera: { photosLeft: 3 as number | null | undefined },
 }));
 vi.mock("../src/AppContext", async () => {
@@ -126,6 +127,17 @@ const ready = (recipe: Recipe, kind: "meal" | "cocktail", extra: Partial<Current
     ...extra,
   }) as CurrentRecipe;
 
+// Saved for the screen: an in-memory list the tests set up and read back.
+const fake_saved = {
+  list: async () => mocks.saved_list,
+  save: async (kind: string, recipe: Recipe) => {
+    const entry = { id: `s${mocks.saved_list.length + 1}`, kind, recipe, photo_uri: null };
+    mocks.saved_list = [entry, ...mocks.saved_list.filter((s) => s.recipe.title !== recipe.title)];
+    return entry;
+  },
+  remove: async (id: string) => void (mocks.saved_list = mocks.saved_list.filter((s) => s.id !== id)),
+};
+
 let tree: Rendered | undefined;
 let start: CurrentRecipe;
 function Harness() {
@@ -134,7 +146,7 @@ function Harness() {
     current,
     set_current,
     api: { recipe: mocks.recipe, allowance: mocks.allowance, image_uri: () => null },
-    saved: {},
+    saved: fake_saved,
     ratings: {},
     recent: { add: mocks.add_recent },
   };
@@ -156,6 +168,7 @@ async function press(label: string) {
 beforeEach(() => {
   vi.resetAllMocks();
   mocks.camera.photosLeft = 3;
+  mocks.saved_list = [];
   mocks.add_recent.mockResolvedValue(undefined);
   mocks.bundled_version.mockReturnValue(null);
   mocks.find_bundled_dish.mockReturnValue(null);
@@ -207,6 +220,9 @@ describe("a written non-alcoholic version", () => {
     expect(text()).toContain("Gimlet (non-alcoholic)");
     expect(text()).toContain("a few cucumber slices and top with tonic water");
     expect(text()).not.toContain('"gin"');
+    // Written only as a sentence, it offers just the way back, not "vegan" or "gluten-free" for a drink that may fit.
+    for (const other of ["vegan", "vegetarian", "gluten-free", "low-carb"])
+      expect(tree!.root.findAllByProps({ label: other })).toHaveLength(0);
     // The chip again goes back to the regular drink.
     await press("non-alcoholic");
     expect(text()).toContain('"gin"');
@@ -393,5 +409,28 @@ describe("Recently viewed", () => {
     // Also when it opened in the person's diet version.
     await open(ready(GIMLET, "cocktail", { bundledId: "gimlet", picked: true, diet: "vegan" }));
     expect(mocks.add_recent).toHaveBeenCalledWith({ type: "bundled", id: "gimlet" });
+  });
+});
+
+describe("the Save button", () => {
+  const saved_label = () => (text().includes('"Saved"') ? "Saved" : "Save");
+
+  it("shows Saved for a recipe already in Saved, however it was opened, with its kept cover", async () => {
+    mocks.saved_list = [{ id: "keep", kind: "meal", recipe: PASTA, photo_uri: "file:///docs/recipe-photos/keep.jpg" }];
+    // Opened from Recently viewed or Explore: nothing says it's saved yet.
+    await open(ready(PASTA, "meal", { picked: true, ai: true }));
+    expect(saved_label()).toBe("Saved");
+    expect(text()).toContain("file:///docs/recipe-photos/keep.jpg");
+  });
+
+  it("still shows Saved after switching to a version and back", async () => {
+    mocks.saved_list = [{ id: "g", kind: "cocktail", recipe: GIMLET, photo_uri: null }];
+    await open(ready(GIMLET, "cocktail", { picked: true, bundledId: "gimlet", savedId: "g" }));
+    expect(saved_label()).toBe("Saved");
+    await press("non-alcoholic");
+    expect(saved_label()).toBe("Save");
+    await press("non-alcoholic");
+    expect(saved_label()).toBe("Saved");
+    expect(mocks.saved_list).toHaveLength(1);
   });
 });

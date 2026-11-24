@@ -1,9 +1,10 @@
 // Saved recipes keep the right cover photo through saving, the phone's storage, reopening the app and the card.
 import { describe, expect, it, vi } from "vitest";
-import { find_bundled_dish } from "../src/recipes/bundled";
+import { bundled_recipe, find_bundled_dish } from "../src/recipes/bundled";
 import { curated_non_alcoholic } from "../src/recipes/curatedVersions";
 import { create_saved_recipes } from "../src/saved/savedRecipes";
 import { saved_as_current, saved_cover } from "../src/saved/savedCover";
+import { saved_photo_of, viewed_items } from "../src/recipes/recentItems";
 import type { Recipe } from "../src/recipes/types";
 
 vi.mock("expo-asset", () => ({
@@ -101,5 +102,43 @@ describe("saved recipe covers", () => {
     await create_saved_recipes(storage, "alice").save("cocktail", version, null, { bundled_id: gimlet.id });
     const list = await create_saved_recipes(storage, "alice").list();
     expect(list.map((s) => s.recipe.title)).toEqual(["Gimlet (non-alcoholic)"]);
+  });
+  it("saving an AI recipe again with no cover on screen keeps its kept cover (from Recently viewed)", async () => {
+    const storage = memory();
+    const remove_photo = vi.fn();
+    const saved = create_saved_recipes(storage, "alice", {
+      photos: { keep_photo: async () => "file:///docs/recipe-photos/u.jpg", remove_photo },
+    });
+    await saved.save("meal", ai_recipe, "https://api.example/images/ube.jpg", { ai: true, image_url: "/images/ube.jpg" });
+    // Reopened from Recently viewed: no cover on screen, nothing to copy.
+    await saved.save("meal", ai_recipe, null, { ai: true });
+    const list = await create_saved_recipes(storage, "alice").list();
+    expect(list).toHaveLength(1);
+    expect(list[0]).toMatchObject({ photo_uri: "file:///docs/recipe-photos/u.jpg", image_url: "/images/ube.jpg" });
+    expect(remove_photo).not.toHaveBeenCalled();
+  });
+
+  it("Recently viewed shows the same kept cover as Saved for an AI recipe", async () => {
+    const storage = memory();
+    const saved = create_saved_recipes(storage, "alice", {
+      photos: { keep_photo: async () => "file:///docs/recipe-photos/u.jpg", remove_photo: vi.fn() },
+    });
+    await saved.save("meal", ai_recipe, "https://api.example/x.jpg", { ai: true });
+    const [item] = viewed_items([{ type: "generated", kind: "meal", name: "Ube cheesecake", recipe: ai_recipe, image_url: null }]);
+    expect(saved_photo_of(item, await saved.list())).toBe("file:///docs/recipe-photos/u.jpg");
+    expect(saved_photo_of(item, [])).toBeNull();
+  });
+
+  it("a saved bundled dish opens as the library has it now, so later corrections reach it", async () => {
+    const storage = memory();
+    const old = { ...bundled_recipe(gimlet)!, description: "Gin and lime cordial, shaken crisp." };
+    await create_saved_recipes(storage, "alice").save("cocktail", old, null, { bundled_id: gimlet.id });
+    const [item] = await create_saved_recipes(storage, "alice").list();
+    const reopened = await saved_as_current(item);
+    expect(reopened.recipe.description).toBe(bundled_recipe(gimlet)!.description);
+    expect(reopened.recipe.description).not.toContain("cordial");
+    // A saved version of the dish (its own title) is shown as it was saved.
+    const version = { ...old, title: "Gimlet (non-alcoholic)" };
+    expect((await saved_as_current({ ...item, recipe: version })).recipe).toBe(version);
   });
 });

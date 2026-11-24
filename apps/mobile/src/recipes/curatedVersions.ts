@@ -35,16 +35,18 @@ const BROKEN =
   /\b(?:with|in|add|the|and|then|of|into|first)\s*[.,;!]|\bwith (?:drop|add|stir|top|pour|shake|strain|fill)\b|\s[.,;]|\s{2,}|^[\s,.;]|,\s*\./i;
 
 // The same allergen words the server adds to AI recipes (server/recipe_ai.js), for a drink written as a sentence.
+// data/allergen-word-cases.json is checked against both lists, so they read every shared word the same way.
 const ALLERGEN_WORDS: Record<string, RegExp> = {
   milk: /\b(?:milk|butter|buttermilk|cream|cheeses?|yogh?urt|ghee|half-and-half|whey|condensed milk|evaporated milk|irish cream)\b/,
   eggs: /\b(?:eggs?|egg (?:yolks?|whites?)|eggnog|meringue)\b/,
   "tree nuts": /\b(?:almonds?|cashews?|walnuts?|pecans?|pistachios?|hazelnuts?|macadamias?|orgeat|amaretto|frangelico|marzipan|praline)\b/,
   peanuts: /\b(?:peanuts?|peanut butter)\b/,
-  wheat: /\b(?:wheat|barley|malt|beer)\b/,
-  soy: /\b(?:soy|soya|tofu|miso)\b/,
+  wheat: /\b(?:wheat|barley|malt|beer|ale|lager|stout)\b/,
+  soy: /\b(?:soy|soya|soybeans?|soymilk|tofu|miso|tamari|edamame|tempeh|shoyu)\b/,
   sesame: /\b(?:sesame|tahini)\b/,
 };
-const NOT_AN_ALLERGEN = /\b(?:coconut|oat|rice|almond|soy|cashew) (?:milk|cream)\b|\bcream of (?:coconut|tartar)\b|\bnon-alcoholic beer\b/g;
+const NOT_AN_ALLERGEN =
+  /\b(?:coconut|oat|rice|almond|soy|cashew) (?:milk|cream)\b|\bcream of (?:coconut|tartar)\b|\b(?:peanut|almond|cashew|sunflower|cocoa) butter\b|\bginger (?:beer|ale)\b|\broot beer\b|\bgluten-free (?:beer|ale|lager)\b/g;
 
 /** Allergens named in a written version, added to the regular recipe's so none are dropped. */
 function allergens_in(text: string, regular: string[]): string[] {

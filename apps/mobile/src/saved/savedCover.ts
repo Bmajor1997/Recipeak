@@ -27,11 +27,13 @@ export function saved_cover(item: SavedRecipe, image_uri: (path: string | null) 
 export async function saved_as_current(item: SavedRecipe): Promise<Extract<CurrentRecipe, { status: "ready" }>> {
   const dish = saved_bundled_dish(item);
   // Diet versions are worked out from the bundled recipe only when the saved one is that recipe, not a version of it.
-  const standard = dish !== null && bundled_recipe(dish)?.title === item.recipe.title;
+  const library = dish ? bundled_recipe(dish) : null;
+  const standard = library != null && library.title === item.recipe.title;
   return {
     status: "ready",
     kind: item.kind,
-    recipe: item.recipe,
+    // A saved bundled dish opens as the library has it now, so a later correction (wording, an allergen) reaches it.
+    recipe: standard ? library : item.recipe,
     guesses: [],
     selected: 0,
     image: item.image_url ? { status: "ready", url: item.image_url } : NO_IMAGE,

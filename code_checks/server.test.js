@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { createServer } from "node:http";
+import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { create_app } from "../server/app.js";
 import { curated_keys, image_key } from "../server/dish_images.js";
@@ -455,6 +456,15 @@ test("the second check gets the recipe as data, and the allergen words add what'
   assert.deepEqual(with_detected_allergens(items(["almond milk", "soy sauce", "tahini"])).allergens, ["tree nuts", "wheat", "soy", "sesame"]);
   assert.deepEqual(with_detected_allergens(items(["unsalted butter", "shrimp", "Worcestershire sauce"])).allergens, ["milk", "fish", "shellfish"]);
   assert.deepEqual(with_detected_allergens(items(["water"], ["milk"])).allergens, ["milk"], "never removes one");
+});
+
+test("the allergen words read every shared case the same way as the app's written drink versions", () => {
+  const { cases } = JSON.parse(readFileSync(new URL("../data/allergen-word-cases.json", import.meta.url), "utf8"));
+  for (const { text, has = [], not = [] } of cases) {
+    const found = with_detected_allergens({ ...KATSU, allergens: [], ingredients: [{ amount: "1", unit: "", item: text }] }).allergens;
+    for (const allergen of has) assert.ok(found.includes(allergen), `${text} contains ${allergen}`);
+    for (const allergen of not) assert.ok(!found.includes(allergen), `${text} is not ${allergen}`);
+  }
 });
 
 test("if the second check fails, the draft is shown (allergens topped up) but not kept", async (t) => {

@@ -3,7 +3,7 @@ import type { CurrentRecipe } from "../AppContext";
 import type { CollectionDish } from "./collectionPhotos";
 import type { RecentEntry, RecentlyViewed } from "./recentlyViewed";
 import { find_collection_dish } from "./shelves";
-import { NO_IMAGE, type Kind } from "./types";
+import { NO_IMAGE, type Kind, type SavedRecipe } from "./types";
 
 type Generated = Extract<RecentEntry, { type: "generated" }>;
 export type ViewedItem = { key: string; name: string; kind: Kind; dish: CollectionDish | null; entry: Generated | null };
@@ -16,6 +16,13 @@ export function viewed_items(entries: RecentEntry[]): ViewedItem[] {
     const dish = find_collection_dish(entry.id);
     return dish ? [{ key: `b|${dish.id}`, name: dish.name, kind: dish.kind, dish, entry: null }] : [];
   });
+}
+
+/** The kept cover of a recipe made with AI that is also in Saved, so Recently viewed shows the same photo as Saved. */
+export function saved_photo_of(item: ViewedItem, saved: SavedRecipe[]): string | null {
+  const entry = item.entry;
+  if (!entry) return null;
+  return saved.find((s) => s.kind === entry.kind && s.recipe.title === entry.recipe.title && s.photo_uri)?.photo_uri ?? null;
 }
 
 /** The recipe screen's state for reopening a recipe made with AI from Recently viewed. */

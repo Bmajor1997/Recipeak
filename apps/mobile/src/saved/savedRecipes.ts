@@ -83,7 +83,10 @@ export function create_saved_recipes(
       const id = new_id();
       // A photo that isn't kept still lets the recipe save, just without its picture.
       // A bundled dish's photo ships with the app, so it's shown from there instead of a copy that could go missing.
-      const photo_uri = photoUri && !bundled_id ? await photos.keep_photo(photoUri, id).catch(() => null) : null;
+      const fresh = photoUri && !bundled_id ? await photos.keep_photo(photoUri, id).catch(() => null) : null;
+      // Saving again without a cover on screen keeps the cover it was saved with, rather than losing it.
+      const photo_uri = fresh ?? (bundled_id ? null : (replaced.find((s) => s.photo_uri)?.photo_uri ?? null));
+      image_url ??= replaced.find((s) => s.image_url)?.image_url ?? null;
       const entry: SavedRecipe = {
         id,
         saved_at: now().toISOString(),

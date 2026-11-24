@@ -192,19 +192,20 @@ export function review_payload({ name, kind, recipe }, model = DEFAULT_MODEL) {
 
 // Words that reliably mean an allergen, checked after the AI so a missed allergen is added, never removed. Plant
 // look-alikes are taken out first ("coconut milk", "peanut butter", "butternut", "eggplant", "rice noodles").
+// data/allergen-word-cases.json is checked against this list and the app's (curatedVersions.ts), so they stay in step.
 const ALLERGEN_WORDS = {
-  milk: /\b(?:milk|butter|buttermilk|cream|cheeses?|parmesan|parmigiano|pecorino|mozzarella|cheddar|feta|ricotta|mascarpone|paneer|halloumi|gruy[eè]re|brie|gouda|yogh?urt|ghee|cr[eè]me fra[iî]che|sour cream|half-and-half|whey|condensed milk|evaporated milk)\b/,
-  eggs: /\b(?:eggs?|egg (?:yolks?|whites?)|mayonnaise|mayo|aioli|meringue)\b/,
+  milk: /\b(?:milk|butter|buttermilk|cream|cheeses?|parmesan|parmigiano|pecorino|mozzarella|cheddar|feta|ricotta|mascarpone|paneer|halloumi|gruy[eè]re|brie|gouda|yogh?urt|ghee|cr[eè]me fra[iî]che|sour cream|half-and-half|whey|condensed milk|evaporated milk|irish cream)\b/,
+  eggs: /\b(?:eggs?|egg (?:yolks?|whites?)|eggnog|mayonnaise|mayo|aioli|meringue)\b/,
   fish: /\b(?:fish|salmon|tuna|cod|halibut|tilapia|trout|mackerel|sardines?|anchov(?:y|ies)|bonito|haddock|snapper|sea bass|catfish|worcestershire)\b/,
   shellfish: /\b(?:shrimp|prawns?|crab|lobster|crawfish|crayfish|scallops?|clams?|mussels?|oysters?|langoustines?)\b/,
-  "tree nuts": /\b(?:almonds?|cashews?|walnuts?|pecans?|pistachios?|hazelnuts?|macadamias?|pine nuts?|brazil nuts?|amaretto|frangelico|marzipan|praline|pesto|nutella)\b/,
+  "tree nuts": /\b(?:almonds?|cashews?|walnuts?|pecans?|pistachios?|hazelnuts?|macadamias?|pine nuts?|brazil nuts?|orgeat|amaretto|frangelico|marzipan|praline|pesto|nutella)\b/,
   peanuts: /\b(?:peanuts?|peanut butter|satay)\b/,
-  wheat: /\b(?:flour|bread|breadcrumbs|panko|pasta|spaghetti|penne|linguine|fettuccine|macaroni|lasagna|noodles?|couscous|bulgur|farro|semolina|tortillas?|pitas?|naan|baguette|croutons?|soy sauce|seitan|udon|ramen|dumpling wrappers?|wonton wrappers?|pie crust|puff pastry|phyllo|crackers?)\b/,
-  soy: /\b(?:soy|soya|tofu|edamame|miso|tempeh|soy sauce|tamari)\b/,
+  wheat: /\b(?:flour|bread|breadcrumbs|panko|pasta|spaghetti|penne|linguine|fettuccine|macaroni|lasagna|noodles?|couscous|bulgur|farro|semolina|tortillas?|pitas?|naan|baguette|croutons?|soy sauce|seitan|udon|ramen|dumpling wrappers?|wonton wrappers?|pie crust|puff pastry|phyllo|crackers?|beer|ale|lager|stout|malt|barley)\b/,
+  soy: /\b(?:soy|soya|soybeans?|soymilk|tofu|edamame|miso|tempeh|soy sauce|tamari|shoyu)\b/,
   sesame: /\b(?:sesame|tahini|furikake|za'?atar)\b/,
 };
 const NOT_AN_ALLERGEN =
-  /\b(?:coconut|oat|rice|almond|soy|cashew) (?:milk|cream|yogh?urt)\b|\bcream of (?:coconut|tartar)\b|\b(?:peanut|almond|cashew|sunflower|apple|cocoa|shea|nut|seed) butter\b|\bbutternut\b|\bbutter (?:beans|lettuce)\b|\beggplants?\b|\b(?:gluten-free|rice|glass|cellophane|soba|corn|sweet potato) (?:pasta|noodles|tortillas?|bread|flour|crackers?|panko)\b|\b(?:rice|corn|almond|coconut|chickpea|tapioca|potato|cassava) flour\b|\bcornbread\b|\bfish-free\b|\bvegan [a-z]+\b|\bwater chestnuts?\b|\bnutmeg\b/g;
+  /\b(?:coconut|oat|rice|almond|soy|cashew) (?:milk|cream|yogh?urt)\b|\bcream of (?:coconut|tartar)\b|\b(?:peanut|almond|cashew|sunflower|apple|cocoa|shea|nut|seed) butter\b|\bbutternut\b|\bbutter (?:beans|lettuce)\b|\beggplants?\b|\b(?:gluten-free|rice|glass|cellophane|soba|corn|sweet potato) (?:pasta|noodles|tortillas?|bread|flour|crackers?|panko)\b|\b(?:rice|corn|almond|coconut|chickpea|tapioca|potato|cassava) flour\b|\bcornbread\b|\bfish-free\b|\bvegan [a-z]+\b|\bwater chestnuts?\b|\bnutmeg\b|\bginger (?:beer|ale)\b|\broot beer\b|\bgluten-free (?:beer|ale|lager)\b/g;
 
 // Nuts, peanuts, soy and sesame are checked on the full name ("almond milk" is tree nuts, "peanut butter" is peanuts);
 // the others after look-alikes are taken out ("almond milk" isn't milk, "peanut butter" isn't butter).
