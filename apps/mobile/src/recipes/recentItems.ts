@@ -25,6 +25,11 @@ export function saved_photo_of(item: ViewedItem, saved: SavedRecipe[]): string |
   return saved.find((s) => s.kind === entry.kind && s.recipe.title === entry.recipe.title && s.photo_uri)?.photo_uri ?? null;
 }
 
+/** The first photo address that exists and hasn't failed to load, or null for the app's artwork. */
+export function first_working(addresses: (string | null)[], failed: string[]): string | null {
+  return addresses.find((u): u is string => !!u && !failed.includes(u)) ?? null;
+}
+
 /** The recipe screen's state for reopening a recipe made with AI from Recently viewed. */
 export function generated_as_current(entry: Generated): Extract<CurrentRecipe, { status: "ready" }> {
   const image = entry.image_url ? ({ status: "ready", url: entry.image_url } as const) : NO_IMAGE;

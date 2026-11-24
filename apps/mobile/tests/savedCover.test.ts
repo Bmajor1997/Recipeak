@@ -4,7 +4,7 @@ import { bundled_recipe, find_bundled_dish } from "../src/recipes/bundled";
 import { curated_non_alcoholic } from "../src/recipes/curatedVersions";
 import { create_saved_recipes } from "../src/saved/savedRecipes";
 import { saved_as_current, saved_cover } from "../src/saved/savedCover";
-import { saved_photo_of, viewed_items } from "../src/recipes/recentItems";
+import { first_working, saved_photo_of, viewed_items } from "../src/recipes/recentItems";
 import type { Recipe } from "../src/recipes/types";
 
 vi.mock("expo-asset", () => ({
@@ -127,6 +127,11 @@ describe("saved recipe covers", () => {
     const [item] = viewed_items([{ type: "generated", kind: "meal", name: "Ube cheesecake", recipe: ai_recipe, image_url: null }]);
     expect(saved_photo_of(item, await saved.list())).toBe("file:///docs/recipe-photos/u.jpg");
     expect(saved_photo_of(item, [])).toBeNull();
+    // A missing saved copy, then a library photo that fails too (offline), end at the artwork instead of retrying.
+    const both = ["file:///gone.jpg", "https://api.example/images/u.jpg"];
+    expect(first_working(both, [])).toBe(both[0]);
+    expect(first_working(both, [both[0]])).toBe(both[1]);
+    expect(first_working(both, both)).toBeNull();
   });
 
   it("a saved bundled dish opens as the library has it now, so later corrections reach it", async () => {

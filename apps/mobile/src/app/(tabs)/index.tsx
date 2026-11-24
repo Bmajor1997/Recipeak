@@ -8,7 +8,7 @@ import { photos_left_text, useCamera } from "../../camera/CameraProvider";
 import { COLLECTION, type CollectionDish } from "../../recipes/collectionPhotos";
 import { dish_minutes, explore_collage, home_shelves, local_day, type Pairing, tonights_pick } from "../../recipes/shelves";
 import { type SavedRecipe } from "../../recipes/types";
-import { generated_as_current, saved_photo_of, type ViewedItem, viewed_items } from "../../recipes/recentItems";
+import { first_working, generated_as_current, saved_photo_of, type ViewedItem, viewed_items } from "../../recipes/recentItems";
 import { useOpenWallDish } from "../../recipes/useOpenWallDish";
 import { useOnboarding } from "../../onboarding/OnboardingProvider";
 import { greeting } from "../../ui/greeting";
@@ -23,11 +23,12 @@ import { PhotoWall } from "../../ui/PhotoWall";
  */
 function RecentPhoto({ item, saved_photo, style }: { item: ViewedItem; saved_photo: string | null; style: object }) {
   const { api } = useApp();
-  const [failed, set_failed] = useState<string | null>(null);
+  // Every address that failed, so a missing saved copy and an offline library photo both end at the artwork.
+  const [failed, set_failed] = useState<string[]>([]);
   const library = item.entry?.image_url ? api.image_uri(item.entry.image_url) : null;
-  const uri = [saved_photo, library].find((u) => u && u !== failed) ?? null;
+  const uri = first_working([saved_photo, library], failed);
   if (item.dish) return <Image source={item.dish.source} style={style} accessible={false} />;
-  if (uri) return <Image source={{ uri }} style={style} accessible={false} onError={() => set_failed(uri)} />;
+  if (uri) return <Image source={{ uri }} style={style} accessible={false} onError={() => set_failed((f) => [...f, uri])} />;
   return <Image source={HERO_ART} style={[style, { opacity: 0.85 }]} resizeMode="contain" accessible={false} />;
 }
 
