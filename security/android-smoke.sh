@@ -7,6 +7,11 @@ evidence() {
 }
 trap evidence EXIT
 adb install -r "$1"
+# The start screen's photos drift without end, and uiautomator can't capture a screen that never goes idle. With
+# animations off, Android reports Reduce Motion, so the photos hold still (as they do for people who turn it on).
+for scale in window_animation_scale transition_animation_scale animator_duration_scale; do
+  adb shell settings put global "$scale" 0
+done
 adb shell am force-stop "$package"
 adb shell am start -W -n "$package/.MainActivity" | tee android-smoke-launch.txt
 grep -q 'Status: ok' android-smoke-launch.txt
