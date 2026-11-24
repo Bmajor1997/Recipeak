@@ -204,6 +204,15 @@ function with_other_changes(written: string, ingredients: Ingredient[], steps: s
   return { ingredients: list, steps: method };
 }
 
+// Stand-ins a written version may use, and what each takes the place of ("aquafaba" instead of the egg white).
+const SUBSTITUTES: [RegExp, RegExp][] = [
+  [/\baquafaba\b/i, /\beggs?\b|\begg (?:whites?|yolks?)\b/i],
+  [/\b(?:oat|almond|soy|coconut|rice|cashew|plant)[- ](?:milk|cream)\b/i, /\b(?:milk|cream|half-and-half)\b/i],
+];
+/** True when the written version uses a stand-in for this ingredient, so the original isn't carried over too. */
+const replaced_by = (written: string, ingredient: Ingredient) =>
+  SUBSTITUTES.some(([stand_in, original]) => stand_in.test(written) && original.test(ingredient.item) && !stand_in.test(ingredient.item));
+
 /** The recipe's own alcohol-free version, or null when it has none written (the AI is asked instead). */
 export function curated_non_alcoholic(recipe: Recipe): Recipe | null {
   const cocktail = recipe.cocktail;
@@ -240,7 +249,7 @@ export function curated_non_alcoholic(recipe: Recipe): Recipe | null {
   const written_words = new Set(lower.split(/[^a-z]+/));
   const named = (i: Ingredient) => naming_words(i.item).some((w) => written_words.has(w));
   const kept = recipe.ingredients
-    .filter((i) => !has_alcohol(i.item) && (!own_amounts || (/\bsame\b/.test(lower) && !named(i))))
+    .filter((i) => !has_alcohol(i.item) && !replaced_by(written, i) && (!own_amounts || (/\bsame\b/.test(lower) && !named(i))))
     .map((i) => [i.amount, i.unit, i.item].filter(Boolean).join(" "));
   const from_original = kept.length ? [`From the original, without the alcohol: ${kept.join("; ")}.`] : [];
   return { ...base, description: sentence, ingredients: [], steps: [sentence, ...from_original] };

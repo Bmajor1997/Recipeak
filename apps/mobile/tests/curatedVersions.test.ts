@@ -160,6 +160,12 @@ describe("written versions that lean on the original", () => {
     const mulled = curated_non_alcoholic(recipe_of("mulled-wine"))!.steps;
     expect(mulled[1]).toMatch(/cinnamon sticks.*cloves.*star anise/);
     expect(mulled[1]).not.toMatch(/orange|wine/i);
+    // A stand-in in the written version replaces the original ingredient: aquafaba, not egg white as well.
+    for (const id of ["amaretto-sour", "hotel-georgia", "raspberry-beret"]) {
+      const steps = curated_non_alcoholic(recipe_of(id))!.steps;
+      expect(steps[0], id).toMatch(/aquafaba/i);
+      expect(steps.slice(1).join(" "), id).not.toMatch(/\begg/i);
+    }
     // Liqueurs the word list once missed are never carried over (Brandy Alexander, Penicillin, B-52).
     for (const id of ["brandy-alexander", "penicillin", "b-52"])
       expect(curated_non_alcoholic(recipe_of(id))!.steps.join(" ")).not.toMatch(/crème de cacao|single malt|grand marnier/i);
