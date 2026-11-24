@@ -62,7 +62,7 @@ jobs:
       - name: Say which settings are missing
         run: |
           for name in EXPO_PUBLIC_FIREBASE_API_KEY EXPO_PUBLIC_FIREBASE_PROJECT_ID EXPO_PUBLIC_FIREBASE_APP_ID EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID EXPO_PUBLIC_REVENUECAT_ANDROID_API_KEY; do
-            [ -n "${!name}" ] || echo "::warning::Repository variable $name is not set; that part of the app will say it isn't set up."
+            [ -n "${!name}" ] || echo "::warning::Repository variable $name is not set; that part of the app will say it isn't set up (Google sign-in: see docs/GOOGLE-SIGN-IN.md)."
           done
       - name: Install app dependencies
         run: npm ci --ignore-scripts

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { createServer } from "node:http";
+import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { create_app } from "../server/app.js";
 import { curated_keys, image_key } from "../server/dish_images.js";
@@ -152,7 +153,31 @@ test("bad uploads are rejected without calling OpenAI", async (t) => {
   assert.equal(s.calls.length, 0);
 });
 
-test("follow-up recipes (other guesses, diet versions) need a counted photo and are capped for free users", async (t) => {
+test("free diet versions of library dishes work for a new account with no photos, and are made once for everyone", async (t) => {
+  const s = await start({ reply: RECIPE, featured: curated_keys() }); t.after(s.close);
+  for (const diet of ["low-carb", "non-alcoholic"]) {
+    const made = await s.call("/api/recipe", { user: "newbie", body: { name: "Gimlet", kind: "cocktail", diet } });
+    assert.equal(made.status, 200, `${diet} is free with zero photos`);
+  }
+  assert.equal(s.calls.length, 2);
+  // Another account asking for the same version gets the kept one: no AI request.
+  assert.equal((await s.call("/api/recipe", { user: "other", body: { name: "gimlet", kind: "cocktail", diet: "low-carb" } })).status, 200);
+  assert.equal(s.calls.length, 2);
+  // They use no free photo and no follow-up, so photo recognition limits are untouched.
+  assert.equal(s.store.free_photos_left("newbie"), 3);
+  assert.deepEqual(s.store.records().filter((r) => r.user_id === "newbie").map((r) => r.feature), ["diet", "diet"]);
+  // Vegetarian and vegan stay Premium even for library dishes, before anything is spent.
+  for (const diet of ["vegetarian", "vegan"]) {
+    const refused = await s.call("/api/recipe", { user: "newbie", body: { name: "Margarita", kind: "cocktail", diet } });
+    assert.equal(refused.json.code, "PREMIUM_VERSIONS");
+  }
+  assert.equal(s.calls.length, 2);
+  // A name the library doesn't have is still a follow-up to a photo: a diet request can't stand in for one.
+  const unknown = await s.call("/api/recipe", { user: "newbie", body: { name: "Imaginary Test Dish Gamma", kind: "meal", diet: "low-carb" } });
+  assert.equal(unknown.json.code, "FREE_VERSIONS_USED");
+});
+
+test("follow-up recipes (other guesses, diet versions of new dishes) need a counted photo and are capped for free users", async (t) => {
   const s = await start({ reply: (n) => (n === 1 ? IDENTIFIED : RECIPE) }); t.after(s.close);
   const ask = { name: "Paloma", kind: "cocktail", diet: "non-alcoholic" };
   // bob has never taken a photo, so no free follow-ups.
@@ -431,6 +456,15 @@ test("the second check gets the recipe as data, and the allergen words add what'
   assert.deepEqual(with_detected_allergens(items(["almond milk", "soy sauce", "tahini"])).allergens, ["tree nuts", "wheat", "soy", "sesame"]);
   assert.deepEqual(with_detected_allergens(items(["unsalted butter", "shrimp", "Worcestershire sauce"])).allergens, ["milk", "fish", "shellfish"]);
   assert.deepEqual(with_detected_allergens(items(["water"], ["milk"])).allergens, ["milk"], "never removes one");
+});
+
+test("the allergen words read every shared case the same way as the app's written drink versions", () => {
+  const { cases } = JSON.parse(readFileSync(new URL("../data/allergen-word-cases.json", import.meta.url), "utf8"));
+  for (const { text, has = [], not = [] } of cases) {
+    const found = with_detected_allergens({ ...KATSU, allergens: [], ingredients: [{ amount: "1", unit: "", item: text }] }).allergens;
+    for (const allergen of has) assert.ok(found.includes(allergen), `${text} contains ${allergen}`);
+    for (const allergen of not) assert.ok(!found.includes(allergen), `${text} is not ${allergen}`);
+  }
 });
 
 test("if the second check fails, the draft is shown (allergens topped up) but not kept", async (t) => {

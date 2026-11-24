@@ -81,7 +81,7 @@ function Harness() {
     current,
     set_current,
     api: { recipe: mocks.recipe, recipe_addition: mocks.addition, allowance: mocks.allowance },
-    saved: {},
+    saved: { list: async () => [] },
     ratings: {},
   };
   return createElement(TestProvider, { value }, createElement(RecipeScreen));

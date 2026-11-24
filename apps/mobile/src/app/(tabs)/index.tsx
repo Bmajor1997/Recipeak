@@ -6,23 +6,33 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../../AppContext";
 import { photos_left_text, useCamera } from "../../camera/CameraProvider";
 import { COLLECTION, type CollectionDish } from "../../recipes/collectionPhotos";
-import {
-  dish_minutes,
-  explore_collage,
-  find_collection_dish,
-  home_shelves,
-  local_day,
-  type Pairing,
-  tonights_pick,
-} from "../../recipes/shelves";
-import { NO_IMAGE, type SavedRecipe } from "../../recipes/types";
+import { dish_minutes, explore_collage, home_shelves, local_day, type Pairing, tonights_pick } from "../../recipes/shelves";
+import { type SavedRecipe } from "../../recipes/types";
+import { first_working, generated_as_current, saved_photo_of, type ViewedItem, viewed_items } from "../../recipes/recentItems";
 import { useOpenWallDish } from "../../recipes/useOpenWallDish";
 import { useOnboarding } from "../../onboarding/OnboardingProvider";
-import { total_minutes } from "../../recipes/search";
 import { greeting } from "../../ui/greeting";
 import { PhotoCard } from "../../ui/PhotoCard";
+import { SavedCard } from "../../saved/SavedCard";
 import { useTheme, useThemedStyles, type Palette } from "../../ui/theme";
 import { PhotoWall } from "../../ui/PhotoWall";
+
+/**
+ * A recently viewed recipe's small photo: the bundled one, or for a recipe made with AI its copy in Saved (the same
+ * cover Saved shows), then its library photo.
+ */
+function RecentPhoto({ item, saved_photo, style }: { item: ViewedItem; saved_photo: string | null; style: object }) {
+  const { api } = useApp();
+  // Every address that failed, so a missing saved copy and an offline library photo both end at the artwork.
+  const [failed, set_failed] = useState<string[]>([]);
+  const library = item.entry?.image_url ? api.image_uri(item.entry.image_url) : null;
+  const uri = first_working([saved_photo, library], failed);
+  if (item.dish) return <Image source={item.dish.source} style={style} accessible={false} />;
+  if (uri) return <Image source={{ uri }} style={style} accessible={false} onError={() => set_failed((f) => [...f, uri])} />;
+  return <Image source={HERO_ART} style={[style, { opacity: 0.85 }]} resizeMode="contain" accessible={false} />;
+}
+
+const HERO_ART = require("../../../assets/hero.png");
 
 export default function HomeScreen() {
   const { colors, type } = useTheme();
@@ -36,22 +46,20 @@ export default function HomeScreen() {
   const shelves = useMemo(() => home_shelves(day, 10, mix), [day, mix]);
   const collage = useMemo(() => explore_collage(day, mix), [day, mix]);
   const cell = Math.floor((useWindowDimensions().width - 20 * 2 - 12 * 2 - 8 * 3) / 4);
-  const [viewed, set_viewed] = useState<CollectionDish[]>([]);
+  const [viewed, set_viewed] = useState<ViewedItem[]>([]);
   const { photosLeft, refresh_allowance } = useCamera();
   const insets = useSafeAreaInsets();
-  const [recent, set_recent] = useState<SavedRecipe[]>([]);
+  const [all_saved, set_all_saved] = useState<SavedRecipe[]>([]);
+  const recent = all_saved.slice(0, 8);
 
   useFocusEffect(
     useCallback(() => {
       refresh_allowance();
       recently_viewed?.list().then(
-        (ids) => set_viewed(ids.flatMap((id) => find_collection_dish(id) ?? []).slice(0, 8)),
+        (entries) => set_viewed(viewed_items(entries).slice(0, 8)),
         () => set_viewed([]),
       );
-      saved.list().then(
-        (list) => set_recent(list.slice(0, 8)),
-        () => set_recent([]),
-      );
+      saved.list().then(set_all_saved, () => set_all_saved([]));
     }, [saved, refresh_allowance, recently_viewed]),
   );
 
@@ -109,17 +117,23 @@ export default function HomeScreen() {
         <>
           <SectionHeader title="Recently viewed" />
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20, gap: 10 }}>
-            {viewed.map((dish) => (
+            {viewed.map((item) => (
               <Pressable
-                key={dish.id}
+                key={item.key}
                 accessibilityRole="button"
-                accessibilityLabel={`Open ${dish.name} recipe, ${dish.kind === "meal" ? "meal" : "drink"}`}
-                onPress={() => void open(dish)}
+                accessibilityLabel={`Open ${item.name} recipe, ${item.kind === "meal" ? "meal" : "drink"}`}
+                onPress={() => {
+                  if (item.dish) return void open(item.dish);
+                  if (!item.entry) return;
+                  // A recipe made with AI reopens as it was kept: no AI request and no allowance used.
+                  set_current(generated_as_current(item.entry));
+                  router.push("/recipe");
+                }}
                 style={({ pressed }) => [styles.recentChip, pressed && { opacity: 0.7 }]}
               >
-                <Image source={dish.source} style={styles.recentPhoto} accessible={false} />
+                <RecentPhoto item={item} saved_photo={saved_photo_of(item, all_saved)} style={styles.recentPhoto} />
                 <Text style={[type.body, { maxWidth: 140 }]} numberOfLines={1}>
-                  {dish.name}
+                  {item.name}
                 </Text>
               </Pressable>
             ))}
@@ -172,30 +186,7 @@ export default function HomeScreen() {
             keyExtractor={(item) => item.id}
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ paddingHorizontal: 20, gap: 12 }}
-            renderItem={({ item }) => (
-              <PhotoCard
-                title={item.recipe.title}
-                kind={item.kind}
-                minutes={total_minutes(item)}
-                photoUri={item.photo_uri}
-                width={160}
-                height={200}
-                onPress={() => {
-                  set_current({
-                    status: "ready",
-                    kind: item.kind,
-                    recipe: item.recipe,
-                    guesses: [],
-                    selected: 0,
-                    image: NO_IMAGE,
-                    localPhoto: item.photo_uri,
-                    savedId: item.id,
-                    ai: item.ai,
-                  });
-                  router.push("/recipe");
-                }}
-              />
-            )}
+            renderItem={({ item }) => <SavedCard item={item} width={160} height={200} />}
           />
         </>
       )}

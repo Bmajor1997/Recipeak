@@ -50,4 +50,8 @@ export type SavedRecipe = {
   photo_uri: string | null;
   /** Made with AI, so reopening it still shows the reminder to check ingredients and allergens. */
   ai?: boolean;
+  /** The bundled collection dish it came from: its photo ships with the app, so it never needs a copy. */
+  bundled_id?: string;
+  /** The shared library photo's path on the server (/images/….jpg), to recover the cover if the copy is missing. */
+  image_url?: string;
 };

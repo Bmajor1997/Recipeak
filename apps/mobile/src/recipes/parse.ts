@@ -59,7 +59,9 @@ export function parse_recipe(v: unknown): Recipe {
     make_ahead: v.make_ahead === undefined ? "" : str(v.make_ahead),
     variations: v.variations === undefined ? [] : list(v.variations, 6, (s) => str(s, 300)),
   };
-  if (!recipe.title || !recipe.ingredients.length || !recipe.steps.length) throw new Error("Invalid recipe");
+  // Only a written alcohol-free drink (curatedVersions.ts) may list everything in its method instead of ingredients.
+  const written_drink = recipe.cocktail !== null && !recipe.cocktail.alcoholic;
+  if (!recipe.title || (!recipe.ingredients.length && !written_drink) || !recipe.steps.length) throw new Error("Invalid recipe");
   return recipe;
 }
 
@@ -100,6 +102,9 @@ export function parse_allowance(v: unknown): Allowance {
 }
 
 /** Saved data on the phone can be old or damaged; skip anything that doesn't check out rather than crash. */
+/** A shared library photo on the recipe server. */
+export const LIBRARY_IMAGE = /^\/images\/[a-z0-9-]+\.jpg$/;
+
 export function parse_saved_list(v: unknown): SavedRecipe[] {
   if (!Array.isArray(v)) return [];
   return v.flatMap((item) => {
@@ -116,6 +121,8 @@ export function parse_saved_list(v: unknown): SavedRecipe[] {
           recipe: parse_recipe(item.recipe),
           photo_uri: photo,
           ...(item.ai === true ? { ai: true } : {}),
+          ...(typeof item.bundled_id === "string" && /^[a-z0-9-]{1,80}$/.test(item.bundled_id) ? { bundled_id: item.bundled_id } : {}),
+          ...(typeof item.image_url === "string" && LIBRARY_IMAGE.test(item.image_url) ? { image_url: item.image_url } : {}),
         },
       ];
     } catch {

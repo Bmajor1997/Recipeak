@@ -82,13 +82,23 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     // Checked before anything is spent, so a free account is never charged a version it can't see.
     if (request.diet && PREMIUM_DIETS.includes(request.diet) && !is_premium) throw premium_versions();
     if (!request.diet && !request.correction) return photo_recipe(user, request, is_premium);
+    // A diet version of a dish already in the library is shared: made once, then reused for everyone with no AI request.
+    const key = image_key(request.kind, request.name);
+    const diet_key = request.diet && key ? `diet:${key}:${request.diet}` : null;
+    const kept = diet_key ? store.get_recipe(diet_key) : null;
+    if (kept) return { recipe: kept, image: photo(request.kind, request.name, user, null) };
+    // Free diet versions (everything but vegetarian and vegan) of a library dish are free for every account, even one
+    // that hasn't taken a photo yet: they use no free photo and no follow-up. Names the library doesn't have stay
+    // follow-ups to a photo, so a diet request can't stand in for photo recognition or a new recipe.
+    const in_library = Boolean(key && (featured.has(key) || store.get_recipe(`photo:${key}`)));
     // A name typed after a photo couldn't be read stands in for that photo, so it uses a free photo (the unread
     // photo didn't). Other recipe requests are follow-ups to a photo that worked.
-    const feature = request.correction ? "correction" : "recipe";
+    const feature = request.correction ? "correction" : request.diet && in_library ? "diet" : "recipe";
     const { text, request_id } = await call_openai({ fetch_impl, store, env, user_id: user.uid, feature, premium: is_premium,
       payload: recipe_payload(request, model), signal });
     let recipe_reply;
     try { recipe_reply = validate_recipe(JSON.parse(text)); } catch (error) { store.release_photo(request_id); throw error; }
+    if (diet_key && in_library) store.set_recipe({ key: diet_key, kind: request.kind, name: request.name, recipe: recipe_reply });
     // A diet version shares the original dish's photo, so only the standard recipe may describe it.
     return { recipe: recipe_reply, image: photo(request.kind, request.name, user, request.diet ? null : recipe_reply) };
   }

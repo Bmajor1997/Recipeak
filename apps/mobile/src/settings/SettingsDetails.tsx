@@ -110,6 +110,7 @@ function Account() {
   const { type } = useTheme();
   const styles = useThemedStyles(create_styles);
   const { user, api, set_current } = useApp();
+  const onboarding = useOnboarding();
   const [confirm, set_confirm] = useState(false);
   const [deleting, set_deleting] = useState(false);
   const [password, set_password] = useState("");
@@ -147,8 +148,11 @@ function Account() {
         await firebase.reset_password(user.email);
         set_notice("Password reset requested. Check your email for the next steps.");
       } else {
-        await firebase.sign_out();
+        // The recipe on screen is closed first, so nothing of this account shows while the start screen opens.
         set_current(null);
+        // Someone who signed out has an account, so the start screen offers Log in first.
+        onboarding.update({ entry: "sign-in" });
+        await firebase.sign_out();
         set_confirm(false);
       }
     } catch {
