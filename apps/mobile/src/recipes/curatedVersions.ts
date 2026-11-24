@@ -166,7 +166,7 @@ function with_other_changes(written: string, ingredients: Ingredient[], steps: s
       method = method.map((step) => step.replace(named, now.trim()));
       continue;
     }
-    const added = /^(?:then )?add (?:a |an )?((?:[\d½¼¾⅓⅔/.]+\s*)+(?:oz|ml|cups?|tbsp|tsp|dashes?)\s+)?(?:(?:more|extra) )?(.+)$/.exec(
+    const added = /^(?:then )?add (?:a |an )?([\d½¼¾⅓⅔/.][\d½¼¾⅓⅔/. ]*(?:oz|ml|cups?|tbsp|tsp|dashes?)\s+)?(?:(?:more|extra) )?(.+)$/.exec(
       clause,
     );
     if (added && !has_alcohol(added[2])) {
