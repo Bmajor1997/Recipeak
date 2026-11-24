@@ -617,16 +617,22 @@ function RecipeView({ current }: { current: Ready }) {
     ? [diet]
     : DIETS.filter((d) => profile.options.includes(d) || profile.status[d]?.status === "review" || d === diet);
 
+  const fixed_yield = recipe.ingredients.length === 0;
   const footer = (
     <View style={[styles.bottomBar, { paddingBottom: insets.bottom + 12 }]}>
       {save_problem && <Notice tone="error">{save_problem}</Notice>}
       <View style={styles.bottomRow}>
         <View style={styles.stepper}>
-          <RoundButton icon="remove" label="Fewer servings" small onPress={() => set_servings(Math.max(1, servings - 1))} />
+          {/* A version written as a sentence keeps its amounts in the method, which can't be scaled: its yield is fixed. */}
+          {fixed_yield ? null : (
+            <RoundButton icon="remove" label="Fewer servings" small onPress={() => set_servings(Math.max(1, servings - 1))} />
+          )}
           <Text style={styles.servings} accessibilityLiveRegion="polite">
             Serves {servings}
           </Text>
-          <RoundButton icon="add" label="More servings" small onPress={() => set_servings(Math.min(50, servings + 1))} />
+          {fixed_yield ? null : (
+            <RoundButton icon="add" label="More servings" small onPress={() => set_servings(Math.min(50, servings + 1))} />
+          )}
         </View>
         <Pressable
           accessibilityRole="button"

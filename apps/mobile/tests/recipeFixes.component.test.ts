@@ -225,10 +225,13 @@ describe("a written non-alcoholic version", () => {
     // Written only as a sentence, it offers just the way back, not "vegan" or "gluten-free" for a drink that may fit.
     for (const other of ["vegan", "vegetarian", "gluten-free", "low-carb"])
       expect(tree!.root.findAllByProps({ label: other })).toHaveLength(0);
+    // Its amounts are in the method, which can't be scaled, so the servings can't be changed either.
+    expect(tree!.root.findAllByProps({ label: "More servings" })).toHaveLength(0);
     // The chip again goes back to the regular drink.
     await press("non-alcoholic");
     expect(text()).toContain('"gin"');
     expect(text()).not.toContain("Gimlet (non-alcoholic)");
+    expect(tree!.root.findAllByProps({ label: "More servings" })).toHaveLength(1);
     expect(mocks.recipe).not.toHaveBeenCalled();
   });
 
