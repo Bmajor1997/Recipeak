@@ -74,6 +74,15 @@ describe("written non-alcoholic versions", () => {
       cocktail: { ...gimlet.cocktail!, non_alcoholic_version: "Shake lemon, orgeat and an egg white." },
     };
     expect(curated_non_alcoholic(sour)!.allergens).toEqual(expect.arrayContaining(["tree nuts", "eggs"]));
+    for (const ingredient of ["soy milk", "soy cream"]) {
+      const drink = {
+        ...gimlet,
+        allergens: [],
+        cocktail: { ...gimlet.cocktail!, non_alcoholic_version: `Shake coffee, ${ingredient} and syrup.` },
+      };
+      expect(curated_non_alcoholic(drink)!.allergens).toContain("soy");
+      expect(curated_non_alcoholic(drink)!.allergens).not.toContain("milk");
+    }
     // Only an alcohol-free drink may have no ingredient list.
     expect(() => parse_recipe({ ...na, cocktail: { ...na.cocktail!, alcoholic: true } })).toThrow();
     expect(() => parse_recipe({ ...na, cocktail: null })).toThrow();

@@ -52,7 +52,7 @@ function allergens_in(text: string, regular: string[]): string[] {
   const raw = text.toLowerCase();
   const without = raw.replace(NOT_AN_ALLERGEN, " ");
   for (const [allergen, words] of Object.entries(ALLERGEN_WORDS))
-    if (words.test(allergen === "tree nuts" || allergen === "peanuts" ? raw : without)) found.add(allergen);
+    if (words.test(allergen === "tree nuts" || allergen === "peanuts" || allergen === "soy" ? raw : without)) found.add(allergen);
   return [...found];
 }
 

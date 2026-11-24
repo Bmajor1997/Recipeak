@@ -53,10 +53,24 @@ type Ready = Extract<CurrentRecipe, { status: "ready" }>;
 
 export default function RecipeScreen() {
   const { current } = useApp();
-  if (!current || current.status === "loading") return <Finding photo={current?.status === "loading" ? current.photo : undefined} />;
-  if (current.status === "ai-offer") return <AiOffer current={current} />;
-  if (current.status === "problem") return <Problem message={current.message} source={current.source ?? "photo"} />;
-  return <RecipeView current={current} />;
+  const previous = current?.status === "ai-offer" && current.previous?.status === "ready" ? current.previous : null;
+  const ready = current?.status === "ready" ? current : previous;
+  return (
+    <>
+      {ready && (
+        <View
+          style={previous ? { display: "none" } : { flex: 1 }}
+          accessibilityElementsHidden={!!previous}
+          importantForAccessibility={previous ? "no-hide-descendants" : "auto"}
+        >
+          <RecipeView current={ready} />
+        </View>
+      )}
+      {current?.status === "ai-offer" && <AiOffer current={current} />}
+      {current?.status === "problem" && <Problem message={current.message} source={current.source ?? "photo"} />}
+      {(!current || current.status === "loading") && <Finding photo={current?.status === "loading" ? current.photo : undefined} />}
+    </>
+  );
 }
 
 /**

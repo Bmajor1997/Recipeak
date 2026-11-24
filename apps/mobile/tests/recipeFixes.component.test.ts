@@ -323,6 +323,18 @@ describe("a typed dish name Recipeak doesn't have", () => {
     expect(text()).toContain("Chicken pasta bake");
   });
 
+  it("keeps the selected diet and its original when a typed correction is canceled", async () => {
+    await open(ready(GIMLET, "cocktail", { bundledId: "gimlet" }));
+    await press("non-alcoholic");
+    await type_name("Unlisted cocktail");
+    await press("Not now");
+    expect(text()).toContain("Gimlet (non-alcoholic)");
+    await press("non-alcoholic");
+    expect(text()).toContain('"gin"');
+    expect(text()).not.toContain("Gimlet (non-alcoholic)");
+    expect(mocks.recipe).not.toHaveBeenCalled();
+  });
+
   it("makes it once on yes, however many times the button is tapped", async () => {
     await open(ready(PASTA, "meal"));
     await type_name("Ube cheesecake");
