@@ -50,7 +50,7 @@ describe("photo of a dish Recipeak may not have", () => {
     const offer = screen.slice(screen.indexOf("function AiOffer"), screen.indexOf("function Sheet("));
     expect(offer).toMatch(/Open \$\{dish\.name\}/);
     expect(offer).toMatch(/Which one should Recipeak make\?/);
-    expect(offer).toMatch(/<ManualCorrection initialKind=\{current\.kind\} \/>/);
+    expect(offer).toMatch(/<ManualCorrection initialKind=\{current\.kind\}[^>]*\/>/);
   });
 
   it("waits long enough for a new recipe to be written and checked", () => {
