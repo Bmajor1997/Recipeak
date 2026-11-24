@@ -47,8 +47,9 @@ export function report_text({ reason, dish, kind, diet, details, recipe }: Recip
   const description = lines.join("\n");
   return {
     title,
-    description: description.length <= MAX_REPORT_DESCRIPTION
-      ? description
-      : `${description.slice(0, MAX_REPORT_DESCRIPTION - 24)}\n[Snapshot truncated]`,
+    description:
+      description.length <= MAX_REPORT_DESCRIPTION
+        ? description
+        : `${description.slice(0, MAX_REPORT_DESCRIPTION - 24)}\n[Snapshot truncated]`,
   };
 }
