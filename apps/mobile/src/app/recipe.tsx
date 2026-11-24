@@ -388,10 +388,6 @@ function RecipeView({ current }: { current: Ready }) {
   const { recent } = useApp();
   // A bundled dish is kept by its id, whatever version shows; a recipe made with AI only as its standard recipe.
   const record = Boolean(current.bundledId) || (diet === null && !addition);
-  useEffect(() => {
-    if (record) record_viewed(recent, current, dishName);
-  }, [recent, current, dishName, record]);
-
   // "Saved" shows for a recipe already in Saved however it was opened (Explore, Recently viewed, or switching back from
   // a version), with its kept cover when the screen has none, so saving it again never replaces that cover.
   useEffect(() => {
@@ -411,6 +407,10 @@ function RecipeView({ current }: { current: Ready }) {
 
   const cover = useDishImage(api, kind, dishName, current.image, { lookUp: !current.localPhoto && current.image.status === "unavailable" });
   const coverUri = current.localPhoto ?? cover.uri;
+  // Recorded again once a photo that was still being made is ready, so Home shows it too.
+  useEffect(() => {
+    if (record) record_viewed(recent, current, dishName, cover.path);
+  }, [recent, current, dishName, record, cover.path]);
   const factor = servings / (recipe.servings || 1);
   const coverHeight = Math.min(Math.round(height * 0.42), 400);
 
@@ -582,7 +582,7 @@ function RecipeView({ current }: { current: Ready }) {
           ai: current.ai,
           // The bundled photo, or the library photo's path, so the cover can always be found again.
           bundled_id: current.bundledId,
-          image_url: current.image.status === "ready" ? current.image.url : null,
+          image_url: current.image.status === "ready" ? current.image.url : cover.path,
         });
         set_current({ ...current, savedId: entry.id });
         set_just_saved(true);

@@ -217,7 +217,14 @@ export function curated_non_alcoholic(recipe: Recipe): Recipe | null {
   // lean on the original ("Blend without the rum", "Muddle the blackberries with the syrup"), so its other ingredients
   // and amounts come along in the method, and a saved copy still has them. The ingredient list stays empty, so no diet
   // is claimed from it (diets.ts).
-  const kept = recipe.ingredients.filter((i) => !has_alcohol(i.item)).map((i) => [i.amount, i.unit, i.item].filter(Boolean).join(" "));
+  // A version with its own amounts ("Shake 1 oz lemon juice and 3/4 oz simple syrup…") is complete: nothing is added
+  // that could contradict it, except what it points back to ("the same spices") and doesn't name.
+  const lower = written.toLowerCase();
+  const own_amounts = /[\d½¼¾⅓⅔]\s*(?:oz|ml|cups?|tbsp|tsp)\b/i.test(written);
+  const named = (i: Ingredient) => naming_words(i.item).some((w) => lower.includes(w));
+  const kept = recipe.ingredients
+    .filter((i) => !has_alcohol(i.item) && (!own_amounts || (/\bsame\b/.test(lower) && !named(i))))
+    .map((i) => [i.amount, i.unit, i.item].filter(Boolean).join(" "));
   const from_original = kept.length ? [`From the original, without the alcohol: ${kept.join("; ")}.`] : [];
   return { ...base, description: sentence, ingredients: [], steps: [sentence, ...from_original] };
 }

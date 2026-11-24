@@ -30,6 +30,7 @@ const mocks = vi.hoisted(() => ({
   back: vi.fn(),
   add_recent: vi.fn(),
   refresh_allowance: vi.fn(),
+  cover_path: null as string | null,
   saved_list: [] as { id: string; kind: string; recipe: Recipe; photo_uri: string | null }[],
   camera: { photosLeft: 3 as number | null | undefined },
 }));
@@ -70,7 +71,7 @@ vi.mock("../src/recipes/bundled", () => ({
   find_bundled_dish: (kind: string, name: string) => mocks.find_bundled_dish(kind, name),
   bundled_photo_uri: async () => null,
 }));
-vi.mock("../src/recipes/useDishImage", () => ({ useDishImage: () => ({ uri: null, pending: false }) }));
+vi.mock("../src/recipes/useDishImage", () => ({ useDishImage: () => ({ uri: null, path: mocks.cover_path, pending: false }) }));
 vi.mock("../src/recipes/RateRecipe", () => ({ RateRecipe: () => null }));
 vi.mock("../src/recipes/ReportRecipe", () => ({ ReportRecipe: () => null }));
 vi.mock("../src/tips/TipsProvider", () => ({ useTips: () => ({ is_due: () => false, mark_seen: vi.fn() }) }));
@@ -169,6 +170,7 @@ beforeEach(() => {
   vi.resetAllMocks();
   mocks.camera.photosLeft = 3;
   mocks.saved_list = [];
+  mocks.cover_path = null;
   mocks.add_recent.mockResolvedValue(undefined);
   mocks.bundled_version.mockReturnValue(null);
   mocks.find_bundled_dish.mockReturnValue(null);
@@ -403,6 +405,12 @@ describe("Recently viewed", () => {
       recipe: PASTA,
       image_url: "/images/abc.jpg",
     });
+  });
+
+  it("records the photo once it's ready, when the recipe opened while it was still being made", async () => {
+    mocks.cover_path = "/images/late.jpg";
+    await open(ready(PASTA, "meal", { ai: true, image: { status: "pending", url: null }, picked: true }));
+    expect(mocks.add_recent).toHaveBeenLastCalledWith(expect.objectContaining({ type: "generated", image_url: "/images/late.jpg" }));
   });
 
   it("records a bundled dish by its id", async () => {

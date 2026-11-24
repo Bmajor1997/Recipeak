@@ -51,7 +51,13 @@ export function generated_as_current(entry: Generated): Extract<CurrentRecipe, {
  * Records the recipe on screen in this account's Recently viewed: a bundled dish by its id, a recipe made with AI as
  * it is (with its library photo). Only the standard recipe is recorded, not a diet version of it.
  */
-export function record_viewed(recent: RecentlyViewed | null, current: Extract<CurrentRecipe, { status: "ready" }>, name: string) {
+export function record_viewed(
+  recent: RecentlyViewed | null,
+  current: Extract<CurrentRecipe, { status: "ready" }>,
+  name: string,
+  /** The library photo's path once it's ready, when the recipe opened while it was still being made. */
+  ready_path: string | null = null,
+) {
   if (!recent) return;
   const entry: RecentEntry | null = current.bundledId
     ? { type: "bundled", id: current.bundledId }
@@ -61,7 +67,7 @@ export function record_viewed(recent: RecentlyViewed | null, current: Extract<Cu
           kind: current.kind,
           name,
           recipe: current.recipe,
-          image_url: current.image.status === "ready" ? current.image.url : null,
+          image_url: current.image.status === "ready" ? current.image.url : ready_path,
         }
       : null;
   if (entry) void recent.add(entry).catch(() => {});

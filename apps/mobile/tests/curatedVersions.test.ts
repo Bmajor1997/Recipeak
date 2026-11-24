@@ -152,6 +152,14 @@ describe("written versions that lean on the original", () => {
     expect(colada.steps[0]).toBe("Blend without the rum for a virgin piña colada.");
     expect(colada.steps[1]).toMatch(/^From the original, without the alcohol: 3 oz pineapple juice; 1 1\/2 oz cream of coconut/);
     expect(colada.ingredients).toEqual([]); // so no diet is claimed from it
+    // A version with its own amounts is complete: nothing is added that could contradict it.
+    expect(curated_non_alcoholic(recipe_of("gin-fizz"))!.steps).toEqual([
+      "Shake 1 oz lemon juice and 3/4 oz simple syrup with ice, strain, and top with 3 oz soda water.",
+    ]);
+    // …except what it points back to ("the same spices") and doesn't name.
+    const mulled = curated_non_alcoholic(recipe_of("mulled-wine"))!.steps;
+    expect(mulled[1]).toMatch(/cinnamon sticks.*cloves.*star anise/);
+    expect(mulled[1]).not.toMatch(/orange|wine/i);
     // Never alcohol in what's carried over, for every drink shown as written.
     for (const r of cocktails.filter((c) => c.cocktail?.alcoholic && c.cocktail.non_alcoholic_version)) {
       const v = curated_non_alcoholic(r)!;
