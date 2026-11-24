@@ -2,7 +2,7 @@
 import { describe, expect, it } from "vitest";
 import recipes from "../src/recipes/collection.json";
 import { COLLECTION } from "../src/recipes/collectionPhotos";
-import { curated_non_alcoholic, curated_version } from "../src/recipes/curatedVersions";
+import { allergens_in, curated_non_alcoholic, curated_version } from "../src/recipes/curatedVersions";
 import { diet_profile } from "../src/recipes/diets";
 import { parse_recipe } from "../src/recipes/parse";
 import { camera_area } from "../src/camera/cameraOptions";
@@ -16,7 +16,15 @@ const alcoholic = (text: string) => ALCOHOL.test(text.replace(OK, " "));
 
 describe("written non-alcoholic versions", () => {
   const cocktails = COLLECTION.filter((d) => d.kind === "cocktail").map((d) => parse_recipe((recipes as Record<string, unknown>)[d.id]));
-  const written = cocktails.filter((r) => r.cocktail?.alcoholic && r.cocktail.non_alcoholic_version);
+  const with_text = cocktails.filter((r) => r.cocktail?.alcoholic && r.cocktail.non_alcoholic_version);
+  const written = with_text.filter((r) => curated_non_alcoholic(r) !== null);
+
+  it("isn't used when the written version itself still calls for alcohol (the AI is asked instead)", () => {
+    const left = with_text.filter((r) => curated_non_alcoholic(r) === null);
+    expect(left.map((r) => r.title)).toContain("Test Pilot"); // "a dash of bitters"
+    for (const r of left) expect(r.cocktail!.non_alcoholic_version, r.title).toMatch(/bitters|liqueur/i);
+    expect(left.length).toBeLessThan(10);
+  });
 
   it("covers the bundled cocktails that have one, including the Gimlet", () => {
     expect(written.length).toBeGreaterThan(100);
@@ -118,13 +126,8 @@ describe("written non-alcoholic versions", () => {
 });
 
 describe("allergen words in a written version", () => {
-  const gimlet = parse_recipe((recipes as Record<string, unknown>).gimlet);
-  const found = (text: string) =>
-    curated_non_alcoholic({
-      ...gimlet,
-      allergens: [],
-      cocktail: { ...gimlet.cocktail!, non_alcoholic_version: `Shake lime, ${text} and syrup.` },
-    })!.allergens;
+  // The words a written version is read with, checked directly so made-up phrases like "beer" can be tried.
+  const found = (text: string) => allergens_in(`Shake lime, ${text} and syrup.`, []);
 
   it("reads every shared case the same way as the server", () => {
     for (const { text, has = [], not = [] } of shared_words.cases as { text: string; has?: string[]; not?: string[] }[]) {
@@ -139,7 +142,7 @@ describe("allergen words in a written version", () => {
       (r) => /ginger (?:beer|ale)/i.test(r.cocktail?.non_alcoholic_version ?? "") && !r.allergens.includes("wheat"),
     );
     expect(ginger.map((r) => r.title)).toEqual(expect.arrayContaining(["Moscow Mule", "Dark 'n' Stormy"]));
-    for (const regular of ginger) expect(curated_non_alcoholic(regular)!.allergens, regular.title).not.toContain("wheat");
+    for (const regular of ginger) expect(curated_non_alcoholic(regular)?.allergens ?? [], regular.title).not.toContain("wheat");
   });
 });
 
@@ -159,7 +162,13 @@ describe("written versions that lean on the original", () => {
     // …except what it points back to ("the same spices") and doesn't name.
     const mulled = curated_non_alcoholic(recipe_of("mulled-wine"))!.steps;
     expect(mulled[1]).toMatch(/cinnamon sticks.*cloves.*star anise/);
-    expect(mulled[1]).not.toMatch(/orange|wine/i);
+    expect(mulled[1]).not.toMatch(/wine/i);
+    // Ingredients the version leans on but doesn't measure come along: the mango and lime when only the coconut water
+    // replacing the rum is measured, and "the fruit" of a Pimm's Cup, but not the lemonade its ginger ale replaces.
+    expect(curated_non_alcoholic(recipe_of("mango-coconut-rum-sour"))!.steps[1]).toMatch(/mango purée.*lime juice.*simple syrup/);
+    const pimms = curated_non_alcoholic(recipe_of("pimms-cup"))!.steps[1];
+    expect(pimms).toMatch(/cucumber.*strawberries.*orange slice/);
+    expect(pimms).not.toMatch(/lemonade/);
     // A stand-in in the written version replaces the original ingredient: aquafaba, not egg white as well.
     for (const id of ["amaretto-sour", "hotel-georgia", "raspberry-beret"]) {
       const steps = curated_non_alcoholic(recipe_of(id))!.steps;
@@ -170,7 +179,7 @@ describe("written versions that lean on the original", () => {
     for (const id of ["brandy-alexander", "penicillin", "b-52"])
       expect(curated_non_alcoholic(recipe_of(id))!.steps.join(" ")).not.toMatch(/crème de cacao|single malt|grand marnier/i);
     // Never alcohol in what's carried over, for every drink shown as written.
-    for (const r of cocktails.filter((c) => c.cocktail?.alcoholic && c.cocktail.non_alcoholic_version)) {
+    for (const r of cocktails.filter((c) => c.cocktail?.alcoholic && c.cocktail.non_alcoholic_version && curated_non_alcoholic(c))) {
       const v = curated_non_alcoholic(r)!;
       if (!v.ingredients.length) for (const step of v.steps.slice(1)) expect(alcoholic(step), `${r.title}: ${step}`).toBe(false);
     }

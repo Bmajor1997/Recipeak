@@ -17,7 +17,7 @@ const ALCOHOL =
   /\b(?:vodka|gin|rum|tequila|mezcal|whiske?y|bourbon|rye|scotch|brandy|cognac|vermouth|liqueurs?|campari|aperol|prosecco|champagne|cava|wine|beers?|absinthe|amaro|sake|pisco|cacha[cç]a|spirits?|bitters|cointreau|triple sec|cura[cç]ao|kahl[uú]a|chartreuse|amaretto|irish cream|lillet|sherry|port|soju|hard cider|aperitivo|aperitif|schnapps|grappa|ouzo|limoncello|frangelico|baileys|pastis|sambuca|lager|ale|stout|pilsner|cerveza|liquor|alcohol|brandied|spiked|boozy|[a-z]+-soaked|rhum|allspice dram|applejack|aqua?vit|akvavit|b[ée]n[ée]dictine|calvados|armagnac|chambord|cr[eè]me de [a-zûèé]+|cynar|drambuie|dubonnet|falernum|fernet(?:-branca)?|galliano|grand marnier|guinness|single malt|j[äa]germeister|pimm'?s|southern comfort|st[- ]germain|midori|genever|jenever|kirsch(?:wasser)?|slivovitz|eau de vie|marsala|madeira|punt e mes|averna|montenegro|ramazzotti|strega|disaronno|licor 43|heering|sloe|mead|shochu|baijiu|sotol)\b(?!-)/gi;
 // Words that look alcoholic here but aren't.
 const NOT_ALCOHOL =
-  /\b(?:alcohol-free|non-alcoholic|zero-proof)(?: (?!and\b|or\b|with\b)[a-z'-]+){0,4}|\b(?:ginger|root|birch) beers?\b|\bginger ales?\b|\bwine glass(?:es)?\b|\b(?:wine|sherry|cider|rice) vinegar\b|\bfor no alcohol at all\b|\bwithout alcohol\b/gi;
+  /\b(?:alcohol-free|non-alcoholic|zero-proof)(?: (?!and\b|or\b|with\b)[a-z'-]+){0,4}|\b(?:ginger|root|birch) beers?\b|\bginger ales?\b|\bwine glass(?:es)?\b|\b(?:wine|sherry|cider|rice) vinegar\b|\bfor no alcohol at all\b|\bwithout alcohol\b|\bfalernum syrup\b/gi;
 const plain = (text: string) => text.replace(NOT_ALCOHOL, " ");
 const alcohol_words = (text: string) => [...plain(text).matchAll(ALCOHOL)].map((m) => m[0].toLowerCase());
 const has_alcohol = (text: string) => alcohol_words(text).length > 0;
@@ -49,7 +49,7 @@ const NOT_AN_ALLERGEN =
   /\b(?:coconut|oat|rice|almond|soy|cashew) (?:milk|cream)\b|\bcream of (?:coconut|tartar)\b|\b(?:peanut|almond|cashew|sunflower|cocoa) butter\b|\bginger (?:beer|ale)\b|\broot beer\b|\bgluten-free (?:beer|ale|lager)\b/g;
 
 /** Allergens named in a written version, added to the regular recipe's so none are dropped. */
-function allergens_in(text: string, regular: string[]): string[] {
+export function allergens_in(text: string, regular: string[]): string[] {
   const found = new Set(regular);
   const raw = text.toLowerCase();
   const without = raw.replace(NOT_AN_ALLERGEN, " ");
@@ -132,6 +132,11 @@ function changed_recipe(written: string, recipe: Recipe): Pick<Recipe, "ingredie
 }
 
 // Words that describe an ingredient rather than name it, ignored when matching "extra lime" to "fresh lime juice".
+// Words naming a kind of ingredient rather than the ingredient ("lime juice" isn't given by "1 oz lemon juice").
+const GENERIC = new Set(["juice", "syrup", "water", "soda", "sugar", "simple", "garnish", "for", "and", "to"]);
+// Fizzy toppers: a version that measures its own replaces the original's.
+const TOPPER = /\b(?:ginger ale|ginger beer|soda|tonic|lemonade|sparkling|cola|seltzer)\b/i;
+const TOPPER_WORDS = new Set(["ale", "soda", "tonic", "lemonade", "sparkling", "cola", "seltzer"]);
 const DESCRIBING = new Set(["a", "an", "the", "some", "chilled", "fresh", "hot", "cold", "warm", "drop", "dash", "splash", "of", "few"]);
 const naming_words = (text: string) =>
   text
@@ -180,9 +185,10 @@ function with_other_changes(written: string, ingredients: Ingredient[], steps: s
       method = method.map((step) => step.replace(named, now.trim()));
       continue;
     }
-    const added = /^(?:then )?add (?:a |an )?([\d½¼¾⅓⅔/.][\d½¼¾⅓⅔/. ]*(?:oz|ml|cups?|tbsp|tsp|dashes?)\s+)?(?:(?:more|extra) )?(.+)$/.exec(
-      clause,
-    );
+    const added =
+      /^(?:then )?add (?:a |an )?([\d½¼¾⅓⅔/.][\d½¼¾⅓⅔/.]*(?: [\d½¼¾⅓⅔/.]+)? ?(?:oz|ml|cups?|tbsp|tsp|dashes?)\s+)?(?:(?:more|extra) )?(.+)$/.exec(
+        clause,
+      );
     if (added && !has_alcohol(added[2])) {
       const [, amount, thing] = added;
       const at = best_match(list, thing);
@@ -238,18 +244,36 @@ export function curated_non_alcoholic(recipe: Recipe): Recipe | null {
       description: `${recipe.description} Without alcohol: ${sentence}`,
       steps: [`To make it without alcohol: ${sentence}`, ...changed.steps],
     };
+  // Shown as written, it must be alcohol-free itself: one that still says "a dash of bitters" is left to the AI. Alcohol
+  // named only to be left out ("Blend without the rum and brandy") doesn't count.
+  const left_out = written.replace(
+    /\b(without|skip|leave out|omit)\b([^,.;]*)/gi,
+    (_, verb: string, rest: string) => verb + plain(rest).replace(ALCOHOL, " "),
+  );
+  if (has_alcohol(left_out)) return null;
   // Shown as written: the method holds everything (see parse_recipe), and nothing alcoholic is listed. Written versions
   // lean on the original ("Blend without the rum", "Muddle the blackberries with the syrup"), so its other ingredients
   // and amounts come along in the method, and a saved copy still has them. The ingredient list stays empty, so no diet
   // is claimed from it (diets.ts).
-  // A version with its own amounts ("Shake 1 oz lemon juice and 3/4 oz simple syrup…") is complete: nothing is added
-  // that could contradict it, except what it points back to ("the same spices") and doesn't name.
-  const lower = written.toLowerCase();
-  const own_amounts = /[\d½¼¾⅓⅔]\s*(?:oz|ml|cups?|tbsp|tsp)\b/i.test(written);
-  const written_words = new Set(lower.split(/[^a-z]+/));
-  const named = (i: Ingredient) => naming_words(i.item).some((w) => written_words.has(w));
+  // An original ingredient comes along unless the written version gives its own amount for it ("1 oz lemon juice"), or
+  // uses a stand-in for it (aquafaba for the egg white). So "1 oz coconut water" in place of the rum keeps the mango
+  // and lime, "the sliced fruit" keeps the fruit, and a fully measured version (Gin Fizz) gets nothing that could
+  // contradict it.
+  const measured = new Set(
+    [...written.toLowerCase().matchAll(/[\d½¼¾⅓⅔][\d½¼¾⅓⅔/.]*(?: [\d½¼¾⅓⅔/.]+)? ?(?:oz|ml|cups?|tbsp|tsp)\s+([a-z' -]+)/g)].flatMap((m) =>
+      m[1].split(/[^a-z]+/),
+    ),
+  );
+  // A measured topper ("top with 4 oz ginger ale") takes the place of the original's (the lemonade).
+  const measured_topper = [...measured].some((w) => TOPPER_WORDS.has(w));
+  const given = (i: Ingredient) => {
+    if (measured_topper && TOPPER.test(i.item)) return true;
+    const words = naming_words(i.item);
+    const specific = words.filter((w) => !GENERIC.has(w));
+    return (specific.length ? specific : words).some((w) => measured.has(w));
+  };
   const kept = recipe.ingredients
-    .filter((i) => !has_alcohol(i.item) && !replaced_by(written, i) && (!own_amounts || (/\bsame\b/.test(lower) && !named(i))))
+    .filter((i) => !has_alcohol(i.item) && !replaced_by(written, i) && !given(i))
     .map((i) => [i.amount, i.unit, i.item].filter(Boolean).join(" "));
   const from_original = kept.length ? [`From the original, without the alcohol: ${kept.join("; ")}.`] : [];
   return { ...base, description: sentence, ingredients: [], steps: [sentence, ...from_original] };
