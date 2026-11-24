@@ -59,14 +59,20 @@ describe("written non-alcoholic versions", () => {
     // A brandied cherry garnish becomes a plain cherry.
     expect(by("Mary Pickford").cocktail!.garnish).toBe("cherry");
     // "Use alcohol-free sparkling wine" for a drink with Champagne and bitters can't be matched safely: shown as written.
-    expect(by("Champagne Cocktail")).toMatchObject({ ingredients: [], steps: ["Use alcohol-free sparkling wine."] });
+    expect(by("Champagne Cocktail")).toMatchObject({
+      ingredients: [],
+      steps: ["Use alcohol-free sparkling wine.", "From the original, without the alcohol: 1 sugar cube."],
+    });
   });
 
   it("shows a drink written as a sentence as written, and adds allergens a new drink brings", () => {
     const gimlet = written.find((r) => r.title === "Gimlet")!;
     const na = curated_version(gimlet, "non-alcoholic")!;
     expect(na.ingredients).toEqual([]);
-    expect(na.steps).toEqual(["Shake lime juice, syrup and a few cucumber slices and top with tonic water."]);
+    expect(na.steps).toEqual([
+      "Shake lime juice, syrup and a few cucumber slices and top with tonic water.",
+      "From the original, without the alcohol: 3/4 oz fresh lime juice; 3/4 oz simple syrup.",
+    ]);
     // It stays a valid recipe, so it can be saved and read back.
     expect(parse_recipe(JSON.parse(JSON.stringify(na)))).toEqual(na);
     const sour = {
@@ -134,6 +140,38 @@ describe("allergen words in a written version", () => {
     );
     expect(ginger.map((r) => r.title)).toEqual(expect.arrayContaining(["Moscow Mule", "Dark 'n' Stormy"]));
     for (const regular of ginger) expect(curated_non_alcoholic(regular)!.allergens, regular.title).not.toContain("wheat");
+  });
+});
+
+describe("written versions that lean on the original", () => {
+  const recipe_of = (id: string) => parse_recipe((recipes as Record<string, unknown>)[id]);
+  const cocktails = COLLECTION.filter((d) => d.kind === "cocktail").map((d) => recipe_of(d.id));
+
+  it("a version written as a sentence keeps the original's other ingredients and amounts in the method", () => {
+    const colada = curated_non_alcoholic(recipe_of("pina-colada"))!;
+    expect(colada.steps[0]).toBe("Blend without the rum for a virgin piña colada.");
+    expect(colada.steps[1]).toMatch(/^From the original, without the alcohol: 3 oz pineapple juice; 1 1\/2 oz cream of coconut/);
+    expect(colada.ingredients).toEqual([]); // so no diet is claimed from it
+    // Never alcohol in what's carried over, for every drink shown as written.
+    for (const r of cocktails.filter((c) => c.cocktail?.alcoholic && c.cocktail.non_alcoholic_version)) {
+      const v = curated_non_alcoholic(r)!;
+      if (!v.ingredients.length) for (const step of v.steps.slice(1)) expect(alcoholic(step), `${r.title}: ${step}`).toBe(false);
+    }
+  });
+
+  it("applies the parts of a change that aren't about alcohol to the ingredients and steps", () => {
+    const toddy = curated_non_alcoholic(recipe_of("hot-buttered-rum"))!;
+    expect(toddy.ingredients.map((i) => i.item)).toContain("hot apple cider");
+    expect(toddy.ingredients.map((i) => i.item).join(" ")).not.toMatch(/water/);
+    expect(toddy.steps.slice(1).join(" ")).toContain("pour in the hot apple cider");
+    const mojito = curated_non_alcoholic(recipe_of("mojito"))!;
+    expect(mojito.ingredients.map((i) => i.item)).toEqual(
+      expect.arrayContaining(["fresh lime juice (plus 1/2 oz more)", "chilled soda water (extra)"]),
+    );
+    const punch = curated_non_alcoholic(recipe_of("hibiscus-citrus-rum-punch"))!;
+    expect(punch.ingredients[0].item).toBe("chilled unsweetened hibiscus tea (plus 1½ oz more)");
+    const coffee = curated_non_alcoholic(recipe_of("irish-coffee"))!;
+    expect(coffee.ingredients.map((i) => i.item)).toContain("drop of vanilla");
   });
 });
 

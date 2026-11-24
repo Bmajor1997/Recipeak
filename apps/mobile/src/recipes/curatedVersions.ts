@@ -126,8 +126,66 @@ function changed_recipe(written: string, recipe: Recipe): Pick<Recipe, "ingredie
     // A step that was only about the alcohol, or no longer reads properly, is dropped.
     return next.length < 4 || BROKEN.test(next) ? [] : [next];
   });
-  if (!ingredients.length || [...ingredients.map((i) => i.item), ...steps].some(has_alcohol)) return null;
-  return { ingredients, steps };
+  const other = with_other_changes(written, ingredients, steps);
+  if (!other.ingredients.length || [...other.ingredients.map((i) => i.item), ...other.steps].some(has_alcohol)) return null;
+  return other;
+}
+
+// Words that describe an ingredient rather than name it, ignored when matching "extra lime" to "fresh lime juice".
+const DESCRIBING = new Set(["a", "an", "the", "some", "chilled", "fresh", "hot", "cold", "warm", "drop", "dash", "splash", "of", "few"]);
+const naming_words = (text: string) =>
+  text
+    .toLowerCase()
+    .split(/[^a-z]+/)
+    .filter((w) => w.length > 2 && !DESCRIBING.has(w));
+const matches = (ingredient: Ingredient, thing: string) => naming_words(thing).some((w) => ingredient.item.toLowerCase().includes(w));
+
+/**
+ * The parts of a written change that aren't about alcohol, applied to the ingredients and steps too: "hot apple cider
+ * instead of water" swaps the water, "add 1½ oz hibiscus tea" adds to the tea already there (or lists a new
+ * ingredient), and "extra lime" marks the lime as extra. Anything else stays in the first step, which quotes it.
+ */
+function with_other_changes(written: string, ingredients: Ingredient[], steps: string[]) {
+  let list = [...ingredients];
+  let method = [...steps];
+  const clauses = written
+    .toLowerCase()
+    .replace(/\.$/, "")
+    .split(/[;,]| and (?=(?:add|use|top|skip|omit|leave)\b)/);
+  for (const raw of clauses) {
+    const clause = raw.trim();
+    const instead = /^(?:use |with )?(.+?) instead of (?:the )?(.+)$/.exec(clause);
+    if (instead) {
+      const [, now, before] = instead;
+      const at = list.findIndex((i) => !has_alcohol(i.item) && matches(i, before));
+      if (at < 0) continue;
+      const old = list[at].item;
+      list = list.map((i, n) => (n === at ? { ...i, item: now.trim() } : i));
+      // nosemgrep: javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+      const named = new RegExp(`\\b(?:${escape(old.toLowerCase())}|${escape(before.trim())})\\b`, "gi");
+      method = method.map((step) => step.replace(named, now.trim()));
+      continue;
+    }
+    const added = /^(?:then )?add (?:a |an )?((?:[\d½¼¾⅓⅔/.]+\s*)+(?:oz|ml|cups?|tbsp|tsp|dashes?)\s+)?(?:(?:more|extra) )?(.+)$/.exec(
+      clause,
+    );
+    if (added && !has_alcohol(added[2])) {
+      const [, amount, thing] = added;
+      const at = list.findIndex((i) => !has_alcohol(i.item) && matches(i, thing));
+      if (at >= 0) {
+        const more = amount ? `plus ${amount.trim()} more` : "a little extra";
+        list = list.map((i, n) => (n === at ? { ...i, item: `${i.item} (${more})` } : i));
+      } else list.push(as_ingredient(`${amount ?? ""}${thing}`, { amount: "", unit: "", item: thing }));
+      continue;
+    }
+    const extra = /\b(?:extra|more) (.+)$/.exec(clause);
+    if (extra)
+      for (const thing of extra[1].split(/ and | or /).slice(0, 2)) {
+        const at = list.findIndex((i) => !has_alcohol(i.item) && matches(i, thing) && !i.item.includes("("));
+        if (at >= 0) list = list.map((i, n) => (n === at ? { ...i, item: `${i.item} (extra)` } : i));
+      }
+  }
+  return { ingredients: list, steps: method };
 }
 
 /** The recipe's own alcohol-free version, or null when it has none written (the AI is asked instead). */
@@ -155,8 +213,13 @@ export function curated_non_alcoholic(recipe: Recipe): Recipe | null {
       description: `${recipe.description} Without alcohol: ${sentence}`,
       steps: [`To make it without alcohol: ${sentence}`, ...changed.steps],
     };
-  // Shown as written: the method holds everything (see parse_recipe), and nothing alcoholic is listed.
-  return { ...base, description: sentence, ingredients: [], steps: [sentence] };
+  // Shown as written: the method holds everything (see parse_recipe), and nothing alcoholic is listed. Written versions
+  // lean on the original ("Blend without the rum", "Muddle the blackberries with the syrup"), so its other ingredients
+  // and amounts come along in the method, and a saved copy still has them. The ingredient list stays empty, so no diet
+  // is claimed from it (diets.ts).
+  const kept = recipe.ingredients.filter((i) => !has_alcohol(i.item)).map((i) => [i.amount, i.unit, i.item].filter(Boolean).join(" "));
+  const from_original = kept.length ? [`From the original, without the alcohol: ${kept.join("; ")}.`] : [];
+  return { ...base, description: sentence, ingredients: [], steps: [sentence, ...from_original] };
 }
 
 /** A version the recipe already carries for this diet, so no AI request is needed. */
