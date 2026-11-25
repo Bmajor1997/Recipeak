@@ -106,6 +106,9 @@ test("a reported photo can be retired by an administrator; the next view makes a
   assert.equal(images.retire({ kind: "meal", name: "COU COU" }), true, "matched like every other name");
   assert.equal(existsSync(join(dir, `${key}.jpg`)), false);
   assert.equal(readdirSync(join(dir, "retired")).filter((f) => f.startsWith(key)).length, 1, "kept aside, never deleted");
+  assert.equal(images.status({ kind: "meal", name: "Cou cou", user_id: "alice" }).status, "unavailable", "never remade from the name alone");
+  assert.equal(images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: {} }).status, "unavailable");
+  assert.equal(calls.length, 1);
   assert.equal(images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).status, "pending", "made again");
   await images.settled();
   assert.equal(calls.length, 2);
@@ -145,6 +148,13 @@ test("a reported photo can be retired by an administrator; the next view makes a
   const third = images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).url;
   for (const old of [first_url, new_url]) assert.equal((await fetch(`${base}${old}`, { redirect: "manual" })).headers.get("location"), third);
   assert.equal(images.moved("../x.jpg"), null);
+  // The photo lookup (saved recipes, Recently viewed) uses the dish's kept recipe, so a photo made there matches it too.
+  store.set_recipe({ key: `photo:${key}`, kind: "meal", name: "Cou cou", recipe: { ingredients: recipe_details.ingredients.map((item) => ({ item })) } });
+  assert.deepEqual(await (await retire("boss", { kind: "meal", name: "Cou cou" })).json(), { retired: true });
+  const looked_up = await fetch(`${base}/api/dish-image?kind=meal&name=Cou%20cou`, { headers: { Authorization: "Bearer alice" } });
+  assert.equal((await looked_up.json()).image.status, "pending");
+  await images.settled();
+  assert.match(calls.at(-1).body.prompt, /made from cornmeal, okra, butter[\s\S]*It is vegetarian/);
 });
 
 test("hand-picked photos are installed under every name they cover", (t) => {

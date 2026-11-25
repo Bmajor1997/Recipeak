@@ -268,6 +268,9 @@ export function create_image_library({ env = {}, store, fetch_impl = fetch, dir 
       if (!enabled || !key) return { status: "unavailable", url: null };
       if (existsSync(join(dir, file_of(key)))) return { status: "ready", url: url_for(key) };
       if (in_flight.has(key)) return { status: "pending", url: null };
+      // A retired photo is only made again from its recipe: one made from the name alone could repeat the mistake
+      // that got it retired ("flying fish" with a vegetarian cou-cou).
+      if (retired_count.get(key) && !details?.ingredients?.length) return { status: "unavailable", url: null };
       const row = store.get_image(key);
       if (row?.status === "failed" && Date.now() - Date.parse(row.updated_at) < RETRY_FAILED_AFTER_MS) return { status: "unavailable", url: null };
       const job = generate({ key, kind, name: normalize_dish_name(name), user_id, details }).finally(() => in_flight.delete(key));

@@ -191,7 +191,10 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     const kind = query.get("kind");
     const name = query.get("name");
     if (!["meal", "cocktail"].includes(kind) || !name || name.length > 120) throw new HttpError(400, "Choose a dish or drink.");
-    return { image: photo(kind, name, user) };
+    // The dish's kept standard recipe, when there is one, so a photo made here matches it.
+    const key = image_key(kind, name);
+    const kept = key ? (store.get_recipe(`photo:${key}`) ?? store.get_recipe(key)) : null;
+    return { image: photo(kind, name, user, kept) };
   }
 
   async function allowance(user) {
