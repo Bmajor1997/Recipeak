@@ -108,3 +108,29 @@ describe("wording and incomplete information", () => {
     expect(possible_allergen_line(library("gimlet"))).toBe("");
   });
 });
+
+describe("library audit", () => {
+  it("miso can contain barley or wheat, so a miso recipe isn't called gluten-free; gluten-free miso is", () => {
+    for (const id of ["miso-glazed-eggplant-rice-bowls", "miso-soup"])
+      expect(bundled_diet_profile(id, library(id), "meal").fits, id).not.toContain("gluten-free");
+    const meal = (item: string) => diet_profile({ ...library("miso-soup"), ingredients: [{ amount: "2", unit: "tbsp", item }] }, "meal");
+    expect(meal("white miso").status["gluten-free"]?.status).toBe("review");
+    expect(meal("gluten-free white miso").status["gluten-free"]?.status).toBe("fits");
+  });
+
+  it("no library recipe claims a diet its listed allergens contradict", () => {
+    const clash: Record<string, string[]> = {
+      "nut-free": ["tree nuts", "peanuts"],
+      vegan: ["milk", "eggs", "fish", "shellfish"],
+      vegetarian: ["fish", "shellfish"],
+      "dairy-free": ["milk"],
+      "gluten-free": ["wheat"],
+    };
+    for (const id of Object.keys(recipes)) {
+      const r = library(id);
+      const kind = r.cocktail ? "cocktail" : "meal";
+      for (const diet of bundled_diet_profile(id, r, kind).fits)
+        for (const allergen of clash[diet] ?? []) expect(r.allergens, `${id} is ${diet} but lists ${allergen}`).not.toContain(allergen);
+    }
+  });
+});

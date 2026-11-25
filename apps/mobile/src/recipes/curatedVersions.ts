@@ -46,7 +46,7 @@ const ALLERGEN_WORDS: Record<string, RegExp> = {
   sesame: /\b(?:sesame|tahini)\b/,
 };
 const NOT_AN_ALLERGEN =
-  /\b(?:coconut|oat|rice|almond|soy|cashew) (?:milk|cream)\b|\bcream of (?:coconut|tartar)\b|\b(?:peanut|almond|cashew|sunflower|cocoa) butter\b|\bginger (?:beer|ale)\b|\broot beer\b|\bgluten-free (?:beer|ale|lager)\b/g;
+  /\b(?:coconut|oat|rice|almond|soy|cashew) (?:milk|cream)\b|\bcream of (?:coconut|tartar)\b|\b(?:peanut|almond|cashew|sunflower|cocoa) butter\b|\bginger (?:beer|ale)\b|\broot beer\b|\b(?:gluten|wheat)-free(?: (?!and\b|or\b|with\b)[a-z'-]+){1,3}|\bbutter lettuce\b|\bcream sherry\b|\bsingle malt\b|\bmalt whiske?y\b/g;
 
 /** Allergens named in a written version, added to the regular recipe's so none are dropped. */
 export function allergens_in(text: string, regular: string[]): string[] {

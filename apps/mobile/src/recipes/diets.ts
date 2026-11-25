@@ -73,8 +73,9 @@ const GLUTEN =
 // Not wheat, barley or rye, though their names look like it.
 const GLUTEN_FREE_WORDS =
   /\b(rice (?:flour|noodles|vermicelli|paper|cakes)|chickpea flour|corn (?:tortillas?|flour)|taco shells or corn tortillas|tortilla (?:chips|strips)|glass noodles|sweet potato starch noodles|flat rice noodles|fresh (?:flat|wide) rice noodles|rice vermicelli|thin rice vermicelli|dried flat rice noodles|tamari|ginger beer|root beer|bread and butter pickles|masa harina|cylindrical rice cakes|prawn crackers)\b/g;
+// Miso is usually made with rice or soybeans alone, but barley (mugi) miso and some blends contain barley or wheat.
 const GLUTEN_UNSURE =
-  /\b(?:worcestershire|bouillon|stock cubes?|barbecue sauce|taco seasoning|fried onions|fermented black beans|fish cakes|sausages?|kielbasa|andouille|bratwurst|lap cheong|chinese sausage|sambar powder|prawn crackers|chocolate syrup)/i;
+  /\b(?:miso|worcestershire|bouillon|stock cubes?|barbecue sauce|taco seasoning|fried onions|fermented black beans|fish cakes|sausages?|kielbasa|andouille|bratwurst|lap cheong|chinese sausage|sambar powder|prawn crackers|chocolate syrup)/i;
 
 const NUTS =
   /\b(?:peanuts?|almonds?|walnuts?|pecans?|cashews?|pistachios?|pine nuts|hazelnuts?|macadamia|brazil nuts?|orgeat|frangelico|nocino|praline|marzipan|pesto|satay|coconut|kerisik|malibu)/i;
