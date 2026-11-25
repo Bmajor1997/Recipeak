@@ -31,7 +31,7 @@ const VEGETARIAN_OK = /\b(?:vegan|plant-based|vegetarian|meatless)(?: (?!and\b|o
 const VEGAN_OK = /\b(?:vegan|plant-based)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
 const DAIRY_FREE_OK = /\b(?:vegan|plant-based|dairy-free)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
 const GLUTEN_FREE_OK = /\bgluten-free(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
-const NUT_FREE_OK = /\bnut-free(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
+const NUT_FREE_OK = /\b(?:nut-free|nut free|almond-free)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
 // Cheeses made with animal rennet by tradition (Parmesan by law, cotija by custom): not vegetarian, but easy to swap.
 const RENNET = /\b(?:parmesan|parmigiano|pecorino|grana padano|cotija)/i;
 
@@ -80,7 +80,9 @@ const NUTS =
   /\b(?:peanuts?|almonds?|walnuts?|pecans?|cashews?|pistachios?|pine nuts|hazelnuts?|macadamia|brazil nuts?|orgeat|frangelico|nocino|praline|marzipan|pesto|satay|coconut|kerisik|malibu)/i;
 const NUTS_CORE =
   /\b(?:peanuts?|almonds?|walnuts?|pecans?|cashews?|pistachios?|pine nuts|hazelnuts?|macadamia|brazil nuts?|orgeat|frangelico|nocino|praline|marzipan|pesto|coconut|kerisik|malibu)/i;
-const NUTS_UNSURE = /\b(?:amaretto|noyaux)/i;
+// These depend on the brand: falernum is often made with almond, amaretto with almond or apricot kernel, nougat and
+// mole paste often hold nuts. Unless the line itself says nut-free ("nut-free amaretto"), nut-free isn't claimed.
+const NUTS_UNSURE = /\b(?:amaretto|noyaux|falernum|nougat|mole paste|nut liqueur)/i;
 
 // Low-carb: a starch cooked into the dish is its heart; sugar, a coating or a side can be cut or swapped.
 const STARCH =
@@ -270,6 +272,14 @@ export function diet_profile(
   if (status.vegetarian?.status === "none" && status.vegan?.status === "option" && !hand_versions.includes("vegan"))
     status.vegan = { ...status.vegetarian };
   for (const [diet, o] of Object.entries(overrides) as [Diet, DietOverride][]) if (status[diet]) status[diet] = o;
+  // Nut-free is an allergy claim, so the description and method must agree with it too: a recipe whose words mention a
+  // nut its ingredients don't list ("lime, grapefruit, almond and warm spice", often from an AI) isn't called nut-free
+  // until a person checks. Flavor words ("almond-scented") describe a taste, not an ingredient.
+  if (status["nut-free"]?.status === "fits") {
+    const said = [recipe.description, ...recipe.steps].join(" ").replace(/\b[a-z]+-(?:flavou?red|scented|like|free)\b/gi, " ");
+    const mention = check_text(said, rule("nut-free")!, false);
+    if (mention.verdict === "bad") status["nut-free"] = { status: "review", why: `the description or method mentions ${mention.hit}` };
+  }
   // A drink written only as a method (a hand-written alcohol-free version, curatedVersions.ts) has no ingredient list
   // to check, so no diet is claimed for it: each one needs a person to check, and can still be asked for.
   if (!recipe.ingredients.length)

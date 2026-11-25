@@ -219,6 +219,25 @@ const SUBSTITUTES: [RegExp, RegExp][] = [
 const replaced_by = (written: string, ingredient: Ingredient) =>
   SUBSTITUTES.some(([stand_in, original]) => stand_in.test(written) && original.test(ingredient.item) && !stand_in.test(ingredient.item));
 
+// Parts of a written change that name what is taken out or replaced: "without the rum", "aquafaba instead of egg
+// white". What they name isn't in the version, so it doesn't count when reading which allergens it contains.
+const TAKEN_OUT = /\b(?:without|skip|leave out|omit|no|instead of|in place of|rather than|replacing)\b[^,.;]*/gi;
+
+/**
+ * A version's allergens, recalculated rather than inherited. The original's allergens stay unless one clearly came
+ * only from an ingredient this version removed or replaced (the egg white an aquafaba version leaves out, the Irish
+ * cream left out with the alcohol); one whose source can't be found in the original stays, since its source is
+ * unknown. Anything the version's own ingredients or wording add is included.
+ */
+export function version_allergens(original: Recipe, kept: string[], removed: string[], written: string): string[] {
+  const added = allergens_in([written.replace(TAKEN_OUT, " "), ...kept].join(" ; "), []);
+  const from = (items: string[]) => new Set(items.flatMap((item) => allergens_in(item, [])));
+  const in_removed = from(removed);
+  const in_kept = from(kept);
+  const stays = original.allergens.filter((a) => added.includes(a) || in_kept.has(a) || !in_removed.has(a));
+  return [...new Set([...stays, ...added])];
+}
+
 /** The recipe's own alcohol-free version, or null when it has none written (the AI is asked instead). */
 export function curated_non_alcoholic(recipe: Recipe): Recipe | null {
   const cocktail = recipe.cocktail;
@@ -231,19 +250,28 @@ export function curated_non_alcoholic(recipe: Recipe): Recipe | null {
     // The garnish goes without its alcohol too, whether the version is built or shown as written.
     cocktail: { ...cocktail, garnish: garnish_without_alcohol(cocktail.garnish), alcoholic: false, non_alcoholic_version: null },
     note: "Recipeak's own alcohol-free version of this drink. Check the labels of any alcohol-free spirits you use.",
-    allergens: allergens_in(written, recipe.allergens),
     tips: [],
     make_ahead: "",
     variations: [],
   };
   const changed = CHANGE.test(written) ? changed_recipe(written, recipe) : null;
-  if (changed)
+  const garnish = garnish_without_alcohol(cocktail.garnish);
+  const original_items = [...recipe.ingredients.map((i) => i.item), ...(cocktail.garnish ? [cocktail.garnish] : [])];
+  if (changed) {
+    const kept_items = [...changed.ingredients.map((i) => i.item), ...(garnish ? [garnish] : [])];
     return {
       ...base,
       ...changed,
+      allergens: version_allergens(
+        recipe,
+        kept_items,
+        original_items.filter((i) => !kept_items.includes(i)),
+        written,
+      ),
       description: `${recipe.description} Without alcohol: ${sentence}`,
       steps: [`To make it without alcohol: ${sentence}`, ...changed.steps],
     };
+  }
   // Shown as written, it must be alcohol-free itself: one that still says "a dash of bitters" is left to the AI. Alcohol
   // named only to be left out ("Blend without the rum and brandy") doesn't count.
   const left_out = written.replace(
@@ -272,11 +300,18 @@ export function curated_non_alcoholic(recipe: Recipe): Recipe | null {
     const specific = words.filter((w) => !GENERIC.has(w));
     return (specific.length ? specific : words).some((w) => measured.has(w));
   };
-  const kept = recipe.ingredients
-    .filter((i) => !has_alcohol(i.item) && !replaced_by(written, i) && !given(i))
-    .map((i) => [i.amount, i.unit, i.item].filter(Boolean).join(" "));
+  const carried = recipe.ingredients.filter((i) => !has_alcohol(i.item) && !replaced_by(written, i) && !given(i));
+  const kept = carried.map((i) => [i.amount, i.unit, i.item].filter(Boolean).join(" "));
   const from_original = kept.length ? [`From the original, without the alcohol: ${kept.join("; ")}.`] : [];
-  return { ...base, description: sentence, ingredients: [], steps: [sentence, ...from_original] };
+  const kept_items = [...carried.map((i) => i.item), ...(garnish ? [garnish] : [])];
+  const removed = original_items.filter((i) => !kept_items.includes(i));
+  return {
+    ...base,
+    description: sentence,
+    ingredients: [],
+    steps: [sentence, ...from_original],
+    allergens: version_allergens(recipe, kept_items, removed, written),
+  };
 }
 
 /** A version the recipe already carries for this diet, so no AI request is needed. */

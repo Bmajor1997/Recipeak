@@ -1,3 +1,4 @@
+import { possible_allergen_line } from "./allergenRisk";
 import { scale_amount } from "./scale";
 import type { Diet, Ingredient, Recipe } from "./types";
 
@@ -53,6 +54,8 @@ export function recipe_as_text(recipe: Recipe, details: ShareDetails = {}): stri
   if (recipe.variations?.length) lines.push("", "Variations", ...recipe.variations.map((t) => `• ${t}`));
   if (recipe.cocktail?.non_alcoholic_version) lines.push("", `Non-alcoholic version: ${recipe.cocktail.non_alcoholic_version}`);
   if (recipe.allergens.length) lines.push("", `Contains: ${recipe.allergens.join(", ")}`);
+  const possible = possible_allergen_line(recipe);
+  if (possible) lines.push(...(recipe.allergens.length ? [] : [""]), possible);
   if (recipe.note) lines.push("", `Note: ${recipe.note}`);
   const note = details.note?.trim();
   if (note) lines.push("", `My note: ${note}`);

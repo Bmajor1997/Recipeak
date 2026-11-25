@@ -142,8 +142,14 @@ describe("saved recipe covers", () => {
     const reopened = await saved_as_current(item);
     expect(reopened.recipe.description).toBe(bundled_recipe(gimlet)!.description);
     expect(reopened.recipe.description).not.toContain("cordial");
+    // A saved alcohol-free version of a library drink opens as it is made now (allergens recalculated).
+    const sour = find_bundled_dish("cocktail", "Amaretto Sour")!;
+    const stale = { ...curated_non_alcoholic(bundled_recipe(sour)!)!, allergens: ["eggs", "tree nuts"] };
+    await create_saved_recipes(storage, "alice").save("cocktail", stale, null, { bundled_id: sour.id });
+    const saved_version = (await create_saved_recipes(storage, "alice").list()).find((s) => s.recipe.title === stale.title)!;
+    expect((await saved_as_current(saved_version)).recipe.allergens).not.toContain("eggs");
     // A saved version of the dish (its own title) is shown as it was saved.
-    const version = { ...old, title: "Gimlet (non-alcoholic)" };
+    const version = { ...old, title: "Low-Carb Gimlet" };
     expect((await saved_as_current({ ...item, recipe: version })).recipe).toBe(version);
   });
 });

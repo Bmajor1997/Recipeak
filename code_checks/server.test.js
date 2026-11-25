@@ -458,6 +458,12 @@ test("the second check gets the recipe as data, and the allergen words add what'
   assert.deepEqual(with_detected_allergens(items(["water"], ["milk"])).allergens, ["milk"], "never removes one");
 });
 
+test("AI recipe instructions keep the wording consistent with the ingredients and flag brand-dependent nuts", () => {
+  const instructions = recipe_payload({ kind: "cocktail", name: "Test Pilot" }).instructions;
+  assert.match(instructions, /mention only ingredients that are in the ingredient list/);
+  assert.match(instructions, /Falernum, amaretto, crème de noyaux, nougat and mole paste can contain tree nuts depending on the brand/);
+});
+
 test("the allergen words read every shared case the same way as the app's written drink versions", () => {
   const { cases } = JSON.parse(readFileSync(new URL("../data/allergen-word-cases.json", import.meta.url), "utf8"));
   for (const { text, has = [], not = [] } of cases) {

@@ -69,6 +69,8 @@ const RECIPE_RULES = `You are the recipe engine for Recipeak, a cooking app.
 - Give a good, representative home recipe for the dish or drink. Never claim it is the restaurant's or bar's exact recipe.
 - Use US measurements only: cups, tablespoons (tbsp), teaspoons (tsp), ounces (oz), pounds (lb), and degrees Fahrenheit.
 - List every one of the nine major US allergens the recipe contains.
+- The description, steps and note mention only ingredients that are in the ingredient list, so the allergens and diet labels match what the cook reads (no "almond" in the description of a recipe without almonds).
+- Falernum, amaretto, crème de noyaux, nougat and mole paste can contain tree nuts depending on the brand: write "nut-free" in front of one only when it is meant to be a nut-free product, and otherwise say in "note" to check its label for tree nuts.
 - For cocktails, fill in "cocktail" and give a non-alcoholic version when one makes sense. For meals, set "cocktail" to null.
 - Keep steps clear and short. Use whole numbers for minutes and servings.
 - Name every ingredient precisely enough that the app can tell which diets it fits: say what a broth, stock, bouillon or curry paste is made from ("chicken broth", "vegetable broth"), name each cheese, and list every sauce, side and garnish the steps use. Mark anything optional or served on the side with "optional" or "to serve".`;
