@@ -18,7 +18,7 @@ const FLAVOR_WORDS = /\b[a-z]+-(?:flavou?red|scented|like|free)\b/gi;
 // mention matters most and a serving suggestion is rarely the reason.
 const FROM_WORDING = new Set(["tree nuts", "peanuts"]);
 
-export type PossibleAllergen = { allergen: string; because: string[] };
+type PossibleAllergen = { allergen: string; because: string[] };
 
 /** What the recipe may contain beyond its listed allergens, each with the words that raise it. */
 export function possible_allergens(recipe: Recipe): PossibleAllergen[] {

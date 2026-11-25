@@ -329,6 +329,7 @@ function RecipeView({ current }: { current: Ready }) {
   const insets = useSafeAreaInsets();
   const { width, height } = useWindowDimensions();
   const { recipe, kind, guesses, selected } = current;
+  const maybeAllergens = possible_allergen_line(recipe);
   const dishName = guesses[selected]?.name ?? recipe.title;
   const [diet, set_diet] = useState<Diet | null>(current.diet ?? null);
   const [busy, set_busy] = useState(false);
@@ -867,7 +868,7 @@ function RecipeView({ current }: { current: Ready }) {
           <Text style={type.body}>
             {recipe.allergens.length ? `Contains ${recipe.allergens.join(", ")}.` : "None of the major allergens are listed."}
           </Text>
-          {!!possible_allergen_line(recipe) && <Text style={[type.body, { marginTop: 4 }]}>{possible_allergen_line(recipe)}</Text>}
+          {!!maybeAllergens && <Text style={[type.body, { marginTop: 4 }]}>{maybeAllergens}</Text>}
           <Text style={[type.muted, { marginTop: 4 }]}>
             {
               "A photo can't show every ingredient. Check labels if allergies matter. Leaving an ingredient out doesn't remove traces of it from shared kitchens or packaged foods."

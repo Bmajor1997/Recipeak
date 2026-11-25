@@ -244,7 +244,7 @@ const TAKEN_OUT = /\b(?:without|skip|leave out|omit|no|instead of|in place of|ra
  * cream left out with the alcohol); one whose source can't be found in the original stays, since its source is
  * unknown. Anything the version's own ingredients or wording add is included.
  */
-export function version_allergens(original: Recipe, kept: string[], removed: string[], written: string): string[] {
+function version_allergens(original: Recipe, kept: string[], removed: string[], written: string): string[] {
   const added = allergens_in([written.replace(TAKEN_OUT, " "), ...kept].join(" ; "), []);
   const from = (items: string[]) => new Set(items.flatMap((item) => allergens_in(item, [])));
   const in_removed = from(removed);
