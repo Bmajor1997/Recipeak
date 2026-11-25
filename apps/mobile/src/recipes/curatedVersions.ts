@@ -8,6 +8,7 @@
 //     written, without inventing amounts.
 // A version is only built from the regular recipe when no alcohol is left in its ingredients or steps afterwards.
 // Otherwise it is shown as written, so an unchanged alcoholic recipe is never labelled alcohol-free.
+import { diet_words_suggest } from "./diets";
 import type { Diet, Ingredient, Recipe } from "./types";
 
 const CHANGE = /^(?:replace|use|swap|skip|omit|leave out|substitute|same)\b/i;
@@ -248,7 +249,10 @@ export function version_allergens(original: Recipe, kept: string[], removed: str
   const from = (items: string[]) => new Set(items.flatMap((item) => allergens_in(item, [])));
   const in_removed = from(removed);
   const in_kept = from(kept);
-  const stays = original.allergens.filter((a) => added.includes(a) || in_kept.has(a) || !in_removed.has(a));
+  // A kept ingredient the short lists don't know ("mascarpone") still keeps the warning when the diet lists name it,
+  // once plant milks and the like ("oat milk") are set aside.
+  const kept_may_hold = (a: string) => kept.some((item) => diet_words_suggest(item.toLowerCase().replace(NOT_AN_ALLERGEN, " "), a));
+  const stays = original.allergens.filter((a) => added.includes(a) || in_kept.has(a) || kept_may_hold(a) || !in_removed.has(a));
   return [...new Set([...stays, ...added])];
 }
 

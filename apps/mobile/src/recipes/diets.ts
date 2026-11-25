@@ -184,6 +184,22 @@ function check_diet(recipe: Recipe, diet: Diet, has_version: boolean): { status:
 }
 
 /** Rough amount in cups, for telling a spoon of sugar or flour from a dessert's or a dough's worth. */
+/**
+ * True when an ingredient may hold the allergen by the wider diet word lists: they name more of its sources
+ * (mascarpone, custard, brioche) than the short allergen lists do, and include the uncertain ones.
+ */
+export function diet_words_suggest(item: string, allergen: string): boolean {
+  const words: Record<string, RegExp[]> = {
+    milk: [DAIRY, DAIRY_UNSURE],
+    eggs: [EGG, EGG_UNSURE],
+    wheat: [GLUTEN],
+    "tree nuts": [NUTS, NUTS_UNSURE],
+    peanuts: [NUTS],
+  };
+  const text = item.toLowerCase().normalize("NFC");
+  return (words[allergen] ?? []).some((w) => w.test(text));
+}
+
 export function cups(amount: string, unit: string): number {
   const parts = amount
     .trim()

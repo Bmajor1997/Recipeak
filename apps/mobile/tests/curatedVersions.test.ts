@@ -71,6 +71,21 @@ describe("written non-alcoholic versions", () => {
       cocktail: { ...sour.cocktail!, non_alcoholic_version: "Blend without the bourbon and add a scoop of ice cream." },
     };
     expect(curated_non_alcoholic(added)!.allergens).toContain("milk");
+    // Leaving out one milk source keeps the warning while another stays, even one the short list doesn't name.
+    const mixed = {
+      ...sour,
+      allergens: ["milk"],
+      ingredients: [
+        { amount: "1", unit: "oz", item: "Irish cream liqueur" },
+        { amount: "1", unit: "tbsp", item: "mascarpone" },
+        { amount: "1", unit: "oz", item: "espresso" },
+      ],
+      cocktail: { ...sour.cocktail!, garnish: "", non_alcoholic_version: "Omit the Irish cream." },
+    };
+    expect(curated_non_alcoholic(mixed)!.allergens).toContain("milk");
+    // A plant milk left behind doesn't bring the warning back.
+    const plant = { ...mixed, ingredients: [mixed.ingredients[0], { amount: "2", unit: "oz", item: "oat milk" }] };
+    expect(curated_non_alcoholic(plant)!.allergens).not.toContain("milk");
     // An allergen with no source in the ingredients (an unknown compound) is kept rather than dropped.
     const unknown = { ...sour, allergens: [...sour.allergens, "soy"] };
     expect(curated_non_alcoholic(unknown)!.allergens).toContain("soy");
