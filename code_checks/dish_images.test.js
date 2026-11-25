@@ -102,6 +102,7 @@ test("a reported photo can be retired by an administrator; the next view makes a
   await images.settled();
   const key = image_key("meal", "Cou cou");
   assert.ok(existsSync(join(dir, `${key}.jpg`)));
+  const first_url = images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).url;
   assert.equal(images.retire({ kind: "meal", name: "COU COU" }), true, "matched like every other name");
   assert.equal(existsSync(join(dir, `${key}.jpg`)), false);
   assert.equal(readdirSync(join(dir, "retired")).filter((f) => f.startsWith(key)).length, 1, "kept aside, never deleted");
@@ -109,6 +110,8 @@ test("a reported photo can be retired by an administrator; the next view makes a
   await images.settled();
   assert.equal(calls.length, 2);
   assert.match(calls[1].body.prompt, /It is vegetarian/);
+  const new_url = images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).url;
+  assert.ok(first_url && new_url && new_url !== first_url, "the new photo has a new address, so cached copies of the old one aren't reused");
   assert.equal(images.retire({ kind: "cocktail", name: "Margarita" }), false, "a hand-picked photo can't be retired");
   assert.equal(images.retire({ kind: "meal", name: "Never made" }), false);
   // Only an administrator can retire one.
@@ -158,7 +161,7 @@ test("a missing photo is created once in the background, then served to everyone
   assert.equal(calls[0].body.output_format, "jpeg");
   const ready = images.status({ kind: "cocktail", name: "Imaginary Test Cocktail", user_id: "carol" });
   assert.equal(ready.status, "ready");
-  assert.equal(ready.url, `/images/${image_key("cocktail", "Imaginary Test Cocktail")}.jpg`);
+  assert.match(ready.url, new RegExp(`^/images/${image_key("cocktail", "Imaginary Test Cocktail")}\\.jpg\\?v=[a-z0-9]+$`));
   assert.equal(calls.length, 1);
   assert.deepEqual(readdirSync(dir).filter((f) => f.endsWith(".tmp")), [], "no half-written files left behind");
   const [row] = store.records();
@@ -222,7 +225,8 @@ test("a photo's guesses get the library photo if there is one, never a new one, 
   const base = `http://127.0.0.1:${server.address().port}`;
   const jpeg = `data:image/jpeg;base64,${Buffer.concat([Buffer.from([0xff, 0xd8, 0xff]), Buffer.alloc(40, 1)]).toString("base64")}`;
   const found = await (await fetch(`${base}/api/identify`, { method: "POST", headers: { Authorization: "Bearer x", "Content-Type": "application/json" }, body: JSON.stringify({ image: jpeg }) })).json();
-  assert.deepEqual(found.guesses[0].image, { status: "ready", url: `/images/${key}.jpg` });
+  assert.equal(found.guesses[0].image.status, "ready");
+  assert.match(found.guesses[0].image.url, new RegExp(`^/images/${key}\\.jpg\\?v=`));
   assert.equal(found.guesses[1].image.status, "unavailable", "no new photo is made until the person asks for the recipe");
   await images.settled();
   const file = await fetch(`${base}${found.guesses[0].image.url}`);

@@ -1,7 +1,7 @@
 // The shared cover-photo library: one polished, CREME-style photo per dish or drink, created once and reused
 // by everyone. The person's own photo is never used here; only the dish's name and kind reach the image model.
 import { createHash, randomUUID } from "node:crypto";
-import { copyFileSync, existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, renameSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { AiLimitError } from "./errors.js";
@@ -180,7 +180,9 @@ export function create_image_library({ env = {}, store, fetch_impl = fetch, dir 
   const in_flight = new Map();
   const curated = curated_keys(curated_dir);
 
-  const url_for = (key) => `/images/${key}.jpg`;
+  // Photos are cached as immutable, so the address carries the file's version: a photo made again after one is
+  // retired gets a new address, and nobody keeps seeing the retired one.
+  const url_for = (key) => `/images/${key}.jpg?v=${Math.round(statSync(join(dir, `${key}.jpg`)).mtimeMs * 1000).toString(36)}`;
 
   async function generate({ key, kind, name, user_id, details }) {
     let request_id;
