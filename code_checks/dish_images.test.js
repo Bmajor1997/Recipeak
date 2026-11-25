@@ -111,7 +111,14 @@ test("a reported photo can be retired by an administrator; the next view makes a
   assert.equal(calls.length, 2);
   assert.match(calls[1].body.prompt, /It is vegetarian/);
   const new_url = images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).url;
-  assert.ok(first_url && new_url && new_url !== first_url, "the new photo has a new address, so cached copies of the old one aren't reused");
+  assert.equal(first_url, `/images/${key}.jpg`);
+  assert.notEqual(new_url, first_url, "the new photo has a new address, so cached copies of the old one aren't reused");
+  assert.match(new_url, /^\/images\/[a-f0-9]{32}\.jpg$/, "a plain library address that installed apps already accept");
+  assert.ok(images.read(new_url.slice("/images/".length)), "and it is served");
+  assert.equal(images.read(`${key}.jpg`), null, "the retired photo isn't");
+  // After a restart the library still knows the photo was made again.
+  const again = create_image_library({ env: { OPENAI_API_KEY: "sk-test" }, store, fetch_impl: async () => { throw new Error("no call"); }, dir, log: { warn() {} } });
+  assert.equal(again.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).url, new_url);
   assert.equal(images.retire({ kind: "cocktail", name: "Margarita" }), false, "a hand-picked photo can't be retired");
   assert.equal(images.retire({ kind: "meal", name: "Never made" }), false);
   // Only an administrator can retire one.
@@ -161,7 +168,7 @@ test("a missing photo is created once in the background, then served to everyone
   assert.equal(calls[0].body.output_format, "jpeg");
   const ready = images.status({ kind: "cocktail", name: "Imaginary Test Cocktail", user_id: "carol" });
   assert.equal(ready.status, "ready");
-  assert.match(ready.url, new RegExp(`^/images/${image_key("cocktail", "Imaginary Test Cocktail")}\\.jpg\\?v=[a-z0-9]+$`));
+  assert.equal(ready.url, `/images/${image_key("cocktail", "Imaginary Test Cocktail")}.jpg`);
   assert.equal(calls.length, 1);
   assert.deepEqual(readdirSync(dir).filter((f) => f.endsWith(".tmp")), [], "no half-written files left behind");
   const [row] = store.records();
@@ -225,8 +232,7 @@ test("a photo's guesses get the library photo if there is one, never a new one, 
   const base = `http://127.0.0.1:${server.address().port}`;
   const jpeg = `data:image/jpeg;base64,${Buffer.concat([Buffer.from([0xff, 0xd8, 0xff]), Buffer.alloc(40, 1)]).toString("base64")}`;
   const found = await (await fetch(`${base}/api/identify`, { method: "POST", headers: { Authorization: "Bearer x", "Content-Type": "application/json" }, body: JSON.stringify({ image: jpeg }) })).json();
-  assert.equal(found.guesses[0].image.status, "ready");
-  assert.match(found.guesses[0].image.url, new RegExp(`^/images/${key}\\.jpg\\?v=`));
+  assert.deepEqual(found.guesses[0].image, { status: "ready", url: `/images/${key}.jpg` });
   assert.equal(found.guesses[1].image.status, "unavailable", "no new photo is made until the person asks for the recipe");
   await images.settled();
   const file = await fetch(`${base}${found.guesses[0].image.url}`);

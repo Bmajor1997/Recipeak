@@ -1,7 +1,7 @@
 // The shared cover-photo library: one polished, CREME-style photo per dish or drink, created once and reused
 // by everyone. The person's own photo is never used here; only the dish's name and kind reach the image model.
 import { createHash, randomUUID } from "node:crypto";
-import { copyFileSync, existsSync, mkdirSync, readFileSync, renameSync, statSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, renameSync, readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { AiLimitError } from "./errors.js";
@@ -180,9 +180,19 @@ export function create_image_library({ env = {}, store, fetch_impl = fetch, dir 
   const in_flight = new Map();
   const curated = curated_keys(curated_dir);
 
-  // Photos are cached as immutable, so the address carries the file's version: a photo made again after one is
-  // retired gets a new address, and nobody keeps seeing the retired one.
-  const url_for = (key) => `/images/${key}.jpg?v=${Math.round(statSync(join(dir, `${key}.jpg`)).mtimeMs * 1000).toString(36)}`;
+  // Photos are cached as immutable, so a photo made again after one is retired is published under a new file name
+  // (still a plain library address every installed app accepts), and nobody keeps seeing the retired one.
+  const retired_count = new Map();
+  if (dir && existsSync(join(dir, "retired")))
+    for (const f of readdirSync(join(dir, "retired"))) {
+      const key = f.slice(0, 32);
+      if (/^[a-f0-9]{32}-/.test(f)) retired_count.set(key, (retired_count.get(key) ?? 0) + 1);
+    }
+  const file_of = (key) => {
+    const n = retired_count.get(key) ?? 0;
+    return `${n ? createHash("sha256").update(`${key}#${n}`).digest("hex").slice(0, 32) : key}.jpg`;
+  };
+  const url_for = (key) => `/images/${file_of(key)}`;
 
   async function generate({ key, kind, name, user_id, details }) {
     let request_id;
@@ -224,7 +234,7 @@ export function create_image_library({ env = {}, store, fetch_impl = fetch, dir 
       if (bytes.length < 1000 || bytes.length > 8_000_000 || bytes[0] !== 0xff || bytes[1] !== 0xd8) throw new Error("Invalid image");
       const temp = join(dir, `.${key}.${randomUUID()}.tmp`);
       writeFileSync(temp, bytes, { mode: 0o644 });
-      renameSync(temp, join(dir, `${key}.jpg`));
+      renameSync(temp, join(dir, file_of(key)));
       store.finish_image(request_id, { status: "completed", provider_request_id });
       store.set_image({ key, kind, name, status: "ready" });
     } catch (error) {
@@ -246,13 +256,13 @@ export function create_image_library({ env = {}, store, fetch_impl = fetch, dir 
     peek({ kind, name }) {
       const key = image_key(kind, name);
       if (!enabled || !key) return { status: "unavailable", url: null };
-      if (existsSync(join(dir, `${key}.jpg`))) return { status: "ready", url: url_for(key) };
+      if (existsSync(join(dir, file_of(key)))) return { status: "ready", url: url_for(key) };
       return { status: in_flight.has(key) ? "pending" : "unavailable", url: null };
     },
     status({ kind, name, user_id, details }) {
       const key = image_key(kind, name);
       if (!enabled || !key) return { status: "unavailable", url: null };
-      if (existsSync(join(dir, `${key}.jpg`))) return { status: "ready", url: url_for(key) };
+      if (existsSync(join(dir, file_of(key)))) return { status: "ready", url: url_for(key) };
       if (in_flight.has(key)) return { status: "pending", url: null };
       const row = store.get_image(key);
       if (row?.status === "failed" && Date.now() - Date.parse(row.updated_at) < RETRY_FAILED_AFTER_MS) return { status: "unavailable", url: null };
@@ -269,10 +279,11 @@ export function create_image_library({ env = {}, store, fetch_impl = fetch, dir 
     retire({ kind, name }) {
       const key = image_key(kind, name);
       if (!enabled || !key || curated.has(key)) return false;
-      const file = join(dir, `${key}.jpg`);
+      const file = join(dir, file_of(key));
       if (!existsSync(file)) return false;
       mkdirSync(join(dir, "retired"), { recursive: true });
       renameSync(file, join(dir, "retired", `${key}-${Date.now()}.jpg`));
+      retired_count.set(key, (retired_count.get(key) ?? 0) + 1);
       store.set_image({ key, kind, name: normalize_dish_name(name), status: "retired" });
       return true;
     },

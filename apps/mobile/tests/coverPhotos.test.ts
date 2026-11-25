@@ -24,13 +24,9 @@ describe("cover photos from the server", () => {
       status: "ready",
       url: `/images/${PHOTO_ID}.jpg`,
     });
-    // A photo made again after one is retired carries its version, so cached copies of the old one aren't reused.
-    expect(parse_dish_image({ status: "ready", url: `/images/${PHOTO_ID}.jpg?v=lx3k9a` }).url).toBe(`/images/${PHOTO_ID}.jpg?v=lx3k9a`);
     expect(parse_dish_image({ status: "pending", url: "anything" })).toEqual({ status: "pending", url: null });
     for (const bad of [
       { status: "ready", url: "https://evil.example/x.jpg" },
-      { status: "ready", url: `/images/${PHOTO_ID}.jpg?v=x&next=https://evil.example` },
-      { status: "ready", url: `/images/${PHOTO_ID}.jpg?other=1` },
       { status: "ready", url: `/images/../${PHOTO_ID}.jpg` },
       { status: "ready", url: null },
       { status: "weird" },

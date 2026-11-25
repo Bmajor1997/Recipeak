@@ -68,7 +68,7 @@ export function parse_recipe(v: unknown): Recipe {
 /** Only library addresses from our own server are accepted; anything else is treated as "no photo". */
 export function parse_dish_image(v: unknown): DishImage {
   if (!is_object(v)) return NO_IMAGE;
-  if (v.status === "ready" && typeof v.url === "string" && /^\/images\/[a-f0-9]{32}\.jpg(?:\?v=[a-z0-9]{1,16})?$/.test(v.url))
+  if (v.status === "ready" && typeof v.url === "string" && /^\/images\/[a-f0-9]{32}\.jpg$/.test(v.url))
     return { status: "ready", url: v.url };
   if (v.status === "pending") return { status: "pending", url: null };
   return NO_IMAGE;
@@ -104,7 +104,7 @@ export function parse_allowance(v: unknown): Allowance {
 
 /** Saved data on the phone can be old or damaged; skip anything that doesn't check out rather than crash. */
 /** A shared library photo on the recipe server. */
-export const LIBRARY_IMAGE = /^\/images\/[a-z0-9-]+\.jpg(?:\?v=[a-z0-9]{1,16})?$/;
+export const LIBRARY_IMAGE = /^\/images\/[a-z0-9-]+\.jpg$/;
 
 export function parse_saved_list(v: unknown): SavedRecipe[] {
   if (!Array.isArray(v)) return [];
