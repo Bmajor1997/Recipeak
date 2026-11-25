@@ -264,6 +264,14 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
       max_body: 1024,
     },
     "POST /api/admin/feedback/mutate": { handler: admin_only((body) => store.feedback.mutate(body)), max_body: FEEDBACK_BODY },
+    // After checking a "Not the dish or drink in my photo" report: the next view makes a new photo from the recipe.
+    "POST /api/admin/images/retire": {
+      handler: admin_only((body) => {
+        if (!["meal", "cocktail"].includes(body?.kind) || typeof body?.name !== "string") throw new HttpError(400, "Name the dish and its kind.");
+        return { retired: images ? images.retire({ kind: body.kind, name: body.name }) : false };
+      }),
+      max_body: 1024,
+    },
   };
 
   return async function handle(request, response) {

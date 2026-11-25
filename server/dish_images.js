@@ -39,28 +39,57 @@ const detail = (text, max = 40) => {
   return clean && clean.length <= max ? clean : null;
 };
 
+// Ingredients that make a dish not vegetarian, and those that make it not vegan, for the photo's diet note only.
+// The app works out diet labels on its own (apps/mobile/src/recipes/diets.ts); this only keeps a photo from showing
+// what the recipe doesn't have.
+const MEAT_OR_FISH =
+  /\b(?:chicken|beef|pork|lamb|mutton|goat(?! cheese)|veal|duck|turkey|bacon|pancetta|prosciutto|ham|sausages?|chorizo|salami|pepperoni|meat|steaks?|ribs|brisket|fish|salmon|tuna|cod|anchov\w*|sardines?|shrimp|prawns?|crab|lobster|clams?|mussels?|scallops?|squid|octopus|oysters?|gelatin|lard|fish sauce|worcestershire)\b/i;
+const ANIMAL = /\b(?:butter|milk|cream|cheese|yog(?:h)?urt|ghee|eggs?|egg (?:whites?|yolks?)|honey|mayonnaise)\b/i;
+const PLANT = /\b(?:vegan|plant-based|dairy-free|coconut (?:milk|cream)|peanut butter|almond (?:milk|butter)|oat milk|soy milk|cream of coconut)\b[^,;]*/gi;
+
+/** What a photo of this recipe must leave out, from its ingredient list. Empty when it has meat or fish. */
+export function image_diet_note(ingredients = []) {
+  const items = ingredients.map((i) => String(i ?? "").toLowerCase());
+  if (!items.length || items.some((i) => MEAT_OR_FISH.test(i))) return "";
+  const vegan = !items.some((i) => ANIMAL.test(i.replace(PLANT, " ")));
+  return vegan
+    ? "It is vegan: show no meat, poultry, fish, seafood, eggs, dairy or cheese anywhere in the picture."
+    : "It is vegetarian: show no meat, poultry, fish or seafood anywhere in the picture.";
+}
+
 /**
  * The house style, refined with Ben on 2026-11-14 from his ChatGPT tests (moscow mule, cosmopolitan, margarita):
  * eye level, dark slate, a few fresh key ingredients beside the dish, one side light, full frame, no text.
- * When the recipe is known, its glass, garnish and main ingredients make the photo match it.
+ * When the recipe is known, the photo shows the dish as that recipe makes it (its glass, garnish and main
+ * ingredients), not the way it is traditionally served: a vegetarian cou-cou isn't shown with flying fish. Nothing the
+ * recipe doesn't contain is added, and a vegetarian or vegan recipe says so.
  */
 export function image_prompt(kind, name, details = {}) {
   const dish = normalize_dish_name(name);
   const glass = detail(details.glass);
   const garnish = detail(details.garnish);
-  const ingredients = (Array.isArray(details.ingredients) ? details.ingredients : []).map((i) => detail(i, 30)).filter(Boolean).slice(0, 3);
+  const listed = (Array.isArray(details.ingredients) ? details.ingredients : []).map((i) => detail(i, 30)).filter(Boolean);
+  const ingredients = listed.slice(0, 3);
+  const known = listed.length > 0;
   const subject =
     kind === "cocktail"
       ? `a classic ${dish} ${glass ? `in a ${glass}` : "in its classic glass"} ${garnish ? `with ${garnish}` : "with its classic garnish"}, backlit so the drink glows clear and appetising`
-      : `${dish}, plated the classic way it is usually served, looking fresh and appetising`;
+      : known
+        ? `${dish} made from ${listed.slice(0, 6).join(", ")}, plated simply as this recipe makes it, looking fresh and appetising`
+        : `${dish}, plated the classic way it is usually served, looking fresh and appetising`;
   const props = ingredients.length ? `a few fresh key ingredients beside it (${ingredients.join(", ")})` : "a few fresh key ingredients beside it";
+  const diet = image_diet_note(Array.isArray(details.ingredients) ? details.ingredients : []);
   return [
     `Editorial food photograph of ${subject}.`,
+    known ? "Show only foods from this recipe: no added sides, sauces, toppings, meat or fish it doesn't list." : "",
+    diet,
     `Eye-level, slightly angled view; dark slate surface with ${props}; near-black background;`,
     "dark, moody lighting from one side; rich, true-to-life colour; shallow depth of field;",
     "the photo fills the whole frame with no borders.",
     "No people, no hands, no text, no labels, no logos, no brand names.",
-  ].join(" ");
+  ]
+    .filter(Boolean)
+    .join(" ");
 }
 
 /** Every dish and drink that has a hand-picked photo, as library keys. Only these can be opened from the Home photo wall. */
@@ -132,6 +161,7 @@ export function create_image_library({ env = {}, store, fetch_impl = fetch, dir 
     install_curated(dir, curated_dir);
   }
   const in_flight = new Map();
+  const curated = curated_keys(curated_dir);
 
   const url_for = (key) => `/images/${key}.jpg`;
 
@@ -211,6 +241,21 @@ export function create_image_library({ env = {}, store, fetch_impl = fetch, dir 
       in_flight.set(key, job);
       job.catch(() => {});
       return { status: "pending", url: null };
+    },
+    /**
+     * Takes a photo out of the library after a person checked a report about it ("the photo shows meat on a vegetarian
+     * dish"), so the next view creates a new one from the recipe. The old file is kept aside, never deleted, and a
+     * hand-picked photo can't be retired this way. Returns whether a photo was retired.
+     */
+    retire({ kind, name }) {
+      const key = image_key(kind, name);
+      if (!enabled || !key || curated.has(key)) return false;
+      const file = join(dir, `${key}.jpg`);
+      if (!existsSync(file)) return false;
+      mkdirSync(join(dir, "retired"), { recursive: true });
+      renameSync(file, join(dir, "retired", `${key}-${Date.now()}.jpg`));
+      store.set_image({ key, kind, name: normalize_dish_name(name), status: "retired" });
+      return true;
     },
     /** For the seed script and tests: wait for every photo being created right now. */
     async settled() {

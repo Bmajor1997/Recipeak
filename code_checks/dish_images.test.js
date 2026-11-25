@@ -1,11 +1,11 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { createServer } from "node:http";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
 import { create_app } from "../server/app.js";
-import { create_image_library, curated_catalog, image_key, image_prompt, install_curated, normalize_dish_name } from "../server/dish_images.js";
+import { create_image_library, curated_catalog, image_diet_note, image_key, image_prompt, install_curated, normalize_dish_name } from "../server/dish_images.js";
 import { create_usage_store } from "../server/usage_store.js";
 
 const JPEG = Buffer.concat([Buffer.from([0xff, 0xd8, 0xff, 0xe0]), Buffer.alloc(4000, 9)]);
@@ -56,8 +56,53 @@ test("a known recipe's glass, garnish and ingredients shape its photo", () => {
   assert.match(prompt, /a classic margarita in a rocks glass with salt rim and a lime wheel/);
   assert.match(prompt, /beside it \(blanco tequila, fresh lime juice, orange liqueur\)/, "up to three ingredients, without preparation notes");
   const meal = image_prompt("meal", "Chicken parmesan", { ingredients: ["chicken breasts", "x".repeat(60)] });
-  assert.match(meal, /chicken parmesan, plated the classic way/);
+  assert.match(meal, /chicken parmesan made from chicken breasts, plated simply as this recipe makes it/);
   assert.match(meal, /\(chicken breasts\)/, "over-long details are dropped");
+  assert.doesNotMatch(meal, /vegetarian|vegan/, "a recipe with meat gets no diet note");
+  // Without a recipe, the dish is shown the classic way.
+  assert.match(image_prompt("meal", "Chicken parmesan"), /chicken parmesan, plated the classic way/);
+});
+
+test("a vegetarian or vegan recipe's photo prompt shows what the recipe makes, and leaves out what it doesn't have", () => {
+  // The reported Cou-Cou: cornmeal and okra, traditionally served with flying fish, but this recipe has none.
+  const cou_cou = image_prompt("meal", "Barbadian Cou-Cou", { ingredients: ["fine yellow cornmeal", "fresh okra, sliced", "unsalted butter", "water", "salt"] });
+  assert.match(cou_cou, /barbadian cou-cou made from fine yellow cornmeal, fresh okra, unsalted butter, water, salt, plated simply as this recipe makes it/);
+  assert.match(cou_cou, /Show only foods from this recipe: no added sides, sauces, toppings, meat or fish it doesn't list\./);
+  assert.match(cou_cou, /It is vegetarian: show no meat, poultry, fish or seafood anywhere in the picture\./);
+  assert.doesNotMatch(cou_cou, /classic way|flying fish/);
+  const vegan = image_prompt("meal", "Okra stew", { ingredients: ["okra", "coconut milk", "olive oil", "vegan butter"] });
+  assert.match(vegan, /It is vegan: show no meat, poultry, fish, seafood, eggs, dairy or cheese anywhere in the picture\./);
+  assert.equal(image_diet_note(["cornmeal", "fish sauce"]), "", "a hidden fish ingredient means no vegetarian note");
+  assert.equal(image_diet_note([]), "", "no recipe, no claim");
+});
+
+test("a reported photo can be retired by an administrator; the next view makes a new one, the old file is kept", async (t) => {
+  const { images, dir, calls, store } = library(t, {}, { MM_FEEDBACK_ADMIN_UIDS: "boss" });
+  const recipe_details = { ingredients: ["cornmeal", "okra", "butter"] };
+  assert.equal(images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).status, "pending");
+  await images.settled();
+  const key = image_key("meal", "Cou cou");
+  assert.ok(existsSync(join(dir, `${key}.jpg`)));
+  assert.equal(images.retire({ kind: "meal", name: "COU COU" }), true, "matched like every other name");
+  assert.equal(existsSync(join(dir, `${key}.jpg`)), false);
+  assert.equal(readdirSync(join(dir, "retired")).filter((f) => f.startsWith(key)).length, 1, "kept aside, never deleted");
+  assert.equal(images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).status, "pending", "made again");
+  await images.settled();
+  assert.equal(calls.length, 2);
+  assert.match(calls[1].body.prompt, /It is vegetarian/);
+  assert.equal(images.retire({ kind: "cocktail", name: "Margarita" }), false, "a hand-picked photo can't be retired");
+  assert.equal(images.retire({ kind: "meal", name: "Never made" }), false);
+  // Only an administrator can retire one.
+  const handle = create_app({ env: { OPENAI_API_KEY: "sk", MM_FEEDBACK_ADMIN_UIDS: "boss" }, store, images, premium: async () => false, log: { warn() {} },
+    authorize: async (r) => (r.headers.authorization ? { uid: r.headers.authorization.slice(7) } : false) });
+  const server = createServer(handle);
+  await new Promise((r) => server.listen(0, "127.0.0.1", r));
+  t.after(() => new Promise((r) => server.close(r)));
+  const retire = (who, body) => fetch(`http://127.0.0.1:${server.address().port}/api/admin/images/retire`, {
+    method: "POST", headers: { Authorization: `Bearer ${who}`, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  assert.equal((await retire("alice", { kind: "meal", name: "Cou cou" })).status, 403);
+  assert.equal((await retire("boss", { kind: "dessert", name: "Cou cou" })).status, 400);
+  assert.deepEqual(await (await retire("boss", { kind: "meal", name: "Cou cou" })).json(), { retired: true });
 });
 
 test("hand-picked photos are installed under every name they cover", (t) => {
