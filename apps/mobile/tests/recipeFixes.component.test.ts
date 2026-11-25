@@ -31,6 +31,7 @@ const mocks = vi.hoisted(() => ({
   add_recent: vi.fn(),
   refresh_allowance: vi.fn(),
   cover_path: null as string | null,
+  restore_cover: vi.fn(async (_id: string, _url: string) => true),
   saved_list: [] as { id: string; kind: string; recipe: Recipe; photo_uri: string | null }[],
   camera: { photosLeft: 3 as number | null | undefined },
 }));
@@ -137,6 +138,7 @@ const fake_saved = {
     return entry;
   },
   remove: async (id: string) => void (mocks.saved_list = mocks.saved_list.filter((s) => s.id !== id)),
+  restore_cover: (id: string, image_url: string) => mocks.restore_cover(id, image_url),
 };
 
 let tree: Rendered | undefined;
@@ -171,6 +173,7 @@ beforeEach(() => {
   mocks.camera.photosLeft = 3;
   mocks.saved_list = [];
   mocks.cover_path = null;
+  mocks.restore_cover.mockClear();
   mocks.add_recent.mockResolvedValue(undefined);
   mocks.bundled_version.mockReturnValue(null);
   mocks.find_bundled_dish.mockReturnValue(null);
@@ -459,6 +462,19 @@ describe("the Save button", () => {
     await open(ready(PASTA, "meal", { picked: true, ai: true }));
     expect(saved_label()).toBe("Saved");
     expect(text()).toContain("file:///docs/recipe-photos/keep.jpg");
+  });
+
+  it("a saved recipe whose photo went missing gets its library photo back in Saved once found", async () => {
+    mocks.saved_list = [{ id: "cachupa", kind: "meal", recipe: PASTA, photo_uri: null }];
+    mocks.cover_path = "/images/gluten-free-cachupa.jpg";
+    await open(ready(PASTA, "meal", { picked: true, ai: true, savedId: "cachupa" }));
+    expect(mocks.restore_cover).toHaveBeenCalledWith("cachupa", "/images/gluten-free-cachupa.jpg");
+  });
+
+  it("a saved recipe with its own photo is left alone", async () => {
+    mocks.cover_path = "/images/x.jpg";
+    await open(ready(PASTA, "meal", { picked: true, ai: true, savedId: "keep", localPhoto: "file:///docs/recipe-photos/keep.jpg" }));
+    expect(mocks.restore_cover).not.toHaveBeenCalled();
   });
 
   it("still shows Saved after switching to a version and back", async () => {

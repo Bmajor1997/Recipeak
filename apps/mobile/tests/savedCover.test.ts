@@ -2,7 +2,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { bundled_recipe, find_bundled_dish } from "../src/recipes/bundled";
 import { curated_non_alcoholic } from "../src/recipes/curatedVersions";
-import { create_saved_recipes } from "../src/saved/savedRecipes";
+import { create_saved_recipes, saved_storage_name } from "../src/saved/savedRecipes";
 import { saved_as_current, saved_cover } from "../src/saved/savedCover";
 import { first_working, saved_photo_of, viewed_items } from "../src/recipes/recentItems";
 import type { Recipe } from "../src/recipes/types";
@@ -151,5 +151,84 @@ describe("saved recipe covers", () => {
     // A saved version of the dish (its own title) is shown as it was saved.
     const version = { ...old, title: "Low-Carb Gimlet" };
     expect((await saved_as_current({ ...item, recipe: version })).recipe).toBe(version);
+  });
+});
+
+describe("saved photos over time", () => {
+  const photos = () => {
+    const files = new Set<string>();
+    let n = 0;
+    return {
+      files,
+      store: {
+        keep_photo: async (_uri: string, id: string) => {
+          const kept = `file:///docs/recipe-photos/${id}-${++n}.jpg`;
+          files.add(kept);
+          return kept;
+        },
+        remove_photo: (uri: string) => void files.delete(uri),
+      },
+    };
+  };
+  const other = { ...ai_recipe, title: "Taro cake" };
+
+  it("keeps a valid photo through an app restart and a sign-out and back in", async () => {
+    const storage = memory();
+    const p = photos();
+    await create_saved_recipes(storage, "alice", { photos: p.store }).save("meal", ai_recipe, "file:///tmp/cam.jpg", { ai: true });
+    // Restart: a new store reading the same phone storage. Another account never sees it.
+    const [item] = await create_saved_recipes(storage, "alice").list();
+    expect(item.photo_uri).toMatch(/^file:\/\/\/docs\/recipe-photos\//);
+    expect(p.files.has(item.photo_uri!)).toBe(true);
+    expect(await create_saved_recipes(storage, "bob").list()).toEqual([]);
+    expect((await create_saved_recipes(storage, "alice").list())[0].photo_uri).toBe(item.photo_uri);
+  });
+
+  it("a missing photo gets the library photo back once found, without a duplicate; a valid one is never changed", async () => {
+    const storage = memory();
+    const saved = create_saved_recipes(storage, "alice", { photos: photos().store });
+    const lost = await saved.save("meal", ai_recipe, null, { ai: true }); // its kept photo is gone
+    expect(saved_cover(lost, (p) => p).uri).toBeNull(); // the app's art, no crash
+    expect(await saved.restore_cover(lost.id, "/images/gluten-free-cachupa.jpg")).toBe(true);
+    const list = await saved.list();
+    expect(list).toHaveLength(1);
+    expect(saved_cover(list[0], (p) => `https://api.example${p}`).uri).toBe("https://api.example/images/gluten-free-cachupa.jpg");
+    expect(list[0].recipe).toMatchObject({ title: ai_recipe.title, ingredients: ai_recipe.ingredients }); // the recipe itself is untouched
+    const p = photos();
+    const kept = await create_saved_recipes(storage, "alice", { photos: p.store }).save("meal", other, "file:///tmp/cam.jpg", { ai: true });
+    expect(await saved.restore_cover(kept.id, "/images/other.jpg")).toBe(false);
+    expect(await saved.restore_cover("no-such-id", "/images/other.jpg")).toBe(false);
+  });
+
+  it("deleting one saved recipe leaves the others' photos, and a photo still in use is never deleted", async () => {
+    const storage = memory();
+    const p = photos();
+    const saved = create_saved_recipes(storage, "alice", { photos: p.store });
+    const first = await saved.save("meal", ai_recipe, "file:///tmp/a.jpg", { ai: true });
+    const second = await saved.save("meal", other, "file:///tmp/b.jpg", { ai: true });
+    await saved.remove(first.id);
+    expect(p.files.has(first.photo_uri!)).toBe(false);
+    expect(p.files.has(second.photo_uri!)).toBe(true);
+    // Two entries pointing at one file (an older list): removing one keeps the file for the other.
+    const shared = second.photo_uri!;
+    await storage.setItem(
+      saved_storage_name("alice"),
+      JSON.stringify([
+        { ...second, id: "x" },
+        { ...second, id: "y", recipe: ai_recipe },
+      ]),
+    );
+    await saved.remove("x");
+    expect(p.files.has(shared)).toBe(true);
+  });
+
+  it("a photo that can't be kept still saves the recipe, without a picture", async () => {
+    const storage = memory();
+    const failing = { keep_photo: async () => Promise.reject(new Error("disk full")), remove_photo: vi.fn() };
+    const item = await create_saved_recipes(storage, "alice", { photos: failing }).save("meal", ai_recipe, "file:///tmp/cam.jpg", {
+      ai: true,
+    });
+    expect(item.photo_uri).toBeNull();
+    expect(await create_saved_recipes(storage, "alice").list()).toHaveLength(1);
   });
 });

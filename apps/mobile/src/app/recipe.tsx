@@ -412,6 +412,10 @@ function RecipeView({ current }: { current: Ready }) {
 
   const cover = useDishImage(api, kind, dishName, current.image, { lookUp: !current.localPhoto && current.image.status === "unavailable" });
   const coverUri = current.localPhoto ?? cover.uri;
+  // A saved recipe whose kept photo went missing gets its library photo back in Saved once it's found here.
+  useEffect(() => {
+    if (current.savedId && cover.path && !current.localPhoto) void saved.restore_cover(current.savedId, cover.path).catch(() => {});
+  }, [saved, current.savedId, current.localPhoto, cover.path]);
   // Recorded again once a photo that was still being made is ready, so Home shows it too.
   useEffect(() => {
     if (record) record_viewed(recent, current, dishName, cover.path);
