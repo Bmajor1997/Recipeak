@@ -24,6 +24,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { CAMERA_THEME } from "../ui/theme";
 import {
   CAMERA_START_TIMEOUT_MS,
+  CAPTURE_FAILED,
   camera_area,
   type FlashSetting,
   flash_label,
@@ -32,6 +33,7 @@ import {
   SHEET_SPRING,
   should_dismiss,
   shutter_flash,
+  usable_capture,
 } from "./cameraOptions";
 
 // The camera keeps its dark look in light mode too, like every phone camera.
@@ -61,6 +63,7 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
   const [flash, set_flash] = useState<FlashSetting>("off");
   const [facing, set_facing] = useState<CameraType>("back");
   const [ready, set_ready] = useState(false);
+  const [capture_error, set_capture_error] = useState<string | null>(null);
   const [taken, set_taken] = useState<Photo | null>(null);
   // A camera that failed to start, one that never said it was ready, and the app being in the foreground.
   const [failed, set_failed] = useState(false);
@@ -90,6 +93,7 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
       set_menu_open(false);
       set_failed(false);
       set_timed_out(false);
+      set_capture_error(null);
     }
   }
 
@@ -191,6 +195,7 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
   function retake() {
     set_taken(null);
     set_ready(false);
+    set_capture_error(null);
   }
 
   async function take_photo() {
@@ -198,15 +203,22 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
     set_menu_open(false);
     // Two signals that the photo was taken: the shutter sound and a soft white flash.
     play_flash();
+    set_capture_error(null);
     const photo = await camera.current.takePictureAsync({ quality: 0.9, shutterSound: true }).catch(() => null);
-    if (photo) await finish({ uri: photo.uri, width: photo.width, height: photo.height });
+    // A capture that failed, or came back without a file or a size, is never sent (and uses no free photo).
+    if (!photo || !usable_capture(photo)) return set_capture_error(CAPTURE_FAILED);
+    await finish({ uri: photo.uri, width: photo.width, height: photo.height });
   }
 
   async function choose_from_photos() {
     set_menu_open(false);
     const picked = await ImagePicker.launchImageLibraryAsync({ mediaTypes: "images", quality: 0.9 });
-    const asset = picked.canceled ? null : picked.assets[0];
-    if (asset) await finish({ uri: asset.uri, width: asset.width, height: asset.height });
+    // Closing the picker is a quiet cancel; a picked photo that can't be read says so.
+    if (picked.canceled) return;
+    const asset = picked.assets[0];
+    if (!usable_capture(asset)) return set_capture_error("That photo couldn't be opened. Choose another one.");
+    set_capture_error(null);
+    await finish({ uri: asset.uri, width: asset.width, height: asset.height });
   }
 
   if (!mounted) return null;
@@ -295,9 +307,9 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
           </View>
         )}
 
-        {!!message && !taken && (
+        {!!(message ?? capture_error) && !taken && (
           <View style={styles.message} accessibilityLiveRegion="assertive">
-            <Text style={styles.messageText}>{message}</Text>
+            <Text style={styles.messageText}>{message ?? capture_error}</Text>
           </View>
         )}
 

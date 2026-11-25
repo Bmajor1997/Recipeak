@@ -103,6 +103,17 @@ test("'not food' and unusable replies give the free photo back", async (t) => {
   assert.ok(!JSON.stringify(s.warnings).includes("not json"), "logs never contain the model's reply");
 });
 
+test("a blank or black photo is reported as unusable, works for older apps, and gives the free photo back", async (t) => {
+  const s = await start({ reply: () => ({ kind: "unusable", guesses: [] }) }); t.after(s.close);
+  const found = (await s.call("/api/identify", { body: { image: JPEG } })).json;
+  assert.equal(found.kind, "not_food", "older apps read it as not food");
+  assert.equal(found.reason, "unusable");
+  assert.equal(found.free_photos_left, 3);
+  assert.equal((await s.call("/api/allowance")).json.free_photos_left, 3);
+  assert.match(identify_payload("data:image/jpeg;base64,x").instructions, /too dark or blurry to see what is in it, set "kind" to "unusable"/);
+  assert.match(identify_payload("data:image/jpeg;base64,x").instructions, /A dim but recognisable photo is not unusable/);
+});
+
 test("after 3 free photos the next one is refused before calling OpenAI", async (t) => {
   const s = await start(); t.after(s.close);
   for (let i = 0; i < 3; i++) assert.equal((await s.call("/api/identify", { body: { image: JPEG } })).status, 200);

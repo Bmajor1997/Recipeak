@@ -54,3 +54,11 @@ export function camera_area(state: {
   if (state.failed || (state.timed_out && !state.ready)) return "unavailable";
   return state.ready ? "preview" : "starting";
 }
+
+/** A photo the camera or gallery handed back that can be sent: a file, with a real size. */
+export function usable_capture(photo: { uri?: string | null; width?: number; height?: number } | null | undefined): boolean {
+  return Boolean(photo?.uri) && (photo?.width ?? 0) > 0 && (photo?.height ?? 0) > 0;
+}
+
+/** Shown in the camera when a capture fails. Nothing is sent, so no free photo is used. */
+export const CAPTURE_FAILED = "The camera couldn't take that photo. Try again, or choose one from your photos.";

@@ -54,7 +54,7 @@ const IDENTIFY_SCHEMA = {
   additionalProperties: false,
   required: ["kind", "guesses"],
   properties: {
-    kind: { type: "string", enum: ["meal", "cocktail", "not_food"] },
+    kind: { type: "string", enum: ["meal", "cocktail", "not_food", "unusable"] },
     guesses: {
       type: "array",
       items: {
@@ -118,6 +118,7 @@ export function identify_payload(image_data_url, model = DEFAULT_MODEL) {
 - Give up to 3 guesses for what it is, most likely first. Use the dish's or drink's usual name, the one a menu or cookbook would use ("Chicken Katsu", "Margarita", "Shakshuka"), not a description of the photo.
 - Use "high" confidence only when the photo clearly shows that exact dish or drink.
 - If the photo does not show food or drink, set "kind" to "not_food" and "guesses" to an empty list.
+- If the photo is blank, almost all black or white, or too dark or blurry to see what is in it, set "kind" to "unusable" and "guesses" to an empty list. A dim but recognisable photo is not unusable.
 - Never write a recipe.`,
     input: [{ role: "user", content: [
       { type: "input_text", text: "What dish or drink is this?" },
@@ -269,9 +270,12 @@ export function validate_recipe(recipe) {
 }
 
 export function validate_identification(reply) {
-  if (!reply || typeof reply !== "object" || !["meal", "cocktail", "not_food"].includes(reply.kind) || !Array.isArray(reply.guesses))
+  if (!reply || typeof reply !== "object" || !["meal", "cocktail", "not_food", "unusable"].includes(reply.kind) || !Array.isArray(reply.guesses))
     throw new SyntaxError("Invalid identification");
   if (reply.kind === "not_food") return { kind: "not_food", guesses: [] };
+  // A blank or black photo (a camera that didn't capture) is sent as not_food, which every app version handles and
+  // which gives the free photo back; the reason lets newer apps say what went wrong.
+  if (reply.kind === "unusable") return { kind: "not_food", guesses: [], reason: "unusable" };
   const guesses = reply.guesses.slice(0, 3).map((g) => {
     if (!["high", "medium", "low"].includes(g?.confidence)) throw new SyntaxError("Invalid guess");
     return { name: text(g.name, 120), confidence: g.confidence };
