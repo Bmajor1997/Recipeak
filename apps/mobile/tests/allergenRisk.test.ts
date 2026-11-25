@@ -134,3 +134,20 @@ describe("library audit", () => {
     }
   });
 });
+
+describe("AI photo diet notes", () => {
+  it("never call a library recipe vegetarian or vegan unless the app's own rules do", async () => {
+    const { image_diet_note } = (await import("../../../server/dish_images.js")) as { image_diet_note: (items: string[]) => string };
+    let notes = 0;
+    for (const id of Object.keys(recipes)) {
+      const r = library(id);
+      const note = image_diet_note(r.ingredients.map((i) => i.item));
+      if (!note) continue;
+      notes += 1;
+      const status = bundled_diet_profile(id, r, r.cocktail ? "cocktail" : "meal").status;
+      expect(status.vegetarian?.status, `${id}: ${note}`).toBe("fits");
+      if (/vegan/.test(note)) expect(status.vegan?.status, `${id}: ${note}`).toBe("fits");
+    }
+    expect(notes).toBeGreaterThan(50); // the note is still given where it's safe
+  });
+});

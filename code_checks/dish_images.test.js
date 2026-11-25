@@ -74,6 +74,25 @@ test("a vegetarian or vegan recipe's photo prompt shows what the recipe makes, a
   assert.match(vegan, /It is vegan: show no meat, poultry, fish, seafood, eggs, dairy or cheese anywhere in the picture\./);
   assert.equal(image_diet_note(["cornmeal", "fish sauce"]), "", "a hidden fish ingredient means no vegetarian note");
   assert.equal(image_diet_note([]), "", "no recipe, no claim");
+  // Animal ingredients with their own names (the library's Unagi Don and Miso Soup), and uncertain ones, get no note.
+  const recipes = JSON.parse(readFileSync(new URL("../apps/mobile/src/recipes/collection.json", import.meta.url), "utf8"));
+  for (const id of ["japanese-unagi-don", "miso-soup"])
+    assert.equal(image_diet_note(recipes[id].ingredients.map((i) => i.item)), "", id);
+  assert.equal(image_diet_note(["rice", "chicken broth"]), "");
+  assert.equal(image_diet_note(["rice", "broth"]), "", "an unknown broth may be meat");
+  assert.match(image_diet_note(["rice", "vegetable broth"]), /It is vegan/);
+  assert.match(image_diet_note(["udon", "kombu dashi", "scallions"]), /vegetarian|vegan/);
+  assert.equal(image_diet_note(["udon", "dashi"]), "", "plain dashi is usually bonito");
+});
+
+test("the photo's diet words are the app's own, copied exactly", () => {
+  const app = readFileSync(new URL("../apps/mobile/src/recipes/diets.ts", import.meta.url), "utf8");
+  const server = readFileSync(new URL("../server/dish_images.js", import.meta.url), "utf8");
+  for (const name of ["RENNET", "MEAT", "MEAT_UNSURE", "PLANT_WORDS", "DAIRY", "DAIRY_UNSURE", "EGG", "EGG_UNSURE", "HONEY", "FINED", "VEGETARIAN_OK", "VEGAN_OK"]) {
+    const literal = (source) => source.match(new RegExp(`const ${name} =\\s*(/.*?/[gi]*);`, "s"))?.[1].replace(/\s+/g, " ");
+    assert.ok(literal(app), name);
+    assert.equal(literal(server), literal(app), name);
+  }
 });
 
 test("a reported photo can be retired by an administrator; the next view makes a new one, the old file is kept", async (t) => {

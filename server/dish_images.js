@@ -39,19 +39,36 @@ const detail = (text, max = 40) => {
   return clean && clean.length <= max ? clean : null;
 };
 
-// Ingredients that make a dish not vegetarian, and those that make it not vegan, for the photo's diet note only.
-// The app works out diet labels on its own (apps/mobile/src/recipes/diets.ts); this only keeps a photo from showing
-// what the recipe doesn't have.
-const MEAT_OR_FISH =
-  /\b(?:chicken|beef|pork|lamb|mutton|goat(?! cheese)|veal|duck|turkey|bacon|pancetta|prosciutto|ham|sausages?|chorizo|salami|pepperoni|meat|steaks?|ribs|brisket|fish|salmon|tuna|cod|anchov\w*|sardines?|shrimp|prawns?|crab|lobster|clams?|mussels?|scallops?|squid|octopus|oysters?|gelatin|lard|fish sauce|worcestershire)\b/i;
-const ANIMAL = /\b(?:butter|milk|cream|cheese|yog(?:h)?urt|ghee|eggs?|egg (?:whites?|yolks?)|honey|mayonnaise)\b/i;
-const PLANT = /\b(?:vegan|plant-based|dairy-free|coconut (?:milk|cream)|peanut butter|almond (?:milk|butter)|oat milk|soy milk|cream of coconut)\b[^,;]*/gi;
+// The photo's diet note uses the app's own diet words (apps/mobile/src/recipes/diets.ts, copied exactly; a test keeps
+// them in step and checks every library recipe), so it is never less careful than the app's labels. A note is only
+// added when nothing could break the diet, uncertain items included ("broth", "dashi", wine): otherwise none is given.
+const RENNET = /\b(?:parmesan|parmigiano|pecorino|grana padano|cotija)/i;
+const MEAT = /\b(?:chicken|beef|pork|lamb|mutton|goat(?! cheese)|veal|duck|turkey|cornish hens?|oxtail|tripe|brisket|chuck|sirloin|ribeye|tenderloin|flank steak|steaks?|short ribs|spareribs|shank|bacon|pancetta|guanciale|prosciutto|ham\b|pepperoni|salami|chorizo|chouri[cç]o|lingui[cç]a|sausages?|kielbasa|andouille|bratwurst|lap cheong|lard|suet|marrow|bones?\b|doner|meat|gelatin|fish|salmon|tuna|albacore|yellowfin|cod\b|haddock|catfish|tilapia|halibut|mahi|anchov|sardine|mackerel|eel\b|unagi|bonito|katsuobushi|dashi|saltfish|shrimp|prawn|crab|clams?\b|clamato|mussels?|lobster|scallops?|oyster sauce|squid|octopus|conch|crayfish|bagoong|belacan|terasi|ikan bilis|worcestershire|nuoc cham|ham hocks?)/i;
+const MEAT_UNSURE = /\b(?:broth|stock\b|stock cubes?|bouillon|kimchi|curry paste|laksa paste|nam prik pao|chili paste|sinigang|fish-free)/i;
+const PLANT_WORDS = /\b(vegetable (?:broth|stock)|kombu dashi|mushroom dashi|eggplant|butter beans|butternut|cocoa butter|peanut butter|cream of coconut|coconut (?:cream|milk)|honeydew|crème de [a-zûé]+|creme de [a-z]+|cream sherry|ginger beer|root beer)\b/g;
+const DAIRY = /\b(?:butter|buttermilk|ghee|smen|kibbeh|milk|cream|crema|cheese|cheddar|mozzarella|parmesan|pecorino|kefalotyri|ricotta|feta|paneer|queso|quesillo|oaxaca|monterey jack|gruy[eè]re|provolone|swiss|yogh?urt|irish cream|mashed potatoes|naan|brioche|mascarpone|cr[eè]me fra[iî]che|kefir|quark|labneh|halloumi|burrata|custard|ice cream|dulce de leche|queso fresco|cotija|cheese curds)/i;
+const DAIRY_UNSURE = /\b(?:bread|rolls|buns|pav|english muffins|puff pastry|pie crusts?|empanada dough|paratha|roti|cornbread|gingersnap|chocolate(?! bitters))/i;
+const EGG = /\b(?:eggs?\b|egg (?:white|yolk)s?|yolks?|mayo|mayonnaise|tartar sauce|egg noodles|brioche|challah)/i;
+const EGG_UNSURE = /\b(?:lasagna noodles|dumpling wrappers|spring roll wrappers|empanada dough|tempura bits|gingersnap)/i;
+const HONEY = /\b(?:honey(?!dew|comb)|gardenia mix)/i;
+const FINED = /\b(?:wine|champagne|prosecco|vermouth|sherry|port\b|beer|lager|stout|dubonnet|marsala|sake|shaoxing)/i;
+const VEGETARIAN_OK = /\b(?:vegan|plant-based|vegetarian|meatless)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
+const VEGAN_OK = /\b(?:vegan|plant-based)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
 
-/** What a photo of this recipe must leave out, from its ingredient list. Empty when it has meat or fish. */
+/** What a photo of this recipe must leave out, from its ingredient list. Empty when that can't be said for sure. */
 export function image_diet_note(ingredients = []) {
-  const items = ingredients.map((i) => String(i ?? "").toLowerCase());
-  if (!items.length || items.some((i) => MEAT_OR_FISH.test(i))) return "";
-  const vegan = !items.some((i) => ANIMAL.test(i.replace(PLANT, " ")));
+  const items = ingredients.map((i) => String(i ?? "").toLowerCase().normalize("NFC"));
+  if (!items.length) return "";
+  const read = (text, qualified) => text.replace(qualified, " ok ").replace(PLANT_WORDS, " ok ");
+  const vegetarian = items.every((i) => {
+    const t = read(i, VEGETARIAN_OK);
+    return !MEAT.test(t) && !RENNET.test(t) && !MEAT_UNSURE.test(t);
+  });
+  if (!vegetarian) return "";
+  const vegan = items.every((i) => {
+    const t = read(i, VEGAN_OK);
+    return ![DAIRY, EGG, HONEY, DAIRY_UNSURE, EGG_UNSURE, FINED].some((words) => words.test(t));
+  });
   return vegan
     ? "It is vegan: show no meat, poultry, fish, seafood, eggs, dairy or cheese anywhere in the picture."
     : "It is vegetarian: show no meat, poultry, fish or seafood anywhere in the picture.";

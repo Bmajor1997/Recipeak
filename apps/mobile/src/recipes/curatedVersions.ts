@@ -46,7 +46,12 @@ const ALLERGEN_WORDS: Record<string, RegExp> = {
   sesame: /\b(?:sesame|tahini)\b/,
 };
 const NOT_AN_ALLERGEN =
-  /\b(?:coconut|oat|rice|almond|soy|cashew) (?:milk|cream)\b|\bcream of (?:coconut|tartar)\b|\b(?:peanut|almond|cashew|sunflower|cocoa) butter\b|\bginger (?:beer|ale)\b|\broot beer\b|\b(?:gluten|wheat)-free(?: (?!and\b|or\b|with\b)[a-z'-]+){1,3}|\bbutter lettuce\b|\bcream sherry\b|\bsingle malt\b|\bmalt whiske?y\b/g;
+  /\b(?:coconut|oat|rice|almond|soy|cashew) (?:milk|cream)\b|\bcream of (?:coconut|tartar)\b|\b(?:peanut|almond|cashew|sunflower|cocoa) butter\b|\bginger (?:beer|ale)\b|\broot beer\b|\bgluten-free (?:beer|ale|lager)\b|\bbutter lettuce\b|\bcream sherry\b/g;
+// A free-from word settles only the allergen it names: "wheat-free egg noodles" is still eggs. Spirits distilled from
+// malted grain ("single malt") aren't wheat.
+const NOT_THIS_ALLERGEN: Record<string, RegExp> = {
+  wheat: /\b(?:wheat|gluten)-free(?: (?!and\b|or\b|with\b)[a-z'-]+){1,3}|\bsingle malt\b|\bmalt whiske?y\b/g,
+};
 
 /** Allergens named in a written version, added to the regular recipe's so none are dropped. */
 export function allergens_in(text: string, regular: string[]): string[] {
@@ -54,7 +59,15 @@ export function allergens_in(text: string, regular: string[]): string[] {
   const raw = text.toLowerCase();
   const without = raw.replace(NOT_AN_ALLERGEN, " ");
   for (const [allergen, words] of Object.entries(ALLERGEN_WORDS))
-    if (words.test(allergen === "tree nuts" || allergen === "peanuts" || allergen === "soy" ? raw : without)) found.add(allergen);
+    if (
+      words.test(
+        (allergen === "tree nuts" || allergen === "peanuts" || allergen === "soy" ? raw : without).replace(
+          NOT_THIS_ALLERGEN[allergen] ?? /$^/,
+          " ",
+        ),
+      )
+    )
+      found.add(allergen);
   return [...found];
 }
 
