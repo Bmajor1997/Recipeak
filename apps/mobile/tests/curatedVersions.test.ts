@@ -65,6 +65,12 @@ describe("written non-alcoholic versions", () => {
       cocktail: { ...sour.cocktail!, non_alcoholic_version: "Shake orgeat, lemon, aquafaba and a splash of eggnog." },
     };
     expect(curated_non_alcoholic(eggnog)!.allergens).toContain("eggs");
+    // Something added after what's left out still counts.
+    const added = {
+      ...sour,
+      cocktail: { ...sour.cocktail!, non_alcoholic_version: "Blend without the bourbon and add a scoop of ice cream." },
+    };
+    expect(curated_non_alcoholic(added)!.allergens).toContain("milk");
     // An allergen with no source in the ingredients (an unknown compound) is kept rather than dropped.
     const unknown = { ...sour, allergens: [...sour.allergens, "soy"] };
     expect(curated_non_alcoholic(unknown)!.allergens).toContain("soy");
