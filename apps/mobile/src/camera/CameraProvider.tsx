@@ -8,6 +8,7 @@ import { prepare_photo } from "../photos/prepare";
 import { bundled_photo_uri, bundled_recipe, find_bundled_dish } from "../recipes/bundled";
 import { NO_IMAGE } from "../recipes/types";
 import { CameraSheet, type Photo } from "./CameraSheet";
+import { photos_left_text } from "./photosLeft";
 
 type CameraState = {
   open_camera: () => void;
@@ -18,8 +19,7 @@ type CameraState = {
 
 const Context = createContext<CameraState | null>(null);
 
-export const photos_left_text = (left: number | null | undefined) =>
-  left == null ? null : left === 1 ? "1 free photo left" : `${left} free photos left`;
+export { photos_left_text } from "./photosLeft";
 
 export function CameraProvider({ children }: { children: ReactNode }) {
   const { api, set_current, user } = useApp();

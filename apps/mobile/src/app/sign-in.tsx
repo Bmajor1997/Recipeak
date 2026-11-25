@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { firebase, firebaseConfigured, sign_in_problem, test_mode_available } from "../auth/firebase";
 import { legal_page_urls } from "../settings/legalLinks";
 import { useOnboarding } from "../onboarding/OnboardingProvider";
-import { FREE_PHOTOS } from "../paywall/plans";
+import { start_offer } from "../paywall/plans";
 import { PillButton } from "../ui/PillButton";
 import { StartScreen } from "../ui/StartScreen";
 import { Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
@@ -87,7 +87,7 @@ export default function SignIn() {
         subtitle={returning ? "Welcome back. Log in to see your saved recipes." : "Recipes from any meal or drink you photograph."}
         footer={
           <>
-            <Text style={styles.reassure}>{`${FREE_PHOTOS} free photos. No card needed.`}</Text>
+            <Text style={styles.reassure}>{start_offer(returning)}</Text>
             {pages && (
               <Text style={styles.legal}>
                 {"By continuing, you agree to the "}

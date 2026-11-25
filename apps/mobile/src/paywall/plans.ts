@@ -17,6 +17,17 @@ export const FREE_TRIAL_DAYS = 7;
 export const FREE_PHOTOS = 3;
 export const FREE_SAVED_RECIPES = 3;
 
+/**
+ * The free-photo line under the start screen's buttons. Nobody is signed in there, so no account's count is known: a
+ * new account's offer is stated as that, and someone returning is shown no number (their count is on Home, the camera
+ * and Settings once they log in, from the server).
+ */
+export function start_offer(returning: boolean): string {
+  return returning
+    ? "Your photos left and saved recipes are waiting in your account."
+    : `New accounts get ${FREE_PHOTOS} free photos. No card needed.`;
+}
+
 /** Why the paywall opened: the free photos ran out, Saved is full, or "See Premium" in the first-launch tour. */
 export type PaywallReason = "photos" | "saved" | "versions" | "intro";
 
