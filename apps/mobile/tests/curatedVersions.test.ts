@@ -71,6 +71,22 @@ describe("written non-alcoholic versions", () => {
       cocktail: { ...sour.cocktail!, non_alcoholic_version: "Blend without the bourbon and add a scoop of ice cream." },
     };
     expect(curated_non_alcoholic(added)!.allergens).toContain("milk");
+    // A contrasting addition after what's left out counts too: a rum-and-espresso drink has no allergen of its own.
+    const plain = {
+      ...sour,
+      allergens: [],
+      ingredients: [
+        { amount: "1", unit: "oz", item: "dark rum" },
+        { amount: "1", unit: "oz", item: "espresso" },
+      ],
+      cocktail: { ...sour.cocktail!, garnish: "" },
+    };
+    const with_version = (non_alcoholic_version: string) =>
+      curated_non_alcoholic({ ...plain, cocktail: { ...plain.cocktail, non_alcoholic_version } })!.allergens;
+    expect(with_version("Blend espresso without the rum.")).toEqual([]);
+    expect(with_version("Blend espresso without the rum but with egg white.")).toContain("eggs");
+    expect(with_version("Shake espresso without the rum plus a splash of milk.")).toContain("milk");
+    expect(with_version("Stir espresso without the rum topped with whipped cream.")).toContain("milk");
     // Leaving out one milk source keeps the warning while another stays, even one the short list doesn't name.
     const mixed = {
       ...sour,

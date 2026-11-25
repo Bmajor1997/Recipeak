@@ -235,8 +235,11 @@ const replaced_by = (written: string, ingredient: Ingredient) =>
 
 // Parts of a written change that name what is taken out or replaced: "without the rum", "aquafaba instead of egg
 // white". What they name isn't in the version, so it doesn't count when reading which allergens it contains.
-// Each stops at "and" or "then", so "without the rum and add ice cream" still reads the ice cream.
-const TAKEN_OUT = /\b(?:without|skip|leave out|omit|no|instead of|in place of|rather than|replacing)\b(?:(?! and | then )[^,.;])*/gi;
+// Each stops at a word that starts something added ("and", "then", "but", "with", "plus", "add", "using", "topped"), so
+// "without the rum and add ice cream" and "without the rum but with egg white" still read what's added. Stopping early
+// can only keep a warning, never drop one.
+const TAKEN_OUT =
+  /\b(?:without|skip|leave out|omit|no|instead of|in place of|rather than|replacing)\b(?:(?! (?:and|then|but|with|plus|add|adding|using|topped|top)\b)[^,.;])*/gi;
 
 /**
  * A version's allergens, recalculated rather than inherited. The original's allergens stay unless one clearly came
