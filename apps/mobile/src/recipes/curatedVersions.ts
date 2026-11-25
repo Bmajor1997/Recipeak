@@ -249,9 +249,10 @@ export function version_allergens(original: Recipe, kept: string[], removed: str
   const from = (items: string[]) => new Set(items.flatMap((item) => allergens_in(item, [])));
   const in_removed = from(removed);
   const in_kept = from(kept);
-  // A kept ingredient the short lists don't know ("mascarpone") still keeps the warning when the diet lists name it,
-  // once plant milks and the like ("oat milk") are set aside.
-  const kept_may_hold = (a: string) => kept.some((item) => diet_words_suggest(item.toLowerCase().replace(NOT_AN_ALLERGEN, " "), a));
+  // A kept ingredient or a written addition the short lists don't know ("mascarpone") still keeps the warning when
+  // the diet lists name it, once what's left out and plant milks and the like ("oat milk") are set aside.
+  const in_version = [written.replace(TAKEN_OUT, " "), ...kept].map((t) => t.toLowerCase().replace(NOT_AN_ALLERGEN, " "));
+  const kept_may_hold = (a: string) => in_version.some((t) => diet_words_suggest(t, a));
   const stays = original.allergens.filter((a) => added.includes(a) || in_kept.has(a) || kept_may_hold(a) || !in_removed.has(a));
   return [...new Set([...stays, ...added])];
 }

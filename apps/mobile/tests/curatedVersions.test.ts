@@ -83,6 +83,13 @@ describe("written non-alcoholic versions", () => {
       cocktail: { ...sour.cocktail!, garnish: "", non_alcoholic_version: "Omit the Irish cream." },
     };
     expect(curated_non_alcoholic(mixed)!.allergens).toContain("milk");
+    // The same when the other source is only in the written method.
+    const written_in = {
+      ...mixed,
+      ingredients: [mixed.ingredients[0], mixed.ingredients[2]],
+      cocktail: { ...mixed.cocktail, non_alcoholic_version: "Blend espresso and mascarpone without the Irish cream." },
+    };
+    expect(curated_non_alcoholic(written_in)!.allergens).toContain("milk");
     // A plant milk left behind doesn't bring the warning back.
     const plant = { ...mixed, ingredients: [mixed.ingredients[0], { amount: "2", unit: "oz", item: "oat milk" }] };
     expect(curated_non_alcoholic(plant)!.allergens).not.toContain("milk");
