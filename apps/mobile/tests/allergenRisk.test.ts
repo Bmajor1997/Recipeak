@@ -46,9 +46,17 @@ describe("falernum", () => {
   it("falernum of unknown formulation may contain tree nuts; a nut-free one is nut-free", () => {
     expect(nut_free(drink(["falernum"]))).toBe("review");
     expect(possible_allergens(drink(["falernum syrup"]))[0]?.allergen).toBe("tree nuts");
-    for (const verified of ["nut-free falernum", "almond-free velvet falernum"]) {
-      expect(nut_free(drink([verified])), verified).toBe("fits");
-      expect(possible_allergens(drink([verified])), verified).toEqual([]);
+    expect(nut_free(drink(["nut-free falernum"]))).toBe("fits");
+    expect(possible_allergens(drink(["nut-free falernum"]))).toEqual([]);
+    // Almond-free rules out almonds only: the falernum may still hold another nut.
+    expect(nut_free(drink(["almond-free velvet falernum"]))).toBe("review");
+    expect(possible_allergens(drink(["almond-free velvet falernum"]))[0]?.allergen).toBe("tree nuts");
+  });
+
+  it("almond-free doesn't hide other nuts or peanuts", () => {
+    for (const item of ["almond-free cashew milk", "almond-free peanut butter"]) {
+      expect(nut_free(drink([item])), item).not.toBe("fits");
+      expect(nut_free(drink([item])), item).not.toBe("review");
     }
   });
 

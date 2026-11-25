@@ -9,8 +9,9 @@ import type { Recipe } from "./types";
 const BRAND_DEPENDENT: { allergen: string; words: RegExp }[] = [
   { allergen: "tree nuts", words: /\b(?:falernum|amaretto|noyaux|nougat|mole paste|nut liqueur)\b/i },
 ];
-// The line names a formulation without them ("nut-free amaretto (such as Disaronno)").
-const SAYS_FREE = /\b(?:nut-free|nut free|almond-free|tree nut-free)\b/i;
+// The line names a formulation without them ("nut-free amaretto (such as Disaronno)"). "Almond-free" isn't enough:
+// the drink may still use another nut.
+const SAYS_FREE = /\b(?:nut-free|nut free|tree nut-free)\b/i;
 // Words that describe a taste ("almond-scented"), not an ingredient.
 const FLAVOR_WORDS = /\b[a-z]+-(?:flavou?red|scented|like|free)\b/gi;
 // The allergens read from a description or method that disagrees with the ingredients: the nut allergens, where a

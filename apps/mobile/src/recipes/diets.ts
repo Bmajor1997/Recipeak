@@ -31,7 +31,8 @@ const VEGETARIAN_OK = /\b(?:vegan|plant-based|vegetarian|meatless)(?: (?!and\b|o
 const VEGAN_OK = /\b(?:vegan|plant-based)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
 const DAIRY_FREE_OK = /\b(?:vegan|plant-based|dairy-free)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
 const GLUTEN_FREE_OK = /\bgluten-free(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
-const NUT_FREE_OK = /\b(?:nut-free|nut free|almond-free)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
+// "Almond-free" rules out only almonds, so it clears just its own word: "almond-free cashew milk" is still cashew.
+const NUT_FREE_OK = /\b(?:nut-free|nut free)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}|\balmond-free\b/g;
 // Cheeses made with animal rennet by tradition (Parmesan by law, cotija by custom): not vegetarian, but easy to swap.
 const RENNET = /\b(?:parmesan|parmigiano|pecorino|grana padano|cotija)/i;
 
