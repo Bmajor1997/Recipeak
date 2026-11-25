@@ -131,7 +131,20 @@ test("a reported photo can be retired by an administrator; the next view makes a
     method: "POST", headers: { Authorization: `Bearer ${who}`, "Content-Type": "application/json" }, body: JSON.stringify(body) });
   assert.equal((await retire("alice", { kind: "meal", name: "Cou cou" })).status, 403);
   assert.equal((await retire("boss", { kind: "dessert", name: "Cou cou" })).status, 400);
+  // A saved recipe that kept the first address is sent to the current photo, once it's ready.
+  const base = `http://127.0.0.1:${server.address().port}`;
+  const old_address = await fetch(`${base}${first_url}`, { redirect: "manual" });
+  assert.equal(old_address.status, 302);
+  assert.equal(old_address.headers.get("location"), new_url);
+  assert.equal(old_address.headers.get("cache-control"), "no-cache");
+  assert.equal((await fetch(`${base}${first_url}`)).status, 200, "followed, it's the new photo");
   assert.deepEqual(await (await retire("boss", { kind: "meal", name: "Cou cou" })).json(), { retired: true });
+  assert.equal((await fetch(`${base}${first_url}`, { redirect: "manual" })).status, 404, "nothing to send it to until the next one is made");
+  assert.equal(images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).status, "pending");
+  await images.settled();
+  const third = images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).url;
+  for (const old of [first_url, new_url]) assert.equal((await fetch(`${base}${old}`, { redirect: "manual" })).headers.get("location"), third);
+  assert.equal(images.moved("../x.jpg"), null);
 });
 
 test("hand-picked photos are installed under every name they cover", (t) => {

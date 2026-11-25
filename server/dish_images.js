@@ -188,10 +188,14 @@ export function create_image_library({ env = {}, store, fetch_impl = fetch, dir 
       const key = f.slice(0, 32);
       if (/^[a-f0-9]{32}-/.test(f)) retired_count.set(key, (retired_count.get(key) ?? 0) + 1);
     }
-  const file_of = (key) => {
-    const n = retired_count.get(key) ?? 0;
-    return `${n ? createHash("sha256").update(`${key}#${n}`).digest("hex").slice(0, 32) : key}.jpg`;
+  const name_of = (key, n) => `${n ? createHash("sha256").update(`${key}#${n}`).digest("hex").slice(0, 32) : key}.jpg`;
+  const file_of = (key) => name_of(key, retired_count.get(key) ?? 0);
+  // A retired photo's address, saved in someone's recipe, leads to the photo that replaced it.
+  const replaced_by = new Map();
+  const note_replaced = (key) => {
+    for (let n = 0; n < (retired_count.get(key) ?? 0); n += 1) replaced_by.set(name_of(key, n), key);
   };
+  for (const key of retired_count.keys()) note_replaced(key);
   const url_for = (key) => `/images/${file_of(key)}`;
 
   async function generate({ key, kind, name, user_id, details }) {
@@ -284,12 +288,23 @@ export function create_image_library({ env = {}, store, fetch_impl = fetch, dir 
       mkdirSync(join(dir, "retired"), { recursive: true });
       renameSync(file, join(dir, "retired", `${key}-${Date.now()}.jpg`));
       retired_count.set(key, (retired_count.get(key) ?? 0) + 1);
+      note_replaced(key);
       store.set_image({ key, kind, name: normalize_dish_name(name), status: "retired" });
       return true;
     },
     /** For the seed script and tests: wait for every photo being created right now. */
     async settled() {
       await Promise.allSettled([...in_flight.values()]);
+    },
+    /**
+     * The current address for a retired photo's address, once its replacement is ready; null otherwise. Lets a saved
+     * recipe that only kept the old address find the new photo.
+     */
+    moved(file) {
+      if (!enabled || !FILE_NAME.test(file)) return null;
+      const key = replaced_by.get(file);
+      if (!key || existsSync(join(dir, file))) return null;
+      return existsSync(join(dir, file_of(key))) ? url_for(key) : null;
     },
     /** Reads a published photo for the public /images/ route. Only exact library file names are accepted. */
     read(file) {

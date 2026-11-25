@@ -281,7 +281,14 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
       if (path === "/healthz" && request.method === "GET") return send_json(response, 200, { ok: true });
       // Cover photos are generic pictures of dishes, shared by everyone, so they are public and cached for a long time.
       if (path.startsWith("/images/") && request.method === "GET") {
-        const bytes = images?.read(path.slice("/images/".length));
+        const file = path.slice("/images/".length);
+        const bytes = images?.read(file);
+        const moved = bytes ? null : images?.moved?.(file);
+        // A retired photo's old address sends the app to its replacement; the redirect itself isn't cached.
+        if (moved) {
+          for (const [k, v] of Object.entries({ ...SECURITY_HEADERS, "Cache-Control": "no-cache", Location: moved })) response.setHeader(k, v);
+          return response.writeHead(302).end();
+        }
         if (!bytes) throw new HttpError(404, "Not found.");
         for (const [k, v] of Object.entries({ ...SECURITY_HEADERS, "Cache-Control": "public, max-age=31536000, immutable", "Content-Type": "image/jpeg" })) response.setHeader(k, v);
         return response.writeHead(200).end(bytes);
