@@ -8,6 +8,7 @@ import { prepare_photo } from "../photos/prepare";
 import { bundled_photo_uri, bundled_recipe, find_bundled_dish } from "../recipes/bundled";
 import { NO_IMAGE } from "../recipes/types";
 import { CameraSheet, type Photo } from "./CameraSheet";
+import { not_food_message, photos_left_text } from "./photosLeft";
 
 type CameraState = {
   open_camera: () => void;
@@ -18,8 +19,7 @@ type CameraState = {
 
 const Context = createContext<CameraState | null>(null);
 
-export const photos_left_text = (left: number | null | undefined) =>
-  left == null ? null : left === 1 ? "1 free photo left" : `${left} free photos left`;
+export { photos_left_text } from "./photosLeft";
 
 export function CameraProvider({ children }: { children: ReactNode }) {
   const { api, set_current, user } = useApp();
@@ -62,7 +62,7 @@ export function CameraProvider({ children }: { children: ReactNode }) {
         const result = await api.identify(dataUrl);
         set_photos_left(result.premium ? null : result.free_photos_left);
         if (result.kind === "not_food") {
-          set_current({ status: "problem", message: "That doesn't look like a meal or a drink. Try again, closer up and in good light." });
+          set_current({ status: "problem", message: not_food_message(result.reason) });
           return;
         }
         // A dish Recipeak already has opens straight away: a checked recipe and its photo, with no AI recipe.

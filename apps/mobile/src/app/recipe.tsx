@@ -27,6 +27,7 @@ import { diets_for_kind, or_list } from "../onboarding/onboarding";
 import { useOnboarding } from "../onboarding/OnboardingProvider";
 import { FREE_SAVED_RECIPES } from "../paywall/plans";
 import { bundled_photo_uri, bundled_recipe, bundled_version, find_bundled_dish } from "../recipes/bundled";
+import { possible_allergen_line } from "../recipes/allergenRisk";
 import { COLLECTION } from "../recipes/collectionPhotos";
 import { bundled_diet_profile } from "../recipes/dietProfile";
 import { diet_profile } from "../recipes/diets";
@@ -328,6 +329,7 @@ function RecipeView({ current }: { current: Ready }) {
   const insets = useSafeAreaInsets();
   const { width, height } = useWindowDimensions();
   const { recipe, kind, guesses, selected } = current;
+  const maybeAllergens = possible_allergen_line(recipe);
   const dishName = guesses[selected]?.name ?? recipe.title;
   const [diet, set_diet] = useState<Diet | null>(current.diet ?? null);
   const [busy, set_busy] = useState(false);
@@ -411,6 +413,10 @@ function RecipeView({ current }: { current: Ready }) {
 
   const cover = useDishImage(api, kind, dishName, current.image, { lookUp: !current.localPhoto && current.image.status === "unavailable" });
   const coverUri = current.localPhoto ?? cover.uri;
+  // A saved recipe whose kept photo went missing gets its library photo back in Saved once it's found here.
+  useEffect(() => {
+    if (current.savedId && cover.path && !current.localPhoto) void saved.restore_cover(current.savedId, cover.path).catch(() => {});
+  }, [saved, current.savedId, current.localPhoto, cover.path]);
   // Recorded again once a photo that was still being made is ready, so Home shows it too.
   useEffect(() => {
     if (record) record_viewed(recent, current, dishName, cover.path);
@@ -862,6 +868,7 @@ function RecipeView({ current }: { current: Ready }) {
           <Text style={type.body}>
             {recipe.allergens.length ? `Contains ${recipe.allergens.join(", ")}.` : "None of the major allergens are listed."}
           </Text>
+          {!!maybeAllergens && <Text style={[type.body, { marginTop: 4 }]}>{maybeAllergens}</Text>}
           <Text style={[type.muted, { marginTop: 4 }]}>
             {
               "A photo can't show every ingredient. Check labels if allergies matter. Leaving an ingredient out doesn't remove traces of it from shared kitchens or packaged foods."

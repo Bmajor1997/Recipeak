@@ -31,14 +31,89 @@ describe("written non-alcoholic versions", () => {
     expect(written.map((r) => r.title)).toContain("Gimlet");
   });
 
-  it("is a full alcohol-free recipe for each, keeping every allergen of the regular drink", () => {
+  it("is a full alcohol-free recipe for each, keeping every allergen not clearly removed with an ingredient", () => {
     for (const regular of written) {
       const version = curated_non_alcoholic(regular)!;
       expect(version.title).toBe(`${regular.title} (non-alcoholic)`);
       expect(version.cocktail).toMatchObject({ alcoholic: false, non_alcoholic_version: null });
       expect(version.steps.join(" ")).toContain(regular.cocktail!.non_alcoholic_version!.slice(1, 20));
-      for (const allergen of regular.allergens) expect(version.allergens).toContain(allergen);
+      // An allergen is dropped only when the ingredients that carried it were removed or replaced.
+      const dropped = regular.allergens.filter((a) => !version.allergens.includes(a));
+      for (const allergen of dropped) {
+        const carriers = [...regular.ingredients.map((i) => i.item), regular.cocktail?.garnish ?? ""].filter((i) =>
+          allergens_in(i, []).includes(allergen),
+        );
+        expect(carriers.length, `${regular.title}: ${allergen}`).toBeGreaterThan(0);
+        for (const item of carriers)
+          expect(version.steps.join(" ").toLowerCase(), `${regular.title}: ${item}`).not.toContain(item.toLowerCase());
+      }
     }
+  });
+
+  it("recalculates allergens: aquafaba isn't egg, but egg kept or added anywhere still counts", () => {
+    const recipe_of = (id: string) => parse_recipe((recipes as Record<string, unknown>)[id]);
+    const sour = recipe_of("amaretto-sour");
+    expect(sour.allergens).toContain("eggs"); // the original has egg white
+    const version = curated_non_alcoholic(sour)!;
+    expect(version.allergens).not.toContain("eggs");
+    expect(version.allergens).toContain("tree nuts"); // orgeat
+    // Aquafaba and egg together, or egg brought in by another ingredient: still eggs.
+    const both = { ...sour, cocktail: { ...sour.cocktail!, non_alcoholic_version: "Shake orgeat, lemon, aquafaba and a whole egg." } };
+    expect(curated_non_alcoholic(both)!.allergens).toContain("eggs");
+    const eggnog = {
+      ...sour,
+      cocktail: { ...sour.cocktail!, non_alcoholic_version: "Shake orgeat, lemon, aquafaba and a splash of eggnog." },
+    };
+    expect(curated_non_alcoholic(eggnog)!.allergens).toContain("eggs");
+    // Something added after what's left out still counts.
+    const added = {
+      ...sour,
+      cocktail: { ...sour.cocktail!, non_alcoholic_version: "Blend without the bourbon and add a scoop of ice cream." },
+    };
+    expect(curated_non_alcoholic(added)!.allergens).toContain("milk");
+    // A contrasting addition after what's left out counts too: a rum-and-espresso drink has no allergen of its own.
+    const plain = {
+      ...sour,
+      allergens: [],
+      ingredients: [
+        { amount: "1", unit: "oz", item: "dark rum" },
+        { amount: "1", unit: "oz", item: "espresso" },
+      ],
+      cocktail: { ...sour.cocktail!, garnish: "" },
+    };
+    const with_version = (non_alcoholic_version: string) =>
+      curated_non_alcoholic({ ...plain, cocktail: { ...plain.cocktail, non_alcoholic_version } })!.allergens;
+    expect(with_version("Blend espresso without the rum.")).toEqual([]);
+    expect(with_version("Blend espresso without the rum but with egg white.")).toContain("eggs");
+    expect(with_version("Shake espresso without the rum plus a splash of milk.")).toContain("milk");
+    expect(with_version("Stir espresso without the rum topped with whipped cream.")).toContain("milk");
+    // Leaving out one milk source keeps the warning while another stays, even one the short list doesn't name.
+    const mixed = {
+      ...sour,
+      allergens: ["milk"],
+      ingredients: [
+        { amount: "1", unit: "oz", item: "Irish cream liqueur" },
+        { amount: "1", unit: "tbsp", item: "mascarpone" },
+        { amount: "1", unit: "oz", item: "espresso" },
+      ],
+      cocktail: { ...sour.cocktail!, garnish: "", non_alcoholic_version: "Omit the Irish cream." },
+    };
+    expect(curated_non_alcoholic(mixed)!.allergens).toContain("milk");
+    // The same when the other source is only in the written method.
+    const written_in = {
+      ...mixed,
+      ingredients: [mixed.ingredients[0], mixed.ingredients[2]],
+      cocktail: { ...mixed.cocktail, non_alcoholic_version: "Blend espresso and mascarpone without the Irish cream." },
+    };
+    expect(curated_non_alcoholic(written_in)!.allergens).toContain("milk");
+    // A plant milk left behind doesn't bring the warning back.
+    const plant = { ...mixed, ingredients: [mixed.ingredients[0], { amount: "2", unit: "oz", item: "oat milk" }] };
+    expect(curated_non_alcoholic(plant)!.allergens).not.toContain("milk");
+    // An allergen with no source in the ingredients (an unknown compound) is kept rather than dropped.
+    const unknown = { ...sour, allergens: [...sour.allergens, "soy"] };
+    expect(curated_non_alcoholic(unknown)!.allergens).toContain("soy");
+    // Switching back shows the original, egg white and all.
+    expect(sour.allergens).toContain("eggs");
   });
 
   it("never lists or instructs alcohol: every change is applied to ingredients and steps, or the version is shown as written", () => {

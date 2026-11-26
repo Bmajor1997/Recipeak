@@ -26,6 +26,15 @@
     { "text": "egg white", "has": ["eggs"] },
     { "text": "eggnog", "has": ["eggs"] },
     { "text": "peanut butter", "has": ["peanuts"], "not": ["milk"] },
-    { "text": "tahini", "has": ["sesame"] }
+    { "text": "tahini", "has": ["sesame"] },
+    { "text": "butter lettuce", "not": ["milk"] },
+    { "text": "cream sherry", "not": ["milk"] },
+    { "text": "wheat-free beer", "not": ["wheat"] },
+    { "text": "Islay single malt", "not": ["wheat"] },
+    { "text": "butter", "has": ["milk"] },
+    { "text": "heavy cream", "has": ["milk"] },
+    { "text": "wheat-free egg noodles", "has": ["eggs"], "not": ["wheat"] },
+    { "text": "wheat-free butter cookies", "has": ["milk"], "not": ["wheat"] },
+    { "text": "gluten-free egg pasta", "has": ["eggs"], "not": ["wheat"] }
   ]
 }

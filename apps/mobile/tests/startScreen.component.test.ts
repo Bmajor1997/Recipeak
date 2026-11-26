@@ -124,6 +124,7 @@ describe("one start screen", () => {
     expect(tree!.root.findAllByType("MovingPhotos")).toHaveLength(1);
     expect(JSON.stringify(tree!.toJSON())).toContain("Every dish has a ");
     expect(labels()).toEqual(expect.arrayContaining(["Continue with Google", "Create account", "Log in"]));
+    expect(JSON.stringify(tree!.toJSON())).toContain("New accounts get 3 free photos. No card needed.");
   });
 
   it("after signing out (a returning account), offers Log in first on that same screen", async () => {
@@ -133,6 +134,10 @@ describe("one start screen", () => {
     expect(tree!.root.findAllByType("MovingPhotos")).toHaveLength(1);
     expect(JSON.stringify(tree!.toJSON())).toContain("Welcome back");
     expect(labels()).toEqual(expect.arrayContaining(["Continue with Google", "Log in with email", "Create account"]));
+    // No account is signed in, so no count is shown that could be wrong for this person.
+    const json = JSON.stringify(tree!.toJSON());
+    expect(json).not.toMatch(/\d+ free photos?/);
+    expect(json).toContain("Your photos left and saved recipes are waiting in your account.");
   });
 });
 

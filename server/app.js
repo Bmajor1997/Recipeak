@@ -191,7 +191,10 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     const kind = query.get("kind");
     const name = query.get("name");
     if (!["meal", "cocktail"].includes(kind) || !name || name.length > 120) throw new HttpError(400, "Choose a dish or drink.");
-    return { image: photo(kind, name, user) };
+    // The dish's kept standard recipe, when there is one, so a photo made here matches it.
+    const key = image_key(kind, name);
+    const kept = key ? (store.get_recipe(`photo:${key}`) ?? store.get_recipe(key)) : null;
+    return { image: photo(kind, name, user, kept) };
   }
 
   async function allowance(user) {
@@ -264,6 +267,14 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
       max_body: 1024,
     },
     "POST /api/admin/feedback/mutate": { handler: admin_only((body) => store.feedback.mutate(body)), max_body: FEEDBACK_BODY },
+    // After checking a "Not the dish or drink in my photo" report: the next view makes a new photo from the recipe.
+    "POST /api/admin/images/retire": {
+      handler: admin_only((body) => {
+        if (!["meal", "cocktail"].includes(body?.kind) || typeof body?.name !== "string") throw new HttpError(400, "Name the dish and its kind.");
+        return { retired: images ? images.retire({ kind: body.kind, name: body.name }) : false };
+      }),
+      max_body: 1024,
+    },
   };
 
   return async function handle(request, response) {
@@ -273,7 +284,14 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
       if (path === "/healthz" && request.method === "GET") return send_json(response, 200, { ok: true });
       // Cover photos are generic pictures of dishes, shared by everyone, so they are public and cached for a long time.
       if (path.startsWith("/images/") && request.method === "GET") {
-        const bytes = images?.read(path.slice("/images/".length));
+        const file = path.slice("/images/".length);
+        const bytes = images?.read(file);
+        const moved = bytes ? null : images?.moved?.(file);
+        // A retired photo's old address sends the app to its replacement; the redirect itself isn't cached.
+        if (moved) {
+          for (const [k, v] of Object.entries({ ...SECURITY_HEADERS, "Cache-Control": "no-cache", Location: moved })) response.setHeader(k, v);
+          return response.writeHead(302).end();
+        }
         if (!bytes) throw new HttpError(404, "Not found.");
         for (const [k, v] of Object.entries({ ...SECURITY_HEADERS, "Cache-Control": "public, max-age=31536000, immutable", "Content-Type": "image/jpeg" })) response.setHeader(k, v);
         return response.writeHead(200).end(bytes);

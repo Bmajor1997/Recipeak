@@ -64,6 +64,10 @@ export function create_saved_recipes(
     }
   }
   const write = (list: SavedRecipe[]) => storage.setItem(storage_name, JSON.stringify(list));
+  // A photo file is deleted only once no saved recipe refers to it, and only after the list without it is written.
+  const remove_unused = (uri: string, kept: SavedRecipe[]) => {
+    if (!kept.some((s) => s.photo_uri === uri)) photos.remove_photo(uri);
+  };
 
   return {
     list: read,
@@ -97,14 +101,27 @@ export function create_saved_recipes(
         ...(bundled_id ? { bundled_id } : {}),
         ...(image_url ? { image_url } : {}),
       };
-      await write([entry, ...others]);
-      for (const old of replaced) if (old.photo_uri && old.photo_uri !== photo_uri) photos.remove_photo(old.photo_uri);
+      const next = [entry, ...others];
+      await write(next);
+      for (const old of replaced) if (old.photo_uri) remove_unused(old.photo_uri, next);
       return entry;
     },
     async remove(id: string): Promise<void> {
       const list = await read();
-      await write(list.filter((s) => s.id !== id));
-      for (const gone of list.filter((s) => s.id === id)) if (gone.photo_uri) photos.remove_photo(gone.photo_uri);
+      const next = list.filter((s) => s.id !== id);
+      await write(next);
+      for (const gone of list.filter((s) => s.id === id)) if (gone.photo_uri) remove_unused(gone.photo_uri, next);
+    },
+    /**
+     * Gives a saved recipe made with AI whose kept photo went missing its library photo's address, once the recipe
+     * screen finds it on the server, so Saved shows it again. A recipe that has a photo is never changed.
+     */
+    async restore_cover(id: string, image_url: string): Promise<boolean> {
+      const list = await read();
+      const item = list.find((s) => s.id === id);
+      if (!item || item.bundled_id || item.photo_uri || item.image_url || !image_url) return false;
+      await write(list.map((s) => (s.id === id ? { ...s, image_url } : s)));
+      return true;
     },
     async find(id: string): Promise<SavedRecipe | undefined> {
       return (await read()).find((s) => s.id === id);
@@ -121,6 +138,7 @@ export const SIGNED_OUT_SAVED: SavedRecipes = {
     throw new Error("Sign in to save recipes.");
   },
   remove: async () => {},
+  restore_cover: async () => false,
   find: async () => undefined,
 };
 

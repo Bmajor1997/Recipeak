@@ -54,7 +54,7 @@ const IDENTIFY_SCHEMA = {
   additionalProperties: false,
   required: ["kind", "guesses"],
   properties: {
-    kind: { type: "string", enum: ["meal", "cocktail", "not_food"] },
+    kind: { type: "string", enum: ["meal", "cocktail", "not_food", "unusable"] },
     guesses: {
       type: "array",
       items: {
@@ -69,6 +69,8 @@ const RECIPE_RULES = `You are the recipe engine for Recipeak, a cooking app.
 - Give a good, representative home recipe for the dish or drink. Never claim it is the restaurant's or bar's exact recipe.
 - Use US measurements only: cups, tablespoons (tbsp), teaspoons (tsp), ounces (oz), pounds (lb), and degrees Fahrenheit.
 - List every one of the nine major US allergens the recipe contains.
+- The description, steps and note mention only ingredients that are in the ingredient list, so the allergens and diet labels match what the cook reads (no "almond" in the description of a recipe without almonds).
+- Falernum, amaretto, crème de noyaux, nougat and mole paste can contain tree nuts depending on the brand: write "nut-free" in front of one only when it is meant to be a nut-free product, and otherwise say in "note" to check its label for tree nuts.
 - For cocktails, fill in "cocktail" and give a non-alcoholic version when one makes sense. For meals, set "cocktail" to null.
 - Keep steps clear and short. Use whole numbers for minutes and servings.
 - Name every ingredient precisely enough that the app can tell which diets it fits: say what a broth, stock, bouillon or curry paste is made from ("chicken broth", "vegetable broth"), name each cheese, and list every sauce, side and garnish the steps use. Mark anything optional or served on the side with "optional" or "to serve".`;
@@ -116,6 +118,7 @@ export function identify_payload(image_data_url, model = DEFAULT_MODEL) {
 - Give up to 3 guesses for what it is, most likely first. Use the dish's or drink's usual name, the one a menu or cookbook would use ("Chicken Katsu", "Margarita", "Shakshuka"), not a description of the photo.
 - Use "high" confidence only when the photo clearly shows that exact dish or drink.
 - If the photo does not show food or drink, set "kind" to "not_food" and "guesses" to an empty list.
+- If the photo is blank, almost all black or white, or too dark or blurry to see what is in it, set "kind" to "unusable" and "guesses" to an empty list. A dim but recognisable photo is not unusable.
 - Never write a recipe.`,
     input: [{ role: "user", content: [
       { type: "input_text", text: "What dish or drink is this?" },
@@ -205,7 +208,10 @@ const ALLERGEN_WORDS = {
   sesame: /\b(?:sesame|tahini|furikake|za'?atar)\b/,
 };
 const NOT_AN_ALLERGEN =
-  /\b(?:coconut|oat|rice|almond|soy|cashew) (?:milk|cream|yogh?urt)\b|\bcream of (?:coconut|tartar)\b|\b(?:peanut|almond|cashew|sunflower|apple|cocoa|shea|nut|seed) butter\b|\bbutternut\b|\bbutter (?:beans|lettuce)\b|\beggplants?\b|\b(?:gluten-free|rice|glass|cellophane|soba|corn|sweet potato) (?:pasta|noodles|tortillas?|bread|flour|crackers?|panko)\b|\b(?:rice|corn|almond|coconut|chickpea|tapioca|potato|cassava) flour\b|\bcornbread\b|\bfish-free\b|\bvegan [a-z]+\b|\bwater chestnuts?\b|\bnutmeg\b|\bginger (?:beer|ale)\b|\broot beer\b|\bgluten-free (?:beer|ale|lager)\b/g;
+  /\b(?:coconut|oat|rice|almond|soy|cashew) (?:milk|cream|yogh?urt)\b|\bcream of (?:coconut|tartar)\b|\b(?:peanut|almond|cashew|sunflower|apple|cocoa|shea|nut|seed) butter\b|\bbutternut\b|\bbutter (?:beans|lettuce)\b|\beggplants?\b|\b(?:gluten-free|rice|glass|cellophane|soba|corn|sweet potato) (?:pasta|noodles|tortillas?|bread|flour|crackers?|panko)\b|\b(?:rice|corn|almond|coconut|chickpea|tapioca|potato|cassava) flour\b|\bcornbread\b|\bfish-free\b|\bvegan [a-z]+\b|\bwater chestnuts?\b|\bnutmeg\b|\bginger (?:beer|ale)\b|\broot beer\b|\bgluten-free (?:beer|ale|lager)\b|\bcream sherry\b/g;
+// A free-from word settles only the allergen it names: "wheat-free egg noodles" is still eggs. Spirits distilled from
+// malted grain ("single malt") aren't wheat.
+const NOT_THIS_ALLERGEN = { wheat: /\b(?:wheat|gluten)-free(?: (?!and\b|or\b|with\b)[a-z'-]+){1,3}|\bsingle malt\b|\bmalt whiske?y\b/g };
 
 // Nuts, peanuts, soy and sesame are checked on the full name ("almond milk" is tree nuts, "peanut butter" is peanuts);
 // the others after look-alikes are taken out ("almond milk" isn't milk, "peanut butter" isn't butter).
@@ -218,7 +224,7 @@ export function with_detected_allergens(recipe) {
     const raw = ingredient.item.toLowerCase();
     const plain = raw.replace(NOT_AN_ALLERGEN, " ");
     for (const [allergen, words] of Object.entries(ALLERGEN_WORDS))
-      if (words.test(CHECKED_ON_FULL_NAME.has(allergen) ? raw : plain)) found.add(allergen);
+      if (words.test((CHECKED_ON_FULL_NAME.has(allergen) ? raw : plain).replace(NOT_THIS_ALLERGEN[allergen] ?? /$^/, " "))) found.add(allergen);
   }
   return { ...recipe, allergens: ALLERGENS.filter((a) => found.has(a)) };
 }
@@ -267,9 +273,12 @@ export function validate_recipe(recipe) {
 }
 
 export function validate_identification(reply) {
-  if (!reply || typeof reply !== "object" || !["meal", "cocktail", "not_food"].includes(reply.kind) || !Array.isArray(reply.guesses))
+  if (!reply || typeof reply !== "object" || !["meal", "cocktail", "not_food", "unusable"].includes(reply.kind) || !Array.isArray(reply.guesses))
     throw new SyntaxError("Invalid identification");
   if (reply.kind === "not_food") return { kind: "not_food", guesses: [] };
+  // A blank or black photo (a camera that didn't capture) is sent as not_food, which every app version handles and
+  // which gives the free photo back; the reason lets newer apps say what went wrong.
+  if (reply.kind === "unusable") return { kind: "not_food", guesses: [], reason: "unusable" };
   const guesses = reply.guesses.slice(0, 3).map((g) => {
     if (!["high", "medium", "low"].includes(g?.confidence)) throw new SyntaxError("Invalid guess");
     return { name: text(g.name, 120), confidence: g.confidence };

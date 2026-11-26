@@ -31,7 +31,8 @@ const VEGETARIAN_OK = /\b(?:vegan|plant-based|vegetarian|meatless)(?: (?!and\b|o
 const VEGAN_OK = /\b(?:vegan|plant-based)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
 const DAIRY_FREE_OK = /\b(?:vegan|plant-based|dairy-free)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
 const GLUTEN_FREE_OK = /\bgluten-free(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
-const NUT_FREE_OK = /\bnut-free(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
+// "Almond-free" rules out only almonds, so it clears just its own word: "almond-free cashew milk" is still cashew.
+const NUT_FREE_OK = /\b(?:nut-free|nut free)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}|\balmond-free\b/g;
 // Cheeses made with animal rennet by tradition (Parmesan by law, cotija by custom): not vegetarian, but easy to swap.
 const RENNET = /\b(?:parmesan|parmigiano|pecorino|grana padano|cotija)/i;
 
@@ -73,14 +74,17 @@ const GLUTEN =
 // Not wheat, barley or rye, though their names look like it.
 const GLUTEN_FREE_WORDS =
   /\b(rice (?:flour|noodles|vermicelli|paper|cakes)|chickpea flour|corn (?:tortillas?|flour)|taco shells or corn tortillas|tortilla (?:chips|strips)|glass noodles|sweet potato starch noodles|flat rice noodles|fresh (?:flat|wide) rice noodles|rice vermicelli|thin rice vermicelli|dried flat rice noodles|tamari|ginger beer|root beer|bread and butter pickles|masa harina|cylindrical rice cakes|prawn crackers)\b/g;
+// Miso is usually made with rice or soybeans alone, but barley (mugi) miso and some blends contain barley or wheat.
 const GLUTEN_UNSURE =
-  /\b(?:worcestershire|bouillon|stock cubes?|barbecue sauce|taco seasoning|fried onions|fermented black beans|fish cakes|sausages?|kielbasa|andouille|bratwurst|lap cheong|chinese sausage|sambar powder|prawn crackers|chocolate syrup)/i;
+  /\b(?:miso|worcestershire|bouillon|stock cubes?|barbecue sauce|taco seasoning|fried onions|fermented black beans|fish cakes|sausages?|kielbasa|andouille|bratwurst|lap cheong|chinese sausage|sambar powder|prawn crackers|chocolate syrup)/i;
 
 const NUTS =
   /\b(?:peanuts?|almonds?|walnuts?|pecans?|cashews?|pistachios?|pine nuts|hazelnuts?|macadamia|brazil nuts?|orgeat|frangelico|nocino|praline|marzipan|pesto|satay|coconut|kerisik|malibu)/i;
 const NUTS_CORE =
   /\b(?:peanuts?|almonds?|walnuts?|pecans?|cashews?|pistachios?|pine nuts|hazelnuts?|macadamia|brazil nuts?|orgeat|frangelico|nocino|praline|marzipan|pesto|coconut|kerisik|malibu)/i;
-const NUTS_UNSURE = /\b(?:amaretto|noyaux)/i;
+// These depend on the brand: falernum is often made with almond, amaretto with almond or apricot kernel, nougat and
+// mole paste often hold nuts. Unless the line itself says nut-free ("nut-free amaretto"), nut-free isn't claimed.
+const NUTS_UNSURE = /\b(?:amaretto|noyaux|falernum|nougat|mole paste|nut liqueur)/i;
 
 // Low-carb: a starch cooked into the dish is its heart; sugar, a coating or a side can be cut or swapped.
 const STARCH =
@@ -179,6 +183,22 @@ function check_diet(recipe: Recipe, diet: Diet, has_version: boolean): { status:
   return { status: "option", why: bad.map((c) => c.hit).join(", ") };
 }
 
+/**
+ * True when an ingredient may hold the allergen by the wider diet word lists: they name more of its sources
+ * (mascarpone, custard, brioche) than the short allergen lists do, and include the uncertain ones.
+ */
+export function diet_words_suggest(item: string, allergen: string): boolean {
+  const words: Record<string, RegExp[]> = {
+    milk: [DAIRY, DAIRY_UNSURE],
+    eggs: [EGG, EGG_UNSURE],
+    wheat: [GLUTEN],
+    "tree nuts": [NUTS, NUTS_UNSURE],
+    peanuts: [NUTS],
+  };
+  const text = item.toLowerCase().normalize("NFC");
+  return (words[allergen] ?? []).some((w) => w.test(text));
+}
+
 /** Rough amount in cups, for telling a spoon of sugar or flour from a dessert's or a dough's worth. */
 export function cups(amount: string, unit: string): number {
   const parts = amount
@@ -270,6 +290,14 @@ export function diet_profile(
   if (status.vegetarian?.status === "none" && status.vegan?.status === "option" && !hand_versions.includes("vegan"))
     status.vegan = { ...status.vegetarian };
   for (const [diet, o] of Object.entries(overrides) as [Diet, DietOverride][]) if (status[diet]) status[diet] = o;
+  // Nut-free is an allergy claim, so the description and method must agree with it too: a recipe whose words mention a
+  // nut its ingredients don't list ("lime, grapefruit, almond and warm spice", often from an AI) isn't called nut-free
+  // until a person checks. Flavor words ("almond-scented") describe a taste, not an ingredient.
+  if (status["nut-free"]?.status === "fits") {
+    const said = [recipe.description, ...recipe.steps].join(" ").replace(/\b[a-z]+-(?:flavou?red|scented|like|free)\b/gi, " ");
+    const mention = check_text(said, rule("nut-free")!, false);
+    if (mention.verdict === "bad") status["nut-free"] = { status: "review", why: `the description or method mentions ${mention.hit}` };
+  }
   // A drink written only as a method (a hand-written alcohol-free version, curatedVersions.ts) has no ingredient list
   // to check, so no diet is claimed for it: each one needs a person to check, and can still be asked for.
   if (!recipe.ingredients.length)

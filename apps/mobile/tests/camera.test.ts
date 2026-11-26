@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { flash_label, next_flash, should_dismiss, shutter_flash } from "../src/camera/cameraOptions";
+import { not_food_message } from "../src/camera/photosLeft";
+import { parse_identification } from "../src/recipes/parse";
+import { CAPTURE_FAILED, flash_label, next_flash, should_dismiss, shutter_flash, usable_capture } from "../src/camera/cameraOptions";
 
 describe("camera sheet rules", () => {
   it("cycles the flash setting Off → Auto → On → Off, with readable labels", () => {
@@ -23,5 +25,34 @@ describe("camera sheet rules", () => {
     expect(should_dismiss(30, 0.2)).toBe(false);
     expect(should_dismiss(150, 0.2)).toBe(true);
     expect(should_dismiss(40, 1.6)).toBe(true);
+  });
+});
+
+describe("captures that can't be used", () => {
+  it("only sends a capture with a file and a real size; a failed or empty one is never sent", () => {
+    expect(usable_capture({ uri: "file:///cache/photo.jpg", width: 4032, height: 3024 })).toBe(true);
+    for (const bad of [
+      null,
+      undefined,
+      { uri: "", width: 10, height: 10 },
+      { uri: "file:///x.jpg", width: 0, height: 3024 },
+      { uri: "file:///x.jpg" },
+    ])
+      expect(usable_capture(bad), JSON.stringify(bad)).toBe(false);
+    expect(CAPTURE_FAILED).toMatch(/Try again, or choose one from your photos/);
+  });
+
+  it("a blank or black photo is explained, with a retake and the gallery, and uses no free photo", async () => {
+    expect(not_food_message("unusable")).toMatch(/blank or too dark.*choose one from your photos.*didn't use a free photo/);
+    expect(not_food_message()).toBe("That doesn't look like a meal or a drink. Try again, closer up and in good light.");
+    const reply = { kind: "not_food", guesses: [], free_photos_left: 3, premium: false, reason: "unusable" };
+    expect(parse_identification(reply)).toEqual(reply);
+    // An older server without the reason still reads as plain "not food".
+    expect(parse_identification({ ...reply, reason: undefined })).toEqual({
+      kind: "not_food",
+      guesses: [],
+      free_photos_left: 3,
+      premium: false,
+    });
   });
 });

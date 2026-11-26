@@ -84,7 +84,8 @@ const photos_left = (v: unknown): number | null => (v === null ? null : whole(v,
 export function parse_identification(v: unknown): Identification {
   if (!is_object(v)) throw new Error("Invalid reply");
   const common = { free_photos_left: photos_left(v.free_photos_left), premium: v.premium === true };
-  if (v.kind === "not_food") return { kind: "not_food", guesses: [], ...common };
+  if (v.kind === "not_food")
+    return { kind: "not_food", guesses: [], ...common, ...(v.reason === "unusable" ? { reason: "unusable" as const } : {}) };
   if (v.kind !== "meal" && v.kind !== "cocktail") throw new Error("Invalid reply");
   const guesses = list(v.guesses, 3, guess);
   if (!guesses.length) throw new Error("Invalid reply");

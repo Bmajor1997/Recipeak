@@ -1,11 +1,11 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { createServer } from "node:http";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
 import { create_app } from "../server/app.js";
-import { create_image_library, curated_catalog, image_key, image_prompt, install_curated, normalize_dish_name } from "../server/dish_images.js";
+import { create_image_library, curated_catalog, image_diet_note, image_key, image_prompt, install_curated, normalize_dish_name } from "../server/dish_images.js";
 import { create_usage_store } from "../server/usage_store.js";
 
 const JPEG = Buffer.concat([Buffer.from([0xff, 0xd8, 0xff, 0xe0]), Buffer.alloc(4000, 9)]);
@@ -56,8 +56,105 @@ test("a known recipe's glass, garnish and ingredients shape its photo", () => {
   assert.match(prompt, /a classic margarita in a rocks glass with salt rim and a lime wheel/);
   assert.match(prompt, /beside it \(blanco tequila, fresh lime juice, orange liqueur\)/, "up to three ingredients, without preparation notes");
   const meal = image_prompt("meal", "Chicken parmesan", { ingredients: ["chicken breasts", "x".repeat(60)] });
-  assert.match(meal, /chicken parmesan, plated the classic way/);
+  assert.match(meal, /chicken parmesan made from chicken breasts, plated simply as this recipe makes it/);
   assert.match(meal, /\(chicken breasts\)/, "over-long details are dropped");
+  assert.doesNotMatch(meal, /vegetarian|vegan/, "a recipe with meat gets no diet note");
+  // Without a recipe, the dish is shown the classic way.
+  assert.match(image_prompt("meal", "Chicken parmesan"), /chicken parmesan, plated the classic way/);
+});
+
+test("a vegetarian or vegan recipe's photo prompt shows what the recipe makes, and leaves out what it doesn't have", () => {
+  // The reported Cou-Cou: cornmeal and okra, traditionally served with flying fish, but this recipe has none.
+  const cou_cou = image_prompt("meal", "Barbadian Cou-Cou", { ingredients: ["fine yellow cornmeal", "fresh okra, sliced", "unsalted butter", "water", "salt"] });
+  assert.match(cou_cou, /barbadian cou-cou made from fine yellow cornmeal, fresh okra, unsalted butter, water, salt, plated simply as this recipe makes it/);
+  assert.match(cou_cou, /Show only foods from this recipe: no added sides, sauces, toppings, meat or fish it doesn't list\./);
+  assert.match(cou_cou, /It is vegetarian: show no meat, poultry, fish or seafood anywhere in the picture\./);
+  assert.doesNotMatch(cou_cou, /classic way|flying fish/);
+  const vegan = image_prompt("meal", "Okra stew", { ingredients: ["okra", "coconut milk", "olive oil", "vegan butter"] });
+  assert.match(vegan, /It is vegan: show no meat, poultry, fish, seafood, eggs, dairy or cheese anywhere in the picture\./);
+  assert.equal(image_diet_note(["cornmeal", "fish sauce"]), "", "a hidden fish ingredient means no vegetarian note");
+  assert.equal(image_diet_note([]), "", "no recipe, no claim");
+  // Animal ingredients with their own names (the library's Unagi Don and Miso Soup), and uncertain ones, get no note.
+  const recipes = JSON.parse(readFileSync(new URL("../apps/mobile/src/recipes/collection.json", import.meta.url), "utf8"));
+  for (const id of ["japanese-unagi-don", "miso-soup"])
+    assert.equal(image_diet_note(recipes[id].ingredients.map((i) => i.item)), "", id);
+  assert.equal(image_diet_note(["rice", "chicken broth"]), "");
+  assert.equal(image_diet_note(["rice", "broth"]), "", "an unknown broth may be meat");
+  assert.match(image_diet_note(["rice", "vegetable broth"]), /It is vegan/);
+  assert.match(image_diet_note(["udon", "kombu dashi", "scallions"]), /vegetarian|vegan/);
+  assert.equal(image_diet_note(["udon", "dashi"]), "", "plain dashi is usually bonito");
+});
+
+test("the photo's diet words are the app's own, copied exactly", () => {
+  const app = readFileSync(new URL("../apps/mobile/src/recipes/diets.ts", import.meta.url), "utf8");
+  const server = readFileSync(new URL("../server/dish_images.js", import.meta.url), "utf8");
+  for (const name of ["RENNET", "MEAT", "MEAT_UNSURE", "PLANT_WORDS", "DAIRY", "DAIRY_UNSURE", "EGG", "EGG_UNSURE", "HONEY", "FINED", "VEGETARIAN_OK", "VEGAN_OK"]) {
+    const literal = (source) => source.match(new RegExp(`const ${name} =\\s*(/.*?/[gi]*);`, "s"))?.[1].replace(/\s+/g, " ");
+    assert.ok(literal(app), name);
+    assert.equal(literal(server), literal(app), name);
+  }
+});
+
+test("a reported photo can be retired by an administrator; the next view makes a new one, the old file is kept", async (t) => {
+  const { images, dir, calls, store } = library(t, {}, { MM_FEEDBACK_ADMIN_UIDS: "boss" });
+  const recipe_details = { ingredients: ["cornmeal", "okra", "butter"] };
+  assert.equal(images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).status, "pending");
+  await images.settled();
+  const key = image_key("meal", "Cou cou");
+  assert.ok(existsSync(join(dir, `${key}.jpg`)));
+  const first_url = images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).url;
+  assert.equal(images.retire({ kind: "meal", name: "COU COU" }), true, "matched like every other name");
+  assert.equal(existsSync(join(dir, `${key}.jpg`)), false);
+  assert.equal(readdirSync(join(dir, "retired")).filter((f) => f.startsWith(key)).length, 1, "kept aside, never deleted");
+  assert.equal(images.status({ kind: "meal", name: "Cou cou", user_id: "alice" }).status, "unavailable", "never remade from the name alone");
+  assert.equal(images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: {} }).status, "unavailable");
+  assert.equal(calls.length, 1);
+  assert.equal(images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).status, "pending", "made again");
+  await images.settled();
+  assert.equal(calls.length, 2);
+  assert.match(calls[1].body.prompt, /It is vegetarian/);
+  const new_url = images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).url;
+  assert.equal(first_url, `/images/${key}.jpg`);
+  assert.notEqual(new_url, first_url, "the new photo has a new address, so cached copies of the old one aren't reused");
+  assert.match(new_url, /^\/images\/[a-f0-9]{32}\.jpg$/, "a plain library address that installed apps already accept");
+  assert.ok(images.read(new_url.slice("/images/".length)), "and it is served");
+  assert.equal(images.read(`${key}.jpg`), null, "the retired photo isn't");
+  // After a restart the library still knows the photo was made again.
+  const again = create_image_library({ env: { OPENAI_API_KEY: "sk-test" }, store, fetch_impl: async () => { throw new Error("no call"); }, dir, log: { warn() {} } });
+  assert.equal(again.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).url, new_url);
+  assert.equal(images.retire({ kind: "cocktail", name: "Margarita" }), false, "a hand-picked photo can't be retired");
+  assert.equal(images.retire({ kind: "meal", name: "Never made" }), false);
+  // Only an administrator can retire one.
+  const handle = create_app({ env: { OPENAI_API_KEY: "sk", MM_FEEDBACK_ADMIN_UIDS: "boss" }, store, images, premium: async () => false, log: { warn() {} },
+    authorize: async (r) => (r.headers.authorization ? { uid: r.headers.authorization.slice(7) } : false) });
+  const server = createServer(handle);
+  await new Promise((r) => server.listen(0, "127.0.0.1", r));
+  t.after(() => new Promise((r) => server.close(r)));
+  const retire = (who, body) => fetch(`http://127.0.0.1:${server.address().port}/api/admin/images/retire`, {
+    method: "POST", headers: { Authorization: `Bearer ${who}`, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  assert.equal((await retire("alice", { kind: "meal", name: "Cou cou" })).status, 403);
+  assert.equal((await retire("boss", { kind: "dessert", name: "Cou cou" })).status, 400);
+  // A saved recipe that kept the first address is sent to the current photo, once it's ready.
+  const base = `http://127.0.0.1:${server.address().port}`;
+  const old_address = await fetch(`${base}${first_url}`, { redirect: "manual" });
+  assert.equal(old_address.status, 302);
+  assert.equal(old_address.headers.get("location"), new_url);
+  assert.equal(old_address.headers.get("cache-control"), "no-cache");
+  assert.equal((await fetch(`${base}${first_url}`)).status, 200, "followed, it's the new photo");
+  assert.deepEqual(await (await retire("boss", { kind: "meal", name: "Cou cou" })).json(), { retired: true });
+  assert.equal((await fetch(`${base}${first_url}`, { redirect: "manual" })).status, 404, "nothing to send it to until the next one is made");
+  assert.equal(images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).status, "pending");
+  await images.settled();
+  const third = images.status({ kind: "meal", name: "Cou cou", user_id: "alice", details: recipe_details }).url;
+  for (const old of [first_url, new_url]) assert.equal((await fetch(`${base}${old}`, { redirect: "manual" })).headers.get("location"), third);
+  assert.equal(images.moved("../x.jpg"), null);
+  // The photo lookup (saved recipes, Recently viewed) uses the dish's kept recipe, so a photo made there matches it too.
+  store.set_recipe({ key: `photo:${key}`, kind: "meal", name: "Cou cou", recipe: { ingredients: recipe_details.ingredients.map((item) => ({ item })) } });
+  assert.deepEqual(await (await retire("boss", { kind: "meal", name: "Cou cou" })).json(), { retired: true });
+  const looked_up = await fetch(`${base}/api/dish-image?kind=meal&name=Cou%20cou`, { headers: { Authorization: "Bearer alice" } });
+  assert.equal((await looked_up.json()).image.status, "pending");
+  await images.settled();
+  assert.match(calls.at(-1).body.prompt, /made from cornmeal, okra, butter[\s\S]*It is vegetarian/);
 });
 
 test("hand-picked photos are installed under every name they cover", (t) => {

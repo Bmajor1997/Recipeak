@@ -4,6 +4,7 @@
 import type { CurrentRecipe } from "../AppContext";
 import { bundled_photo_uri, bundled_recipe, find_bundled_dish } from "../recipes/bundled";
 import { COLLECTION, type CollectionDish } from "../recipes/collectionPhotos";
+import { curated_non_alcoholic } from "../recipes/curatedVersions";
 import { NO_IMAGE, type SavedRecipe } from "../recipes/types";
 
 /** The bundled dish a saved recipe came from, or null for one made with AI. */
@@ -29,11 +30,14 @@ export async function saved_as_current(item: SavedRecipe): Promise<Extract<Curre
   // Diet versions are worked out from the bundled recipe only when the saved one is that recipe, not a version of it.
   const library = dish ? bundled_recipe(dish) : null;
   const standard = library != null && library.title === item.recipe.title;
+  // Its own alcohol-free version, saved: also opened as it is made now, so a recalculated allergen reaches it.
+  const written = library && !standard ? curated_non_alcoholic(library) : null;
+  const current_version = written && written.title === item.recipe.title ? written : null;
   return {
     status: "ready",
     kind: item.kind,
     // A saved bundled dish opens as the library has it now, so a later correction (wording, an allergen) reaches it.
-    recipe: standard ? library : item.recipe,
+    recipe: standard ? library : (current_version ?? item.recipe),
     guesses: [],
     selected: 0,
     image: item.image_url ? { status: "ready", url: item.image_url } : NO_IMAGE,

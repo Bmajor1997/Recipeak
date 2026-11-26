@@ -10,7 +10,7 @@ import { DietPicker, InterestPicker } from "./Choices";
 import { toggle_diet, type Entry } from "./onboarding";
 import { useOnboarding } from "./OnboardingProvider";
 import { Paywall } from "../paywall/Paywall";
-import { FREE_PHOTOS, FREE_SAVED_RECIPES } from "../paywall/plans";
+import { FREE_PHOTOS, FREE_SAVED_RECIPES, start_offer } from "../paywall/plans";
 import { bundled_recipe } from "../recipes/bundled";
 import type { CollectionDish } from "../recipes/collectionPhotos";
 import { format_ingredient } from "../recipes/format";
@@ -70,7 +70,7 @@ function Welcome({ onStart, onHaveAccount }: { onStart: () => void; onHaveAccoun
   return (
     <StartScreen
       subtitle="Recipes from any meal or drink you photograph."
-      footer={<Text style={styles.reassure}>{`${FREE_PHOTOS} free photos. No card needed.`}</Text>}
+      footer={<Text style={styles.reassure}>{start_offer(false)}</Text>}
     >
       <PillButton label="Get started" variant="accent" hint="A quick tour, then create your account" onPress={onStart} />
       <Pressable accessibilityRole="button" onPress={onHaveAccount} style={styles.link}>
