@@ -4480,6 +4480,76 @@
       "names": [
         "Salmon with Orange-Fennel Salad"
       ]
+    },
+    {
+      "file": "kiwi-cucumber-tequila-cooler.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Kiwi Cucumber Tequila Cooler"
+      ]
+    },
+    {
+      "file": "plum-ginger-brandy-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Plum Ginger Brandy Sour"
+      ]
+    },
+    {
+      "file": "clementine-vanilla-rum-fizz.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Clementine Vanilla Rum Fizz"
+      ]
+    },
+    {
+      "file": "rhubarb-rose-gin-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Rhubarb Rose Gin Sour"
+      ]
+    },
+    {
+      "file": "grape-basil-vodka-spritz.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Grape Basil Vodka Spritz"
+      ]
+    },
+    {
+      "file": "paprika-pork-tenderloin-with-apples.jpg",
+      "kind": "meal",
+      "names": [
+        "Paprika Pork Tenderloin with Apples"
+      ]
+    },
+    {
+      "file": "turkey-zucchini-feta-burgers.jpg",
+      "kind": "meal",
+      "names": [
+        "Turkey Zucchini Feta Burgers"
+      ]
+    },
+    {
+      "file": "coconut-red-lentil-spinach-dal.jpg",
+      "kind": "meal",
+      "names": [
+        "Coconut Red Lentil Spinach Dal"
+      ]
+    },
+    {
+      "file": "sheet-pan-tofu-fajita-bowls.jpg",
+      "kind": "meal",
+      "names": [
+        "Sheet-Pan Tofu Fajita Bowls"
+      ]
+    },
+    {
+      "file": "garlic-shrimp-with-lemony-white-beans.jpg",
+      "kind": "meal",
+      "names": [
+        "Garlic Shrimp with Lemony White Beans"
+      ]
     }
   ]
 }
