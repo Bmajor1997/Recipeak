@@ -4900,6 +4900,76 @@
       "names": [
         "Broccoli Cheddar Quinoa Bake"
       ]
+    },
+    {
+      "file": "lychee-lime-gin-fizz.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Lychee Lime Gin Fizz"
+      ]
+    },
+    {
+      "file": "pomegranate-vanilla-brandy-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Pomegranate Vanilla Brandy Sour"
+      ]
+    },
+    {
+      "file": "pineapple-turmeric-rum-cooler.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Pineapple Turmeric Rum Cooler"
+      ]
+    },
+    {
+      "file": "blueberry-thyme-tequila-smash.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Blueberry Thyme Tequila Smash"
+      ]
+    },
+    {
+      "file": "apple-fennel-vodka-collins.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Apple Fennel Vodka Collins"
+      ]
+    },
+    {
+      "file": "moroccan-chicken-apricot-couscous.jpg",
+      "kind": "meal",
+      "names": [
+        "Moroccan Chicken Apricot Couscous"
+      ]
+    },
+    {
+      "file": "harissa-roasted-vegetable-freekeh-bowls.jpg",
+      "kind": "meal",
+      "names": [
+        "Harissa-Roasted Vegetable Freekeh Bowls"
+      ]
+    },
+    {
+      "file": "crispy-tofu-katsu-curry.jpg",
+      "kind": "meal",
+      "names": [
+        "Crispy Tofu Katsu Curry"
+      ]
+    },
+    {
+      "file": "beef-tomato-butter-bean-stew.jpg",
+      "kind": "meal",
+      "names": [
+        "Beef Tomato Butter Bean Stew"
+      ]
+    },
+    {
+      "file": "roasted-cauliflower-red-lentil-soup.jpg",
+      "kind": "meal",
+      "names": [
+        "Roasted Cauliflower Red Lentil Soup"
+      ]
     }
   ]
 }
