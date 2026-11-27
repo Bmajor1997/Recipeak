@@ -3109,7 +3109,7 @@
         "glass": "coupe",
         "garnish": "narrow lemon twist",
         "alcoholic": true,
-        "non_alcoholic_version": "Shake 2 oz cooled green tea, 3/4 oz yuzu juice and 1/2 oz honey syrup with ice; strain into a coupe."
+        "non_alcoholic_version": "Shake 2 oz cooled green tea, 3/4 oz yuzu juice and 1/2 oz agave syrup with ice; strain into a coupe."
       },
       "note": "An original Relish home cocktail. Please drink responsibly.",
       "tips": [
@@ -3136,5 +3136,12 @@
   "guava-ginger-vodka-collins": { "vegetarian": "same", "vegan": "same" },
   "orange-blossom-rum-sour": { "vegetarian": "same", "vegan": "same" },
   "spicy-peanut-chickpea-noodle-bowls": { "vegetarian": "same", "vegan": "same" },
-  "roasted-tomato-eggplant-lentil-pasta": { "vegetarian": "same", "vegan": "same" }
+  "roasted-tomato-eggplant-lentil-pasta": { "vegetarian": "same", "vegan": "same" },
+  "raspberry-mint-brandy-sour": { "vegetarian": "same", "vegan": "same" },
+  "honeydew-basil-vodka-cooler": { "vegetarian": "same", "vegan": "same" },
+  "blackberry-balsamic-gin-sour": { "vegetarian": "same", "vegan": "same" },
+  "tangerine-ginger-bourbon-highball": { "vegetarian": "same", "vegan": "same" },
+  "passion-fruit-rosemary-tequila-fizz": { "vegetarian": "same", "vegan": "same" },
+  "warm-farro-squash-cranberry-salad": { "vegetarian": "same", "vegan": "same" },
+  "shawarma-spiced-chickpea-pitas": { "vegetarian": "same", "vegan": "same" }
 }

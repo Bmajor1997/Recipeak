@@ -4952,6 +4952,70 @@
    "variations": []
   }
  },
+ "blackberry-balsamic-gin-sour": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Blackberry Balsamic Gin Sour",
+   "description": "Blackberries and a little balsamic vinegar give a gin sour a deep berry color.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "gin"
+    },
+    {
+     "amount": "5",
+     "unit": "",
+     "item": "blackberries"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "balsamic vinegar"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "blackberry, for garnish"
+    }
+   ],
+   "steps": [
+    "Muddle five blackberries with syrup and vinegar.",
+    "Add gin, lemon and ice, shake firmly for 15 seconds and double-strain into a chilled coupe.",
+    "Add one blackberry on a cocktail pick."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "coupe",
+    "garnish": "one blackberry on a pick",
+    "alcoholic": true,
+    "non_alcoholic_version": "Muddle blackberries with syrup and vinegar, shake with 3/4 oz lemon juice and 2 oz cooled white tea, then double-strain into a coupe."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [
+    "Use ordinary balsamic vinegar rather than a thick glaze. The drink is served without a foam cap."
+   ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
+  }
+ },
  "blackberry-lavender-vodka-lemonade": {
   "kind": "cocktail",
   "recipe": {
@@ -10221,6 +10285,92 @@
    "variations": []
   }
  },
+ "chicken-artichoke-sun-dried-tomato-rice": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Chicken Artichoke Sun-Dried Tomato Rice",
+   "description": "Chicken thighs and rice cook together with artichokes, sun-dried tomatoes and spinach.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 40,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "lb",
+     "item": "boneless skinless chicken thighs"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "long-grain white rice, rinsed"
+    },
+    {
+     "amount": "1",
+     "unit": "can",
+     "item": "artichoke hearts (14 oz), drained and quartered"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "oil-packed sun-dried tomatoes, drained and chopped"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "onion, diced"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "garlic cloves, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "water"
+    },
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "baby spinach"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "dried oregano"
+    },
+    {
+     "amount": "3/4",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "black pepper"
+    }
+   ],
+   "steps": [
+    "Season chicken with half the salt and pepper. Brown in oil in a deep lidded skillet over medium-high heat for 3 minutes per side; set aside.",
+    "Soften onion for 5 minutes. Add garlic, oregano and rice and stir for 1 minute. Add water, artichokes, tomatoes and remaining salt.",
+    "Place chicken on top, bring to a simmer, cover tightly and cook over low heat for 20 minutes, until rice is tender and chicken reaches 165 F (74 C). Add a splash of water and cook longer if needed.",
+    "Rest covered off heat for 5 minutes, then fold spinach gently into the hot rice to wilt."
+   ],
+   "allergens": [],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Use a skillet with a tight lid. Resist lifting it repeatedly while the rice cooks."
+   ],
+   "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
+   "variations": []
+  }
+ },
  "chicken-cacciatore": {
   "kind": "meal",
   "recipe": {
@@ -15179,6 +15329,99 @@
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
    "tips": [],
    "make_ahead": "",
+   "variations": []
+  }
+ },
+ "creamy-polenta-with-mushroom-ragout": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Creamy Polenta with Mushroom Ragout",
+   "description": "Soft polenta topped with mushrooms simmered in a thyme-tomato ragout.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 35,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "coarse polenta cornmeal"
+    },
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "milk"
+    },
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "water"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "butter"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "grated vegetarian hard cheese"
+    },
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "cremini mushrooms, sliced"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "onion, diced"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "garlic cloves, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "can",
+     "item": "diced tomatoes (14 oz)"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "dried thyme"
+    },
+    {
+     "amount": "3/4",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "black pepper"
+    }
+   ],
+   "steps": [
+    "Bring milk and water just to a simmer in a heavy pan. Whisk in polenta and half the salt. Cook over low heat, stirring often, for 25 to 35 minutes or its package time until soft; add water if needed.",
+    "Meanwhile brown mushrooms in oil in a wide skillet over medium-high heat for 8 minutes. Add onion for 5 minutes, then garlic and thyme for 30 seconds.",
+    "Add tomatoes, remaining salt and pepper and simmer for 10 minutes.",
+    "Stir butter and cheese into polenta. Divide among bowls and spoon mushroom ragout over the top."
+   ],
+   "allergens": [
+    "milk"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Use coarse cornmeal labeled polenta and follow its cooking time. Choose a hard cheese labeled vegetarian if needed."
+   ],
+   "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
    "variations": []
   }
  },
@@ -23267,6 +23510,75 @@
    "variations": []
   }
  },
+ "honeydew-basil-vodka-cooler": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Honeydew Basil Vodka Cooler",
+   "description": "Pale green honeydew, basil and lime make a light vodka cooler.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "vodka"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "ripe honeydew melon cubes"
+    },
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "basil leaves"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "fresh lime juice"
+    },
+    {
+     "amount": "1/4",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "chilled soda water"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "small basil sprig, for garnish"
+    }
+   ],
+   "steps": [
+    "Muddle honeydew and basil with syrup until juicy.",
+    "Add vodka, lime and ice, shake for 15 seconds and fine-strain into an ice-filled highball.",
+    "Top with soda and add the basil sprig."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "small basil sprig",
+    "alcoholic": true,
+    "non_alcoholic_version": "Muddle honeydew and basil with syrup; shake with 3/4 oz lime juice and ice, strain and top with 4 oz soda."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [
+    "Choose sweet ripe honeydew; firm unripe melon makes a weak-flavored drink."
+   ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
+  }
+ },
  "horse-s-neck": {
   "kind": "cocktail",
   "recipe": {
@@ -30687,6 +30999,74 @@
    }
   }
  },
+ "maple-dijon-salmon-with-brussels-sprouts": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Maple Dijon Salmon with Brussels Sprouts",
+   "description": "Roasted salmon glazed with maple and mustard, served with browned Brussels sprouts.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 30,
+   "ingredients": [
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "salmon fillets (5 oz each)"
+    },
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "Brussels sprouts, trimmed and halved"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "maple syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "Dijon mustard"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "black pepper"
+    }
+   ],
+   "steps": [
+    "Heat oven to 425 F (220 C). Toss sprouts with oil, half the salt and pepper. Spread on a sheet pan cut-side down and roast for 15 minutes.",
+    "Whisk maple syrup, Dijon and lemon juice. Season salmon with remaining salt and brush with the glaze.",
+    "Move sprouts to the sides, add salmon and roast for 10 to 15 minutes, until fish reaches 145 F (63 C) and sprouts are tender.",
+    "Divide fish and sprouts among plates and spoon over the cooked pan juices."
+   ],
+   "allergens": [
+    "fish"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Use a separate brush or spoon for raw fish; do not serve uncooked glaze that has touched it."
+   ],
+   "make_ahead": "Refrigerate promptly and use within 2 days. Reheat leftovers to 165 F (74 C).",
+   "variations": []
+  }
+ },
  "margarita": {
   "kind": "cocktail",
   "recipe": {
@@ -36569,6 +36949,75 @@
    "variations": []
   }
  },
+ "passion-fruit-rosemary-tequila-fizz": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Passion Fruit Rosemary Tequila Fizz",
+   "description": "Passion fruit, rosemary and lime give a tequila fizz a sharp tropical finish.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "blanco tequila"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "unsweetened passion fruit puree"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "fresh lime juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "small rosemary sprig"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "chilled soda water"
+    },
+    {
+     "amount": "1/2",
+     "unit": "",
+     "item": "passion fruit, for garnish"
+    }
+   ],
+   "steps": [
+    "Press rosemary lightly with syrup in a shaker.",
+    "Add tequila, passion fruit puree, lime and ice. Shake for 15 seconds and fine-strain into an ice-filled highball.",
+    "Top with soda and garnish with the passion fruit half resting at the rim."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "passion fruit half",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake passion fruit puree, lime, syrup and rosemary without tequila; strain and top with 4 oz soda."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [
+    "Puree means unsweetened fruit, not a premixed cocktail syrup; adjust sweetness only after tasting."
+   ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
+  }
+ },
  "pasta-alla-norma": {
   "kind": "meal",
   "recipe": {
@@ -40579,6 +41028,75 @@
    "variations": []
   }
  },
+ "raspberry-mint-brandy-sour": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Raspberry Mint Brandy Sour",
+   "description": "Raspberries and gently pressed mint brighten a lemon-brandy sour.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "brandy"
+    },
+    {
+     "amount": "6",
+     "unit": "",
+     "item": "raspberries"
+    },
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "mint leaves"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "small mint sprig, for garnish"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "raspberries, for garnish"
+    }
+   ],
+   "steps": [
+    "Press raspberries and mint gently with syrup in a shaker.",
+    "Add brandy, lemon and ice; shake for 15 seconds and fine-strain into a rocks glass over fresh ice.",
+    "Garnish with the mint sprig and two raspberries on a pick."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "rocks glass",
+    "garnish": "small mint sprig and two raspberries",
+    "alcoholic": true,
+    "non_alcoholic_version": "Muddle raspberries and mint with syrup; shake with 3/4 oz lemon juice and 2 oz cooled black tea, then strain over ice."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [
+    "Use a gentle press for mint and a fine sieve for raspberry seeds."
+   ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
+  }
+ },
  "ratatouille": {
   "kind": "meal",
   "recipe": {
@@ -43686,6 +44204,114 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "shawarma-spiced-chickpea-pitas": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Shawarma-Spiced Chickpea Pitas",
+   "description": "Roasted spiced chickpeas in warm pitas with crisp vegetables and lemon tahini sauce.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 25,
+   "ingredients": [
+    {
+     "amount": "2",
+     "unit": "cans",
+     "item": "chickpeas (15 oz each), drained and rinsed"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "ground cumin"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "ground coriander"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "sweet paprika"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "ground cinnamon"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "wheat pita breads"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "cucumber, diced"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "cherry tomatoes, quartered"
+    },
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "shredded lettuce"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "tahini"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "water"
+    },
+    {
+     "amount": "1/2",
+     "unit": "",
+     "item": "small garlic clove, finely grated"
+    }
+   ],
+   "steps": [
+    "Heat oven to 425 F (220 C). Pat chickpeas dry and toss with oil, cumin, coriander, paprika, cinnamon and salt. Roast for 20 to 25 minutes, shaking once.",
+    "Whisk tahini, lemon juice, water and garlic until smooth; add water a teaspoon at a time if too thick.",
+    "Warm pitas according to the package and split them to form pockets.",
+    "Fill with lettuce, cucumber, tomatoes and chickpeas, then drizzle with tahini sauce."
+   ],
+   "allergens": [
+    "sesame",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "These are chickpea-filled home pitas using a shawarma-inspired spice mix, rather than meat shawarma. Tahini contains sesame."
+   ],
+   "make_ahead": "Refrigerate chickpeas and cut vegetables promptly for up to 3 days; store separately from pitas and sauce. Reheat chickpeas to 165 F (74 C).",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
   }
  },
  "sheet-pan-tofu-fajita-bowls": {
@@ -46857,6 +47483,68 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "tangerine-ginger-bourbon-highball": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Tangerine Ginger Bourbon Highball",
+   "description": "Bourbon, tangerine and ginger make a bright, lightly sparkling highball.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "bourbon"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "fresh tangerine juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/4",
+     "unit": "oz",
+     "item": "ginger syrup"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "chilled soda water"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "tangerine wheel, for garnish"
+    }
+   ],
+   "steps": [
+    "Shake bourbon, tangerine juice, lemon and ginger syrup with ice for 12 seconds.",
+    "Strain into an ice-filled highball glass and top with soda.",
+    "Stir gently and add the tangerine wheel."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "tangerine wheel",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 3 oz tangerine juice, 1/2 oz lemon juice and 1/4 oz ginger syrup with ice; strain and add 3 oz soda."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
   }
  },
  "tangerine-pink-pepper-gin-collins": {
@@ -50478,6 +51166,94 @@
    "variations": []
   }
  },
+ "warm-farro-squash-cranberry-salad": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Warm Farro Squash Cranberry Salad",
+   "description": "Chewy farro, roasted butternut squash, dried cranberries and pecans over arugula.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 35,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "dry farro wheat"
+    },
+    {
+     "amount": "3",
+     "unit": "cups",
+     "item": "water"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "small butternut squash (about 2 lb), peeled and cubed"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "olive oil, divided"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "dried cranberries"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "pecan pieces"
+    },
+    {
+     "amount": "3",
+     "unit": "cups",
+     "item": "arugula"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "apple cider vinegar"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "maple syrup"
+    },
+    {
+     "amount": "3/4",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "black pepper"
+    }
+   ],
+   "steps": [
+    "Heat oven to 425 F (220 C). Toss squash with 1 tbsp oil and half the salt. Roast for 25 to 30 minutes, turning once, until tender.",
+    "Simmer farro in water for 25 to 35 minutes, or according to its package, until tender but chewy. Drain.",
+    "Toast pecans in a dry skillet for 3 minutes. Whisk remaining oil with vinegar, maple syrup, remaining salt and pepper.",
+    "Toss warm farro and squash with dressing and cranberries. Serve over arugula with pecans."
+   ],
+   "allergens": [
+    "tree nuts",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Farro is wheat and is not gluten-free. Toast nuts gently and keep them moving to avoid scorching."
+   ],
+   "make_ahead": "Refrigerate farro and squash promptly for up to 3 days. Store arugula and pecans separately and assemble just before serving.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
+  }
+ },
  "water-lily-cocktail": {
   "kind": "cocktail",
   "recipe": {
@@ -51349,7 +52125,7 @@
      "glass": "coupe",
      "garnish": "narrow lemon twist",
      "alcoholic": true,
-     "non_alcoholic_version": "Shake 2 oz cooled green tea, 3/4 oz yuzu juice and 1/2 oz honey syrup with ice; strain into a coupe."
+     "non_alcoholic_version": "Shake 2 oz cooled green tea, 3/4 oz yuzu juice and 1/2 oz agave syrup with ice; strain into a coupe."
     },
     "note": "An original Relish home cocktail. Please drink responsibly.",
     "tips": [

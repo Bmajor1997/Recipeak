@@ -4760,6 +4760,76 @@
       "names": [
         "Cod in Coconut Tomato Broth"
       ]
+    },
+    {
+      "file": "raspberry-mint-brandy-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Raspberry Mint Brandy Sour"
+      ]
+    },
+    {
+      "file": "honeydew-basil-vodka-cooler.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Honeydew Basil Vodka Cooler"
+      ]
+    },
+    {
+      "file": "blackberry-balsamic-gin-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Blackberry Balsamic Gin Sour"
+      ]
+    },
+    {
+      "file": "tangerine-ginger-bourbon-highball.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Tangerine Ginger Bourbon Highball"
+      ]
+    },
+    {
+      "file": "passion-fruit-rosemary-tequila-fizz.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Passion Fruit Rosemary Tequila Fizz"
+      ]
+    },
+    {
+      "file": "chicken-artichoke-sun-dried-tomato-rice.jpg",
+      "kind": "meal",
+      "names": [
+        "Chicken Artichoke Sun-Dried Tomato Rice"
+      ]
+    },
+    {
+      "file": "maple-dijon-salmon-with-brussels-sprouts.jpg",
+      "kind": "meal",
+      "names": [
+        "Maple Dijon Salmon with Brussels Sprouts"
+      ]
+    },
+    {
+      "file": "warm-farro-squash-cranberry-salad.jpg",
+      "kind": "meal",
+      "names": [
+        "Warm Farro Squash Cranberry Salad"
+      ]
+    },
+    {
+      "file": "creamy-polenta-with-mushroom-ragout.jpg",
+      "kind": "meal",
+      "names": [
+        "Creamy Polenta with Mushroom Ragout"
+      ]
+    },
+    {
+      "file": "shawarma-spiced-chickpea-pitas.jpg",
+      "kind": "meal",
+      "names": [
+        "Shawarma-Spiced Chickpea Pitas"
+      ]
     }
   ]
 }
