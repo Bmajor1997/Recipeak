@@ -208,7 +208,7 @@ const ALLERGEN_WORDS = {
   sesame: /\b(?:sesame|tahini|furikake|za'?atar)\b/,
 };
 const NOT_AN_ALLERGEN =
-  /\b(?:coconut|oat|rice|almond|soy|cashew) (?:milk|cream|yogh?urt)\b|\bcream of (?:coconut|tartar)\b|\b(?:peanut|almond|cashew|sunflower|apple|cocoa|shea|nut|seed) butter\b|\bbutternut\b|\bbutter (?:beans|lettuce)\b|\beggplants?\b|\b(?:gluten-free|rice|glass|cellophane|soba|corn|sweet potato) (?:pasta|noodles|tortillas?|bread|flour|crackers?|panko)\b|\b(?:rice|corn|almond|coconut|chickpea|tapioca|potato|cassava) flour\b|\bcornbread\b|\bfish-free\b|\bvegan [a-z]+\b|\bwater chestnuts?\b|\bnutmeg\b|\bginger (?:beer|ale)\b|\broot beer\b|\bgluten-free (?:beer|ale|lager)\b|\bcream sherry\b/g;
+  /\b(?:coconut|oat|rice|almond|soy|cashew) (?:milk|cream|yogh?urt)\b|\bcream of (?:coconut|tartar)\b|\b(?:peanut|almond|cashew|sunflower|apple|cocoa|shea|nut|seed) butter\b|\bbutternut\b|\bbutter (?:beans|lettuce)\b|\beggplants?\b|\b(?:gluten-free|rice|glass|cellophane|soba|corn|sweet potato) (?:pasta|noodles|tortillas?|bread|flour|crackers?|panko)\b|\b(?:rice|corn|almond|coconut|chickpea|tapioca|potato|cassava) flour\b|\bcornbread\b|\bfish-free\b|\bvegan(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}|\bwater chestnuts?\b|\bnutmeg\b|\bginger (?:beer|ale)\b|\broot beer\b|\bgluten-free (?:beer|ale|lager)\b|\bcream sherry\b/g;
 // A free-from word settles only the allergen it names: "wheat-free egg noodles" is still eggs. Spirits distilled from
 // malted grain ("single malt") aren't wheat.
 const NOT_THIS_ALLERGEN = { wheat: /\b(?:wheat|gluten)-free(?: (?!and\b|or\b|with\b)[a-z'-]+){1,3}|\bsingle malt\b|\bmalt whiske?y\b/g };

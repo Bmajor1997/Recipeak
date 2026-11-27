@@ -518,3 +518,24 @@ test("every AI recipe path adds allergens the model left out, including versions
     base: { title: "Salad", servings: 2, ingredients: [{ amount: "1", unit: "cup", item: "lettuce" }], steps: ["Toss."] } } });
   assert.deepEqual(made.json.recipe.allergens, both, "meat or dairy version");
 });
+
+test("plant foods named after 'vegan' aren't read as dairy, and the app's copy of the allergen words stays the server's", () => {
+  const found = (item) => with_detected_allergens({ allergens: [], ingredients: [{ item }] }).allergens;
+  assert.deepEqual(found("vegan almond milk"), ["tree nuts"], "almond milk is a nut, not milk, also after 'vegan'");
+  assert.deepEqual(found("vegan cream cheese"), []);
+  assert.deepEqual(found("vegan butter and milk"), ["milk"], "'and' ends the plant-based name");
+  assert.deepEqual(found("butter"), ["milk"]);
+  for (const item of ["coconut yogurt", "oat yoghurt", "apple butter"]) assert.deepEqual(found(item), [], item);
+  // apps/mobile/src/recipes/allergenRisk.ts reads saved AI recipes with the same words.
+  const app = readFileSync(new URL("../apps/mobile/src/recipes/allergenRisk.ts", import.meta.url), "utf8");
+  const server = readFileSync(new URL("../server/recipe_ai.js", import.meta.url), "utf8");
+  const flat = (text) => text.replace(/\s+/g, " ").replace(/,\s*([}\]])/g, " $1").trim();
+  const words = (source) => flat(source.match(/const ALLERGEN_WORDS(?::[^=]*)? = \{(.*?)\n\};/s)?.[1] ?? "");
+  const literal = (source, name) => flat(source.match(new RegExp(`const ${name}(?::[^=]*)? =\s*(.*?);\n`, "s"))?.[1] ?? "");
+  assert.ok(words(app), "the app has ALLERGEN_WORDS");
+  assert.equal(words(app), words(server), "ALLERGEN_WORDS");
+  for (const name of ["NOT_AN_ALLERGEN", "NOT_THIS_ALLERGEN", "CHECKED_ON_FULL_NAME"]) {
+    assert.ok(literal(app, name), name);
+    assert.equal(literal(app, name), literal(server, name), name);
+  }
+});

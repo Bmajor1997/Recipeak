@@ -188,4 +188,13 @@ describe("AI recipes kept on the phone get the allergens their ingredients name"
     });
     expect(opened.recipe.allergens).toEqual(library.allergens);
   });
+
+  it("doesn't read plant foods as dairy, as the server doesn't (Codex review of cf8c7f9)", () => {
+    for (const item of ["coconut yogurt", "oat yoghurt", "apple butter", "vegan almond milk", "vegan cream cheese"]) {
+      const checked = with_ingredient_allergens({ ...recipe("Plant"), ingredients: [{ amount: "1", unit: "cup", item }] }).allergens;
+      expect(checked, item).not.toContain("milk");
+    }
+    const real = with_ingredient_allergens({ ...recipe("Dairy"), ingredients: [{ amount: "1", unit: "cup", item: "greek yogurt" }] });
+    expect(real.allergens).toContain("milk");
+  });
 });
