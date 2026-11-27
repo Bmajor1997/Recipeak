@@ -2851,6 +2851,106 @@
    "variations": []
   }
  },
+ "beef-broccoli-udon-skillet": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Beef Broccoli Udon Skillet",
+   "description": "Thick udon noodles with beef strips, broccoli and a glossy ginger-soy glaze.",
+   "servings": 4,
+   "prep_minutes": 20,
+   "cook_minutes": 15,
+   "ingredients": [
+    {
+     "amount": "12",
+     "unit": "oz",
+     "item": "fresh wheat udon noodles"
+    },
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "beef sirloin, thinly sliced across the grain"
+    },
+    {
+     "amount": "12",
+     "unit": "oz",
+     "item": "broccoli florets"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "neutral oil"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "soy sauce"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "rice vinegar"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "brown sugar"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "grated ginger"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "garlic cloves, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "cornstarch"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "water"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "toasted sesame oil"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "scallions, sliced"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "sesame seeds"
+    }
+   ],
+   "steps": [
+    "Cook udon according to its package and drain. Whisk soy sauce, vinegar, sugar, ginger, garlic, cornstarch and water.",
+    "Heat half the neutral oil in a wide skillet over high heat. Sear beef in batches for 2 to 3 minutes, until cooked through; transfer to a plate.",
+    "Add remaining oil, broccoli and 2 tbsp water. Cover for 3 minutes, then uncover and stir-fry for 2 minutes.",
+    "Return beef with udon and sauce. Toss over medium heat for 2 minutes until the glaze thickens and beef is fully cooked. Finish with sesame oil, scallions and seeds."
+   ],
+   "allergens": [
+    "sesame",
+    "soy",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Use thin slices cut from a whole sirloin steak, not ground beef. Cook the meat fully; avoid crowding the skillet."
+   ],
+   "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
+   "variations": []
+  }
+ },
  "beef-bulgogi": {
   "kind": "meal",
   "recipe": {
@@ -11409,6 +11509,84 @@
    "variations": []
   }
  },
+ "chicken-with-creamy-leeks-and-mustard": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Chicken with Creamy Leeks and Mustard",
+   "description": "Browned chicken breasts in a modest creamy leek and Dijon sauce.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 25,
+   "ingredients": [
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "boneless skinless chicken breasts (5 oz each)"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "leeks, white and light-green parts sliced and washed"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "butter"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "water"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "heavy cream"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "Dijon mustard"
+    },
+    {
+     "amount": "3/4",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "black pepper"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "chopped parsley"
+    }
+   ],
+   "steps": [
+    "Season chicken with half the salt and all the pepper. Heat oil in a skillet over medium-high heat and brown chicken for 3 minutes per side; set aside.",
+    "Lower heat, add butter and leeks, and soften for 6 minutes. Add water and scrape up browned bits.",
+    "Stir in cream, Dijon and remaining salt. Return chicken, cover partly and simmer gently for 8 to 12 minutes, until every breast reaches 165 F (74 C).",
+    "Rest for 5 minutes. Slice and serve with the leeks, sauce and parsley."
+   ],
+   "allergens": [
+    "milk"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Wash between leek layers to remove grit. Keep the sauce at a gentle simmer so it does not split."
+   ],
+   "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
+   "variations": []
+  }
+ },
  "chicken-yassa": {
   "kind": "meal",
   "recipe": {
@@ -14807,6 +14985,85 @@
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
    "tips": [],
    "make_ahead": "",
+   "variations": []
+  }
+ },
+ "crispy-halloumi-couscous-bowls": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Crispy Halloumi Couscous Bowls",
+   "description": "Golden halloumi slices over couscous with cucumber, tomato, mint and lemon.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 10,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "dry wheat couscous"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "boiling water"
+    },
+    {
+     "amount": "8",
+     "unit": "oz",
+     "item": "halloumi, cut into 8 slices"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "olive oil, divided"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "cucumber, diced"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "cherry tomatoes, halved"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "chopped mint"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lemon, half juiced and half cut into wedges"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "black pepper"
+    }
+   ],
+   "steps": [
+    "Put couscous in a heatproof bowl with salt and boiling water. Cover for 5 minutes, or follow package directions, then fluff.",
+    "Pat halloumi dry. Heat 1 tbsp oil in a nonstick skillet over medium-high heat and brown slices for 1 to 2 minutes per side.",
+    "Toss couscous with remaining oil, lemon juice, cucumber, tomatoes, mint and black pepper.",
+    "Divide among bowls and top each with two hot halloumi slices and a lemon wedge."
+   ],
+   "allergens": [
+    "milk",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Halloumi is salty; season the couscous lightly. Select vegetarian-rennet halloumi if required."
+   ],
+   "make_ahead": "Keep couscous salad refrigerated for up to 2 days. Halloumi is best cooked just before serving; refrigerate leftovers promptly.",
    "variations": []
   }
  },
@@ -20962,6 +21219,70 @@
    "vegan": "same"
   }
  },
+ "grapefruit-cardamom-rum-highball": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Grapefruit Cardamom Rum Highball",
+   "description": "White rum, fresh grapefruit and a subtle cardamom syrup make a fragrant highball.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "white rum"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "pink grapefruit juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "fresh lime juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "cardamom syrup"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "chilled soda water"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "grapefruit half-wheel, for garnish"
+    }
+   ],
+   "steps": [
+    "Shake rum, grapefruit juice, lime juice and cardamom syrup with ice for 12 seconds.",
+    "Strain into an ice-filled highball glass and top with soda.",
+    "Stir gently and add the grapefruit half-wheel."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "grapefruit half-wheel",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 3 oz grapefruit juice, 1/2 oz lime juice and 1/4 oz cardamom syrup with ice; strain and top with 2 oz soda."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [
+    "For syrup, warm 1/2 cup simple syrup with 3 cracked cardamom pods, cover off heat for 15 minutes, strain and cool. Preparation time assumes cooled syrup is ready."
+   ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
+  }
+ },
  "grapefruit-rosemary-gin-spritz": {
   "kind": "cocktail",
   "recipe": {
@@ -21195,6 +21516,84 @@
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
    "tips": [],
    "make_ahead": "",
+   "variations": []
+  }
+ },
+ "green-pea-spinach-risotto": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Green Pea Spinach Risotto",
+   "description": "Soft arborio rice, green peas and spinach finished with butter and vegetarian hard cheese.",
+   "servings": 4,
+   "prep_minutes": 10,
+   "cook_minutes": 30,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "arborio rice"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "small onion, finely diced"
+    },
+    {
+     "amount": "4",
+     "unit": "cups",
+     "item": "hot vegetable broth"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "cups",
+     "item": "frozen peas"
+    },
+    {
+     "amount": "3",
+     "unit": "cups",
+     "item": "baby spinach, chopped"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "butter"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "grated vegetarian hard cheese"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "black pepper"
+    }
+   ],
+   "steps": [
+    "Keep broth hot in a small pan. Heat oil in a saucepan over medium heat and soften onion for 5 minutes.",
+    "Add rice and stir for 1 minute. Add hot broth a ladle at a time, stirring often and letting most absorb before adding more. Cook for 18 to 22 minutes, until tender with a slight bite.",
+    "Add peas with the last ladle of broth and cook for 3 minutes. Stir in spinach to wilt, then butter and cheese.",
+    "Season with pepper and salt to taste. Add a little hot water if needed so the risotto flows rather than standing in a mound."
+   ],
+   "allergens": [
+    "milk"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Choose a hard cheese labeled vegetarian; traditional Parmesan uses animal rennet. Broth salt levels vary, so season at the end."
+   ],
+   "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
    "variations": []
   }
  },
@@ -35833,6 +36232,65 @@
    "variations": []
   }
  },
+ "pear-ginger-apple-brandy-sour": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Pear Ginger Apple Brandy Sour",
+   "description": "Pear nectar and ginger bring orchard fruit and warmth to an apple-brandy sour.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "apple brandy"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "pear nectar"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "ginger syrup"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "thin pear slices, for garnish"
+    }
+   ],
+   "steps": [
+    "Shake apple brandy, pear nectar, lemon juice and ginger syrup with ice for 15 seconds.",
+    "Strain into a rocks glass over one large ice cube.",
+    "Fan the two pear slices at the rim."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "rocks glass",
+    "garnish": "two thin pear slices",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 3 oz pear nectar, 3/4 oz lemon juice and 1/4 oz ginger syrup with ice; strain over fresh ice."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [
+    "Pear nectar varies in sweetness. Start with a little less syrup if the nectar is heavily sweetened."
+   ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
+  }
+ },
  "pear-rosemary-vodka-highball": {
   "kind": "cocktail",
   "recipe": {
@@ -37396,6 +37854,73 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "pomegranate-black-tea-vodka-collins": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Pomegranate Black Tea Vodka Collins",
+   "description": "A long vodka drink with tart pomegranate, black tea and a lemon-soda finish.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "vodka"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "unsweetened pomegranate juice"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "strong brewed black tea, cooled"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "chilled soda water"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lemon wheel, for garnish"
+    }
+   ],
+   "steps": [
+    "Shake vodka, pomegranate juice, cooled tea, lemon juice and syrup with ice for 12 seconds.",
+    "Strain into an ice-filled Collins glass, top with soda and stir gently.",
+    "Garnish with the lemon wheel."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "Collins glass",
+    "garnish": "lemon wheel",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 2 oz pomegranate juice, 2 oz cooled black tea, 1/2 oz lemon juice and 1/4 oz syrup with ice; strain and add 2 oz soda water."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
   }
  },
  "pomegranate-lime-mezcal-sparkler": {
@@ -39433,6 +39958,85 @@
    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
    "tips": [],
    "make_ahead": "",
+   "variations": []
+  }
+ },
+ "roasted-beet-lentil-goat-cheese-salad": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Roasted Beet Lentil Goat Cheese Salad",
+   "description": "Sweet roasted beets, lentils and arugula with goat cheese, walnuts and lemon-mustard dressing.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 40,
+   "ingredients": [
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "medium beets, peeled and cut into wedges"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "olive oil, divided"
+    },
+    {
+     "amount": "2",
+     "unit": "cans",
+     "item": "green lentils (15 oz each), drained and rinsed"
+    },
+    {
+     "amount": "3",
+     "unit": "cups",
+     "item": "arugula"
+    },
+    {
+     "amount": "3",
+     "unit": "oz",
+     "item": "soft goat cheese, crumbled"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "walnut pieces"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "Dijon mustard"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "black pepper"
+    }
+   ],
+   "steps": [
+    "Heat oven to 400 F (200 C). Toss beets with 1 tbsp oil and half the salt. Roast for 35 to 40 minutes, turning halfway, until tender.",
+    "Toast walnuts in a dry skillet over medium-low heat for 3 minutes. Cool.",
+    "Whisk remaining oil, lemon juice, Dijon, remaining salt and pepper. Toss half the dressing with lentils.",
+    "Arrange arugula, lentils and warm beets in bowls. Add cheese and walnuts, then drizzle with remaining dressing."
+   ],
+   "allergens": [
+    "milk",
+    "tree nuts"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Use goat cheese labeled suitable for vegetarians if that matters to you; rennet varies by producer."
+   ],
+   "make_ahead": "Refrigerate beets and lentils promptly for up to 3 days. Keep arugula, cheese, walnuts and dressing separate and assemble just before serving.",
    "variations": []
   }
  },
@@ -43948,6 +44552,70 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "strawberry-balsamic-bourbon-smash": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Strawberry Balsamic Bourbon Smash",
+   "description": "A splash of balsamic vinegar sharpens ripe strawberries in this bourbon smash.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "bourbon"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "ripe strawberries, hulled and chopped"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/4",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "balsamic vinegar"
+    },
+    {
+     "amount": "1/2",
+     "unit": "",
+     "item": "strawberry, for garnish"
+    }
+   ],
+   "steps": [
+    "Muddle the chopped strawberries with syrup and balsamic vinegar in a shaker.",
+    "Add bourbon, lemon juice and ice. Shake for 15 seconds, then strain into a rocks glass over fresh ice.",
+    "Garnish with the strawberry half."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "rocks glass",
+    "garnish": "strawberry half",
+    "alcoholic": true,
+    "non_alcoholic_version": "Muddle strawberries with syrup and vinegar; shake with 3/4 oz lemon juice and 2 oz cooled black tea, then strain over ice."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [
+    "Use ordinary balsamic vinegar, not a thick sweet glaze."
+   ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
   }
  },
  "strawberry-basil-tequila-sour": {
@@ -49057,6 +49725,106 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "yuzu-honey-gin-sour": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Yuzu Honey Gin Sour",
+   "description": "Floral honey rounds out the sharp citrus of yuzu in a gin sour served without egg foam.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "gin"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "unsweetened yuzu juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "honey syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "narrow lemon twist, for garnish"
+    }
+   ],
+   "steps": [
+    "Combine gin, yuzu juice and honey syrup in a shaker.",
+    "Shake with ice for 15 seconds, then double-strain into a chilled coupe.",
+    "Express the lemon twist over the drink and add it."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "coupe",
+    "garnish": "narrow lemon twist",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 2 oz cooled green tea, 3/4 oz yuzu juice and 1/2 oz honey syrup with ice; strain into a coupe."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [
+    "For honey syrup, stir equal volumes honey and warm water until dissolved, then cool. Use food-grade yuzu juice rather than a sweetened concentrate."
+   ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": {
+    "title": "Yuzu Agave Gin Sour",
+    "description": "A yuzu gin sour sweetened with agave instead of honey.",
+    "servings": 1,
+    "prep_minutes": 6,
+    "cook_minutes": 0,
+    "ingredients": [
+     {
+      "amount": "1 1/2",
+      "unit": "oz",
+      "item": "gin"
+     },
+     {
+      "amount": "3/4",
+      "unit": "oz",
+      "item": "unsweetened yuzu juice"
+     },
+     {
+      "amount": "1/2",
+      "unit": "oz",
+      "item": "agave syrup"
+     },
+     {
+      "amount": "1",
+      "unit": "",
+      "item": "narrow lemon twist, for garnish"
+     }
+    ],
+    "steps": [
+     "Combine gin, yuzu juice and agave syrup in a shaker.",
+     "Shake with ice for 15 seconds, then double-strain into a chilled coupe.",
+     "Express the lemon twist over the drink and add it."
+    ],
+    "allergens": [],
+    "cocktail": {
+     "glass": "coupe",
+     "garnish": "narrow lemon twist",
+     "alcoholic": true,
+     "non_alcoholic_version": "Shake 2 oz cooled green tea, 3/4 oz yuzu juice and 1/2 oz honey syrup with ice; strain into a coupe."
+    },
+    "note": "An original Relish home cocktail. Please drink responsibly.",
+    "tips": [
+     "For agave syrup, stir equal volumes honey and warm water until dissolved, then cool. Use food-grade yuzu juice rather than a sweetened concentrate."
+    ],
+    "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+    "variations": []
+   }
   }
  },
  "zaatar-chicken-and-cauliflower-traybake": {

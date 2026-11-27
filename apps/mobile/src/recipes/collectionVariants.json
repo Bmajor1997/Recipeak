@@ -3084,5 +3084,43 @@
   "rhubarb-rose-gin-sour": { "vegetarian": "same", "vegan": "same" },
   "grape-basil-vodka-spritz": { "vegetarian": "same", "vegan": "same" },
   "coconut-red-lentil-spinach-dal": { "vegetarian": "same", "vegan": "same" },
-  "sheet-pan-tofu-fajita-bowls": { "vegetarian": "same", "vegan": "same" }
+  "sheet-pan-tofu-fajita-bowls": { "vegetarian": "same", "vegan": "same" },
+  "yuzu-honey-gin-sour": {
+    "vegetarian": "same",
+    "vegan": {
+      "title": "Yuzu Agave Gin Sour",
+      "description": "A yuzu gin sour sweetened with agave instead of honey.",
+      "servings": 1,
+      "prep_minutes": 6,
+      "cook_minutes": 0,
+      "ingredients": [
+        { "amount": "1 1/2", "unit": "oz", "item": "gin" },
+        { "amount": "3/4", "unit": "oz", "item": "unsweetened yuzu juice" },
+        { "amount": "1/2", "unit": "oz", "item": "agave syrup" },
+        { "amount": "1", "unit": "", "item": "narrow lemon twist, for garnish" }
+      ],
+      "steps": [
+        "Combine gin, yuzu juice and agave syrup in a shaker.",
+        "Shake with ice for 15 seconds, then double-strain into a chilled coupe.",
+        "Express the lemon twist over the drink and add it."
+      ],
+      "allergens": [],
+      "cocktail": {
+        "glass": "coupe",
+        "garnish": "narrow lemon twist",
+        "alcoholic": true,
+        "non_alcoholic_version": "Shake 2 oz cooled green tea, 3/4 oz yuzu juice and 1/2 oz honey syrup with ice; strain into a coupe."
+      },
+      "note": "An original Relish home cocktail. Please drink responsibly.",
+      "tips": [
+        "For agave syrup, stir equal volumes honey and warm water until dissolved, then cool. Use food-grade yuzu juice rather than a sweetened concentrate."
+      ],
+      "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+      "variations": []
+    }
+  },
+  "pomegranate-black-tea-vodka-collins": { "vegetarian": "same", "vegan": "same" },
+  "pear-ginger-apple-brandy-sour": { "vegetarian": "same", "vegan": "same" },
+  "strawberry-balsamic-bourbon-smash": { "vegetarian": "same", "vegan": "same" },
+  "grapefruit-cardamom-rum-highball": { "vegetarian": "same", "vegan": "same" }
 }
