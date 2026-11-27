@@ -65,7 +65,7 @@ const IDENTIFY_SCHEMA = {
   },
 };
 
-const RECIPE_RULES = `You are the recipe engine for Recipeak, a cooking app.
+const RECIPE_RULES = `You are the recipe engine for Relish, a cooking app.
 - Give a good, representative home recipe for the dish or drink. Never claim it is the restaurant's or bar's exact recipe.
 - Use US measurements only: cups, tablespoons (tbsp), teaspoons (tsp), ounces (oz), pounds (lb), and degrees Fahrenheit.
 - List every one of the nine major US allergens the recipe contains.
@@ -113,7 +113,7 @@ export function identify_payload(image_data_url, model = DEFAULT_MODEL) {
   return {
     model,
     max_output_tokens: 400,
-    instructions: `You identify food and drinks for Recipeak, a cooking app.
+    instructions: `You identify food and drinks for Relish, a cooking app.
 - Look at the photo. If it shows a meal, dish, dessert, or drink, set "kind" to "meal" or "cocktail" (any mixed or prepared drink counts as "cocktail").
 - Give up to 3 guesses for what it is, most likely first. Use the dish's or drink's usual name, the one a menu or cookbook would use ("Chicken Katsu", "Margarita", "Shakshuka"), not a description of the photo.
 - Use "high" confidence only when the photo clearly shows that exact dish or drink.

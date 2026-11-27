@@ -142,7 +142,7 @@ test("the dashboard page is served with a strict content policy, and its config 
   t.after(s.close);
   const page = await s.get("/admin/feedback");
   assert.equal(page.status, 200);
-  assert.match(await page.text(), /Recipeak/);
+  assert.match(await page.text(), /Relish/);
   assert.match(page.headers.get("content-security-policy"), /script-src 'self'/);
   assert.equal(page.headers.get("x-frame-options"), "DENY");
   assert.equal((await s.get("/admin/feedback.js")).status, 200);

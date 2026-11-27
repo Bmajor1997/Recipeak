@@ -59,7 +59,7 @@ export function recipe_as_text(recipe: Recipe, details: ShareDetails = {}): stri
   if (recipe.note) lines.push("", `Note: ${recipe.note}`);
   const note = details.note?.trim();
   if (note) lines.push("", `My note: ${note}`);
-  lines.push("", "Made with Recipeak. A representative recipe, not the original restaurant or bar recipe.");
-  if (details.store_url) lines.push(`Get Recipeak: ${details.store_url}`);
+  lines.push("", "Made with Relish. A representative recipe, not the original restaurant or bar recipe.");
+  if (details.store_url) lines.push(`Get Relish: ${details.store_url}`);
   return lines.join("\n");
 }

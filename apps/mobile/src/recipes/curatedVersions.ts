@@ -271,7 +271,7 @@ export function curated_non_alcoholic(recipe: Recipe): Recipe | null {
     title: `${recipe.title} (non-alcoholic)`,
     // The garnish goes without its alcohol too, whether the version is built or shown as written.
     cocktail: { ...cocktail, garnish: garnish_without_alcohol(cocktail.garnish), alcoholic: false, non_alcoholic_version: null },
-    note: "Recipeak's own alcohol-free version of this drink. Check the labels of any alcohol-free spirits you use.",
+    note: "Relish's own alcohol-free version of this drink. Check the labels of any alcohol-free spirits you use.",
     tips: [],
     make_ahead: "",
     variations: [],

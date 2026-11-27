@@ -49,7 +49,7 @@ describe("photo of a dish Recipeak may not have", () => {
     const screen = source("../src/app/recipe.tsx");
     const offer = screen.slice(screen.indexOf("function AiOffer"), screen.indexOf("function Sheet("));
     expect(offer).toMatch(/Open \$\{dish\.name\}/);
-    expect(offer).toMatch(/Which one should Recipeak make\?/);
+    expect(offer).toMatch(/Which one should Relish make\?/);
     expect(offer).toMatch(/<ManualCorrection initialKind=\{current\.kind\}[^>]*\/>/);
   });
 

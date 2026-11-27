@@ -32,7 +32,7 @@ export function start_offer(returning: boolean): string {
 export type PaywallReason = "photos" | "saved" | "versions" | "intro";
 
 export function paywall_eyebrow(reason: PaywallReason): string {
-  if (reason === "intro") return "RECIPEAK PREMIUM";
+  if (reason === "intro") return "RELISH PREMIUM";
   if (reason === "versions") return "MORE DIET VERSIONS WITH PREMIUM";
   return reason === "saved" ? `YOU'VE SAVED YOUR ${FREE_SAVED_RECIPES} FREE RECIPES` : `YOU'VE USED YOUR ${FREE_PHOTOS} FREE PHOTOS`;
 }

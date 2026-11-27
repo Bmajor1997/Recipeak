@@ -35,13 +35,13 @@ export function ReportRecipe({ kind, dish, diet }: { kind: Kind; dish: string; d
     if (keyboard > 0 && typing) scroll.current?.scrollToEnd({ animated: true });
   }, [keyboard, typing]);
 
-  if (sent) return <Notice>Thanks for telling us. The Recipeak team will review this recipe.</Notice>;
+  if (sent) return <Notice>Thanks for telling us. The Relish team will review this recipe.</Notice>;
 
   const link = (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel="Report this recipe"
-      accessibilityHint="Tell the Recipeak team if this recipe is offensive, unsafe or wrong"
+      accessibilityHint="Tell the Relish team if this recipe is offensive, unsafe or wrong"
       onPress={() => set_open(true)}
       hitSlop={8}
       style={{ flexDirection: "row", alignItems: "center", gap: 8, minHeight: 48, alignSelf: "flex-start" }}
@@ -109,7 +109,7 @@ export function ReportRecipe({ kind, dish, diet }: { kind: Kind; dish: string; d
                 <Text style={type.heading} accessibilityRole="header">
                   Report this recipe
                 </Text>
-                <Text style={type.muted}>Your report is private and goes only to the Recipeak team.</Text>
+                <Text style={type.muted}>Your report is private and goes only to the Relish team.</Text>
                 <View accessibilityRole="radiogroup" accessibilityLabel="Why are you reporting this recipe?" style={{ gap: 4 }}>
                   {REPORT_REASONS.map((option) => {
                     const checked = reason === option.value;

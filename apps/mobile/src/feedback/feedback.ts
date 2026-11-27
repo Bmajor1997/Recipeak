@@ -8,13 +8,13 @@ export const is_feedback_kind = (value: unknown): value is FeedbackKind => FEEDB
 export const FEEDBACK_TEXT: Record<FeedbackKind, { title: string; detail: string; thanks: string }> = {
   feature: {
     title: "Suggest a Feature",
-    detail: "Suggest improvements to make Recipeak work better for you.",
-    thanks: "Thanks for your suggestion! Your feedback helps make Recipeak better.",
+    detail: "Suggest improvements to make Relish work better for you.",
+    thanks: "Thanks for your suggestion! Your feedback helps make Relish better.",
   },
   bug: {
     title: "Report a Bug",
-    detail: "Tell us about a problem you had in Recipeak.",
-    thanks: "Thanks for reporting this! Your feedback helps us fix Recipeak.",
+    detail: "Tell us about a problem you had in Relish.",
+    thanks: "Thanks for reporting this! Your feedback helps us fix Relish.",
   },
 };
 

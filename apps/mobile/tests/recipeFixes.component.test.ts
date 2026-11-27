@@ -337,7 +337,7 @@ describe("a typed dish name Recipeak doesn't have", () => {
     await open(ready(PASTA, "meal"));
     await type_name("Ube cheesecake");
     expect(text()).toContain("We don't have this meal yet");
-    expect(text()).toContain("Recipeak doesn't have a recipe for Ube cheesecake yet.");
+    expect(text()).toContain("Relish doesn't have a recipe for Ube cheesecake yet.");
     expect(text()).toContain("check it a second time, and make a photo");
     expect(text()).toContain("extra recipes that come with each photo");
     expect(mocks.recipe).not.toHaveBeenCalled();
@@ -395,7 +395,7 @@ describe("typing another name on the question screen", () => {
     await open({ status: "ai-offer", kind: "meal", guesses: [guess("Ube tart"), guess("Ube pie"), guess("Ube cheesecake")] });
     await press("Ube cheesecake");
     await retype("Taro cake");
-    expect(text()).toContain("Recipeak doesn't have a recipe for Taro cake yet.");
+    expect(text()).toContain("Relish doesn't have a recipe for Taro cake yet.");
   });
 
   it("still stands in for the unreadable photo, so yes uses a free photo", async () => {

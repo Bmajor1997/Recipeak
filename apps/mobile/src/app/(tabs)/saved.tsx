@@ -40,7 +40,7 @@ export default function SavedScreen() {
     if (!items?.length || sharing.current) return;
     sharing.current = true;
     try {
-      await Share.share({ title: "My Recipeak recipes", message: items.map((item) => recipe_as_text(item.recipe)).join("\n\n—\n\n") });
+      await Share.share({ title: "My Relish recipes", message: items.map((item) => recipe_as_text(item.recipe)).join("\n\n—\n\n") });
     } catch {
       // Closing the share sheet isn't a problem worth a message.
     } finally {
