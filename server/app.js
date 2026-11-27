@@ -85,8 +85,9 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     // A diet version of a dish already in the library is shared: made once, then reused for everyone with no AI request.
     const key = image_key(request.kind, request.name);
     const diet_key = request.diet && key ? `diet:${key}:${request.diet}` : null;
+    // Every AI recipe gets the allergen word list on top of the model's own list, kept ones too (older ones may not have it).
     const kept = diet_key ? store.get_recipe(diet_key) : null;
-    if (kept) return { recipe: kept, image: photo(request.kind, request.name, user, null) };
+    if (kept) return { recipe: with_detected_allergens(kept), image: photo(request.kind, request.name, user, null) };
     // Free diet versions (everything but vegetarian and vegan) of a library dish are free for every account, even one
     // that hasn't taken a photo yet: they use no free photo and no follow-up. Names the library doesn't have stay
     // follow-ups to a photo, so a diet request can't stand in for photo recognition or a new recipe.
@@ -97,7 +98,7 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     const { text, request_id } = await call_openai({ fetch_impl, store, env, user_id: user.uid, feature, premium: is_premium,
       payload: recipe_payload(request, model), signal });
     let recipe_reply;
-    try { recipe_reply = validate_recipe(JSON.parse(text)); } catch (error) { store.release_photo(request_id); throw error; }
+    try { recipe_reply = with_detected_allergens(validate_recipe(JSON.parse(text))); } catch (error) { store.release_photo(request_id); throw error; }
     if (diet_key && in_library) store.set_recipe({ key: diet_key, kind: request.kind, name: request.name, recipe: recipe_reply });
     // A diet version shares the original dish's photo, so only the standard recipe may describe it.
     return { recipe: recipe_reply, image: photo(request.kind, request.name, user, request.diet ? null : recipe_reply) };
@@ -111,7 +112,8 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
   async function photo_recipe(user, request, is_premium) {
     const key = image_key(request.kind, request.name);
     const cache_key = key ? `photo:${key}` : null;
-    let found = cache_key ? store.get_recipe(cache_key) : null;
+    const cached = cache_key ? store.get_recipe(cache_key) : null;
+    let found = cached ? with_detected_allergens(cached) : null;
     if (!found) {
       const job_key = cache_key ?? `${user.uid}:${request.name}`;
       if (!making.has(job_key)) {
@@ -156,7 +158,7 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     if (!(await premium(user.uid))) throw premium_versions();
     const { text } = await call_openai({ fetch_impl, store, env, user_id: user.uid, feature: "addition", premium: true,
       payload: addition_payload(request, model), signal });
-    const made = validate_recipe(JSON.parse(text));
+    const made = with_detected_allergens(validate_recipe(JSON.parse(text)));
     if (!adds_what_it_promised(made, request.addition)) throw new SyntaxError("The version didn't add what it promised");
     return { recipe: made };
   }
@@ -169,14 +171,15 @@ export function create_app({ env = {}, store, authorize, premium, images = null,
     if (!request || request.diet) throw new HttpError(400, "Choose a dish or drink from the photo wall.");
     const key = image_key(request.kind, request.name);
     if (!key || !featured.has(key)) throw new HttpError(404, "That dish isn't on the photo wall.");
-    let found = store.get_recipe(key);
+    const cached = store.get_recipe(key);
+    let found = cached ? with_detected_allergens(cached) : null;
     if (!found) {
       if (!making.has(key)) {
         const job = (async () => {
           const is_premium = await premium(user.uid);
           const { text } = await call_openai({ fetch_impl, store, env, user_id: user.uid, feature: "featured", premium: is_premium,
             payload: recipe_payload(request, model) });
-          const made = validate_recipe(JSON.parse(text));
+          const made = with_detected_allergens(validate_recipe(JSON.parse(text)));
           store.set_recipe({ key, kind: request.kind, name: request.name, recipe: made });
           return made;
         })().finally(() => making.delete(key));

@@ -1,5 +1,6 @@
 // Turns the stored "Recently viewed" list into what Home shows and opens, and records what the recipe screen opens.
 import type { CurrentRecipe } from "../AppContext";
+import { with_ingredient_allergens } from "./allergenRisk";
 import type { CollectionDish } from "./collectionPhotos";
 import type { RecentEntry, RecentlyViewed } from "./recentlyViewed";
 import { find_collection_dish } from "./shelves";
@@ -36,7 +37,8 @@ export function generated_as_current(entry: Generated): Extract<CurrentRecipe, {
   return {
     status: "ready",
     kind: entry.kind,
-    recipe: entry.recipe,
+    // Kept on the phone, maybe before the server added allergens from the ingredients: checked again here.
+    recipe: with_ingredient_allergens(entry.recipe),
     guesses: [{ name: entry.name, confidence: "high", image }],
     selected: 0,
     image,

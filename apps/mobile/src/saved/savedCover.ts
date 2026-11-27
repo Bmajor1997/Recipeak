@@ -4,6 +4,7 @@
 import type { CurrentRecipe } from "../AppContext";
 import { bundled_photo_uri, bundled_recipe, find_bundled_dish } from "../recipes/bundled";
 import { COLLECTION, type CollectionDish } from "../recipes/collectionPhotos";
+import { with_ingredient_allergens } from "../recipes/allergenRisk";
 import { curated_non_alcoholic } from "../recipes/curatedVersions";
 import { NO_IMAGE, type SavedRecipe } from "../recipes/types";
 
@@ -37,7 +38,8 @@ export async function saved_as_current(item: SavedRecipe): Promise<Extract<Curre
     status: "ready",
     kind: item.kind,
     // A saved bundled dish opens as the library has it now, so a later correction (wording, an allergen) reaches it.
-    recipe: standard ? library : (current_version ?? item.recipe),
+    // A saved AI recipe also gets the allergens its ingredients name, in case it was saved before that check existed.
+    recipe: standard ? library : (current_version ?? (item.ai ? with_ingredient_allergens(item.recipe) : item.recipe)),
     guesses: [],
     selected: 0,
     image: item.image_url ? { status: "ready", url: item.image_url } : NO_IMAGE,

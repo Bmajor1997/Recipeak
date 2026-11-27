@@ -491,3 +491,68 @@ test("if the second check fails, the draft is shown (allergens topped up) but no
   assert.deepEqual(made.json.recipe.allergens, ["eggs", "wheat"]);
   assert.equal(s.store.get_recipe("photo:" + image_key("meal", "Chicken Katsu")), null);
 });
+
+test("every AI recipe path adds allergens the model left out, including versions kept before this check existed", async (t) => {
+  // The model lists butter and egg white but no allergens.
+  const under_listed = {
+    title: "Low-Carb Gimlet", description: "Gin and lime.", servings: 1, prep_minutes: 1, cook_minutes: 0,
+    ingredients: [{ amount: "1", unit: "tbsp", item: "butter" }, { amount: "1", unit: "", item: "egg white" }, { amount: "2", unit: "oz", item: "gin" }],
+    steps: ["Shake."], allergens: [], cocktail: { glass: "coupe", garnish: "lime", alcoholic: true, non_alcoholic_version: null }, note: "",
+  };
+  const s = await start({ reply: under_listed, premium: async () => true, featured: curated_keys() }); t.after(s.close);
+  const allergens = async (path, body, user) => (await s.call(path, { body, user })).json.recipe.allergens;
+  const both = ["milk", "eggs"]; // in the server's fixed allergen order
+  assert.deepEqual(await allergens("/api/recipe", { name: "Gimlet", kind: "cocktail", diet: "low-carb" }), both, "free diet version");
+  assert.deepEqual(await allergens("/api/recipe", { name: "Gimlet", kind: "cocktail", diet: "low-carb" }, "bob"), both, "the kept copy another account gets");
+  assert.deepEqual(await allergens("/api/recipe", { name: "Bespoke soup", kind: "meal", correction: true }), both, "a name typed after an unreadable photo");
+  assert.deepEqual(await allergens("/api/featured-recipe", { name: "Margarita", kind: "cocktail" }), both, "photo-wall recipe");
+  // A version kept before the allergen check was added is checked when it is served.
+  s.store.set_recipe({ key: `diet:${image_key("cocktail", "Negroni")}:low-carb`, kind: "cocktail", name: "Negroni", recipe: under_listed });
+  const calls_before = s.calls.length;
+  assert.deepEqual(await allergens("/api/recipe", { name: "Negroni", kind: "cocktail", diet: "low-carb" }), both, "older kept version");
+  assert.equal(s.calls.length, calls_before, "served from the kept copy, with no AI request");
+  // Meat and dairy versions too.
+  const added = { ...under_listed, title: "Salad with chicken", cocktail: null, ingredients: [...under_listed.ingredients, { amount: "1", unit: "lb", item: "chicken breast" }] };
+  const p = await start({ reply: added, premium: async () => true }); t.after(p.close);
+  const made = await p.call("/api/recipe-addition", { body: { name: "Salad", kind: "meal", addition: "non-vegetarian",
+    base: { title: "Salad", servings: 2, ingredients: [{ amount: "1", unit: "cup", item: "lettuce" }], steps: ["Toss."] } } });
+  assert.deepEqual(made.json.recipe.allergens, both, "meat or dairy version");
+});
+
+test("plant foods named after 'vegan' aren't read as dairy, and the app's copy of the allergen words stays the server's", () => {
+  const found = (item) => with_detected_allergens({ allergens: [], ingredients: [{ item }] }).allergens;
+  assert.deepEqual(found("vegan almond milk"), ["tree nuts"], "almond milk is a nut, not milk, also after 'vegan'");
+  assert.deepEqual(found("vegan cream cheese"), []);
+  assert.deepEqual(found("vegan butter and milk"), ["milk"], "'and' ends the plant-based name");
+  assert.deepEqual(found("butter"), ["milk"]);
+  for (const item of ["coconut yogurt", "oat yoghurt", "apple butter"]) assert.deepEqual(found(item), [], item);
+  // "Vegan" rules out dairy, eggs, fish and shellfish, never wheat (Codex review of 324facd).
+  for (const item of ["vegan whole wheat bread", "vegan all-purpose flour", "vegan wheat noodles", "vegan bread"])
+    assert.deepEqual(found(item), ["wheat"], item);
+  assert.deepEqual(found("vegan fish sauce"), [], "a vegan fish sauce has no fish");
+  // apps/mobile/src/recipes/allergenRisk.ts reads saved AI recipes with the same words.
+  const app = readFileSync(new URL("../apps/mobile/src/recipes/allergenRisk.ts", import.meta.url), "utf8");
+  const server = readFileSync(new URL("../server/recipe_ai.js", import.meta.url), "utf8");
+  const flat = (text) => text.replace(/\s+/g, " ").replace(/,\s*([}\]])/g, " $1").trim();
+  const words = (source) => flat(source.match(/const ALLERGEN_WORDS(?::[^=]*)? = \{(.*?)\n\};/s)?.[1] ?? "");
+  // Fixed patterns, one per constant (the security scan doesn't allow building a RegExp from a variable).
+  const CONSTANTS = {
+    NOT_AN_ALLERGEN: /const NOT_AN_ALLERGEN(?::[^=]*)? =\s*(.*?);\n/s,
+    NOT_THIS_ALLERGEN: /const NOT_THIS_ALLERGEN(?::[^=]*)? =\s*(.*?);\n/s,
+    CHECKED_ON_FULL_NAME: /const CHECKED_ON_FULL_NAME(?::[^=]*)? =\s*(.*?);\n/s,
+  };
+  assert.ok(words(app), "the app has ALLERGEN_WORDS");
+  assert.equal(words(app), words(server), "ALLERGEN_WORDS");
+  for (const [name, pattern] of Object.entries(CONSTANTS)) {
+    const literal = (source) => flat(source.match(pattern)?.[1] ?? "");
+    assert.ok(literal(app), name);
+    assert.equal(literal(app), literal(server), name);
+  }
+});
+
+test("explicit wheat is detected even without bread or flour in the ingredient name", () => {
+  const found = (item) => with_detected_allergens({ allergens: [], ingredients: [{ item }] }).allergens;
+  assert.deepEqual(found("wheat berries"), ["wheat"]);
+  assert.deepEqual(found("vegan wheat germ"), ["wheat"]);
+  assert.deepEqual(found("wheat-free rice noodles"), []);
+});

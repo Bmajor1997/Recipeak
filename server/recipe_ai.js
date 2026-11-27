@@ -203,15 +203,23 @@ const ALLERGEN_WORDS = {
   shellfish: /\b(?:shrimp|prawns?|crab|lobster|crawfish|crayfish|scallops?|clams?|mussels?|oysters?|langoustines?)\b/,
   "tree nuts": /\b(?:almonds?|cashews?|walnuts?|pecans?|pistachios?|hazelnuts?|macadamias?|pine nuts?|brazil nuts?|orgeat|amaretto|frangelico|marzipan|praline|pesto|nutella)\b/,
   peanuts: /\b(?:peanuts?|peanut butter|satay)\b/,
-  wheat: /\b(?:flour|bread|breadcrumbs|panko|pasta|spaghetti|penne|linguine|fettuccine|macaroni|lasagna|noodles?|couscous|bulgur|farro|semolina|tortillas?|pitas?|naan|baguette|croutons?|soy sauce|seitan|udon|ramen|dumpling wrappers?|wonton wrappers?|pie crust|puff pastry|phyllo|crackers?|beer|ale|lager|stout|malt|barley)\b/,
+  wheat: /\b(?:wheat(?!-free\b)|flour|bread|breadcrumbs|panko|pasta|spaghetti|penne|linguine|fettuccine|macaroni|lasagna|noodles?|couscous|bulgur|farro|semolina|tortillas?|pitas?|naan|baguette|croutons?|soy sauce|seitan|udon|ramen|dumpling wrappers?|wonton wrappers?|pie crust|puff pastry|phyllo|crackers?|beer|ale|lager|stout|malt|barley)\b/,
   soy: /\b(?:soy|soya|soybeans?|soymilk|tofu|edamame|miso|tempeh|soy sauce|tamari|shoyu)\b/,
   sesame: /\b(?:sesame|tahini|furikake|za'?atar)\b/,
 };
 const NOT_AN_ALLERGEN =
-  /\b(?:coconut|oat|rice|almond|soy|cashew) (?:milk|cream|yogh?urt)\b|\bcream of (?:coconut|tartar)\b|\b(?:peanut|almond|cashew|sunflower|apple|cocoa|shea|nut|seed) butter\b|\bbutternut\b|\bbutter (?:beans|lettuce)\b|\beggplants?\b|\b(?:gluten-free|rice|glass|cellophane|soba|corn|sweet potato) (?:pasta|noodles|tortillas?|bread|flour|crackers?|panko)\b|\b(?:rice|corn|almond|coconut|chickpea|tapioca|potato|cassava) flour\b|\bcornbread\b|\bfish-free\b|\bvegan [a-z]+\b|\bwater chestnuts?\b|\bnutmeg\b|\bginger (?:beer|ale)\b|\broot beer\b|\bgluten-free (?:beer|ale|lager)\b|\bcream sherry\b/g;
+  /\b(?:coconut|oat|rice|almond|soy|cashew) (?:milk|cream|yogh?urt)\b|\bcream of (?:coconut|tartar)\b|\b(?:peanut|almond|cashew|sunflower|apple|cocoa|shea|nut|seed) butter\b|\bbutternut\b|\bbutter (?:beans|lettuce)\b|\beggplants?\b|\b(?:gluten-free|rice|glass|cellophane|soba|corn|sweet potato) (?:pasta|noodles|tortillas?|bread|flour|crackers?|panko)\b|\b(?:rice|corn|almond|coconut|chickpea|tapioca|potato|cassava) flour\b|\bcornbread\b|\bfish-free\b|\bwater chestnuts?\b|\bnutmeg\b|\bginger (?:beer|ale)\b|\broot beer\b|\bgluten-free (?:beer|ale|lager)\b|\bcream sherry\b/g;
 // A free-from word settles only the allergen it names: "wheat-free egg noodles" is still eggs. Spirits distilled from
 // malted grain ("single malt") aren't wheat.
-const NOT_THIS_ALLERGEN = { wheat: /\b(?:wheat|gluten)-free(?: (?!and\b|or\b|with\b)[a-z'-]+){1,3}|\bsingle malt\b|\bmalt whiske?y\b/g };
+// "Vegan" rules out dairy, eggs, fish and shellfish, so a vegan product's name ("vegan cream cheese", "vegan fish
+// sauce") isn't read as them; it says nothing about wheat, so "vegan whole wheat bread" is still wheat.
+const NOT_THIS_ALLERGEN = {
+  milk: /\bvegan(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g,
+  eggs: /\bvegan(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g,
+  fish: /\bvegan(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g,
+  shellfish: /\bvegan(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g,
+  wheat: /\b(?:wheat|gluten)-free(?: (?!and\b|or\b|with\b)[a-z'-]+){1,3}|\bsingle malt\b|\bmalt whiske?y\b/g,
+};
 
 // Nuts, peanuts, soy and sesame are checked on the full name ("almond milk" is tree nuts, "peanut butter" is peanuts);
 // the others after look-alikes are taken out ("almond milk" isn't milk, "peanut butter" isn't butter).
