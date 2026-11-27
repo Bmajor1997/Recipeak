@@ -14,7 +14,7 @@ import { Notice, useTheme, useThemedStyles, type Palette } from "../ui/theme";
 const GOOGLE_G = require("../../assets/google-g.png");
 
 /**
- * Sign-in, on Recipeak's one start screen (StartScreen: the drifting photos and "Every dish has a recipe."): pill
+ * Sign-in, on Relish's one start screen (StartScreen: the drifting photos and "Every dish has a recipe."): pill
  * buttons — Continue with Google and Create account — and a Log in link, or Log in first for someone returning.
  * Log in and Create account open the email form. Sign in with Apple joins them on iPhone. Signing out lands here.
  */
@@ -84,7 +84,7 @@ export default function SignIn() {
   if (step === "choose")
     return (
       <StartScreen
-        subtitle={returning ? "Welcome back. Log in to see your saved recipes." : "Recipes from any meal or drink you photograph."}
+        subtitle={returning ? "Welcome back. Log in to see your saved recipes." : "Discover meals, explore cocktails, and turn your cravings into recipes."}
         footer={
           <>
             <Text style={styles.reassure}>{start_offer(returning)}</Text>
@@ -136,14 +136,14 @@ export default function SignIn() {
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={returning ? "Create account" : "Log in"}
-          accessibilityHint={returning ? "For people who are new to Recipeak" : "For people who already have an account"}
+          accessibilityHint={returning ? "For people who are new to Relish" : "For people who already have an account"}
           hitSlop={8}
           disabled={provider_busy !== null}
           onPress={() => open_form(returning ? "create" : "sign-in")}
           style={styles.textLink}
         >
           <Text style={styles.linkMuted}>
-            {returning ? "New to Recipeak? " : "Already have an account? "}
+            {returning ? "New to Relish? " : "Already have an account? "}
             <Text style={styles.linkStrong}>{returning ? "Create account" : "Log in"}</Text>
           </Text>
         </Pressable>
@@ -170,7 +170,7 @@ export default function SignIn() {
             {mode === "create" ? "Create your account" : "Log in"}
           </Text>
           <Text style={[type.muted, { marginTop: 6 }]}>
-            {mode === "create" ? "Use your email and a password with at least 8 characters." : "Log in to your Recipeak account."}
+            {mode === "create" ? "Use your email and a password with at least 8 characters." : "Log in to your Relish account."}
           </Text>
           <Text style={styles.label}>Email</Text>
           <TextInput
@@ -216,7 +216,7 @@ export default function SignIn() {
             style={styles.textLink}
           >
             <Text style={styles.linkMuted}>
-              {mode === "create" ? "Already have an account? " : "New to Recipeak? "}
+              {mode === "create" ? "Already have an account? " : "New to Relish? "}
               <Text style={styles.linkStrong}>{mode === "create" ? "Log in" : "Create account"}</Text>
             </Text>
           </Pressable>
