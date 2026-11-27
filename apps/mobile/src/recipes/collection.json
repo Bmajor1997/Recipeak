@@ -19893,5 +19893,321 @@
     ],
     "make_ahead": "Refrigerate chickpeas and cut vegetables promptly for up to 3 days; store separately from pitas and sauce. Reheat chickpeas to 165 F (74 C).",
     "variations": []
+  },
+  "pear-green-tea-gin-collins": {
+    "title": "Pear Green Tea Gin Collins",
+    "description": "Pear nectar and cooled green tea make a mellow gin Collins with a clean lemon finish.",
+    "servings": 1,
+    "prep_minutes": 6,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "gin" },
+      { "amount": "1 1/2", "unit": "oz", "item": "pear nectar" },
+      { "amount": "1", "unit": "oz", "item": "brewed green tea, cooled" },
+      { "amount": "1/2", "unit": "oz", "item": "fresh lemon juice" },
+      { "amount": "1/4", "unit": "oz", "item": "simple syrup" },
+      { "amount": "2", "unit": "oz", "item": "chilled soda water" },
+      { "amount": "1", "unit": "", "item": "thin pear slice, for garnish" }
+    ],
+    "steps": [
+      "Shake gin, pear nectar, cooled tea, lemon and syrup with ice for 12 seconds.",
+      "Strain into an ice-filled Collins glass and top with soda.",
+      "Stir once and garnish with the pear slice."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "Collins glass",
+      "garnish": "thin pear slice",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake 2 oz pear nectar, 2 oz cooled green tea, 1/2 oz lemon juice and 1/4 oz syrup with ice; strain and add 2 oz soda."
+    },
+    "note": "An original Relish home cocktail. Please drink responsibly.",
+    "tips": ["Brew green tea gently and cool it before mixing; overbrewed tea becomes bitter."],
+    "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+    "variations": []
+  },
+  "peach-black-pepper-rum-smash": {
+    "title": "Peach Black Pepper Rum Smash",
+    "description": "Ripe peach and a tiny pinch of black pepper give a white-rum smash a gentle savory edge.",
+    "servings": 1,
+    "prep_minutes": 6,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "white rum" },
+      { "amount": "1/2", "unit": "", "item": "ripe peach, pitted and chopped" },
+      { "amount": "3/4", "unit": "oz", "item": "fresh lemon juice" },
+      { "amount": "1/2", "unit": "oz", "item": "simple syrup" },
+      { "amount": "1", "unit": "small pinch", "item": "freshly ground black pepper" },
+      { "amount": "1", "unit": "", "item": "thin peach wedge, for garnish" }
+    ],
+    "steps": [
+      "Muddle chopped peach with syrup in a shaker.",
+      "Add rum, lemon, black pepper and ice. Shake for 15 seconds and fine-strain into a rocks glass over fresh ice.",
+      "Garnish with the peach wedge."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "rocks glass",
+      "garnish": "thin peach wedge",
+      "alcoholic": true,
+      "non_alcoholic_version": "Muddle peach with syrup, then shake with 3/4 oz lemon juice, a tiny pinch of pepper and 2 oz cooled white tea; strain over ice."
+    },
+    "note": "An original Relish home cocktail. Please drink responsibly.",
+    "tips": ["Use black pepper sparingly; it should add aroma rather than make the drink hot."],
+    "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+    "variations": []
+  },
+  "hibiscus-grapefruit-vodka-sour": {
+    "title": "Hibiscus Grapefruit Vodka Sour",
+    "description": "Ruby hibiscus tea and grapefruit make a tart vodka sour with a floral edge.",
+    "servings": 1,
+    "prep_minutes": 6,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "vodka" },
+      { "amount": "1 1/2", "unit": "oz", "item": "strong brewed hibiscus tea, cooled" },
+      { "amount": "1", "unit": "oz", "item": "pink grapefruit juice" },
+      { "amount": "1/2", "unit": "oz", "item": "fresh lime juice" },
+      { "amount": "1/2", "unit": "oz", "item": "simple syrup" },
+      { "amount": "1", "unit": "", "item": "small grapefruit twist, for garnish" }
+    ],
+    "steps": [
+      "Combine vodka, cooled hibiscus tea, grapefruit juice, lime and syrup in a shaker.",
+      "Shake with ice for 15 seconds and double-strain into a chilled coupe.",
+      "Express the grapefruit twist over the glass and add it."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "coupe",
+      "garnish": "small grapefruit twist",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake 2 oz cooled hibiscus tea, 1 1/2 oz grapefruit juice, 1/2 oz lime juice and 1/2 oz syrup with ice; strain into a coupe."
+    },
+    "note": "An original Relish home cocktail. Please drink responsibly.",
+    "tips": ["Brew tea from a plain food-grade hibiscus infusion and cool fully before mixing."],
+    "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+    "variations": []
+  },
+  "cucumber-green-tea-tequila-highball": {
+    "title": "Cucumber Green Tea Tequila Highball",
+    "description": "Fresh cucumber, green tea and lime make a restrained sparkling tequila highball.",
+    "servings": 1,
+    "prep_minutes": 6,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "blanco tequila" },
+      { "amount": "2", "unit": "oz", "item": "brewed green tea, cooled" },
+      { "amount": "3", "unit": "", "item": "thin cucumber slices" },
+      { "amount": "1/2", "unit": "oz", "item": "fresh lime juice" },
+      { "amount": "1/4", "unit": "oz", "item": "agave syrup" },
+      { "amount": "2", "unit": "oz", "item": "chilled soda water" },
+      { "amount": "1", "unit": "", "item": "cucumber ribbon, for garnish" }
+    ],
+    "steps": [
+      "Press cucumber slices gently with agave syrup in a shaker.",
+      "Add tequila, cooled tea, lime and ice; shake briefly and strain into an ice-filled highball.",
+      "Top with soda, stir gently and garnish with the cucumber ribbon."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "cucumber ribbon",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake cucumber, 3 oz cooled green tea, 1/2 oz lime juice and 1/4 oz agave syrup with ice; strain and add 2 oz soda."
+    },
+    "note": "An original Relish home cocktail. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+    "variations": []
+  },
+  "date-orange-bourbon-sour": {
+    "title": "Date Orange Bourbon Sour",
+    "description": "Soft dates, fresh orange and lemon give bourbon a rounded fruit-sour finish.",
+    "servings": 1,
+    "prep_minutes": 6,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "bourbon" },
+      { "amount": "1", "unit": "", "item": "soft pitted Medjool date, chopped" },
+      { "amount": "1", "unit": "tbsp", "item": "warm water" },
+      { "amount": "1", "unit": "oz", "item": "fresh orange juice" },
+      { "amount": "3/4", "unit": "oz", "item": "fresh lemon juice" },
+      { "amount": "1", "unit": "", "item": "small orange twist, for garnish" }
+    ],
+    "steps": [
+      "Mash the chopped date with warm water in a shaker until loosened; stand for 2 minutes.",
+      "Add bourbon, orange juice, lemon juice and plenty of ice. Shake firmly for 15 seconds and double-strain into a rocks glass over fresh ice.",
+      "Express the orange twist over the drink and add it."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "rocks glass",
+      "garnish": "small orange twist",
+      "alcoholic": true,
+      "non_alcoholic_version": "Mash the date with water; shake with 2 oz orange juice and 3/4 oz lemon juice and ice, then double-strain over fresh ice."
+    },
+    "note": "An original Relish home cocktail. Please drink responsibly.",
+    "tips": ["Remove the date stone completely before mixing. Fine-straining catches fibrous pieces."],
+    "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+    "variations": []
+  },
+  "ginger-lime-chicken-lettuce-cups": {
+    "title": "Ginger-Lime Chicken Lettuce Cups",
+    "description": "Ground chicken with ginger, lime and crisp vegetables spooned into butter lettuce leaves.",
+    "servings": 4,
+    "prep_minutes": 20,
+    "cook_minutes": 15,
+    "ingredients": [
+      { "amount": "1", "unit": "lb", "item": "ground chicken" },
+      { "amount": "8", "unit": "", "item": "large butter lettuce leaves, washed and dried" },
+      { "amount": "1", "unit": "", "item": "carrot, grated" },
+      { "amount": "1/2", "unit": "", "item": "cucumber, diced" },
+      { "amount": "2", "unit": "", "item": "scallions, sliced" },
+      { "amount": "1", "unit": "tbsp", "item": "neutral oil" },
+      { "amount": "1", "unit": "tbsp", "item": "grated ginger" },
+      { "amount": "2", "unit": "", "item": "garlic cloves, minced" },
+      { "amount": "2", "unit": "tbsp", "item": "soy sauce" },
+      { "amount": "1", "unit": "tbsp", "item": "fresh lime juice" },
+      { "amount": "1", "unit": "tsp", "item": "maple syrup" },
+      { "amount": "1", "unit": "tsp", "item": "toasted sesame oil" }
+    ],
+    "steps": [
+      "Heat neutral oil in a wide skillet over medium-high heat. Cook chicken for 6 to 8 minutes, breaking it up, until fully cooked to 165 F (74 C).",
+      "Add ginger and garlic for 1 minute. Stir in soy sauce, maple syrup and sesame oil and cook for 1 minute more.",
+      "Take off the heat and stir in lime juice.",
+      "Spoon into lettuce leaves and top with carrot, cucumber and scallions; serve two filled leaves per person."
+    ],
+    "allergens": ["sesame", "soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": ["Butter lettuce is not dairy. Keep washed leaves dry so the cups remain crisp."],
+    "make_ahead": "Refrigerate chicken and vegetables separately for up to 3 days. Reheat chicken to 165 F (74 C) before filling fresh lettuce leaves.",
+    "variations": []
+  },
+  "seared-tuna-with-sesame-cucumber-rice": {
+    "title": "Seared Tuna with Sesame Cucumber Rice",
+    "description": "Fully cooked sesame-crusted tuna with cucumber rice and a soy-lime dressing.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 15,
+    "ingredients": [
+      { "amount": "4", "unit": "", "item": "tuna steaks (4 to 5 oz each), about 3/4 inch thick" },
+      { "amount": "2", "unit": "tbsp", "item": "sesame seeds" },
+      { "amount": "1", "unit": "tbsp", "item": "neutral oil" },
+      { "amount": "3", "unit": "cups", "item": "cooked rice, hot" },
+      { "amount": "1", "unit": "", "item": "cucumber, diced" },
+      { "amount": "1", "unit": "tbsp", "item": "soy sauce" },
+      { "amount": "1", "unit": "tbsp", "item": "fresh lime juice" },
+      { "amount": "1", "unit": "tsp", "item": "rice vinegar" },
+      { "amount": "2", "unit": "", "item": "scallions, sliced" }
+    ],
+    "steps": [
+      "Pat tuna dry and press sesame seeds onto both faces. Heat oil in a nonstick skillet over medium heat.",
+      "Cook steaks for about 4 to 6 minutes per side, lowering heat if seeds brown too fast, until the centers reach 145 F (63 C). This recipe serves tuna fully cooked, not rare.",
+      "Mix soy sauce, lime juice and vinegar. Toss hot rice with cucumber and scallions.",
+      "Slice the tuna and serve over rice with the dressing spooned on top."
+    ],
+    "allergens": ["fish", "sesame", "soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": ["Cooking time depends on thickness. Use a thermometer and avoid burning the sesame coating."],
+    "make_ahead": "Refrigerate promptly and use within 2 days. Reheat leftovers to 165 F (74 C).",
+    "variations": []
+  },
+  "pork-meatballs-with-ginger-broth": {
+    "title": "Pork Meatballs with Ginger Broth",
+    "description": "Tender pork meatballs, mushrooms and spinach in a light ginger broth with rice.",
+    "servings": 4,
+    "prep_minutes": 20,
+    "cook_minutes": 25,
+    "ingredients": [
+      { "amount": "1", "unit": "lb", "item": "ground pork" },
+      { "amount": "1", "unit": "", "item": "egg" },
+      { "amount": "1/4", "unit": "cup", "item": "plain wheat breadcrumbs" },
+      { "amount": "1", "unit": "tbsp", "item": "grated ginger, divided" },
+      { "amount": "2", "unit": "tbsp", "item": "soy sauce, divided" },
+      { "amount": "4", "unit": "cups", "item": "water" },
+      { "amount": "8", "unit": "oz", "item": "mushrooms, sliced" },
+      { "amount": "2", "unit": "cups", "item": "baby spinach" },
+      { "amount": "2", "unit": "", "item": "scallions, sliced" },
+      { "amount": "3", "unit": "cups", "item": "cooked rice, hot" },
+      { "amount": "1/4", "unit": "tsp", "item": "black pepper" }
+    ],
+    "steps": [
+      "Mix pork, egg, breadcrumbs, half the ginger, half the soy sauce and black pepper. Form 16 small meatballs.",
+      "Bring water, remaining ginger, remaining soy sauce and mushrooms to a gentle simmer in a wide saucepan. Cook for 5 minutes.",
+      "Lower meatballs into the broth. Cover partly and simmer gently for 12 to 15 minutes, until the center of every meatball reaches 160 F (71 C).",
+      "Stir in spinach to wilt. Divide hot rice among bowls and ladle meatballs and broth over it; scatter with scallions."
+    ],
+    "allergens": ["eggs", "soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": ["Keep the broth at a gentle simmer so the meatballs hold their shape. Check breadcrumbs for additional allergens."],
+    "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
+    "variations": []
+  },
+  "white-bean-kale-pesto-soup": {
+    "title": "White Bean Kale Pesto Soup",
+    "description": "White beans and kale in a light vegetable soup finished with basil pesto containing cheese and pine nuts.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 20,
+    "ingredients": [
+      { "amount": "2", "unit": "cans", "item": "cannellini beans (15 oz each), drained and rinsed" },
+      { "amount": "3", "unit": "cups", "item": "chopped kale, stems removed" },
+      { "amount": "1", "unit": "", "item": "onion, diced" },
+      { "amount": "1", "unit": "", "item": "carrot, diced" },
+      { "amount": "2", "unit": "", "item": "garlic cloves, minced" },
+      { "amount": "1", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "4", "unit": "cups", "item": "water" },
+      { "amount": "1/4", "unit": "cup", "item": "basil pesto made with vegetarian hard cheese and pine nuts" },
+      { "amount": "1/2", "unit": "tsp", "item": "salt" },
+      { "amount": "1/4", "unit": "tsp", "item": "black pepper" },
+      { "amount": "1", "unit": "tbsp", "item": "fresh lemon juice" }
+    ],
+    "steps": [
+      "Heat oil in a saucepan over medium heat. Soften onion and carrot for 6 minutes; add garlic for 30 seconds.",
+      "Add beans, water, salt and pepper. Simmer for 10 minutes, then mash a small scoop of beans against the pan to thicken the broth.",
+      "Stir in kale and cook for 4 minutes. Take off heat and stir in pesto and lemon juice.",
+      "Divide among bowls and serve hot."
+    ],
+    "allergens": ["milk", "tree nuts"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": [
+      "Pesto here intentionally contains milk and tree nuts; do not use a generic unverified pesto while retaining these exact labels."
+    ],
+    "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
+    "variations": []
+  },
+  "broccoli-cheddar-quinoa-bake": {
+    "title": "Broccoli Cheddar Quinoa Bake",
+    "description": "Tender quinoa and broccoli baked with cheddar and a light egg custard.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 45,
+    "ingredients": [
+      { "amount": "1", "unit": "cup", "item": "dry quinoa, rinsed" },
+      { "amount": "2", "unit": "cups", "item": "water" },
+      { "amount": "4", "unit": "cups", "item": "small broccoli florets" },
+      { "amount": "1", "unit": "cup", "item": "milk" },
+      { "amount": "2", "unit": "", "item": "eggs" },
+      { "amount": "1 1/2", "unit": "cups", "item": "grated cheddar" },
+      { "amount": "1", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "1/2", "unit": "tsp", "item": "salt" },
+      { "amount": "1/4", "unit": "tsp", "item": "black pepper" }
+    ],
+    "steps": [
+      "Heat oven to 375 F (190 C). Simmer quinoa in water, covered, for 15 minutes or until tender; rest for 5 minutes.",
+      "Steam broccoli for 3 minutes until bright green but still firm. Brush a 9-inch baking dish with oil.",
+      "Whisk milk, eggs, salt and pepper. Fold in quinoa, broccoli and 1 cup cheddar. Transfer to the dish and top with remaining cheese.",
+      "Bake for 25 to 30 minutes until golden and the center reaches 165 F (74 C). Rest for 5 minutes before serving."
+    ],
+    "allergens": ["eggs", "milk"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": ["Drain steamed broccoli well. The center should be set rather than wet when the casserole is ready."],
+    "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
+    "variations": []
   }
 }
