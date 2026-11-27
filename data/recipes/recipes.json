@@ -2231,6 +2231,84 @@
    "variations": []
   }
  },
+ "baked-cod-with-tomato-chickpeas": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Baked Cod with Tomato Chickpeas",
+   "description": "Cod baked over garlicky tomato chickpeas with lemon and parsley.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 30,
+   "ingredients": [
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "cod portions (5 oz each)"
+    },
+    {
+     "amount": "2",
+     "unit": "cans",
+     "item": "chickpeas (15 oz each), drained and rinsed"
+    },
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "cherry tomatoes, halved"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "garlic cloves, thinly sliced"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "dried oregano"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lemon, half juiced and half cut into wedges"
+    },
+    {
+     "amount": "3/4",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "black pepper"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "chopped parsley"
+    }
+   ],
+   "steps": [
+    "Heat oven to 400 F (200 C). Toss chickpeas, tomatoes, garlic, oil, oregano and half the salt in a baking dish. Bake for 15 minutes.",
+    "Season cod with remaining salt, pepper and lemon juice. Nestle the portions into the hot chickpeas.",
+    "Bake for 12 to 15 minutes more, until each fish portion reaches 145 F (63 C).",
+    "Scatter with parsley and serve with lemon wedges."
+   ],
+   "allergens": [
+    "fish"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "The tomato juices should keep the beans moist; add a splash of water if the dish looks dry."
+   ],
+   "make_ahead": "Refrigerate promptly and use within 2 days. Reheat leftovers to 165 F (74 C).",
+   "variations": []
+  }
+ },
  "baked-lemon-dill-cod": {
   "kind": "meal",
   "recipe": {
@@ -5499,6 +5577,73 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "blood-orange-black-tea-rum-highball": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Blood Orange Black Tea Rum Highball",
+   "description": "Blood orange, black tea and rum combine in a citrus highball with a gentle tannic finish.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "white rum"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "fresh blood orange juice"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "strong brewed black tea, cooled"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "fresh lime juice"
+    },
+    {
+     "amount": "1/4",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "chilled soda water"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "blood orange half-wheel, for garnish"
+    }
+   ],
+   "steps": [
+    "Shake rum, blood orange juice, cooled tea, lime and syrup with ice for 12 seconds.",
+    "Strain into an ice-filled highball and top with soda.",
+    "Stir gently and garnish with the blood orange half-wheel."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "blood orange half-wheel",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 3 oz blood orange juice, 1 1/2 oz cooled black tea, 1/2 oz lime juice and syrup with ice; strain and add 1 oz soda."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
   }
  },
  "blood-orange-tequila-sparkler": {
@@ -11591,6 +11736,99 @@
    "variations": []
   }
  },
+ "chicken-poblano-corn-rice-bake": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Chicken Poblano Corn Rice Bake",
+   "description": "Ground chicken, mild poblano, corn and rice baked together under a light cheddar topping.",
+   "servings": 4,
+   "prep_minutes": 20,
+   "cook_minutes": 40,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "ground chicken"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "long-grain white rice, rinsed"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "poblano peppers, seeded and diced"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "onion, diced"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "corn kernels"
+    },
+    {
+     "amount": "1",
+     "unit": "can",
+     "item": "diced tomatoes (14 oz), drained"
+    },
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "water"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "ground cumin"
+    },
+    {
+     "amount": "3/4",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "black pepper"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "grated cheddar"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "chopped cilantro"
+    }
+   ],
+   "steps": [
+    "Heat oven to 400 F (200 C). Heat oil in an ovenproof deep skillet and cook onion and poblano for 5 minutes.",
+    "Add chicken, cumin, salt and pepper. Break up the meat and cook for 6 to 8 minutes until it reaches 165 F (74 C).",
+    "Stir in rice, corn, drained tomatoes and water. Bring to a simmer, cover tightly and bake for 25 minutes, until rice is tender; add water and cook longer if necessary.",
+    "Sprinkle with cheddar and bake uncovered for 5 minutes, until melted and the center reaches 165 F (74 C). Rest for 5 minutes and add cilantro."
+   ],
+   "allergens": [
+    "milk"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Poblano heat varies; remove seeds and ribs for a milder bake. Use a tight-fitting lid so the rice cooks evenly."
+   ],
+   "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
+   "variations": []
+  }
+ },
  "chicken-pot-pie": {
   "kind": "meal",
   "recipe": {
@@ -12664,6 +12902,100 @@
     "make_ahead": "Marinate up to a day ahead. The finished dish keeps 4 days and tastes even better reheated.",
     "variations": []
    }
+  }
+ },
+ "chickpea-spinach-shakshuka": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Chickpea Spinach Shakshuka",
+   "description": "A chickpea-and-spinach tomato skillet with fully set eggs and warm wheat pitas.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 30,
+   "ingredients": [
+    {
+     "amount": "8",
+     "unit": "",
+     "item": "eggs"
+    },
+    {
+     "amount": "1",
+     "unit": "can",
+     "item": "chickpeas (15 oz), drained and rinsed"
+    },
+    {
+     "amount": "1",
+     "unit": "can",
+     "item": "crushed tomatoes (28 oz)"
+    },
+    {
+     "amount": "4",
+     "unit": "cups",
+     "item": "baby spinach"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "onion, diced"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "red bell pepper, diced"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "garlic cloves, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "ground cumin"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "sweet paprika"
+    },
+    {
+     "amount": "3/4",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "4",
+     "unit": "",
+     "item": "wheat pita breads"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "chopped parsley"
+    }
+   ],
+   "steps": [
+    "Use a very wide lidded skillet, or divide between two pans. Soften onion and pepper in oil over medium heat for 6 minutes. Add garlic, cumin and paprika for 30 seconds.",
+    "Add tomatoes, chickpeas and salt and simmer for 10 minutes. Fold in spinach until wilted.",
+    "Make eight wells and crack an egg into each. Cover and cook gently for 8 to 12 minutes, until whites and yolks are set and the egg portion reaches 160 F (71 C).",
+    "Warm pitas according to the package and serve with the shakshuka and parsley, two eggs per person."
+   ],
+   "allergens": [
+    "eggs",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "This home variation adds chickpeas and spinach. Serve the eggs fully set rather than assuming runny yolks suit every diner."
+   ],
+   "make_ahead": "Refrigerate leftovers promptly for up to 2 days. Reheat to 165 F (74 C); eggs may firm up further.",
+   "variations": []
   }
  },
  "chilaquiles": {
@@ -20422,6 +20754,96 @@
    "variations": []
   }
  },
+ "five-spice-pork-with-bok-choy-and-rice": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Five-Spice Pork with Bok Choy and Rice",
+   "description": "Thin pork strips and bok choy in a glossy five-spice soy glaze over rice.",
+   "servings": 4,
+   "prep_minutes": 20,
+   "cook_minutes": 15,
+   "ingredients": [
+    {
+     "amount": "1 1/4",
+     "unit": "lb",
+     "item": "pork tenderloin, thinly sliced"
+    },
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "baby bok choy, quartered and washed"
+    },
+    {
+     "amount": "3",
+     "unit": "cups",
+     "item": "cooked rice, hot"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "neutral oil, divided"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "Chinese five-spice powder"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "soy sauce"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "rice vinegar"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "brown sugar"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "cornstarch"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "water"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "toasted sesame oil"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "scallions, sliced"
+    }
+   ],
+   "steps": [
+    "Whisk soy sauce, vinegar, sugar, cornstarch and water. Toss pork with five-spice powder.",
+    "Heat half the neutral oil in a wide skillet over high heat. Sear pork in batches until cooked through to at least 145 F (63 C), about 3 to 4 minutes per batch. Transfer to a clean plate and rest for at least 3 minutes.",
+    "Add remaining oil and bok choy to the pan. Stir-fry for 3 to 4 minutes until tender-crisp. Add sauce and simmer for 1 minute until glossy.",
+    "Return pork briefly to warm, finish with sesame oil and scallions, and serve over hot rice."
+   ],
+   "allergens": [
+    "sesame",
+    "soy",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Use a plain five-spice blend and check its label. Rest the whole-cut pork before returning it to the hot sauce."
+   ],
+   "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
+   "variations": []
+  }
+ },
  "flan": {
   "kind": "meal",
   "recipe": {
@@ -22630,6 +23052,63 @@
    "tips": [
     "For syrup, warm 1/2 cup simple syrup with 3 cracked cardamom pods, cover off heat for 15 minutes, strain and cool. Preparation time assumes cooled syrup is ready."
    ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
+  }
+ },
+ "grapefruit-ginger-rye-sour": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Grapefruit Ginger Rye Sour",
+   "description": "Rye whiskey, grapefruit, lemon and ginger syrup make a dry-spiced citrus sour.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "rye whiskey"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "pink grapefruit juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "ginger syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "small grapefruit twist, for garnish"
+    }
+   ],
+   "steps": [
+    "Shake rye, grapefruit juice, lemon and ginger syrup with ice for 15 seconds.",
+    "Double-strain into a chilled coupe.",
+    "Express grapefruit peel over the glass and add it."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "coupe",
+    "garnish": "small grapefruit twist",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 2 oz cooled black tea, 1 1/2 oz grapefruit juice, 1/2 oz lemon juice and 1/2 oz ginger syrup with ice; strain into a coupe."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [],
    "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
    "variations": []
   },
@@ -29757,6 +30236,84 @@
    "variations": []
   }
  },
+ "lemony-orzo-with-roasted-broccoli-and-walnuts": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Lemony Orzo with Roasted Broccoli and Walnuts",
+   "description": "Lemon-dressed orzo with browned broccoli, garlic and toasted walnuts.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 25,
+   "ingredients": [
+    {
+     "amount": "12",
+     "unit": "oz",
+     "item": "wheat orzo"
+    },
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "broccoli florets"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "walnut pieces"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "olive oil, divided"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "garlic cloves, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lemon, zested and juiced"
+    },
+    {
+     "amount": "3/4",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "black pepper"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "chopped parsley"
+    }
+   ],
+   "steps": [
+    "Heat oven to 425 F (220 C). Toss broccoli with 1 tbsp oil and half the salt. Roast for 18 to 22 minutes, turning once, until tender and browned.",
+    "Cook orzo according to the package. Reserve 1/2 cup cooking water and drain. Toast walnuts in a dry skillet over medium-low heat for 3 minutes; set aside.",
+    "Warm remaining oil with garlic for 30 seconds. Toss in orzo, lemon zest and juice, pepper, remaining salt and enough reserved water to coat the pasta lightly.",
+    "Fold in roasted broccoli, walnuts and parsley."
+   ],
+   "allergens": [
+    "tree nuts",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Orzo is wheat pasta, not rice. This recipe intentionally contains walnuts and has no cheese."
+   ],
+   "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
+  }
+ },
  "lion-s-tail": {
   "kind": "cocktail",
   "recipe": {
@@ -31015,6 +31572,65 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "mango-lime-brandy-punch": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Mango Lime Brandy Punch",
+   "description": "Brandy, mango nectar and lime make a short tropical fruit punch.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "brandy"
+    },
+    {
+     "amount": "2 1/2",
+     "unit": "oz",
+     "item": "mango nectar"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "fresh lime juice"
+    },
+    {
+     "amount": "1/4",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "small mango slice, for garnish"
+    }
+   ],
+   "steps": [
+    "Shake brandy, mango nectar, lime and syrup with ice for 15 seconds.",
+    "Strain into a rocks glass over fresh ice.",
+    "Add the mango slice and serve immediately."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "rocks glass",
+    "garnish": "small mango slice",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 3 oz mango nectar, 3/4 oz lime juice and 1/4 oz syrup with ice; strain over fresh ice."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [
+    "Taste the mango nectar first; reduce the syrup if it is already heavily sweetened."
+   ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
   }
  },
  "mango-tamarind-tequila-sour": {
@@ -40172,6 +40788,75 @@
    "variations": []
   }
  },
+ "plum-basil-vodka-sour": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Plum Basil Vodka Sour",
+   "description": "Ripe red plum and basil make a fresh violet-red vodka sour.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "vodka"
+    },
+    {
+     "amount": "1/2",
+     "unit": "",
+     "item": "ripe red plum, pitted and chopped"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "basil leaves"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "thin plum slice, for garnish"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "small basil leaf, for garnish"
+    }
+   ],
+   "steps": [
+    "Muddle plum and basil gently with syrup in a shaker.",
+    "Add vodka, lemon and ice. Shake for 15 seconds and fine-strain into a chilled coupe.",
+    "Garnish with the plum slice and one small basil leaf."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "coupe",
+    "garnish": "thin plum slice and small basil leaf",
+    "alcoholic": true,
+    "non_alcoholic_version": "Muddle plum and basil with syrup; shake with 3/4 oz lemon juice and 2 oz cooled white tea, then double-strain into a coupe."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [
+    "Remove the plum stone before muddling. Use just a few basil leaves to keep the fruit in balance."
+   ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
+  }
+ },
  "plum-ginger-brandy-sour": {
   "kind": "cocktail",
   "recipe": {
@@ -48092,6 +48777,75 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "strawberry-chamomile-gin-cooler": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Strawberry Chamomile Gin Cooler",
+   "description": "Strawberry and cooled chamomile tea soften a bright sparkling gin cooler.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "gin"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "strawberries, hulled and chopped"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "brewed chamomile tea, cooled"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/4",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "oz",
+     "item": "chilled soda water"
+    },
+    {
+     "amount": "1/2",
+     "unit": "",
+     "item": "strawberry, for garnish"
+    }
+   ],
+   "steps": [
+    "Muddle chopped strawberries with syrup in a shaker.",
+    "Add gin, cooled chamomile tea, lemon and ice. Shake for 12 seconds and fine-strain into an ice-filled highball.",
+    "Top with soda and add the strawberry half."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "strawberry half",
+    "alcoholic": true,
+    "non_alcoholic_version": "Muddle strawberries with syrup, shake with 3 oz cooled chamomile tea and 1/2 oz lemon juice, strain over ice and add 1 oz soda."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [
+    "Use a plain food-grade chamomile infusion rather than a mixed herbal product with unspecified ingredients."
+   ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
   }
  },
  "strawberry-ginger-bourbon-fizz": {

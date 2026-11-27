@@ -4970,6 +4970,76 @@
       "names": [
         "Roasted Cauliflower Red Lentil Soup"
       ]
+    },
+    {
+      "file": "grapefruit-ginger-rye-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Grapefruit Ginger Rye Sour"
+      ]
+    },
+    {
+      "file": "strawberry-chamomile-gin-cooler.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Strawberry Chamomile Gin Cooler"
+      ]
+    },
+    {
+      "file": "mango-lime-brandy-punch.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Mango Lime Brandy Punch"
+      ]
+    },
+    {
+      "file": "blood-orange-black-tea-rum-highball.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Blood Orange Black Tea Rum Highball"
+      ]
+    },
+    {
+      "file": "plum-basil-vodka-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Plum Basil Vodka Sour"
+      ]
+    },
+    {
+      "file": "chicken-poblano-corn-rice-bake.jpg",
+      "kind": "meal",
+      "names": [
+        "Chicken Poblano Corn Rice Bake"
+      ]
+    },
+    {
+      "file": "baked-cod-with-tomato-chickpeas.jpg",
+      "kind": "meal",
+      "names": [
+        "Baked Cod with Tomato Chickpeas"
+      ]
+    },
+    {
+      "file": "chickpea-spinach-shakshuka.jpg",
+      "kind": "meal",
+      "names": [
+        "Chickpea Spinach Shakshuka"
+      ]
+    },
+    {
+      "file": "lemony-orzo-with-roasted-broccoli-and-walnuts.jpg",
+      "kind": "meal",
+      "names": [
+        "Lemony Orzo with Roasted Broccoli and Walnuts"
+      ]
+    },
+    {
+      "file": "five-spice-pork-with-bok-choy-and-rice.jpg",
+      "kind": "meal",
+      "names": [
+        "Five-Spice Pork with Bok Choy and Rice"
+      ]
     }
   ]
 }
