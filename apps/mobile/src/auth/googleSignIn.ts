@@ -41,11 +41,11 @@ export class GoogleSignInProblem extends Error {
 export const GOOGLE_MESSAGES = {
   noClientId: {
     dev: "Google sign-in isn't set up in this development build: EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID is missing from apps/mobile/.env. Add the Web client ID from Firebase's Google sign-in provider, then restart Metro with --clear.",
-    release: "Google sign-in isn't available in this version of Recipeak. Continue with email for now.",
+    release: "Google sign-in isn't available in this version of Relish. Continue with email for now.",
   },
   noModule: {
     dev: "This development build doesn't include Google sign-in. Rebuild and reinstall it with npx expo run:android.",
-    release: "Google sign-in isn't available in this version of Recipeak. Update Recipeak or continue with email.",
+    release: "Google sign-in isn't available in this version of Relish. Update Relish or continue with email.",
   },
   playServices: {
     dev: "Google Play services is missing or out of date on this device. Use an emulator image with Google Play, or update Play services.",
@@ -55,11 +55,11 @@ export const GOOGLE_MESSAGES = {
   developerError: {
     dev: "Google rejected this build's sign-in setup (DEVELOPER_ERROR). Add this build's SHA-1 signing fingerprint to the Firebase Android app com.mealsandmixers.app, and check the web client ID belongs to the same Firebase project.",
     release:
-      "Google sign-in isn't set up correctly for this version of Recipeak. Continue with email, and contact Recipeak support if it keeps happening.",
+      "Google sign-in isn't set up correctly for this version of Relish. Continue with email, and contact Relish support if it keeps happening.",
   },
   network: {
-    dev: "Recipeak couldn't reach Google. Check the connection and try again.",
-    release: "Recipeak couldn't reach Google. Check your connection and try again.",
+    dev: "Relish couldn't reach Google. Check the connection and try again.",
+    release: "Relish couldn't reach Google. Check your connection and try again.",
   },
   noToken: {
     dev: "Google returned no ID token. Check EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID is the Web client ID (not the Android one).",
@@ -67,7 +67,7 @@ export const GOOGLE_MESSAGES = {
   },
   tokenRejected: {
     dev: "Firebase rejected the Google token. Check the web client ID belongs to this Firebase project and Google is enabled under Authentication → Sign-in method.",
-    release: "Recipeak couldn't confirm your Google account. Please try again.",
+    release: "Relish couldn't confirm your Google account. Please try again.",
   },
   failed: {
     dev: "Google sign-in didn't finish",

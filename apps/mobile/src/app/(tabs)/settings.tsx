@@ -13,7 +13,7 @@ import { Notice, useTheme } from "../../ui/theme";
 
 /** "Recipeak 0.1.0", so people can tell support which version they have. */
 export function version_line(version: string | null | undefined): string {
-  return version ? `Recipeak ${version}` : "Recipeak";
+  return version ? `Relish ${version}` : "Relish";
 }
 
 export default function Settings() {
@@ -58,7 +58,7 @@ export default function Settings() {
         <Row label={CATEGORIES.taste} detail={`${mix} · ${eats}`} icon="restaurant-outline" onPress={() => open("taste")} />
       </Group>
       <Group title="SUPPORT">
-        <Row label={CATEGORIES.help} detail="How Recipeak works, and tips" icon="help-circle-outline" onPress={() => open("help")} />
+        <Row label={CATEGORIES.help} detail="How Relish works, and tips" icon="help-circle-outline" onPress={() => open("help")} />
         <Row
           label={CATEGORIES.feedback}
           detail="Suggest a feature or report a bug"
@@ -74,7 +74,7 @@ export default function Settings() {
         />
         {STORE_URL && (
           <Row
-            label="Rate Recipeak"
+            label="Rate Relish"
             detail="Leave a review on Google Play"
             icon="star-outline"
             trailing="open-outline"
@@ -86,14 +86,14 @@ export default function Settings() {
         <Group title="ABOUT">
           <Row
             label="Privacy policy"
-            detail="What Recipeak keeps and why"
+            detail="What Relish keeps and why"
             icon="shield-checkmark-outline"
             trailing="open-outline"
             onPress={() => open_link(pages.privacy)}
           />
           <Row
             label="Terms of use"
-            detail="The rules for using Recipeak"
+            detail="The rules for using Relish"
             icon="document-text-outline"
             trailing="open-outline"
             onPress={() => open_link(pages.terms)}

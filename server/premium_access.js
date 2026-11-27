@@ -1,7 +1,7 @@
 /** Server-owned Premium verification. Never trust an entitlement sent by the phone. */
 export class PremiumVerificationError extends Error {
   constructor() {
-    super("Recipeak could not verify your subscription right now. Please try again shortly.");
+    super("Relish could not verify your subscription right now. Please try again shortly.");
     this.status = 503;
   }
 }

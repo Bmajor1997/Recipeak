@@ -1,4 +1,4 @@
-// The first-launch tour (design "Recipeak onboarding mockup", approved 2026-11-17): welcome, try a sample dish,
+// The first-launch tour (design "Relish onboarding mockup", approved 2026-11-17): welcome, try a sample dish,
 // cocktails or meals, diet, camera, and what's free. Every step after the welcome can be skipped. The root layout
 // shows it in place of the app until it is finished, so nothing else (and no navigation) can open before it.
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -62,14 +62,14 @@ export function OnboardingTour() {
 }
 
 /**
- * The first screen of the app: Recipeak's one start screen (StartScreen, the drifting photos), with Get started (the
+ * The first screen of the app: Relish's one start screen (StartScreen, the drifting photos), with Get started (the
  * tour) or I already have an account (straight to the same screen's Log in choices).
  */
 function Welcome({ onStart, onHaveAccount }: { onStart: () => void; onHaveAccount: () => void }) {
   const styles = useThemedStyles(create_styles);
   return (
     <StartScreen
-      subtitle="Recipes from any meal or drink you photograph."
+      subtitle="Discover meals, explore cocktails, and turn your cravings into recipes."
       footer={<Text style={styles.reassure}>{start_offer(false)}</Text>}
     >
       <PillButton label="Get started" variant="accent" hint="A quick tour, then create your account" onPress={onStart} />
@@ -252,7 +252,7 @@ function CameraStep({ onDone }: { onDone: () => void }) {
           Point, snap, cook
         </Text>
         <Text style={[type.muted, { fontSize: 17, lineHeight: 24, textAlign: "center", marginTop: 10 }]}>
-          Recipeak needs your camera to recognize the dish in front of you.
+          Relish needs your camera to recognize the dish in front of you.
         </Text>
         <View style={{ gap: 14, marginTop: 32, alignSelf: "stretch", paddingHorizontal: 4 }}>
           <Point bold="Only when you tap the camera." rest="We never record in the background." />

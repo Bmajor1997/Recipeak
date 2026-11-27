@@ -269,7 +269,7 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
                 {area === "ask"
                   ? "Allow camera access to photograph a meal or a cocktail."
                   : area === "settings"
-                    ? "Camera access is turned off for Recipeak. Turn it on in your phone's Settings to take a photo."
+                    ? "Camera access is turned off for Relish. Turn it on in your phone's Settings to take a photo."
                     : "The camera isn't available right now. It may be in use by another app. Try again, or choose a photo instead."}
               </Text>
               <Pressable

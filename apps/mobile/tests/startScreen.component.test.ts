@@ -141,6 +141,50 @@ describe("one start screen", () => {
   });
 });
 
+describe("Relish branding on the start screen", () => {
+  const SLOGAN = "Every dish has a recipe.";
+  const DESCRIPTION = "Discover meals, explore cocktails, and turn your cravings into recipes.";
+  // Every string the screen shows, joined the way it reads ("Every dish has a " + "recipe" + ".").
+  const words = () => {
+    const out: string[] = [];
+    const walk = (node: unknown): void => {
+      if (typeof node === "string") out.push(node);
+      else if (Array.isArray(node)) node.forEach(walk);
+      else if (node && typeof node === "object" && "children" in node) walk((node as { children: unknown }).children);
+    };
+    walk(tree!.toJSON());
+    return out.join("");
+  };
+  const check = () => {
+    const shown = words();
+    expect(shown).toContain(SLOGAN);
+    expect(shown).not.toMatch(/Recipeak|Recipeek|Meals and Mixers|Inspiration for every appetite|Recipes from any meal/i);
+    expect(tree!.root.findAllByProps({ accessibilityLabel: "Relish" }).length).toBeGreaterThan(0);
+    return shown;
+  };
+
+  it("first launch: the name, the slogan and the approved description, exactly", async () => {
+    const { OnboardingTour } = await import("../src/onboarding/OnboardingTour");
+    await render(createElement(OnboardingTour));
+    expect(check()).toContain(DESCRIPTION);
+  });
+
+  it("sign-in for someone new: the same slogan and description", async () => {
+    const SignIn = (await import("../src/app/sign-in")).default;
+    await render(createElement(SignIn));
+    expect(check()).toContain(DESCRIPTION);
+  });
+
+  it("sign-in for someone returning: the slogan, with the welcome-back line instead of the description", async () => {
+    mocks.entry = "sign-in";
+    const SignIn = (await import("../src/app/sign-in")).default;
+    await render(createElement(SignIn));
+    const shown = check();
+    expect(shown).toContain("Welcome back. Log in to see your saved recipes.");
+    expect(shown).not.toContain(DESCRIPTION);
+  });
+});
+
 describe("signing out", () => {
   it("closes the open recipe and the account's Saved list and history at once", async () => {
     const { AppProvider, useApp } = await import("../src/AppContext");

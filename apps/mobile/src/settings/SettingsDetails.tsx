@@ -90,7 +90,7 @@ function Feedback() {
   const { type } = useTheme();
   return (
     <>
-      <Text style={type.muted}>Tell us what would make Recipeak better, or what went wrong. Only the Recipeak team sees it.</Text>
+      <Text style={type.muted}>Tell us what would make Relish better, or what went wrong. Only the Relish team sees it.</Text>
       <Group title="SEND US FEEDBACK">
         {FEEDBACK_KINDS.map((kind) => (
           <Row
@@ -411,7 +411,7 @@ export const APPEARANCE_LABELS: Record<Appearance, { label: string; detail: stri
 };
 
 export const ACCENT_LABELS: Record<AccentColor, { label: string; detail: string }> = {
-  coral: { label: "Coral", detail: "Recipeak’s own color" },
+  coral: { label: "Coral", detail: "Relish’s own color" },
   blue: { label: "Blue", detail: "Blue buttons and highlights" },
 };
 

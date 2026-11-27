@@ -161,12 +161,12 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
         </Text>
         <Text style={type.body}>
           {current.typed
-            ? `Recipeak doesn't have a recipe for ${current.guesses[0].name} yet.`
-            : `It looks like ${current.guesses[0].name}, but Recipeak doesn't have a recipe for it.`}
+            ? `Relish doesn't have a recipe for ${current.guesses[0].name} yet.`
+            : `It looks like ${current.guesses[0].name}, but Relish doesn't have a recipe for it.`}
         </Text>
         {in_library.some(Boolean) && (
           <>
-            <Text style={type.body}>Could it be one of these? Recipeak has them:</Text>
+            <Text style={type.body}>Could it be one of these? Relish has them:</Text>
             {in_library.map((dish, i) =>
               dish ? (
                 <Button
@@ -182,7 +182,7 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
         )}
         {unknown.length > 1 && (
           <>
-            <Text style={type.body}>Which one should Recipeak make?</Text>
+            <Text style={type.body}>Which one should Relish make?</Text>
             <View style={styles.wrap}>
               {unknown.map((i) => (
                 <Chip key={i} label={current.guesses[i].name} selected={i === target} onPress={() => set_target(i)} />
@@ -192,9 +192,9 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
         )}
         {unknown.length > 0 && (
           <>
-            <Text style={type.body}>{`Would you like Recipeak to make a recipe and a photo for ${name} with AI?`}</Text>
+            <Text style={type.body}>{`Would you like Relish to make a recipe and a photo for ${name} with AI?`}</Text>
             <Text style={type.muted}>
-              {`Recipeak will write the recipe, check it a second time, and make a photo of the ${what}. It can take up to a minute. ${ai_allowance_text(photosLeft, Boolean(current.correction))}`}
+              {`Relish will write the recipe, check it a second time, and make a photo of the ${what}. It can take up to a minute. ${ai_allowance_text(photosLeft, Boolean(current.correction))}`}
             </Text>
             <Notice>
               AI recipes are our best effort, checked twice before you see them. Still, check every ingredient and allergen before you cook
@@ -482,7 +482,7 @@ function RecipeView({ current }: { current: Ready }) {
       set_addition(null);
       set_original(null);
       set_diet(nextDiet);
-      set_notice(`Recipeak's own ${nextDiet} version of this recipe. Tap ${nextDiet} again for the original.`);
+      set_notice(`Relish's own ${nextDiet} version of this recipe. Tap ${nextDiet} again for the original.`);
       set_current({ ...current, recipe: written, savedId: null, ai: standard_now?.ai });
       return;
     }
