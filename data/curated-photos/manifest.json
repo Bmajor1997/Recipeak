@@ -5040,6 +5040,76 @@
       "names": [
         "Five-Spice Pork with Bok Choy and Rice"
       ]
+    },
+    {
+      "file": "apricot-rosemary-tequila-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Apricot Rosemary Tequila Sour"
+      ]
+    },
+    {
+      "file": "kiwi-mint-rum-fizz.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Kiwi Mint Rum Fizz"
+      ]
+    },
+    {
+      "file": "cranberry-ginger-gin-highball.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Cranberry Ginger Gin Highball"
+      ]
+    },
+    {
+      "file": "fig-lemon-brandy-smash.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Fig Lemon Brandy Smash"
+      ]
+    },
+    {
+      "file": "clementine-thyme-vodka-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Clementine Thyme Vodka Sour"
+      ]
+    },
+    {
+      "file": "chicken-with-roasted-grapes-and-shallots.jpg",
+      "kind": "meal",
+      "names": [
+        "Chicken with Roasted Grapes and Shallots"
+      ]
+    },
+    {
+      "file": "sweet-chili-salmon-noodle-salad.jpg",
+      "kind": "meal",
+      "names": [
+        "Sweet Chili Salmon Noodle Salad"
+      ]
+    },
+    {
+      "file": "crispy-lentil-potato-patties-with-cucumber-yogurt.jpg",
+      "kind": "meal",
+      "names": [
+        "Crispy Lentil Potato Patties with Cucumber Yogurt"
+      ]
+    },
+    {
+      "file": "roasted-red-pepper-turkey-chili.jpg",
+      "kind": "meal",
+      "names": [
+        "Roasted Red Pepper Turkey Chili"
+      ]
+    },
+    {
+      "file": "mushroom-walnut-lentil-lettuce-wraps.jpg",
+      "kind": "meal",
+      "names": [
+        "Mushroom Walnut Lentil Lettuce Wraps"
+      ]
     }
   ]
 }

@@ -20860,5 +20860,327 @@
     "tips": ["Use a plain five-spice blend and check its label. Rest the whole-cut pork before returning it to the hot sauce."],
     "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
     "variations": []
+  },
+  "apricot-rosemary-tequila-sour": {
+    "title": "Apricot Rosemary Tequila Sour",
+    "description": "Apricot nectar, rosemary and lime make a mellow golden tequila sour.",
+    "servings": 1,
+    "prep_minutes": 6,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "blanco tequila" },
+      { "amount": "2", "unit": "oz", "item": "apricot nectar" },
+      { "amount": "3/4", "unit": "oz", "item": "fresh lime juice" },
+      { "amount": "1/4", "unit": "oz", "item": "agave syrup" },
+      { "amount": "1", "unit": "", "item": "small rosemary sprig" },
+      { "amount": "1", "unit": "", "item": "thin apricot slice, for garnish" }
+    ],
+    "steps": [
+      "Press rosemary lightly with agave syrup in a shaker.",
+      "Add tequila, apricot nectar, lime and ice. Shake for 15 seconds and fine-strain into a rocks glass over fresh ice.",
+      "Garnish with the apricot slice."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "rocks glass",
+      "garnish": "thin apricot slice",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake apricot nectar, lime, agave and rosemary without tequila; strain over ice and add 1 oz soda water."
+    },
+    "note": "An original Relish home cocktail. Please drink responsibly.",
+    "tips": ["A small rosemary sprig is enough; fine-strain to remove needles."],
+    "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+    "variations": []
+  },
+  "kiwi-mint-rum-fizz": {
+    "title": "Kiwi Mint Rum Fizz",
+    "description": "Kiwi and gently pressed mint make a fresh green rum fizz with lime.",
+    "servings": 1,
+    "prep_minutes": 6,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "white rum" },
+      { "amount": "1/2", "unit": "", "item": "ripe kiwi, peeled and chopped" },
+      { "amount": "4", "unit": "", "item": "mint leaves" },
+      { "amount": "3/4", "unit": "oz", "item": "fresh lime juice" },
+      { "amount": "1/2", "unit": "oz", "item": "simple syrup" },
+      { "amount": "2", "unit": "oz", "item": "chilled soda water" },
+      { "amount": "1", "unit": "", "item": "small mint sprig, for garnish" },
+      { "amount": "1", "unit": "", "item": "kiwi half-slice, for garnish" }
+    ],
+    "steps": [
+      "Muddle kiwi gently with mint and syrup in a shaker.",
+      "Add rum, lime and ice. Shake for 15 seconds and strain into an ice-filled highball.",
+      "Top with soda and garnish with the mint sprig and kiwi half-slice."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "small mint sprig and kiwi half-slice",
+      "alcoholic": true,
+      "non_alcoholic_version": "Muddle kiwi and mint with syrup, shake with 3/4 oz lime juice and ice, strain and top with 4 oz soda."
+    },
+    "note": "An original Relish home cocktail. Please drink responsibly.",
+    "tips": ["Use a fine sieve if you prefer fewer kiwi seeds, and press mint lightly rather than pulverizing it."],
+    "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+    "variations": []
+  },
+  "cranberry-ginger-gin-highball": {
+    "title": "Cranberry Ginger Gin Highball",
+    "description": "Cranberry, ginger and lemon make a crisp ruby gin highball.",
+    "servings": 1,
+    "prep_minutes": 6,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "gin" },
+      { "amount": "2", "unit": "oz", "item": "unsweetened cranberry juice" },
+      { "amount": "1/2", "unit": "oz", "item": "fresh lemon juice" },
+      { "amount": "1/2", "unit": "oz", "item": "ginger syrup" },
+      { "amount": "2", "unit": "oz", "item": "chilled soda water" },
+      { "amount": "1", "unit": "", "item": "lemon wheel, for garnish" }
+    ],
+    "steps": [
+      "Shake gin, cranberry juice, lemon and ginger syrup with ice for 12 seconds.",
+      "Strain into an ice-filled highball and add soda.",
+      "Stir gently and garnish with the lemon wheel."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "highball glass",
+      "garnish": "lemon wheel",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake 3 oz cranberry juice, 1/2 oz lemon juice and 1/2 oz ginger syrup with ice; strain and top with 3 oz soda."
+    },
+    "note": "An original Relish home cocktail. Please drink responsibly.",
+    "tips": ["If using sweetened cranberry juice cocktail, start with half the syrup and taste before adding more."],
+    "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+    "variations": []
+  },
+  "fig-lemon-brandy-smash": {
+    "title": "Fig Lemon Brandy Smash",
+    "description": "Fresh fig and lemon bring a soft fruit texture to a brandy smash.",
+    "servings": 1,
+    "prep_minutes": 6,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "brandy" },
+      { "amount": "1", "unit": "", "item": "ripe fig, stem removed and chopped" },
+      { "amount": "3/4", "unit": "oz", "item": "fresh lemon juice" },
+      { "amount": "1/4", "unit": "oz", "item": "simple syrup" },
+      { "amount": "1/2", "unit": "", "item": "fresh fig, for garnish" }
+    ],
+    "steps": [
+      "Muddle chopped fig with syrup in a shaker.",
+      "Add brandy, lemon and ice, shake firmly for 15 seconds and fine-strain into a rocks glass over fresh ice.",
+      "Rest the fig half on a cocktail pick across the rim."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "rocks glass",
+      "garnish": "fresh fig half on a pick",
+      "alcoholic": true,
+      "non_alcoholic_version": "Muddle fig with syrup, shake with 3/4 oz lemon juice and 2 oz cooled black tea, then fine-strain over ice."
+    },
+    "note": "An original Relish home cocktail. Please drink responsibly.",
+    "tips": ["Choose a very ripe fig and fine-strain to remove most of its seeds and skin."],
+    "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+    "variations": []
+  },
+  "clementine-thyme-vodka-sour": {
+    "title": "Clementine Thyme Vodka Sour",
+    "description": "Fresh clementine, thyme and lemon make a pale orange vodka sour served up.",
+    "servings": 1,
+    "prep_minutes": 6,
+    "cook_minutes": 0,
+    "ingredients": [
+      { "amount": "1 1/2", "unit": "oz", "item": "vodka" },
+      { "amount": "2", "unit": "oz", "item": "fresh clementine juice" },
+      { "amount": "3/4", "unit": "oz", "item": "fresh lemon juice" },
+      { "amount": "1/4", "unit": "oz", "item": "simple syrup" },
+      { "amount": "1", "unit": "", "item": "small thyme sprig" },
+      { "amount": "1", "unit": "", "item": "small clementine twist, for garnish" }
+    ],
+    "steps": [
+      "Press thyme lightly with syrup in a shaker.",
+      "Add vodka, clementine juice, lemon and ice. Shake for 15 seconds and double-strain into a chilled coupe.",
+      "Express the clementine twist over the glass and add it."
+    ],
+    "allergens": [],
+    "cocktail": {
+      "glass": "coupe",
+      "garnish": "small clementine twist",
+      "alcoholic": true,
+      "non_alcoholic_version": "Shake 3 oz clementine juice, 3/4 oz lemon juice, syrup and thyme with ice, then double-strain into a coupe."
+    },
+    "note": "An original Relish home cocktail. Please drink responsibly.",
+    "tips": [],
+    "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+    "variations": []
+  },
+  "chicken-with-roasted-grapes-and-shallots": {
+    "title": "Chicken with Roasted Grapes and Shallots",
+    "description": "Roast chicken thighs with sweet grapes, softened shallots and thyme pan juices.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 45,
+    "ingredients": [
+      { "amount": "4", "unit": "", "item": "bone-in skin-on chicken thighs" },
+      { "amount": "2", "unit": "cups", "item": "seedless red grapes" },
+      { "amount": "6", "unit": "", "item": "shallots, peeled and halved" },
+      { "amount": "2", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "1", "unit": "tsp", "item": "dried thyme" },
+      { "amount": "3/4", "unit": "tsp", "item": "salt" },
+      { "amount": "1/4", "unit": "tsp", "item": "black pepper" },
+      { "amount": "1", "unit": "tbsp", "item": "red wine vinegar" },
+      { "amount": "1/4", "unit": "cup", "item": "water" }
+    ],
+    "steps": [
+      "Heat oven to 425 F (220 C). Pat chicken dry and season with salt, pepper and thyme.",
+      "Toss grapes and shallots with oil in a roasting dish. Nestle chicken skin-side up among them and add water around the edges.",
+      "Roast for 35 to 45 minutes until shallots are tender and the thickest part of every thigh, away from bone, reaches at least 165 F (74 C).",
+      "Rest for 5 minutes. Stir vinegar into the pan juices and spoon around the chicken, keeping the skin crisp."
+    ],
+    "allergens": [],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": ["Use seedless grapes and keep chicken skin above the liquid. Start checking smaller thighs early."],
+    "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
+    "variations": []
+  },
+  "sweet-chili-salmon-noodle-salad": {
+    "title": "Sweet Chili Salmon Noodle Salad",
+    "description": "Fully cooked salmon, rice noodles and crisp vegetables with a sweet chili-lime dressing.",
+    "servings": 4,
+    "prep_minutes": 20,
+    "cook_minutes": 15,
+    "ingredients": [
+      { "amount": "1", "unit": "lb", "item": "salmon fillet" },
+      { "amount": "8", "unit": "oz", "item": "rice vermicelli noodles" },
+      { "amount": "1", "unit": "", "item": "cucumber, cut into matchsticks" },
+      { "amount": "2", "unit": "", "item": "carrots, grated" },
+      { "amount": "2", "unit": "cups", "item": "thinly sliced purple cabbage" },
+      { "amount": "1/4", "unit": "cup", "item": "chopped cilantro" },
+      { "amount": "3", "unit": "tbsp", "item": "sweet chili sauce" },
+      { "amount": "3", "unit": "tbsp", "item": "fresh lime juice" },
+      { "amount": "1", "unit": "tbsp", "item": "soy sauce" },
+      { "amount": "1", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "1", "unit": "tbsp", "item": "water" },
+      { "amount": "1/4", "unit": "tsp", "item": "salt" }
+    ],
+    "steps": [
+      "Heat oven to 400 F (200 C). Brush salmon with half the oil and salt. Bake for 12 to 15 minutes until the thickest part reaches 145 F (63 C), then flake into large pieces.",
+      "Cook rice vermicelli according to the package; drain and rinse under cool water.",
+      "Whisk sweet chili sauce, lime juice, soy sauce, remaining oil and water. Toss noodles with cucumber, carrot, cabbage and most of the dressing.",
+      "Top with cooked salmon, cilantro and remaining dressing. Serve promptly."
+    ],
+    "allergens": ["fish", "soy", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": ["Rice noodles do not remove the wheat in ordinary soy sauce. The stated allergen list includes wheat and soy for that sauce."],
+    "make_ahead": "Refrigerate promptly and use within 2 days. Keep the salad cold and do not leave cooked fish at room temperature for more than 2 hours.",
+    "variations": []
+  },
+  "crispy-lentil-potato-patties-with-cucumber-yogurt": {
+    "title": "Crispy Lentil Potato Patties with Cucumber Yogurt",
+    "description": "Golden lentil-potato patties with a cool cucumber and yogurt sauce.",
+    "servings": 4,
+    "prep_minutes": 25,
+    "cook_minutes": 35,
+    "ingredients": [
+      { "amount": "1", "unit": "lb", "item": "potatoes, peeled and diced" },
+      { "amount": "1", "unit": "can", "item": "green lentils (15 oz), drained, rinsed and patted dry" },
+      { "amount": "1", "unit": "", "item": "egg" },
+      { "amount": "3", "unit": "tbsp", "item": "plain wheat flour" },
+      { "amount": "2", "unit": "", "item": "scallions, finely sliced" },
+      { "amount": "1", "unit": "tsp", "item": "ground cumin" },
+      { "amount": "3/4", "unit": "tsp", "item": "salt" },
+      { "amount": "1/4", "unit": "tsp", "item": "black pepper" },
+      { "amount": "3", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "3/4", "unit": "cup", "item": "plain yogurt" },
+      { "amount": "1/2", "unit": "", "item": "cucumber, grated and squeezed dry" },
+      { "amount": "1", "unit": "tbsp", "item": "fresh lemon juice" }
+    ],
+    "steps": [
+      "Boil potatoes in water for 12 to 15 minutes until tender. Drain thoroughly, mash and let steam-dry for 5 minutes.",
+      "Mash lentils roughly and mix with potatoes, egg, flour, scallions, cumin, salt and pepper. Form eight firm patties.",
+      "Heat oil in a wide nonstick skillet over medium heat. Cook patties in two batches for 4 to 5 minutes per side, until crisp and the centers reach 160 F (71 C).",
+      "Mix yogurt with squeezed cucumber and lemon juice. Serve two patties per person with the sauce."
+    ],
+    "allergens": ["eggs", "milk", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": ["Dry potatoes and lentils thoroughly so the patties bind. Turn only after a crust forms."],
+    "make_ahead": "Refrigerate patties and sauce separately promptly for up to 3 days. Reheat patties to 165 F (74 C); keep sauce cold.",
+    "variations": []
+  },
+  "roasted-red-pepper-turkey-chili": {
+    "title": "Roasted Red Pepper Turkey Chili",
+    "description": "Ground turkey, kidney beans and white beans in a tomato chili with roasted red peppers.",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 35,
+    "ingredients": [
+      { "amount": "1", "unit": "lb", "item": "ground turkey" },
+      { "amount": "1", "unit": "can", "item": "kidney beans (15 oz), drained and rinsed" },
+      { "amount": "1", "unit": "can", "item": "cannellini beans (15 oz), drained and rinsed" },
+      { "amount": "1", "unit": "jar", "item": "roasted red peppers (12 oz), drained and chopped" },
+      { "amount": "1", "unit": "can", "item": "crushed tomatoes (28 oz)" },
+      { "amount": "1", "unit": "", "item": "onion, diced" },
+      { "amount": "2", "unit": "", "item": "garlic cloves, minced" },
+      { "amount": "1", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "2", "unit": "tsp", "item": "ground cumin" },
+      { "amount": "1", "unit": "tsp", "item": "smoked paprika" },
+      { "amount": "1/2", "unit": "tsp", "item": "ground chili" },
+      { "amount": "1", "unit": "tsp", "item": "dried oregano" },
+      { "amount": "1", "unit": "cup", "item": "water" },
+      { "amount": "1/2", "unit": "tsp", "item": "salt" },
+      { "amount": "2", "unit": "tbsp", "item": "chopped cilantro" }
+    ],
+    "steps": [
+      "Heat oil in a saucepan and soften onion for 5 minutes. Add turkey and cook for 6 to 8 minutes, breaking it up, until it reaches 165 F (74 C).",
+      "Add garlic, cumin, paprika, chili and oregano and stir for 30 seconds.",
+      "Add beans, peppers, tomatoes, water and salt. Simmer partly covered for 20 minutes, stirring occasionally, until thickened.",
+      "Taste, adjust salt if necessary and finish with cilantro."
+    ],
+    "allergens": [],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": ["Use canned kidney beans as specified; dry kidney beans require separate safe preparation and are not a direct substitute."],
+    "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
+    "variations": []
+  },
+  "mushroom-walnut-lentil-lettuce-wraps": {
+    "title": "Mushroom Walnut Lentil Lettuce Wraps",
+    "description": "Chopped mushrooms, walnuts and lentils in a savory ginger glaze, wrapped in crisp lettuce.",
+    "servings": 4,
+    "prep_minutes": 20,
+    "cook_minutes": 20,
+    "ingredients": [
+      { "amount": "12", "unit": "oz", "item": "cremini mushrooms, finely chopped" },
+      { "amount": "1", "unit": "can", "item": "green lentils (15 oz), drained and rinsed" },
+      { "amount": "1/2", "unit": "cup", "item": "walnuts, finely chopped" },
+      { "amount": "8", "unit": "", "item": "large butter lettuce leaves, washed and dried" },
+      { "amount": "1", "unit": "", "item": "carrot, grated" },
+      { "amount": "1", "unit": "", "item": "small onion, finely diced" },
+      { "amount": "2", "unit": "", "item": "garlic cloves, minced" },
+      { "amount": "1", "unit": "tbsp", "item": "grated ginger" },
+      { "amount": "1", "unit": "tbsp", "item": "olive oil" },
+      { "amount": "2", "unit": "tbsp", "item": "soy sauce" },
+      { "amount": "1", "unit": "tbsp", "item": "fresh lime juice" },
+      { "amount": "1", "unit": "tsp", "item": "maple syrup" },
+      { "amount": "2", "unit": "", "item": "scallions, sliced" }
+    ],
+    "steps": [
+      "Heat oil in a wide skillet over medium-high heat. Cook onion and mushrooms for 8 to 10 minutes, stirring, until mushroom moisture evaporates and the mixture browns.",
+      "Add walnuts, garlic and ginger and cook for 2 minutes. Stir in lentils, soy sauce and maple syrup; cook for 3 minutes until hot.",
+      "Take off heat and add lime juice.",
+      "Divide among lettuce leaves and top with grated carrot and scallions, serving two filled leaves per person."
+    ],
+    "allergens": ["soy", "tree nuts", "wheat"],
+    "cocktail": null,
+    "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+    "tips": ["Walnuts are part of the filling and the recipe is not nut-free. Butter lettuce is a vegetable, not a dairy ingredient."],
+    "make_ahead": "Refrigerate filling promptly for up to 3 days and keep lettuce and toppings separate. Reheat filling to 165 F (74 C) before assembling.",
+    "variations": []
   }
 }
