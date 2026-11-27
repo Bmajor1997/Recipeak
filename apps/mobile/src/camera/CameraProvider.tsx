@@ -57,9 +57,14 @@ export function CameraProvider({ children }: { children: ReactNode }) {
       set_open(false);
       set_current({ status: "loading" });
       router.push("/recipe");
+      // The account this photo was sent for. If someone else is signed in by the time the answer comes, it is theirs to
+      // ignore: neither the count nor the recipe of the last account is shown to the next.
+      const owner = shown_for.current;
+      const still_theirs = () => shown_for.current === owner;
       try {
         const { dataUrl } = await prepare_photo(photo.uri, photo.width, photo.height);
         const result = await api.identify(dataUrl);
+        if (!still_theirs()) return;
         set_photos_left(result.premium ? null : result.free_photos_left);
         if (result.kind === "not_food") {
           set_current({ status: "problem", message: not_food_message(result.reason) });
@@ -70,6 +75,8 @@ export function CameraProvider({ children }: { children: ReactNode }) {
         const dish = find_bundled_dish(result.kind, top.name);
         const recipe = dish && bundled_recipe(dish);
         if (dish && recipe) {
+          const localPhoto = await bundled_photo_uri(dish);
+          if (!still_theirs()) return;
           set_current({
             status: "ready",
             kind: result.kind,
@@ -77,7 +84,7 @@ export function CameraProvider({ children }: { children: ReactNode }) {
             guesses: result.guesses.map((g, i) => (i === 0 ? { ...g, name: dish.name } : g)),
             selected: 0,
             image: NO_IMAGE,
-            localPhoto: await bundled_photo_uri(dish),
+            localPhoto,
             savedId: null,
             bundledId: dish.id,
           });
@@ -86,6 +93,7 @@ export function CameraProvider({ children }: { children: ReactNode }) {
         // Otherwise nothing more is made until the person says yes (recipe.tsx, AiOffer).
         set_current({ status: "ai-offer", kind: result.kind, guesses: result.guesses });
       } catch (error) {
+        if (!still_theirs()) return;
         if (error instanceof ApiError && error.needsUpgrade) {
           set_current(null);
           router.replace("/upgrade");

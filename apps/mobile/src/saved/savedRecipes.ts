@@ -64,6 +64,14 @@ export function create_saved_recipes(
     }
   }
   const write = (list: SavedRecipe[]) => storage.setItem(storage_name, JSON.stringify(list));
+  // Every change reads the list and writes it back, so changes run one at a time: a cover found in the background
+  // can't write back a list from before a removal (bringing the recipe back) or a save (dropping it).
+  let queue: Promise<unknown> = Promise.resolve();
+  const one_at_a_time = <T>(change: () => Promise<T>): Promise<T> => {
+    const run = queue.then(change, change);
+    queue = run.catch(() => undefined);
+    return run;
+  };
   // A photo file is deleted only once no saved recipe refers to it, and only after the list without it is written.
   const remove_unused = (uri: string, kept: SavedRecipe[]) => {
     if (!kept.some((s) => s.photo_uri === uri)) photos.remove_photo(uri);
@@ -72,56 +80,62 @@ export function create_saved_recipes(
   return {
     list: read,
     /** `limit` is the free plan's cap (leave it out for subscribers). Re-saving a recipe already in Saved is always allowed. */
-    async save(
+    save(
       kind: Kind,
       recipe: Recipe,
       photoUri?: string | null,
       { limit, ai, bundled_id, image_url }: { limit?: number; ai?: boolean; bundled_id?: string; image_url?: string | null } = {},
     ): Promise<SavedRecipe> {
-      const list = await read();
-      // Saving the same recipe twice moves it to the top instead of making a copy.
-      const replaced = list.filter((s) => s.recipe.title === recipe.title);
-      const others = list.filter((s) => s.recipe.title !== recipe.title);
-      if (limit !== undefined && replaced.length === 0 && others.length >= limit) throw new SavedLimitError(limit);
-      if (others.length >= MAX_SAVED) throw new Error(`You can save up to ${MAX_SAVED} recipes. Remove some to save more.`);
-      const id = new_id();
-      // A photo that isn't kept still lets the recipe save, just without its picture.
-      // A bundled dish's photo ships with the app, so it's shown from there instead of a copy that could go missing.
-      const fresh = photoUri && !bundled_id ? await photos.keep_photo(photoUri, id).catch(() => null) : null;
-      // Saving again without a cover on screen keeps the cover it was saved with, rather than losing it.
-      const photo_uri = fresh ?? (bundled_id ? null : (replaced.find((s) => s.photo_uri)?.photo_uri ?? null));
-      image_url ??= replaced.find((s) => s.image_url)?.image_url ?? null;
-      const entry: SavedRecipe = {
-        id,
-        saved_at: now().toISOString(),
-        kind,
-        recipe,
-        photo_uri,
-        ...(ai ? { ai: true } : {}),
-        ...(bundled_id ? { bundled_id } : {}),
-        ...(image_url ? { image_url } : {}),
-      };
-      const next = [entry, ...others];
-      await write(next);
-      for (const old of replaced) if (old.photo_uri) remove_unused(old.photo_uri, next);
-      return entry;
+      return one_at_a_time(async () => {
+        const list = await read();
+        // Saving the same recipe twice moves it to the top instead of making a copy.
+        const replaced = list.filter((s) => s.recipe.title === recipe.title);
+        const others = list.filter((s) => s.recipe.title !== recipe.title);
+        if (limit !== undefined && replaced.length === 0 && others.length >= limit) throw new SavedLimitError(limit);
+        if (others.length >= MAX_SAVED) throw new Error(`You can save up to ${MAX_SAVED} recipes. Remove some to save more.`);
+        const id = new_id();
+        // A photo that isn't kept still lets the recipe save, just without its picture.
+        // A bundled dish's photo ships with the app, so it's shown from there instead of a copy that could go missing.
+        const fresh = photoUri && !bundled_id ? await photos.keep_photo(photoUri, id).catch(() => null) : null;
+        // Saving again without a cover on screen keeps the cover it was saved with, rather than losing it.
+        const photo_uri = fresh ?? (bundled_id ? null : (replaced.find((s) => s.photo_uri)?.photo_uri ?? null));
+        image_url ??= replaced.find((s) => s.image_url)?.image_url ?? null;
+        const entry: SavedRecipe = {
+          id,
+          saved_at: now().toISOString(),
+          kind,
+          recipe,
+          photo_uri,
+          ...(ai ? { ai: true } : {}),
+          ...(bundled_id ? { bundled_id } : {}),
+          ...(image_url ? { image_url } : {}),
+        };
+        const next = [entry, ...others];
+        await write(next);
+        for (const old of replaced) if (old.photo_uri) remove_unused(old.photo_uri, next);
+        return entry;
+      });
     },
-    async remove(id: string): Promise<void> {
-      const list = await read();
-      const next = list.filter((s) => s.id !== id);
-      await write(next);
-      for (const gone of list.filter((s) => s.id === id)) if (gone.photo_uri) remove_unused(gone.photo_uri, next);
+    remove(id: string): Promise<void> {
+      return one_at_a_time(async () => {
+        const list = await read();
+        const next = list.filter((s) => s.id !== id);
+        await write(next);
+        for (const gone of list.filter((s) => s.id === id)) if (gone.photo_uri) remove_unused(gone.photo_uri, next);
+      });
     },
     /**
      * Gives a saved recipe made with AI whose kept photo went missing its library photo's address, once the recipe
      * screen finds it on the server, so Saved shows it again. A recipe that has a photo is never changed.
      */
-    async restore_cover(id: string, image_url: string): Promise<boolean> {
-      const list = await read();
-      const item = list.find((s) => s.id === id);
-      if (!item || item.bundled_id || item.photo_uri || item.image_url || !image_url) return false;
-      await write(list.map((s) => (s.id === id ? { ...s, image_url } : s)));
-      return true;
+    restore_cover(id: string, image_url: string): Promise<boolean> {
+      return one_at_a_time(async () => {
+        const list = await read();
+        const item = list.find((s) => s.id === id);
+        if (!item || item.bundled_id || item.photo_uri || item.image_url || !image_url) return false;
+        await write(list.map((s) => (s.id === id ? { ...s, image_url } : s)));
+        return true;
+      });
     },
     async find(id: string): Promise<SavedRecipe | undefined> {
       return (await read()).find((s) => s.id === id);

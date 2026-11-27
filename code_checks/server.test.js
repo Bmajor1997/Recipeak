@@ -491,3 +491,30 @@ test("if the second check fails, the draft is shown (allergens topped up) but no
   assert.deepEqual(made.json.recipe.allergens, ["eggs", "wheat"]);
   assert.equal(s.store.get_recipe("photo:" + image_key("meal", "Chicken Katsu")), null);
 });
+
+test("every AI recipe path adds allergens the model left out, including versions kept before this check existed", async (t) => {
+  // The model lists butter and egg white but no allergens.
+  const under_listed = {
+    title: "Low-Carb Gimlet", description: "Gin and lime.", servings: 1, prep_minutes: 1, cook_minutes: 0,
+    ingredients: [{ amount: "1", unit: "tbsp", item: "butter" }, { amount: "1", unit: "", item: "egg white" }, { amount: "2", unit: "oz", item: "gin" }],
+    steps: ["Shake."], allergens: [], cocktail: { glass: "coupe", garnish: "lime", alcoholic: true, non_alcoholic_version: null }, note: "",
+  };
+  const s = await start({ reply: under_listed, premium: async () => true, featured: curated_keys() }); t.after(s.close);
+  const allergens = async (path, body, user) => (await s.call(path, { body, user })).json.recipe.allergens;
+  const both = ["milk", "eggs"]; // in the server's fixed allergen order
+  assert.deepEqual(await allergens("/api/recipe", { name: "Gimlet", kind: "cocktail", diet: "low-carb" }), both, "free diet version");
+  assert.deepEqual(await allergens("/api/recipe", { name: "Gimlet", kind: "cocktail", diet: "low-carb" }, "bob"), both, "the kept copy another account gets");
+  assert.deepEqual(await allergens("/api/recipe", { name: "Bespoke soup", kind: "meal", correction: true }), both, "a name typed after an unreadable photo");
+  assert.deepEqual(await allergens("/api/featured-recipe", { name: "Margarita", kind: "cocktail" }), both, "photo-wall recipe");
+  // A version kept before the allergen check was added is checked when it is served.
+  s.store.set_recipe({ key: `diet:${image_key("cocktail", "Negroni")}:low-carb`, kind: "cocktail", name: "Negroni", recipe: under_listed });
+  const calls_before = s.calls.length;
+  assert.deepEqual(await allergens("/api/recipe", { name: "Negroni", kind: "cocktail", diet: "low-carb" }), both, "older kept version");
+  assert.equal(s.calls.length, calls_before, "served from the kept copy, with no AI request");
+  // Meat and dairy versions too.
+  const added = { ...under_listed, title: "Salad with chicken", cocktail: null, ingredients: [...under_listed.ingredients, { amount: "1", unit: "lb", item: "chicken breast" }] };
+  const p = await start({ reply: added, premium: async () => true }); t.after(p.close);
+  const made = await p.call("/api/recipe-addition", { body: { name: "Salad", kind: "meal", addition: "non-vegetarian",
+    base: { title: "Salad", servings: 2, ingredients: [{ amount: "1", unit: "cup", item: "lettuce" }], steps: ["Toss."] } } });
+  assert.deepEqual(made.json.recipe.allergens, both, "meat or dairy version");
+});

@@ -53,7 +53,7 @@ const EGG_CORE = /\b(?:eggs?\b|omelet(?:te)?|frittata|huevos|quiche)/i;
 const MEAT_UNSURE = /\b(?:broth|stock\b|stock cubes?|bouillon|kimchi|curry paste|laksa paste|nam prik pao|chili paste|sinigang|fish-free)/i;
 // Kombu dashi, vegetable broth and the like are plant-based; "or" alternatives are handled separately.
 const PLANT_WORDS =
-  /\b(vegetable (?:broth|stock)|kombu dashi|mushroom dashi|eggplant|butter beans|butternut|cocoa butter|peanut butter|cream of coconut|coconut (?:cream|milk)|honeydew|crème de [a-zûé]+|creme de [a-z]+|cream sherry|ginger beer|root beer)\b/g;
+  /\b(vegetable (?:broth|stock)|kombu dashi|mushroom dashi|eggplant|butter beans|butter lettuce|butternut|cocoa butter|peanut butter|cream of coconut|coconut (?:cream|milk)|honeydew|crème de [a-zûé]+|creme de [a-z]+|cream sherry|ginger beer|root beer)\b/g;
 
 const DAIRY =
   /\b(?:butter|buttermilk|ghee|smen|kibbeh|milk|cream|crema|cheese|cheddar|mozzarella|parmesan|pecorino|kefalotyri|ricotta|feta|paneer|queso|quesillo|oaxaca|monterey jack|gruy[eè]re|provolone|swiss|yogh?urt|irish cream|mashed potatoes|naan|brioche|mascarpone|cr[eè]me fra[iî]che|kefir|quark|labneh|halloumi|burrata|custard|ice cream|dulce de leche|queso fresco|cotija|cheese curds)/i;

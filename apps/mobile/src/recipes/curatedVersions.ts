@@ -108,6 +108,11 @@ function changed_recipe(written: string, recipe: Recipe): Pick<Recipe, "ingredie
       /(?:\d[\d½¼¾/.\s]*\s*oz\s+)?(?:alcohol-free|non-alcoholic)\s[a-z -]*?(?:alternative|aperitivo|sparkling wine|wine|beer)s?\b/g,
     ),
   ].map((m) => m[0]);
+  // "Replace the bourbon with cold black tea and use aquafaba instead of egg white" holds a second change after the
+  // replacement; one swap can't follow it, so no half-applied ingredient list is built (it is shown as written when
+  // that is alcohol-free itself, and otherwise the AI is asked).
+  if (replace && /\b(?:and|then|but|plus)\s+(?:use|add|swap|replace|skip|omit|leave|top|substitute)\b|\binstead of\b|;/.test(replace[2]))
+    return null;
   const alcoholic = recipe.ingredients.filter((i) => has_alcohol(i.item));
   if (!alcoholic.length) return null;
   // A named product must take the place of the one spirit; several of either can't be matched up safely.
