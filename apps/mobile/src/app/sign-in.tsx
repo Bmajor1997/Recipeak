@@ -84,7 +84,11 @@ export default function SignIn() {
   if (step === "choose")
     return (
       <StartScreen
-        subtitle={returning ? "Welcome back. Log in to see your saved recipes." : "Discover meals, explore cocktails, and turn your cravings into recipes."}
+        subtitle={
+          returning
+            ? "Welcome back. Log in to see your saved recipes."
+            : "Discover meals, explore cocktails, and turn your cravings into recipes."
+        }
         footer={
           <>
             <Text style={styles.reassure}>{start_offer(returning)}</Text>
