@@ -4620,6 +4620,76 @@
       "names": [
         "Green Pea Spinach Risotto"
       ]
+    },
+    {
+      "file": "cantaloupe-lime-gin-cooler.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Cantaloupe Lime Gin Cooler"
+      ]
+    },
+    {
+      "file": "cherry-cacao-rye-old-fashioned.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Cherry Cacao Rye Old Fashioned"
+      ]
+    },
+    {
+      "file": "cranberry-sage-vodka-fizz.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Cranberry Sage Vodka Fizz"
+      ]
+    },
+    {
+      "file": "mango-tamarind-tequila-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Mango Tamarind Tequila Sour"
+      ]
+    },
+    {
+      "file": "apricot-thyme-rum-collins.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Apricot Thyme Rum Collins"
+      ]
+    },
+    {
+      "file": "baked-trout-with-almond-green-beans.jpg",
+      "kind": "meal",
+      "names": [
+        "Baked Trout with Almond Green Beans"
+      ]
+    },
+    {
+      "file": "spiced-lamb-and-chickpea-skillet.jpg",
+      "kind": "meal",
+      "names": [
+        "Spiced Lamb and Chickpea Skillet"
+      ]
+    },
+    {
+      "file": "sweet-potato-kale-black-bean-chili.jpg",
+      "kind": "meal",
+      "names": [
+        "Sweet Potato Kale Black Bean Chili"
+      ]
+    },
+    {
+      "file": "sesame-tofu-with-snap-peas-and-rice.jpg",
+      "kind": "meal",
+      "names": [
+        "Sesame Tofu with Snap Peas and Rice"
+      ]
+    },
+    {
+      "file": "tomato-olive-chicken-with-butter-beans.jpg",
+      "kind": "meal",
+      "names": [
+        "Tomato Olive Chicken with Butter Beans"
+      ]
     }
   ]
 }
