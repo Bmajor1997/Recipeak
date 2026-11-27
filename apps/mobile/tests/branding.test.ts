@@ -19,3 +19,15 @@ describe("Relish app configuration", () => {
     expect(config.expo.icon).toBe("./assets/icon.png");
   });
 });
+
+describe("Relish legal pages", () => {
+  it("name Relish, and mention the old name only to say the app was renamed", async () => {
+    const fs = await import("node:fs");
+    for (const page of ["privacy", "terms"]) {
+      const html = fs.readFileSync(new URL(`../../../server/legal/${page}.html`, import.meta.url), "utf8");
+      expect(html, page).toMatch(/<h1>Relish (Privacy Policy|Terms of Use)<\/h1>/);
+      expect(html.match(/Recipeak/g), page).toHaveLength(1);
+      expect(html, page).toContain("Relish was previously called Recipeak; only the name has changed.");
+    }
+  });
+});
