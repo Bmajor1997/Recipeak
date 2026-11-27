@@ -4690,6 +4690,76 @@
       "names": [
         "Tomato Olive Chicken with Butter Beans"
       ]
+    },
+    {
+      "file": "plum-rosemary-gin-fizz.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Plum Rosemary Gin Fizz"
+      ]
+    },
+    {
+      "file": "pineapple-coconut-water-tequila-cooler.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Pineapple Coconut Water Tequila Cooler"
+      ]
+    },
+    {
+      "file": "blueberry-maple-rye-smash.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Blueberry Maple Rye Smash"
+      ]
+    },
+    {
+      "file": "guava-ginger-vodka-collins.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Guava Ginger Vodka Collins"
+      ]
+    },
+    {
+      "file": "orange-blossom-rum-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Orange Blossom Rum Sour"
+      ]
+    },
+    {
+      "file": "lemon-garlic-turkey-meatballs-and-bulgur.jpg",
+      "kind": "meal",
+      "names": [
+        "Lemon Garlic Turkey Meatballs and Bulgur"
+      ]
+    },
+    {
+      "file": "pork-and-cabbage-rice-skillet.jpg",
+      "kind": "meal",
+      "names": [
+        "Pork and Cabbage Rice Skillet"
+      ]
+    },
+    {
+      "file": "spicy-peanut-chickpea-noodle-bowls.jpg",
+      "kind": "meal",
+      "names": [
+        "Spicy Peanut Chickpea Noodle Bowls"
+      ]
+    },
+    {
+      "file": "roasted-tomato-eggplant-lentil-pasta.jpg",
+      "kind": "meal",
+      "names": [
+        "Roasted Tomato Eggplant Lentil Pasta"
+      ]
+    },
+    {
+      "file": "cod-in-coconut-tomato-broth.jpg",
+      "kind": "meal",
+      "names": [
+        "Cod in Coconut Tomato Broth"
+      ]
     }
   ]
 }

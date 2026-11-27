@@ -5788,6 +5788,65 @@
    "variations": []
   }
  },
+ "blueberry-maple-rye-smash": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Blueberry Maple Rye Smash",
+   "description": "Blueberries, maple syrup and lemon soften the dry spice of rye whiskey.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "rye whiskey"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "blueberries"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/4",
+     "unit": "oz",
+     "item": "maple syrup"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "blueberries, for garnish"
+    }
+   ],
+   "steps": [
+    "Muddle the measured blueberries with maple syrup in a shaker.",
+    "Add rye, lemon and ice. Shake for 15 seconds and fine-strain into a rocks glass over fresh ice.",
+    "Add three blueberries on a small cocktail pick."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "rocks glass",
+    "garnish": "three blueberries on a pick",
+    "alcoholic": true,
+    "non_alcoholic_version": "Muddle blueberries with maple syrup; shake with 3/4 oz lemon juice and 2 oz cooled black tea, then fine-strain over ice."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [
+    "Fine-straining removes berry skins while retaining their purple color."
+   ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
+  }
+ },
  "blueberry-sage-whiskey-sour": {
   "kind": "cocktail",
   "recipe": {
@@ -13691,6 +13750,94 @@
   "variants": {
    "vegetarian": "same",
    "vegan": "same"
+  }
+ },
+ "cod-in-coconut-tomato-broth": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Cod in Coconut Tomato Broth",
+   "description": "Cod gently poached in coconut milk, tomato, ginger and lime, served over rice.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 20,
+   "ingredients": [
+    {
+     "amount": "1 1/4",
+     "unit": "lb",
+     "item": "cod, cut into four portions"
+    },
+    {
+     "amount": "1",
+     "unit": "can",
+     "item": "unsweetened coconut milk (13.5 oz)"
+    },
+    {
+     "amount": "1",
+     "unit": "can",
+     "item": "diced tomatoes (14 oz)"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "small onion, diced"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "garlic cloves, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "grated ginger"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "neutral oil"
+    },
+    {
+     "amount": "1/2",
+     "unit": "cup",
+     "item": "water"
+    },
+    {
+     "amount": "1/2",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lime, juiced"
+    },
+    {
+     "amount": "3",
+     "unit": "cups",
+     "item": "cooked rice, hot"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "chopped cilantro"
+    }
+   ],
+   "steps": [
+    "Heat oil in a deep skillet over medium heat. Soften onion for 5 minutes; add garlic and ginger for 30 seconds.",
+    "Add tomatoes, coconut milk, water and salt. Simmer for 8 minutes.",
+    "Nestle cod in the broth, cover and simmer gently for 7 to 10 minutes until every piece reaches 145 F (63 C).",
+    "Stir lime juice into the broth without breaking the fish. Serve over hot rice with cilantro."
+   ],
+   "allergens": [
+    "fish"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "A gentle simmer keeps the fish in large moist flakes. Check that the coconut milk contains only the expected ingredients."
+   ],
+   "make_ahead": "Refrigerate promptly in shallow containers and use within 2 days. Reheat leftovers gently to 165 F (74 C).",
+   "variations": []
   }
  },
  "coleslaw": {
@@ -22229,6 +22376,70 @@
    "variations": []
   }
  },
+ "guava-ginger-vodka-collins": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Guava Ginger Vodka Collins",
+   "description": "Guava nectar, ginger and lemon give a vodka Collins a soft pink color and warm finish.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "vodka"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "pink guava nectar"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/4",
+     "unit": "oz",
+     "item": "ginger syrup"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "chilled soda water"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lemon wheel, for garnish"
+    }
+   ],
+   "steps": [
+    "Shake vodka, guava nectar, lemon and ginger syrup with ice for 12 seconds.",
+    "Strain into an ice-filled Collins glass and top with soda.",
+    "Stir gently and garnish with the lemon wheel."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "Collins glass",
+    "garnish": "lemon wheel",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 3 oz guava nectar, 1/2 oz lemon juice and 1/4 oz ginger syrup with ice; strain and add 3 oz soda water."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [
+    "Guava nectar is sweet; keep the syrup small and adjust only after tasting."
+   ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
+  }
+ },
  "guava-lime-rum-cooler": {
   "kind": "cocktail",
   "recipe": {
@@ -28302,6 +28513,95 @@
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
    "make_ahead": "",
+   "variations": []
+  }
+ },
+ "lemon-garlic-turkey-meatballs-and-bulgur": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Lemon Garlic Turkey Meatballs and Bulgur",
+   "description": "Baked turkey meatballs over bulgur with lemon, garlic and parsley.",
+   "servings": 4,
+   "prep_minutes": 20,
+   "cook_minutes": 25,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "ground turkey"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "egg"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "plain wheat breadcrumbs"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "garlic cloves, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "lemon, zested and juiced"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "chopped parsley"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "olive oil, divided"
+    },
+    {
+     "amount": "3/4",
+     "unit": "tsp",
+     "item": "salt, divided"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "black pepper"
+    },
+    {
+     "amount": "1",
+     "unit": "cup",
+     "item": "dry bulgur wheat"
+    },
+    {
+     "amount": "2",
+     "unit": "cups",
+     "item": "water"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "water, for the sauce"
+    }
+   ],
+   "steps": [
+    "Heat oven to 425 F (220 C). Mix turkey, egg, breadcrumbs, half the garlic, lemon zest, half the parsley, half the salt and pepper. Form 16 equal meatballs.",
+    "Brush a lined sheet pan with 1 tbsp oil, add meatballs and bake for 15 to 20 minutes, until every center reaches 165 F (74 C).",
+    "Meanwhile simmer bulgur with 2 cups water and remaining salt for 12 to 15 minutes, or its package time; rest covered for 5 minutes.",
+    "Warm remaining oil and garlic for 30 seconds in a small pan, add sauce water and lemon juice and simmer for 1 minute. Spoon over meatballs and bulgur and add remaining parsley."
+   ],
+   "allergens": [
+    "eggs",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Bulgur is wheat. Check breadcrumbs for additional milk, soy or sesame ingredients."
+   ],
+   "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
    "variations": []
   }
  },
@@ -35264,6 +35564,70 @@
    "variations": []
   }
  },
+ "orange-blossom-rum-sour": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Orange Blossom Rum Sour",
+   "description": "Orange juice, lime and one drop of orange blossom water make a fragrant rum sour.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "white rum"
+    },
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "fresh orange juice"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "fresh lime juice"
+    },
+    {
+     "amount": "1/4",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "drop",
+     "item": "food-grade orange blossom water"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "small orange twist, for garnish"
+    }
+   ],
+   "steps": [
+    "Add rum, orange juice, lime, syrup and a single drop of orange blossom water to a shaker.",
+    "Shake with ice for 15 seconds and double-strain into a chilled coupe.",
+    "Express the orange twist over the glass and add it."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "coupe",
+    "garnish": "small orange twist",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 2 1/2 oz orange juice, 3/4 oz lime juice, syrup and one drop orange blossom water with ice, then strain into a coupe."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [
+    "Use culinary orange blossom water, not fragrance or essential oil; one drop is enough."
+   ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
+  }
+ },
  "orange-chicken": {
   "kind": "meal",
   "recipe": {
@@ -37821,6 +38185,65 @@
    "vegan": "same"
   }
  },
+ "pineapple-coconut-water-tequila-cooler": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Pineapple Coconut Water Tequila Cooler",
+   "description": "Tequila, pineapple and coconut water make a bright, light-bodied tropical cooler.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "blanco tequila"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "unsweetened pineapple juice"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "unsweetened coconut water"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "fresh lime juice"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "small pineapple triangle, for garnish"
+    }
+   ],
+   "steps": [
+    "Shake tequila, pineapple juice, coconut water and lime with ice for 12 seconds.",
+    "Strain into an ice-filled highball glass.",
+    "Garnish with the pineapple triangle and serve immediately."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "small pineapple triangle",
+    "alcoholic": true,
+    "non_alcoholic_version": "Shake 3 oz pineapple juice, 2 oz coconut water and 1/2 oz lime juice with ice, then strain over fresh ice."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [
+    "Use coconut water, not coconut milk or cream; the finished drink is light and not creamy."
+   ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
+  }
+ },
  "pineapple-ginger-rum-highball": {
   "kind": "cocktail",
   "recipe": {
@@ -38218,6 +38641,75 @@
    "vegan": "same"
   }
  },
+ "plum-rosemary-gin-fizz": {
+  "kind": "cocktail",
+  "recipe": {
+   "title": "Plum Rosemary Gin Fizz",
+   "description": "Fresh plum, rosemary and lemon make a sparkling ruby gin drink.",
+   "servings": 1,
+   "prep_minutes": 6,
+   "cook_minutes": 0,
+   "ingredients": [
+    {
+     "amount": "1 1/2",
+     "unit": "oz",
+     "item": "gin"
+    },
+    {
+     "amount": "1/2",
+     "unit": "",
+     "item": "ripe red plum, pitted and chopped"
+    },
+    {
+     "amount": "3/4",
+     "unit": "oz",
+     "item": "fresh lemon juice"
+    },
+    {
+     "amount": "1/2",
+     "unit": "oz",
+     "item": "simple syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "small rosemary sprig"
+    },
+    {
+     "amount": "2",
+     "unit": "oz",
+     "item": "chilled soda water"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "thin plum slice, for garnish"
+    }
+   ],
+   "steps": [
+    "Muddle plum gently with syrup and rosemary in a shaker.",
+    "Add gin, lemon and ice, shake for 15 seconds and fine-strain into an ice-filled highball.",
+    "Top with soda, stir gently and garnish with the plum slice."
+   ],
+   "allergens": [],
+   "cocktail": {
+    "glass": "highball glass",
+    "garnish": "thin plum slice",
+    "alcoholic": true,
+    "non_alcoholic_version": "Muddle plum and rosemary with syrup; shake with 3/4 oz lemon juice and ice, strain and top with 4 oz soda."
+   },
+   "note": "An original Relish home cocktail. Please drink responsibly.",
+   "tips": [
+    "Use only a small rosemary sprig; a little gives aroma without overwhelming the fruit."
+   ],
+   "make_ahead": "Prepare to order. Keep juices and brewed teas refrigerated until needed.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
+  }
+ },
  "poet-s-dream": {
   "kind": "cocktail",
   "recipe": {
@@ -38453,6 +38945,91 @@
    "note": "A classic home version. Bars vary the proportions, and this isn't any one bar's recipe. Please drink responsibly.",
    "tips": [],
    "make_ahead": "",
+   "variations": []
+  }
+ },
+ "pork-and-cabbage-rice-skillet": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Pork and Cabbage Rice Skillet",
+   "description": "Ground pork, cabbage and carrot tossed with rice and a ginger-soy seasoning.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 20,
+   "ingredients": [
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "ground pork"
+    },
+    {
+     "amount": "1/2",
+     "unit": "",
+     "item": "small green cabbage, shredded"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "carrots, grated"
+    },
+    {
+     "amount": "3",
+     "unit": "cups",
+     "item": "cooked rice, chilled"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "neutral oil"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "grated ginger"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "garlic cloves, minced"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "soy sauce"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "rice vinegar"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "toasted sesame oil"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "scallions, sliced"
+    }
+   ],
+   "steps": [
+    "Heat neutral oil in a wide skillet over medium-high heat. Brown pork for 6 to 8 minutes, breaking it up, until it reaches 160 F (71 C).",
+    "Add ginger and garlic for 30 seconds, then cabbage and carrots. Stir-fry for 6 to 8 minutes until tender.",
+    "Add rice, soy sauce and vinegar. Stir-fry for 4 to 5 minutes until the rice is steaming and reaches 165 F (74 C).",
+    "Finish with sesame oil and scallions. Divide among four bowls."
+   ],
+   "allergens": [
+    "sesame",
+    "soy",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Chill cooked rice promptly, never overnight at room temperature. Break up cold rice clumps before adding to the pan."
+   ],
+   "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
    "variations": []
   }
  },
@@ -40585,6 +41162,88 @@
    "tips": [],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "roasted-tomato-eggplant-lentil-pasta": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Roasted Tomato Eggplant Lentil Pasta",
+   "description": "Roasted eggplant and tomatoes turn canned lentils into a hearty plant-based pasta sauce.",
+   "servings": 4,
+   "prep_minutes": 15,
+   "cook_minutes": 35,
+   "ingredients": [
+    {
+     "amount": "12",
+     "unit": "oz",
+     "item": "wheat rigatoni"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "large eggplant, cut into 1-inch cubes"
+    },
+    {
+     "amount": "1",
+     "unit": "lb",
+     "item": "cherry tomatoes"
+    },
+    {
+     "amount": "1",
+     "unit": "can",
+     "item": "green lentils (15 oz), drained and rinsed"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "olive oil"
+    },
+    {
+     "amount": "3",
+     "unit": "",
+     "item": "garlic cloves, minced"
+    },
+    {
+     "amount": "1",
+     "unit": "tsp",
+     "item": "dried oregano"
+    },
+    {
+     "amount": "3/4",
+     "unit": "tsp",
+     "item": "salt"
+    },
+    {
+     "amount": "1/4",
+     "unit": "tsp",
+     "item": "black pepper"
+    },
+    {
+     "amount": "1/4",
+     "unit": "cup",
+     "item": "torn basil leaves"
+    }
+   ],
+   "steps": [
+    "Heat oven to 425 F (220 C). Toss eggplant and tomatoes with oil, garlic, oregano, salt and pepper. Spread over two sheet pans and roast for 25 to 30 minutes, turning once, until eggplant is soft.",
+    "Meanwhile cook rigatoni according to the package. Reserve 1 cup pasta water and drain.",
+    "Tip roasted vegetables into the pasta pot, crush some tomatoes with a spoon and add lentils and 1/2 cup pasta water. Simmer for 3 minutes.",
+    "Toss in pasta and basil, adding more pasta water as needed for a loose sauce."
+   ],
+   "allergens": [
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "Roast eggplant until fully soft, not merely browned on the outside. No cheese is needed for this sauce."
+   ],
+   "make_ahead": "Refrigerate promptly in shallow containers for up to 3 days. Reheat leftovers to 165 F (74 C).",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
   }
  },
  "rob-roy": {
@@ -44743,6 +45402,100 @@
    ],
    "make_ahead": "",
    "variations": []
+  }
+ },
+ "spicy-peanut-chickpea-noodle-bowls": {
+  "kind": "meal",
+  "recipe": {
+   "title": "Spicy Peanut Chickpea Noodle Bowls",
+   "description": "Wheat noodles, chickpeas and crisp vegetables with a creamy spicy peanut-lime dressing.",
+   "servings": 4,
+   "prep_minutes": 20,
+   "cook_minutes": 10,
+   "ingredients": [
+    {
+     "amount": "10",
+     "unit": "oz",
+     "item": "wheat noodles"
+    },
+    {
+     "amount": "1",
+     "unit": "can",
+     "item": "chickpeas (15 oz), drained and rinsed"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "cucumber, cut into matchsticks"
+    },
+    {
+     "amount": "1",
+     "unit": "",
+     "item": "carrot, grated"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "smooth peanut butter"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "soy sauce"
+    },
+    {
+     "amount": "3",
+     "unit": "tbsp",
+     "item": "fresh lime juice"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "maple syrup"
+    },
+    {
+     "amount": "1",
+     "unit": "tbsp",
+     "item": "sriracha"
+    },
+    {
+     "amount": "1/3",
+     "unit": "cup",
+     "item": "warm water"
+    },
+    {
+     "amount": "2",
+     "unit": "",
+     "item": "scallions, sliced"
+    },
+    {
+     "amount": "2",
+     "unit": "tbsp",
+     "item": "chopped roasted peanuts"
+    }
+   ],
+   "steps": [
+    "Cook noodles according to the package and drain. Rinse briefly under cool water.",
+    "Whisk peanut butter, soy sauce, lime juice, maple syrup, sriracha and warm water into a smooth dressing. Add a spoonful more water if needed.",
+    "Toss noodles with chickpeas, cucumber, carrot and most of the dressing.",
+    "Divide among bowls and finish with remaining dressing, scallions and chopped peanuts."
+   ],
+   "allergens": [
+    "peanuts",
+    "soy",
+    "wheat"
+   ],
+   "cocktail": null,
+   "note": "A representative home version. Restaurants and regions make it in many ways, and this isn't any one restaurant's recipe.",
+   "tips": [
+    "This dish intentionally contains peanuts; do not describe it as nut-free. Choose plain peanut butter and check sauce labels."
+   ],
+   "make_ahead": "Refrigerate promptly for up to 2 days. Add a little water and lime juice to loosen the dressing before serving cold.",
+   "variations": []
+  },
+  "variants": {
+   "vegetarian": "same",
+   "vegan": "same"
   }
  },
  "spinach-ricotta-stuffed-portobello-mushrooms": {
