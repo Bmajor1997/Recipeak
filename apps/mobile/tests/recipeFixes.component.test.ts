@@ -25,6 +25,7 @@ const mocks = vi.hoisted(() => ({
   change_current: null as null | ((next: CurrentRecipe | null) => void),
   blur: () => {},
   recipe: vi.fn(),
+  addition: vi.fn(),
   find_bundled_dish: vi.fn(),
   bundled_recipe: vi.fn(),
   bundled_version: vi.fn(),
@@ -171,7 +172,7 @@ function Harness() {
     recipe_requests,
     current,
     set_current: change_current,
-    api: { recipe: mocks.recipe, allowance: mocks.allowance, image_uri: () => null },
+    api: { recipe: mocks.recipe, recipe_addition: mocks.addition, allowance: mocks.allowance, image_uri: () => null },
     saved: fake_saved,
     ratings: {},
     recent: { add: mocks.add_recent },
@@ -538,5 +539,39 @@ describe("late AI responses", () => {
     });
     expect(text()).not.toContain("Stale answer");
     if (action === "new photo") expect(text()).toContain("Gimlet");
+  });
+});
+
+describe("saving while a version is loading", () => {
+  it.each(["diet", "addition"])("does not cancel the requested %s version", async (kind) => {
+    let answer: (value: unknown) => void = () => {};
+    mocks.camera.photosLeft = null;
+    const made = { ...PASTA, title: "Requested version" };
+    const green = { ...PASTA, title: "Green salad", ingredients: [{ amount: "1", unit: "cup", item: "lettuce" }], allergens: [] };
+    const request = kind === "diet" ? mocks.recipe : mocks.addition;
+    request.mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          answer = resolve;
+        }),
+    );
+    await open(ready(kind === "diet" ? PASTA : green, "meal"));
+    let loading: Promise<void> | undefined;
+    await act(async () => {
+      const label = kind === "diet" ? "dairy-free" : "non-vegetarian";
+      loading = (tree!.root.findByProps({ label }).props.onPress as () => Promise<void>)();
+    });
+    const save = tree!.root.findByProps({ accessibilityLabel: "Save recipe" });
+    expect(save.props.disabled).toBe(true);
+    // Also call the handler directly: a tap already queued before the disabled render must be harmless.
+    await act(async () => {
+      await (save.props.onPress as () => Promise<void>)();
+    });
+    expect(mocks.saved_list).toEqual([]);
+    await act(async () => {
+      answer(kind === "diet" ? { recipe: made, image: { status: "unavailable", url: null } } : made);
+      await loading;
+    });
+    expect(text()).toContain("Requested version");
   });
 });

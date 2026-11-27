@@ -341,6 +341,7 @@ function RecipeView({ current }: { current: Ready }) {
   const { set_current, api, saved, ratings, recipe_requests } = useApp();
   const preferences = usePreferences();
   const saving = useRef(false);
+  const version_pending = useRef(false);
   const { photosLeft } = useCamera();
   const insets = useSafeAreaInsets();
   const { width, height } = useWindowDimensions();
@@ -457,103 +458,110 @@ function RecipeView({ current }: { current: Ready }) {
   const dietUnverified = diet !== null && !profile.fits.includes(diet);
 
   async function load_version(index: number, nextDiet: Diet | null) {
-    if (busy) return;
-    const active = recipe_requests.begin();
-    const guess = guesses[index];
-    const same = index === selected;
-    set_problem(null);
-    set_notice(null);
-    if (is_premium_diet(nextDiet) && !(await premium_or_problem(active))) return;
-    if (!active()) return;
-    // The standard recipe: the one kept from before, the regular recipe on screen, or, when the dish opened in a diet
-    // version on its own, the bundled dish's regular recipe. Never a diet version.
-    const regular = current.bundledId ? bundled_version(current.bundledId, null)?.recipe : undefined;
-    const standard_now =
-      standard ??
-      (diet === null ? { recipe: base, ai: addition ? original_ai : current.ai } : regular ? { recipe: regular, ai: current.ai } : null);
-    // Remembers the standard recipe the first time a diet version replaces it.
-    const keep_standard = () => {
-      if (same && !standard && standard_now) set_standard(standard_now);
-    };
-    // Back to the standard recipe this was opened with: it's already here.
-    if (same && nextDiet === null && standard) {
-      set_addition(null);
-      set_original(null);
-      set_diet(null);
-      set_standard(null);
-      set_current({ ...current, recipe: standard.recipe, ai: standard.ai, savedId: null });
-      return;
-    }
-    // A dish from the bundled collection has hand-written vegetarian and vegan versions: shown at once, offline.
-    const local = current.bundledId && same ? bundled_version(current.bundledId, nextDiet) : null;
-    if (local) {
-      keep_standard();
-      set_addition(null);
-      set_original(null);
-      set_diet(nextDiet);
-      if (local.already && nextDiet) set_notice(`This recipe is already ${nextDiet}.`);
-      set_current({ ...current, recipe: local.recipe, savedId: null });
-      return;
-    }
-    // A version the recipe already carries (the written non-alcoholic one) is used as it is, with no AI request.
-    const written = same && nextDiet && standard_now ? curated_version(standard_now.recipe, nextDiet) : null;
-    if (written && nextDiet) {
-      keep_standard();
-      set_addition(null);
-      set_original(null);
-      set_diet(nextDiet);
-      set_notice(`Relish's own ${nextDiet} version of this recipe. Tap ${nextDiet} again for the original.`);
-      set_current({ ...current, recipe: written, savedId: null, ai: standard_now?.ai });
-      return;
-    }
-    // Another guess that Recipeak already has opens its own checked recipe, with no AI request.
-    const other = !same && !nextDiet && guess ? find_bundled_dish(kind, guess.name) : null;
-    const other_recipe = other && bundled_recipe(other);
-    if (other && other_recipe) {
-      set_addition(null);
-      set_original(null);
-      set_diet(null);
-      set_standard(null);
-      const photo = await bundled_photo_uri(other);
-      if (!active()) return;
-      set_current({
-        ...current,
-        recipe: other_recipe,
-        selected: index,
-        image: NO_IMAGE,
-        localPhoto: photo,
-        savedId: null,
-        bundledId: other.id,
-        ai: false,
-      });
-      return;
-    }
+    if (busy || version_pending.current) return;
+    version_pending.current = true;
     set_busy(true);
     try {
-      const next = await api.recipe(guess?.name ?? recipe.title, kind, nextDiet ?? undefined);
+      const active = recipe_requests.begin();
+      const guess = guesses[index];
+      const same = index === selected;
+      set_problem(null);
+      set_notice(null);
+      if (is_premium_diet(nextDiet) && !(await premium_or_problem(active))) return;
       if (!active()) return;
-      // Keep the original and its undo action until the replacement has actually arrived.
-      if (same && nextDiet) keep_standard();
-      else set_standard(null);
-      set_addition(null);
-      set_original(null);
-      set_diet(nextDiet);
-      // Anything the server writes is made with AI, and a different guess is no longer the bundled dish.
-      set_current({
-        ...current,
-        recipe: next.recipe,
-        selected: index,
-        image: next.image,
-        localPhoto: null,
-        savedId: null,
-        ai: true,
-        ...(index !== selected ? { bundledId: undefined } : {}),
-      });
-    } catch (error) {
-      if (!active()) return;
-      if (error instanceof ApiError && error.needsUpgrade) router.push({ pathname: "/upgrade", params: { reason: error.upgradeReason } });
-      else set_problem(error instanceof ApiError ? error.message : "Couldn't load that version. Please try again.");
+      // The standard recipe: the one kept from before, the regular recipe on screen, or, when the dish opened in a diet
+      // version on its own, the bundled dish's regular recipe. Never a diet version.
+      const regular = current.bundledId ? bundled_version(current.bundledId, null)?.recipe : undefined;
+      const standard_now =
+        standard ??
+        (diet === null ? { recipe: base, ai: addition ? original_ai : current.ai } : regular ? { recipe: regular, ai: current.ai } : null);
+      // Remembers the standard recipe the first time a diet version replaces it.
+      const keep_standard = () => {
+        if (same && !standard && standard_now) set_standard(standard_now);
+      };
+      // Back to the standard recipe this was opened with: it's already here.
+      if (same && nextDiet === null && standard) {
+        set_addition(null);
+        set_original(null);
+        set_diet(null);
+        set_standard(null);
+        set_current({ ...current, recipe: standard.recipe, ai: standard.ai, savedId: null });
+        return;
+      }
+      // A dish from the bundled collection has hand-written vegetarian and vegan versions: shown at once, offline.
+      const local = current.bundledId && same ? bundled_version(current.bundledId, nextDiet) : null;
+      if (local) {
+        keep_standard();
+        set_addition(null);
+        set_original(null);
+        set_diet(nextDiet);
+        if (local.already && nextDiet) set_notice(`This recipe is already ${nextDiet}.`);
+        set_current({ ...current, recipe: local.recipe, savedId: null });
+        return;
+      }
+      // A version the recipe already carries (the written non-alcoholic one) is used as it is, with no AI request.
+      const written = same && nextDiet && standard_now ? curated_version(standard_now.recipe, nextDiet) : null;
+      if (written && nextDiet) {
+        keep_standard();
+        set_addition(null);
+        set_original(null);
+        set_diet(nextDiet);
+        set_notice(`Relish's own ${nextDiet} version of this recipe. Tap ${nextDiet} again for the original.`);
+        set_current({ ...current, recipe: written, savedId: null, ai: standard_now?.ai });
+        return;
+      }
+      // Another guess that Recipeak already has opens its own checked recipe, with no AI request.
+      const other = !same && !nextDiet && guess ? find_bundled_dish(kind, guess.name) : null;
+      const other_recipe = other && bundled_recipe(other);
+      if (other && other_recipe) {
+        set_addition(null);
+        set_original(null);
+        set_diet(null);
+        set_standard(null);
+        const photo = await bundled_photo_uri(other);
+        if (!active()) return;
+        set_current({
+          ...current,
+          recipe: other_recipe,
+          selected: index,
+          image: NO_IMAGE,
+          localPhoto: photo,
+          savedId: null,
+          bundledId: other.id,
+          ai: false,
+        });
+        return;
+      }
+      set_busy(true);
+      try {
+        const next = await api.recipe(guess?.name ?? recipe.title, kind, nextDiet ?? undefined);
+        if (!active()) return;
+        // Keep the original and its undo action until the replacement has actually arrived.
+        if (same && nextDiet) keep_standard();
+        else set_standard(null);
+        set_addition(null);
+        set_original(null);
+        set_diet(nextDiet);
+        // Anything the server writes is made with AI, and a different guess is no longer the bundled dish.
+        set_current({
+          ...current,
+          recipe: next.recipe,
+          selected: index,
+          image: next.image,
+          localPhoto: null,
+          savedId: null,
+          ai: true,
+          ...(index !== selected ? { bundledId: undefined } : {}),
+        });
+      } catch (error) {
+        if (!active()) return;
+        if (error instanceof ApiError && error.needsUpgrade) router.push({ pathname: "/upgrade", params: { reason: error.upgradeReason } });
+        else set_problem(error instanceof ApiError ? error.message : "Couldn't load that version. Please try again.");
+      } finally {
+        set_busy(false);
+      }
     } finally {
+      version_pending.current = false;
       set_busy(false);
     }
   }
@@ -573,32 +581,39 @@ function RecipeView({ current }: { current: Ready }) {
   }
 
   async function load_addition(next: Addition) {
-    set_problem(null);
-    set_notice(null);
-    // Tapping the one that's showing goes back to the recipe it was made from.
-    if (next === addition && original) {
-      set_addition(null);
-      set_original(null);
-      set_current({ ...current, recipe: original, savedId: null, ai: original_ai });
-      return;
-    }
-    if (busy) return;
-    const active = recipe_requests.begin();
-    if (!(await premium_or_problem(active)) || !active()) return;
+    if (busy || version_pending.current) return;
+    version_pending.current = true;
     set_busy(true);
     try {
-      const from = original ?? recipe;
-      const made = await api.recipe_addition(dishName, next, from);
-      if (!active()) return;
-      set_original(from);
-      set_original_ai(current.ai);
-      set_addition(next);
-      set_current({ ...current, recipe: made, savedId: null, ai: true });
-    } catch (error) {
-      if (!active()) return;
-      if (error instanceof ApiError && error.needsUpgrade) router.push({ pathname: "/upgrade", params: { reason: error.upgradeReason } });
-      else set_problem(error instanceof ApiError ? error.message : "Couldn't make that version. Please try again.");
+      set_problem(null);
+      set_notice(null);
+      // Tapping the one that's showing goes back to the recipe it was made from.
+      if (next === addition && original) {
+        set_addition(null);
+        set_original(null);
+        set_current({ ...current, recipe: original, savedId: null, ai: original_ai });
+        return;
+      }
+      const active = recipe_requests.begin();
+      if (!(await premium_or_problem(active)) || !active()) return;
+      set_busy(true);
+      try {
+        const from = original ?? recipe;
+        const made = await api.recipe_addition(dishName, next, from);
+        if (!active()) return;
+        set_original(from);
+        set_original_ai(current.ai);
+        set_addition(next);
+        set_current({ ...current, recipe: made, savedId: null, ai: true });
+      } catch (error) {
+        if (!active()) return;
+        if (error instanceof ApiError && error.needsUpgrade) router.push({ pathname: "/upgrade", params: { reason: error.upgradeReason } });
+        else set_problem(error instanceof ApiError ? error.message : "Couldn't make that version. Please try again.");
+      } finally {
+        set_busy(false);
+      }
     } finally {
+      version_pending.current = false;
       set_busy(false);
     }
   }
@@ -606,7 +621,7 @@ function RecipeView({ current }: { current: Ready }) {
   const after_save = useStoreReviewPrompt();
   async function toggle_save() {
     // One save or removal at a time: a double tap must not save twice or leave an extra photo behind.
-    if (preferences.busy || saving.current) return;
+    if (preferences.busy || busy || version_pending.current || saving.current) return;
     saving.current = true;
     const active = recipe_requests.begin();
     set_save_problem(null);
@@ -678,8 +693,8 @@ function RecipeView({ current }: { current: Ready }) {
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={current.savedId ? "Saved. Tap to remove from Saved" : "Save recipe"}
-          accessibilityState={{ disabled: preferences.busy }}
-          disabled={preferences.busy}
+          accessibilityState={{ disabled: preferences.busy || busy }}
+          disabled={preferences.busy || busy}
           onPress={toggle_save}
           style={({ pressed }) => [styles.save, current.savedId && styles.saved, pressed && { opacity: 0.8 }]}
         >
