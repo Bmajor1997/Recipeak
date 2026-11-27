@@ -54,3 +54,23 @@ export function possible_allergen_line(recipe: Recipe): string {
   const parts = possible.map(({ allergen, because }) => `${allergen} (${because.join(", ")})`);
   return `May contain ${parts.join("; ")}: these depend on the brand or recipe, so check the label.`;
 }
+
+// The nine major allergens, in the order the server lists them (server/recipe_ai.js), so both read the same.
+const ALLERGEN_ORDER = ["milk", "eggs", "fish", "shellfish", "tree nuts", "peanuts", "wheat", "soy", "sesame"];
+// A plant-based stand-in named as such ("vegan butter", "dairy-free cheese") isn't the dairy or egg it replaces.
+const PLANT_STAND_IN =
+  /\b(?:vegan|plant-based|dairy-free|non-dairy|egg-free)\s+(?:butter|cheeses?|cream|milk|mayo|mayonnaise|yogh?urt|parmesan|feta|ice cream|egg)\b/gi;
+
+/**
+ * An AI recipe kept on the phone (Saved, Recently viewed) with the allergens its own ingredients name added to its
+ * list, as the server now does for every AI recipe. One saved before that check existed may list fewer than it
+ * contains; this never removes one. Bundled recipes have reviewed lists and are left as they are.
+ */
+export function with_ingredient_allergens(recipe: Recipe): Recipe {
+  const named = new Set(recipe.allergens);
+  for (const line of [...recipe.ingredients.map((i) => i.item), recipe.cocktail?.garnish ?? ""])
+    for (const allergen of allergens_in(line.replace(PLANT_STAND_IN, " "), [])) named.add(allergen);
+  if (named.size === recipe.allergens.length) return recipe;
+  const rank = (allergen: string) => (ALLERGEN_ORDER.includes(allergen) ? ALLERGEN_ORDER.indexOf(allergen) : ALLERGEN_ORDER.length);
+  return { ...recipe, allergens: [...named].sort((a, b) => rank(a) - rank(b)) };
+}

@@ -3,7 +3,10 @@
 import { describe, expect, it, vi } from "vitest";
 import recipes from "../src/recipes/collection.json";
 import { COLLECTION } from "../src/recipes/collectionPhotos";
+import { with_ingredient_allergens } from "../src/recipes/allergenRisk";
 import { curated_non_alcoholic } from "../src/recipes/curatedVersions";
+import { generated_as_current } from "../src/recipes/recentItems";
+import { saved_as_current } from "../src/saved/savedCover";
 import { bundled_diet_profile } from "../src/recipes/dietProfile";
 import { diet_profile } from "../src/recipes/diets";
 import { parse_recipe } from "../src/recipes/parse";
@@ -133,5 +136,56 @@ describe("butter lettuce isn't dairy", () => {
     const dish = COLLECTION.find((d) => d.id === "lobster-roll")!;
     const profile = bundled_diet_profile(dish.id, parse_recipe((recipes as Record<string, unknown>)[dish.id]), "meal");
     expect(profile.fits).not.toContain("dairy-free");
+  });
+});
+
+describe("AI recipes kept on the phone get the allergens their ingredients name", () => {
+  // Saved before the server added allergens from the ingredients: butter and egg white, but none listed.
+  const under_listed: Recipe = {
+    ...recipe("Low-Carb Gimlet"),
+    ingredients: ["butter", "egg white", "gin"].map((item) => ({ amount: "1", unit: "oz", item })),
+  };
+
+  it("from Saved", async () => {
+    const opened = await saved_as_current({ id: "s1", saved_at: "1", kind: "cocktail", recipe: under_listed, photo_uri: null, ai: true });
+    expect(opened.recipe.allergens).toEqual(["milk", "eggs"]);
+  });
+
+  it("from Recently viewed", () => {
+    const opened = generated_as_current({
+      type: "generated",
+      kind: "cocktail",
+      name: "Low-Carb Gimlet",
+      recipe: under_listed,
+      image_url: null,
+    });
+    expect(opened.recipe.allergens).toEqual(["milk", "eggs"]);
+  });
+
+  it("never removes one, keeps the server's order, and doesn't call a plant-based stand-in dairy", () => {
+    expect(with_ingredient_allergens({ ...under_listed, allergens: ["sesame"] }).allergens).toEqual(["milk", "eggs", "sesame"]);
+    const plant = {
+      ...recipe("Vegan toast"),
+      ingredients: ["vegan butter", "vegan almond milk", "bread"].map((item) => ({ amount: "1", unit: "", item })),
+    };
+    const checked = with_ingredient_allergens(plant).allergens;
+    expect(checked).toContain("tree nuts");
+    expect(checked).not.toContain("milk");
+  });
+
+  it("leaves a recipe that already lists everything unchanged, and bundled saved recipes as the library has them", async () => {
+    const complete = { ...under_listed, allergens: ["milk", "eggs"] };
+    expect(with_ingredient_allergens(complete)).toBe(complete);
+    const dish = COLLECTION.find((d) => d.id === "gimlet")!;
+    const library = parse_recipe((recipes as Record<string, unknown>)[dish.id]);
+    const opened = await saved_as_current({
+      id: "s2",
+      saved_at: "1",
+      kind: "cocktail",
+      recipe: library,
+      photo_uri: null,
+      bundled_id: dish.id,
+    });
+    expect(opened.recipe.allergens).toEqual(library.allergens);
   });
 });

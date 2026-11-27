@@ -5,6 +5,7 @@ import { FlatList, Pressable, Share, StyleSheet, Text, TextInput, useWindowDimen
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../../AppContext";
 import { useCamera } from "../../camera/CameraProvider";
+import { with_ingredient_allergens } from "../../recipes/allergenRisk";
 import { recipe_as_text } from "../../recipes/format";
 import { filter_saved, type SavedFilter } from "../../recipes/search";
 import type { SavedRecipe } from "../../recipes/types";
@@ -40,7 +41,10 @@ export default function SavedScreen() {
     if (!items?.length || sharing.current) return;
     sharing.current = true;
     try {
-      await Share.share({ title: "My Relish recipes", message: items.map((item) => recipe_as_text(item.recipe)).join("\n\n—\n\n") });
+      await Share.share({
+        title: "My Relish recipes",
+        message: items.map((item) => recipe_as_text(item.ai ? with_ingredient_allergens(item.recipe) : item.recipe)).join("\n\n—\n\n"),
+      });
     } catch {
       // Closing the share sheet isn't a problem worth a message.
     } finally {
