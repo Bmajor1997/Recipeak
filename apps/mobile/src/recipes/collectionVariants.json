@@ -3069,5 +3069,13 @@
       "make_ahead": "",
       "variations": []
     }
-  }
+  },
+  "apricot-black-tea-whiskey-sour": { "vegetarian": "same", "vegan": "same" },
+  "tangerine-pink-pepper-gin-collins": { "vegetarian": "same", "vegan": "same" },
+  "guava-lime-rum-cooler": { "vegetarian": "same", "vegan": "same" },
+  "pineapple-basil-vodka-smash": { "vegetarian": "same", "vegan": "same" },
+  "fig-maple-bourbon-old-fashioned": { "vegetarian": "same", "vegan": "same" },
+  "lemon-caper-chickpea-pasta": { "vegetarian": "same", "vegan": "same" },
+  "miso-mushroom-soba-bowls": { "vegetarian": "same", "vegan": "same" },
+  "smoky-black-bean-and-quinoa-stuffed-peppers": { "vegetarian": "same", "vegan": "same" }
 }

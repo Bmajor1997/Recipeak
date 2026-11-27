@@ -4410,6 +4410,76 @@
       "names": [
         "Blueberry Sage Whiskey Sour"
       ]
+    },
+    {
+      "file": "apricot-black-tea-whiskey-sour.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Apricot Black Tea Whiskey Sour"
+      ]
+    },
+    {
+      "file": "tangerine-pink-pepper-gin-collins.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Tangerine Pink Pepper Gin Collins"
+      ]
+    },
+    {
+      "file": "guava-lime-rum-cooler.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Guava Lime Rum Cooler"
+      ]
+    },
+    {
+      "file": "pineapple-basil-vodka-smash.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Pineapple Basil Vodka Smash"
+      ]
+    },
+    {
+      "file": "fig-maple-bourbon-old-fashioned.jpg",
+      "kind": "cocktail",
+      "names": [
+        "Fig Maple Bourbon Old Fashioned"
+      ]
+    },
+    {
+      "file": "zaatar-chicken-and-cauliflower-traybake.jpg",
+      "kind": "meal",
+      "names": [
+        "Za'atar Chicken and Cauliflower Traybake"
+      ]
+    },
+    {
+      "file": "lemon-caper-chickpea-pasta.jpg",
+      "kind": "meal",
+      "names": [
+        "Lemon Caper Chickpea Pasta"
+      ]
+    },
+    {
+      "file": "miso-mushroom-soba-bowls.jpg",
+      "kind": "meal",
+      "names": [
+        "Miso Mushroom Soba Bowls"
+      ]
+    },
+    {
+      "file": "smoky-black-bean-and-quinoa-stuffed-peppers.jpg",
+      "kind": "meal",
+      "names": [
+        "Smoky Black Bean and Quinoa Stuffed Peppers"
+      ]
+    },
+    {
+      "file": "salmon-with-orange-fennel-salad.jpg",
+      "kind": "meal",
+      "names": [
+        "Salmon with Orange-Fennel Salad"
+      ]
     }
   ]
 }
