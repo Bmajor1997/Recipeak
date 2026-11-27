@@ -1,6 +1,6 @@
 // App-wide state: who is signed in, the API client, saved recipes, and the latest photo result.
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { createContext, type ReactNode, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { type Api, create_api } from "./api/client";
 import { type AppUser, firebase, firebaseConfigured } from "./auth/firebase";
 import type { Diet, DishImage, Guess, Kind, Recipe } from "./recipes/types";
@@ -8,6 +8,7 @@ import { create_ratings, type Ratings } from "./recipes/ratings";
 import { create_recently_viewed, type RecentlyViewed } from "./recipes/recentlyViewed";
 import { keep_photo, remove_photo } from "./saved/photoStore";
 import { create_saved_recipes, SIGNED_OUT_SAVED, type SavedRecipes } from "./saved/savedRecipes";
+import { create_recipe_requests, type RecipeRequests } from "./recipes/recipeRequests";
 import { subscriptions } from "./paywall/subscriptions";
 
 /**
@@ -53,6 +54,7 @@ type AppState = {
   ratings: Ratings | null;
   /** Dishes from the collection this account opened lately, or null when signed out. */
   recent: RecentlyViewed | null;
+  recipe_requests: RecipeRequests;
   current: CurrentRecipe | null;
   set_current: (value: CurrentRecipe | null) => void;
 };
@@ -62,7 +64,16 @@ const Context = createContext<AppState | null>(null);
 export function AppProvider({ children }: { children: ReactNode }) {
   const [user, set_user] = useState<AppUser | null>(null);
   const [ready, set_ready] = useState(false);
-  const [current, set_current] = useState<CurrentRecipe | null>(null);
+  const [current, update_current] = useState<CurrentRecipe | null>(null);
+  const [recipe_requests] = useState(create_recipe_requests);
+  const set_current = useCallback(
+    (value: CurrentRecipe | null) => {
+      recipe_requests.invalidate();
+      update_current(value);
+    },
+    [recipe_requests],
+  );
+  useEffect(() => () => recipe_requests.invalidate(), [recipe_requests]);
 
   useEffect(
     () =>
@@ -101,8 +112,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     void ratings?.send_pending();
   }, [ratings]);
   const value = useMemo(
-    () => ({ user, ready, api, saved, ratings, recent, current, set_current }),
-    [user, ready, api, saved, ratings, recent, current],
+    () => ({ user, ready, api, saved, ratings, recent, current, set_current, recipe_requests }),
+    [user, ready, api, saved, ratings, recent, current, set_current, recipe_requests],
   );
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }

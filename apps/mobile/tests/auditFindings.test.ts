@@ -203,3 +203,94 @@ describe("AI recipes kept on the phone get the allergens their ingredients name"
     expect(real.allergens).toContain("milk");
   });
 });
+
+describe("remaining pre-merge audit cases", () => {
+  it("names explicit wheat in stored AI recipes and never calls it gluten-free", () => {
+    const wheat = { ...recipe("Wheat salad"), ingredients: [{ amount: "1", unit: "cup", item: "wheat berries" }] };
+    expect(with_ingredient_allergens(wheat).allergens).toContain("wheat");
+    expect(diet_profile(wheat, "meal").fits).not.toContain("gluten-free");
+    const free = { ...wheat, ingredients: [{ amount: "1", unit: "cup", item: "wheat-free rice noodles" }] };
+    expect(with_ingredient_allergens(free).allergens).not.toContain("wheat");
+  });
+
+  it("defers comma-separated compound changes instead of keeping contradictory ingredients", () => {
+    const sour: Recipe = {
+      ...recipe("Sour"),
+      allergens: ["eggs"],
+      ingredients: ["bourbon", "lemon juice", "egg white"].map((item) => ({ amount: "1", unit: "oz", item })),
+      cocktail: {
+        glass: "coupe",
+        garnish: "",
+        alcoholic: true,
+        non_alcoholic_version: "Replace the bourbon with cold black tea, omit egg white.",
+      },
+    };
+    expect(curated_non_alcoholic(sour)).toBeNull();
+  });
+
+  it("orders writes across stores recreated after signing back into the same account", async () => {
+    const data = new Map<string, string>();
+    let pause = false;
+    let release: () => void = () => {};
+    let started: () => void = () => {};
+    const blocked = new Promise<void>((resolve) => {
+      started = resolve;
+    });
+    const storage = {
+      getItem: async (key: string) => data.get(key) ?? null,
+      setItem: async (key: string, value: string) => {
+        if (pause) {
+          pause = false;
+          started();
+          await new Promise<void>((resolve) => {
+            release = resolve;
+          });
+        }
+        data.set(key, value);
+      },
+      removeItem: async (key: string) => {
+        data.delete(key);
+      },
+    };
+    const first = create_saved_recipes(storage, "alice");
+    const a = await first.save("meal", recipe("A"));
+    pause = true;
+    const removing = first.remove(a.id);
+    await blocked;
+    const reopened = create_saved_recipes(storage, "alice");
+    const saving = reopened.save("meal", recipe("B"));
+    await tick();
+    release();
+    await Promise.all([removing, saving]);
+    expect((await reopened.list()).map((item) => item.recipe.title)).toEqual(["B"]);
+  });
+
+  it("recovers across instances after a real storage write failure, and allows retry", async () => {
+    const data = new Map<string, string>();
+    let fail = false;
+    const storage = {
+      getItem: async (key: string) => data.get(key) ?? null,
+      setItem: async (key: string, value: string) => {
+        if (fail) {
+          fail = false;
+          throw new Error("disk full");
+        }
+        data.set(key, value);
+      },
+      removeItem: async (key: string) => {
+        data.delete(key);
+      },
+    };
+    const first = create_saved_recipes(storage, "alice");
+    const a = await first.save("meal", recipe("A"));
+    fail = true;
+    const removing = first.remove(a.id);
+    const reopened = create_saved_recipes(storage, "alice");
+    const saving = reopened.save("meal", recipe("B"));
+    await expect(removing).rejects.toThrow("disk full");
+    await saving;
+    expect((await reopened.list()).map((item) => item.recipe.title)).toEqual(["B", "A"]);
+    await reopened.remove(a.id);
+    expect((await reopened.list()).map((item) => item.recipe.title)).toEqual(["B"]);
+  });
+});

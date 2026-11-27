@@ -1,5 +1,6 @@
+import { create_recipe_requests } from "../src/recipes/recipeRequests";
 import { createRequire } from "node:module";
-import { createElement, useState, type ComponentType, type ReactNode, type ReactElement } from "react";
+import { createElement, useEffect, useState, type ComponentType, type ReactNode, type ReactElement } from "react";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import RecipeScreen from "../src/app/recipe";
 import { AppProvider, type CurrentRecipe } from "../src/AppContext";
@@ -19,7 +20,10 @@ vi.mock("../src/AppContext", async () => {
   return { AppProvider: Context.Provider, useApp: () => useContext(Context) };
 });
 const TestProvider = AppProvider as unknown as ComponentType<{ value: unknown; children?: ReactNode }>;
-vi.mock("expo-router", () => ({ router: { push: mocks.push, back: vi.fn() } }));
+vi.mock("expo-router", () => ({
+  useFocusEffect: (fn: () => () => void) => useEffect(fn, [fn]),
+  router: { push: mocks.push, back: vi.fn() },
+}));
 vi.mock("expo-sharing", () => ({ shareAsync: vi.fn() }));
 vi.mock("@expo/vector-icons/Ionicons", () => ({ default: "Icon" }));
 vi.mock("expo-linear-gradient", () => ({ LinearGradient: "Gradient" }));
@@ -77,9 +81,14 @@ function Harness() {
     localPhoto: null,
     savedId: null,
   });
+  const [recipe_requests] = useState(create_recipe_requests);
   const value = {
+    recipe_requests,
     current,
-    set_current,
+    set_current: (next: CurrentRecipe | null) => {
+      recipe_requests.invalidate();
+      set_current(next!);
+    },
     api: { recipe: mocks.recipe, recipe_addition: mocks.addition, allowance: mocks.allowance },
     saved: { list: async () => [] },
     ratings: {},

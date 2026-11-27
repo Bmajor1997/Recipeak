@@ -1,7 +1,8 @@
+import { create_recipe_requests } from "../src/recipes/recipeRequests";
 // The recipe screen driven through its real buttons: free and Premium diet versions on a new account, written
 // versions used without AI, asking before an AI recipe for a typed name, and Recently viewed.
 import { createRequire } from "node:module";
-import { createElement, useState, type ComponentType, type ReactElement, type ReactNode } from "react";
+import { createElement, useCallback, useEffect, useState, type ComponentType, type ReactElement, type ReactNode } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import RecipeScreen from "../src/app/recipe";
 import { AppProvider, type CurrentRecipe } from "../src/AppContext";
@@ -21,6 +22,8 @@ const { act, create } = createRequire(import.meta.url)("react-test-renderer") as
 Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true });
 
 const mocks = vi.hoisted(() => ({
+  change_current: null as null | ((next: CurrentRecipe | null) => void),
+  blur: () => {},
   recipe: vi.fn(),
   find_bundled_dish: vi.fn(),
   bundled_recipe: vi.fn(),
@@ -41,7 +44,15 @@ vi.mock("../src/AppContext", async () => {
   return { AppProvider: Context.Provider, useApp: () => useContext(Context) };
 });
 const TestProvider = AppProvider as unknown as ComponentType<{ value: unknown; children?: ReactNode }>;
-vi.mock("expo-router", () => ({ router: { push: mocks.push, back: mocks.back } }));
+vi.mock("expo-router", () => ({
+  useFocusEffect: (fn: () => () => void) =>
+    useEffect(() => {
+      const cleanup = fn();
+      mocks.blur = cleanup;
+      return cleanup;
+    }, [fn]),
+  router: { push: mocks.push, back: mocks.back },
+}));
 vi.mock("expo-sharing", () => ({ shareAsync: vi.fn() }));
 vi.mock("@expo/vector-icons/Ionicons", () => ({ default: "Icon" }));
 vi.mock("expo-linear-gradient", () => ({ LinearGradient: "Gradient" }));
@@ -145,9 +156,21 @@ let tree: Rendered | undefined;
 let start: CurrentRecipe;
 function Harness() {
   const [current, set_current] = useState<CurrentRecipe | null>(start);
+  const [recipe_requests] = useState(create_recipe_requests);
+  const change_current = useCallback(
+    (next: CurrentRecipe | null) => {
+      recipe_requests.invalidate();
+      set_current(next);
+    },
+    [recipe_requests],
+  );
+  useEffect(() => {
+    mocks.change_current = change_current;
+  }, [change_current]);
   const value = {
+    recipe_requests,
     current,
-    set_current,
+    set_current: change_current,
     api: { recipe: mocks.recipe, allowance: mocks.allowance, image_uri: () => null },
     saved: fake_saved,
     ratings: {},
@@ -486,5 +509,34 @@ describe("the Save button", () => {
     await press("non-alcoholic");
     expect(saved_label()).toBe("Saved");
     expect(mocks.saved_list).toHaveLength(1);
+  });
+});
+
+describe("late AI responses", () => {
+  it.each(["new photo", "clear", "blur", "close"])("does not restore an AI recipe after %s", async (action) => {
+    let answer: (value: unknown) => void = () => {};
+    mocks.recipe.mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          answer = resolve;
+        }),
+    );
+    await open({
+      status: "ai-offer",
+      kind: "meal",
+      guesses: [{ name: "Old meal", confidence: "high", image: { status: "unavailable", url: null } }],
+    });
+    await press("Make AI recipe and photo");
+    await act(async () => {
+      if (action === "new photo") mocks.change_current!(ready(GIMLET, "cocktail"));
+      else if (action === "clear") mocks.change_current!(null);
+      else if (action === "blur") mocks.blur();
+    });
+    if (action === "close") await press("Close recipe");
+    await act(async () => {
+      answer({ recipe: { ...PASTA, title: "Stale answer" }, image: { status: "unavailable", url: null } });
+    });
+    expect(text()).not.toContain("Stale answer");
+    if (action === "new photo") expect(text()).toContain("Gimlet");
   });
 });

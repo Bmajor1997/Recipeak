@@ -221,7 +221,14 @@ describe("signing out", () => {
         savedId: "a1",
       }),
     );
+    const opened = state!.current;
+    const before_clear = state!.recipe_requests.begin();
+    await act(async () => state!.set_current(null));
+    expect(before_clear()).toBe(false);
+    await act(async () => state!.set_current(opened));
+    const before_sign_out = state!.recipe_requests.begin();
     await act(async () => mocks.listener!(null));
+    expect(before_sign_out()).toBe(false);
     expect(state!.user).toBeNull();
     expect(state!.current).toBeNull();
     expect(state!.saved).toBe(SIGNED_OUT_SAVED);

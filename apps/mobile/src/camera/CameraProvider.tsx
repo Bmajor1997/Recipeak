@@ -22,7 +22,7 @@ const Context = createContext<CameraState | null>(null);
 export { photos_left_text } from "./photosLeft";
 
 export function CameraProvider({ children }: { children: ReactNode }) {
-  const { api, set_current, user } = useApp();
+  const { api, set_current, user, recipe_requests } = useApp();
   const [open, set_open] = useState(false);
   const [photosLeft, set_photos_left] = useState<number | null | undefined>(undefined);
 
@@ -44,6 +44,7 @@ export function CameraProvider({ children }: { children: ReactNode }) {
   // A different account starts with an unknown allowance until the server answers for it.
   const [allowance_owner, set_allowance_owner] = useState(uid);
   if (allowance_owner !== uid) {
+    recipe_requests.invalidate();
     set_allowance_owner(uid);
     set_photos_left(undefined);
   }
@@ -57,12 +58,10 @@ export function CameraProvider({ children }: { children: ReactNode }) {
       set_open(false);
       set_current({ status: "loading" });
       router.push("/recipe");
-      // The account this photo was sent for. If someone else is signed in by the time the answer comes, it is theirs to
-      // ignore: neither the count nor the recipe of the last account is shown to the next.
-      const owner = shown_for.current;
-      const still_theirs = () => shown_for.current === owner;
+      const still_theirs = recipe_requests.begin();
       try {
         const { dataUrl } = await prepare_photo(photo.uri, photo.width, photo.height);
+        if (!still_theirs()) return;
         const result = await api.identify(dataUrl);
         if (!still_theirs()) return;
         set_photos_left(result.premium ? null : result.free_photos_left);
@@ -105,10 +104,14 @@ export function CameraProvider({ children }: { children: ReactNode }) {
         }
       }
     },
-    [api, set_current],
+    [api, set_current, recipe_requests],
   );
 
-  const open_camera = useCallback(() => set_open(true), []);
+  const open_camera = useCallback(() => {
+    recipe_requests.invalidate();
+    set_open(true);
+  }, [recipe_requests]);
+  useEffect(() => () => recipe_requests.invalidate(), [recipe_requests]);
 
   const value = useMemo(() => ({ open_camera, photosLeft, refresh_allowance }), [open_camera, photosLeft, refresh_allowance]);
   return (

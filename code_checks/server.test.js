@@ -549,3 +549,10 @@ test("plant foods named after 'vegan' aren't read as dairy, and the app's copy o
     assert.equal(literal(app), literal(server), name);
   }
 });
+
+test("explicit wheat is detected even without bread or flour in the ingredient name", () => {
+  const found = (item) => with_detected_allergens({ allergens: [], ingredients: [{ item }] }).allergens;
+  assert.deepEqual(found("wheat berries"), ["wheat"]);
+  assert.deepEqual(found("vegan wheat germ"), ["wheat"]);
+  assert.deepEqual(found("wheat-free rice noodles"), []);
+});

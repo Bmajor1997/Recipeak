@@ -2,9 +2,9 @@
 // with a CREME-style cover photo from the shared library, the other matches to switch between, diet versions and Save.
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
-import { router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 import * as Sharing from "expo-sharing";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
   ActivityIndicator,
@@ -53,7 +53,8 @@ const heroArt = require("../../assets/hero.png");
 type Ready = Extract<CurrentRecipe, { status: "ready" }>;
 
 export default function RecipeScreen() {
-  const { current } = useApp();
+  const { current, recipe_requests } = useApp();
+  useFocusEffect(useCallback(() => () => recipe_requests.invalidate(), [recipe_requests]));
   const previous = current?.status === "ai-offer" && current.previous?.status === "ready" ? current.previous : null;
   const ready = current?.status === "ready" ? current : previous;
   return (
@@ -82,7 +83,7 @@ export default function RecipeScreen() {
  * recipe, checks it a second time, makes its photo, and keeps both, so the next person gets them straight away.
  */
 function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-offer" }> }) {
-  const { api, set_current } = useApp();
+  const { api, set_current, recipe_requests } = useApp();
   const { photosLeft, refresh_allowance } = useCamera();
   const { type } = useTheme();
   const styles = useThemedStyles(create_styles);
@@ -102,8 +103,11 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
     making.current = true;
     set_busy(true);
     set_problem(null);
+    const active = recipe_requests.begin();
     try {
       const made = await api.recipe(name, current.kind, undefined, { correction: Boolean(current.correction) });
+      if (!active()) return;
+      if (current.correction) refresh_allowance();
       set_current({
         status: "ready",
         kind: current.kind,
@@ -116,6 +120,7 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
         ai: true,
       });
     } catch (error) {
+      if (!active()) return;
       if (error instanceof ApiError && error.needsUpgrade) {
         router.push({ pathname: "/upgrade", params: { reason: error.upgradeReason } });
       } else {
@@ -124,7 +129,7 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
     } finally {
       making.current = false;
       set_busy(false);
-      if (current.correction) refresh_allowance();
+      if (active() && current.correction) refresh_allowance();
     }
   }
 
@@ -132,6 +137,9 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
     const dish = in_library[index];
     const recipe = dish && bundled_recipe(dish);
     if (!dish || !recipe || busy) return;
+    const active = recipe_requests.begin();
+    const localPhoto = await bundled_photo_uri(dish);
+    if (!active()) return;
     set_current({
       status: "ready",
       kind: current.kind,
@@ -139,7 +147,7 @@ function AiOffer({ current }: { current: Extract<CurrentRecipe, { status: "ai-of
       guesses: current.guesses,
       selected: index,
       image: NO_IMAGE,
-      localPhoto: await bundled_photo_uri(dish),
+      localPhoto,
       savedId: null,
       bundledId: dish.id,
     });
@@ -233,6 +241,7 @@ function Sheet({
   /** The one-time "you can share this" tip, shown under the share button after a first save. */
   share_tip?: React.ReactNode;
 }) {
+  const { recipe_requests } = useApp();
   const styles = useThemedStyles(create_styles);
   const insets = useSafeAreaInsets();
   // On Android the recipe fills the screen, so a solid band keeps scrolled text out from under the clock and icons.
@@ -249,7 +258,14 @@ function Sheet({
       {footer}
       {status_space > 0 && <View style={[styles.statusBand, { height: status_space }]} pointerEvents="none" />}
       <View style={[styles.topBar, { top: 18 + status_space }]} pointerEvents="box-none">
-        <RoundButton icon="chevron-down" label="Close recipe" onPress={() => router.back()} />
+        <RoundButton
+          icon="chevron-down"
+          label="Close recipe"
+          onPress={() => {
+            recipe_requests.invalidate();
+            router.back();
+          }}
+        />
         {on_share && <RoundButton icon="share-outline" label="Share recipe" onPress={on_share} />}
       </View>
       {share_tip && (
@@ -322,7 +338,7 @@ function Problem({ message, source }: { message: string; source: "photo" | "wall
 function RecipeView({ current }: { current: Ready }) {
   const { colors, type } = useTheme();
   const styles = useThemedStyles(create_styles);
-  const { set_current, api, saved, ratings } = useApp();
+  const { set_current, api, saved, ratings, recipe_requests } = useApp();
   const preferences = usePreferences();
   const saving = useRef(false);
   const { photosLeft } = useCamera();
@@ -399,17 +415,19 @@ function RecipeView({ current }: { current: Ready }) {
   useEffect(() => {
     if (current.savedId) return;
     let live = true;
+    const active = recipe_requests.capture();
     saved
       .list()
       .then((list) => {
         const match = list.find((s) => s.kind === kind && s.recipe.title === recipe.title);
-        if (live && match) set_current({ ...current, savedId: match.id, localPhoto: current.localPhoto ?? match.photo_uri ?? null });
+        if (live && active() && match)
+          set_current({ ...current, savedId: match.id, localPhoto: current.localPhoto ?? match.photo_uri ?? null });
       })
       .catch(() => {});
     return () => {
       live = false;
     };
-  }, [saved, current, kind, recipe.title, set_current]);
+  }, [saved, current, kind, recipe.title, set_current, recipe_requests]);
 
   const cover = useDishImage(api, kind, dishName, current.image, { lookUp: !current.localPhoto && current.image.status === "unavailable" });
   const coverUri = current.localPhoto ?? cover.uri;
@@ -440,11 +458,13 @@ function RecipeView({ current }: { current: Ready }) {
 
   async function load_version(index: number, nextDiet: Diet | null) {
     if (busy) return;
+    const active = recipe_requests.begin();
     const guess = guesses[index];
     const same = index === selected;
     set_problem(null);
     set_notice(null);
-    if (is_premium_diet(nextDiet) && !(await premium_or_problem())) return;
+    if (is_premium_diet(nextDiet) && !(await premium_or_problem(active))) return;
+    if (!active()) return;
     // The standard recipe: the one kept from before, the regular recipe on screen, or, when the dish opened in a diet
     // version on its own, the bundled dish's regular recipe. Never a diet version.
     const regular = current.bundledId ? bundled_version(current.bundledId, null)?.recipe : undefined;
@@ -495,6 +515,7 @@ function RecipeView({ current }: { current: Ready }) {
       set_diet(null);
       set_standard(null);
       const photo = await bundled_photo_uri(other);
+      if (!active()) return;
       set_current({
         ...current,
         recipe: other_recipe,
@@ -510,6 +531,7 @@ function RecipeView({ current }: { current: Ready }) {
     set_busy(true);
     try {
       const next = await api.recipe(guess?.name ?? recipe.title, kind, nextDiet ?? undefined);
+      if (!active()) return;
       // Keep the original and its undo action until the replacement has actually arrived.
       if (same && nextDiet) keep_standard();
       else set_standard(null);
@@ -528,6 +550,7 @@ function RecipeView({ current }: { current: Ready }) {
         ...(index !== selected ? { bundledId: undefined } : {}),
       });
     } catch (error) {
+      if (!active()) return;
       if (error instanceof ApiError && error.needsUpgrade) router.push({ pathname: "/upgrade", params: { reason: error.upgradeReason } });
       else set_problem(error instanceof ApiError ? error.message : "Couldn't load that version. Please try again.");
     } finally {
@@ -536,11 +559,14 @@ function RecipeView({ current }: { current: Ready }) {
   }
 
   /** True for subscribers. Opens the Premium screen for free accounts, or explains when the plan can't be checked. */
-  async function premium_or_problem(): Promise<boolean> {
+  async function premium_or_problem(active: () => boolean): Promise<boolean> {
     try {
-      if (await is_subscriber()) return true;
+      const premium = await is_subscriber();
+      if (!active()) return false;
+      if (premium) return true;
       router.push({ pathname: "/upgrade", params: { reason: "versions" } });
     } catch {
+      if (!active()) return false;
       set_problem("Couldn't check your plan. Please try again.");
     }
     return false;
@@ -556,16 +582,20 @@ function RecipeView({ current }: { current: Ready }) {
       set_current({ ...current, recipe: original, savedId: null, ai: original_ai });
       return;
     }
-    if (busy || !(await premium_or_problem())) return;
+    if (busy) return;
+    const active = recipe_requests.begin();
+    if (!(await premium_or_problem(active)) || !active()) return;
     set_busy(true);
     try {
       const from = original ?? recipe;
       const made = await api.recipe_addition(dishName, next, from);
+      if (!active()) return;
       set_original(from);
       set_original_ai(current.ai);
       set_addition(next);
       set_current({ ...current, recipe: made, savedId: null, ai: true });
     } catch (error) {
+      if (!active()) return;
       if (error instanceof ApiError && error.needsUpgrade) router.push({ pathname: "/upgrade", params: { reason: error.upgradeReason } });
       else set_problem(error instanceof ApiError ? error.message : "Couldn't make that version. Please try again.");
     } finally {
@@ -578,15 +608,18 @@ function RecipeView({ current }: { current: Ready }) {
     // One save or removal at a time: a double tap must not save twice or leave an extra photo behind.
     if (preferences.busy || saving.current) return;
     saving.current = true;
+    const active = recipe_requests.begin();
     set_save_problem(null);
     try {
       if (current.savedId) {
         await saved.remove(current.savedId);
+        if (!active()) return;
         set_current({ ...current, savedId: null });
       } else {
         // Saved with its cover photo, downloaded to the phone so Saved works offline. Free accounts keep up to 3
         // recipes, however they found them (a photo or the Home wall); photosLeft is null only for subscribers.
         const limit = (await is_subscriber()) ? undefined : FREE_SAVED_RECIPES;
+        if (!active()) return;
         const entry = await saved.save(kind, recipe, preferences.ready && preferences.values.saveCoverPhotos ? coverUri : null, {
           limit,
           ai: current.ai,
@@ -594,11 +627,13 @@ function RecipeView({ current }: { current: Ready }) {
           bundled_id: current.bundledId,
           image_url: current.image.status === "ready" ? current.image.url : cover.path,
         });
+        if (!active()) return;
         set_current({ ...current, savedId: entry.id });
         set_just_saved(true);
         after_save();
       }
     } catch (error) {
+      if (!active()) return;
       if (error instanceof SavedLimitError) router.push({ pathname: "/upgrade", params: { reason: "saved" } });
       else
         set_save_problem(
@@ -908,7 +943,7 @@ function RecipeView({ current }: { current: Ready }) {
  * stands in for that photo and uses a free photo; on a recipe, it's a follow-up to the photo that worked.
  */
 function ManualCorrection({ initialKind, correction = false }: { initialKind: Kind; correction?: boolean }) {
-  const { set_current, current } = useApp();
+  const { set_current, current, recipe_requests } = useApp();
   const { colors, type } = useTheme();
   const [expanded, set_expanded] = useState(false);
   const [name, set_name] = useState("");
@@ -920,11 +955,14 @@ function ManualCorrection({ initialKind, correction = false }: { initialKind: Ki
     if (!clean || busy) return;
     set_busy(true);
     set_error(null);
+    const active = recipe_requests.begin();
     try {
       // A dish Recipeak has opens its own recipe, with no AI request (and no free photo used).
       const dish = find_bundled_dish(kind, clean);
       const library = dish && bundled_recipe(dish);
       if (dish && library) {
+        const localPhoto = await bundled_photo_uri(dish);
+        if (!active()) return;
         set_current({
           status: "ready",
           kind,
@@ -932,7 +970,7 @@ function ManualCorrection({ initialKind, correction = false }: { initialKind: Ki
           guesses: [{ name: dish.name, confidence: "high", image: NO_IMAGE }],
           selected: 0,
           image: NO_IMAGE,
-          localPhoto: await bundled_photo_uri(dish),
+          localPhoto,
           savedId: null,
           bundledId: dish.id,
         });
@@ -950,6 +988,7 @@ function ManualCorrection({ initialKind, correction = false }: { initialKind: Ki
       });
       set_expanded(false);
     } catch {
+      if (!active()) return;
       set_error("Couldn't find that recipe. Please try again.");
     } finally {
       set_busy(false);

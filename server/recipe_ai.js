@@ -203,7 +203,7 @@ const ALLERGEN_WORDS = {
   shellfish: /\b(?:shrimp|prawns?|crab|lobster|crawfish|crayfish|scallops?|clams?|mussels?|oysters?|langoustines?)\b/,
   "tree nuts": /\b(?:almonds?|cashews?|walnuts?|pecans?|pistachios?|hazelnuts?|macadamias?|pine nuts?|brazil nuts?|orgeat|amaretto|frangelico|marzipan|praline|pesto|nutella)\b/,
   peanuts: /\b(?:peanuts?|peanut butter|satay)\b/,
-  wheat: /\b(?:flour|bread|breadcrumbs|panko|pasta|spaghetti|penne|linguine|fettuccine|macaroni|lasagna|noodles?|couscous|bulgur|farro|semolina|tortillas?|pitas?|naan|baguette|croutons?|soy sauce|seitan|udon|ramen|dumpling wrappers?|wonton wrappers?|pie crust|puff pastry|phyllo|crackers?|beer|ale|lager|stout|malt|barley)\b/,
+  wheat: /\b(?:wheat(?!-free\b)|flour|bread|breadcrumbs|panko|pasta|spaghetti|penne|linguine|fettuccine|macaroni|lasagna|noodles?|couscous|bulgur|farro|semolina|tortillas?|pitas?|naan|baguette|croutons?|soy sauce|seitan|udon|ramen|dumpling wrappers?|wonton wrappers?|pie crust|puff pastry|phyllo|crackers?|beer|ale|lager|stout|malt|barley)\b/,
   soy: /\b(?:soy|soya|soybeans?|soymilk|tofu|edamame|miso|tempeh|soy sauce|tamari|shoyu)\b/,
   sesame: /\b(?:sesame|tahini|furikake|za'?atar)\b/,
 };

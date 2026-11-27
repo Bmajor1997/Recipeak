@@ -19,6 +19,8 @@ export type PhotoStore = {
 const DEVICE_WIDE_NAME = "mealsandmixers.saved.v1";
 export const saved_storage_name = (uid: string) => `mealsandmixers.saved.v2.${encodeURIComponent(uid)}`;
 const MAX_SAVED = 500;
+// Account stores are recreated on sign-in. Pending writes must remain ordered across those instances.
+const queues = new WeakMap<KeyValueStorage, Map<string, Promise<unknown>>>();
 
 /** Thrown when a free account already has its free saved recipes and tries to save another. */
 export class SavedLimitError extends Error {
@@ -66,10 +68,22 @@ export function create_saved_recipes(
   const write = (list: SavedRecipe[]) => storage.setItem(storage_name, JSON.stringify(list));
   // Every change reads the list and writes it back, so changes run one at a time: a cover found in the background
   // can't write back a list from before a removal (bringing the recipe back) or a save (dropping it).
-  let queue: Promise<unknown> = Promise.resolve();
+  let account_queues = queues.get(storage);
+  if (!account_queues) {
+    account_queues = new Map();
+    queues.set(storage, account_queues);
+  }
+  const pending = account_queues;
   const one_at_a_time = <T>(change: () => Promise<T>): Promise<T> => {
-    const run = queue.then(change, change);
-    queue = run.catch(() => undefined);
+    const run = (pending.get(storage_name) ?? Promise.resolve()).then(change);
+    const settled = run.then(
+      () => undefined,
+      () => undefined,
+    );
+    pending.set(storage_name, settled);
+    void settled.then(() => {
+      if (pending.get(storage_name) === settled) pending.delete(storage_name);
+    });
     return run;
   };
   // A photo file is deleted only once no saved recipe refers to it, and only after the list without it is written.
@@ -78,7 +92,7 @@ export function create_saved_recipes(
   };
 
   return {
-    list: read,
+    list: () => one_at_a_time(read),
     /** `limit` is the free plan's cap (leave it out for subscribers). Re-saving a recipe already in Saved is always allowed. */
     save(
       kind: Kind,
@@ -138,7 +152,7 @@ export function create_saved_recipes(
       });
     },
     async find(id: string): Promise<SavedRecipe | undefined> {
-      return (await read()).find((s) => s.id === id);
+      return (await one_at_a_time(read)).find((s) => s.id === id);
     },
   };
 }
