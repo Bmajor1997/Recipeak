@@ -1,4 +1,4 @@
-// Recipeak's one start screen (the design approved 2026-11-21): its photos drifting behind the app icon and "Every dish
+// Relish's one start screen (the design approved 2026-11-21): its photos drifting behind the app icon and "Every dish
 // has a recipe.", with the choices for where the person is. The first launch offers the tour ("Get started") or
 // "I already have an account"; once nobody is signed in (after the tour, or after signing out) it offers the account
 // choices. Both are this same screen, so the app never shows a second welcome. The photos hold still with Reduce
@@ -25,7 +25,7 @@ export function StartScreen({ subtitle, children, footer }: { subtitle: string; 
         contentContainerStyle={[styles.content, { paddingTop: top, paddingBottom: insets.bottom + 16 }]}
         keyboardShouldPersistTaps="handled"
       >
-        <Image source={APP_ICON} style={styles.icon} accessibilityLabel="Recipeak" />
+        <Image source={APP_ICON} style={styles.icon} accessibilityLabel="Relish" />
         <Text style={styles.headline} accessibilityRole="header">
           Every dish has a <Text style={styles.headlineAccent}>recipe</Text>.
         </Text>
