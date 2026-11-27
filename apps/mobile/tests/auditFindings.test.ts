@@ -194,6 +194,11 @@ describe("AI recipes kept on the phone get the allergens their ingredients name"
       const checked = with_ingredient_allergens({ ...recipe("Plant"), ingredients: [{ amount: "1", unit: "cup", item }] }).allergens;
       expect(checked, item).not.toContain("milk");
     }
+    // "Vegan" never hides wheat (Codex review of 324facd).
+    for (const item of ["vegan whole wheat bread", "vegan all-purpose flour", "vegan wheat noodles"]) {
+      const checked = with_ingredient_allergens({ ...recipe("Bread"), ingredients: [{ amount: "1", unit: "cup", item }] }).allergens;
+      expect(checked, item).toContain("wheat");
+    }
     const real = with_ingredient_allergens({ ...recipe("Dairy"), ingredients: [{ amount: "1", unit: "cup", item: "greek yogurt" }] });
     expect(real.allergens).toContain("milk");
   });

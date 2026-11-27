@@ -526,16 +526,26 @@ test("plant foods named after 'vegan' aren't read as dairy, and the app's copy o
   assert.deepEqual(found("vegan butter and milk"), ["milk"], "'and' ends the plant-based name");
   assert.deepEqual(found("butter"), ["milk"]);
   for (const item of ["coconut yogurt", "oat yoghurt", "apple butter"]) assert.deepEqual(found(item), [], item);
+  // "Vegan" rules out dairy, eggs, fish and shellfish, never wheat (Codex review of 324facd).
+  for (const item of ["vegan whole wheat bread", "vegan all-purpose flour", "vegan wheat noodles", "vegan bread"])
+    assert.deepEqual(found(item), ["wheat"], item);
+  assert.deepEqual(found("vegan fish sauce"), [], "a vegan fish sauce has no fish");
   // apps/mobile/src/recipes/allergenRisk.ts reads saved AI recipes with the same words.
   const app = readFileSync(new URL("../apps/mobile/src/recipes/allergenRisk.ts", import.meta.url), "utf8");
   const server = readFileSync(new URL("../server/recipe_ai.js", import.meta.url), "utf8");
   const flat = (text) => text.replace(/\s+/g, " ").replace(/,\s*([}\]])/g, " $1").trim();
   const words = (source) => flat(source.match(/const ALLERGEN_WORDS(?::[^=]*)? = \{(.*?)\n\};/s)?.[1] ?? "");
-  const literal = (source, name) => flat(source.match(new RegExp(`const ${name}(?::[^=]*)? =\s*(.*?);\n`, "s"))?.[1] ?? "");
+  // Fixed patterns, one per constant (the security scan doesn't allow building a RegExp from a variable).
+  const CONSTANTS = {
+    NOT_AN_ALLERGEN: /const NOT_AN_ALLERGEN(?::[^=]*)? =\s*(.*?);\n/s,
+    NOT_THIS_ALLERGEN: /const NOT_THIS_ALLERGEN(?::[^=]*)? =\s*(.*?);\n/s,
+    CHECKED_ON_FULL_NAME: /const CHECKED_ON_FULL_NAME(?::[^=]*)? =\s*(.*?);\n/s,
+  };
   assert.ok(words(app), "the app has ALLERGEN_WORDS");
   assert.equal(words(app), words(server), "ALLERGEN_WORDS");
-  for (const name of ["NOT_AN_ALLERGEN", "NOT_THIS_ALLERGEN", "CHECKED_ON_FULL_NAME"]) {
-    assert.ok(literal(app, name), name);
-    assert.equal(literal(app, name), literal(server, name), name);
+  for (const [name, pattern] of Object.entries(CONSTANTS)) {
+    const literal = (source) => flat(source.match(pattern)?.[1] ?? "");
+    assert.ok(literal(app), name);
+    assert.equal(literal(app), literal(server), name);
   }
 });
