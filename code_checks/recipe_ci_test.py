@@ -67,6 +67,26 @@ class RecipeConsistencyTests(unittest.TestCase):
         return subprocess.run([sys.executable, str(self.root / "scripts/check_recipe_consistency.py")],
                               capture_output=True, text=True)
 
+    def test_vegan_butter_lettuce_is_not_dairy_but_real_butter_is(self):
+        pending = self.root / "data/recipes/pending"
+        pending.mkdir(exist_ok=True)
+        source = pending / "butter-lettuce-regression.txt"
+        text = """@ butter-lettuce-regression | Lettuce Salad | 1 | 5 | 0 | - | A small green salad.
+- 1 | | butter lettuce
+- 1 | tsp | olive oil
+# Wash and dry the lettuce, tear into a bowl and dress with oil.
+@@ vegetarian = same
+@@ vegan = same
+"""
+        source.write_text(text, encoding="utf-8")
+        command = [sys.executable, str(self.root / "scripts/build_recipes.py")]
+        good = subprocess.run(command, capture_output=True, text=True)
+        self.assertEqual(good.returncode, 0, good.stdout + good.stderr)
+        source.write_text(text.replace("- 1 | | butter lettuce", "- 1 | tbsp | butter"), encoding="utf-8")
+        bad = subprocess.run(command, capture_output=True, text=True)
+        self.assertNotEqual(bad.returncode, 0)
+        self.assertIn("still has butter", bad.stdout)
+
     def test_current_data_agrees(self):
         result = self.run_check()
         self.assertEqual(result.returncode, 0, result.stderr)
