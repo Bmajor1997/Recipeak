@@ -157,6 +157,7 @@
 # Fry the eggs sunny side up.
 # Mix the gochujang with 1 tbsp sesame oil and a splash of water.
 # Fill bowls with rice, arrange the vegetables and beef on top, add an egg and serve with the sauce and sesame seeds.
+T Sunny-side-up eggs have runny yolks. For anyone pregnant, older or with a weakened immune system, cook them until firm or use pasteurized eggs.
 
 @ beef-bourguignon | Beef Bourguignon | 6 | 30 | 180 | wheat, milk | French beef braised in red wine with bacon, mushrooms and pearl onions.
 - 3 | lb | beef chuck, in 2-inch cubes
@@ -754,6 +755,7 @@ T The egg is served softly set. For anyone pregnant, older or with a weakened im
 # Add the broth and soy sauce and bring to a boil.
 # Add the seafood and spoon in big pieces of tofu. Simmer 5 minutes.
 # Crack in the egg, add green onions and cook 1 minute. Serve bubbling with rice.
+T The egg cooks only briefly in the stew. For anyone pregnant, older or with a weakened immune system, simmer until the egg is firm or use a pasteurized egg.
 
 @ indonesian-beef-rendang | Indonesian Beef Rendang | 6 | 30 | 180 | - | Dry, deeply spiced beef curry slow-cooked in coconut milk until caramelized.
 - 2 1/2 | lb | beef chuck, cubed

@@ -356,6 +356,7 @@ V Top each bowl with a halved hard-boiled egg, the way many Malaysian stalls do.
 # Fry the eggs to your liking.
 # Spread each tortilla with beans, top with an egg and spoon over the sauce.
 # Finish with queso fresco, avocado and cilantro.
+T Eggs fried with runny yolks aren't fully cooked. For anyone pregnant, older or with a weakened immune system, fry them until firm or use pasteurized eggs.
 
 @ banh-mi | Pork Banh Mi | 4 | 30 | 15 | wheat, eggs, soy, fish | Vietnamese baguette with lemongrass pork, pickled vegetables, cilantro, chiles and mayo.
 - 1 | lb | pork tenderloin, thinly sliced

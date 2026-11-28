@@ -107,6 +107,11 @@ class RecipeQualityTests(unittest.TestCase):
     def test_lightly_cooked_eggs_in_a_meal(self):
         meal = make_recipe(ingredients=[{"item": "large eggs", "unit": ""}], steps=["Cook 1 minute until softly set."])
         self.assertTrue(any("pasteurized" in p for p in self.problems(meal)))
+        meat_first = make_recipe(ingredients=[{"item": "chicken thigh", "unit": "oz"}, {"item": "large eggs", "unit": ""}],
+                                 steps=["Cook the chicken 5 minutes, until 165°F.", "Pour the eggs over and cook until softly set."])
+        self.assertTrue(any("pasteurized" in p for p in self.problems(meat_first)))
+        sunny = make_recipe(ingredients=[{"item": "large eggs", "unit": ""}], steps=["Fry the eggs sunny side up."])
+        self.assertTrue(any("pasteurized" in p for p in self.problems(sunny)))
         set_eggs = make_recipe(ingredients=[{"item": "eggs", "unit": ""}], tips=["Don't assume runny yolks suit everyone."],
                                steps=["Cook until the eggs reach 160 F (71 C)."])
         self.assertEqual(self.problems(set_eggs), [])

@@ -18,7 +18,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW_EGG = r"\b(egg whites?|egg yolks?|yolks?|whole egg|eggs?)\b"
-LIGHTLY_COOKED = r"\b(raw egg|raw yolk|softly set|barely set|runny yolks?|yolks stay runny|center runny|poco hecha|lightly cooked|only by the heat)\b"
+LIGHTLY_COOKED = r"\b(raw egg|raw yolk|softly set|barely set|runny yolks?|yolks stay runny|center runny|poco hecha|lightly cooked|" \
+                 r"only by the heat|poach the eggs|not scrambled|sunny side|over easy|to your liking|drop an egg yolk|" \
+                 r"whisk in the yolk|blend the yolks|crack in the egg)\b"
 RAW_FISH = r"\b(sushi-grade|sashimi-grade|sashimi|ceviche|crudo|tartare|poke)\b"
 POULTRY = r"\b(chicken|turkey|duck|cornish hens?|hen|quail)\b"
 NOT_RAW = r"\b(cooked|broth|stock|bouillon|rotisserie|sliced turkey|deli|smoked|-style)\b"
@@ -69,6 +71,13 @@ def reaches(steps, lowest):
     return any(int(t) >= lowest for t in re.findall(r"\b(\d{3}) ?°? ?F\b", steps) if int(t) < 212)
 
 
+def eggs_reach_160(steps):
+    """True when a step at or after the first one that adds the eggs reaches 160°F. A temperature for meat cooked before
+    the eggs go in (oyakodon's chicken, say) says nothing about the eggs."""
+    egg_steps = [i for i, s in enumerate(steps) if re.search(r"\b(eggs?|yolks?|whites?)\b", s, re.I)]
+    return any(reaches(s, 160) for s in steps[egg_steps[0] if egg_steps else 0:])
+
+
 def safety_problems(name, kind, r):
     problems = []
     items = [i["item"] for i in r["ingredients"]]
@@ -76,7 +85,7 @@ def safety_problems(name, kind, r):
     every_text = " ".join(items + r["steps"] + [advice])
     has_egg = any(re.search(RAW_EGG, i, re.I) and not re.search(r"hard-boiled|boiled|eggplant|egg noodles|egg-free", i, re.I)
                   for i in items)
-    cooked_base = reaches(" ".join(r["steps"]), 160)  # eggnog and custards heat the eggs to 160°F
+    cooked_base = eggs_reach_160(r["steps"])  # eggnog, custards and set shakshuka heat the eggs to 160°F
     raw_in_drink = kind == "cocktail" and has_egg and not cooked_base
     lightly_cooked = has_egg and not cooked_base and re.search(LIGHTLY_COOKED, every_text, re.I)
     if (raw_in_drink or lightly_cooked) and not re.search(r"pasteuri[sz]ed", advice, re.I):
