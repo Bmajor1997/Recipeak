@@ -136,8 +136,16 @@ class RecipeQualityTests(unittest.TestCase):
         plain = make_recipe(cook_minutes=15, ingredients=[{"item": "ground turkey", "unit": "lb"}],
                             steps=["Heat oven to 425 F (220 C).", "Cook 6 minutes, until it reaches 165 F (74 C)."])
         self.assertEqual(self.problems(plain), [])
+        side_first = make_recipe(cook_minutes=55, ingredients=[{"item": "ground turkey", "unit": "lb"}],
+                                 steps=["Bake the sweet potatoes 45 to 55 minutes.", "Brown the turkey in a skillet."])
+        self.assertTrue(any("160°F" in p for p in self.problems(side_first)))
         cooked = make_recipe(ingredients=[{"item": "shredded cooked chicken", "unit": "cups"}], steps=["Warm 5 minutes."])
         self.assertEqual(self.problems(cooked), [])
+
+    def test_hours_and_minutes_are_one_duration(self):
+        self.assertEqual(quality.minutes("Roast 1 hour 10 minutes to 1 hour 20 minutes."), [70, 80])
+        meal = make_recipe(cook_minutes=60, steps=["Roast 1 hour 10 minutes to 1 hour 20 minutes, until 165°F."])
+        self.assertTrue(any("cook time" in p for p in self.problems(meal)))
 
     def test_step_longer_than_the_cook_time(self):
         meal = make_recipe(cook_minutes=75, steps=["Marinate overnight.", "Cover and bake at 350°F for 1 1/2 hours."])

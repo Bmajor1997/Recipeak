@@ -25,6 +25,8 @@ RAW_FISH = r"\b(sushi-grade|sashimi-grade|sashimi|ceviche|crudo|tartare|poke)\b"
 POULTRY = r"\b(chicken|turkey|duck|cornish hens?|hen|quail)\b"
 NOT_RAW = r"\b(cooked|broth|stock|bouillon|rotisserie|sliced turkey|deli|smoked|-style)\b"
 GROUND = r"\b(ground|minced)\s+(beef|pork|lamb|veal|goat|meat|chicken|turkey|chuck)\b|\bground (pork|beef|lamb) and (pork|beef|lamb)\b"
+POULTRY_STEP = r"\b(chicken|turkey|duck|hens?|quail|thighs?|breasts?|drumsticks?|wings?|legs?|meat|bird)\b"
+MEAT_STEP = r"\b(beef|pork|lamb|veal|goat|turkey|chicken|meat|meats|chuck|meatballs?|patties|filling|kofta|kibbeh)\b"
 LONG_COOK = r"\b(simmer|braise|bake|roast|stew|steam|slow cooker|cook on low|smoke)\w*"
 WAITING = r"\b(marinat|soak|chill|refrigerat|rest|stand|cool|overnight|rise|proof|freez|sit|steep|room temperature|heat the oven|" \
           r"preheat|heat a smoker|drain|thaw|brine|cure|set aside)"
@@ -43,6 +45,8 @@ def versions(recipes):
 def minutes(text):
     """Every duration in a sentence, in minutes, taking the top of a range ("15 to 20 minutes" -> 20)."""
     found = []
+    # "1 hour 10 minutes" is one duration of 70 minutes, not 60 and 10.
+    text = re.sub(r"\b(\d+) hours? (?:and )?(\d+) minutes?\b", lambda m: f"{int(m.group(1)) * 60 + int(m.group(2))} minutes", text)
     pattern = r"(\d+(?: \d/\d)?|\d/\d|one|two|three|four)(?:\s*(?:to|-|–)\s*(\d+(?: \d/\d)?))?\s*(hours?|hrs?|minutes?|mins?)\b"
     for m in re.finditer(pattern, text, re.I):
         raw = (m.group(2) or m.group(1)).lower()
@@ -62,8 +66,13 @@ def sentences(steps):
         yield from (part for part in re.split(r"(?<=[.;])\s+", step) if part)
 
 
-def long_cook(steps):
-    return any(re.search(LONG_COOK, s, re.I) and max(minutes(s) or [0]) >= 30 for s in sentences(steps))
+def long_cook(steps, meat):
+    """True when a step that comes at or after the first step naming the meat simmers, bakes or braises for 30 minutes or
+    more. A side dish that bakes for an hour before the meat goes in (stuffed sweet potatoes) doesn't count."""
+    first = next((i for i, step in enumerate(steps) if re.search(meat, step, re.I)), None)
+    if first is None:
+        return False
+    return any(re.search(LONG_COOK, s, re.I) and max(minutes(s) or [0]) >= 30 for s in sentences(steps[first:]))
 
 
 def reaches(steps, lowest):
@@ -99,10 +108,10 @@ def safety_problems(name, kind, r):
         problems.append(f"{name}: serves fish raw; say to buy fish frozen for raw eating, and who should avoid it")
     steps = " ".join(r["steps"])
     raw_poultry = any(re.search(POULTRY, i, re.I) and not re.search(NOT_RAW, i, re.I) for i in items)
-    if raw_poultry and not reaches(steps, 165) and not long_cook(r["steps"]):
+    if raw_poultry and not reaches(steps, 165) and not long_cook(r["steps"], POULTRY_STEP):
         problems.append(f"{name}: cooks raw poultry briefly; say it reaches 165°F")
     ground = any(re.search(GROUND, i, re.I) for i in items)
-    if ground and not reaches(steps, 160) and not long_cook(r["steps"]):
+    if ground and not reaches(steps, 160) and not long_cook(r["steps"], MEAT_STEP):
         problems.append(f"{name}: cooks ground meat briefly; say it reaches 160°F (165°F for poultry)")
     return problems
 
