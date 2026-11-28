@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { report_text } from "./recipeReport";
+import { report_text } from "../src/feedback/recipeReport";
 
 const input = {
   reason: "unsafe" as const,
@@ -22,6 +22,32 @@ describe("recipe safety report snapshot", () => {
     expect(result.description).toContain("2 cups vegetable broth");
     expect(result.description).toContain("1. Simmer for 10 minutes.");
     expect(result.description).toContain("Listed allergens: soy");
+  });
+
+  it("reports the serving count and the scaled amounts the person saw", () => {
+    const result = report_text({
+      ...input,
+      servings: 8,
+      recipe: {
+        title: "Test soup",
+        servings: 4,
+        ingredients: [
+          { amount: "1 1/2", unit: "cups", item: "vegetable broth" },
+          { amount: "", unit: "", item: "salt, to taste" },
+        ],
+        steps: ["Simmer for 10 minutes."],
+        allergens: [],
+      },
+    });
+    expect(result.description).toContain("Servings shown: 8 (recipe written for 4; amounts below are scaled)");
+    expect(result.description).toContain("- 3 cups vegetable broth");
+    expect(result.description).toContain("- salt, to taste");
+    const unscaled = report_text({
+      ...input,
+      servings: 4,
+      recipe: { title: "Soup", servings: 4, ingredients: [], steps: [], allergens: [] },
+    });
+    expect(unscaled.description).toContain("Servings shown: 4\n");
   });
 
   it("keeps the feedback description within the server limit", () => {

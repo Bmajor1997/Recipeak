@@ -14,7 +14,19 @@ import { Button, Notice, useTheme } from "../ui/theme";
 import { useKeyboardHeight } from "../ui/useKeyboardHeight";
 import type { Kind, Recipe } from "./types";
 
-export function ReportRecipe({ kind, dish, diet, recipe }: { kind: Kind; dish: string; diet?: string | null; recipe?: Recipe }) {
+export function ReportRecipe({
+  kind,
+  dish,
+  diet,
+  recipe,
+  servings,
+}: {
+  kind: Kind;
+  dish: string;
+  diet?: string | null;
+  recipe?: Recipe;
+  servings?: number;
+}) {
   const { colors, type } = useTheme();
   const { api } = useApp();
   const [open, set_open] = useState(false);
@@ -73,7 +85,7 @@ export function ReportRecipe({ kind, dish, diet, recipe }: { kind: Kind; dish: s
     set_busy(true);
     set_problem(null);
     try {
-      const { title, description } = report_text({ reason, dish, kind, diet, details, recipe });
+      const { title, description } = report_text({ reason, dish, kind, diet, details, recipe, servings });
       await api.send_feedback({ kind: "bug", title, description, request_id: request_id.current, report: reason });
       set_sent(true);
     } catch (failure) {
