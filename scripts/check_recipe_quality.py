@@ -66,7 +66,7 @@ def long_cook(steps):
 
 def reaches(steps, lowest):
     """True when a step names a temperature of at least `lowest` °F."""
-    return any(int(t) >= lowest for t in re.findall(r"(\d{3})°F", steps) if int(t) < 212)
+    return any(int(t) >= lowest for t in re.findall(r"\b(\d{3}) ?°? ?F\b", steps) if int(t) < 212)
 
 
 def safety_problems(name, kind, r):
@@ -78,7 +78,8 @@ def safety_problems(name, kind, r):
                   for i in items)
     cooked_base = reaches(" ".join(r["steps"]), 160)  # eggnog and custards heat the eggs to 160°F
     raw_in_drink = kind == "cocktail" and has_egg and not cooked_base
-    if (raw_in_drink or (has_egg and re.search(LIGHTLY_COOKED, every_text, re.I))) and not re.search(r"pasteuri[sz]ed", advice, re.I):
+    lightly_cooked = has_egg and not cooked_base and re.search(LIGHTLY_COOKED, every_text, re.I)
+    if (raw_in_drink or lightly_cooked) and not re.search(r"pasteuri[sz]ed", advice, re.I):
         problems.append(f"{name}: serves eggs raw or lightly cooked; add a tip or note that pasteurized eggs are an option")
     drink = r.get("cocktail") or {}
     na = drink.get("non_alcoholic_version") or ""

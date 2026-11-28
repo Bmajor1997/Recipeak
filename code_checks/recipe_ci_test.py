@@ -107,6 +107,9 @@ class RecipeQualityTests(unittest.TestCase):
     def test_lightly_cooked_eggs_in_a_meal(self):
         meal = make_recipe(ingredients=[{"item": "large eggs", "unit": ""}], steps=["Cook 1 minute until softly set."])
         self.assertTrue(any("pasteurized" in p for p in self.problems(meal)))
+        set_eggs = make_recipe(ingredients=[{"item": "eggs", "unit": ""}], tips=["Don't assume runny yolks suit everyone."],
+                               steps=["Cook until the eggs reach 160 F (71 C)."])
+        self.assertEqual(self.problems(set_eggs), [])
 
     def test_raw_fish_needs_freezing_advice(self):
         meal = make_recipe(title="Ceviche", ingredients=[{"item": "white fish", "unit": "lb"}], steps=["Cure in lime."])
@@ -125,6 +128,9 @@ class RecipeQualityTests(unittest.TestCase):
         self.assertEqual(self.problems(braise), [])
         burger = make_recipe(cook_minutes=10, ingredients=[{"item": "ground chuck", "unit": "lb"}], steps=["Cook 4 minutes a side."])
         self.assertTrue(any("160°F" in p for p in self.problems(burger)))
+        plain = make_recipe(cook_minutes=15, ingredients=[{"item": "ground turkey", "unit": "lb"}],
+                            steps=["Heat oven to 425 F (220 C).", "Cook 6 minutes, until it reaches 165 F (74 C)."])
+        self.assertEqual(self.problems(plain), [])
         cooked = make_recipe(ingredients=[{"item": "shredded cooked chicken", "unit": "cups"}], steps=["Warm 5 minutes."])
         self.assertEqual(self.problems(cooked), [])
 
