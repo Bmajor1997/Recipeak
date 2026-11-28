@@ -45,5 +45,7 @@ export function useDishImage(api: Api, kind: Kind, name: string, initial: DishIm
     };
   }, [api, kind, name, image.status, lookUp]);
 
-  return { uri: api.image_uri(image.status === "ready" ? image.url : null), pending: image.status === "pending" };
+  // `path` is the library photo's own address (for Recently viewed and Saved), once the photo is ready.
+  const path = image.status === "ready" ? image.url : null;
+  return { uri: api.image_uri(path), path, pending: image.status === "pending" };
 }

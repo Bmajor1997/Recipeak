@@ -1,51 +1,31 @@
-// The first-launch tour (design "Recipeak onboarding mockup", approved 2026-11-17): welcome, try a sample dish,
+// The first-launch tour (design "Relish onboarding mockup", approved 2026-11-17): welcome, try a sample dish,
 // cocktails or meals, diet, camera, and what's free. Every step after the welcome can be skipped. The root layout
 // shows it in place of the app until it is finished, so nothing else (and no navigation) can open before it.
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useCameraPermissions } from "expo-camera";
-import { LinearGradient } from "expo-linear-gradient";
 import { type ReactNode, useState } from "react";
-import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { DietPicker, InterestPicker } from "./Choices";
 import { toggle_diet, type Entry } from "./onboarding";
 import { useOnboarding } from "./OnboardingProvider";
 import { Paywall } from "../paywall/Paywall";
-import { FREE_PHOTOS, FREE_SAVED_RECIPES } from "../paywall/plans";
+import { FREE_PHOTOS, FREE_SAVED_RECIPES, start_offer } from "../paywall/plans";
 import { bundled_recipe } from "../recipes/bundled";
 import type { CollectionDish } from "../recipes/collectionPhotos";
 import { format_ingredient } from "../recipes/format";
 import { find_collection_dish } from "../recipes/shelves";
+import { PillButton } from "../ui/PillButton";
+import { StartScreen } from "../ui/StartScreen";
 import { Button, fonts, useTheme, useThemedStyles, type Palette } from "../ui/theme";
 
-const icon = require("../../assets/icon.png");
 const STEPS = 5;
-const WALL = [
-  "margarita",
-  "pho",
-  "negroni",
-  "pasta-alla-norma",
-  "espresso-martini",
-  "nasi-lemak",
-  "mai-tai",
-  "tortilla-espanola",
-  "mojito",
-  "ramen",
-  "aperol-spritz",
-  "paella",
-];
 const SAMPLES: { id: string; label: string }[] = [
   { id: "margarita", label: "Cocktail" },
   { id: "pho", label: "Meal" },
   { id: "pasta-alla-norma", label: "Meal" },
 ];
 const dish = (id: string) => find_collection_dish(id);
-
-/** "#0F0F10" at 35% → "rgba(15, 15, 16, 0.35)", for the fade over the welcome photos in either theme. */
-function with_alpha(hex: string, alpha: number): string {
-  const n = parseInt(hex.slice(1, 7), 16);
-  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`;
-}
 
 export function OnboardingTour() {
   const [step, set_step] = useState(0);
@@ -81,41 +61,22 @@ export function OnboardingTour() {
   );
 }
 
+/**
+ * The first screen of the app: Relish's one start screen (StartScreen, the drifting photos), with Get started (the
+ * tour) or I already have an account (straight to the same screen's Log in choices).
+ */
 function Welcome({ onStart, onHaveAccount }: { onStart: () => void; onHaveAccount: () => void }) {
-  const { colors, type } = useTheme();
   const styles = useThemedStyles(create_styles);
-  const insets = useSafeAreaInsets();
-  const { width } = useWindowDimensions();
-  const tile = Math.round((width + 60 - 16) / 3);
-  const photos = WALL.flatMap((id) => dish(id) ?? []);
   return (
-    <View style={styles.screen}>
-      <View style={[styles.wall, { width: width + 60 }]} accessible={false} importantForAccessibility="no-hide-descendants">
-        {photos.map((d) => (
-          <Image key={d.id} source={d.source} style={{ width: tile, height: tile * 1.25, borderRadius: 14 }} resizeMode="cover" />
-        ))}
-      </View>
-      <LinearGradient
-        colors={[with_alpha(colors.background, 0.35), with_alpha(colors.background, 0.75), colors.background]}
-        locations={[0, 0.4, 0.7]}
-        style={StyleSheet.absoluteFill}
-      />
-      <View style={[styles.welcome, { paddingBottom: insets.bottom + 32 }]}>
-        <Image source={icon} style={styles.logo} accessibilityLabel="Recipeak logo" />
-        <Text style={styles.brand} accessibilityRole="header">
-          Recipeak
-        </Text>
-        <Text style={[type.body, { fontSize: 20, lineHeight: 28, textAlign: "center" }]}>
-          Snap any meal or cocktail.{"\n"}Get the recipe.
-        </Text>
-        <View style={{ alignSelf: "stretch", marginTop: 4 }}>
-          <Button label="Get started" onPress={onStart} />
-        </View>
-        <Pressable accessibilityRole="button" onPress={onHaveAccount} style={styles.link}>
-          <Text style={styles.linkText}>I already have an account</Text>
-        </Pressable>
-      </View>
-    </View>
+    <StartScreen
+      subtitle="Discover meals, explore cocktails, and turn your cravings into recipes."
+      footer={<Text style={styles.reassure}>{start_offer(false)}</Text>}
+    >
+      <PillButton label="Get started" variant="accent" hint="A quick tour, then create your account" onPress={onStart} />
+      <Pressable accessibilityRole="button" onPress={onHaveAccount} style={styles.link}>
+        <Text style={styles.linkText}>I already have an account</Text>
+      </Pressable>
+    </StartScreen>
   );
 }
 
@@ -291,7 +252,7 @@ function CameraStep({ onDone }: { onDone: () => void }) {
           Point, snap, cook
         </Text>
         <Text style={[type.muted, { fontSize: 17, lineHeight: 24, textAlign: "center", marginTop: 10 }]}>
-          Recipeak needs your camera to recognize the dish in front of you.
+          Relish needs your camera to recognize the dish in front of you.
         </Text>
         <View style={{ gap: 14, marginTop: 32, alignSelf: "stretch", paddingHorizontal: 4 }}>
           <Point bold="Only when you tap the camera." rest="We never record in the background." />
@@ -385,9 +346,7 @@ const create_styles = (colors: Palette) =>
       gap: 8,
       transform: [{ rotate: "-6deg" }],
     },
-    welcome: { flex: 1, justifyContent: "flex-end", alignItems: "center", gap: 16, paddingHorizontal: 28 },
-    logo: { width: 88, height: 88, borderRadius: 22 },
-    brand: { color: colors.text, fontFamily: fonts.display, fontSize: 44, lineHeight: 50 },
+    reassure: { color: colors.muted, fontSize: 13, textAlign: "center" },
     link: { minHeight: 48, justifyContent: "center", alignItems: "center", alignSelf: "center", paddingHorizontal: 12 },
     linkText: { color: colors.accentInk, fontSize: 16, fontWeight: "600" },
     top: { flexDirection: "row", alignItems: "center", gap: 16, paddingHorizontal: 24 },

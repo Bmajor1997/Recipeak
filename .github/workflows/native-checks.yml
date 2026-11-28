@@ -76,7 +76,7 @@ jobs:
           EXPO_NO_TELEMETRY: '1'
       - run: npx pod-install ios
       - name: Compile the full simulator app
-        run: xcodebuild -workspace ios/Recipeak.xcworkspace -scheme Recipeak -configuration Release -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' -derivedDataPath ios-build CODE_SIGNING_ALLOWED=NO ARCHS=arm64 ONLY_ACTIVE_ARCH=YES
+        run: xcodebuild -workspace ios/Relish.xcworkspace -scheme Relish -configuration Release -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' -derivedDataPath ios-build CODE_SIGNING_ALLOWED=NO ARCHS=arm64 ONLY_ACTIVE_ARCH=YES
         env:
           NODE_ENV: production
           EXPO_NO_TELEMETRY: '1'

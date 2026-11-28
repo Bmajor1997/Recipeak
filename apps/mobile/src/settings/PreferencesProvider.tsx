@@ -1,7 +1,13 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useApp } from "../AppContext";
-import { create_preferences, DEFAULT_PREFERENCES, type Preferences } from "./preferences";
+import { create_device_look, create_preferences, DEFAULT_PREFERENCES, type Look, type Preferences } from "./preferences";
+
+const device_look = create_device_look(AsyncStorage);
+const look_of = (p: Preferences): Look => ({ appearance: p.appearance, accent: p.accent });
+
+/** The defaults before anything has loaded; replaced by the device's last look, then by the account's own. */
+const DEFAULTS_SHOWN: Preferences = { ...DEFAULT_PREFERENCES };
 
 type State = {
   values: Preferences;
@@ -16,7 +22,7 @@ const Context = createContext<State | null>(null);
 
 function AccountPreferences({ uid, children }: { uid: string | null; children: ReactNode }) {
   const store = useMemo(() => (uid ? create_preferences(AsyncStorage, uid) : null), [uid]);
-  const [values, set_values] = useState<Preferences>({ ...DEFAULT_PREFERENCES });
+  const [values, set_values] = useState<Preferences>(DEFAULTS_SHOWN);
   const [ready, set_ready] = useState(!store);
   const [busy, set_busy] = useState(false);
   const [error, set_error] = useState<string | null>(null);
@@ -38,6 +44,7 @@ function AccountPreferences({ uid, children }: { uid: string | null; children: R
         if (live) {
           set_values(next);
           set_ready(true);
+          void device_look.save(look_of(next)).catch(() => {});
         }
       },
       () => {
@@ -48,6 +55,18 @@ function AccountPreferences({ uid, children }: { uid: string | null; children: R
       live = false;
     };
   }, [store, attempt]);
+  // The look the last account chose: used while signed out (the start and sign-in screens) and while this account's
+  // own preferences load, so the app doesn't switch between light and dark on the way in or out. Read after the
+  // account's own preferences are asked for, which always win.
+  useEffect(() => {
+    let live = true;
+    void device_look.load().then((look) => {
+      if (live && look) set_values((current) => (current === DEFAULTS_SHOWN ? { ...current, ...look } : current));
+    });
+    return () => {
+      live = false;
+    };
+  }, []);
   const reload = useCallback(() => {
     set_ready(false);
     set_error(null);
@@ -67,6 +86,7 @@ function AccountPreferences({ uid, children }: { uid: string | null; children: R
           set_values(next);
           set_notice("Saved on this device.");
         }
+        void device_look.save(look_of(next)).catch(() => {});
       } catch {
         if (alive.current) set_error("Couldn't save that preference. Your previous choice is unchanged. Please try again.");
       } finally {

@@ -14,7 +14,7 @@ import { NO_IMAGE, type Kind } from "./types";
  * anything else is fetched from the server. It never uses a free photo.
  */
 export function useOpenWallDish() {
-  const { api, set_current, recent } = useApp();
+  const { api, set_current } = useApp();
   const diets = useOnboarding().values.diets;
   // null means a subscriber (unlimited photos). Vegetarian and vegan versions are Premium, so only subscribers
   // open in their diet's version on their own; everyone else sees the standard recipe and its "Make it…" options.
@@ -25,7 +25,6 @@ export function useOpenWallDish() {
       const bundled = find_bundled_dish(dish.kind, dish.name);
       set_current({ status: "loading", photo: bundled?.source });
       router.push("/recipe");
-      if (bundled) void recent?.add(bundled.id).catch(() => {});
       const regular = bundled && bundled_recipe(bundled);
       // A subscriber who eats vegetarian or vegan sees that version straight away: it is built in, so it costs nothing.
       // When the dish already fits, the regular recipe opens as it is.
@@ -72,6 +71,6 @@ export function useOpenWallDish() {
         });
       }
     },
-    [api, set_current, recent, diets, subscriber],
+    [api, set_current, diets, subscriber],
   );
 }

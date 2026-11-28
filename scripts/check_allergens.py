@@ -10,7 +10,7 @@ RULES = {
     "milk": r"\b(butter|milk|cream(?! of coconut)|cheese|cheddar|mozzarella|parmesan|pecorino|ricotta|feta|paneer|yogurt|ghee|crema|queso|gruy|provolone|swiss|kibbeh|irish cream|sour cream|buttermilk|half-and-half|mascarpone)\b",
     "eggs": r"\b(eggs?|egg yolks?|yolks?|mayonnaise|mayo|egg noodles|eggnog|brioche|challah)\b",
     "wheat": r"\b(flour|bread|breadcrumbs|panko|pasta|spaghetti|fettuccine|linguine|macaroni|ziti|lasagna|noodles|tortillas?\b(?!.*corn)|pita|pide|baguette|rolls?|buns?|croutons|crackers|couscous|bulgur|soy sauce|beer|stout|lager|wrappers|pastry|pie crusts?|waffle|naan|roti|paratha|pav|dough|gingersnap|muffins|saltine|udon|ramen|vermicelli(?!.*rice))\b",
-    "soy": r"\b(soy|tofu|edamame|miso|kecap|tamari|hoisin|maggi)\b",
+    "soy": r"\b(soy|soya|soybeans?|soymilk|tofu|edamame|miso|kecap|tamari|tempeh|shoyu|hoisin|maggi)\b",
     "fish": r"\b(fish|anchov|cod|salmon|haddock|tuna|bonito|dashi|worcestershire|eel|unagi|saltfish)\b",
     "shellfish": r"\b(shrimp|prawn|crab|clam|mussel|lobster|scallop|oyster sauce|squid|octopus|crayfish|bagoong|shrimp paste|clamato)\b",
     "peanuts": r"\b(peanut)",

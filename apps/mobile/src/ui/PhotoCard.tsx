@@ -1,6 +1,7 @@
 // A rounded photo card with the title written over the picture, in the style of CREME's cocktail cards.
 // Without a photo, it shows the app's drink-and-plate art on a warm colour instead.
 import { LinearGradient } from "expo-linear-gradient";
+import { useState } from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { format_minutes } from "../recipes/format";
 import type { Kind } from "../recipes/types";
@@ -15,6 +16,7 @@ export function PhotoCard({
   minutes,
   photoUri,
   photoSource,
+  fallbackUri = null,
   width,
   height,
   onPress,
@@ -24,13 +26,18 @@ export function PhotoCard({
   minutes: number;
   photoUri: string | null;
   /** A photo bundled with the app, used instead of photoUri. */
-  photoSource?: number;
+  photoSource?: number | null;
+  /** Tried when photoUri can't be shown (a kept copy that's gone), before the app's art. */
+  fallbackUri?: string | null;
   width: number;
   height: number;
   onPress: () => void;
 }) {
   // Said by screen readers only: the photo already shows whether it is a meal or a drink (Ben, 2026-11-20).
   const label = kind === "cocktail" ? "Drink" : "Meal";
+  // Addresses that failed to load, so a missing photo falls back instead of leaving an empty card.
+  const [failed, set_failed] = useState<string[]>([]);
+  const uri = [photoUri, fallbackUri].find((u): u is string => !!u && !failed.includes(u)) ?? null;
   return (
     <Pressable
       accessibilityRole="button"
@@ -44,8 +51,8 @@ export function PhotoCard({
     >
       {photoSource ? (
         <Image source={photoSource} style={[StyleSheet.absoluteFill, { width, height }]} resizeMode="cover" />
-      ) : photoUri ? (
-        <Image source={{ uri: photoUri }} style={StyleSheet.absoluteFill} resizeMode="cover" />
+      ) : uri ? (
+        <Image source={{ uri }} style={StyleSheet.absoluteFill} resizeMode="cover" onError={() => set_failed((list) => [...list, uri])} />
       ) : (
         <View style={styles.fallback}>
           <Image source={heroArt} style={{ width: width * 0.8, height: width * 0.64 }} resizeMode="contain" />

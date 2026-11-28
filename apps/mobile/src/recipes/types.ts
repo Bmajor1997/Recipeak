@@ -33,7 +33,7 @@ export const NO_IMAGE: DishImage = { status: "unavailable", url: null };
 export type Guess = { name: string; confidence: "high" | "medium" | "low"; image: DishImage };
 
 export type Identification =
-  | { kind: "not_food"; guesses: []; free_photos_left: number | null; premium: boolean }
+  | { kind: "not_food"; guesses: []; free_photos_left: number | null; premium: boolean; reason?: "unusable" }
   | { kind: Kind; guesses: Guess[]; free_photos_left: number | null; premium: boolean };
 
 export type Allowance = { premium: boolean; free_photos_left: number | null; free_photos_total: number };
@@ -50,4 +50,8 @@ export type SavedRecipe = {
   photo_uri: string | null;
   /** Made with AI, so reopening it still shows the reminder to check ingredients and allergens. */
   ai?: boolean;
+  /** The bundled collection dish it came from: its photo ships with the app, so it never needs a copy. */
+  bundled_id?: string;
+  /** The shared library photo's path on the server (/images/….jpg), to recover the cover if the copy is missing. */
+  image_url?: string;
 };
