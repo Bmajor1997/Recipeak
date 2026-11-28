@@ -41,7 +41,7 @@ describe("photo of a dish Recipeak may not have", () => {
     expect(offer).toMatch(/Make AI recipe and photo/);
     expect(offer).toMatch(/Not now/);
     expect(offer).toMatch(/allergen/);
-    expect(offer).toMatch(/async function make\(\)[\s\S]*api\.recipe\(name, current\.kind\)/);
+    expect(offer).toMatch(/async function make\(\)[\s\S]*api\.recipe\(name, current\.kind, undefined, \{ correction/);
     expect(screen).toMatch(/Made with AI\. Check every ingredient and allergen/);
   });
 
@@ -49,8 +49,8 @@ describe("photo of a dish Recipeak may not have", () => {
     const screen = source("../src/app/recipe.tsx");
     const offer = screen.slice(screen.indexOf("function AiOffer"), screen.indexOf("function Sheet("));
     expect(offer).toMatch(/Open \$\{dish\.name\}/);
-    expect(offer).toMatch(/Which one should Recipeak make\?/);
-    expect(offer).toMatch(/<ManualCorrection initialKind=\{current\.kind\} \/>/);
+    expect(offer).toMatch(/Which one should Relish make\?/);
+    expect(offer).toMatch(/<ManualCorrection initialKind=\{current\.kind\}[^>]*\/>/);
   });
 
   it("waits long enough for a new recipe to be written and checked", () => {
@@ -76,7 +76,8 @@ describe("photo of a dish Recipeak may not have", () => {
     ]);
     expect(ai.ai).toBe(true);
     expect(plain).not.toHaveProperty("ai");
-    for (const tab of ["../src/app/(tabs)/saved.tsx", "../src/app/(tabs)/index.tsx"]) expect(source(tab)).toMatch(/ai: item\.ai/);
+    for (const tab of ["../src/app/(tabs)/saved.tsx", "../src/app/(tabs)/index.tsx"]) expect(source(tab)).toMatch(/<SavedCard /);
+    expect(source("../src/saved/savedCover.ts")).toMatch(/ai: item\.ai/);
     expect(source("../src/app/recipe.tsx")).toMatch(/limit,\s+ai: current\.ai,/);
   });
 });

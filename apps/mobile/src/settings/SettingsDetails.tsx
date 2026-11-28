@@ -90,7 +90,7 @@ function Feedback() {
   const { type } = useTheme();
   return (
     <>
-      <Text style={type.muted}>Tell us what would make Recipeak better, or what went wrong. Only the Recipeak team sees it.</Text>
+      <Text style={type.muted}>Tell us what would make Relish better, or what went wrong. Only the Relish team sees it.</Text>
       <Group title="SEND US FEEDBACK">
         {FEEDBACK_KINDS.map((kind) => (
           <Row
@@ -110,6 +110,7 @@ function Account() {
   const { type } = useTheme();
   const styles = useThemedStyles(create_styles);
   const { user, api, set_current } = useApp();
+  const onboarding = useOnboarding();
   const [confirm, set_confirm] = useState(false);
   const [deleting, set_deleting] = useState(false);
   const [password, set_password] = useState("");
@@ -147,8 +148,11 @@ function Account() {
         await firebase.reset_password(user.email);
         set_notice("Password reset requested. Check your email for the next steps.");
       } else {
-        await firebase.sign_out();
+        // The recipe on screen is closed first, so nothing of this account shows while the start screen opens.
         set_current(null);
+        // Someone who signed out has an account, so the start screen offers Log in first.
+        onboarding.update({ entry: "sign-in" });
+        await firebase.sign_out();
         set_confirm(false);
       }
     } catch {
@@ -407,7 +411,7 @@ export const APPEARANCE_LABELS: Record<Appearance, { label: string; detail: stri
 };
 
 export const ACCENT_LABELS: Record<AccentColor, { label: string; detail: string }> = {
-  coral: { label: "Coral", detail: "Recipeak’s own color" },
+  coral: { label: "Coral", detail: "Relish’s own color" },
   blue: { label: "Blue", detail: "Blue buttons and highlights" },
 };
 

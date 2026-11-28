@@ -15,6 +15,25 @@ test("review gate rejects stale, missing and spoofed reviews and unresolved thre
   assert.equal(policy.evaluate_review({ ...with_findings, reviews: [{ user: bot, commit_id: "old", state: "COMMENTED" }] }).ready, false);
 });
 
+test("a no-findings receipt for the exact head counts after earlier findings, and nothing else does", () => {
+  const head = "dad04b4b13ae041cbf8a6abdf17bcabb57cf0105";
+  const receipt = (sha, text = "Didn't find any major issues. Keep it up!", user = bot) =>
+    ({ user, body: `<!-- codex-review-receipt:v1 -->\n\nCodex Review: ${text}\n\n**Reviewed commit:** \`${sha}\`` });
+  const state = (extra = {}) => ({ user: bot, updated_at: "2026-11-24T19:34:00Z", body: `<!-- codex-pull-request-review-summary -->\n<!-- codex-review-state:v1 ${JSON.stringify({ code_review: { commit_sha: head, status: "completed", has_any_findings: true, has_unresolved_findings: false, ...extra } })} -->` });
+  const data = { head, comments: [state(), receipt("dad04b4b13")], reviews: [], threads: [{ isResolved: true }] };
+  assert.equal(policy.evaluate_review(data).ready, true);
+  // Another commit, findings, a spoofed author, unresolved findings or an open thread: not ready.
+  for (const comments of [
+    [state(), receipt("0123456789")],
+    [state(), receipt("dad04b4b13", "Here are some automated review suggestions")],
+    [state(), receipt("dad04b4b13", undefined, { id: 1, type: "User" })],
+    [state({ has_unresolved_findings: true }), receipt("dad04b4b13")],
+    [receipt("dad04b4b13")],
+  ])
+    assert.equal(policy.evaluate_review({ ...data, comments }).ready, false);
+  assert.equal(policy.evaluate_review({ ...data, threads: [{ isResolved: false }] }).ready, false);
+});
+
 test("the trusted workflow runs the same policy covered by these tests", async () => {
   const { readFileSync } = await import("node:fs");
   const source = readFileSync(new URL("../security/review-policy.cjs", import.meta.url), "utf8").replaceAll("\r\n", "\n").replace("module.exports = { evaluate_review };", "").trim();

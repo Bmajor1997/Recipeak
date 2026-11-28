@@ -31,7 +31,8 @@ const VEGETARIAN_OK = /\b(?:vegan|plant-based|vegetarian|meatless)(?: (?!and\b|o
 const VEGAN_OK = /\b(?:vegan|plant-based)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
 const DAIRY_FREE_OK = /\b(?:vegan|plant-based|dairy-free)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
 const GLUTEN_FREE_OK = /\bgluten-free(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
-const NUT_FREE_OK = /\bnut-free(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}/g;
+// "Almond-free" rules out only almonds, so it clears just its own word: "almond-free cashew milk" is still cashew.
+const NUT_FREE_OK = /\b(?:nut-free|nut free)(?: (?!and\b|or\b|with\b|plus\b)[a-z'-]+){1,3}|\balmond-free\b/g;
 // Cheeses made with animal rennet by tradition (Parmesan by law, cotija by custom): not vegetarian, but easy to swap.
 const RENNET = /\b(?:parmesan|parmigiano|pecorino|grana padano|cotija)/i;
 
@@ -52,7 +53,7 @@ const EGG_CORE = /\b(?:eggs?\b|omelet(?:te)?|frittata|huevos|quiche)/i;
 const MEAT_UNSURE = /\b(?:broth|stock\b|stock cubes?|bouillon|kimchi|curry paste|laksa paste|nam prik pao|chili paste|sinigang|fish-free)/i;
 // Kombu dashi, vegetable broth and the like are plant-based; "or" alternatives are handled separately.
 const PLANT_WORDS =
-  /\b(vegetable (?:broth|stock)|kombu dashi|mushroom dashi|eggplant|butter beans|butternut|cocoa butter|peanut butter|cream of coconut|coconut (?:cream|milk)|honeydew|crème de [a-zûé]+|creme de [a-z]+|cream sherry|ginger beer|root beer)\b/g;
+  /\b(vegetable (?:broth|stock)|kombu dashi|mushroom dashi|eggplant|butter beans|butter lettuce|butternut|cocoa butter|peanut butter|cream of coconut|coconut (?:cream|milk)|honeydew|crème de [a-zûé]+|creme de [a-z]+|cream sherry|ginger beer|root beer)\b/g;
 
 const DAIRY =
   /\b(?:butter|buttermilk|ghee|smen|kibbeh|milk|cream|crema|cheese|cheddar|mozzarella|parmesan|pecorino|kefalotyri|ricotta|feta|paneer|queso|quesillo|oaxaca|monterey jack|gruy[eè]re|provolone|swiss|yogh?urt|irish cream|mashed potatoes|naan|brioche|mascarpone|cr[eè]me fra[iî]che|kefir|quark|labneh|halloumi|burrata|custard|ice cream|dulce de leche|queso fresco|cotija|cheese curds)/i;
@@ -69,22 +70,25 @@ const HONEY = /\b(?:honey(?!dew|comb)|gardenia mix)/i;
 const FINED = /\b(?:wine|champagne|prosecco|vermouth|sherry|port\b|beer|lager|stout|dubonnet|marsala|sake|shaoxing)/i;
 
 const GLUTEN =
-  /\b(?:flour|atta|semolina|couscous|bulgur|bread|breadcrumbs|panko|croutons|pitas?|pide|naan|roti|paratha|rougag|flatbread|baguettes?|rolls|buns|pav|brioche|challah|english muffins|cornbread|injera|dough|pastry|pie crusts?|wrappers|mandarin pancakes|gingersnap|saltine|crackers|pasta|spaghetti|fettuccine|linguine|macaroni|ziti|rigatoni|penne|trofie|lasagna|noodles|ramen|udon|soba|lo mein|vermicelli|tortillas?|oats|soy sauce|maggi|hoisin|oyster sauce|kecap manis|sweet soy|sweet bean sauce|doubanjiang|gochujang|black vinegar|malt vinegar|shaoxing|tempura|tonkatsu sauce|okonomiyaki sauce|takoyaki sauce|beer|lager|stout|guinness|split pea fritters|ladyfingers|savoiardi|biscuits|cookies|cake|graham|wafers|phyllo|filo|croissants?|bagels?|muffins?|matzo|barley|farro|spelt|orzo|gnocchi|seitan|churros?|cr[eê]pes?|dumplings?|wontons?|gyoza|bao|pancakes?|waffles?|brownies?|shortcrust)/i;
+  /\b(?:wheat(?!-free\b)|flour|atta|semolina|couscous|bulgur|bread|breadcrumbs|panko|croutons|pitas?|pide|naan|roti|paratha|rougag|flatbread|baguettes?|rolls|buns|pav|brioche|challah|english muffins|cornbread|injera|dough|pastry|pie crusts?|wrappers|mandarin pancakes|gingersnap|saltine|crackers|pasta|spaghetti|fettuccine|linguine|macaroni|ziti|rigatoni|penne|trofie|lasagna|noodles|ramen|udon|soba|lo mein|vermicelli|tortillas?|oats|soy sauce|maggi|hoisin|oyster sauce|kecap manis|sweet soy|sweet bean sauce|doubanjiang|gochujang|black vinegar|malt vinegar|shaoxing|tempura|tonkatsu sauce|okonomiyaki sauce|takoyaki sauce|beer|lager|stout|guinness|split pea fritters|ladyfingers|savoiardi|biscuits|cookies|cake|graham|wafers|phyllo|filo|croissants?|bagels?|muffins?|matzo|barley|farro|spelt|orzo|gnocchi|seitan|churros?|cr[eê]pes?|dumplings?|wontons?|gyoza|bao|pancakes?|waffles?|brownies?|shortcrust)/i;
 // Not wheat, barley or rye, though their names look like it.
 const GLUTEN_FREE_WORDS =
   /\b(rice (?:flour|noodles|vermicelli|paper|cakes)|chickpea flour|corn (?:tortillas?|flour)|taco shells or corn tortillas|tortilla (?:chips|strips)|glass noodles|sweet potato starch noodles|flat rice noodles|fresh (?:flat|wide) rice noodles|rice vermicelli|thin rice vermicelli|dried flat rice noodles|tamari|ginger beer|root beer|bread and butter pickles|masa harina|cylindrical rice cakes|prawn crackers)\b/g;
+// Miso is usually made with rice or soybeans alone, but barley (mugi) miso and some blends contain barley or wheat.
 const GLUTEN_UNSURE =
-  /\b(?:worcestershire|bouillon|stock cubes?|barbecue sauce|taco seasoning|fried onions|fermented black beans|fish cakes|sausages?|kielbasa|andouille|bratwurst|lap cheong|chinese sausage|sambar powder|prawn crackers|chocolate syrup)/i;
+  /\b(?:miso|worcestershire|bouillon|stock cubes?|barbecue sauce|taco seasoning|fried onions|fermented black beans|fish cakes|sausages?|kielbasa|andouille|bratwurst|lap cheong|chinese sausage|sambar powder|prawn crackers|chocolate syrup)/i;
 
 const NUTS =
   /\b(?:peanuts?|almonds?|walnuts?|pecans?|cashews?|pistachios?|pine nuts|hazelnuts?|macadamia|brazil nuts?|orgeat|frangelico|nocino|praline|marzipan|pesto|satay|coconut|kerisik|malibu)/i;
 const NUTS_CORE =
   /\b(?:peanuts?|almonds?|walnuts?|pecans?|cashews?|pistachios?|pine nuts|hazelnuts?|macadamia|brazil nuts?|orgeat|frangelico|nocino|praline|marzipan|pesto|coconut|kerisik|malibu)/i;
-const NUTS_UNSURE = /\b(?:amaretto|noyaux)/i;
+// These depend on the brand: falernum is often made with almond, amaretto with almond or apricot kernel, nougat and
+// mole paste often hold nuts. Unless the line itself says nut-free ("nut-free amaretto"), nut-free isn't claimed.
+const NUTS_UNSURE = /\b(?:amaretto|noyaux|falernum|nougat|mole paste|nut liqueur)/i;
 
 // Low-carb: a starch cooked into the dish is its heart; sugar, a coating or a side can be cut or swapped.
 const STARCH =
-  /\b(?:flour|atta|semolina|couscous|bulgur|bread|breadcrumbs|panko|croutons|pitas?|pide|naan|roti|paratha|rougag|flatbread|baguettes?|rolls|buns|pav|brioche|challah|english muffins|cornbread|injera|dough|pastry|pie crusts?|wrappers|mandarin pancakes|gingersnap|saltine|crackers|pasta|spaghetti|fettuccine|linguine|macaroni|ziti|rigatoni|penne|trofie|lasagna|noodles|ramen|udon|soba|lo mein|vermicelli|tortillas?|oats|tempura|split pea fritters|rice|potato(?:es)?|hash browns|french fries|plantains?|yams?\b|cassava|yuca|taro|corn\b|cornmeal|masarepa|masa|grits|hominy|polenta|beans|black-eyed peas|chickpeas|lentils|dal\b|split peas|quinoa|farofa|dosa batter|idli batter|tortilla chips|tortilla strips|taco shells|tteok|rice cakes|plantain chips|injera|ladyfingers|savoiardi|biscuits|cookies|cake|graham|phyllo|filo|croissants?|bagels?|barley|farro|orzo|gnocchi|churros?|cr[eê]pes?|wontons?|gyoza|bao)/i;
+  /\b(?:wheat(?!-free\b)|flour|atta|semolina|couscous|bulgur|bread|breadcrumbs|panko|croutons|pitas?|pide|naan|roti|paratha|rougag|flatbread|baguettes?|rolls|buns|pav|brioche|challah|english muffins|cornbread|injera|dough|pastry|pie crusts?|wrappers|mandarin pancakes|gingersnap|saltine|crackers|pasta|spaghetti|fettuccine|linguine|macaroni|ziti|rigatoni|penne|trofie|lasagna|noodles|ramen|udon|soba|lo mein|vermicelli|tortillas?|oats|tempura|split pea fritters|rice|potato(?:es)?|hash browns|french fries|plantains?|yams?\b|cassava|yuca|taro|corn\b|cornmeal|masarepa|masa|grits|hominy|polenta|beans|black-eyed peas|chickpeas|lentils|dal\b|split peas|quinoa|farofa|dosa batter|idli batter|tortilla chips|tortilla strips|taco shells|tteok|rice cakes|plantain chips|injera|ladyfingers|savoiardi|biscuits|cookies|cake|graham|phyllo|filo|croissants?|bagels?|barley|farro|orzo|gnocchi|churros?|cr[eê]pes?|wontons?|gyoza|bao)/i;
 const SUGAR =
   /\b(?:sugar|honey|syrup|molasses|jam\b|marmalade|chutney|ketchup|hoisin|kecap manis|sweet soy|sweet chili sauce|barbecue sauce|mirin|raisins|dates|prunes|apricots|jujubes|grenadine|cola|soda\b(?! water)|club soda|ginger ale|ginger beer|tonic|lemonade|falernum|beer|lager|stout|guinness)/i;
 // In a drink, these carry the flavor, so a low-carb version would be a different drink.
@@ -179,6 +183,22 @@ function check_diet(recipe: Recipe, diet: Diet, has_version: boolean): { status:
   return { status: "option", why: bad.map((c) => c.hit).join(", ") };
 }
 
+/**
+ * True when an ingredient may hold the allergen by the wider diet word lists: they name more of its sources
+ * (mascarpone, custard, brioche) than the short allergen lists do, and include the uncertain ones.
+ */
+export function diet_words_suggest(item: string, allergen: string): boolean {
+  const words: Record<string, RegExp[]> = {
+    milk: [DAIRY, DAIRY_UNSURE],
+    eggs: [EGG, EGG_UNSURE],
+    wheat: [GLUTEN],
+    "tree nuts": [NUTS, NUTS_UNSURE],
+    peanuts: [NUTS],
+  };
+  const text = item.toLowerCase().normalize("NFC");
+  return (words[allergen] ?? []).some((w) => w.test(text));
+}
+
 /** Rough amount in cups, for telling a spoon of sugar or flour from a dessert's or a dough's worth. */
 export function cups(amount: string, unit: string): number {
   const parts = amount
@@ -270,6 +290,20 @@ export function diet_profile(
   if (status.vegetarian?.status === "none" && status.vegan?.status === "option" && !hand_versions.includes("vegan"))
     status.vegan = { ...status.vegetarian };
   for (const [diet, o] of Object.entries(overrides) as [Diet, DietOverride][]) if (status[diet]) status[diet] = o;
+  // Nut-free is an allergy claim, so the description and method must agree with it too: a recipe whose words mention a
+  // nut its ingredients don't list ("lime, grapefruit, almond and warm spice", often from an AI) isn't called nut-free
+  // until a person checks. Flavor words ("almond-scented") describe a taste, not an ingredient.
+  if (status["nut-free"]?.status === "fits") {
+    const said = [recipe.description, ...recipe.steps].join(" ").replace(/\b[a-z]+-(?:flavou?red|scented|like|free)\b/gi, " ");
+    const mention = check_text(said, rule("nut-free")!, false);
+    if (mention.verdict === "bad") status["nut-free"] = { status: "review", why: `the description or method mentions ${mention.hit}` };
+  }
+  // A drink written only as a method (a hand-written alcohol-free version, curatedVersions.ts) has no ingredient list
+  // to check, so no diet is claimed for it: each one needs a person to check, and can still be asked for.
+  if (!recipe.ingredients.length)
+    for (const diet of DIETS)
+      if (diet !== "non-alcoholic" && status[diet])
+        status[diet] = { status: "review", why: "written as a method, without an ingredient list" };
   // A changed dish may still be useful: let people request an adaptation even if a defining ingredient changes.
   for (const diet of ["vegetarian", "vegan", "dairy-free", "nut-free"] as Diet[]) {
     if (status[diet]?.status === "none") status[diet] = { status: "option", why: "requires a substitution" };

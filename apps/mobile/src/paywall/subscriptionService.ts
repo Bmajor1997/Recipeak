@@ -36,7 +36,7 @@ export type SubscriptionDeps = {
 
 export const SUBSCRIPTION_MESSAGES = {
   not_set_up: "Subscriptions aren't open yet. Your saved recipes are still here, and we'll let you know when you can subscribe.",
-  expo_go: "Buying needs the installed Recipeak app. Expo Go can't open the store's purchase sheet.",
+  expo_go: "Buying needs the installed Relish app. Expo Go can't open the store's purchase sheet.",
   signed_out: "Sign in first, so your subscription belongs to your account.",
   no_plan: "This plan isn't available right now. Please try again.",
   failed: "The purchase didn't finish. You haven't been charged. Please try again.",

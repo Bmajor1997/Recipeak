@@ -6,9 +6,12 @@ import * as ImagePicker from "expo-image-picker";
 import { useEffect, useRef, useState } from "react";
 import {
   AccessibilityInfo,
+  ActivityIndicator,
   Animated,
+  AppState,
   Easing,
   Image,
+  Linking,
   Modal,
   PanResponder,
   Pressable,
@@ -19,7 +22,19 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { CAMERA_THEME } from "../ui/theme";
-import { type FlashSetting, flash_label, next_flash, SHEET_CLOSE_MS, SHEET_SPRING, should_dismiss, shutter_flash } from "./cameraOptions";
+import {
+  CAMERA_START_TIMEOUT_MS,
+  CAPTURE_FAILED,
+  camera_area,
+  type FlashSetting,
+  flash_label,
+  next_flash,
+  SHEET_CLOSE_MS,
+  SHEET_SPRING,
+  should_dismiss,
+  shutter_flash,
+  usable_capture,
+} from "./cameraOptions";
 
 // The camera keeps its dark look in light mode too, like every phone camera.
 const { colors, type } = CAMERA_THEME;
@@ -48,7 +63,14 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
   const [flash, set_flash] = useState<FlashSetting>("off");
   const [facing, set_facing] = useState<CameraType>("back");
   const [ready, set_ready] = useState(false);
+  const [capture_error, set_capture_error] = useState<string | null>(null);
   const [taken, set_taken] = useState<Photo | null>(null);
+  // A camera that failed to start, one that never said it was ready, and the app being in the foreground.
+  const [failed, set_failed] = useState(false);
+  const [timed_out, set_timed_out] = useState(false);
+  const [active, set_active] = useState(AppState.currentState === "active");
+  // A new key starts a fresh preview (after a retry, or when the app comes back from the background).
+  const [attempt, set_attempt] = useState(0);
 
   // Animated values and the drag gesture are created once and kept for the sheet's lifetime.
   const [slide] = useState(() => new Animated.Value(height));
@@ -69,7 +91,41 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
       set_mounted(true);
       set_taken(null);
       set_menu_open(false);
+      set_failed(false);
+      set_timed_out(false);
+      set_capture_error(null);
     }
+  }
+
+  // Android lets go of the camera while the app is in the background, and a preview left mounted can come back
+  // black. The preview is removed in the background and started fresh when the app is back.
+  useEffect(() => {
+    const sub = AppState.addEventListener("change", (state) => {
+      const now_active = state === "active";
+      set_active(now_active);
+      if (now_active) {
+        set_ready(false);
+        set_failed(false);
+        set_timed_out(false);
+        set_attempt((n) => n + 1);
+      }
+    });
+    return () => sub.remove();
+  }, []);
+
+  const area = camera_area({ permission, taken: Boolean(taken), active, ready, failed, timed_out });
+  // A preview that doesn't start in time is reported instead of staying black.
+  useEffect(() => {
+    if (!mounted || area !== "starting") return;
+    const timer = setTimeout(() => set_timed_out(true), CAMERA_START_TIMEOUT_MS);
+    return () => clearTimeout(timer);
+  }, [mounted, area, attempt]);
+
+  function retry_camera() {
+    set_ready(false);
+    set_failed(false);
+    set_timed_out(false);
+    set_attempt((n) => n + 1);
   }
 
   useEffect(() => {
@@ -139,6 +195,7 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
   function retake() {
     set_taken(null);
     set_ready(false);
+    set_capture_error(null);
   }
 
   async function take_photo() {
@@ -146,15 +203,22 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
     set_menu_open(false);
     // Two signals that the photo was taken: the shutter sound and a soft white flash.
     play_flash();
+    set_capture_error(null);
     const photo = await camera.current.takePictureAsync({ quality: 0.9, shutterSound: true }).catch(() => null);
-    if (photo) await finish({ uri: photo.uri, width: photo.width, height: photo.height });
+    // A capture that failed, or came back without a file or a size, is never sent (and uses no free photo).
+    if (!photo || !usable_capture(photo)) return set_capture_error(CAPTURE_FAILED);
+    await finish({ uri: photo.uri, width: photo.width, height: photo.height });
   }
 
   async function choose_from_photos() {
     set_menu_open(false);
     const picked = await ImagePicker.launchImageLibraryAsync({ mediaTypes: "images", quality: 0.9 });
-    const asset = picked.canceled ? null : picked.assets[0];
-    if (asset) await finish({ uri: asset.uri, width: asset.width, height: asset.height });
+    // Closing the picker is a quiet cancel; a picked photo that can't be read says so.
+    if (picked.canceled) return;
+    const asset = picked.assets[0];
+    if (!usable_capture(asset)) return set_capture_error("That photo couldn't be opened. Choose another one.");
+    set_capture_error(null);
+    await finish({ uri: asset.uri, width: asset.width, height: asset.height });
   }
 
   if (!mounted) return null;
@@ -177,30 +241,49 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
         <View style={styles.handle} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" />
 
         <View style={styles.preview}>
-          {permission?.granted ? (
-            taken ? (
-              <Image
-                source={{ uri: taken.uri }}
-                style={StyleSheet.absoluteFill}
-                resizeMode="cover"
-                accessibilityLabel="The photo you took"
-              />
-            ) : (
-              <CameraView
-                ref={camera}
-                style={StyleSheet.absoluteFill}
-                facing={facing}
-                flash={flash}
-                animateShutter={false}
-                onCameraReady={() => set_ready(true)}
-                accessibilityLabel="Camera preview. Point it at a meal or a drink."
-              />
-            )
-          ) : (
+          {area === "photo" && taken && (
+            <Image source={{ uri: taken.uri }} style={StyleSheet.absoluteFill} resizeMode="cover" accessibilityLabel="The photo you took" />
+          )}
+          {(area === "starting" || area === "preview") && (
+            <CameraView
+              key={attempt}
+              ref={camera}
+              style={StyleSheet.absoluteFill}
+              facing={facing}
+              flash={flash}
+              animateShutter={false}
+              onCameraReady={() => set_ready(true)}
+              onMountError={() => set_failed(true)}
+              accessibilityLabel="Camera preview. Point it at a meal or a drink."
+            />
+          )}
+          {(area === "starting" || area === "checking" || area === "paused") && (
+            <View style={styles.permission} pointerEvents="none" accessibilityLiveRegion="polite">
+              <ActivityIndicator color="#FFFFFF" />
+              <Text style={[type.body, { textAlign: "center", marginTop: 12 }]}>Starting the camera…</Text>
+            </View>
+          )}
+          {(area === "ask" || area === "settings" || area === "unavailable") && (
             <View style={styles.permission}>
-              <Text style={[type.body, { textAlign: "center" }]}>Allow camera access to photograph a meal or a cocktail.</Text>
-              <Pressable accessibilityRole="button" onPress={request_permission} style={styles.allow}>
-                <Text style={styles.allowText}>Allow camera</Text>
+              <Text style={[type.body, { textAlign: "center" }]}>
+                {area === "ask"
+                  ? "Allow camera access to photograph a meal or a cocktail."
+                  : area === "settings"
+                    ? "Camera access is turned off for Relish. Turn it on in your phone's Settings to take a photo."
+                    : "The camera isn't available right now. It may be in use by another app. Try again, or choose a photo instead."}
+              </Text>
+              <Pressable
+                accessibilityRole="button"
+                onPress={() => {
+                  if (area === "ask") void request_permission();
+                  else if (area === "settings") void Linking.openSettings().catch(() => {});
+                  else retry_camera();
+                }}
+                style={styles.allow}
+              >
+                <Text style={styles.allowText}>
+                  {area === "ask" ? "Allow camera" : area === "settings" ? "Open Settings" : "Try again"}
+                </Text>
               </Pressable>
               <Pressable accessibilityRole="button" onPress={choose_from_photos} style={{ marginTop: 16, padding: 8 }}>
                 <Text style={[type.body, { textDecorationLine: "underline" }]}>Or choose from your photos</Text>
@@ -224,9 +307,9 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
           </View>
         )}
 
-        {!!message && !taken && (
+        {!!(message ?? capture_error) && !taken && (
           <View style={styles.message} accessibilityLiveRegion="assertive">
-            <Text style={styles.messageText}>{message}</Text>
+            <Text style={styles.messageText}>{message ?? capture_error}</Text>
           </View>
         )}
 
@@ -260,7 +343,7 @@ export function CameraSheet({ visible, onClose, onPhoto, message, footnote }: Pr
               accessibilityLabel="Take photo"
               accessibilityHint="Takes a photo and finds a recipe for it"
               accessibilityState={{ disabled: !ready || Boolean(taken) }}
-              disabled={!permission?.granted || !ready || Boolean(taken)}
+              disabled={area !== "preview"}
               onPress={take_photo}
               style={({ pressed }) => [styles.shutterRing, pressed && { transform: [{ scale: 0.92 }] }]}
             >

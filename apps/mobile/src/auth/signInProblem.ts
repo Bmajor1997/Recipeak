@@ -7,7 +7,7 @@ export function sign_in_problem(error: unknown): string {
   // Google's own messages (from googleSignIn.ts) are already plain sentences.
   if ((error as Error)?.name === "RecipeakAuthUnavailable") return (error as Error).message;
   if (code.includes("account-exists-with-different-credential"))
-    return "This email already has a Recipeak account. Sign in with your email and password instead.";
+    return "This email already has a Relish account. Sign in with your email and password instead.";
   if (code.includes("user-mismatch")) return "That's a different account. Choose the account you're signed in with.";
   if (code.includes("invalid-credential") || code.includes("wrong-password") || code.includes("user-not-found"))
     return "That email and password don't match. Try again, or reset your password.";

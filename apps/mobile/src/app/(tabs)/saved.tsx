@@ -1,14 +1,15 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { router, useFocusEffect } from "expo-router";
+import { useFocusEffect } from "expo-router";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { FlatList, Pressable, Share, StyleSheet, Text, TextInput, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useApp } from "../../AppContext";
 import { useCamera } from "../../camera/CameraProvider";
+import { with_ingredient_allergens } from "../../recipes/allergenRisk";
 import { recipe_as_text } from "../../recipes/format";
-import { filter_saved, type SavedFilter, total_minutes } from "../../recipes/search";
-import { NO_IMAGE, type SavedRecipe } from "../../recipes/types";
-import { PhotoCard } from "../../ui/PhotoCard";
+import { filter_saved, type SavedFilter } from "../../recipes/search";
+import type { SavedRecipe } from "../../recipes/types";
+import { SavedCard } from "../../saved/SavedCard";
 import { Button, Chip, useTheme, useThemedStyles, type Palette } from "../../ui/theme";
 
 const FILTERS: { value: SavedFilter; label: string }[] = [
@@ -20,7 +21,7 @@ const FILTERS: { value: SavedFilter; label: string }[] = [
 export default function SavedScreen() {
   const { colors, type } = useTheme();
   const styles = useThemedStyles(create_styles);
-  const { saved, set_current } = useApp();
+  const { saved } = useApp();
   const { open_camera } = useCamera();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
@@ -40,7 +41,10 @@ export default function SavedScreen() {
     if (!items?.length || sharing.current) return;
     sharing.current = true;
     try {
-      await Share.share({ title: "My Recipeak recipes", message: items.map((item) => recipe_as_text(item.recipe)).join("\n\n—\n\n") });
+      await Share.share({
+        title: "My Relish recipes",
+        message: items.map((item) => recipe_as_text(item.ai ? with_ingredient_allergens(item.recipe) : item.recipe)).join("\n\n—\n\n"),
+      });
     } catch {
       // Closing the share sheet isn't a problem worth a message.
     } finally {
@@ -117,30 +121,7 @@ export default function SavedScreen() {
       columnWrapperStyle={{ gap: 12 }}
       contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 32, gap: 12 }}
       keyboardShouldPersistTaps="handled"
-      renderItem={({ item }) => (
-        <PhotoCard
-          title={item.recipe.title}
-          kind={item.kind}
-          minutes={total_minutes(item)}
-          photoUri={item.photo_uri}
-          width={cardWidth}
-          height={cardWidth * 1.25}
-          onPress={() => {
-            set_current({
-              status: "ready",
-              kind: item.kind,
-              recipe: item.recipe,
-              guesses: [],
-              selected: 0,
-              image: NO_IMAGE,
-              localPhoto: item.photo_uri,
-              savedId: item.id,
-              ai: item.ai,
-            });
-            router.push("/recipe");
-          }}
-        />
-      )}
+      renderItem={({ item }) => <SavedCard item={item} width={cardWidth} height={cardWidth * 1.25} />}
     />
   );
 }

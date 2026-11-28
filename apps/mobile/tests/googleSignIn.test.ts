@@ -114,7 +114,7 @@ describe("Continue with Google", () => {
     const { flow, exchange } = setup();
     exchange.mockRejectedValueOnce(coded("auth/account-exists-with-different-credential"));
     const failure = await flow.sign_in().catch((caught: unknown) => caught);
-    expect(auth_error_message(failure)).toMatch(/already has a Recipeak account/);
+    expect(auth_error_message(failure)).toMatch(/already has a Relish account/);
   });
 
   it("gives an unknown failure a message rather than nothing", async () => {

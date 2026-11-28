@@ -1,0 +1,76 @@
+// Turns the stored "Recently viewed" list into what Home shows and opens, and records what the recipe screen opens.
+import type { CurrentRecipe } from "../AppContext";
+import { with_ingredient_allergens } from "./allergenRisk";
+import type { CollectionDish } from "./collectionPhotos";
+import type { RecentEntry, RecentlyViewed } from "./recentlyViewed";
+import { find_collection_dish } from "./shelves";
+import { NO_IMAGE, type Kind, type SavedRecipe } from "./types";
+
+type Generated = Extract<RecentEntry, { type: "generated" }>;
+export type ViewedItem = { key: string; name: string; kind: Kind; dish: CollectionDish | null; entry: Generated | null };
+
+/** Bundled ids that no longer exist are skipped. */
+export function viewed_items(entries: RecentEntry[]): ViewedItem[] {
+  return entries.flatMap((entry): ViewedItem[] => {
+    if (entry.type === "generated")
+      return [{ key: `g|${entry.kind}|${entry.name}`, name: entry.name, kind: entry.kind, dish: null, entry }];
+    const dish = find_collection_dish(entry.id);
+    return dish ? [{ key: `b|${dish.id}`, name: dish.name, kind: dish.kind, dish, entry: null }] : [];
+  });
+}
+
+/** The kept cover of a recipe made with AI that is also in Saved, so Recently viewed shows the same photo as Saved. */
+export function saved_photo_of(item: ViewedItem, saved: SavedRecipe[]): string | null {
+  const entry = item.entry;
+  if (!entry) return null;
+  return saved.find((s) => s.kind === entry.kind && s.recipe.title === entry.recipe.title && s.photo_uri)?.photo_uri ?? null;
+}
+
+/** The first photo address that exists and hasn't failed to load, or null for the app's artwork. */
+export function first_working(addresses: (string | null)[], failed: string[]): string | null {
+  return addresses.find((u): u is string => !!u && !failed.includes(u)) ?? null;
+}
+
+/** The recipe screen's state for reopening a recipe made with AI from Recently viewed. */
+export function generated_as_current(entry: Generated): Extract<CurrentRecipe, { status: "ready" }> {
+  const image = entry.image_url ? ({ status: "ready", url: entry.image_url } as const) : NO_IMAGE;
+  return {
+    status: "ready",
+    kind: entry.kind,
+    // Kept on the phone, maybe before the server added allergens from the ingredients: checked again here.
+    recipe: with_ingredient_allergens(entry.recipe),
+    guesses: [{ name: entry.name, confidence: "high", image }],
+    selected: 0,
+    image,
+    localPhoto: null,
+    savedId: null,
+    picked: true,
+    ai: true,
+  };
+}
+
+/**
+ * Records the recipe on screen in this account's Recently viewed: a bundled dish by its id, a recipe made with AI as
+ * it is (with its library photo). Only the standard recipe is recorded, not a diet version of it.
+ */
+export function record_viewed(
+  recent: RecentlyViewed | null,
+  current: Extract<CurrentRecipe, { status: "ready" }>,
+  name: string,
+  /** The library photo's path once it's ready, when the recipe opened while it was still being made. */
+  ready_path: string | null = null,
+) {
+  if (!recent) return;
+  const entry: RecentEntry | null = current.bundledId
+    ? { type: "bundled", id: current.bundledId }
+    : current.ai
+      ? {
+          type: "generated",
+          kind: current.kind,
+          name,
+          recipe: current.recipe,
+          image_url: current.image.status === "ready" ? current.image.url : ready_path,
+        }
+      : null;
+  if (entry) void recent.add(entry).catch(() => {});
+}

@@ -11,7 +11,7 @@ export function legal_page_urls(base_url: string | undefined): { privacy: string
 /** Recipeak's Google Play page. Set it once the app is published; until then shared recipes leave the link out. */
 export const STORE_URL: string | null = null;
 
-export const support_mail_url = () => `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent("Recipeak support")}`;
+export const support_mail_url = () => `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent("Relish support")}`;
 
 /** Where subscribers change or cancel their plan: the store's own subscription page. */
 export function manage_subscription_url(platform: string): string {

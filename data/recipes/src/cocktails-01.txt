@@ -321,7 +321,7 @@ G coupe | flamed orange peel | y | -
 # Strain into an ice-filled Collins glass and top with soda.
 G Collins glass | orange slice and cherry | y | Lime, syrup, grenadine and pineapple juice topped with ginger ale.
 
-@ gimlet | Gimlet | 1 | 3 | 0 | - | Gin and lime cordial, shaken crisp.
+@ gimlet | Gimlet | 1 | 3 | 0 | - | Gin, fresh lime juice and simple syrup, shaken crisp.
 - 2 | oz | gin
 - 3/4 | oz | fresh lime juice
 - 3/4 | oz | simple syrup
